@@ -260,12 +260,21 @@ def write_scrutin(sc: Scrutin, roster: dict[str, dict]) -> Path:
     return path
 
 
-def write_today_pointer(featured: Scrutin | None, all_new: list[Scrutin]) -> None:
+def write_today_pointer(featured: Scrutin | None, all_new: list[Scrutin], state: dict) -> None:
     """
     Le scrutin vedette du jour : priorité au vote solennel le plus récent.
     S'il n'y en a pas, on pointe vers le scrutin le plus suivi (le plus de
     votants), sans jamais cacher les autres — ils restent listés à côté.
+
+    On garde aussi, en mémoire longue (dans state.json), le dernier scrutin
+    vedette connu — pour qu'un jour sans séance (recess, week-end) affiche
+    encore le dernier vote réel plutôt qu'un écran vide.
     """
+    if featured is not None:
+        state["last_featured_numero"] = featured.numero
+        state["last_featured_date"] = featured.date
+        state["last_featured_titre"] = featured.titre
+
     payload = {
         "generated_at": __import__("datetime").datetime.utcnow().isoformat() + "Z",
         "featured_numero": featured.numero if featured else None,
@@ -274,6 +283,8 @@ def write_today_pointer(featured: Scrutin | None, all_new: list[Scrutin]) -> Non
             sc.numero for sc in all_new if not featured or sc.numero != featured.numero
         ],
         "aucun_vote_aujourdhui": featured is None and not all_new,
+        "last_featured_numero": state.get("last_featured_numero"),
+        "last_featured_date": state.get("last_featured_date"),
     }
     (DATA_DIR / "today.json").write_text(
         json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8"
@@ -357,7 +368,7 @@ def main() -> int:
         )
 
     featured = pick_featured(new_scrutins)
-    write_today_pointer(featured, new_scrutins)
+    write_today_pointer(featured, new_scrutins, state)
 
     try:
         agenda = fetch_agenda()
