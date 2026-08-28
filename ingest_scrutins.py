@@ -260,6 +260,31 @@ def write_scrutin(sc: Scrutin, roster: dict[str, dict]) -> Path:
     return path
 
 
+def backfill_last_featured(state: dict) -> None:
+    # Amorce la mémoire longue tant qu'elle est vide.
+    #
+    # write_today_pointer ne mémorise le dernier vote vedette que les jours
+    # où un nouveau scrutin arrive. Le correctif ayant été déployé pendant la
+    # trêve estivale, ce cas ne s'est jamais présenté : rien n'a été mémorisé
+    # et la carte vedette de l'accueil est restée vide. On repart donc de
+    # l'archive déjà présente sur disque plutôt que d'attendre la rentrée.
+    if state.get('last_featured_numero') is not None:
+        return
+    numeros = []
+    for chemin in SCRUTINS_DIR.glob('*.json'):
+        try:
+            numeros.append(int(chemin.stem))
+        except ValueError:
+            continue
+    if not numeros:
+        return
+    dernier = max(numeros)
+    fiche = json.loads((SCRUTINS_DIR / f'{dernier}.json').read_text(encoding='utf-8'))
+    state['last_featured_numero'] = fiche.get('numero', dernier)
+    state['last_featured_date'] = fiche.get('date')
+    state['last_featured_titre'] = fiche.get('titre')
+
+
 def write_today_pointer(featured: Scrutin | None, all_new: list[Scrutin], state: dict) -> None:
     """
     Le scrutin vedette du jour : priorité au vote solennel le plus récent.
@@ -274,6 +299,8 @@ def write_today_pointer(featured: Scrutin | None, all_new: list[Scrutin], state:
         state["last_featured_numero"] = featured.numero
         state["last_featured_date"] = featured.date
         state["last_featured_titre"] = featured.titre
+    else:
+        backfill_last_featured(state)
 
     payload = {
         "generated_at": __import__("datetime").datetime.utcnow().isoformat() + "Z",
