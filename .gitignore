@@ -1,3 +1,7 @@
 .venv/
 __pycache__/
 .DS_Store
+
+# Prototype local anterieur au reskin, conserve hors du depot.
+# Supprimable sans risque : reference nulle part.
+carte-vote-en-direct.html
