@@ -2,34 +2,50 @@ name: Ingestion quotidienne des scrutins
 
 on:
   schedule:
-    # 6h05 heure de Paris pendant l'heure d'été (5h05 UTC) — ajuste
-    # selon la saison, ou lance simplement deux fois pour couvrir les deux.
-    - cron: "5 5 * * *"
-  workflow_dispatch: {}   # bouton "Run workflow" pour tester manuellement
+    # GitHub ne garantit pas l'heure d'une tâche planifiée : elle est mise en
+    # file d'attente selon la charge, et le début de chaque heure est le pire
+    # moment. On s'écarte donc de l'heure pile, et on tente quatre fois dans
+    # la nuit et la matinée plutôt qu'une seule. Le script est idempotent :
+    # une exécution qui ne trouve rien ne coûte rien et ne commite pas.
+    - cron: '23 2 * * *'
+    - cron: '23 4 * * *'
+    - cron: '23 6 * * *'
+    - cron: '23 8 * * *'
+  workflow_dispatch: {}
 
 permissions:
   contents: write
+
+# Deux exécutions retardées pourraient se chevaucher et se disputer le push.
+# On les met à la queue leu leu au lieu de les laisser entrer en collision.
+concurrency:
+  group: ingestion-scrutins
+  cancel-in-progress: false
 
 jobs:
   ingest:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
-
+          python-version: '3.12'
       - run: pip install requests
-
       - name: Exécuter l'ingestion
         run: python ingest_scrutins.py
-
       - name: Committer les données mises à jour
         run: |
-          git config user.name "bot-ingestion"
-          git config user.email "bot@example.invalid"
+          git config user.name bot-ingestion
+          git config user.email bot@example.invalid
           git add data/
-          git diff --cached --quiet && echo "rien de neuf aujourd'hui" || \
-            git commit -m "Données du $(date -u +%F)"
+          if git diff --cached --quiet; then
+            echo 'Aucune donnee modifiee.'
+            exit 0
+          fi
+          if python3 verif_changement_utile.py; then
+            echo 'Seul l horodatage a change : pas de commit.'
+            exit 0
+          fi
+          git commit -m 'Donnees du '$(date -u +%F)
+          git pull --rebase --autostash
           git push
