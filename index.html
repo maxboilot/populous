@@ -282,6 +282,15 @@ window.__VOTE_EARLY__ = (async function(){
     .screen{padding:16px 16px 20px}
     .dashHead h1{font-size:25px}
   }
+  /* Lignes cliquables de l'historique */
+  a.histLink{ display:block; text-decoration:none; color:inherit; cursor:pointer;
+    transition:transform .12s ease, box-shadow .12s ease; }
+  a.histLink:hover{ transform:translateY(-1px);
+    box-shadow:0 6px 18px rgba(16,25,63,.10); }
+  a.histLink .histGo{ font-size:10.5px; color:var(--accent); margin-top:6px;
+    opacity:0; transition:opacity .12s ease; }
+  a.histLink:hover .histGo{ opacity:1; }
+  @media (hover:none){ a.histLink .histGo{ opacity:.85; } }
 </style>
 </head>
 <body>
@@ -574,6 +583,11 @@ async function loadVote(){
     voteData = { error:true };
   }
   if(mode==="vote"){ restyle(); renderLegend(); refreshAvatars(); if(selected!=null) renderFiche(selected); }
+  // L'accueil doit lui aussi etre redessine : sans cela son cadre reste
+  // bloque sur Chargement du dernier vote jusqu'a ce que l'utilisateur
+  // change d'onglet et revienne. C'est ce qui donnait l'impression d'un
+  // chargement interminable alors que la donnee etait deja arrivee.
+  try{ renderAccueil(); }catch(e){}
 }
 
 /* couleurs */
@@ -1303,11 +1317,15 @@ async function loadHistorique(){
 }
 function histRow(r){
   const col = r.adopte ? "#3F8F5B" : "#C0453C";
-  return `<div class="dRow">
+  // Le lien pointe vers la page officielle du scrutin. On prend la source
+  // fournie par le pipeline, avec reconstruction de secours si absente.
+  const url = r.source || ("https://www.assemblee-nationale.fr/dyn/17/scrutins/" + r.numero);
+  return `<a class="dRow histLink" href="${esc(url)}" target="_blank" rel="noopener">
     <div class="k"><span>${esc(r.date)} · scrutin n°${r.numero}</span>
       <span class="badge" style="background:${col}22;color:${col}">${r.adopte?"Adopté":"Rejeté"}</span></div>
     <div class="t">${esc(r.titre)}</div>
-  </div>`;
+    <div class="histGo">Voir le scrutin sur assemblee-nationale.fr →</div>
+  </a>`;
 }
 
 /* ---------- À venir ---------- */

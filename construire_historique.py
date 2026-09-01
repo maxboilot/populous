@@ -140,6 +140,7 @@ def main():
             'date': l['date'],
             'titre': l['titre'],
             'adopte': l['adopte'],
+            'source': l['source'],
         }
         for l in reversed(lois)
     ]
