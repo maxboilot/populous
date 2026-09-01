@@ -16,6 +16,7 @@ from pathlib import Path
 DATA_DIR = Path('data')
 SCRUTINS_DIR = DATA_DIR / 'scrutins'
 SORTIE = DATA_DIR / 'historique.json'
+INDEX = DATA_DIR / 'index.json'
 FENETRE_JOURS = 365
 
 APOS = chr(39)
@@ -129,7 +130,23 @@ def main():
         'lois': lois,
     }
     SORTIE.write_text(json.dumps(charge, ensure_ascii=False, indent=2), encoding='utf-8')
+
+    # index.json : le format attendu par l onglet Historique de l application.
+    # C est un tableau nu, trie du plus ancien au plus recent, car l interface
+    # applique elle-meme un reverse() a l affichage.
+    index = [
+        {
+            'numero': l['numero'],
+            'date': l['date'],
+            'titre': l['titre'],
+            'adopte': l['adopte'],
+        }
+        for l in reversed(lois)
+    ]
+    INDEX.write_text(json.dumps(index, ensure_ascii=False, indent=2), encoding='utf-8')
+
     print('historique.json :', len(lois), 'lois depuis', limite)
+    print('index.json      :', len(index), 'entrees pour l onglet Historique')
 
 
 if __name__ == '__main__':

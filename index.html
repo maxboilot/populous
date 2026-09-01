@@ -4,6 +4,27 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 <title>La carte de l'attention — 577 circonscriptions</title>
+<script>
+/* Démarrage anticipé du chargement du vote vedette.
+
+   Cette page embarque 1,2 Mo de données en dur : contours, députés, groupes.
+   loadVote() n'était appelé qu'après leur analyse complète, soit 98 % du
+   fichier. La donnée arrive pourtant en 0,2 s — elle n'était simplement
+   demandée qu'à la toute fin. On la demande donc ici, en parallèle du
+   téléchargement du reste.
+
+   Chemin relatif : les données sont servies par le même hébergement que la
+   page, inutile d'ouvrir une seconde connexion vers un autre domaine. */
+window.__VOTE_EARLY__ = (async function(){
+  var base = "data/";
+  var today = await (await fetch(base + "today.json", {cache:"no-store"})).json();
+  var numero = today.featured_numero;
+  if(numero === null || numero === undefined) numero = today.last_featured_numero;
+  if(numero === null || numero === undefined) numero = 8434;
+  var sc = await (await fetch(base + "scrutins/" + numero + ".json", {cache:"no-store"})).json();
+  return { today: today, sc: sc };
+})().catch(function(){ return null; });
+</script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -528,10 +549,20 @@ async function loadVote(){
   if(voteFetchStarted) return;
   voteFetchStarted = true;
   try{
-    const today = await (await fetch(REPO_DATA_BASE + "today.json", {cache:"no-store"})).json();
-    const numero = today.featured_numero ?? today.last_featured_numero ?? FALLBACK_NUMERO;
+    // On récupère le préchargement lancé dès l'en-tête de la page.
+    var paquet = null;
+    try{ paquet = await window.__VOTE_EARLY__; }catch(e){ paquet = null; }
+    if(!paquet){
+      // Repli si le préchargement a échoué (page ouverte en local, par
+      // exemple) : on repasse par le dépôt brut, comme avant.
+      const t0 = await (await fetch(REPO_DATA_BASE + "today.json", {cache:"no-store"})).json();
+      const n0 = t0.featured_numero ?? t0.last_featured_numero ?? FALLBACK_NUMERO;
+      const s0 = await (await fetch(REPO_DATA_BASE + "scrutins/" + n0 + ".json", {cache:"no-store"})).json();
+      paquet = { today: t0, sc: s0 };
+    }
+    const today = paquet.today;
+    const sc = paquet.sc;
     const isToday = today.featured_numero != null;
-    const sc = await (await fetch(REPO_DATA_BASE + `scrutins/${numero}.json`, {cache:"no-store"})).json();
     voteData = {
       numero: sc.numero, titre: sc.titre, date: sc.date, solennel: sc.solennel,
       adopte: sc.adopte, sort: sc.sort, tally: sc.tally,
