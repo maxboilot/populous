@@ -73,21 +73,85 @@ réputation éditoriale irréprochable.
 - **Tests Python en local** : `requests` n'est pas installé sur le Mac. Injecter
   un module factice via `sys.modules` plutôt que d'installer le paquet.
 
-## État au 31 août 2026
+## Fichiers produits par le pipeline
+
+- `data/scrutins/<numero>.json` — une fiche par scrutin, avec le détail par
+  circonscription.
+- `data/today.json` — le vote vedette du jour, ou la mémoire du dernier vote
+  vedette si l Assemblée ne siège pas.
+- `data/historique.json` — les lois votées sur les douze derniers mois.
+- `data/agenda.json` — les séances à venir. Vide à ce jour.
+- `data/state.json` — mémoire du pipeline : scrutins vus, dernier vote vedette.
+
+## historique.json
+
+Produit par `construire_historique.py`, exécuté par le workflow juste après
+l ingestion.
+
+Ne retient que les votes portant sur un texte entier. C est le point clé : sur
+une année l archive compte environ 5 400 scrutins, dont 4 700 amendements et
+45 motions, mais seulement 113 votes sur texte entier. Ce sont ces derniers,
+et eux seuls, que le lecteur appelle des lois. Afficher les amendements
+rendrait l onglet illisible.
+
+Chaque entrée porte : numéro, date, titre débarrassé du jargon, titre officiel
+intégral, nature (projet ou proposition de loi, organique, constitutionnelle),
+stade de lecture, caractère solennel, résultat et décompte, lien vers la page
+de l Assemblée.
+
+Aucun résumé n est généré. Décision éditoriale explicite de Max, conforme au
+garde-fou sur le contenu auto-généré : le titre nettoyé et le lien vers le
+dossier tiennent lieu de description.
+
+## Agenda et onglet À venir
+
+Ce qui a été établi le 1er septembre 2026, à ne pas refaire :
+
+- Le CSV référencé dans le script (`seances_publique_excel.csv`) répond, mais
+  ne contient qu un en-tête sans aucune ligne : rien n est programmé pendant
+  la suspension. Son URL est en http et redirige, la passer en https.
+- Une source bien plus riche existe et n est pas exploitée :
+  `.../17/vp/reunions/Agenda.json.zip`, environ 8 Mo, 7 500 réunions. Chaque
+  réunion porte son ordre du jour, avec l objet de chaque point et les
+  références aux dossiers législatifs.
+- Elle contient de vraies réunions futures — 34 au 1er septembre, avec leur
+  état : Confirmé, Éventuel ou Annulé. Mais leur ordre du jour est
+  intégralement vide. Le dernier ordre du jour renseigné date du 22 juillet.
+
+Conclusion : l horizon réel est de deux à trois semaines, pas un an. L ordre
+du jour est arrêté par la Conférence des présidents à l approche de la séance.
+L ingestion peut être écrite dès maintenant, elle ne produira du contenu qu à
+la rentrée. L onglet doit afficher honnêtement l absence de programmation
+plutôt que de laisser croire à une panne.
+
+## Anti-bruit de commits
+
+`verif_changement_utile.py` empêche les quatre exécutions quotidiennes de
+committer des fichiers dont seul l horodatage a bougé. Tout nouveau fichier
+généré portant un horodatage doit être ajouté au dictionnaire VOLATILES, sinon
+le bruit revient.
+
+## État au 1er septembre 2026
 
 - Pipeline fonctionnel, archive complète de 8 434 scrutins.
-- Dernier vote réel : scrutin 8434 du 21 juillet 2026. Suspension des travaux
-  depuis. Reprise attendue à la rentrée.
-- Mémoire du dernier vote vedette amorcée et déployée.
+- Dernier vote réel : scrutin 8434 du 21 juillet 2026. Aucun vote depuis,
+  suspension des travaux. Vérifié à la source : le scrutin 8435 n existe pas.
+- Mémoire du dernier vote vedette amorcée, déployée, visible sur l accueil.
 - Workflow fiabilisé, validé par une exécution manuelle réussie.
+- `historique.json` produit et branché dans le pipeline.
 
 ## Chantier suivant
 
-Reconstruire dans `index.html` le carrousel de quiz façon Wahl-O-Mat, le
-partage social (image de résultat générée en canvas, Web Share API, secours
-X/WhatsApp/presse-papiers) et les balises Open Graph. Ces fonctions avaient été
-développées puis perdues avant d'être publiées : elles sont à refaire.
+1. **Interface de l onglet Historique** : afficher les 113 lois depuis
+   `data/historique.json`, avec une recherche par mot-clé. Les données sont
+   prêtes, rien à récupérer.
+2. **Onglet À venir** : écrire l ingestion depuis `Agenda.json.zip`, sachant
+   qu elle ne produira rien avant la rentrée.
+3. **Quiz et partage social** : reconstruire dans `index.html` le carrousel
+   façon Wahl-O-Mat, l image de résultat générée en canvas, le Web Share API
+   et les balises Open Graph. Ces fonctions avaient été développées puis
+   perdues avant d être publiées.
 
-Point de vigilance à la rentrée : vérifier au premier vote à quelle heure le
-commit de données apparaît et si l'accueil affiche bien le vote de la veille.
-Le délai de publication de l'open data de l'Assemblée est encore inconnu.
+Point de vigilance à la rentrée : au premier vote, vérifier à quelle heure le
+commit de données apparaît et si l accueil bascule bien sur le vote de la
+veille. Le délai de publication de l open data de l Assemblée reste inconnu.
