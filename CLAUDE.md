@@ -73,85 +73,152 @@ réputation éditoriale irréprochable.
 - **Tests Python en local** : `requests` n'est pas installé sur le Mac. Injecter
   un module factice via `sys.modules` plutôt que d'installer le paquet.
 
-## Fichiers produits par le pipeline
+## Fichiers produits
 
-- `data/scrutins/<numero>.json` — une fiche par scrutin, avec le détail par
-  circonscription.
-- `data/today.json` — le vote vedette du jour, ou la mémoire du dernier vote
-  vedette si l Assemblée ne siège pas.
-- `data/historique.json` — les lois votées sur les douze derniers mois.
-- `data/agenda.json` — les séances à venir. Vide à ce jour.
-- `data/state.json` — mémoire du pipeline : scrutins vus, dernier vote vedette.
+Régénérés chaque matin par le pipeline :
 
-## historique.json
+- `data/scrutins/<numero>.json` — une fiche par scrutin, détail par circonscription.
+- `data/today.json` — vote vedette du jour, ou mémoire du dernier vote connu.
+- `data/state.json` — mémoire du pipeline.
+- `data/historique.json` — les lois votées sur douze mois, format riche.
+- `data/index.json` — **le fichier que lit réellement l'onglet Historique**.
+- `data/agenda.json` — les textes inscrits à l'ordre du jour à venir.
+- `data/themes.json` — table des libellés de thèmes pour l'interface.
 
-Produit par `construire_historique.py`, exécuté par le workflow juste après
-l ingestion.
+Construit une fois, hors pipeline quotidien :
 
-Ne retient que les votes portant sur un texte entier. C est le point clé : sur
-une année l archive compte environ 5 400 scrutins, dont 4 700 amendements et
-45 motions, mais seulement 113 votes sur texte entier. Ce sont ces derniers,
-et eux seuls, que le lecteur appelle des lois. Afficher les amendements
-rendrait l onglet illisible.
+- `data/communes.json` — 34 857 communes et leurs circonscriptions (1,9 Mo,
+  659 Ko compressés).
 
-Chaque entrée porte : numéro, date, titre débarrassé du jargon, titre officiel
-intégral, nature (projet ou proposition de loi, organique, constitutionnelle),
-stade de lecture, caractère solennel, résultat et décompte, lien vers la page
-de l Assemblée.
+## Piège à connaître : historique.json contre index.json
 
-Aucun résumé n est généré. Décision éditoriale explicite de Max, conforme au
-garde-fou sur le contenu auto-généré : le titre nettoyé et le lien vers le
-dossier tiennent lieu de description.
+L'onglet Historique cherche `data/index.json`, pas `historique.json`. Un
+fichier produit sous le mauvais nom a laissé l'onglet vide en affichant
+« L'archive complète arrive bientôt », sans erreur visible. Avant de produire
+un fichier de données, vérifier dans `index.html` le nom réellement attendu.
 
-## Agenda et onglet À venir
+## historique.json et index.json
 
-Ce qui a été établi le 1er septembre 2026, à ne pas refaire :
+Produits par `construire_historique.py`. Ne retient que les votes portant sur
+un texte entier : sur une année, l'archive compte environ 5 400 scrutins dont
+4 700 amendements, mais seulement 113 votes sur texte entier. Ce sont ces
+derniers, et eux seuls, que le lecteur appelle des lois.
 
-- Le CSV référencé dans le script (`seances_publique_excel.csv`) répond, mais
-  ne contient qu un en-tête sans aucune ligne : rien n est programmé pendant
-  la suspension. Son URL est en http et redirige, la passer en https.
-- Une source bien plus riche existe et n est pas exploitée :
-  `.../17/vp/reunions/Agenda.json.zip`, environ 8 Mo, 7 500 réunions. Chaque
-  réunion porte son ordre du jour, avec l objet de chaque point et les
-  références aux dossiers législatifs.
-- Elle contient de vraies réunions futures — 34 au 1er septembre, avec leur
-  état : Confirmé, Éventuel ou Annulé. Mais leur ordre du jour est
-  intégralement vide. Le dernier ordre du jour renseigné date du 22 juillet.
+Aucun résumé n'est généré. Décision éditoriale explicite de Max : le titre
+officiel nettoyé plus le lien vers la page du scrutin tiennent lieu de
+description. `index.json` est trié du plus ancien au plus récent, car
+l'interface applique elle-même un `reverse()`.
 
-Conclusion : l horizon réel est de deux à trois semaines, pas un an. L ordre
-du jour est arrêté par la Conférence des présidents à l approche de la séance.
-L ingestion peut être écrite dès maintenant, elle ne produira du contenu qu à
-la rentrée. L onglet doit afficher honnêtement l absence de programmation
-plutôt que de laisser croire à une panne.
+## agenda.json et l'onglet À venir
+
+Produit par `construire_agenda.py` depuis `Agenda.json.zip` (7 500 réunions).
+
+Le point clé : le libellé d'un point d'ordre du jour est générique
+(« Discussion », « Examen du texte »). Il n'a de sens qu'associé au titre du
+dossier législatif visé. On résout donc chaque `dossierRef` via
+`Dossiers_Legislatifs.json.zip`. Sans ce croisement, l'onglet est illisible.
+
+Sont écartés : les réunions annulées, et les points de type Nomination,
+Audition ou Rapport d'information — ils portent une référence de dossier mais
+n'intéressent pas le grand public.
+
+L'horizon réel est de deux à trois semaines : la Conférence des présidents
+arrête l'ordre du jour à l'approche. Une liste vide pendant une suspension est
+normale, pas une panne.
+
+## Thèmes et filtres
+
+`categories.py` classe chaque texte par mots-clés appliqués au titre officiel.
+Volontairement rustique : déterministe, reproductible, corrigeable en une
+ligne. Aucun classement par modèle, qui serait une interprétation non
+reproductible attribuée à de vraies lois.
+
+**Convention à respecter** : `'mot'` = mot entier (pluriels tolérés),
+`'mot*'` = préfixe. Cette distinction n'est pas cosmétique. Une recherche de
+simple sous-chaîne produit des absurdités en français : « visa » capture
+« visant à » qui ouvre la moitié des titres de loi, « port » capture
+« portant », « eau » capture « nouveau ». Un premier essai classait ainsi
+61 lois sur 113 en Immigration.
+
+Seize thèmes. L'interface n'affiche que ceux réellement présents dans les
+données, triés par nombre décroissant, plus « Tous » et « Non classé ».
+
+## communes.json et la recherche de circonscription
+
+Construit par `construire_communes.py`, sans dépendance externe, à partir de
+deux sources en Licence Ouverte :
+
+- INSEE `circo_composition.xlsx` — seule autorité sur le rattachement
+  commune / circonscription. Une commune peut relever de plusieurs
+  circonscriptions : 130 sont dans ce cas.
+- API Géo de l'État — noms, codes postaux, population (qui sert à trier par
+  pertinence).
+
+Format d'une entrée : `[nom, clé de recherche, codes postaux, clés de
+circonscription, population]`. Les clés sont au format `département|numéro`,
+par exemple `69|3`, identique à celui des élus dans `DATA`.
+
+**Deux limites connues.** Paris ressort avec ses 18 circonscriptions,
+Marseille avec 7 : il faudrait indexer les arrondissements municipaux, qui ont
+leurs propres codes INSEE. Et le fichier ne doit être chargé qu'à l'ouverture
+de la recherche, jamais au démarrage, sous peine d'annuler tout le gain de
+rapidité de l'accueil.
+
+## Police d'écriture
+
+SF Pro, la police du site d'Apple, **ne peut pas être distribuée sur le web** :
+sa licence la réserve aux maquettes destinées aux systèmes Apple. On utilise
+donc la pile système recommandée par Apple — `-apple-system`,
+`BlinkMacSystemFont`, `system-ui` — avec Inter en repli pour Android et
+Windows. Rendu SF Pro natif sur Mac et iPhone, en toute légalité. Ne pas
+« corriger » ceci en embarquant un fichier de police.
+
+## Performance de l'accueil
+
+Trois lignes d'`index.html` pèsent 1,12 Mo de contours et de députés embarqués.
+Deux correctifs sont en place : un préchargement du vote lancé dès l'en-tête,
+et surtout un appel à `renderAccueil()` à la fin de `loadVote()` — sans lui, le
+cadre restait bloqué sur « Chargement du dernier vote » jusqu'à ce que
+l'utilisateur change d'onglet. C'était la vraie cause de la lenteur perçue.
+
+Le chantier de fond reste de sortir ces 1,12 Mo du fichier.
 
 ## Anti-bruit de commits
 
 `verif_changement_utile.py` empêche les quatre exécutions quotidiennes de
-committer des fichiers dont seul l horodatage a bougé. Tout nouveau fichier
-généré portant un horodatage doit être ajouté au dictionnaire VOLATILES, sinon
-le bruit revient.
+committer des fichiers dont seul l'horodatage a bougé. Tout nouveau fichier
+généré portant un horodatage doit être ajouté au dictionnaire `VOLATILES`.
 
-## État au 1er septembre 2026
+## État au 4 septembre 2026
 
-- Pipeline fonctionnel, archive complète de 8 434 scrutins.
-- Dernier vote réel : scrutin 8434 du 21 juillet 2026. Aucun vote depuis,
-  suspension des travaux. Vérifié à la source : le scrutin 8435 n existe pas.
-- Mémoire du dernier vote vedette amorcée, déployée, visible sur l accueil.
-- Workflow fiabilisé, validé par une exécution manuelle réussie.
-- `historique.json` produit et branché dans le pipeline.
+- Pipeline fonctionnel, archive de 8 434 scrutins, quatre exécutions par matinée.
+- Dernier vote réel : scrutin 8434 du 21 juillet 2026. Suspension des travaux
+  depuis ; reprise attendue à la rentrée.
+- Six onglets alimentés par des données réelles. Historique et À venir
+  filtrables par thème.
+- Dates au format français partout, via la fonction `dateFR`.
+- Présidentielle 2027 en tête de l'accueil, sur fond marine.
+- Icône Populous installée sur le lanceur du Bureau.
 
 ## Chantier suivant
 
-1. **Interface de l onglet Historique** : afficher les 113 lois depuis
-   `data/historique.json`, avec une recherche par mot-clé. Les données sont
-   prêtes, rien à récupérer.
-2. **Onglet À venir** : écrire l ingestion depuis `Agenda.json.zip`, sachant
-   qu elle ne produira rien avant la rentrée.
-3. **Quiz et partage social** : reconstruire dans `index.html` le carrousel
-   façon Wahl-O-Mat, l image de résultat générée en canvas, le Web Share API
-   et les balises Open Graph. Ces fonctions avaient été développées puis
-   perdues avant d être publiées.
+1. **Profil consultable et modifiable.** Aujourd'hui, cliquer sur le profil
+   relance la création comme s'il n'existait pas. Il faut afficher les
+   informations enregistrées et permettre de les modifier.
+2. **Avatar.** À l'inscription, choisir entre une photo, une illustration ou
+   une silhouette vide. L'afficher **en haut à gauche** de l'application, et
+   non plus en bas à droite.
+3. **Recherche par ville ou code postal** dans l'inscription, branchée sur
+   `data/communes.json`. La recherche actuelle n'indexe que les noms de
+   députés et les départements.
+4. Plus loin : le Quiz et la section Présidentielle 2027, où le contenu reste
+   un exemple pédagogique étiqueté. Terrain éditorialement délicat.
 
-Point de vigilance à la rentrée : au premier vote, vérifier à quelle heure le
-commit de données apparaît et si l accueil bascule bien sur le vote de la
-veille. Le délai de publication de l open data de l Assemblée reste inconnu.
+## Note de méthode
+
+Les modifications d'`index.html` par le canal `osascript` passent par des
+scripts de remplacement transférés en base64. Ce canal est fragile : un
+transfert de 34 Ko a produit un fichier valide mais **différent de la source**,
+sans erreur apparente. Toujours vérifier l'empreinte MD5 après un transfert de
+fichier. AppleScript interprète aussi les antislashs et les guillemets doubles
+dans les chaînes : les éviter, ou passer par base64.
