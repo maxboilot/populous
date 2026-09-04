@@ -264,13 +264,28 @@ window.__VOTE_EARLY__ = (async function(){
   .dashTile.wide .tt{margin-top:0}
   .dashTile .ts{font-size:11px;color:var(--dim);margin-top:3px}
 
-  .dashProfile{max-width:640px;margin:18px auto 0;width:100%;display:flex;align-items:center;gap:14px;
-    padding:14px 18px;background:var(--card);border:none;border-radius:20px;color:var(--ink);cursor:pointer;
-    box-shadow:var(--shadow)}
-  .ph2{width:42px;height:42px;border-radius:50%;flex:0 0 auto;background:var(--accent);color:#fff;
-    display:flex;align-items:center;justify-content:center;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','SF Pro Display',system-ui,'Inter',Helvetica,Arial,sans-serif;font-weight:700;font-size:16px}
-  .tt2{font-size:14px;font-weight:700}
-  .ts2{font-size:11px;color:var(--dim);margin-top:2px}
+  /* ============ avatar : badge global + sélecteur d'onboarding ============ */
+  .avImg{width:100%;height:100%;object-fit:cover;display:block;border-radius:50%}
+  .avEmoji{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:55%;border-radius:50%}
+  .avNone{width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:var(--dim);
+    background:var(--card-alt);border-radius:50%}
+
+  #topAvatar{position:fixed;top:calc(14px + env(safe-area-inset-top,0px));right:14px;z-index:850;
+    width:40px;height:40px;border-radius:50%;border:none;padding:0;cursor:pointer;overflow:hidden;
+    background:var(--card);box-shadow:var(--shadow-lg)}
+  #topAvatar.hidden{display:none}
+
+  .avPicker{display:flex;align-items:center;gap:14px}
+  .avPreview{width:64px;height:64px;border-radius:50%;flex:0 0 auto;overflow:hidden;background:var(--card-alt)}
+  .avChoices{display:flex;flex-direction:column;gap:6px;flex:1}
+  .avChoice{padding:9px 14px;font-size:12.5px;font-weight:600;border:none;background:var(--card-alt);
+    color:var(--ink-soft);cursor:pointer;border-radius:var(--r-pill);text-align:left}
+  .avChoice.sel{background:var(--accent);color:#fff}
+  .avGrid{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+  .avEmojiBtn{width:38px;height:38px;border-radius:50%;border:none;cursor:pointer;font-size:17px;
+    display:flex;align-items:center;justify-content:center;opacity:.55;transition:opacity .15s,transform .15s}
+  .avEmojiBtn.sel{opacity:1;transform:scale(1.12);box-shadow:0 0 0 2px var(--card),0 0 0 4px var(--accent)}
+  .avThumb{width:32px;height:32px;border-radius:50%;flex:0 0 auto;overflow:hidden}
   .chev{color:var(--dim);font-size:18px}
 
   .dashList{max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
@@ -326,6 +341,9 @@ window.__VOTE_EARLY__ = (async function(){
 <div id="onboarding" class="veil hidden">
   <div class="sheet" id="obSheet"></div>
 </div>
+
+<!-- ============ badge profil, global, masqué sur la carte (chrome déjà dense) ============ -->
+<button id="topAvatar" class="hidden" aria-label="Mon profil"></button>
 
 <!-- ============ popup quotidien ============ -->
 <div id="dailyPopup" class="veil hidden">
@@ -420,14 +438,6 @@ window.__VOTE_EARLY__ = (async function(){
       <div class="ti">🎯</div><div class="tt">Ton avis</div><div class="ts">Le quiz du jour</div>
     </button>
   </div>
-  <button class="dashProfile" id="acEditProfile">
-    <div class="ph2" id="acProfilePh"></div>
-    <div style="flex:1;text-align:left">
-      <div class="tt2" id="acProfileName"></div>
-      <div class="ts2" id="acProfileSub"></div>
-    </div>
-    <div class="chev">›</div>
-  </button>
 </div>
 
 <!-- ============ Historique des scrutins ============ -->
@@ -1017,7 +1027,32 @@ const LOGEMENT = [{k:"locataire",l:"Locataire"},{k:"proprietaire",l:"Propriétai
 const PRO = [{k:"salarie",l:"Salarié·e"},{k:"independant",l:"Indépendant·e"},{k:"retraite",l:"Retraité·e"},{k:"etudiant",l:"Étudiant·e"},{k:"sans_emploi",l:"Sans emploi"}];
 const ENFANTS = [{k:"oui",l:"Oui"},{k:"non",l:"Non"}];
 
-let draft = { pseudo:"", age:null, circoKey:null, circoLabel:"", logement:null, pro:null, enfants:null };
+/* ------------------------------------------------------------
+   Avatar : photo (compressée localement), illustré (emoji+couleur,
+   aucun asset externe) ou silhouette vide par défaut. Jamais envoyé
+   à un serveur — la photo ne quitte jamais localStorage.
+   ------------------------------------------------------------ */
+const AVATAR_PRESETS = [
+  {emoji:"🦊",color:"#E8734A"},{emoji:"🐱",color:"#5B8DEF"},{emoji:"🐧",color:"#2B48A5"},
+  {emoji:"🦉",color:"#7B4591"},{emoji:"🐢",color:"#2F9E58"},{emoji:"🦋",color:"#D1497A"},
+  {emoji:"🐝",color:"#E8B923"},{emoji:"🐬",color:"#2AA6C9"},
+];
+const AVATAR_SILHOUETTE = `<svg viewBox="0 0 24 24" width="60%" height="60%" fill="currentColor" aria-hidden="true"><path d="M12 12.5c2.9 0 5.2-2.3 5.2-5.2S14.9 2 12 2 6.8 4.4 6.8 7.3s2.3 5.2 5.2 5.2zm0 2.3c-3.5 0-10.5 1.8-10.5 5.3V22h21v-1.9c0-3.5-7-5.3-10.5-5.3z"/></svg>`;
+function avatarHTML(av){
+  if(av && av.type==="photo" && av.photo) return `<img class="avImg" src="${av.photo}" alt="">`;
+  if(av && av.type==="illustre" && av.emoji) return `<div class="avEmoji" style="background:${av.color}">${av.emoji}</div>`;
+  return `<div class="avNone">${AVATAR_SILHOUETTE}</div>`;
+}
+function renderTopAvatar(){
+  const el = $("#topAvatar");
+  if(!el) return;
+  el.classList.toggle("hidden", activeScreen==="carte");
+  const profile = loadProfile();
+  el.innerHTML = avatarHTML(profile ? profile.avatar : null);
+}
+$("#topAvatar").onclick = openProfile;
+
+let draft = { pseudo:"", age:null, circoKey:null, circoLabel:"", logement:null, pro:null, enfants:null, avatar:{type:"none"} };
 let obStep = 0;
 let viewMode = false; // true = édition d'un seul champ depuis la vue profil, pas d'enchaînement d'étapes
 
@@ -1031,16 +1066,19 @@ function obRender(){
       PRO.find(o=>o.k===draft.pro)?.l,
       draft.enfants ? "Enfants scolarisés : " + ENFANTS.find(o=>o.k===draft.enfants).l : null,
     ].filter(Boolean);
-    const row = (label, value, step) => `
+    const row = (label, value, step, thumb) => `
       <button type="button" class="profRow" data-step="${step}">
-        <div><div class="pl">${esc(label)}</div><div class="pv">${esc(value)}</div></div>
+        <div style="display:flex;align-items:center;gap:12px">
+          ${thumb ? `<div class="avThumb">${thumb}</div>` : ""}
+          <div><div class="pl">${esc(label)}</div><div class="pv">${esc(value)}</div></div>
+        </div>
         <div class="chev">›</div>
       </button>`;
     el.innerHTML = `
       <div class="eyebrow">Mon profil</div>
       <h2 class="d">Tes informations</h2>
       <p class="lead">Tout reste stocké sur cet appareil. Touche un champ pour le modifier.</p>
-      ${row("Pseudo", draft.pseudo || "—", 1)}
+      ${row("Identité", draft.pseudo || "—", 1, avatarHTML(draft.avatar))}
       ${row("Tranche d'âge", draft.age || "Non renseignée", 2)}
       ${row("Circonscription", draft.circoLabel || "Non renseignée", 3)}
       ${row("Ta situation", situationBits.length ? situationBits.join(" · ") : "Non renseignée", 4)}
@@ -1065,10 +1103,26 @@ function obRender(){
   }
 
   if(obStep === 1){
+    if(!draft.avatar) draft.avatar = {type:"none"};
     el.innerHTML = `${dots}
       <div class="eyebrow">${viewMode ? "Modifier" : "1 / 4 — Pseudo"}</div>
       <h2 class="d">Comment on t'appelle ?</h2>
       <p class="lead">Un pseudo, pas ton nom — personne d'autre ne le verra.</p>
+      <div class="field">
+        <label>Ton avatar</label>
+        <div class="avPicker">
+          <div class="avPreview" id="avPreview">${avatarHTML(draft.avatar)}</div>
+          <div class="avChoices">
+            <button type="button" class="avChoice ${draft.avatar.type==="none"?"sel":""}" data-t="none">Aucun (silhouette vide)</button>
+            <button type="button" class="avChoice ${draft.avatar.type==="illustre"?"sel":""}" data-t="illustre">Avatar illustré</button>
+            <button type="button" class="avChoice ${draft.avatar.type==="photo"?"sel":""}" data-t="photo">Photo personnelle</button>
+          </div>
+        </div>
+        <div class="avGrid" id="avGrid" style="display:${draft.avatar.type==="illustre"?"flex":"none"}">
+          ${AVATAR_PRESETS.map(p=>`<button type="button" class="avEmojiBtn ${draft.avatar.type==="illustre"&&draft.avatar.emoji===p.emoji?"sel":""}" data-emoji="${p.emoji}" data-color="${p.color}" style="background:${p.color}">${p.emoji}</button>`).join("")}
+        </div>
+        <input type="file" id="avFile" accept="image/*" style="display:none">
+      </div>
       <div class="field"><input type="text" id="obPseudo" maxlength="24" placeholder="Ex. Kermit63, Léa_A…" value="${esc(draft.pseudo)}"></div>
       <div class="actions">
         <button class="btn ghost" id="obBack">${viewMode ? "Annuler" : "Retour"}</button>
@@ -1076,13 +1130,56 @@ function obRender(){
       </div>`;
     const inp = $("#obPseudo");
     inp.focus();
+    const avPreview = $("#avPreview"), avGrid = $("#avGrid"), avFile = $("#avFile");
+    const setAvatar = av => { draft.avatar = av; avPreview.innerHTML = avatarHTML(av); };
+    el.querySelectorAll(".avChoice").forEach(b=>{
+      b.onclick = ()=>{
+        el.querySelectorAll(".avChoice").forEach(x=>x.classList.toggle("sel", x===b));
+        const t = b.dataset.t;
+        if(t==="none"){ avGrid.style.display="none"; setAvatar({type:"none"}); }
+        else if(t==="illustre"){
+          avGrid.style.display="flex";
+          if(draft.avatar.type!=="illustre") setAvatar({type:"illustre", emoji:AVATAR_PRESETS[0].emoji, color:AVATAR_PRESETS[0].color});
+          el.querySelectorAll(".avEmojiBtn").forEach(x=>x.classList.toggle("sel", x.dataset.emoji===draft.avatar.emoji));
+        }
+        else if(t==="photo"){ avGrid.style.display="none"; avFile.click(); }
+      };
+    });
+    el.querySelectorAll(".avEmojiBtn").forEach(b=>{
+      b.onclick = ()=>{
+        el.querySelectorAll(".avEmojiBtn").forEach(x=>x.classList.toggle("sel", x===b));
+        setAvatar({type:"illustre", emoji:b.dataset.emoji, color:b.dataset.color});
+      };
+    });
+    avFile.onchange = ()=>{
+      const f = avFile.files[0];
+      if(!f) return;
+      const reader = new FileReader();
+      reader.onload = ()=>{
+        const img = new Image();
+        img.onload = ()=>{
+          // Recadrage carré + compression : une photo de téléphone brute peut
+          // peser plusieurs Mo, hors de question pour du localStorage.
+          const size = 200;
+          const canvas = document.createElement("canvas");
+          canvas.width = size; canvas.height = size;
+          const ctx = canvas.getContext("2d");
+          const side = Math.min(img.width, img.height);
+          ctx.drawImage(img, (img.width-side)/2, (img.height-side)/2, side, side, 0, 0, size, size);
+          setAvatar({type:"photo", photo: canvas.toDataURL("image/jpeg", 0.85)});
+          el.querySelectorAll(".avChoice").forEach(x=>x.classList.toggle("sel", x.dataset.t==="photo"));
+        };
+        img.src = reader.result;
+      };
+      reader.readAsDataURL(f);
+    };
     $("#obBack").onclick = ()=>{
       if(viewMode){ draft = {...loadProfile()}; obStep="view"; } else { obStep=0; }
       obRender();
     };
     $("#obNext").onclick = ()=>{
       draft.pseudo = inp.value.trim().slice(0,24) || "Anonyme";
-      if(viewMode){ saveProfile(draft); obStep="view"; renderAccueil(); }
+      if(viewMode){ saveProfile(draft); obStep="view"; renderAccueil(); renderTopAvatar(); }
       else obStep=2;
       obRender();
     };
@@ -1114,7 +1211,7 @@ function obRender(){
       obRender();
     };
     $("#obNext").onclick = ()=>{
-      if(viewMode){ saveProfile(draft); obStep="view"; renderAccueil(); }
+      if(viewMode){ saveProfile(draft); obStep="view"; renderAccueil(); renderTopAvatar(); }
       else obStep=3;
       obRender();
     };
@@ -1185,7 +1282,7 @@ function obRender(){
       obRender();
     };
     $("#obNext").onclick = ()=>{
-      if(viewMode){ saveProfile(draft); obStep="view"; renderAccueil(); }
+      if(viewMode){ saveProfile(draft); obStep="view"; renderAccueil(); renderTopAvatar(); }
       else obStep=4;
       obRender();
     };
@@ -1219,8 +1316,10 @@ function obRender(){
     };
     $("#obFinish").onclick = ()=>{
       saveProfile(draft);
+      renderTopAvatar();
       if(viewMode){ obStep="view"; renderAccueil(); obRender(); return; }
       $("#onboarding").classList.add("hidden");
+      renderAccueil();
       maybeShowDailyPopup();
     };
     return;
@@ -1380,6 +1479,7 @@ function showScreen(name){
     $("#screen-"+s).classList.toggle("hidden", s!==name);
   });
   document.querySelectorAll(".navBtn").forEach(b=>b.classList.toggle("on", b.dataset.go===name));
+  renderTopAvatar(); // masqué sur la carte (chrome déjà dense), à jour partout ailleurs
 
   if(name==="carte"){
     // Leaflet calcule sa taille à l'initialisation ; si le conteneur était
@@ -1436,13 +1536,7 @@ function renderAccueil(){
     $("#acToday [data-go]").onclick = ()=>showScreen("carte");
     $("#acImpact").onclick = openImpactPanel;
   }
-
-  $("#acProfilePh").textContent = (profile.pseudo||"?").slice(0,1).toUpperCase();
-  $("#acProfileName").textContent = profile.pseudo;
-  const bits = [profile.age, profile.circoLabel].filter(Boolean);
-  $("#acProfileSub").textContent = bits.length ? bits.join(" · ") : "Compléter mon profil";
 }
-$("#acEditProfile").onclick = openProfile;
 
 /* ---------- Historique ---------- */
 /* ============================================================
