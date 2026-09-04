@@ -308,11 +308,11 @@ window.__VOTE_EARLY__ = (async function(){
   .emptyState p{font-size:13px;color:var(--dim);line-height:1.65;margin:8px 0 0}
 
   /* ============ Présidentielle 2027 ============ */
-  .presiWatermark{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;
-    overflow:hidden;pointer-events:none;z-index:0;
+  .presiWatermark{position:fixed;top:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;
+    overflow:hidden;pointer-events:none;z-index:0;writing-mode:vertical-rl;
     font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','SF Pro Display',system-ui,'Inter',Helvetica,Arial,sans-serif;
-    font-weight:800;font-size:clamp(70px,20vw,280px);letter-spacing:-.03em;color:var(--ink);
-    opacity:.08;white-space:nowrap;transform:rotate(-8deg)}
+    font-weight:800;font-size:clamp(60px,14vh,200px);letter-spacing:-.03em;color:var(--ink);
+    opacity:.08;white-space:nowrap}
   .presiZ{position:relative;z-index:1}
   .presiTabs{max-width:640px;margin:0 auto 16px;display:flex;gap:8px}
   .presiTab{flex:1;padding:10px 10px;font-size:12px;font-weight:700;border:none;

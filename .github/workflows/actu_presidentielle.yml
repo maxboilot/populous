@@ -1,0 +1,47 @@
+name: Actualité Présidentielle 2027
+
+on:
+  schedule:
+    # Toutes les heures, décalé de l'heure pile : GitHub met les tâches
+    # planifiées en file d'attente selon la charge, et le début de chaque
+    # heure est le pire moment (voir ingest_scrutins.yml). Le script est
+    # idempotent : une exécution qui ne trouve rien de neuf ne commite rien.
+    - cron: '17 * * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+# Une exécution en retard pourrait chevaucher la suivante et se disputer
+# le push ; groupe distinct de celui des scrutins, les deux tournent sur
+# des fichiers différents et n'ont pas besoin de s'attendre.
+concurrency:
+  group: actu-presidentielle
+  cancel-in-progress: false
+
+jobs:
+  actu:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Construire le fil d actualite
+        run: python construire_actu.py
+      - name: Committer les données mises à jour
+        run: |
+          git config user.name bot-ingestion
+          git config user.email bot@example.invalid
+          git add data/actu.json
+          if git diff --cached --quiet; then
+            echo 'Aucune donnee modifiee.'
+            exit 0
+          fi
+          if python3 verif_changement_utile.py; then
+            echo 'Seul l horodatage a change : pas de commit.'
+            exit 0
+          fi
+          git commit -m 'Actualite presidentielle du '$(date -u +%F' '%H:%M)
+          git pull --rebase --autostash
+          git push
