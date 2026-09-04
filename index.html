@@ -291,6 +291,10 @@ window.__VOTE_EARLY__ = (async function(){
     opacity:0; transition:opacity .12s ease; }
   a.histLink:hover .histGo{ opacity:1; }
   @media (hover:none){ a.histLink .histGo{ opacity:.85; } }
+  /* Certains ordres du jour officiels font plusieurs centaines de caractères.
+     On les tronque à l'affichage, sans rien retirer des données. */
+  #avenirList .dRow .t{ display:-webkit-box; -webkit-line-clamp:3;
+    -webkit-box-orient:vertical; overflow:hidden; }
 </style>
 </head>
 <body>
