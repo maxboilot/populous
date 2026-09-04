@@ -1,0 +1,66 @@
+[
+  {
+    "code": "sante",
+    "libelle": "Santé"
+  },
+  {
+    "code": "education",
+    "libelle": "Éducation"
+  },
+  {
+    "code": "justice",
+    "libelle": "Justice"
+  },
+  {
+    "code": "securite",
+    "libelle": "Sécurité"
+  },
+  {
+    "code": "economie",
+    "libelle": "Économie et fiscalité"
+  },
+  {
+    "code": "travail",
+    "libelle": "Travail et emploi"
+  },
+  {
+    "code": "social",
+    "libelle": "Solidarités et famille"
+  },
+  {
+    "code": "environnement",
+    "libelle": "Environnement et énergie"
+  },
+  {
+    "code": "agriculture",
+    "libelle": "Agriculture et alimentation"
+  },
+  {
+    "code": "logement",
+    "libelle": "Logement et urbanisme"
+  },
+  {
+    "code": "transports",
+    "libelle": "Transports"
+  },
+  {
+    "code": "numerique",
+    "libelle": "Numérique"
+  },
+  {
+    "code": "defense",
+    "libelle": "Défense et affaires étrangères"
+  },
+  {
+    "code": "institutions",
+    "libelle": "Institutions et collectivités"
+  },
+  {
+    "code": "immigration",
+    "libelle": "Immigration"
+  },
+  {
+    "code": "culture",
+    "libelle": "Culture, sport et médias"
+  }
+]

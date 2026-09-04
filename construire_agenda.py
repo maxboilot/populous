@@ -28,6 +28,8 @@ from datetime import datetime, timezone
 from io import BytesIO
 from pathlib import Path
 
+import categories
+
 LEGISLATURE = 17
 BASE = 'https://data.assemblee-nationale.fr/static/openData/repository'
 URL_AGENDA = f'{BASE}/{LEGISLATURE}/vp/reunions/Agenda.json.zip'
@@ -188,6 +190,7 @@ def construire(depuis):
                 'date': p['date'],
                 'heure': p['heure'],
                 'ordre_du_jour': texte,
+                'themes': categories.classer(titre),
                 'dossier': ref,
             })
 

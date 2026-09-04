@@ -4,790 +4,1173 @@
     "date": "2025-10-15",
     "titre": "Transposition des accords nationaux interprofessionnels en faveur de l'emploi des salariés expérimentés et relatif à l'évolution du dialogue social",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/3055"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/3055",
+    "themes": [
+      "travail"
+    ]
   },
   {
     "numero": 3056,
     "date": "2025-10-15",
     "titre": "De simplification du droit de l'urbanisme et du logement",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/3056"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/3056",
+    "themes": [
+      "logement"
+    ]
   },
   {
     "numero": 3061,
     "date": "2025-10-23",
     "titre": "La définition pénale du viol et des agressions sexuelles",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/3061"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/3061",
+    "themes": [
+      "justice",
+      "securite"
+    ]
   },
   {
     "numero": 3182,
     "date": "2025-10-28",
     "titre": "Reporter le renouvellement général des membres du congrès et des assemblées de province de la Nouvelle-Calédonie afin de permettre la poursuite de la discussion en vue d'un accord consensuel sur l'avenir institutionnel de la Nouvelle-Calédonie",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/3182"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/3182",
+    "themes": [
+      "institutions"
+    ]
   },
   {
     "numero": 3273,
     "date": "2025-10-30",
     "titre": "Rendre systématique l'information du consommateur sur l'origine des denrées alimentaires par le moyen de l'étiquetage",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/3273"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/3273",
+    "themes": [
+      "economie",
+      "agriculture"
+    ]
   },
   {
     "numero": 3936,
     "date": "2025-11-18",
     "titre": "De finances de fin de gestion pour 2025",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/3936"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/3936",
+    "themes": [
+      "economie"
+    ]
   },
   {
     "numero": 4287,
     "date": "2025-11-27",
     "titre": "L’établissement de l’égalité d’accès au service public postal en outre-mer",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4287"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4287",
+    "themes": [
+      "institutions"
+    ]
   },
   {
     "numero": 4438,
     "date": "2025-11-27",
     "titre": "La nationalisation d'ArcelorMittal France afin de préserver la souveraineté industrielle de la France",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4438"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4438",
+    "themes": [
+      "economie"
+    ]
   },
   {
     "numero": 4442,
     "date": "2025-12-02",
     "titre": "De fin de gestion pour 2025",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4442"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4442",
+    "themes": []
   },
   {
     "numero": 4691,
     "date": "2025-12-08",
     "titre": "Création d'un statut de l'élu local",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4691"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4691",
+    "themes": [
+      "institutions"
+    ]
   },
   {
     "numero": 4696,
     "date": "2025-12-09",
     "titre": "De financement de la sécurité sociale pour 2026",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4696"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4696",
+    "themes": [
+      "securite",
+      "economie"
+    ]
   },
   {
     "numero": 4706,
     "date": "2025-12-10",
     "titre": "Modifier le II de l’article 43 de la loi organique n° 2004-192 du 27 février 2004 portant statut d’autonomie de la Polynésie française",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4706"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4706",
+    "themes": [
+      "institutions"
+    ]
   },
   {
     "numero": 4707,
     "date": "2025-12-11",
     "titre": "La protection sociale complémentaire des agents publics territoriaux",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4707"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4707",
+    "themes": [
+      "social"
+    ]
   },
   {
     "numero": 4714,
     "date": "2025-12-11",
     "titre": "Assurer le droit de chaque enfant à être assisté d'un avocat dans le cadre d'une mesure d'assistance éducative et de protection de l'enfance",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4714"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4714",
+    "themes": [
+      "justice",
+      "social"
+    ]
   },
   {
     "numero": 4723,
     "date": "2025-12-11",
     "titre": "Protéger les mineurs isolés et à lutter contre le sans-abrisme",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4723"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4723",
+    "themes": [
+      "social"
+    ]
   },
   {
     "numero": 4745,
     "date": "2025-12-11",
     "titre": "Retrouver la confiance et l'équilibre dans les rapports locatifs",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4745"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4745",
+    "themes": [
+      "logement"
+    ]
   },
   {
     "numero": 4754,
     "date": "2025-12-11",
     "titre": "Garantir un renouvellement automatique des titres de séjour de longue durée",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4754"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4754",
+    "themes": [
+      "immigration"
+    ]
   },
   {
     "numero": 4755,
     "date": "2025-12-11",
     "titre": "Prendre des mesures d'urgence contre la vie chère en outre-mer dans le secteur des services",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4755"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4755",
+    "themes": [
+      "institutions"
+    ]
   },
   {
     "numero": 4758,
     "date": "2025-12-16",
     "titre": "De financement de la sécurité sociale pour 2026",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4758"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4758",
+    "themes": [
+      "securite",
+      "economie"
+    ]
   },
   {
     "numero": 4836,
     "date": "2025-12-18",
     "titre": "Réparation des personnes condamnées pour homosexualité entre 1945 et 1982",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4836"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4836",
+    "themes": [
+      "justice",
+      "social"
+    ]
   },
   {
     "numero": 4839,
     "date": "2025-12-18",
     "titre": "Reconnaître le préjudice subi par les personnes condamnées sur le fondement de la législation pénalisant l'avortement, et par toutes les femmes, avant la loi n° 75-17 du 17 janvier 1975 relative à l'interruption volontaire de grossesse",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4839"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4839",
+    "themes": [
+      "justice",
+      "social"
+    ]
   },
   {
     "numero": 4947,
     "date": "2025-12-23",
     "titre": "Spéciale prévue par l'article 45 de la loi organique du 1er août 2001 relative aux lois de finances",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4947"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4947",
+    "themes": [
+      "economie"
+    ]
   },
   {
     "numero": 4962,
     "date": "2026-01-12",
     "titre": "Améliorer l'accès au logement des travailleurs des services publics",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4962"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4962",
+    "themes": [
+      "travail",
+      "logement"
+    ]
   },
   {
     "numero": 4963,
     "date": "2026-01-13",
     "titre": "L'organisation des jeux Olympiques et Paralympiques de 2030",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4963"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4963",
+    "themes": [
+      "culture"
+    ]
   },
   {
     "numero": 5192,
     "date": "2026-01-26",
     "titre": "Protéger les mineurs des risques auxquels les expose l'utilisation des réseaux sociaux",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5192"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5192",
+    "themes": [
+      "social",
+      "numerique"
+    ]
   },
   {
     "numero": 5222,
     "date": "2026-01-27",
     "titre": "Exercer l’accès à l’emploi, à pérenniser et à étendre progressivement l’expérimentation « territoires zéro chômeur de longue durée » comme solution de retour à l’emploi pour les personnes privées durablement d’emploi",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5222"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5222",
+    "themes": []
   },
   {
     "numero": 5226,
     "date": "2026-01-28",
     "titre": "La création d'une commission d'enquête sur le traitement judiciaire des violences sexuelles incestueuses parentales commises contre les enfants et la situation des parents protecteurs, notamment des mères protectrices",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5226"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5226",
+    "themes": [
+      "justice",
+      "securite",
+      "social"
+    ]
   },
   {
     "numero": 5240,
     "date": "2026-01-28",
     "titre": "Moderniser la gestion du patrimoine immobilier de l'État",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5240"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5240",
+    "themes": [
+      "logement",
+      "culture"
+    ]
   },
   {
     "numero": 5243,
     "date": "2026-01-28",
     "titre": "Mettre fin au devoir conjugal",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5243"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5243",
+    "themes": [
+      "social"
+    ]
   },
   {
     "numero": 5244,
     "date": "2026-01-28",
     "titre": "Réparer les préjudices causés par la transplantation de mineurs de La Réunion en France hexagonale de 1962 à 1984",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5244"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5244",
+    "themes": [
+      "social"
+    ]
   },
   {
     "numero": 5254,
     "date": "2026-01-29",
     "titre": "Garantir la gratuité des parkings des hôpitaux publics pour les patients, les visiteurs et les personnels sur leur temps de travail",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5254"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5254",
+    "themes": [
+      "sante",
+      "travail"
+    ]
   },
   {
     "numero": 5266,
     "date": "2026-01-29",
     "titre": "Reconnaître les victimes de l'exposition aux essais nucléaires français et à améliorer leur indemnisation",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5266"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5266",
+    "themes": [
+      "justice",
+      "environnement"
+    ]
   },
   {
     "numero": 5283,
     "date": "2026-01-29",
     "titre": "L'intérêt des enfants",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5283"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5283",
+    "themes": [
+      "social"
+    ]
   },
   {
     "numero": 5296,
     "date": "2026-02-03",
     "titre": "L'organisation des jeux Olympiques et Paralympiques de 2030",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5296"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5296",
+    "themes": [
+      "culture"
+    ]
   },
   {
     "numero": 5354,
     "date": "2026-02-05",
     "titre": "Relancer les investissements dans le secteur de l’hydroélectricité pour contribuer à la transition énergétique",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5354"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5354",
+    "themes": [
+      "environnement"
+    ]
   },
   {
     "numero": 5358,
     "date": "2026-02-12",
     "titre": "Améliorant la protection des personnes ciblées par les réseaux de criminalité organisée",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5358"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5358",
+    "themes": [
+      "justice"
+    ]
   },
   {
     "numero": 5415,
     "date": "2026-02-16",
     "titre": "Facilitant l'exercice en France des médecins diplômés au Royaume-Uni avant le Brexit",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5415"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5415",
+    "themes": [
+      "sante"
+    ]
   },
   {
     "numero": 5427,
     "date": "2026-02-16",
     "titre": "Améliorer la protection des commerçants grâce à l'usage d'outils numériques",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5427"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5427",
+    "themes": [
+      "economie",
+      "numerique"
+    ]
   },
   {
     "numero": 5432,
     "date": "2026-02-16",
     "titre": "L'extension de la possibilité de préemption de baux commerciaux dans les mairies aux sociétés civiles immobilières",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5432"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5432",
+    "themes": [
+      "economie",
+      "logement"
+    ]
   },
   {
     "numero": 5435,
     "date": "2026-02-16",
     "titre": "D'expérimentation pour l'instauration d'un enseignement d'éducation à l'alimentation obligatoire à l'école",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5435"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5435",
+    "themes": [
+      "education",
+      "agriculture"
+    ]
   },
   {
     "numero": 5728,
     "date": "2026-02-25",
     "titre": "Garantir l'égal accès de tous à l'accompagnement et aux soins palliatifs",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5728"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5728",
+    "themes": [
+      "sante"
+    ]
   },
   {
     "numero": 5729,
     "date": "2026-02-25",
     "titre": "Droit à l'aide à mourir",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5729"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5729",
+    "themes": [
+      "sante"
+    ]
   },
   {
     "numero": 5829,
     "date": "2026-03-26",
     "titre": "Missions des professionnels de santé, vétérinaires et psychothérapeutes des services d'incendie et de secours",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5829"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5829",
+    "themes": [
+      "sante",
+      "securite",
+      "travail",
+      "agriculture"
+    ]
   },
   {
     "numero": 5831,
     "date": "2026-03-26",
     "titre": "Renforcer l'effectivité des droits voisins des éditeurs et des agences de presse",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5831"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5831",
+    "themes": [
+      "culture"
+    ]
   },
   {
     "numero": 5832,
     "date": "2026-03-26",
     "titre": "Simplifier la sortie de l'indivision et la gestion des successions vacantes",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5832"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5832",
+    "themes": [
+      "justice"
+    ]
   },
   {
     "numero": 5839,
     "date": "2026-03-26",
     "titre": "Renforcer la place des agriculteurs dans l'aménagement du territoire et à sécuriser l'exercice des activités agricoles face au changement climatique",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5839"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5839",
+    "themes": [
+      "environnement",
+      "agriculture"
+    ]
   },
   {
     "numero": 5844,
     "date": "2026-03-26",
     "titre": "Soutenir les collectivités territoriales dans la prévention et la gestion des inondations",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5844"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5844",
+    "themes": [
+      "institutions"
+    ]
   },
   {
     "numero": 5845,
     "date": "2026-03-26",
     "titre": "Renforcer l'enseignement de la défense nationale dans le cadre du parcours de citoyenneté",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5845"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5845",
+    "themes": [
+      "education",
+      "defense"
+    ]
   },
   {
     "numero": 5846,
     "date": "2026-03-26",
     "titre": "Renforcer le contrôle, la gouvernance et la responsabilité financière des opérateurs de l'Etat",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5846"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5846",
+    "themes": [
+      "economie"
+    ]
   },
   {
     "numero": 5849,
     "date": "2026-03-30",
     "titre": "Permettre le remboursement des frais d'expertise comptable aux candidats",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5849"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5849",
+    "themes": [
+      "economie",
+      "institutions"
+    ]
   },
   {
     "numero": 5856,
     "date": "2026-03-30",
     "titre": "Garantir le droit de visite des parlementaires et des bâtonniers dans les lieux de privation de liberté",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5856"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5856",
+    "themes": [
+      "institutions"
+    ]
   },
   {
     "numero": 6023,
     "date": "2026-04-07",
     "titre": "La lutte contre les fraudes sociales et fiscales",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6023"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6023",
+    "themes": [
+      "economie"
+    ]
   },
   {
     "numero": 6045,
     "date": "2026-04-08",
     "titre": "Simplifier le millefeuille territorial par la collectivité unique",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6045"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6045",
+    "themes": [
+      "institutions"
+    ]
   },
   {
     "numero": 6069,
     "date": "2026-04-08",
     "titre": "Reconnaître une politique nationale d'adaptation au changement climatique et à adapter les mécanismes d'assurance",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6069"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6069",
+    "themes": [
+      "environnement"
+    ]
   },
   {
     "numero": 6076,
     "date": "2026-04-09",
     "titre": "Encadrer les regroupements pédagogiques intercommunaux afin de garantir l'égalité d'accès à l'école en milieu rural",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6076"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6076",
+    "themes": [
+      "education",
+      "social",
+      "agriculture"
+    ]
   },
   {
     "numero": 6124,
     "date": "2026-04-09",
     "titre": "Renforcer la pénalisation de l’organisation de rave-parties",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6124"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6124",
+    "themes": [
+      "justice"
+    ]
   },
   {
     "numero": 6131,
     "date": "2026-04-09",
     "titre": "Simplifier la gestion de la commande publique par les acheteurs publics et les opérateurs économiques",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6131"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6131",
+    "themes": [
+      "economie"
+    ]
   },
   {
     "numero": 6135,
     "date": "2026-04-10",
     "titre": "Instaurer une procédure simplifiée de recouvrement des créances commerciales incontestées",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6135"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6135",
+    "themes": [
+      "justice",
+      "economie"
+    ]
   },
   {
     "numero": 6180,
     "date": "2026-04-13",
     "titre": "La restitution de biens culturels provenant d’États qui, du fait d’une appropriation illicite, en ont été privés",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6180"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6180",
+    "themes": [
+      "culture"
+    ]
   },
   {
     "numero": 6184,
     "date": "2026-04-14",
     "titre": "De simplification de la vie économique",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6184"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6184",
+    "themes": [
+      "economie"
+    ]
   },
   {
     "numero": 6285,
     "date": "2026-04-28",
     "titre": "Garantir le droit de visite des parlementaires et des bâtonniers dans les lieux de privation de liberté",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6285"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6285",
+    "themes": [
+      "institutions"
+    ]
   },
   {
     "numero": 6286,
     "date": "2026-05-04",
     "titre": "Facilitant l'exercice en France des médecins diplômés au Royaume-Uni ayant débuté leurs études avant le Brexit",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6286"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6286",
+    "themes": [
+      "sante"
+    ]
   },
   {
     "numero": 6318,
     "date": "2026-05-05",
     "titre": "Renforcer la sécurité, la rétention administrative et la prévention des risques d'attentat",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6318"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6318",
+    "themes": [
+      "securite"
+    ]
   },
   {
     "numero": 6319,
     "date": "2026-05-05",
     "titre": "La lutte contre les fraudes sociales et fiscales",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6319"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6319",
+    "themes": [
+      "economie"
+    ]
   },
   {
     "numero": 6346,
     "date": "2026-05-06",
     "titre": "La restitution de biens culturels ayant fait l'objet d'une appropriation illicite",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6346"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6346",
+    "themes": [
+      "culture"
+    ]
   },
   {
     "numero": 6512,
     "date": "2026-05-11",
     "titre": "Renforcer le parcours inclusif des enfants à besoins éducatifs particuliers",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6512"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6512",
+    "themes": [
+      "social"
+    ]
   },
   {
     "numero": 6541,
     "date": "2026-05-12",
     "titre": "Accélérer le développement du transport maritime à propulsion vélique",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6541"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6541",
+    "themes": [
+      "transports"
+    ]
   },
   {
     "numero": 6563,
     "date": "2026-05-12",
     "titre": "Garantir l'information et la protection effective des victimes de violences sexistes et sexuelles lors de la libération de leur agresseur",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6563"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6563",
+    "themes": [
+      "justice",
+      "securite"
+    ]
   },
   {
     "numero": 6572,
     "date": "2026-05-13",
     "titre": "Mettre en place un programme de soutien à l'innovation thérapeutique contre les cancers, les maladies rares et les maladies orphelines de l'enfant",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6572"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6572",
+    "themes": [
+      "sante",
+      "social"
+    ]
   },
   {
     "numero": 6645,
     "date": "2026-05-13",
     "titre": "Une montagne vivante et souveraine",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6645"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6645",
+    "themes": [
+      "environnement"
+    ]
   },
   {
     "numero": 6736,
     "date": "2026-05-19",
     "titre": "Actualisant la programmation militaire pour les années 2024 à 2030 et portant diverses dispositions intéressant la défense",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6736"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6736",
+    "themes": [
+      "defense"
+    ]
   },
   {
     "numero": 6753,
     "date": "2026-05-20",
     "titre": "Régularisation des natifs dans le corps électoral pour les élections au congrès et aux assemblées de province de Nouvelle-Calédonie",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6753"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6753",
+    "themes": [
+      "institutions",
+      "immigration"
+    ]
   },
   {
     "numero": 7002,
     "date": "2026-05-28",
     "titre": "Abrogation du « code noir »",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7002"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7002",
+    "themes": []
   },
   {
     "numero": 7004,
     "date": "2026-05-28",
     "titre": "Étendre à toutes les communes la compensation financière prévue pour les communes de plus de 3 500 habitants pour l'exercice de l'ensemble des compétences du service public de la petite enfance",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7004"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7004",
+    "themes": [
+      "economie",
+      "social",
+      "institutions"
+    ]
   },
   {
     "numero": 7027,
     "date": "2026-05-28",
     "titre": "La mobilisation de l'habitat existant en réponse à la crise du logement",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7027"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7027",
+    "themes": [
+      "logement"
+    ]
   },
   {
     "numero": 7039,
     "date": "2026-05-28",
     "titre": "Pérennisation du contrat de professionnalisation expérimental",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7039"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7039",
+    "themes": [
+      "travail"
+    ]
   },
   {
     "numero": 7258,
     "date": "2026-06-01",
     "titre": "Protéger les enfants et à lutter contre les violences en milieu scolaire",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7258"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7258",
+    "themes": [
+      "education",
+      "securite",
+      "social"
+    ]
   },
   {
     "numero": 7259,
     "date": "2026-06-02",
     "titre": "D'urgence pour la protection et la souveraineté agricoles",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7259"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7259",
+    "themes": [
+      "agriculture"
+    ]
   },
   {
     "numero": 7260,
     "date": "2026-06-02",
     "titre": "Transposition de l'avenant n° 3 du 25 février 2026 au protocole d'accord du 10 novembre 2023 relatif à l'assurance chômage",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7260"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7260",
+    "themes": [
+      "travail"
+    ]
   },
   {
     "numero": 7261,
     "date": "2026-06-02",
     "titre": "Reconnaître la responsabilité de l'État et à indemniser les victimes du chlordécone",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7261"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7261",
+    "themes": [
+      "justice"
+    ]
   },
   {
     "numero": 7270,
     "date": "2026-06-02",
     "titre": "Améliorer la protection et l'accompagnement des parents d'enfants atteints d'un cancer, d'une maladie grave ou d'un handicap",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7270"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7270",
+    "themes": [
+      "sante",
+      "social"
+    ]
   },
   {
     "numero": 7294,
     "date": "2026-06-03",
     "titre": "Améliorer les moyens d'action de l'Agence de gestion et de recouvrement des avoirs saisis et confisqués et à faciliter l'exercice des missions d'expert judiciaire",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7294"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7294",
+    "themes": [
+      "justice"
+    ]
   },
   {
     "numero": 7303,
     "date": "2026-06-03",
     "titre": "Protéger l'alimentation des Français et des Françaises des contaminations au cadmium",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7303"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7303",
+    "themes": [
+      "sante",
+      "environnement",
+      "agriculture"
+    ]
   },
   {
     "numero": 7313,
     "date": "2026-06-04",
     "titre": "Garantir l'interdiction de la vaisselle en plastique dans la restauration collective accueillant du jeune public et liée à la petite enfance",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7313"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7313",
+    "themes": [
+      "social",
+      "environnement"
+    ]
   },
   {
     "numero": 7324,
     "date": "2026-06-04",
     "titre": "Plusieurs mesures de justice en faveur de la revalorisation des pensions de retraites agricoles",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7324"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7324",
+    "themes": [
+      "justice",
+      "travail",
+      "agriculture"
+    ]
   },
   {
     "numero": 7348,
     "date": "2026-06-04",
     "titre": "Prévenir le mal-être et le risque suicidaire dans le monde agricole",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7348"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7348",
+    "themes": [
+      "agriculture"
+    ]
   },
   {
     "numero": 7354,
     "date": "2026-06-11",
     "titre": "Renforcer la solidarité envers les retraités pauvres",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7354"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7354",
+    "themes": [
+      "travail",
+      "social"
+    ]
   },
   {
     "numero": 7380,
     "date": "2026-06-11",
     "titre": "La nationalisation d'ArcelorMittal France afin de préserver la souveraineté industrielle de la France",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7380"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7380",
+    "themes": [
+      "economie"
+    ]
   },
   {
     "numero": 7397,
     "date": "2026-06-11",
     "titre": "Réformer les bourses sur critères sociaux et à lutter contre la précarité étudiante",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7397"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7397",
+    "themes": [
+      "education",
+      "social"
+    ]
   },
   {
     "numero": 7401,
     "date": "2026-06-15",
     "titre": "Habilitation de l'assemblée de Martinique à fixer des règles applicables sur son territoire en application de l'article 73 de la Constitution en matière d'énergie, d'eau et d'assainissement",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7401"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7401",
+    "themes": [
+      "environnement",
+      "institutions"
+    ]
   },
   {
     "numero": 7405,
     "date": "2026-06-16",
     "titre": "Renforcer la sécurité, la rétention administrative et la prévention des risques d’attentat",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7405"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7405",
+    "themes": [
+      "securite"
+    ]
   },
   {
     "numero": 7408,
     "date": "2026-06-17",
     "titre": "Améliorer l'accès au logement des travailleurs des services publics",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7408"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7408",
+    "themes": [
+      "travail",
+      "logement"
+    ]
   },
   {
     "numero": 7409,
     "date": "2026-06-17",
     "titre": "Relancer les investissements dans le secteur de l'hydroélectricité pour contribuer à la transition énergétique",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7409"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7409",
+    "themes": [
+      "environnement"
+    ]
   },
   {
     "numero": 7454,
     "date": "2026-06-23",
     "titre": "Une Corse autonome au sein de la République",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7454"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7454",
+    "themes": [
+      "institutions"
+    ]
   },
   {
     "numero": 7893,
     "date": "2026-06-29",
     "titre": "L'organisation, à la gestion et au financement du sport professionnel",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7893"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7893",
+    "themes": [
+      "economie",
+      "travail",
+      "culture"
+    ]
   },
   {
     "numero": 7894,
     "date": "2026-06-30",
     "titre": "Droit à l'aide à mourir",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7894"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7894",
+    "themes": [
+      "sante"
+    ]
   },
   {
     "numero": 7904,
     "date": "2026-07-01",
     "titre": "Assurer le droit de chaque enfant à être assisté d'un avocat dans le cadre d'une mesure d'assistance éducative et de protection de l'enfance",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7904"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7904",
+    "themes": [
+      "justice",
+      "social"
+    ]
   },
   {
     "numero": 7905,
     "date": "2026-07-01",
     "titre": "Actualisant la programmation militaire pour les années 2024 à 2030 et portant diverses dispositions intéressant la défense",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7905"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7905",
+    "themes": [
+      "defense"
+    ]
   },
   {
     "numero": 7980,
     "date": "2026-07-07",
     "titre": "La justice criminelle et le respect des victimes",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7980"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7980",
+    "themes": [
+      "justice"
+    ]
   },
   {
     "numero": 7981,
     "date": "2026-07-07",
     "titre": "Renforcement des juridictions criminelles",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7981"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7981",
+    "themes": [
+      "justice"
+    ]
   },
   {
     "numero": 7987,
     "date": "2026-07-07",
     "titre": "Reconnaître une présomption de légitime défense pour les forces de l'ordre, dans l'exercice de leurs fonctions",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7987"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7987",
+    "themes": [
+      "defense"
+    ]
   },
   {
     "numero": 8042,
     "date": "2026-07-08",
     "titre": "La justice criminelle et le respect des victimes",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8042"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8042",
+    "themes": [
+      "justice"
+    ]
   },
   {
     "numero": 8043,
     "date": "2026-07-08",
     "titre": "Renforcement des juridictions criminelles",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8043"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8043",
+    "themes": [
+      "justice"
+    ]
   },
   {
     "numero": 8279,
     "date": "2026-07-15",
     "titre": "Offrir des réponses immédiates aux phénomènes troublant l'ordre public, la sécurité et la tranquillité de nos concitoyens",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8279"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8279",
+    "themes": [
+      "securite"
+    ]
   },
   {
     "numero": 8280,
     "date": "2026-07-15",
     "titre": "Droit à l'aide à mourir",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8280"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8280",
+    "themes": [
+      "sante"
+    ]
   },
   {
     "numero": 8418,
     "date": "2026-07-20",
     "titre": "L'organisation, à la gestion et au financement du sport professionnel",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8418"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8418",
+    "themes": [
+      "economie",
+      "travail",
+      "culture"
+    ]
   },
   {
     "numero": 8419,
     "date": "2026-07-20",
     "titre": "Doter la France d'une stratégie nationale de lutte contre les maladies cardio-neuro-vasculaires",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8419"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8419",
+    "themes": [
+      "sante"
+    ]
   },
   {
     "numero": 8421,
     "date": "2026-07-20",
     "titre": "Une montagne vivante et souveraine",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8421"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8421",
+    "themes": [
+      "environnement"
+    ]
   },
   {
     "numero": 8427,
     "date": "2026-07-20",
     "titre": "D'urgence pour la protection et la souveraineté agricoles",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8427"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8427",
+    "themes": [
+      "agriculture"
+    ]
   },
   {
     "numero": 8430,
     "date": "2026-07-21",
     "titre": "La protection des enfants",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8430"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8430",
+    "themes": [
+      "social"
+    ]
   },
   {
     "numero": 8431,
     "date": "2026-07-21",
     "titre": "Protéger les mineurs des risques auxquels les expose l'utilisation des réseaux sociaux",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8431"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8431",
+    "themes": [
+      "social",
+      "numerique"
+    ]
   },
   {
     "numero": 8433,
     "date": "2026-07-21",
     "titre": "Offrir des réponses immédiates aux phénomènes troublant l'ordre public, la sécurité et la tranquilité de nos concitoyens",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8433"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8433",
+    "themes": [
+      "securite"
+    ]
   },
   {
     "numero": 8434,
     "date": "2026-07-21",
     "titre": "Moderniser la gestion du patrimoine immobilier de l'État",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8434"
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8434",
+    "themes": [
+      "logement",
+      "culture"
+    ]
   }
 ]

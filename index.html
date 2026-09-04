@@ -295,6 +295,16 @@ window.__VOTE_EARLY__ = (async function(){
      On les tronque à l'affichage, sans rien retirer des données. */
   #avenirList .dRow .t{ display:-webkit-box; -webkit-line-clamp:3;
     -webkit-box-orient:vertical; overflow:hidden; }
+  /* Barre de filtres thématiques (Historique, À venir) */
+  .filtres{ display:flex; flex-wrap:wrap; gap:6px; margin:0 0 12px; }
+  .filtres .chip{ border:1px solid var(--line,#e6e8ee); background:var(--card,#fff);
+    color:var(--ink,#101a3f); font:inherit; font-size:11.5px; line-height:1.2;
+    padding:6px 11px; border-radius:999px; cursor:pointer;
+    transition:background .12s ease, border-color .12s ease, color .12s ease; }
+  .filtres .chip:hover{ border-color:var(--accent,#2f6fed); }
+  .filtres .chip.on{ background:var(--accent,#2f6fed);
+    border-color:var(--accent,#2f6fed); color:#fff; }
+  .filtres .chip .n{ opacity:.55; font-size:10px; margin-left:4px; }
 </style>
 </head>
 <body>
@@ -409,12 +419,14 @@ window.__VOTE_EARLY__ = (async function(){
 <!-- ============ Historique des scrutins ============ -->
 <div id="screen-historique" class="screen hidden">
   <div class="dashHead"><div class="eyebrow">Archive</div><h1 class="d">Lois votées</h1></div>
+  <div id="histFiltres" class="filtres"></div>
   <div id="histList" class="dashList"></div>
 </div>
 
 <!-- ============ Agenda à venir ============ -->
 <div id="screen-avenir" class="screen hidden">
   <div class="dashHead"><div class="eyebrow">Feuille verte</div><h1 class="d">À venir</h1></div>
+  <div id="avenirFiltres" class="filtres"></div>
   <div id="avenirList" class="dashList"></div>
 </div>
 
@@ -1308,6 +1320,83 @@ function renderAccueil(){
 $("#acEditProfile").onclick = startOnboarding;
 
 /* ---------- Historique ---------- */
+/* ============================================================
+   FILTRES THÉMATIQUES — onglets Historique et À venir
+
+   Les thèmes sont calculés en amont par le pipeline (categories.py),
+   à partir des titres officiels et d'un dictionnaire de mots-clés.
+   L'interface ne fait que filtrer : elle n'interprète rien, elle
+   n'invente aucun thème à la volée.
+   ============================================================ */
+let THEMES_LIB = null;
+let histData = [], histTheme = null;
+let avenirData = [], avenirTheme = null;
+
+async function chargerThemes(){
+  if(THEMES_LIB) return THEMES_LIB;
+  THEMES_LIB = {};
+  try{
+    const l = await (await fetch(REPO_DATA_BASE + "themes.json", {cache:"no-store"})).json();
+    l.forEach(t => { THEMES_LIB[t.code] = t.libelle; });
+  }catch(e){ /* libellés indisponibles : on affichera les codes bruts */ }
+  return THEMES_LIB;
+}
+
+/* On ne propose que les thèmes réellement présents dans les données, triés
+   par nombre décroissant : une case vide n'a aucun intérêt pour le lecteur. */
+function rendreFiltres(cible, donnees, actif, choisir){
+  const el = $(cible);
+  if(!el) return;
+  const compte = {};
+  let nonClasses = 0;
+  donnees.forEach(r => {
+    const th = r.themes || [];
+    if(!th.length) nonClasses++;
+    th.forEach(c => { compte[c] = (compte[c] || 0) + 1; });
+  });
+  const codes = Object.keys(compte).sort((a,b) => compte[b] - compte[a]);
+  let html = `<button class="chip${actif===null?" on":""}" data-t="">Tous <span class="n">${donnees.length}</span></button>`;
+  codes.forEach(c => {
+    const lib = (THEMES_LIB && THEMES_LIB[c]) || c;
+    html += `<button class="chip${actif===c?" on":""}" data-t="${esc(c)}">${esc(lib)} <span class="n">${compte[c]}</span></button>`;
+  });
+  if(nonClasses){
+    html += `<button class="chip${actif==="_"?" on":""}" data-t="_">Non classé <span class="n">${nonClasses}</span></button>`;
+  }
+  el.innerHTML = html;
+  el.querySelectorAll(".chip").forEach(b => {
+    b.addEventListener("click", () => choisir(b.dataset.t === "" ? null : b.dataset.t));
+  });
+}
+
+function filtrerParTheme(donnees, theme){
+  if(theme === null) return donnees;
+  if(theme === "_") return donnees.filter(r => !(r.themes || []).length);
+  return donnees.filter(r => (r.themes || []).includes(theme));
+}
+
+function videSelection(icone){
+  return `<div class="emptyState"><div class="ic">${icone}</div>
+    <h3>Rien dans ce thème</h3>
+    <p>Choisis un autre thème, ou reviens à « Tous ».</p></div>`;
+}
+
+function rendreHistorique(){
+  rendreFiltres("#histFiltres", histData, histTheme, t => { histTheme = t; rendreHistorique(); });
+  const vues = filtrerParTheme(histData, histTheme);
+  $("#histList").innerHTML = vues.length ? vues.map(r => histRow(r)).join("") : videSelection("📜");
+}
+
+function rendreAvenir(){
+  rendreFiltres("#avenirFiltres", avenirData, avenirTheme, t => { avenirTheme = t; rendreAvenir(); });
+  const vues = filtrerParTheme(avenirData, avenirTheme);
+  $("#avenirList").innerHTML = vues.length ? vues.map(r => `
+      <div class="dRow" style="cursor:default">
+        <div class="k"><span>${dateFR(r.date)}${r.heure?" · "+esc(r.heure):""}</span></div>
+        <div class="t">${esc(r.ordre_du_jour)}</div>
+      </div>`).join("") : videSelection("📅");
+}
+
 async function loadHistorique(){
   const el = $("#histList");
   el.innerHTML = `<div style="color:var(--dim);font-size:12px;text-align:center;margin-top:40px">Chargement…</div>`;
@@ -1317,7 +1406,9 @@ async function loadHistorique(){
   }catch(e){ rows = null; }
 
   if(rows && rows.length){
-    el.innerHTML = rows.slice().reverse().map(r => histRow(r)).join("");
+    await chargerThemes();
+    histData = rows.slice().reverse();
+    rendreHistorique();
   } else if(voteData && !voteData.error){
     // L'index n'existe pas encore côté pipeline : on retombe honnêtement sur
     // le seul scrutin qu'on connaît déjà, plutôt que de prétendre à un vide.
@@ -1354,11 +1445,9 @@ async function loadAvenir(){
   }catch(e){ rows = null; }
 
   if(rows && rows.length){
-    el.innerHTML = rows.filter(r=>r.ordre_du_jour).map(r => `
-      <div class="dRow" style="cursor:default">
-        <div class="k"><span>${dateFR(r.date)}${r.heure?" · "+esc(r.heure):""}</span></div>
-        <div class="t">${esc(r.ordre_du_jour)}</div>
-      </div>`).join("");
+    await chargerThemes();
+    avenirData = rows.filter(r => r.ordre_du_jour);
+    rendreAvenir();
   } else {
     el.innerHTML = `<div class="emptyState"><div class="ic">📅</div>
       <h3>Pas d'agenda publié pour l'instant</h3>

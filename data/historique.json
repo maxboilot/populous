@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-01T16:47:45.981117Z",
-  "depuis": "2025-09-01",
+  "generated_at": "2026-09-04T09:46:42.151328Z",
+  "depuis": "2025-09-04",
   "nombre": 113,
   "lois": [
     {
@@ -12,6 +12,10 @@
       "lecture": "texte de la commission mixte paritaire",
       "solennel": true,
       "adopte": true,
+      "themes": [
+        "logement",
+        "culture"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 276,
@@ -30,6 +34,9 @@
       "lecture": "texte de la commission mixte paritaire",
       "solennel": true,
       "adopte": true,
+      "themes": [
+        "securite"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 351,
@@ -48,6 +55,10 @@
       "lecture": "texte de la commission mixte paritaire",
       "solennel": true,
       "adopte": true,
+      "themes": [
+        "social",
+        "numerique"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 279,
@@ -66,6 +77,9 @@
       "lecture": "première lecture",
       "solennel": true,
       "adopte": true,
+      "themes": [
+        "social"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 378,
@@ -84,6 +98,9 @@
       "lecture": "texte de la commission mixte paritaire",
       "solennel": true,
       "adopte": true,
+      "themes": [
+        "agriculture"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 296,
@@ -102,6 +119,9 @@
       "lecture": "texte de la commission mixte paritaire",
       "solennel": true,
       "adopte": true,
+      "themes": [
+        "environnement"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 376,
@@ -120,6 +140,9 @@
       "lecture": "texte de la commission mixte paritaire",
       "solennel": true,
       "adopte": true,
+      "themes": [
+        "sante"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 462,
@@ -138,6 +161,11 @@
       "lecture": "texte de la commission mixte paritaire",
       "solennel": true,
       "adopte": true,
+      "themes": [
+        "economie",
+        "travail",
+        "culture"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 359,
@@ -156,6 +184,9 @@
       "lecture": "lecture définitive",
       "solennel": true,
       "adopte": true,
+      "themes": [
+        "sante"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 291,
@@ -174,6 +205,9 @@
       "lecture": "première lecture",
       "solennel": true,
       "adopte": true,
+      "themes": [
+        "securite"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 366,
@@ -192,6 +226,9 @@
       "lecture": "texte de la commission mixte paritaire",
       "solennel": true,
       "adopte": true,
+      "themes": [
+        "justice"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 283,
@@ -210,6 +247,9 @@
       "lecture": "texte de la commission mixte paritaire",
       "solennel": true,
       "adopte": true,
+      "themes": [
+        "justice"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 283,
@@ -228,6 +268,9 @@
       "lecture": "première lecture",
       "solennel": true,
       "adopte": true,
+      "themes": [
+        "defense"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 313,
@@ -246,6 +289,9 @@
       "lecture": "première lecture",
       "solennel": true,
       "adopte": true,
+      "themes": [
+        "justice"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 363,
@@ -264,6 +310,9 @@
       "lecture": "première lecture",
       "solennel": true,
       "adopte": true,
+      "themes": [
+        "justice"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 357,
@@ -282,6 +331,9 @@
       "lecture": "texte de la commission mixte paritaire",
       "solennel": true,
       "adopte": true,
+      "themes": [
+        "defense"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 375,
@@ -300,6 +352,10 @@
       "lecture": "deuxième lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "justice",
+        "social"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 292,
@@ -318,6 +374,9 @@
       "lecture": "nouvelle lecture",
       "solennel": true,
       "adopte": true,
+      "themes": [
+        "sante"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 295,
@@ -336,6 +395,11 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "economie",
+        "travail",
+        "culture"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 75,
@@ -354,6 +418,9 @@
       "lecture": "première lecture",
       "solennel": true,
       "adopte": true,
+      "themes": [
+        "institutions"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 271,
@@ -372,6 +439,9 @@
       "lecture": "texte de la commission mixte paritaire",
       "solennel": true,
       "adopte": true,
+      "themes": [
+        "environnement"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 290,
@@ -390,6 +460,10 @@
       "lecture": "texte de la commission mixte paritaire",
       "solennel": true,
       "adopte": true,
+      "themes": [
+        "travail",
+        "logement"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 292,
@@ -408,6 +482,9 @@
       "lecture": "texte de la commission mixte paritaire",
       "solennel": true,
       "adopte": true,
+      "themes": [
+        "securite"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 345,
@@ -426,6 +503,10 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "environnement",
+        "institutions"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 35,
@@ -444,6 +525,10 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "education",
+        "social"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 75,
@@ -462,6 +547,9 @@
       "lecture": "deuxième lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "economie"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 106,
@@ -480,6 +568,10 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "travail",
+        "social"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 165,
@@ -498,6 +590,9 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "agriculture"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 76,
@@ -516,6 +611,11 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "justice",
+        "travail",
+        "agriculture"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 82,
@@ -534,6 +634,10 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "social",
+        "environnement"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 72,
@@ -552,6 +656,11 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "sante",
+        "environnement",
+        "agriculture"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 144,
@@ -570,6 +679,9 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "justice"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 93,
@@ -588,6 +700,10 @@
       "lecture": "deuxième lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "sante",
+        "social"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 212,
@@ -606,6 +722,9 @@
       "lecture": "deuxième lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "justice"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 236,
@@ -624,6 +743,9 @@
       "lecture": "deuxième lecture",
       "solennel": true,
       "adopte": true,
+      "themes": [
+        "travail"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 353,
@@ -642,6 +764,9 @@
       "lecture": "première lecture",
       "solennel": true,
       "adopte": true,
+      "themes": [
+        "agriculture"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 369,
@@ -660,6 +785,11 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "education",
+        "securite",
+        "social"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 187,
@@ -678,6 +808,9 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "travail"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 64,
@@ -696,6 +829,9 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "logement"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 85,
@@ -714,6 +850,11 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "economie",
+        "social",
+        "institutions"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 121,
@@ -732,6 +873,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 254,
@@ -750,6 +892,10 @@
       "lecture": "première lecture",
       "solennel": true,
       "adopte": true,
+      "themes": [
+        "institutions",
+        "immigration"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 386,
@@ -768,6 +914,9 @@
       "lecture": "première lecture",
       "solennel": true,
       "adopte": true,
+      "themes": [
+        "defense"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 440,
@@ -786,6 +935,9 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "environnement"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 42,
@@ -804,6 +956,10 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "sante",
+        "social"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 98,
@@ -822,6 +978,10 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "justice",
+        "securite"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 146,
@@ -840,6 +1000,9 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "transports"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 175,
@@ -858,6 +1021,9 @@
       "lecture": "nouvelle lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "social"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 108,
@@ -876,6 +1042,9 @@
       "lecture": "texte de la commission mixte paritaire",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "culture"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 141,
@@ -894,6 +1063,9 @@
       "lecture": "texte de la commission mixte paritaire",
       "solennel": true,
       "adopte": true,
+      "themes": [
+        "economie"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 335,
@@ -912,6 +1084,9 @@
       "lecture": "première lecture",
       "solennel": true,
       "adopte": true,
+      "themes": [
+        "securite"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 345,
@@ -930,6 +1105,9 @@
       "lecture": "deuxième lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "sante"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 72,
@@ -948,6 +1126,9 @@
       "lecture": "texte de la commission mixte paritaire",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "institutions"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 204,
@@ -966,6 +1147,9 @@
       "lecture": "texte de la commission mixte paritaire",
       "solennel": true,
       "adopte": true,
+      "themes": [
+        "economie"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 275,
@@ -984,6 +1168,9 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "culture"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 170,
@@ -1002,6 +1189,10 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "justice",
+        "economie"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 41,
@@ -1020,6 +1211,9 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "economie"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 82,
@@ -1038,6 +1232,9 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "justice"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 78,
@@ -1056,6 +1253,11 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "education",
+        "social",
+        "agriculture"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 132,
@@ -1074,6 +1276,9 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "environnement"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 70,
@@ -1092,6 +1297,9 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "institutions"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 131,
@@ -1110,6 +1318,9 @@
       "lecture": "première lecture",
       "solennel": true,
       "adopte": true,
+      "themes": [
+        "economie"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 363,
@@ -1128,6 +1339,9 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "institutions"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 55,
@@ -1146,6 +1360,10 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "economie",
+        "institutions"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 42,
@@ -1164,6 +1382,9 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "economie"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 34,
@@ -1182,6 +1403,10 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "education",
+        "defense"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 39,
@@ -1200,6 +1425,9 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "institutions"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 56,
@@ -1218,6 +1446,10 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "environnement",
+        "agriculture"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 122,
@@ -1236,6 +1468,9 @@
       "lecture": "deuxième lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "justice"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 65,
@@ -1254,6 +1489,9 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "culture"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 109,
@@ -1272,6 +1510,12 @@
       "lecture": "deuxième lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "sante",
+        "securite",
+        "travail",
+        "agriculture"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 92,
@@ -1290,6 +1534,9 @@
       "lecture": "deuxième lecture",
       "solennel": true,
       "adopte": true,
+      "themes": [
+        "sante"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 299,
@@ -1308,6 +1555,9 @@
       "lecture": "deuxième lecture",
       "solennel": true,
       "adopte": true,
+      "themes": [
+        "sante"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 491,
@@ -1326,6 +1576,10 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "education",
+        "agriculture"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 68,
@@ -1344,6 +1598,10 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "economie",
+        "logement"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 57,
@@ -1362,6 +1620,10 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "economie",
+        "numerique"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 60,
@@ -1380,6 +1642,9 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "sante"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 52,
@@ -1398,6 +1663,9 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "justice"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 123,
@@ -1416,6 +1684,9 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "environnement"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 56,
@@ -1434,6 +1705,9 @@
       "lecture": "texte de la commission mixte paritaire",
       "solennel": true,
       "adopte": true,
+      "themes": [
+        "culture"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 390,
@@ -1452,6 +1726,9 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "social"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 35,
@@ -1470,6 +1747,10 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "justice",
+        "environnement"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 69,
@@ -1488,6 +1769,10 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "sante",
+        "travail"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 43,
@@ -1506,6 +1791,9 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "social"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 72,
@@ -1524,6 +1812,9 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "social"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 106,
@@ -1542,6 +1833,10 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "logement",
+        "culture"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 77,
@@ -1560,6 +1855,11 @@
       "lecture": null,
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "justice",
+        "securite",
+        "social"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 195,
@@ -1578,6 +1878,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 96,
@@ -1596,6 +1897,10 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "social",
+        "numerique"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 130,
@@ -1614,6 +1919,9 @@
       "lecture": "première lecture",
       "solennel": true,
       "adopte": true,
+      "themes": [
+        "culture"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 403,
@@ -1632,6 +1940,10 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "travail",
+        "logement"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 46,
@@ -1650,6 +1962,9 @@
       "lecture": "première lecture",
       "solennel": true,
       "adopte": true,
+      "themes": [
+        "economie"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 496,
@@ -1668,6 +1983,10 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "justice",
+        "social"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 93,
@@ -1686,6 +2005,10 @@
       "lecture": "deuxième lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "justice",
+        "social"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 114,
@@ -1704,6 +2027,10 @@
       "lecture": "lecture définitive",
       "solennel": true,
       "adopte": true,
+      "themes": [
+        "securite",
+        "economie"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 247,
@@ -1722,6 +2049,9 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "institutions"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 85,
@@ -1740,6 +2070,9 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "immigration"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 98,
@@ -1758,6 +2091,9 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "logement"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 105,
@@ -1776,6 +2112,9 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "social"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 144,
@@ -1794,6 +2133,10 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "justice",
+        "social"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 269,
@@ -1812,6 +2155,9 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "social"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 106,
@@ -1830,6 +2176,9 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "institutions"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 76,
@@ -1848,6 +2197,10 @@
       "lecture": "nouvelle lecture",
       "solennel": true,
       "adopte": true,
+      "themes": [
+        "securite",
+        "economie"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 247,
@@ -1866,6 +2219,9 @@
       "lecture": "deuxième lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "institutions"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 109,
@@ -1884,6 +2240,7 @@
       "lecture": "texte de la commission mixte paritaire",
       "solennel": true,
       "adopte": true,
+      "themes": [],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 217,
@@ -1902,6 +2259,9 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "economie"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 127,
@@ -1920,6 +2280,9 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "institutions"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 195,
@@ -1938,6 +2301,9 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "economie"
+      ],
       "sort": "L'Assemblée nationale n'a pas adopté",
       "tally": {
         "pour": 107,
@@ -1956,6 +2322,10 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "economie",
+        "agriculture"
+      ],
       "sort": "L'Assemblée nationale n'a pas adopté",
       "tally": {
         "pour": 149,
@@ -1974,6 +2344,9 @@
       "lecture": "texte de la commission mixte paritaire",
       "solennel": true,
       "adopte": true,
+      "themes": [
+        "institutions"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 279,
@@ -1992,6 +2365,10 @@
       "lecture": "texte de la commission mixte paritaire",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "justice",
+        "securite"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 155,
@@ -2010,6 +2387,9 @@
       "lecture": "texte de la commission mixte paritaire",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "logement"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 65,
@@ -2028,6 +2408,9 @@
       "lecture": "texte de la commission mixte paritaire",
       "solennel": false,
       "adopte": true,
+      "themes": [
+        "travail"
+      ],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
         "pour": 143,

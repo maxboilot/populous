@@ -10,6 +10,8 @@
 # jargon, plus le lien vers la page de l Assemblee. Rien n est invente.
 import json
 import unicodedata
+
+import categories
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
@@ -113,6 +115,7 @@ def charger():
             'lecture': lecture,
             'solennel': bool(f.get('solennel')),
             'adopte': bool(f.get('adopte')),
+            'themes': categories.classer(f.get('titre') or ''),
             'sort': f.get('sort'),
             'tally': f.get('tally'),
             'source': f.get('source'),
@@ -141,6 +144,7 @@ def main():
             'titre': l['titre'],
             'adopte': l['adopte'],
             'source': l['source'],
+            'themes': l['themes'],
         }
         for l in reversed(lois)
     ]
