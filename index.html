@@ -183,6 +183,12 @@ window.__VOTE_EARLY__ = (async function(){
   .privacyBox{margin-top:20px;padding:14px 16px;border-radius:16px;background:var(--accent-soft);
     font-size:12px;line-height:1.6;color:var(--ink-soft)}
   .privacyBox b{color:var(--ink)}
+  .profRow{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;
+    margin-top:10px;padding:14px 16px;background:var(--card-alt);border:none;border-radius:14px;
+    color:var(--ink);cursor:pointer;text-align:left;font-family:inherit}
+  .profRow .pl{font-size:11px;font-weight:700;color:var(--ink-soft)}
+  .profRow .pv{font-size:14px;font-weight:600;color:var(--ink);margin-top:3px}
+  .profRow .chev{color:var(--dim);font-size:16px;flex:0 0 auto}
 
   #dailyPopup .sheet{text-align:left}
   #dailyPopup .depBadge{display:inline-flex;align-items:center;gap:10px;margin-top:18px;padding:12px 14px;
@@ -975,6 +981,29 @@ loadVote();
 const PROFILE_KEY = "populous_profile_v1";
 const POPUP_KEY = "populous_last_popup";
 
+/* ------------------------------------------------------------
+   Recherche de circonscription par ville ou code postal.
+   communes.json pèse 1,9 Mo : chargé une seule fois, à la demande,
+   quand l'étape de recherche s'ouvre — jamais au démarrage.
+   ------------------------------------------------------------ */
+let communesData = null, communesPromise = null;
+function loadCommunes(){
+  if(communesData) return Promise.resolve(communesData);
+  if(!communesPromise){
+    communesPromise = fetch(REPO_DATA_BASE + "communes.json", {cache:"no-store"})
+      .then(r=>r.json())
+      .then(d=>{ communesData = d; return d; })
+      .catch(()=>{ communesPromise = null; return null; });
+  }
+  return communesPromise;
+}
+// Même règle de normalisation que cle_recherche() dans construire_communes.py :
+// sans accents, sans ponctuation, espaces simples — sinon "Clermont-Ferrand"
+// ne matche pas la clé stockée "clermont ferrand".
+function normCommune(s){
+  return norm(s).replace(/['\-.]/g," ").replace(/\s+/g," ").trim();
+}
+
 function loadProfile(){
   try { return JSON.parse(localStorage.getItem(PROFILE_KEY) || "null"); }
   catch(e){ return null; }
@@ -990,10 +1019,38 @@ const ENFANTS = [{k:"oui",l:"Oui"},{k:"non",l:"Non"}];
 
 let draft = { pseudo:"", age:null, circoKey:null, circoLabel:"", logement:null, pro:null, enfants:null };
 let obStep = 0;
+let viewMode = false; // true = édition d'un seul champ depuis la vue profil, pas d'enchaînement d'étapes
 
 function obRender(){
   const el = $("#obSheet");
-  const dots = `<div class="obDots">${[0,1,2,3].map(i=>`<span class="${i<obStep?'done':''}"></span>`).join("")}</div>`;
+  const dots = viewMode ? "" : `<div class="obDots">${[0,1,2,3].map(i=>`<span class="${i<obStep?'done':''}"></span>`).join("")}</div>`;
+
+  if(obStep === "view"){
+    const situationBits = [
+      LOGEMENT.find(o=>o.k===draft.logement)?.l,
+      PRO.find(o=>o.k===draft.pro)?.l,
+      draft.enfants ? "Enfants scolarisés : " + ENFANTS.find(o=>o.k===draft.enfants).l : null,
+    ].filter(Boolean);
+    const row = (label, value, step) => `
+      <button type="button" class="profRow" data-step="${step}">
+        <div><div class="pl">${esc(label)}</div><div class="pv">${esc(value)}</div></div>
+        <div class="chev">›</div>
+      </button>`;
+    el.innerHTML = `
+      <div class="eyebrow">Mon profil</div>
+      <h2 class="d">Tes informations</h2>
+      <p class="lead">Tout reste stocké sur cet appareil. Touche un champ pour le modifier.</p>
+      ${row("Pseudo", draft.pseudo || "—", 1)}
+      ${row("Tranche d'âge", draft.age || "Non renseignée", 2)}
+      ${row("Circonscription", draft.circoLabel || "Non renseignée", 3)}
+      ${row("Ta situation", situationBits.length ? situationBits.join(" · ") : "Non renseignée", 4)}
+      <div class="actions"><button class="btn ghost" id="profClose" style="flex:none;padding:12px 22px">Fermer</button></div>`;
+    el.querySelectorAll(".profRow").forEach(b=>{
+      b.onclick = ()=>{ viewMode = true; obStep = +b.dataset.step; obRender(); };
+    });
+    $("#profClose").onclick = ()=>{ $("#onboarding").classList.add("hidden"); };
+    return;
+  }
 
   if(obStep === 0){
     el.innerHTML = `
@@ -1009,20 +1066,25 @@ function obRender(){
 
   if(obStep === 1){
     el.innerHTML = `${dots}
-      <div class="eyebrow">1 / 4 — Pseudo</div>
+      <div class="eyebrow">${viewMode ? "Modifier" : "1 / 4 — Pseudo"}</div>
       <h2 class="d">Comment on t'appelle ?</h2>
       <p class="lead">Un pseudo, pas ton nom — personne d'autre ne le verra.</p>
       <div class="field"><input type="text" id="obPseudo" maxlength="24" placeholder="Ex. Kermit63, Léa_A…" value="${esc(draft.pseudo)}"></div>
       <div class="actions">
-        <button class="btn ghost" id="obBack">Retour</button>
-        <button class="btn primary" id="obNext">Continuer</button>
+        <button class="btn ghost" id="obBack">${viewMode ? "Annuler" : "Retour"}</button>
+        <button class="btn primary" id="obNext">${viewMode ? "Enregistrer" : "Continuer"}</button>
       </div>`;
     const inp = $("#obPseudo");
     inp.focus();
-    $("#obBack").onclick = ()=>{ obStep=0; obRender(); };
+    $("#obBack").onclick = ()=>{
+      if(viewMode){ draft = {...loadProfile()}; obStep="view"; } else { obStep=0; }
+      obRender();
+    };
     $("#obNext").onclick = ()=>{
       draft.pseudo = inp.value.trim().slice(0,24) || "Anonyme";
-      obStep=2; obRender();
+      if(viewMode){ saveProfile(draft); obStep="view"; renderAccueil(); }
+      else obStep=2;
+      obRender();
     };
     inp.onkeydown = e=>{ if(e.key==="Enter") $("#obNext").click(); };
     return;
@@ -1030,15 +1092,15 @@ function obRender(){
 
   if(obStep === 2){
     el.innerHTML = `${dots}
-      <div class="eyebrow">2 / 4 — Âge</div>
+      <div class="eyebrow">${viewMode ? "Modifier" : "2 / 4 — Âge"}</div>
       <h2 class="d">Ta tranche d'âge</h2>
       <p class="lead">Juste une tranche — jamais de date de naissance précise.</p>
       <div class="field"><div class="chips" id="obAges">
         ${AGE_BRACKETS.map(a=>`<button class="chip ${draft.age===a?'sel':''}" data-a="${a}">${a}</button>`).join("")}
       </div></div>
       <div class="actions">
-        <button class="btn ghost" id="obBack">Retour</button>
-        <button class="btn primary" id="obNext" ${draft.age?"":"disabled"}>Continuer</button>
+        <button class="btn ghost" id="obBack">${viewMode ? "Annuler" : "Retour"}</button>
+        <button class="btn primary" id="obNext" ${draft.age?"":"disabled"}>${viewMode ? "Enregistrer" : "Continuer"}</button>
       </div>`;
     $("#obAges").querySelectorAll(".chip").forEach(b=>{
       b.onclick = ()=>{
@@ -1047,46 +1109,86 @@ function obRender(){
         $("#obNext").disabled = false;
       };
     });
-    $("#obBack").onclick = ()=>{ obStep=1; obRender(); };
-    $("#obNext").onclick = ()=>{ obStep=3; obRender(); };
+    $("#obBack").onclick = ()=>{
+      if(viewMode){ draft = {...loadProfile()}; obStep="view"; } else { obStep=1; }
+      obRender();
+    };
+    $("#obNext").onclick = ()=>{
+      if(viewMode){ saveProfile(draft); obStep="view"; renderAccueil(); }
+      else obStep=3;
+      obRender();
+    };
     return;
   }
 
   if(obStep === 3){
     el.innerHTML = `${dots}
-      <div class="eyebrow">3 / 4 — Circonscription</div>
+      <div class="eyebrow">${viewMode ? "Modifier" : "3 / 4 — Circonscription"}</div>
       <h2 class="d">Où votes-tu ?</h2>
-      <p class="lead">Cherche ton département ou ta commune — on en déduit ta circonscription et ton député.</p>
+      <p class="lead">Tape ta ville ou ton code postal — on en déduit ta ou tes circonscriptions et ton député.</p>
       <div class="field">
-        <input type="text" id="obCircoQ" placeholder="Ex. Clermont-Ferrand, Puy-de-Dôme…" autocomplete="off">
+        <input type="text" id="obCircoQ" placeholder="Ex. Clermont-Ferrand, 63000…" autocomplete="off">
         <div class="obResults" id="obCircoResults" ${draft.circoKey?'style="display:none"':''}></div>
         ${draft.circoKey ? `<div class="obChip">${esc(draft.circoLabel)} <button id="obCircoClear">×</button></div>` : ""}
       </div>
       <div class="actions">
-        <button class="btn ghost" id="obBack">Retour</button>
-        <button class="btn primary" id="obNext" ${draft.circoKey?"":"disabled"}>Continuer</button>
+        <button class="btn ghost" id="obBack">${viewMode ? "Annuler" : "Retour"}</button>
+        <button class="btn primary" id="obNext" ${draft.circoKey?"":"disabled"}>${viewMode ? "Enregistrer" : "Continuer"}</button>
       </div>`;
     const q = $("#obCircoQ"), r = $("#obCircoResults");
-    q.oninput = ()=>{
-      const v = norm(q.value.trim());
-      if(v.length<2){ r.style.display="none"; return; }
-      const res = index.filter(x=>x.s.includes(v)).slice(0,6);
-      r.innerHTML = res.map(x=>{
-        const e = elus[x.i];
-        return `<button data-i="${x.i}">${esc(e.n)} — ${esc(DEP_NAMES[e.dep]||e.dep)}, ${e.ci}ᵉ circ.</button>`;
-      }).join("") || `<div style="padding:8px 10px;font-size:11px;color:var(--dim)">Aucun résultat</div>`;
+    loadCommunes(); // précharge dès l'ouverture de l'étape, avant la première frappe
+    let circoSearchToken = 0;
+    q.oninput = async ()=>{
+      const raw = q.value.trim();
+      if(raw.length<2){ r.style.display="none"; return; }
+      const token = ++circoSearchToken;
+      r.innerHTML = `<div style="padding:8px 10px;font-size:11px;color:var(--dim)">Recherche…</div>`;
       r.style.display = "block";
+      const communes = await loadCommunes();
+      if(token !== circoSearchToken) return; // une frappe plus récente a pris le relais
+      if(!communes){
+        r.innerHTML = `<div style="padding:8px 10px;font-size:11px;color:var(--dim)">Recherche indisponible pour l'instant — réessaie un peu plus tard.</div>`;
+        return;
+      }
+      const isPostal = /^\d{2,5}$/.test(raw);
+      const key = normCommune(raw);
+      const communesMatch = communes.filter(c => isPostal ? c[2].some(cp=>cp.startsWith(raw)) : c[1].includes(key)).slice(0,8);
+      const rows = [];
+      communesMatch.forEach(c=>{
+        const [nom, , postaux, cles] = c;
+        cles.forEach(k=>{
+          const e = byKey.get(k);
+          const [dep, num] = k.split("|");
+          const depName = DEP_NAMES[dep] || dep;
+          const label = e
+            ? `${esc(e.n)} — ${esc(depName)}, ${e.ci}ᵉ circ.`
+            : `${esc(depName)}, ${num}ᵉ circ. — député·e non recensé·e`;
+          rows.push({ k, txt: `${esc(nom)}${postaux[0]?" ("+postaux[0]+")":""} — ${label}` });
+        });
+      });
+      r.innerHTML = rows.length
+        ? rows.map(row=>`<button data-k="${row.k}">${row.txt}</button>`).join("")
+        : `<div style="padding:8px 10px;font-size:11px;color:var(--dim)">Aucun résultat</div>`;
       r.querySelectorAll("button").forEach(b=>{
         b.onclick = ()=>{
-          const e = elus[+b.dataset.i];
-          draft.circoKey = e.k; draft.circoLabel = `${DEP_NAMES[e.dep]||e.dep} — ${e.ci}ᵉ circ.`;
+          const k = b.dataset.k, e = byKey.get(k);
+          const [dep, num] = k.split("|");
+          draft.circoKey = k;
+          draft.circoLabel = e ? `${DEP_NAMES[e.dep]||e.dep} — ${e.ci}ᵉ circ.` : `${DEP_NAMES[dep]||dep} — ${num}ᵉ circ.`;
           obRender();
         };
       });
     };
     if($("#obCircoClear")) $("#obCircoClear").onclick = ()=>{ draft.circoKey=null; draft.circoLabel=""; obRender(); };
-    $("#obBack").onclick = ()=>{ obStep=2; obRender(); };
-    $("#obNext").onclick = ()=>{ obStep=4; obRender(); };
+    $("#obBack").onclick = ()=>{
+      if(viewMode){ draft = {...loadProfile()}; obStep="view"; } else { obStep=2; }
+      obRender();
+    };
+    $("#obNext").onclick = ()=>{
+      if(viewMode){ saveProfile(draft); obStep="view"; renderAccueil(); }
+      else obStep=4;
+      obRender();
+    };
     return;
   }
 
@@ -1094,15 +1196,15 @@ function obRender(){
     const chipsGroup = (arr, field) => arr.map(o=>
       `<button class="chip ${draft[field]===o.k?'sel':''}" data-k="${o.k}">${o.l}</button>`).join("");
     el.innerHTML = `${dots}
-      <div class="eyebrow">4 / 4 — Ta situation</div>
+      <div class="eyebrow">${viewMode ? "Modifier" : "4 / 4 — Ta situation"}</div>
       <h2 class="d">Pour affiner ce qui te concerne</h2>
       <p class="lead">Facultatif, mais ça permet de te montrer en priorité ce qui te touche vraiment.</p>
       <div class="field"><label>Logement</label><div class="chips" id="obLog">${chipsGroup(LOGEMENT,"logement")}</div></div>
       <div class="field"><label>Situation professionnelle</label><div class="chips" id="obPro">${chipsGroup(PRO,"pro")}</div></div>
       <div class="field"><label>Enfants scolarisés</label><div class="chips" id="obEnf">${chipsGroup(ENFANTS,"enfants")}</div></div>
       <div class="actions">
-        <button class="btn ghost" id="obBack">Retour</button>
-        <button class="btn primary" id="obFinish">Terminer</button>
+        <button class="btn ghost" id="obBack">${viewMode ? "Annuler" : "Retour"}</button>
+        <button class="btn primary" id="obFinish">${viewMode ? "Enregistrer" : "Terminer"}</button>
       </div>`;
     const wire = (id, field) => $(id).querySelectorAll(".chip").forEach(b=>{
       b.onclick = ()=>{
@@ -1111,9 +1213,13 @@ function obRender(){
       };
     });
     wire("#obLog","logement"); wire("#obPro","pro"); wire("#obEnf","enfants");
-    $("#obBack").onclick = ()=>{ obStep=3; obRender(); };
+    $("#obBack").onclick = ()=>{
+      if(viewMode){ draft = {...loadProfile()}; obStep="view"; } else { obStep=3; }
+      obRender();
+    };
     $("#obFinish").onclick = ()=>{
       saveProfile(draft);
+      if(viewMode){ obStep="view"; renderAccueil(); obRender(); return; }
       $("#onboarding").classList.add("hidden");
       maybeShowDailyPopup();
     };
@@ -1124,7 +1230,18 @@ function obRender(){
 function startOnboarding(){
   const existing = loadProfile();
   if(existing){ draft = existing; }
+  viewMode = false;
   obStep = 0;
+  $("#onboarding").classList.remove("hidden");
+  obRender();
+}
+
+function openProfile(){
+  const existing = loadProfile();
+  if(!existing){ startOnboarding(); return; }
+  draft = {...existing};
+  viewMode = false;
+  obStep = "view";
   $("#onboarding").classList.remove("hidden");
   obRender();
 }
@@ -1325,7 +1442,7 @@ function renderAccueil(){
   const bits = [profile.age, profile.circoLabel].filter(Boolean);
   $("#acProfileSub").textContent = bits.length ? bits.join(" · ") : "Compléter mon profil";
 }
-$("#acEditProfile").onclick = startOnboarding;
+$("#acEditProfile").onclick = openProfile;
 
 /* ---------- Historique ---------- */
 /* ============================================================
