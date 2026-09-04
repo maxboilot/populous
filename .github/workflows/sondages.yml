@@ -1,0 +1,46 @@
+name: Sondages Présidentielle 2027
+
+on:
+  schedule:
+    # Une fois par jour ; deux tentatives décalées le matin plutôt qu'une
+    # seule, même logique de résilience qu'ingest_scrutins.yml (GitHub ne
+    # garantit pas l'heure d'une tâche planifiée). Le script est
+    # idempotent : la deuxième tentative ne recommite rien si la première
+    # a déjà tout récupéré.
+    - cron: '38 5 * * *'
+    - cron: '38 7 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sondages-presidentielle
+  cancel-in-progress: false
+
+jobs:
+  sondages:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Construire les sondages
+        run: python construire_sondages.py
+      - name: Committer les données mises à jour
+        run: |
+          git config user.name bot-ingestion
+          git config user.email bot@example.invalid
+          git add data/sondages.json
+          if git diff --cached --quiet; then
+            echo 'Aucune donnee modifiee.'
+            exit 0
+          fi
+          if python3 verif_changement_utile.py; then
+            echo 'Seul l horodatage a change : pas de commit.'
+            exit 0
+          fi
+          git commit -m 'Sondages presidentielle du '$(date -u +%F)
+          git pull --rebase --autostash
+          git push
