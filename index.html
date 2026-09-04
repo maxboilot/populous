@@ -316,16 +316,28 @@ window.__VOTE_EARLY__ = (async function(){
      On les tronque à l'affichage, sans rien retirer des données. */
   #avenirList .dRow .t{ display:-webkit-box; -webkit-line-clamp:3;
     -webkit-box-orient:vertical; overflow:hidden; }
-  /* Barre de filtres thématiques (Historique, À venir) */
-  .filtres{ display:flex; flex-wrap:wrap; gap:6px; margin:0 0 12px; }
-  .filtres .chip{ border:1px solid var(--line,#e6e8ee); background:var(--card,#fff);
-    color:var(--ink,#101a3f); font:inherit; font-size:11.5px; line-height:1.2;
-    padding:6px 11px; border-radius:999px; cursor:pointer;
-    transition:background .12s ease, border-color .12s ease, color .12s ease; }
-  .filtres .chip:hover{ border-color:var(--accent,#2f6fed); }
-  .filtres .chip.on{ background:var(--accent,#2f6fed);
-    border-color:var(--accent,#2f6fed); color:#fff; }
-  .filtres .chip .n{ opacity:.55; font-size:10px; margin-left:4px; }
+  /* Filtre thématique (Historique, À venir) : menu déroulant natif */
+  .filtres{ margin:0 0 12px; }
+  .filtreSelect{ width:100%; max-width:640px; padding:11px 14px; font:inherit; font-size:12.5px;
+    font-weight:600; color:var(--ink); background:var(--card); border:none; border-radius:var(--r-input);
+    box-shadow:var(--shadow); cursor:pointer; appearance:none; -webkit-appearance:none;
+    background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%238891B0" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>');
+    background-repeat:no-repeat; background-position:right 12px center; background-size:16px; }
+  .filtreSelect:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+
+  /* Partage : Instagram et TikTok n'ont pas de lien web "partager ce texte" —
+     on passe par la feuille de partage native (navigator.share), qui les
+     propose si installées ; repli en copie presse-papier sinon. */
+  .shareRow{ display:flex; justify-content:flex-end; gap:6px; margin-top:10px; }
+  .shareBtn{ width:30px; height:30px; border-radius:50%; border:none; background:var(--card-alt);
+    color:var(--ink-soft); cursor:pointer; display:flex; align-items:center; justify-content:center;
+    transition:background .15s,color .15s; }
+  .shareBtn:hover{ background:var(--accent-soft); color:var(--accent); }
+  #toast{ position:fixed; left:50%; bottom:calc(88px + env(safe-area-inset-bottom,0px)); z-index:950;
+    transform:translate(-50%,10px); background:var(--ink); color:#fff; font-size:12.5px; font-weight:600;
+    padding:10px 18px; border-radius:var(--r-pill); box-shadow:var(--shadow-lg);
+    opacity:0; pointer-events:none; transition:opacity .2s,transform .2s; max-width:80vw; text-align:center; }
+  #toast.on{ opacity:1; transform:translate(-50%,0); }
   /* Présidentielle 2027 : tuile de tête, mise en avant deliberee. */
   .dashTile.hero{ background:linear-gradient(135deg,#19273C 0%,#25406B 100%);
     border-color:transparent; color:#fff; }
@@ -366,6 +378,7 @@ window.__VOTE_EARLY__ = (async function(){
     <h2 class="d" id="ipTitle"></h2>
     <p class="lead" id="ipLead"></p>
     <div id="ipCards"></div>
+    <div id="ipShare"></div>
     <div class="actions"><button class="btn ghost" id="ipClose" style="flex:none;padding:12px 22px">Fermer</button></div>
   </div>
 </div>
@@ -1435,7 +1448,7 @@ const IMPACT_DEMO = {
 
 function openImpactPanel(){
   const profile = loadProfile();
-  const title = $("#ipTitle"), lead = $("#ipLead"), cards = $("#ipCards");
+  const title = $("#ipTitle"), lead = $("#ipLead"), cards = $("#ipCards"), shareEl = $("#ipShare");
   title.textContent = "Ce que ça change pour toi";
   lead.textContent = IMPACT_DEMO.bill;
 
@@ -1447,6 +1460,7 @@ function openImpactPanel(){
   }
   const matches = tags.map(t=>IMPACT_DEMO.byTag[t]).filter(Boolean);
 
+  let shareText = `${IMPACT_DEMO.bill} — découvre ce que ça change pour toi sur Populous.`;
   if(!profile || !tags.length){
     cards.innerHTML = `<div class="empty">Complète ton profil (logement, activité, enfants) pour voir ce qui te concerne précisément.</div>`;
   } else if(!matches.length){
@@ -1459,7 +1473,10 @@ function openImpactPanel(){
         <div class="texte">${esc(m.texte)}</div>
         <div class="reviewed"><span class="dotok"></span>Relu par la ${esc(IMPACT_DEMO.reviewedBy)} le ${esc(IMPACT_DEMO.reviewedDate)}</div>
       </div>`).join("");
+    shareText = `${IMPACT_DEMO.bill} : ${matches[0].chiffre}. ${matches[0].texte}`;
   }
+  shareEl.innerHTML = shareRowHTML();
+  wireShare(shareEl, shareText);
   $("#impactPanel").classList.remove("hidden");
 }
 $("#ipClose").onclick = ()=>{ $("#impactPanel").classList.add("hidden"); };
@@ -1548,6 +1565,52 @@ function renderAccueil(){
    n'invente aucun thème à la volée.
    ============================================================ */
 let THEMES_LIB = null;
+/* ------------------------------------------------------------
+   Partage — Instagram et TikTok n'ont pas de lien web du type
+   "partager ce texte" (contrairement à WhatsApp ou X). La seule
+   voie honnête est la feuille de partage native (navigator.share),
+   où ces apps apparaissent si installées. Repli en copie
+   presse-papier là où l'API n'existe pas (desktop, surtout).
+   Icônes dessinées en interne : le projet n'embarque aucun asset
+   externe, jamais de logo de marque.
+   ------------------------------------------------------------ */
+const SITE_URL = "https://maxboilot.github.io/populous/";
+const ICON_IG = `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg>`;
+const ICON_TT = `<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><circle cx="8.3" cy="17" r="3.3"/><rect x="10" y="3" width="1.8" height="14.3"/><path d="M11.8 3.2c2.2.4 4 1.9 4.4 4.1l-1.8.3c-.3-1.4-1.4-2.4-2.9-2.7z"/></svg>`;
+
+function toast(msg){
+  let t = $("#toast");
+  if(!t){ t = document.createElement("div"); t.id = "toast"; document.body.appendChild(t); }
+  t.textContent = msg;
+  t.classList.add("on");
+  clearTimeout(toast._h);
+  toast._h = setTimeout(()=>t.classList.remove("on"), 2600);
+}
+async function shareItem(text, url){
+  url = url || SITE_URL;
+  if(navigator.share){
+    try{ await navigator.share({ title:"Populous", text, url }); }
+    catch(e){ /* partage annulé par l'utilisateur : rien à faire */ }
+  } else {
+    try{
+      await navigator.clipboard.writeText(text + "\n" + url);
+      toast("Copié — colle-le dans ta story");
+    }catch(e){ toast("Copie impossible sur ce navigateur"); }
+  }
+}
+function shareRowHTML(){
+  return `<div class="shareRow">
+    <button type="button" class="shareBtn" data-net="instagram" aria-label="Partager sur Instagram">${ICON_IG}</button>
+    <button type="button" class="shareBtn" data-net="tiktok" aria-label="Partager sur TikTok">${ICON_TT}</button>
+  </div>`;
+}
+function wireShare(container, text, url){
+  if(!container) return;
+  container.querySelectorAll(".shareBtn").forEach(b=>{
+    b.onclick = e=>{ e.preventDefault(); e.stopPropagation(); shareItem(text, url); };
+  });
+}
+
 let histData = [], histTheme = null;
 let avenirData = [], avenirTheme = null;
 
@@ -1574,18 +1637,16 @@ function rendreFiltres(cible, donnees, actif, choisir){
     th.forEach(c => { compte[c] = (compte[c] || 0) + 1; });
   });
   const codes = Object.keys(compte).sort((a,b) => compte[b] - compte[a]);
-  let html = `<button class="chip${actif===null?" on":""}" data-t="">Tous <span class="n">${donnees.length}</span></button>`;
+  let options = `<option value=""${actif===null?" selected":""}>Tous (${donnees.length})</option>`;
   codes.forEach(c => {
     const lib = (THEMES_LIB && THEMES_LIB[c]) || c;
-    html += `<button class="chip${actif===c?" on":""}" data-t="${esc(c)}">${esc(lib)} <span class="n">${compte[c]}</span></button>`;
+    options += `<option value="${esc(c)}"${actif===c?" selected":""}>${esc(lib)} (${compte[c]})</option>`;
   });
   if(nonClasses){
-    html += `<button class="chip${actif==="_"?" on":""}" data-t="_">Non classé <span class="n">${nonClasses}</span></button>`;
+    options += `<option value="_"${actif==="_"?" selected":""}>Non classé (${nonClasses})</option>`;
   }
-  el.innerHTML = html;
-  el.querySelectorAll(".chip").forEach(b => {
-    b.addEventListener("click", () => choisir(b.dataset.t === "" ? null : b.dataset.t));
-  });
+  el.innerHTML = `<select class="filtreSelect" aria-label="Filtrer par thème">${options}</select>`;
+  el.querySelector("select").addEventListener("change", e => choisir(e.target.value === "" ? null : e.target.value));
 }
 
 function filtrerParTheme(donnees, theme){
@@ -1600,10 +1661,18 @@ function videSelection(icone){
     <p>Choisis un autre thème, ou reviens à « Tous ».</p></div>`;
 }
 
+function histShareText(r){
+  return `${r.titre} — ${r.adopte?"adopté":"rejeté"} le ${dateFR(r.date)} à l'Assemblée nationale.`;
+}
+function avenirShareText(r){
+  return `${r.ordre_du_jour} — inscrit à l'agenda de l'Assemblée nationale${r.date?" le "+dateFR(r.date):""}.`;
+}
+
 function rendreHistorique(){
   rendreFiltres("#histFiltres", histData, histTheme, t => { histTheme = t; rendreHistorique(); });
   const vues = filtrerParTheme(histData, histTheme);
   $("#histList").innerHTML = vues.length ? vues.map(r => histRow(r)).join("") : videSelection("📜");
+  $("#histList").querySelectorAll(".dRow").forEach((el,i)=> wireShare(el, histShareText(vues[i])));
 }
 
 function rendreAvenir(){
@@ -1613,7 +1682,9 @@ function rendreAvenir(){
       <div class="dRow" style="cursor:default">
         <div class="k"><span>${dateFR(r.date)}${r.heure?" · "+esc(r.heure):""}</span></div>
         <div class="t">${esc(r.ordre_du_jour)}</div>
+        ${shareRowHTML()}
       </div>`).join("") : videSelection("📅");
+  $("#avenirList").querySelectorAll(".dRow").forEach((el,i)=> wireShare(el, avenirShareText(vues[i])));
 }
 
 async function loadHistorique(){
@@ -1636,6 +1707,7 @@ async function loadHistorique(){
         <h3>L'archive complète arrive bientôt</h3>
         <p>Le pipeline ne construit pas encore d'index consultable jour par jour — pour l'instant, seul le dernier vote connu est listé ici.</p>
       </div>`;
+    wireShare(el.querySelector(".dRow"), histShareText(voteData));
   } else {
     el.innerHTML = `<div class="emptyState"><div class="ic">📜</div>
       <h3>Historique indisponible</h3><p>Impossible de joindre le dépôt de données pour l'instant.</p></div>`;
@@ -1651,6 +1723,7 @@ function histRow(r){
       <span class="badge" style="background:${col}22;color:${col}">${r.adopte?"Adopté":"Rejeté"}</span></div>
     <div class="t">${esc(r.titre)}</div>
     <div class="histGo">Voir le scrutin sur assemblee-nationale.fr →</div>
+    ${shareRowHTML()}
   </a>`;
 }
 
