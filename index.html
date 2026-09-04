@@ -26,7 +26,7 @@ window.__VOTE_EARLY__ = (async function(){
 })().catch(function(){ return null; });
 </script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   /* ============================================================
      Palette « Jour » — inspirée Airbnb / Stripe : fond clair,
@@ -47,14 +47,14 @@ window.__VOTE_EARLY__ = (async function(){
   }
   *{box-sizing:border-box}
   html,body{margin:0;height:100%;overflow:visible;background:var(--bg);
-    font-family:'Plus Jakarta Sans',-apple-system,Helvetica,Arial,sans-serif;color:var(--ink)}
+    font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','SF Pro Display',system-ui,'Inter',Helvetica,Arial,sans-serif;color:var(--ink)}
   #map{position:absolute;inset:0;background:var(--land);outline:none}
   .leaflet-container{background:var(--land);font-family:inherit}
   .leaflet-control-attribution{background:var(--card)!important;color:var(--dim)!important;
     font-size:9px!important;border-radius:8px 0 0 0!important}
   .leaflet-control-attribution a{color:var(--accent)!important}
-  .d{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;letter-spacing:-.02em}
-  .m{font-family:'Space Mono',ui-monospace,monospace}
+  .d{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','SF Pro Display',system-ui,'Inter',Helvetica,Arial,sans-serif;font-weight:800;letter-spacing:-.02em}
+  .m{font-family:ui-monospace,'SF Mono',SFMono-Regular,Menlo,Consolas,monospace}
   .card{background:var(--card);border:none;border-radius:var(--r-card);box-shadow:var(--shadow)}
   button,input{font-family:inherit}
   button{-webkit-tap-highlight-color:transparent}
@@ -85,7 +85,7 @@ window.__VOTE_EARLY__ = (async function(){
     padding:4px;box-shadow:var(--shadow);gap:2px}
   #mesure .grp button{padding:8px 14px;min-width:78px;border:none;background:none;color:var(--dim);
     cursor:pointer;text-align:center;transition:background .2s,color .2s;border-radius:var(--r-pill)}
-  #mesure .grp button .t{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:12.5px;line-height:1.3}
+  #mesure .grp button .t{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','SF Pro Display',system-ui,'Inter',Helvetica,Arial,sans-serif;font-weight:700;font-size:12.5px;line-height:1.3}
   #mesure .grp button .s{font-size:8px;letter-spacing:.02em;margin-top:1px;opacity:.8}
   #mesure .grp button.on{background:var(--accent);color:#FFFFFF}
   #groupes{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;max-width:300px}
@@ -150,7 +150,7 @@ window.__VOTE_EARLY__ = (async function(){
   .sheet{width:min(440px,100%);max-height:88vh;overflow-y:auto;background:var(--card);
     border:none;border-radius:28px;padding:30px 28px 26px;position:relative;box-shadow:var(--shadow-lg)}
   .sheet .eyebrow{font-size:11px;font-weight:700;color:var(--accent)}
-  .sheet h2{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:25px;line-height:1.2;
+  .sheet h2{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','SF Pro Display',system-ui,'Inter',Helvetica,Arial,sans-serif;font-weight:800;font-size:25px;line-height:1.2;
     margin:8px 0 0;letter-spacing:-.02em}
   .sheet p.lead{font-size:13px;line-height:1.6;color:var(--ink-soft);margin:10px 0 0}
   .field{margin-top:20px}
@@ -171,7 +171,7 @@ window.__VOTE_EARLY__ = (async function(){
     background:var(--accent-soft);border:none;border-radius:999px;font-size:12.5px;font-weight:600;color:var(--accent)}
   .obChip button{background:none;border:none;color:var(--accent);cursor:pointer;font-size:14px;padding:0;opacity:.7}
   .sheet .actions{display:flex;gap:10px;margin-top:28px}
-  .btn{flex:1;padding:15px 18px;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;
+  .btn{flex:1;padding:15px 18px;border:none;cursor:pointer;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','SF Pro Display',system-ui,'Inter',Helvetica,Arial,sans-serif;
     font-weight:700;font-size:14.5px;text-align:center;border-radius:var(--r-pill);transition:transform .12s,opacity .15s}
   .btn:active{transform:scale(.97)}
   .btn.primary{background:var(--accent);color:#fff}
@@ -194,7 +194,7 @@ window.__VOTE_EARLY__ = (async function(){
 
   #impactPanel .card2{margin-top:16px;padding:16px 18px;background:var(--card-alt);border:none;border-radius:18px}
   #impactPanel .card2 .tagLbl{font-size:10px;font-weight:700;color:var(--accent-hi)}
-  #impactPanel .card2 .chiffre{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:27px;
+  #impactPanel .card2 .chiffre{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','SF Pro Display',system-ui,'Inter',Helvetica,Arial,sans-serif;font-weight:800;font-size:27px;
     letter-spacing:-.02em;margin-top:6px;color:var(--ink)}
   #impactPanel .card2 .texte{font-size:13px;line-height:1.55;margin-top:7px;color:var(--ink-soft)}
   #impactPanel .card2 .reviewed{margin-top:10px;font-size:10px;font-weight:600;
@@ -234,12 +234,12 @@ window.__VOTE_EARLY__ = (async function(){
 
   .dashHead{max-width:640px;margin:10px auto 20px}
   .dashHead .eyebrow{font-size:11px;font-weight:700;color:var(--accent)}
-  .dashHead h1{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:30px;margin:6px 0 0;letter-spacing:-.02em}
+  .dashHead h1{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','SF Pro Display',system-ui,'Inter',Helvetica,Arial,sans-serif;font-weight:800;font-size:30px;margin:6px 0 0;letter-spacing:-.02em}
 
   .dashCard{max-width:640px;margin:0 auto 18px;padding:26px 26px;border:none;border-radius:26px;
     background:linear-gradient(135deg,var(--accent) 0%,#1B2E7A 100%);color:#fff;box-shadow:var(--shadow-lg)}
   .dashCard .eyebrow{font-size:11px;font-weight:700;color:#BFD0FF}
-  .dashCard h2{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:22px;margin:10px 0 0;line-height:1.25;color:#fff}
+  .dashCard h2{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','SF Pro Display',system-ui,'Inter',Helvetica,Arial,sans-serif;font-weight:800;font-size:22px;margin:10px 0 0;line-height:1.25;color:#fff}
   .dashCard p{font-size:13px;line-height:1.6;color:#C9D5F5;margin:10px 0 0}
   .dashCard .actions{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
   .dashCard .btn{flex:1 1 140px;padding:13px 16px;font-size:13.5px}
@@ -254,7 +254,7 @@ window.__VOTE_EARLY__ = (async function(){
   .dashTile.wide{grid-column:1 / -1;display:flex;align-items:center;gap:16px}
   .dashTile .ti{font-size:24px;line-height:1}
   .dashTile.wide .ti{font-size:28px}
-  .dashTile .tt{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:15px;margin-top:11px}
+  .dashTile .tt{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','SF Pro Display',system-ui,'Inter',Helvetica,Arial,sans-serif;font-weight:700;font-size:15px;margin-top:11px}
   .dashTile.wide .tt{margin-top:0}
   .dashTile .ts{font-size:11px;color:var(--dim);margin-top:3px}
 
@@ -262,7 +262,7 @@ window.__VOTE_EARLY__ = (async function(){
     padding:14px 18px;background:var(--card);border:none;border-radius:20px;color:var(--ink);cursor:pointer;
     box-shadow:var(--shadow)}
   .ph2{width:42px;height:42px;border-radius:50%;flex:0 0 auto;background:var(--accent);color:#fff;
-    display:flex;align-items:center;justify-content:center;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:16px}
+    display:flex;align-items:center;justify-content:center;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','SF Pro Display',system-ui,'Inter',Helvetica,Arial,sans-serif;font-weight:700;font-size:16px}
   .tt2{font-size:14px;font-weight:700}
   .ts2{font-size:11px;color:var(--dim);margin-top:2px}
   .chev{color:var(--dim);font-size:18px}
@@ -275,7 +275,7 @@ window.__VOTE_EARLY__ = (async function(){
   .dRow .badge{font-size:9.5px;font-weight:700;padding:3px 9px;border-radius:var(--r-pill);flex:0 0 auto}
   .emptyState{max-width:520px;margin:50px auto;text-align:center;padding:0 20px}
   .emptyState .ic{font-size:34px;opacity:.5}
-  .emptyState h3{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:17px;margin:16px 0 0}
+  .emptyState h3{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','SF Pro Display',system-ui,'Inter',Helvetica,Arial,sans-serif;font-weight:800;font-size:17px;margin:16px 0 0}
   .emptyState p{font-size:13px;color:var(--dim);line-height:1.65;margin:8px 0 0}
 
   @media (max-width:760px){
@@ -305,6 +305,14 @@ window.__VOTE_EARLY__ = (async function(){
   .filtres .chip.on{ background:var(--accent,#2f6fed);
     border-color:var(--accent,#2f6fed); color:#fff; }
   .filtres .chip .n{ opacity:.55; font-size:10px; margin-left:4px; }
+  /* Présidentielle 2027 : tuile de tête, mise en avant deliberee. */
+  .dashTile.hero{ background:linear-gradient(135deg,#19273C 0%,#25406B 100%);
+    border-color:transparent; color:#fff; }
+  .dashTile.hero .tt{ color:#fff; font-size:16px; }
+  .dashTile.hero .ts{ color:rgba(255,255,255,.72); }
+  .dashTile.hero .ti{ font-size:26px; }
+  .dashTile.hero:hover{ transform:translateY(-2px);
+    box-shadow:0 12px 28px rgba(25,39,60,.28); }
 </style>
 </head>
 <body>
@@ -390,6 +398,9 @@ window.__VOTE_EARLY__ = (async function(){
   </div>
   <div id="acToday" class="dashCard"></div>
   <div class="dashGrid">
+    <button class="dashTile wide hero" data-go="presidentielle">
+      <div class="ti">🇫🇷</div><div class="tt">Présidentielle 2027</div><div class="ts">Le fil de la campagne</div>
+    </button>
     <button class="dashTile" data-go="carte">
       <div class="ti">🗺️</div><div class="tt">Carte des votes</div><div class="ts">577 circonscriptions, en direct</div>
     </button>
@@ -401,9 +412,6 @@ window.__VOTE_EARLY__ = (async function(){
     </button>
     <button class="dashTile" data-go="quiz">
       <div class="ti">🎯</div><div class="tt">Ton avis</div><div class="ts">Le quiz du jour</div>
-    </button>
-    <button class="dashTile wide" data-go="presidentielle">
-      <div class="ti">🇫🇷</div><div class="tt">Présidentielle 2027</div><div class="ts">Le fil de la campagne</div>
     </button>
   </div>
   <button class="dashProfile" id="acEditProfile">
