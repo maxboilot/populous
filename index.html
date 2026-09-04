@@ -67,7 +67,7 @@ window.__VOTE_EARLY__ = (async function(){
   #titre h1{margin:6px 0 0;font-size:26px;line-height:1.02}
   #titre p{margin:8px 0 0;font-size:12px;line-height:1.5;color:var(--ink-soft)}
 
-  #recherche{position:absolute;top:158px;left:16px;z-index:600;width:270px}
+  #recherche{position:absolute;top:200px;left:16px;z-index:600;width:270px}
   #recherche input{width:100%;padding:12px 16px;font-size:13px;color:var(--ink);
     background:var(--card);border:none;border-radius:var(--r-pill);outline:none;box-shadow:var(--shadow)}
   #recherche input::placeholder{color:var(--dim)}
@@ -79,7 +79,7 @@ window.__VOTE_EARLY__ = (async function(){
   #resultats button:hover{background:var(--accent-soft)}
   .mini{width:26px;height:26px;border-radius:50%;flex:0 0 auto;background-repeat:no-repeat;border:2px solid}
 
-  #mesure{position:absolute;left:16px;bottom:16px;z-index:600}
+  #mesure{position:absolute;left:16px;bottom:calc(90px + env(safe-area-inset-bottom,0px));z-index:600}
   #mesure .lbl{font-size:10.5px;font-weight:700;color:var(--dim);margin-bottom:8px;padding-left:4px}
   #mesure .grp{display:flex;border:none;background:var(--card);border-radius:var(--r-pill);
     padding:4px;box-shadow:var(--shadow);gap:2px}
@@ -102,7 +102,7 @@ window.__VOTE_EARLY__ = (async function(){
   #etatzoom{font-size:9.5px;font-weight:700;letter-spacing:.02em;color:var(--dim);padding-right:6px}
   #etatzoom.on{color:var(--accent)}
 
-  #legende{position:absolute;right:16px;bottom:16px;z-index:600;width:226px;padding:16px 17px;
+  #legende{position:absolute;right:16px;bottom:calc(90px + env(safe-area-inset-bottom,0px));z-index:600;width:226px;padding:16px 17px;
     transition:transform .32s cubic-bezier(.4,0,.2,1)}
   #legende.off{transform:translateX(calc(100% + 26px))}
   #legende .hd{font-size:10.5px;font-weight:800;margin-bottom:10px;color:var(--accent)}
@@ -113,7 +113,7 @@ window.__VOTE_EARLY__ = (async function(){
   .gradlbl{display:flex;justify-content:space-between;font-size:9px;color:var(--dim)}
 
   #fiche{position:absolute;top:0;right:0;height:100%;width:min(380px,94vw);z-index:700;overflow-y:auto;
-    background:var(--card);border-left:none;padding:22px 24px 40px;border-radius:26px 0 0 26px;
+    background:var(--card);border-left:none;padding:22px 24px calc(90px + env(safe-area-inset-bottom,0px));border-radius:26px 0 0 26px;
     box-shadow:var(--shadow-lg);
     transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1)}
   #fiche.on{transform:translateX(0)}
@@ -137,7 +137,10 @@ window.__VOTE_EARLY__ = (async function(){
     width:24px;height:64px;background:var(--card);border:none;border-radius:16px 0 0 16px;
     box-shadow:var(--shadow);color:var(--dim);cursor:pointer;font-size:13px;transition:right .32s cubic-bezier(.4,0,.2,1)}
   #survol{position:absolute;top:64px;right:16px;z-index:600;padding:10px 14px;font-size:11px;max-width:250px;display:none}
-  #pied{position:absolute;left:16px;bottom:150px;z-index:500;
+  /* Sous la recherche plutôt qu'en bas à gauche : la légende "Colorer par"
+     y grandit avec le nombre de groupes et ne laisse pas une hauteur fixe
+     fiable pour ces mentions. */
+  #pied{position:absolute;left:16px;top:254px;z-index:500;
     font-size:9px;letter-spacing:.02em;color:var(--dim);max-width:300px;line-height:1.7;opacity:.75}
 
   .av{border-radius:50%;background-repeat:no-repeat;box-shadow:0 0 0 3px var(--card) inset,0 2px 10px rgba(16,25,63,.18)}
@@ -213,6 +216,10 @@ window.__VOTE_EARLY__ = (async function(){
     #titre h1{font-size:21px}
     #titre p{display:none}
     #recherche{width:220px;top:116px}
+    /* Le bloc de zoom n'a pas la place de tenir à droite du titre en dessous
+       de 760px : on le fait passer sous la recherche plutôt que de le
+       comprimer illisiblement. */
+    #haut{top:168px;left:16px;right:auto;align-items:flex-start}
     #legende,#languette{display:none}
     #mesure .grp button{min-width:64px;padding:7px 10px}
     #pied{display:none}
