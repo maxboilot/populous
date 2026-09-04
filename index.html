@@ -715,6 +715,18 @@ function select(i, zoom){
 }
 $("#fermer").onclick = ()=>select(null);
 
+/* Les dates sont stockées au format ISO (AAAA-MM-JJ) : c'est ce qui permet de
+   les trier et de les comparer correctement. On ne les convertit donc jamais
+   dans les données, uniquement au moment de les afficher. Vaut aussi bien pour
+   les votes passés que pour l'agenda à venir. */
+function dateFR(v){
+  if(v === null || v === undefined) return "";
+  const s = String(v).trim();
+  const m = s.match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if(!m) return esc(s);          // format inattendu : on n'invente rien
+  return m[3] + "/" + m[2] + "/" + m[1];
+}
+
 function esc(s){ return (s==null?"":String(s)).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
 
 const POS_LABEL = { pour:"A voté pour", contre:"A voté contre", abstention:"S'est abstenu·e", absent:"Absent·e lors du vote" };
@@ -727,7 +739,7 @@ function renderFicheVote(e){
     </div>
     <div style="font-size:12px;line-height:1.4;margin-top:2px">${esc(voteData.titre)}</div>
     <div class="m" style="font-size:9px;color:var(--dim);margin-top:5px">
-      Scrutin n°${voteData.numero} · ${esc(voteData.date)}</div>
+      Scrutin n°${voteData.numero} · ${dateFR(voteData.date)}</div>
     <span class="tag" style="background:${col}22;color:${col};margin-top:8px">${POS_LABEL[pos]}</span>
     <div style="margin-top:6px"><a href="${esc(voteData.source)}" target="_blank" rel="noopener"
       style="font-size:10.5px;color:var(--brass)">Voir le scrutin sur assemblee-nationale.fr →</a></div>
@@ -837,7 +849,7 @@ function renderLegend(){
         Le dernier vote n'a pas pu être chargé pour l'instant — le dépôt de données est peut-être injoignable.
         <br><br>Les autres vues (Groupe, Âge, Parcours) restent disponibles.</div>`;
     } else {
-      hd.textContent = voteData.isToday ? "Vote du jour" : `Dernier vote connu — ${esc(voteData.date)}`;
+      hd.textContent = voteData.isToday ? "Vote du jour" : `Dernier vote connu — ${dateFR(voteData.date)}`;
       const t = voteData.tally;
       body.innerHTML = `
         <div style="font-size:11.5px;line-height:1.4;margin-bottom:9px">${esc(voteData.titre)}</div>
@@ -1138,7 +1150,7 @@ function renderDailyPopup(profile){
     title.textContent = voteData.isToday
       ? (voteData.adopte ? "Un texte vient d'être adopté" : "Un texte vient d'être rejeté")
       : "L'Assemblée est en pause";
-    lead.textContent = voteData.isToday ? voteData.titre : `Le dernier vote qui compte reste celui du ${esc(voteData.date)} : ${voteData.titre}`;
+    lead.textContent = voteData.isToday ? voteData.titre : `Le dernier vote qui compte reste celui du ${dateFR(voteData.date)} : ${voteData.titre}`;
   }
 }
 
@@ -1273,7 +1285,7 @@ function renderAccueil(){
       ? `Comme ${voteData.tally[pos]} autres député·es sur 577.`
       : `${voteData.tally.pour} pour · ${voteData.tally.contre} contre · ${voteData.tally.abstention} abstentions.`;
     card.innerHTML = `
-      <div class="eyebrow">${voteData.isToday ? "Hier à l'Assemblée" : "Dernier vote connu · " + esc(voteData.date)}</div>
+      <div class="eyebrow">${voteData.isToday ? "Hier à l'Assemblée" : "Dernier vote connu · " + dateFR(voteData.date)}</div>
       <h2 class="d">${headline}</h2>
       <p>${esc(tallyLine)} <i>${esc(voteData.titre)}</i></p>
       <div class="actions">
@@ -1321,7 +1333,7 @@ function histRow(r){
   // fournie par le pipeline, avec reconstruction de secours si absente.
   const url = r.source || ("https://www.assemblee-nationale.fr/dyn/17/scrutins/" + r.numero);
   return `<a class="dRow histLink" href="${esc(url)}" target="_blank" rel="noopener">
-    <div class="k"><span>${esc(r.date)} · scrutin n°${r.numero}</span>
+    <div class="k"><span>${dateFR(r.date)} · scrutin n°${r.numero}</span>
       <span class="badge" style="background:${col}22;color:${col}">${r.adopte?"Adopté":"Rejeté"}</span></div>
     <div class="t">${esc(r.titre)}</div>
     <div class="histGo">Voir le scrutin sur assemblee-nationale.fr →</div>
@@ -1340,7 +1352,7 @@ async function loadAvenir(){
   if(rows && rows.length){
     el.innerHTML = rows.filter(r=>r.ordre_du_jour).map(r => `
       <div class="dRow" style="cursor:default">
-        <div class="k"><span>${esc(r.date)}${r.heure?" · "+esc(r.heure):""}</span></div>
+        <div class="k"><span>${dateFR(r.date)}${r.heure?" · "+esc(r.heure):""}</span></div>
         <div class="t">${esc(r.ordre_du_jour)}</div>
       </div>`).join("");
   } else {
