@@ -415,7 +415,6 @@ window.__VOTE_EARLY__ = (async function(){
   .recapNode .dot{width:52px;height:52px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;
     justify-content:center;font-size:21px;background:var(--card-alt);box-shadow:0 0 0 4px var(--bg);
     position:relative;z-index:1;overflow:hidden}
-  .recapNode .dot .avImg,.recapNode .dot .avEmoji,.recapNode .dot .avNone{width:100%;height:100%}
   .recapNode.done .dot{background:var(--accent-soft);color:#3F8F5B}
   .recapNode.current .dot{box-shadow:0 0 0 4px var(--bg),0 0 0 7px var(--accent)}
   .recapNode .txt .tt{font-size:13px;font-weight:700;color:var(--ink)}
@@ -2362,8 +2361,6 @@ function renderRecapChoix(d){
 
 function renderRecapTrail(d){
   const groupe = d.groupes.find(g=>g.s===recapGroupe);
-  const profil = loadProfile();
-  const avatarHtml = avatarHTML(profil ? profil.avatar : null);
   const idxCourant = d.themes.findIndex(t => !recapVisites.has(t.code));
   const termine = idxCourant === -1;
 
@@ -2381,7 +2378,7 @@ function renderRecapTrail(d){
         const courant = i === idxCourant;
         return `
         <button class="recapNode ${visite?'done':''} ${courant?'current':''}" data-theme="${esc(t.code)}" ${donnees?"":"disabled"}>
-          <div class="dot">${courant ? avatarHtml : (visite ? "✓" : (THEME_ICONS[t.code]||"•"))}</div>
+          <div class="dot">${visite ? "✓" : (THEME_ICONS[t.code]||"•")}</div>
           <div class="txt">
             <div class="tt">${esc(t.libelle)}</div>
             <div class="ts">${donnees ? donnees.n_textes+" texte"+(donnees.n_textes>1?"s":"")+" voté"+(donnees.n_textes>1?"s":"") : "Rien de classé pour l'instant"}</div>
