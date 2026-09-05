@@ -530,7 +530,7 @@ window.__VOTE_EARLY__ = (async function(){
     <div class="bt-ic">🧭</div>
     <div style="flex:1;text-align:left">
       <div class="bt-tt">La Boussole</div>
-      <div class="bt-ts">5 vrais scrutins, comparés aux votes réels de chaque groupe</div>
+      <div class="bt-ts">10 vrais scrutins, comparés aux votes réels de chaque groupe</div>
     </div>
     <div class="chev" style="color:rgba(255,255,255,.8)">›</div>
   </button>
@@ -2074,14 +2074,18 @@ async function renderSondages(){
 }
 
 /* ============================================================
-   LA BOUSSOLE — compare tes réponses aux 5 derniers textes votés
-   au vote réel de chaque groupe parlementaire sur ces mêmes textes.
-   Aucune thèse écrite, aucune position devinée : chaque pourcentage
-   vient de par_circonscription (déjà dans chaque scrutins/<n>.json),
-   recoupé au groupe de chaque élu·e (déjà dans DATA.elus). Rien de
-   nouveau à construire côté pipeline — voir le fil du 5 septembre.
+   LA BOUSSOLE — compare tes réponses à dix textes réels, tirés au
+   sort à chaque partie parmi les votes de l'année, au vote réel de
+   chaque groupe parlementaire sur ces mêmes textes. Aucune thèse
+   écrite, aucune position devinée : chaque pourcentage vient de
+   par_circonscription (déjà dans chaque scrutins/<n>.json), recoupé
+   au groupe de chaque élu·e (déjà dans DATA.elus). Rien de nouveau à
+   construire côté pipeline — voir le fil du 5 septembre.
+   Le tirage est refait à chaque partie (nouvelle partie = nouveau
+   tirage) pour que "Refaire le test" propose d'autres textes.
    ============================================================ */
-let boussoleQuestions = null, boussoleIdx = 0, boussoleAnswers = [];
+const BOUSSOLE_N = 10;
+let boussolePool = null, boussoleQuestions = null, boussoleIdx = 0, boussoleAnswers = [];
 
 function tauxParGroupe(scrutin){
   const comptes = {};
@@ -2100,19 +2104,33 @@ function tauxParGroupe(scrutin){
   return taux;
 }
 
-async function chargerBoussoleQuestions(){
-  if(boussoleQuestions) return boussoleQuestions;
+function melanger(arr){
+  const a = arr.slice();
+  for(let i = a.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+async function chargerBoussolePool(){
+  if(boussolePool) return boussolePool;
   try{
-    const index = await (await fetch(REPO_DATA_BASE + "index.json", {cache:"no-store"})).json();
-    const recents = index.slice(-5).reverse();
-    const scrutins = await Promise.all(recents.map(r =>
-      fetch(REPO_DATA_BASE + "scrutins/" + r.numero + ".json", {cache:"no-store"}).then(res=>res.json())
-    ));
-    boussoleQuestions = recents.map((r,i) => ({
-      numero: r.numero, date: r.date, titre: r.titre, adopte: r.adopte,
-      groupes: tauxParGroupe(scrutins[i]),
-    }));
-  }catch(e){ boussoleQuestions = null; }
+    boussolePool = await (await fetch(REPO_DATA_BASE + "index.json", {cache:"no-store"})).json();
+  }catch(e){ boussolePool = null; }
+  return boussolePool;
+}
+
+async function tirerBoussoleQuestions(){
+  const pool = await chargerBoussolePool();
+  if(!pool || !pool.length) { boussoleQuestions = null; return null; }
+  const tirage = melanger(pool).slice(0, Math.min(BOUSSOLE_N, pool.length));
+  const scrutins = await Promise.all(tirage.map(r =>
+    fetch(REPO_DATA_BASE + "scrutins/" + r.numero + ".json", {cache:"no-store"}).then(res=>res.json())
+  ));
+  boussoleQuestions = tirage
+    .map((r,i) => ({ numero: r.numero, date: r.date, titre: r.titre, adopte: r.adopte, groupes: tauxParGroupe(scrutins[i]) }))
+    .sort((a,b) => a.date < b.date ? 1 : -1); // le tirage est aléatoire, l'ordre d'affichage reste chronologique
   return boussoleQuestions;
 }
 
@@ -2127,7 +2145,8 @@ function renderBoussoleIntro(){
   $("#boussoleSheet").innerHTML = `
     <div class="eyebrow">Nouveau</div>
     <h2 class="d">La Boussole</h2>
-    <p class="lead">Cinq scrutins réels, déjà tranchés par l'Assemblée. Réponds Pour, Contre ou Neutre à chacun —
+    <p class="lead">Dix scrutins réels, tirés au sort parmi les votes de l'année et déjà tranchés par l'Assemblée.
+      Réponds Pour, Contre ou Neutre à chacun —
       on compare ensuite à la façon dont <b>chaque groupe parlementaire a vraiment voté</b> ces mêmes textes.</p>
     <div class="privacyBox"><b>Aucune thèse inventée.</b> Chaque pourcentage vient d'un vote déjà public,
       jamais d'une position devinée ou attribuée.</div>
@@ -2135,7 +2154,7 @@ function renderBoussoleIntro(){
     <div class="actions"><button class="btn ghost" id="bqLater" style="flex:1">Plus tard</button></div>`;
   $("#bqStart").onclick = async ()=>{
     $("#boussoleSheet").innerHTML = `<div style="text-align:center;padding:50px 0;color:var(--dim);font-size:12px">Chargement…</div>`;
-    const qs = await chargerBoussoleQuestions();
+    const qs = await tirerBoussoleQuestions();
     if(!qs || !qs.length){
       $("#boussoleSheet").innerHTML = `
         <div class="eyebrow">La Boussole</div><h2 class="d">Indisponible</h2>
@@ -2188,7 +2207,7 @@ function renderBoussoleResult(){
     .map(g => ({...g, pct: Math.round(totaux[g.s].reduce((a,b)=>a+b,0) / totaux[g.s].length)}))
     .sort((a,b) => b.pct - a.pct);
   const premier = classement[0];
-  const texte = `Je suis à ${premier.pct}% d'accord avec ${premier.n} sur les 5 derniers votes de l'Assemblée nationale. Et toi ?`;
+  const texte = `Je suis à ${premier.pct}% d'accord avec ${premier.n} sur ${qs.length} vrais votes de l'Assemblée nationale. Et toi ?`;
 
   $("#boussoleSheet").innerHTML = `
     <div style="text-align:center">
@@ -2196,7 +2215,7 @@ function renderBoussoleResult(){
       <div style="font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,sans-serif;font-weight:800;
         font-size:44px;letter-spacing:-.02em;margin-top:8px;color:${premier.c}">${premier.pct}%</div>
       <div style="font-size:14px;font-weight:700;margin-top:4px">d'accord avec ${esc(premier.n)}</div>
-      <p class="lead">Sur les 5 derniers textes tranchés à l'Assemblée nationale.</p>
+      <p class="lead">Sur ${qs.length} textes réels tranchés à l'Assemblée nationale.</p>
     </div>
     <div class="sondBars" style="margin-top:22px">
       ${classement.map(g => `
