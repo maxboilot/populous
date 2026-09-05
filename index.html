@@ -394,6 +394,38 @@ window.__VOTE_EARLY__ = (async function(){
   .sondBarFill{height:100%;border-radius:5px;transition:width .4s ease}
   .sondSource{display:inline-block;margin-top:14px;font-size:10.5px;font-weight:600;color:var(--accent);text-decoration:none}
 
+  /* ============ Récap (Historique) ============ */
+  .recapChoix{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px;max-width:640px;margin-left:auto;margin-right:auto}
+  .recapCard{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:14px 16px;
+    border-radius:16px;border:none;cursor:pointer;color:#fff;text-align:left;transition:transform .15s;font:inherit}
+  .recapCard:hover{transform:translateY(-2px)}
+  .recapCard .n{font-size:12.5px;font-weight:800;line-height:1.3}
+  .recapCard .s{font-size:10px;opacity:.85;margin-top:3px}
+
+  .recapBack{background:none;border:none;color:var(--dim);font-size:11px;cursor:pointer;font-weight:700;padding:0}
+  .recapHead{display:flex;align-items:center;gap:10px;max-width:640px;margin:10px auto 0}
+  .recapHeadBadge{padding:4px 11px;border-radius:999px;font-size:10.5px;font-weight:800;color:#fff;flex:0 0 auto}
+
+  .recapTrail{position:relative;max-width:640px;margin:20px auto 0;padding-left:2px}
+  .recapTrail::before{content:"";position:absolute;left:25px;top:10px;bottom:10px;width:2px;
+    background-image:linear-gradient(var(--line) 50%, transparent 0);background-size:2px 10px;background-repeat:repeat-y}
+  .recapNode{position:relative;display:flex;align-items:center;gap:14px;padding:8px 0;cursor:pointer;
+    background:none;border:none;width:100%;text-align:left;font:inherit}
+  .recapNode:disabled{cursor:default;opacity:.45}
+  .recapNode .dot{width:52px;height:52px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;
+    justify-content:center;font-size:21px;background:var(--card-alt);box-shadow:0 0 0 4px var(--bg);
+    position:relative;z-index:1;overflow:hidden}
+  .recapNode .dot .avImg,.recapNode .dot .avEmoji,.recapNode .dot .avNone{width:100%;height:100%}
+  .recapNode.done .dot{background:var(--accent-soft);color:#3F8F5B}
+  .recapNode.current .dot{box-shadow:0 0 0 4px var(--bg),0 0 0 7px var(--accent)}
+  .recapNode .txt .tt{font-size:13px;font-weight:700;color:var(--ink)}
+  .recapNode .txt .ts{font-size:10.5px;color:var(--dim);margin-top:2px}
+
+  .recapTexteRow{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 12px;
+    background:var(--card-alt);border-radius:12px;text-decoration:none;color:var(--ink);font-size:11.5px;line-height:1.4}
+  .recapTexteRow .p-pour{flex:0 0 auto;font-weight:800;color:#3F8F5B}
+  .recapTexteRow .p-contre{flex:0 0 auto;font-weight:800;color:#C0453C}
+
   @media (max-width:760px){
     .screen{padding:16px 16px 20px}
     .dashHead h1{font-size:25px}
@@ -433,6 +465,11 @@ window.__VOTE_EARLY__ = (async function(){
     padding:10px 18px; border-radius:var(--r-pill); box-shadow:var(--shadow-lg);
     opacity:0; pointer-events:none; transition:opacity .2s,transform .2s; max-width:80vw; text-align:center; }
   #toast.on{ opacity:1; transform:translate(-50%,0); }
+
+  /* Doit rester en dernier dans la cascade : utilitaire générique, pour
+     l'emporter sur les display: déclarés par les classes de composants
+     (.dashList, .filtres, etc.) sans avoir à augmenter sa spécificité. */
+  .hidden{display:none}
 </style>
 </head>
 <body>
@@ -549,11 +586,21 @@ window.__VOTE_EARLY__ = (async function(){
   <div class="sheet" id="boussoleSheet"></div>
 </div>
 
+<!-- ============ Récap : case thématique ============ -->
+<div id="recapCheckpoint" class="veil hidden">
+  <div class="sheet" id="recapCheckpointSheet"></div>
+</div>
+
 <!-- ============ Historique des scrutins ============ -->
 <div id="screen-historique" class="screen hidden">
-  <div class="dashHead"><div class="eyebrow">Archive</div><h1 class="d">Lois votées</h1></div>
+  <div class="dashHead"><div class="eyebrow">Archive</div><h1 class="d" id="histTitre">Lois votées</h1></div>
+  <div class="presiTabs" id="histTabs">
+    <button class="presiTab on" data-htab="lois">Lois votées</button>
+    <button class="presiTab" data-htab="recap">Récap</button>
+  </div>
   <div id="histFiltres" class="filtres"></div>
   <div id="histList" class="dashList"></div>
+  <div id="recapBody" class="dashList hidden"></div>
 </div>
 
 <!-- ============ Agenda à venir ============ -->
@@ -570,7 +617,6 @@ window.__VOTE_EARLY__ = (async function(){
   <div class="presiTabs presiZ" id="presiTabs">
     <button class="presiTab on" data-ptab="actu">Actu</button>
     <button class="presiTab" data-ptab="sondage">Sondages</button>
-    <button class="presiTab" data-ptab="jeu" disabled>Jeu<span class="soon">Bientôt</span></button>
   </div>
   <div id="sondFiltre" class="sondFiltre presiZ"></div>
   <div id="presiBody" class="dashList presiZ"></div>
@@ -1843,6 +1889,19 @@ function rendreHistorique(){
   $("#histList").querySelectorAll(".dRow").forEach((el,i)=> wireShare(el, histShareText(vues[i])));
 }
 
+let histTab = "lois";
+function afficherHistTab(){
+  $("#histTabs").querySelectorAll(".presiTab").forEach(b=>b.classList.toggle("on", b.dataset.htab===histTab));
+  $("#histTitre").textContent = histTab === "lois" ? "Lois votées" : "Récap";
+  $("#histFiltres").classList.toggle("hidden", histTab !== "lois");
+  $("#histList").classList.toggle("hidden", histTab !== "lois");
+  $("#recapBody").classList.toggle("hidden", histTab !== "recap");
+  if(histTab === "recap") renderRecap();
+}
+$("#histTabs").querySelectorAll(".presiTab").forEach(b=>{
+  b.onclick = ()=>{ histTab = b.dataset.htab; afficherHistTab(); };
+});
+
 function rendreAvenir(){
   rendreFiltres("#avenirFiltres", avenirData, avenirTheme, t => { avenirTheme = t; rendreAvenir(); });
   const vues = filtrerParTheme(avenirData, avenirTheme);
@@ -2087,13 +2146,22 @@ async function renderSondages(){
 const BOUSSOLE_N = 10;
 let boussolePool = null, boussoleQuestions = null, boussoleIdx = 0, boussoleAnswers = [];
 
+// DATA.elus fait cohabiter deux graphies du même sigle de groupe ("EcoS" vs
+// "ECOS" déclaré dans DATA.groupes, "Dem" vs "DEM") et un sigle différent
+// pour un même groupe ("UDR" vs "UDDPLR") : sans cette normalisation, ces
+// groupes n'apparaissent jamais dans un bilan — repéré en construisant
+// groupes_themes.json côté pipeline, même souci, même correctif.
+const ALIAS_GROUPE = (()=>{ const m={}; DATA.groupes.forEach(g=>{ m[g.s.toLowerCase()]=g.s; }); m.udr="UDDPLR"; return m; })();
+function codeGroupeCanonique(g){ return ALIAS_GROUPE[(g||"").toLowerCase()] || g; }
+
 function tauxParGroupe(scrutin){
   const comptes = {};
   Object.entries(scrutin.par_circonscription || {}).forEach(([k, pos])=>{
     const e = byKey.get(k);
     if(!e) return;
-    comptes[e.g] = comptes[e.g] || {pour:0, contre:0};
-    if(pos === "pour" || pos === "contre") comptes[e.g][pos]++;
+    const g = codeGroupeCanonique(e.g);
+    comptes[g] = comptes[g] || {pour:0, contre:0};
+    if(pos === "pour" || pos === "contre") comptes[g][pos]++;
   });
   const taux = {};
   DATA.groupes.forEach(g=>{
@@ -2236,6 +2304,128 @@ function renderBoussoleResult(){
   $("#bqClose3").onclick = closeBoussole;
 }
 $("#acBoussole").onclick = openBoussole;
+
+/* ============================================================
+   HISTORIQUE — onglet Récap.
+   Choisis un groupe parlementaire, avance de case en case à travers
+   seize thèmes, découvre le bilan de vote RÉEL de ce groupe sur les
+   textes de ce thème (construire_groupes_themes.py). Aucune thèse
+   écrite sur ce qu'un parti "défend" — voir le docstring du script
+   pour le principe, identique à celui de La Boussole.
+   ============================================================ */
+const THEME_ICONS = {
+  sante:"🏥", education:"🎓", justice:"⚖️", securite:"🚨", economie:"💶", travail:"💼",
+  social:"🤝", environnement:"🌱", agriculture:"🌾", logement:"🏠", transports:"🚆",
+  numerique:"💻", defense:"🛡️", institutions:"🏛️", immigration:"🛂", culture:"🎭",
+};
+let recapData = null, recapPromise = null;
+let recapGroupe = null, recapVisites = new Set();
+
+function loadRecapData(){
+  if(recapData) return Promise.resolve(recapData);
+  if(!recapPromise){
+    recapPromise = fetch(REPO_DATA_BASE + "groupes_themes.json", {cache:"no-store"})
+      .then(r=>r.json())
+      .then(d=>{ recapData = d; return d; })
+      .catch(()=>{ recapPromise = null; return null; });
+  }
+  return recapPromise;
+}
+
+async function renderRecap(){
+  const el = $("#recapBody");
+  el.innerHTML = `<div style="color:var(--dim);font-size:12px;text-align:center;margin-top:40px">Chargement…</div>`;
+  const d = await loadRecapData();
+  if(!d){
+    el.innerHTML = `<div class="emptyState"><div class="ic">📜</div>
+      <h3>Récap indisponible</h3>
+      <p>Impossible de charger les données pour l'instant — réessaie un peu plus tard.</p></div>`;
+    return;
+  }
+  if(!recapGroupe) renderRecapChoix(d); else renderRecapTrail(d);
+}
+
+function renderRecapChoix(d){
+  $("#recapBody").innerHTML = `
+    <p class="lead" style="max-width:640px;margin:0 auto 4px;text-align:center">
+      Choisis un groupe parlementaire. Ton avatar avance de case en case, chacune un grand thème,
+      et découvre comment ce groupe a réellement voté à l'Assemblée.</p>
+    <div class="recapChoix">
+      ${d.groupes.map(g=>`
+        <button class="recapCard" data-g="${esc(g.s)}" style="background:${g.c}">
+          <span class="n">${esc(g.n)}</span><span class="s">${g.sg} sièges</span>
+        </button>`).join("")}
+    </div>`;
+  $("#recapBody").querySelectorAll(".recapCard").forEach(b=>{
+    b.onclick = ()=>{ recapGroupe = b.dataset.g; recapVisites = new Set(); renderRecapTrail(d); };
+  });
+}
+
+function renderRecapTrail(d){
+  const groupe = d.groupes.find(g=>g.s===recapGroupe);
+  const profil = loadProfile();
+  const avatarHtml = avatarHTML(profil ? profil.avatar : null);
+  const idxCourant = d.themes.findIndex(t => !recapVisites.has(t.code));
+  const termine = idxCourant === -1;
+
+  $("#recapBody").innerHTML = `
+    <button class="recapBack" id="recapBack">← Changer de récap</button>
+    <div class="recapHead">
+      <span class="recapHeadBadge" style="background:${groupe.c}">${esc(groupe.s)}</span>
+      <span style="font-size:12.5px;color:var(--ink-soft)">${esc(groupe.n)}</span>
+    </div>
+    ${termine ? `
+      <div class="privacyBox" style="max-width:640px;margin:16px auto 0">
+        <b>Récap terminé !</b> Tu as parcouru les ${d.themes.length} thèmes du groupe ${esc(groupe.n)},
+        d'après son vote réel sur chacun.
+      </div>
+      <div id="recapShare" style="max-width:640px;margin:14px auto 0"></div>` : ""}
+    <div class="recapTrail">
+      ${d.themes.map((t,i)=>{
+        const donnees = (d.donnees[recapGroupe]||{})[t.code];
+        const visite = recapVisites.has(t.code);
+        const courant = i === idxCourant;
+        return `
+        <button class="recapNode ${visite?'done':''} ${courant?'current':''}" data-theme="${esc(t.code)}" ${donnees?"":"disabled"}>
+          <div class="dot">${courant ? avatarHtml : (visite ? "✓" : (THEME_ICONS[t.code]||"•"))}</div>
+          <div class="txt">
+            <div class="tt">${esc(t.libelle)}</div>
+            <div class="ts">${donnees ? donnees.n_textes+" texte"+(donnees.n_textes>1?"s":"")+" voté"+(donnees.n_textes>1?"s":"") : "Rien de classé pour l'instant"}</div>
+          </div>
+        </button>`;
+      }).join("")}
+    </div>`;
+  $("#recapBack").onclick = ()=>{ recapGroupe = null; renderRecapChoix(d); };
+  $("#recapBody").querySelectorAll(".recapNode:not(:disabled)").forEach(b=>{
+    b.onclick = ()=> ouvrirRecapCheckpoint(d, groupe, b.dataset.theme);
+  });
+  if(termine){
+    $("#recapShare").innerHTML = shareRowHTML();
+    wireShare($("#recapShare"), `J'ai terminé le récap ${groupe.n} sur Populous — découvre comment ce groupe a vraiment voté à l'Assemblée nationale.`);
+  }
+}
+
+function ouvrirRecapCheckpoint(d, groupe, themeCode){
+  recapVisites.add(themeCode);
+  const theme = d.themes.find(t=>t.code===themeCode);
+  const don = d.donnees[recapGroupe][themeCode];
+  $("#recapCheckpointSheet").innerHTML = `
+    <div class="eyebrow">${THEME_ICONS[themeCode]||""} ${esc(theme.libelle)}</div>
+    <h2 class="d" style="font-size:30px">${don.taux} % pour</h2>
+    <p class="lead">${esc(groupe.n)} a voté <b>pour</b> ${don.taux}% des ${don.n_textes} texte${don.n_textes>1?"s":""}
+      ${esc(theme.libelle.toLowerCase())} tranché${don.n_textes>1?"s":""} cette année.</p>
+    <div class="sondBarTrack" style="margin-top:14px"><div class="sondBarFill" style="width:${don.taux}%;background:${groupe.c}"></div></div>
+    <div style="margin-top:18px;display:flex;flex-direction:column;gap:8px;max-height:220px;overflow-y:auto">
+      ${don.textes.map(t=>`
+        <a class="recapTexteRow" href="https://www.assemblee-nationale.fr/dyn/17/scrutins/${t.numero}" target="_blank" rel="noopener">
+          <span>${esc(t.titre)}</span>
+          <span class="p-${t.position}">${t.position==='pour'?'Pour':'Contre'}</span>
+        </a>`).join("")}
+    </div>
+    <div class="actions" style="margin-top:20px"><button class="btn primary" id="recapContinuer" style="flex:1">Continuer</button></div>`;
+  $("#recapCheckpoint").classList.remove("hidden");
+  $("#recapContinuer").onclick = ()=>{ $("#recapCheckpoint").classList.add("hidden"); renderRecapTrail(d); };
+}
 
 /* ---------- point d'entrée ---------- */
 if(!loadProfile()) startOnboarding();

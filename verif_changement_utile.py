@@ -19,6 +19,7 @@ VOLATILES = {
     'data/historique.json': ['generated_at', 'depuis'],
     'data/actu.json': ['generated_at'],
     'data/sondages.json': ['generated_at'],
+    'data/groupes_themes.json': ['generated_at'],
 }
 
 

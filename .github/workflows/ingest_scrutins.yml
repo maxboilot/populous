@@ -35,6 +35,8 @@ jobs:
         run: python ingest_scrutins.py
       - name: Construire l historique des lois
         run: python construire_historique.py
+      - name: Construire le bilan de vote par groupe et par theme
+        run: python construire_groupes_themes.py
       - name: Construire l agenda a venir
         run: python construire_agenda.py
       - name: Committer les données mises à jour
