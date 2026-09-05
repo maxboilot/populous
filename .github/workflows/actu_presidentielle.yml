@@ -43,5 +43,13 @@ jobs:
             exit 0
           fi
           git commit -m 'Actualite presidentielle du '$(date -u +%F' '%H:%M)
-          git pull --rebase --autostash
-          git push
+          # Ce workflow tourne toutes les heures : le risque qu'un autre push
+          # sur main s'intercale entre le rebase et le push augmente avec la
+          # frequence. On retente plutot que d'echouer a la premiere collision.
+          for i in 1 2 3 4 5; do
+            git pull --rebase --autostash && git push && exit 0
+            echo "Push echoue (tentative $i/5), nouvel essai..."
+            sleep $((RANDOM % 10 + 5))
+          done
+          echo "Echec apres 5 tentatives."
+          exit 1
