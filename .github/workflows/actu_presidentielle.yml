@@ -42,7 +42,7 @@ jobs:
             echo 'Seul l horodatage a change : pas de commit.'
             exit 0
           fi
-          git commit -m 'Actualite presidentielle du '$(date -u +%F' '%H:%M)
+          git commit -m "Actualite presidentielle du $(date -u +'%F %H:%M')"
           # Ce workflow tourne toutes les heures : le risque qu'un autre push
           # sur main s'intercale entre le rebase et le push augmente avec la
           # frequence. On retente plutot que d'echouer a la premiere collision.
