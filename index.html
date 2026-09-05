@@ -592,9 +592,9 @@ window.__VOTE_EARLY__ = (async function(){
 
 <!-- ============ Historique des scrutins ============ -->
 <div id="screen-historique" class="screen hidden">
-  <div class="dashHead"><div class="eyebrow">Archive</div><h1 class="d" id="histTitre">Lois votées</h1></div>
+  <div class="dashHead"><div class="eyebrow">Archive</div><h1 class="d">Historique</h1></div>
   <div class="presiTabs" id="histTabs">
-    <button class="presiTab on" data-htab="lois">Lois votées</button>
+    <button class="presiTab on" data-htab="lois">Lois adoptées</button>
     <button class="presiTab" data-htab="recap">Récap</button>
   </div>
   <div id="histFiltres" class="filtres"></div>
@@ -604,7 +604,7 @@ window.__VOTE_EARLY__ = (async function(){
 
 <!-- ============ Agenda à venir ============ -->
 <div id="screen-avenir" class="screen hidden">
-  <div class="dashHead"><div class="eyebrow">Feuille verte</div><h1 class="d">À venir</h1></div>
+  <div class="dashHead"><div class="eyebrow">Feuille blanche</div><h1 class="d">À venir</h1></div>
   <div id="avenirFiltres" class="filtres"></div>
   <div id="avenirList" class="dashList"></div>
 </div>
@@ -1891,7 +1891,6 @@ function rendreHistorique(){
 let histTab = "lois";
 function afficherHistTab(){
   $("#histTabs").querySelectorAll(".presiTab").forEach(b=>b.classList.toggle("on", b.dataset.htab===histTab));
-  $("#histTitre").textContent = histTab === "lois" ? "Lois votées" : "Récap";
   $("#histFiltres").classList.toggle("hidden", histTab !== "lois");
   $("#histList").classList.toggle("hidden", histTab !== "lois");
   $("#recapBody").classList.toggle("hidden", histTab !== "recap");
