@@ -515,17 +515,11 @@ window.__VOTE_EARLY__ = (async function(){
   </button>
   <div id="acToday" class="voteCard"></div>
   <div class="dashGrid">
-    <button class="dashTile" data-go="carte">
-      <div class="ti">🗺️</div><div class="tt">Carte des votes</div><div class="ts">577 circonscriptions, en direct</div>
-    </button>
-    <button class="dashTile" data-go="historique">
-      <div class="ti">📜</div><div class="tt">Lois votées</div><div class="ts">L'historique des scrutins</div>
-    </button>
     <button class="dashTile" data-go="avenir">
       <div class="ti">📅</div><div class="tt">À venir</div><div class="ts">L'agenda de l'Assemblée</div>
     </button>
-    <button class="dashTile" data-go="quiz">
-      <div class="ti">🎯</div><div class="tt">Ton avis</div><div class="ts">Le quiz du jour</div>
+    <button class="dashTile" data-go="historique">
+      <div class="ti">📜</div><div class="tt">Lois votées</div><div class="ts">L'historique des scrutins</div>
     </button>
   </div>
 </div>
@@ -865,6 +859,35 @@ function dateFR(v){
 }
 
 function esc(s){ return (s==null?"":String(s)).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+
+// Même liste de connecteurs que decoupe() dans construire_historique.py :
+// on met en gras uniquement le sujet du texte ("moderniser la gestion du
+// patrimoine immobilier de l'État"), pas le jargon de procédure autour
+// ("l'ensemble de la proposition de loi visant à...") ni le stade de
+// lecture entre parenthèses en fin de titre.
+const CONNECTEURS_TITRE = [
+  "visant a ", "tendant a ", "ayant pour objet ",
+  "relative aux ", "relatifs aux ", "relatif aux ",
+  "relative au ", "relatif au ", "relative a ", "relatifs a ", "relatif a ",
+  "en faveur des ", "en faveur de ", "en matiere de ",
+  "portant ", "autorisant ", "ratifiant ", "modifiant ", "instaurant ", "creant ",
+];
+function titreSujetGras(titreBrut){
+  const brut = (titreBrut||"").trim();
+  if(!brut) return "";
+  const normalise = norm(brut); // fonction définie plus bas dans ce script, déjà chargée à l'exécution
+  let pos = -1, longueur = 0;
+  for(const c of CONNECTEURS_TITRE){
+    const p = normalise.indexOf(c);
+    if(p !== -1 && (pos===-1 || p < pos)){ pos = p; longueur = c.length; }
+  }
+  if(pos === -1) return esc(brut);
+  const avant = brut.slice(0, pos + longueur);
+  const reste = brut.slice(pos + longueur);
+  const sujet = reste.replace(/\.\s*$/, "").replace(/\s*\([^()]*\)\s*$/, "").trim();
+  const apres = reste.slice(sujet.length);
+  return esc(avant) + "<b>" + esc(sujet) + "</b>" + esc(apres);
+}
 
 const POS_LABEL = { pour:"A voté pour", contre:"A voté contre", abstention:"S'est abstenu·e", absent:"Absent·e lors du vote" };
 function renderFicheVote(e){
@@ -1668,7 +1691,7 @@ function renderAccueil(){
     card.innerHTML = `
       <div class="eyebrow">${voteData.isToday ? "Hier à l'Assemblée" : "Dernier vote connu · " + dateFR(voteData.date)}</div>
       <h2 class="d">${headline}</h2>
-      <p>${esc(tallyLine)} <i>${esc(voteData.titre)}</i></p>
+      <p>${esc(tallyLine)} <i>${titreSujetGras(voteData.titre)}</i></p>
       <div class="actions">
         <button class="btn primary" id="acImpact">Ce que ça change pour moi</button>
         <button class="btn ghost" data-go="carte">Voir la carte</button>
