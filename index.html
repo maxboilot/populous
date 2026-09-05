@@ -63,11 +63,9 @@ window.__VOTE_EARLY__ = (async function(){
   .dot{width:9px;height:9px;border-radius:50%;flex:0 0 auto}
   .eyebrow{font-size:11px;font-weight:700;letter-spacing:.02em;color:var(--accent);text-transform:none}
 
-  #titre{position:absolute;top:16px;left:16px;z-index:600;max-width:290px;padding:16px 18px;pointer-events:none}
-  #titre h1{margin:6px 0 0;font-size:26px;line-height:1.02}
-  #titre p{margin:8px 0 0;font-size:12px;line-height:1.5;color:var(--ink-soft)}
-
-  #recherche{position:absolute;top:200px;left:16px;z-index:600;width:270px}
+  #recherche{position:absolute;top:16px;left:16px;z-index:600;width:270px;
+    transition:transform .32s cubic-bezier(.4,0,.2,1),opacity .32s}
+  #recherche.off{transform:translateX(-140%);opacity:0;pointer-events:none}
   #recherche input{width:100%;padding:12px 16px;font-size:13px;color:var(--ink);
     background:var(--card);border:none;border-radius:var(--r-pill);outline:none;box-shadow:var(--shadow)}
   #recherche input::placeholder{color:var(--dim)}
@@ -79,7 +77,9 @@ window.__VOTE_EARLY__ = (async function(){
   #resultats button:hover{background:var(--accent-soft)}
   .mini{width:26px;height:26px;border-radius:50%;flex:0 0 auto;background-repeat:no-repeat;border:2px solid}
 
-  #mesure{position:absolute;left:16px;bottom:calc(90px + env(safe-area-inset-bottom,0px));z-index:600}
+  #mesure{position:absolute;left:16px;bottom:calc(90px + env(safe-area-inset-bottom,0px));z-index:600;
+    transition:transform .32s cubic-bezier(.4,0,.2,1),opacity .32s}
+  #mesure.off{transform:translateX(-140%);opacity:0;pointer-events:none}
   #mesure .lbl{font-size:10.5px;font-weight:700;color:var(--dim);margin-bottom:8px;padding-left:4px}
   #mesure .grp{display:flex;border:none;background:var(--card);border-radius:var(--r-pill);
     padding:4px;box-shadow:var(--shadow);gap:2px}
@@ -93,12 +93,14 @@ window.__VOTE_EARLY__ = (async function(){
     border:none;background:var(--card);color:var(--ink-soft);cursor:pointer;border-radius:var(--r-pill);box-shadow:var(--shadow)}
   #groupes button.on{background:var(--accent);color:#fff}
 
+  /* Repli des commandes (recherche + colorer par + partis) : un onglet au
+     bord gauche, symétrique de #languette à droite, pour libérer toute la
+     carte d'un geste plutôt que de fermer chaque panneau séparément. */
+  #pliCarte{position:absolute;top:50%;left:0;z-index:750;transform:translateY(-50%);
+    width:24px;height:64px;background:var(--card);border:none;border-radius:0 16px 16px 0;
+    box-shadow:var(--shadow);color:var(--dim);cursor:pointer;font-size:13px}
+
   #haut{position:absolute;top:16px;right:16px;z-index:600;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
-  #haut .row{display:flex;gap:6px;background:var(--card);border-radius:var(--r-pill);padding:4px;box-shadow:var(--shadow)}
-  #haut button{height:34px;background:none;border:none;color:var(--ink);cursor:pointer;font-size:15px;border-radius:var(--r-pill)}
-  #haut .sq{width:34px}
-  #haut .wide{padding:0 14px;font-size:11px;font-weight:600;color:var(--ink-soft)}
-  #haut .row button:hover{background:var(--accent-soft)}
   #etatzoom{font-size:9.5px;font-weight:700;letter-spacing:.02em;color:var(--dim);padding-right:6px}
   #etatzoom.on{color:var(--accent)}
 
@@ -215,14 +217,7 @@ window.__VOTE_EARLY__ = (async function(){
   #impactPanel .empty{margin-top:14px;font-size:12.5px;color:var(--ink-soft);line-height:1.65}
 
   @media (max-width:760px){
-    #titre{max-width:220px;padding:12px 14px}
-    #titre h1{font-size:21px}
-    #titre p{display:none}
-    #recherche{width:220px;top:116px}
-    /* Le bloc de zoom n'a pas la place de tenir à droite du titre en dessous
-       de 760px : on le fait passer sous la recherche plutôt que de le
-       comprimer illisiblement. */
-    #haut{top:168px;left:16px;right:auto;align-items:flex-start}
+    #recherche{width:220px}
     #legende,#languette{display:none}
     #mesure .grp button{min-width:64px;padding:7px 10px}
     #pied{display:none}
@@ -494,14 +489,10 @@ window.__VOTE_EARLY__ = (async function(){
 <div id="screen-carte" class="screen hidden">
 <div id="map" tabindex="0" aria-label="Carte des 577 circonscriptions législatives"></div>
 
-<div id="titre" class="card">
-  <div class="eyebrow">577 circonscriptions · XVIIᵉ législature</div>
-  <h1 class="d">La carte de<br>l'Assemblée</h1>
-  <p>Vert pour, rouge contre, gris abstention ou absence — le dernier vote solennel, mis à jour chaque jour.</p>
-</div>
+<button id="pliCarte" aria-label="Replier les commandes">‹</button>
 
 <div id="recherche">
-  <input id="q" type="search" placeholder="Chercher un·e député·e, un département…" aria-label="Chercher" autocomplete="off">
+  <input id="q" type="search" placeholder="Chercher un·e député·e, une ville, un code postal…" aria-label="Chercher" autocomplete="off">
   <div id="resultats" hidden></div>
 </div>
 
@@ -512,11 +503,6 @@ window.__VOTE_EARLY__ = (async function(){
 </div>
 
 <div id="haut">
-  <div class="row">
-    <button class="sq" id="zin" aria-label="Zoomer">＋</button>
-    <button class="sq" id="zout" aria-label="Dézoomer">－</button>
-    <button class="wide" id="zreset">Vue d'ensemble</button>
-  </div>
   <div id="etatzoom">ZOOMEZ POUR LES VISAGES</div>
 </div>
 
@@ -883,9 +869,18 @@ map.on("zoomend moveend", refreshAvatars);
 /* ---------- fiche ---------- */
 const $ = s => document.querySelector(s);
 function select(i, zoom){
+  const precedent = selected;
   if(selected!==null && layers[selected]) layers[selected].setStyle(styleOf(selected));
   selected = i;
-  if(i===null){ $("#fiche").classList.remove("on"); placeTab(); refreshAvatars(); return; }
+  if(i===null){
+    $("#fiche").classList.remove("on"); placeTab(); refreshAvatars();
+    // On revient à la vue d'ensemble en douceur en quittant une fiche, pour
+    // ne pas laisser l'utilisateur dézoomer lui-même à chaque fois — mais
+    // seulement s'il y avait vraiment une sélection à quitter, sinon un
+    // simple clic sur la carte vide relancerait l'animation sans raison.
+    if(precedent !== null) map.flyToBounds(bounds, {padding:[24,24], duration:0.7});
+    return;
+  }
   if(layers[i]) layers[i].setStyle({color:INK,weight:2.4,opacity:1});
   renderFiche(i);
   $("#fiche").classList.add("on"); placeTab();
@@ -1108,33 +1103,70 @@ renderLegend();
 const qEl=$("#q"), rEl=$("#resultats");
 const norm = s => (s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
 const index = elus.map((e,i)=> e ? {i, s: norm(e.n+" "+(DEP_NAMES[e.dep]||"")+" "+e.g+" "+(e.gn||""))} : null).filter(Boolean);
-qEl.oninput = ()=>{
-  const q = norm(qEl.value.trim());
-  if(q.length<2){ rEl.hidden=true; return; }
-  const res = index.filter(x=>x.s.includes(q)).slice(0,8);
-  if(!res.length){
-    rEl.innerHTML = `<div style="padding:10px 12px;font-size:11px;color:var(--dim)">Aucun résultat. Essayez un nom, un département ou un groupe.</div>`;
+const idxParCle = new Map(geo.circos.map((c,i)=>[c.key,i]));
+function afficherResultatsCarte(liste){
+  if(!liste.length){
+    rEl.innerHTML = `<div style="padding:10px 12px;font-size:11px;color:var(--dim)">Aucun résultat. Essaie un nom, une ville, un code postal…</div>`;
     rEl.hidden=false; return;
   }
-  rEl.innerHTML = res.map(x=>{
-    const e = elus[x.i], col = groupColor[e.g]||"#5A6BA8";
-    return `<button data-i="${x.i}">
-      <span class="mini" style="${atlasStyle(e.a)};background-size:${AC*100}% ${AR*100}%;border-color:${col}"></span>
+  rEl.innerHTML = liste.map(({i, ville})=>{
+    const e = elus[i];
+    const col = e ? (groupColor[e.g]||"#5A6BA8") : "#8891B0";
+    const sousLigne = e
+      ? (ville ? `${esc(ville)} — ${esc(DEP_NAMES[e.dep]||e.dep)}, ${e.ci}ᵉ circ.` : `${esc(DEP_NAMES[e.dep]||e.dep)} — ${e.ci}ᵉ · ${esc(e.g)}`)
+      : esc(ville || "");
+    return `<button data-i="${i}">
+      <span class="mini" style="${e?atlasStyle(e.a):""};background-size:${AC*100}% ${AR*100}%;border-color:${col}"></span>
       <span style="flex:1;min-width:0">
-        <span class="ell" style="font-size:11.5px">${esc(e.n)}</span>
-        <span class="ell m" style="font-size:8.5px;color:var(--dim)">${esc(DEP_NAMES[e.dep]||e.dep)} — ${e.ci}ᵉ · ${esc(e.g)}</span>
+        <span class="ell" style="font-size:11.5px">${e?esc(e.n):"Circonscription"}</span>
+        <span class="ell m" style="font-size:8.5px;color:var(--dim)">${sousLigne}</span>
       </span></button>`;
   }).join("");
   rEl.hidden=false;
   rEl.querySelectorAll("button").forEach(b=>{
     b.onclick=()=>{ select(+b.dataset.i, true); qEl.value=""; rEl.hidden=true; };
   });
+}
+
+let qToken = 0;
+qEl.oninput = async ()=>{
+  const raw = qEl.value.trim();
+  const q = norm(raw);
+  if(q.length<2){ rEl.hidden=true; return; }
+  const token = ++qToken;
+  const parNom = index.filter(x=>x.s.includes(q)).map(x=>({i:x.i}));
+  afficherResultatsCarte(parNom.slice(0,8));
+
+  const communes = await loadCommunes();
+  if(token !== qToken) return;
+  if(!communes) return;
+  const isPostal = /^\d{2,5}$/.test(raw);
+  const cleVille = normCommune(raw);
+  const matches = communes.filter(c => isPostal ? c[2].some(cp=>cp.startsWith(raw)) : c[1].includes(cleVille));
+  const vus = new Set(parNom.map(x=>x.i));
+  const parVille = [];
+  matches.forEach(c=>{
+    const [nom, , postaux, cles] = c;
+    cles.forEach(k=>{
+      const i = idxParCle.get(k);
+      if(i==null || vus.has(i)) return;
+      vus.add(i);
+      parVille.push({i, ville: nom + (postaux[0]?" ("+postaux[0]+")":"")});
+    });
+  });
+  afficherResultatsCarte([...parNom, ...parVille].slice(0,8));
 };
 
 /* ---------- commandes ---------- */
-$("#zin").onclick = ()=>map.zoomIn(0.8);
-$("#zout").onclick = ()=>map.zoomOut(0.8);
-$("#zreset").onclick = ()=>{ select(null); map.flyToBounds(bounds,{padding:[24,24],duration:0.7}); };
+let carteControlsOpen = true;
+function placePliCarte(){ $("#pliCarte").textContent = carteControlsOpen ? "‹" : "›"; }
+$("#pliCarte").onclick = ()=>{
+  carteControlsOpen = !carteControlsOpen;
+  $("#recherche").classList.toggle("off", !carteControlsOpen);
+  $("#mesure").classList.toggle("off", !carteControlsOpen);
+  placePliCarte();
+};
+placePliCarte();
 function placeTab(){
   const l=$("#languette");
   if(!panelOpen){ l.style.right="0px"; l.textContent="‹"; return; }
