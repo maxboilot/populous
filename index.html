@@ -100,10 +100,6 @@ window.__VOTE_EARLY__ = (async function(){
     width:24px;height:64px;background:var(--card);border:none;border-radius:0 16px 16px 0;
     box-shadow:var(--shadow);color:var(--dim);cursor:pointer;font-size:13px}
 
-  #haut{position:absolute;top:16px;right:16px;z-index:600;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
-  #etatzoom{font-size:9.5px;font-weight:700;letter-spacing:.02em;color:var(--dim);padding-right:6px}
-  #etatzoom.on{color:var(--accent)}
-
   #legende{position:absolute;right:16px;bottom:calc(90px + env(safe-area-inset-bottom,0px));z-index:600;width:226px;padding:16px 17px;
     transition:transform .32s cubic-bezier(.4,0,.2,1)}
   #legende.off{transform:translateX(calc(100% + 26px))}
@@ -502,10 +498,6 @@ window.__VOTE_EARLY__ = (async function(){
   <div id="groupes"></div>
 </div>
 
-<div id="haut">
-  <div id="etatzoom">ZOOMEZ POUR LES VISAGES</div>
-</div>
-
 <div id="legende" class="card">
   <div class="hd" id="lghd">Légende</div>
   <div id="lgcorps"></div>
@@ -786,6 +778,11 @@ const styleOf = i => ({ color:INK, weight:0.4, opacity:0.32, fillColor:fillOf(i)
 
 /* ---------- carte ---------- */
 const bounds = L.latLngBounds([GEO.bbox[0],GEO.bbox[1]],[GEO.bbox[2],GEO.bbox[3]]);
+// La barre de navigation flottante mange le bas de l'écran : avec un
+// padding symétrique, la carte se cale sur toute la hauteur du conteneur
+// et paraît décalée vers le bas de la zone réellement visible. On ajoute
+// donc davantage de marge basse que haute pour la recentrer à l'oeil.
+const CARTE_PADDING = { paddingTopLeft:[24,24], paddingBottomRight:[24,100] };
 const map = L.map("map", {
   renderer: L.canvas({ padding:0.3 }),
   zoomControl:false, attributionControl:false,
@@ -826,9 +823,7 @@ function restyle(){
 const AV_ZOOM = 8.2;
 const markers = new Map();
 function refreshAvatars(){
-  const z = map.getZoom(), on = z>=AV_ZOOM, ez = document.getElementById("etatzoom");
-  ez.textContent = on ? "VISAGES VISIBLES" : "ZOOMEZ POUR LES VISAGES";
-  ez.classList.toggle("on", on);
+  const z = map.getZoom(), on = z>=AV_ZOOM;
   const keep = new Set();
   if(on){
     const view = map.getBounds();
@@ -878,7 +873,7 @@ function select(i, zoom){
     // ne pas laisser l'utilisateur dézoomer lui-même à chaque fois — mais
     // seulement s'il y avait vraiment une sélection à quitter, sinon un
     // simple clic sur la carte vide relancerait l'animation sans raison.
-    if(precedent !== null) map.flyToBounds(bounds, {padding:[24,24], duration:0.7});
+    if(precedent !== null) map.flyToBounds(bounds, {...CARTE_PADDING, duration:0.7});
     return;
   }
   if(layers[i]) layers[i].setStyle({color:INK,weight:2.4,opacity:1});
@@ -1726,7 +1721,7 @@ function showScreen(name){
     setTimeout(()=>{
       map.invalidateSize();
       if(!carteTouched){
-        map.fitBounds(bounds,{padding:[24,24]});
+        map.fitBounds(bounds, CARTE_PADDING);
         map.setMinZoom(map.getZoom()-0.4);
         carteTouched=true;
       }
