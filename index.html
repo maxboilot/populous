@@ -313,10 +313,15 @@ window.__VOTE_EARLY__ = (async function(){
   .avChoice{padding:9px 14px;font-size:12.5px;font-weight:600;border:none;background:var(--card-alt);
     color:var(--ink-soft);cursor:pointer;border-radius:var(--r-pill);text-align:left}
   .avChoice.sel{background:var(--accent);color:#fff}
-  .avGrid{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-  .avEmojiBtn{width:38px;height:38px;border-radius:50%;border:none;cursor:pointer;font-size:17px;
-    display:flex;align-items:center;justify-content:center;opacity:.55;transition:opacity .15s,transform .15s}
-  .avEmojiBtn.sel{opacity:1;transform:scale(1.12);box-shadow:0 0 0 2px var(--card),0 0 0 4px var(--accent)}
+  .avGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(72px,1fr));gap:14px 8px;margin-top:14px;
+    max-height:280px;overflow-y:auto;padding:2px}
+  .avHistBtn{display:flex;flex-direction:column;align-items:center;gap:6px;background:none;border:none;
+    cursor:pointer;padding:2px;opacity:.6;transition:opacity .15s,transform .15s}
+  .avHistBtn img{width:64px;height:64px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 2px var(--card)}
+  .avHistBtn .n{font-size:9.5px;font-weight:700;color:var(--ink-soft);text-align:center;line-height:1.25}
+  .avHistBtn.sel{opacity:1;transform:scale(1.04)}
+  .avHistBtn.sel img{box-shadow:0 0 0 3px var(--card),0 0 0 5px var(--accent)}
+  .avHistBtn.sel .n{color:var(--accent)}
   .avThumb{width:32px;height:32px;border-radius:50%;flex:0 0 auto;overflow:hidden}
   .chev{color:var(--dim);font-size:18px}
 
@@ -1120,18 +1125,52 @@ const PRO = [{k:"salarie",l:"Salarié·e"},{k:"independant",l:"Indépendant·e"}
 const ENFANTS = [{k:"oui",l:"Oui"},{k:"non",l:"Non"}];
 
 /* ------------------------------------------------------------
-   Avatar : photo (compressée localement), illustré (emoji+couleur,
-   aucun asset externe) ou silhouette vide par défaut. Jamais envoyé
-   à un serveur — la photo ne quitte jamais localStorage.
+   Avatar : photo (compressée localement), personnage historique,
+   ou silhouette vide par défaut. La photo personnelle ne quitte
+   jamais localStorage ; les portraits historiques, eux, viennent de
+   Wikimedia Commons (domaine public ou licence libre, vérifié un par
+   un — voir le choix éditorial du 5 septembre) et sont donc chargés
+   depuis leurs serveurs à l'affichage, comme les photos de candidats
+   de l'onglet Sondages.
+   AVATAR_PRESETS (emoji) est conservé uniquement pour les profils
+   déjà enregistrés avec l'ancien choix « illustré » — plus proposé
+   au choix, mais toujours affiché correctement s'il est déjà là.
    ------------------------------------------------------------ */
 const AVATAR_PRESETS = [
   {emoji:"🦊",color:"#E8734A"},{emoji:"🐱",color:"#5B8DEF"},{emoji:"🐧",color:"#2B48A5"},
   {emoji:"🦉",color:"#7B4591"},{emoji:"🐢",color:"#2F9E58"},{emoji:"🦋",color:"#D1497A"},
   {emoji:"🐝",color:"#E8B923"},{emoji:"🐬",color:"#2AA6C9"},
 ];
+const AVATAR_HISTORIQUES = [
+  {cle:"napoleon", nom:"Napoléon Bonaparte", couleur:"#6B5B3E",
+    photo:"https://thumb.wikimedia.org/wikipedia/commons/thumb/3/31/Napoleon_I_of_France_by_Andrea_Appiani.jpg/250px-Napoleon_I_of_France_by_Andrea_Appiani.jpg"},
+  {cle:"che", nom:"Che Guevara", couleur:"#7A1F1F",
+    photo:"https://thumb.wikimedia.org/wikipedia/commons/thumb/5/58/CheHigh.jpg/250px-CheHigh.jpg"},
+  {cle:"gandhi", nom:"Gandhi", couleur:"#C9A24B",
+    photo:"https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7a/Mahatma-Gandhi%2C_studio%2C_1931.jpg/250px-Mahatma-Gandhi%2C_studio%2C_1931.jpg"},
+  {cle:"churchill", nom:"Winston Churchill", couleur:"#3C4A5C",
+    photo:"https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bc/Sir_Winston_Churchill_-_19086236948.jpg/250px-Sir_Winston_Churchill_-_19086236948.jpg"},
+  {cle:"degaulle", nom:"Charles de Gaulle", couleur:"#2B48A5",
+    photo:"https://thumb.wikimedia.org/wikipedia/commons/thumb/2/20/UNESCO_History%2C_President_Charles_de_Gaulle_-_UNESCO_-_PHOTO0000002721_0001.tiff/lossy-page1-250px-UNESCO_History%2C_President_Charles_de_Gaulle_-_UNESCO_-_PHOTO0000002721_0001.tiff.jpg"},
+  {cle:"mandela", nom:"Nelson Mandela", couleur:"#2F9E58",
+    photo:"https://thumb.wikimedia.org/wikipedia/commons/thumb/1/14/Nelson_Mandela-2008_%28edit%29.jpg/250px-Nelson_Mandela-2008_%28edit%29.jpg"},
+  {cle:"veil", nom:"Simone Veil", couleur:"#7B4591",
+    photo:"https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fc/Official_portrait_of_Simone_Veil_%28cropped%29.jpg/250px-Official_portrait_of_Simone_Veil_%28cropped%29.jpg"},
+  {cle:"marianne", nom:"Marianne", couleur:"#C00D0D",
+    photo:"https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f9/Marianne_-_symbol_of_French_Republic.jpg/250px-Marianne_-_symbol_of_French_Republic.jpg"},
+  {cle:"jeanne", nom:"Jeanne d'Arc", couleur:"#8891B0",
+    photo:"https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c3/Joan_of_Arc_miniature_graded.jpg/250px-Joan_of_Arc_miniature_graded.jpg"},
+  {cle:"mlk", nom:"M. L. King Jr.", couleur:"#5B8DEF",
+    photo:"https://thumb.wikimedia.org/wikipedia/commons/thumb/0/05/Martin_Luther_King%2C_Jr..jpg/250px-Martin_Luther_King%2C_Jr..jpg"},
+];
 const AVATAR_SILHOUETTE = `<svg viewBox="0 0 24 24" width="60%" height="60%" fill="currentColor" aria-hidden="true"><path d="M12 12.5c2.9 0 5.2-2.3 5.2-5.2S14.9 2 12 2 6.8 4.4 6.8 7.3s2.3 5.2 5.2 5.2zm0 2.3c-3.5 0-10.5 1.8-10.5 5.3V22h21v-1.9c0-3.5-7-5.3-10.5-5.3z"/></svg>`;
 function avatarHTML(av){
   if(av && av.type==="photo" && av.photo) return `<img class="avImg" src="${av.photo}" alt="">`;
+  if(av && av.type==="historique" && av.photo){
+    const lettre = esc((av.nom||"?")[0]);
+    return `<img class="avImg" src="${esc(av.photo)}" alt="" loading="lazy" style="background:${av.couleur||"var(--card-alt)"}"
+      onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'avEmoji',textContent:'${lettre}',style:'background:${av.couleur||"var(--accent)"}'}))">`;
+  }
   if(av && av.type==="illustre" && av.emoji) return `<div class="avEmoji" style="background:${av.color}">${av.emoji}</div>`;
   return `<div class="avNone">${AVATAR_SILHOUETTE}</div>`;
 }
@@ -1206,12 +1245,16 @@ function obRender(){
           <div class="avPreview" id="avPreview">${avatarHTML(draft.avatar)}</div>
           <div class="avChoices">
             <button type="button" class="avChoice ${draft.avatar.type==="none"?"sel":""}" data-t="none">Aucun (silhouette vide)</button>
-            <button type="button" class="avChoice ${draft.avatar.type==="illustre"?"sel":""}" data-t="illustre">Avatar illustré</button>
+            <button type="button" class="avChoice ${draft.avatar.type==="historique"?"sel":""}" data-t="historique">Personnage historique</button>
             <button type="button" class="avChoice ${draft.avatar.type==="photo"?"sel":""}" data-t="photo">Photo personnelle</button>
           </div>
         </div>
-        <div class="avGrid" id="avGrid" style="display:${draft.avatar.type==="illustre"?"flex":"none"}">
-          ${AVATAR_PRESETS.map(p=>`<button type="button" class="avEmojiBtn ${draft.avatar.type==="illustre"&&draft.avatar.emoji===p.emoji?"sel":""}" data-emoji="${p.emoji}" data-color="${p.color}" style="background:${p.color}">${p.emoji}</button>`).join("")}
+        <div class="avGrid" id="avGrid" style="display:${draft.avatar.type==="historique"?"grid":"none"}">
+          ${AVATAR_HISTORIQUES.map(h=>`
+            <button type="button" class="avHistBtn ${draft.avatar.type==="historique"&&draft.avatar.cle===h.cle?"sel":""}" data-cle="${h.cle}">
+              <img src="${esc(h.photo)}" alt="" loading="lazy" style="background:${h.couleur}">
+              <span class="n">${esc(h.nom)}</span>
+            </button>`).join("")}
         </div>
         <input type="file" id="avFile" accept="image/*" style="display:none">
       </div>
@@ -1229,18 +1272,19 @@ function obRender(){
         el.querySelectorAll(".avChoice").forEach(x=>x.classList.toggle("sel", x===b));
         const t = b.dataset.t;
         if(t==="none"){ avGrid.style.display="none"; setAvatar({type:"none"}); }
-        else if(t==="illustre"){
-          avGrid.style.display="flex";
-          if(draft.avatar.type!=="illustre") setAvatar({type:"illustre", emoji:AVATAR_PRESETS[0].emoji, color:AVATAR_PRESETS[0].color});
-          el.querySelectorAll(".avEmojiBtn").forEach(x=>x.classList.toggle("sel", x.dataset.emoji===draft.avatar.emoji));
+        else if(t==="historique"){
+          avGrid.style.display="grid";
+          if(draft.avatar.type!=="historique") setAvatar({type:"historique", ...AVATAR_HISTORIQUES[0]});
+          el.querySelectorAll(".avHistBtn").forEach(x=>x.classList.toggle("sel", x.dataset.cle===draft.avatar.cle));
         }
         else if(t==="photo"){ avGrid.style.display="none"; avFile.click(); }
       };
     });
-    el.querySelectorAll(".avEmojiBtn").forEach(b=>{
+    el.querySelectorAll(".avHistBtn").forEach(b=>{
       b.onclick = ()=>{
-        el.querySelectorAll(".avEmojiBtn").forEach(x=>x.classList.toggle("sel", x===b));
-        setAvatar({type:"illustre", emoji:b.dataset.emoji, color:b.dataset.color});
+        el.querySelectorAll(".avHistBtn").forEach(x=>x.classList.toggle("sel", x===b));
+        const h = AVATAR_HISTORIQUES.find(h=>h.cle===b.dataset.cle);
+        setAvatar({type:"historique", ...h});
       };
     });
     avFile.onchange = ()=>{
