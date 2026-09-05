@@ -2348,8 +2348,7 @@ async function renderRecap(){
 function renderRecapChoix(d){
   $("#recapBody").innerHTML = `
     <p class="lead" style="max-width:640px;margin:0 auto 4px;text-align:center">
-      Choisis un groupe parlementaire. Ton avatar avance de case en case, chacune un grand thème,
-      et découvre comment ce groupe a réellement voté à l'Assemblée.</p>
+      Choisis un groupe parlementaire et découvre comment il a voté à l'Assemblée.</p>
     <div class="recapChoix">
       ${d.groupes.map(g=>`
         <button class="recapCard" data-g="${esc(g.s)}" style="background:${g.c}">
@@ -2374,12 +2373,7 @@ function renderRecapTrail(d){
       <span class="recapHeadBadge" style="background:${groupe.c}">${esc(groupe.s)}</span>
       <span style="font-size:12.5px;color:var(--ink-soft)">${esc(groupe.n)}</span>
     </div>
-    ${termine ? `
-      <div class="privacyBox" style="max-width:640px;margin:16px auto 0">
-        <b>Récap terminé !</b> Tu as parcouru les ${d.themes.length} thèmes du groupe ${esc(groupe.n)},
-        d'après son vote réel sur chacun.
-      </div>
-      <div id="recapShare" style="max-width:640px;margin:14px auto 0"></div>` : ""}
+    ${termine ? `<div id="recapShare" style="max-width:640px;margin:16px auto 0"></div>` : ""}
     <div class="recapTrail">
       ${d.themes.map((t,i)=>{
         const donnees = (d.donnees[recapGroupe]||{})[t.code];
@@ -2401,7 +2395,7 @@ function renderRecapTrail(d){
   });
   if(termine){
     $("#recapShare").innerHTML = shareRowHTML();
-    wireShare($("#recapShare"), `J'ai terminé le récap ${groupe.n} sur Populous — découvre comment ce groupe a vraiment voté à l'Assemblée nationale.`);
+    wireShare($("#recapShare"), `Le bilan de vote réel de ${groupe.n} à l'Assemblée nationale, thème par thème, sur Populous.`);
   }
 }
 
