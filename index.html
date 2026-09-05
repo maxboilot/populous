@@ -538,12 +538,6 @@ window.__VOTE_EARLY__ = (async function(){
   <div id="avenirList" class="dashList"></div>
 </div>
 
-<!-- ============ Quiz façon Wahl-O-Mat ============ -->
-<div id="screen-quiz" class="screen hidden">
-  <div class="dashHead"><div class="eyebrow">Ton avis</div><h1 class="d">Le quiz du jour</h1></div>
-  <div id="quizBody"></div>
-</div>
-
 <!-- ============ Présidentielle 2027 ============ -->
 <div id="screen-presidentielle" class="screen hidden">
   <div class="presiWatermark" aria-hidden="true">Populous</div>
@@ -563,7 +557,6 @@ window.__VOTE_EARLY__ = (async function(){
   <button class="navBtn" data-go="carte"><span class="ni">🗺️</span><span class="nl">Carte</span></button>
   <button class="navBtn" data-go="historique"><span class="ni">📜</span><span class="nl">Historique</span></button>
   <button class="navBtn" data-go="avenir"><span class="ni">📅</span><span class="nl">À venir</span></button>
-  <button class="navBtn" data-go="quiz"><span class="ni">🎯</span><span class="nl">Quiz</span></button>
   <button class="navBtn" data-go="presidentielle"><span class="ni">🇫🇷</span><span class="nl">2027</span></button>
 </nav>
 
@@ -1630,7 +1623,7 @@ $("#ipClose").onclick = ()=>{ $("#impactPanel").classList.add("hidden"); };
 /* ============================================================
    NAVIGATION — la carte devient un écran parmi d'autres.
    ============================================================ */
-const SCREENS = ["accueil","carte","historique","avenir","quiz","presidentielle"];
+const SCREENS = ["accueil","carte","historique","avenir","presidentielle"];
 let activeScreen = "accueil";
 let carteTouched = false;
 const loadedOnce = {};
@@ -1659,7 +1652,6 @@ function showScreen(name){
   if(name==="accueil" && !loadedOnce.accueil){ loadedOnce.accueil=true; renderAccueil(); }
   if(name==="historique" && !loadedOnce.historique){ loadedOnce.historique=true; loadHistorique(); }
   if(name==="avenir" && !loadedOnce.avenir){ loadedOnce.avenir=true; loadAvenir(); }
-  if(name==="quiz" && !loadedOnce.quiz){ loadedOnce.quiz=true; renderQuiz(); }
   if(name==="presidentielle" && !loadedOnce.presidentielle){ loadedOnce.presidentielle=true; renderPresidentielle(); }
   if(name==="accueil") renderAccueil(); // toujours à jour (profil, vote) en revenant dessus
 }
@@ -1896,63 +1888,6 @@ async function loadAvenir(){
       <h3>Pas d'agenda publié pour l'instant</h3>
       <p>La feuille verte est mise à jour chaque semaine après la Conférence des présidents — souvent vide pendant les périodes de trêve parlementaire.</p></div>`;
   }
-}
-
-/* ============================================================
-   QUIZ — même principe que le panneau d'impact : rien n'est
-   généré à la volée depuis un vrai texte de loi sans relecture.
-   ⚠ Démonstration : thèses fictives, pas liées au vrai scrutin chargé.
-   ============================================================ */
-const QUIZ_DEMO = {
-  bill: "Exemple pédagogique — proposition de loi sur la rénovation thermique des écoles",
-  theses: [
-    "Rendre obligatoire un audit thermique dans toutes les écoles publiques avant 2028",
-    "Financer les travaux par une hausse ciblée de la taxe foncière dans les communes concernées",
-    "Donner la priorité aux écoles situées en zone rurale",
-    "Confier la maîtrise d'ouvrage à un opérateur national unique plutôt qu'aux communes",
-    "Créer un fonds d'urgence pour les écoles en état de péril thermique avéré",
-  ],
-};
-let quizAnswers = [];
-let quizIdx = 0;
-
-function renderQuiz(){
-  quizAnswers = new Array(QUIZ_DEMO.theses.length).fill(null);
-  quizIdx = 0;
-  quizStep();
-}
-function quizStep(){
-  const el = $("#quizBody");
-  if(quizIdx >= QUIZ_DEMO.theses.length){
-    const pour = quizAnswers.filter(v=>v===1).length;
-    const contre = quizAnswers.filter(v=>v===-1).length;
-    el.innerHTML = `
-      <div class="dashCard" style="margin:0">
-        <div class="eyebrow">Résultat</div>
-        <h2 class="d">${pour} pour · ${contre} contre</h2>
-        <p>${esc(QUIZ_DEMO.bill)}</p>
-        <div style="margin-top:16px;padding:12px 14px;border-radius:14px;background:var(--card-alt);font-size:11px;color:var(--dim);line-height:1.6">
-          Démonstration : ces thèses sont un exemple pédagogique, pas le texte réellement en cours de vote.
-          En production, chaque quiz quotidien serait construit à partir d'un vrai scrutin ou d'un vrai amendement, rédigé et relu avant publication — jamais généré automatiquement.
-        </div>
-        <div class="actions"><button class="btn ghost" id="quizRestart">Recommencer</button></div>
-      </div>`;
-    $("#quizRestart").onclick = renderQuiz;
-    return;
-  }
-  el.innerHTML = `
-    <div class="dashCard" style="margin:0">
-      <div class="eyebrow">Question ${quizIdx+1} / ${QUIZ_DEMO.theses.length}</div>
-      <h2 class="d">${esc(QUIZ_DEMO.theses[quizIdx])}</h2>
-      <div class="actions" style="margin-top:20px">
-        <button class="btn primary" data-v="1" style="background:#3F8F5B">Pour</button>
-        <button class="btn ghost" data-v="0">Neutre</button>
-        <button class="btn primary" data-v="-1" style="background:#C0453C">Contre</button>
-      </div>
-    </div>`;
-  el.querySelectorAll("[data-v]").forEach(b=>{
-    b.onclick = ()=>{ quizAnswers[quizIdx] = +b.dataset.v; quizIdx++; quizStep(); };
-  });
 }
 
 /* ============================================================
