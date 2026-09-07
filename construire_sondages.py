@@ -52,7 +52,7 @@ COULEURS_PARTI = {
     'LO': '#8B1A1A', 'LFI': '#C00D0D', 'PCF': '#B02020', 'LE': '#2F9E58',
     'PP': '#E8734A', 'RE': '#7B4591', 'HOR': '#5B8DEF', 'LR': '#2B5FAD',
     'DLF': '#3E5FC9', 'RN': '#1C2350', 'REC': '#5C2A2A', 'DIV': '#8891B0',
-    'PS': '#E8547A',
+    'PS': '#E8547A', 'LFH': '#4A7A6B',
 }
 
 
@@ -188,12 +188,20 @@ def valeur_candidat(cell_line):
     return float(m.group(0).replace(',', '.')), False
 
 
-def parse_sondages(rows, annee):
+# n_cols = Sondeur + Date + Échantillon + un score par candidat + Autre.
+# Seule la première ligne de chaque groupe d'hypothèses porte ces trois
+# premières cellules (les suivantes les héritent d'un rowspan et sont donc
+# plus courtes) : ce nombre de colonnes est ce qui distingue une ligne de
+# sondage réelle d'une ligne d'hypothèse alternative à ignorer, comme
+# annoncé plus haut. Un nombre de candidats fixe était utilisé avant, mais
+# Wikipédia en a ajouté un et toutes les lignes ont cessé de correspondre
+# du jour au lendemain — d'où le calcul dynamique.
+def parse_sondages(rows, annee, n_cols):
     sondages = []
     i = 2  # 0=photos, 1=noms, 2=barre de couleur
     while i < len(rows):
         row = rows[i]
-        if len(row) == 15:
+        if len(row) == n_cols:
             sondeur_content = cell_content(row[0])
             link = wikilinks_url(sondeur_content)
             url, institut = link if link else (None, sondeur_content)
@@ -270,7 +278,7 @@ def main():
     candidats = parse_candidats(rows)
     print(f'{len(candidats)} candidats identifies.')
 
-    bruts = parse_sondages(rows, annee=2026)
+    bruts = parse_sondages(rows, annee=2026, n_cols=len(candidats) + 4)
     print(f'{len(bruts)} sondages identifies (premiere hypothese de chacun).')
 
     fichiers = [c['fichier'] for c in candidats]
@@ -290,7 +298,8 @@ def main():
             val, substitue = valeur_candidat(cellules[idx])
             if val is not None:
                 scores[cand['cle']] = val
-        # "Autre" est la 12e cellule, hors liste de candidats nommés.
+        # "Autre" est la dernière cellule (après tous les candidats nommés,
+        # boucle arrêtée par le break ci-dessus) : jamais retenue.
         if s['institut'] and scores:
             s['scores'] = scores
             sondages.append(s)
