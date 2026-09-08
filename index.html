@@ -368,13 +368,18 @@ window.__VOTE_EARLY__ = (async function(){
   .emptyState h3{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','SF Pro Display',system-ui,'Inter',Helvetica,Arial,sans-serif;font-weight:800;font-size:17px;margin:16px 0 0}
   .emptyState p{font-size:13px;color:var(--dim);line-height:1.65;margin:8px 0 0}
 
-  /* ============ Présidentielle 2027 ============ */
+  /* Filigrane de fond, en test sur tous les écrans (pas seulement
+     Présidentielle malgré le nom historique de la classe) — position:fixed
+     posé en premier enfant de chaque écran, avec le reste du contenu de
+     cet écran promu en .zTop (position + z-index) pour rester au-dessus :
+     un enfant positionné (le filigrane) passe sinon devant un enfant non
+     positionné du même parent, même à z-index égal ou inférieur. */
   .presiWatermark{position:fixed;top:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;
     overflow:hidden;pointer-events:none;z-index:0;writing-mode:vertical-rl;
     font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','SF Pro Display',system-ui,'Inter',Helvetica,Arial,sans-serif;
     font-weight:800;font-size:clamp(60px,14vh,200px);letter-spacing:-.03em;color:var(--ink);
     opacity:.08;white-space:nowrap}
-  .presiZ{position:relative;z-index:1}
+  .zTop{position:relative;z-index:1}
   .presiTabs{max-width:640px;margin:0 auto 16px;display:flex;gap:8px}
   .presiTab{flex:1;padding:10px 10px;font-size:12px;font-weight:700;border:none;
     background:var(--card);color:var(--ink-soft);cursor:pointer;border-radius:var(--r-pill);
@@ -521,6 +526,7 @@ window.__VOTE_EARLY__ = (async function(){
 
 <div id="screen-carte" class="screen hidden">
 <div id="map" tabindex="0" aria-label="Carte des 577 circonscriptions législatives"></div>
+<div class="presiWatermark" aria-hidden="true">Populous</div>
 
 <button id="pliCarte" aria-label="Replier les commandes">‹</button>
 
@@ -555,17 +561,18 @@ window.__VOTE_EARLY__ = (async function(){
 
 <!-- ============ Accueil : tableau de bord ============ -->
 <div id="screen-accueil" class="screen">
-  <div class="dashHead">
+  <div class="presiWatermark" aria-hidden="true">Populous</div>
+  <div class="dashHead zTop">
     <h1 class="d">Populous</h1>
     <div class="eyebrow">Bonjour<span id="acHello"></span></div>
   </div>
-  <button class="presiHeroCard" data-go="presidentielle">
+  <button class="presiHeroCard zTop" data-go="presidentielle">
     <div class="phTop"><span class="phFlag">🇫🇷</span><span class="phEyebrow">Présidentielle 2027</span></div>
     <div class="phTitle" id="acPresiSub">Le fil de la campagne</div>
     <div class="phCta">Suivre la campagne →</div>
   </button>
-  <div id="acToday" class="voteCard"></div>
-  <button class="boussoleTile" id="acBoussole">
+  <div id="acToday" class="voteCard zTop"></div>
+  <button class="boussoleTile zTop" id="acBoussole">
     <div class="bt-ic">🧭</div>
     <div style="flex:1;text-align:left">
       <div class="bt-tt">La Boussole <span class="bt-badge" id="acBoussoleBadge"></span></div>
@@ -573,7 +580,7 @@ window.__VOTE_EARLY__ = (async function(){
     </div>
     <div class="chev" style="color:rgba(255,255,255,.8)">›</div>
   </button>
-  <div class="dashGrid">
+  <div class="dashGrid zTop">
     <button class="dashTile" data-go="avenir">
       <div class="ti">📅</div><div class="tt">À venir</div><div class="ts">L'agenda de l'Assemblée</div>
     </button>
@@ -595,33 +602,35 @@ window.__VOTE_EARLY__ = (async function(){
 
 <!-- ============ Historique des scrutins ============ -->
 <div id="screen-historique" class="screen hidden">
-  <div class="dashHead"><div class="eyebrow">Archive</div><h1 class="d">Historique</h1></div>
-  <div class="presiTabs" id="histTabs">
+  <div class="presiWatermark" aria-hidden="true">Populous</div>
+  <div class="dashHead zTop"><div class="eyebrow">Archive</div><h1 class="d">Historique</h1></div>
+  <div class="presiTabs zTop" id="histTabs">
     <button class="presiTab on" data-htab="lois">Lois adoptées</button>
     <button class="presiTab" data-htab="recap">Récap</button>
   </div>
-  <div id="histFiltres" class="filtres"></div>
-  <div id="histList" class="dashList"></div>
-  <div id="recapBody" class="dashList hidden"></div>
+  <div id="histFiltres" class="filtres zTop"></div>
+  <div id="histList" class="dashList zTop"></div>
+  <div id="recapBody" class="dashList zTop hidden"></div>
 </div>
 
 <!-- ============ Agenda à venir ============ -->
 <div id="screen-avenir" class="screen hidden">
-  <div class="dashHead"><div class="eyebrow">Feuille blanche</div><h1 class="d">À venir</h1></div>
-  <div id="avenirFiltres" class="filtres"></div>
-  <div id="avenirList" class="dashList"></div>
+  <div class="presiWatermark" aria-hidden="true">Populous</div>
+  <div class="dashHead zTop"><div class="eyebrow">Feuille blanche</div><h1 class="d">À venir</h1></div>
+  <div id="avenirFiltres" class="filtres zTop"></div>
+  <div id="avenirList" class="dashList zTop"></div>
 </div>
 
 <!-- ============ Présidentielle 2027 ============ -->
 <div id="screen-presidentielle" class="screen hidden">
   <div class="presiWatermark" aria-hidden="true">Populous</div>
-  <div class="dashHead presiZ"><div class="eyebrow">2027</div><h1 class="d">Présidentielle</h1></div>
-  <div class="presiTabs presiZ" id="presiTabs">
+  <div class="dashHead zTop"><div class="eyebrow">2027</div><h1 class="d">Présidentielle</h1></div>
+  <div class="presiTabs zTop" id="presiTabs">
     <button class="presiTab on" data-ptab="actu">Actu</button>
     <button class="presiTab" data-ptab="sondage">Sondages</button>
   </div>
-  <div id="sondFiltre" class="sondFiltre presiZ"></div>
-  <div id="presiBody" class="dashList presiZ"></div>
+  <div id="sondFiltre" class="sondFiltre zTop"></div>
+  <div id="presiBody" class="dashList zTop"></div>
 </div>
 
 <!-- ============ barre de navigation ============ -->
