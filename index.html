@@ -63,8 +63,22 @@ window.__VOTE_EARLY__ = (async function(){
   .dot{width:9px;height:9px;border-radius:50%;flex:0 0 auto}
   .eyebrow{font-size:11px;font-weight:700;letter-spacing:.02em;color:var(--accent);text-transform:none}
 
+  /* Titre du texte en vedette — fixe, toujours affiché quel que soit le
+     mode de coloration ou l'état des commandes (repliées ou non). Pas de
+     cadre : gras, discret, lu par-dessus la carte grâce à un halo clair
+     plutôt qu'un fond plein — même traitement que #miniLegende. Tronqué
+     en JS (placeCarteTitre) à une longueur fixe plutôt que par un
+     -webkit-line-clamp CSS : ce dernier a laissé passer un fragment de
+     ligne sous la carte dans certains rendus. Hauteur naturelle du coup,
+     d'où le repositionnement de #recherche calculé en JS plutôt qu'un
+     décalage fixe. */
+  #carteTitre{position:absolute;top:16px;left:16px;z-index:600;max-width:230px;
+    font-size:13px;font-weight:800;line-height:1.35;color:var(--ink);
+    text-shadow:0 1px 2px var(--bg), 0 0 6px var(--bg), 0 0 6px var(--bg)}
+  #carteTitre:empty{display:none}
+
   #recherche{position:absolute;top:16px;left:16px;z-index:600;width:270px;
-    transition:transform .32s cubic-bezier(.4,0,.2,1),opacity .32s}
+    transition:transform .32s cubic-bezier(.4,0,.2,1),opacity .32s,top .2s}
   #recherche.off{transform:translateX(-140%);opacity:0;pointer-events:none}
   #recherche input{width:100%;padding:12px 16px;font-size:13px;color:var(--ink);
     background:var(--card);border:none;border-radius:var(--r-pill);outline:none;box-shadow:var(--shadow)}
@@ -495,6 +509,8 @@ window.__VOTE_EARLY__ = (async function(){
 
 <button id="pliCarte" aria-label="Replier les commandes">‹</button>
 
+<div id="carteTitre"></div>
+
 <div id="recherche">
   <input id="q" type="search" placeholder="Chercher un·e député·e, une ville, un code postal…" aria-label="Chercher" autocomplete="off">
   <div id="resultats" hidden></div>
@@ -919,21 +935,27 @@ const CONNECTEURS_TITRE = [
   "en faveur des ", "en faveur de ", "en matiere de ",
   "portant ", "autorisant ", "ratifiant ", "modifiant ", "instaurant ", "creant ",
 ];
-function titreSujetGras(titreBrut){
+function extraireSujet(titreBrut){
   const brut = (titreBrut||"").trim();
-  if(!brut) return "";
+  if(!brut) return null;
   const normalise = norm(brut); // fonction définie plus bas dans ce script, déjà chargée à l'exécution
   let pos = -1, longueur = 0;
   for(const c of CONNECTEURS_TITRE){
     const p = normalise.indexOf(c);
     if(p !== -1 && (pos===-1 || p < pos)){ pos = p; longueur = c.length; }
   }
-  if(pos === -1) return esc(brut);
+  if(pos === -1) return { avant:"", sujet:brut, apres:"" };
   const avant = brut.slice(0, pos + longueur);
   const reste = brut.slice(pos + longueur);
   const sujet = reste.replace(/\.\s*$/, "").replace(/\s*\([^()]*\)\s*$/, "").trim();
   const apres = reste.slice(sujet.length);
-  return esc(avant) + "<b>" + esc(sujet) + "</b>" + esc(apres);
+  return { avant, sujet, apres };
+}
+function titreSujetGras(titreBrut){
+  const p = extraireSujet(titreBrut);
+  if(!p) return "";
+  if(!p.avant) return esc(p.sujet);
+  return esc(p.avant) + "<b>" + esc(p.sujet) + "</b>" + esc(p.apres);
 }
 
 const POS_LABEL = { pour:"A voté pour", contre:"A voté contre", abstention:"S'est abstenu·e", absent:"Absent·e lors du vote" };
@@ -1071,8 +1093,34 @@ function renderMiniLegende(){
     el.innerHTML = "";
   }
 }
+// Titre du texte en vedette — fixe, affiché quel que soit le mode de
+// coloration choisi (pas seulement Vote). On ne garde que le sujet
+// (extraireSujet), sans le préambule procédural ("l'ensemble de la
+// proposition de loi visant à...") : dans un encart aussi compact, ce
+// préambule mangerait la place utile. Tronqué à taille fixe plutôt que
+// par un line-clamp CSS (voir le commentaire sur #carteTitre).
+// #recherche est repositionnée sous ce titre, hauteur mesurée plutôt
+// que décalage fixe.
+function placeCarteTitre(){
+  const t = $("#carteTitre");
+  if(voteData && !voteData.error){
+    const p = extraireSujet(voteData.titre);
+    let sujet = p ? p.sujet : "";
+    if(sujet.length > 70){
+      // Coupe au dernier espace avant la limite plutôt qu'en plein mot.
+      const coupe = sujet.slice(0, 70);
+      const dernierEspace = coupe.lastIndexOf(" ");
+      sujet = (dernierEspace > 30 ? coupe.slice(0, dernierEspace) : coupe).trim() + "…";
+    }
+    t.textContent = sujet ? sujet.charAt(0).toUpperCase() + sujet.slice(1) : "";
+  } else {
+    t.innerHTML = "";
+  }
+  $("#recherche").style.top = t.innerHTML ? (16 + t.offsetHeight + 10) + "px" : "16px";
+}
 function renderLegend(){
   renderMiniLegende();
+  placeCarteTitre();
   const hd=$("#lghd"), body=$("#lgcorps");
   if(mode==="vote"){
     if(!voteData){
@@ -1792,6 +1840,10 @@ function showScreen(name){
         carteTouched=true;
       }
     }, 30);
+    // Même souci pour la hauteur de #carteTitre : si le vote s'est chargé
+    // pendant qu'on était sur un autre écran, offsetHeight valait 0 tant
+    // que la carte était masquée — on la recalcule à chaque affichage.
+    placeCarteTitre();
   }
   if(name==="accueil" && !loadedOnce.accueil){ loadedOnce.accueil=true; renderAccueil(); }
   if(name==="historique" && !loadedOnce.historique){ loadedOnce.historique=true; loadHistorique(); }
