@@ -1767,41 +1767,33 @@ function renderDailyPopupActu(a){
    voteData seul (le résultat brut du scrutin) ne suffit jamais à produire
    ce texte automatiquement.
 
-   ⚠ Démonstration : ce texte est rattaché à un exemple pédagogique
-   (rénovation thermique des écoles), pas au scrutin réellement chargé
-   ci-dessus — parce qu'aucun contenu réel n'a encore été rédigé et relu
-   pour ce vote précis. C'est exactement l'état "en attente de rédaction"
-   que connaîtra l'app tant que l'équipe éditoriale n'est pas passée dessus.
+   Indexé par numéro de scrutin (clé = String(numero)) plutôt qu'un texte
+   unique : avant, ce panneau affichait toujours le même exemple de
+   démonstration ("rénovation thermique des écoles"), sans rapport avec
+   la loi réellement chargée au-dessus, quel que soit le texte du jour —
+   trompeur, pas juste incomplet. Tant qu'aucune entrée n'existe pour le
+   scrutin en cours, le panneau l'affiche honnêtement plutôt que de
+   remplir avec un exemple sans rapport.
    ============================================================ */
-const IMPACT_DEMO = {
-  bill: "Exemple pédagogique — proposition de loi sur la rénovation thermique des écoles",
-  reviewedBy: "rédaction Populous",
-  reviewedDate: "20 août 2026",
-  byTag: {
-    "logement:proprietaire": {
-      chiffre: "+ 60 € / an en moyenne",
-      texte: "Si le texte est adopté en l'état, les communes concernées pourraient répercuter une part du financement sur la taxe foncière — environ 60 €/an pour un bien moyen, étalés sur 5 ans.",
-    },
-    "logement:locataire": {
-      chiffre: "Aucun impact direct",
-      texte: "La hausse ciblée de taxe foncière ne concerne que les propriétaires ; aucune répercussion prévue sur les charges locatives dans le texte actuel.",
-    },
-    "enfants:oui": {
-      chiffre: "Travaux d'ici 2028",
-      texte: "Si l'école de tes enfants est concernée, un audit thermique devient obligatoire avant 2028 — les travaux, s'ils sont nécessaires, pourraient s'étaler sur plusieurs mois scolaires.",
-    },
-    "pro:independant": {
-      chiffre: "Sans effet direct",
-      texte: "Ce texte ne modifie ni le statut ni la fiscalité des indépendants — aucun changement à anticiper de ce côté.",
-    },
-  },
+const IMPACT_PAR_SCRUTIN = {
+  // "8434": { bill: "...", reviewedBy: "...", reviewedDate: "...",
+  //   byTag: { "logement:proprietaire": { chiffre: "...", texte: "..." }, ... } },
 };
 
 function openImpactPanel(){
   const profile = loadProfile();
   const title = $("#ipTitle"), lead = $("#ipLead"), cards = $("#ipCards"), shareEl = $("#ipShare");
   title.textContent = "Ce que ça change pour toi";
-  lead.textContent = IMPACT_DEMO.bill;
+
+  if(!voteData || voteData.error){
+    lead.textContent = "";
+    cards.innerHTML = `<div class="empty">Le dernier vote n'a pas pu être chargé pour l'instant.</div>`;
+    shareEl.innerHTML = "";
+    $("#impactPanel").classList.remove("hidden");
+    return;
+  }
+  lead.innerHTML = titreSujetGras(voteData.titre);
+  const entree = IMPACT_PAR_SCRUTIN[String(voteData.numero)];
 
   const tags = [];
   if(profile){
@@ -1809,10 +1801,12 @@ function openImpactPanel(){
     if(profile.pro) tags.push("pro:"+profile.pro);
     if(profile.enfants) tags.push("enfants:"+profile.enfants);
   }
-  const matches = tags.map(t=>IMPACT_DEMO.byTag[t]).filter(Boolean);
+  const matches = entree ? tags.map(t=>entree.byTag[t]).filter(Boolean) : [];
 
-  let shareText = `${IMPACT_DEMO.bill} — découvre ce que ça change pour toi sur Populous.`;
-  if(!profile || !tags.length){
+  let shareText = `${voteData.titre} — découvre ce que ça change pour toi sur Populous.`;
+  if(!entree){
+    cards.innerHTML = `<div class="empty">Rien n'a encore été documenté pour ce texte précis — ça ne veut pas dire qu'il n'a aucun effet, seulement que l'équipe éditoriale n'est pas encore passée dessus.</div>`;
+  } else if(!profile || !tags.length){
     cards.innerHTML = `<div class="empty">Complète ton profil (logement, activité, enfants) pour voir ce qui te concerne précisément.</div>`;
   } else if(!matches.length){
     cards.innerHTML = `<div class="empty">Rien d'identifié pour ta situation sur ce texte précis — ça ne veut pas dire qu'il n'a aucun effet, seulement que rien n'a encore été documenté pour ton profil.</div>`;
@@ -1822,9 +1816,9 @@ function openImpactPanel(){
         <div class="tagLbl">Estimation</div>
         <div class="chiffre">${esc(m.chiffre)}</div>
         <div class="texte">${esc(m.texte)}</div>
-        <div class="reviewed"><span class="dotok"></span>Relu par la ${esc(IMPACT_DEMO.reviewedBy)} le ${esc(IMPACT_DEMO.reviewedDate)}</div>
+        <div class="reviewed"><span class="dotok"></span>Relu par ${esc(entree.reviewedBy)} le ${esc(entree.reviewedDate)}</div>
       </div>`).join("");
-    shareText = `${IMPACT_DEMO.bill} : ${matches[0].chiffre}. ${matches[0].texte}`;
+    shareText = `${voteData.titre} : ${matches[0].chiffre}. ${matches[0].texte}`;
   }
   shareEl.innerHTML = shareRowHTML();
   wireShare(shareEl, shareText);
