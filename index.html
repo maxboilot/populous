@@ -264,7 +264,14 @@ window.__VOTE_EARLY__ = (async function(){
   .navBtn{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;
     padding:8px 2px;background:none;border:none;color:var(--dim);cursor:pointer;border-radius:16px;
     transition:background .15s,color .15s}
+  .navBtn{position:relative}
   .navBtn .ni{font-size:18px;line-height:1;filter:grayscale(1) opacity(.55)}
+  /* En dehors de .ni : le filtre grayscale du bouton inactif s'appliquerait
+     sinon aussi au point, qui doit rester visible même quand l'onglet
+     n'est pas sélectionné — c'est justement le but du badge. */
+  .navDot{position:absolute;top:4px;right:calc(50% - 19px);width:8px;height:8px;border-radius:50%;
+    background:var(--accent);box-shadow:0 0 0 2px var(--card)}
+  .navDot[hidden]{display:none}
   .navBtn .nl{font-size:9px;font-weight:700;letter-spacing:.01em}
   .navBtn.on{color:var(--accent);background:var(--accent-soft)}
   .navBtn.on .ni{filter:none}
@@ -495,6 +502,11 @@ window.__VOTE_EARLY__ = (async function(){
   <div class="sheet" id="dailyPopupSheet"></div>
 </div>
 
+<!-- ============ accueil d'un lien partagé (Boussole / Récap) ============ -->
+<div id="partageLanding" class="veil hidden">
+  <div class="sheet" id="partageLandingSheet"></div>
+</div>
+
 <!-- ============ panneau d'impact personnalisé ============ -->
 <div id="impactPanel" class="veil hidden">
   <div class="sheet">
@@ -618,7 +630,7 @@ window.__VOTE_EARLY__ = (async function(){
   <button class="navBtn" data-go="carte"><span class="ni">🗺️</span><span class="nl">Carte</span></button>
   <button class="navBtn" data-go="historique"><span class="ni">📜</span><span class="nl">Historique</span></button>
   <button class="navBtn" data-go="avenir"><span class="ni">📅</span><span class="nl">À venir</span></button>
-  <button class="navBtn" data-go="presidentielle"><span class="ni">🇫🇷</span><span class="nl">2027</span></button>
+  <button class="navBtn" data-go="presidentielle"><span class="ni">🇫🇷</span><span class="navDot" id="navDotPresi" hidden></span><span class="nl">2027</span></button>
 </nav>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
@@ -1647,7 +1659,8 @@ function obRender(){
       if(viewMode){ obStep="view"; renderAccueil(); obRender(); return; }
       $("#onboarding").classList.add("hidden");
       renderAccueil();
-      maybeShowDailyPopup();
+      if(partageEnAttente){ const a = partageEnAttente; partageEnAttente = null; a(); }
+      else maybeShowDailyPopup();
     };
     return;
   }
@@ -1861,6 +1874,7 @@ function showScreen(name){
   if(name==="historique" && !loadedOnce.historique){ loadedOnce.historique=true; loadHistorique(); }
   if(name==="avenir" && !loadedOnce.avenir){ loadedOnce.avenir=true; loadAvenir(); }
   if(name==="presidentielle" && !loadedOnce.presidentielle){ loadedOnce.presidentielle=true; renderPresidentielle(); }
+  if(name==="presidentielle") marquerPresiVu();
   if(name==="accueil") renderAccueil(); // toujours à jour (profil, vote) en revenant dessus
 }
 document.querySelectorAll("[data-go]").forEach(b=>{
@@ -1932,6 +1946,72 @@ let THEMES_LIB = null;
    externe, jamais de logo de marque.
    ------------------------------------------------------------ */
 const SITE_URL = "https://maxboilot.github.io/populous/";
+// Lien de partage avec contexte : un lien nu vers l'accueil ne raconte
+// rien à la personne qui clique. ?p=... est lu au chargement (voir plus
+// bas) pour lui montrer directement le résultat partagé, avec un appel
+// à faire le test elle-même, au lieu de la laisser sur un accueil
+// générique sans rapport avec ce qu'on vient de lui envoyer.
+function urlPartage(type, params){
+  return SITE_URL + "?" + new URLSearchParams({ p: type, ...params }).toString();
+}
+
+// Lue une fois au chargement (voir le point d'entrée) : si l'URL porte
+// les paramètres posés par urlPartage, on accueille la personne avec le
+// contexte de ce qui lui a été envoyé plutôt qu'un accueil générique.
+// Sans profil, l'action choisie est mise de côté le temps de l'onboarding
+// (obligatoire pour le reste de l'app) puis reprise automatiquement —
+// voir partageEnAttente, consommé à la fin de l'onboarding.
+let partageEnAttente = null;
+function gererLienPartage(){
+  const params = new URLSearchParams(location.search);
+  const type = params.get("p");
+  if(!type) return false;
+  const groupe = DATA.groupes.find(x=>x.s===params.get("g"));
+  history.replaceState(null, "", location.pathname); // ne pas rejouer au prochain chargement
+  if(!groupe) return false;
+
+  let contenu;
+  if(type === "boussole"){
+    const pct = params.get("pct");
+    contenu = {
+      titre: `${esc(pct)}% d'accord avec ${esc(groupe.n)}`,
+      texte: `Quelqu'un a comparé ses opinions à dix vrais votes de l'Assemblée nationale sur Populous, et est tombé le plus proche de ${esc(groupe.n)}. Fais le test à ton tour — les questions changent à chaque partie.`,
+      bouton: "Faire le test",
+      action: openBoussole,
+    };
+  } else if(type === "recap"){
+    contenu = {
+      titre: `Le bilan de vote de ${esc(groupe.n)}`,
+      texte: `Quelqu'un t'a partagé comment ${esc(groupe.n)} a réellement voté à l'Assemblée nationale, thème par thème — d'après ses votes publics, jamais une position devinée.`,
+      bouton: "Voir le bilan",
+      action: ()=>{
+        recapGroupe = groupe.s;
+        recapVisites = new Set(chargerProgresRecap()[groupe.s] || []);
+        showScreen("historique"); histTab = "recap"; afficherHistTab();
+      },
+    };
+  } else {
+    return false;
+  }
+  afficherLandingPartage(contenu);
+  return true;
+}
+function afficherLandingPartage({titre, texte, bouton, action}){
+  const profil = loadProfile();
+  $("#partageLandingSheet").innerHTML = `
+    <div class="eyebrow">Partagé sur Populous</div>
+    <h2 class="d">${titre}</h2>
+    <p class="lead">${texte}</p>
+    <div class="actions"><button class="btn primary" id="plAction" style="flex:1">${profil ? bouton : "Découvrir Populous"}</button></div>
+    <div class="actions"><button class="btn ghost" id="plClose" style="flex:1">Plus tard</button></div>`;
+  $("#partageLanding").classList.remove("hidden");
+  $("#plAction").onclick = ()=>{
+    $("#partageLanding").classList.add("hidden");
+    if(profil) action();
+    else { partageEnAttente = action; startOnboarding(); }
+  };
+  $("#plClose").onclick = ()=>{ $("#partageLanding").classList.add("hidden"); };
+}
 const ICON_IG = `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg>`;
 const ICON_TT = `<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><circle cx="8.3" cy="17" r="3.3"/><rect x="10" y="3" width="1.8" height="14.3"/><path d="M11.8 3.2c2.2.4 4 1.9 4.4 4.1l-1.8.3c-.3-1.4-1.4-2.4-2.9-2.7z"/></svg>`;
 
@@ -2197,6 +2277,32 @@ function loadSondages(){
   }
   return sondagesPromise;
 }
+
+// Point discret sur l'onglet 2027 de la nav : signale une actu ou un
+// sondage plus récent que la dernière visite, sans notification push
+// (hors de portée d'un site statique) — juste de quoi donner une raison
+// de revenir dans la journée.
+const PRESI_VU_KEY = "populous_presi_vu";
+function dernieresDatesPresi(articles, sondagesD){
+  return {
+    actu: (articles && articles[0]) ? articles[0].date : "",
+    sondage: (sondagesD && sondagesD.sondages && sondagesD.sondages[0]) ? sondagesD.sondages[0].date : "",
+  };
+}
+async function verifierNouveauContenuPresi(){
+  const [articles, sondagesD] = await Promise.all([loadActu(), loadSondages()]);
+  const actuelles = dernieresDatesPresi(articles, sondagesD);
+  let vu = {};
+  try{ vu = JSON.parse(localStorage.getItem(PRESI_VU_KEY) || "{}"); }catch(e){}
+  const nouveau = (actuelles.actu && actuelles.actu > (vu.actu||"")) || (actuelles.sondage && actuelles.sondage > (vu.sondage||""));
+  $("#navDotPresi").hidden = !nouveau;
+}
+async function marquerPresiVu(){
+  const [articles, sondagesD] = await Promise.all([loadActu(), loadSondages()]);
+  try{ localStorage.setItem(PRESI_VU_KEY, JSON.stringify(dernieresDatesPresi(articles, sondagesD))); }catch(e){}
+  $("#navDotPresi").hidden = true;
+}
+
 const INSTITUT_COLORS = {
   "Ifop": "#2B48A5", "Ipsos": "#1D7A8C", "Elabe": "#7B4591", "OpinionWay": "#C0672E",
   "Cluster17": "#2F8F5B", "Harris": "#C0453C", "Verian": "#5B8DEF",
@@ -2457,7 +2563,7 @@ function renderBoussoleResult(){
     <div class="actions"><button class="btn ghost" id="bqRestart" style="flex:1">Refaire le test</button></div>
     <div class="actions"><button class="btn ghost" id="bqClose3" style="flex:1">Fermer</button></div>`;
   $("#bqShare").innerHTML = shareRowHTML();
-  wireShare($("#bqShare"), texte);
+  wireShare($("#bqShare"), texte, urlPartage("boussole", { g: premier.s, pct: premier.pct }));
   $("#bqRestart").onclick = openBoussole;
   $("#bqClose3").onclick = closeBoussole;
 }
@@ -2572,7 +2678,8 @@ function renderRecapTrail(d){
   });
   if(termine){
     $("#recapShare").innerHTML = shareRowHTML();
-    wireShare($("#recapShare"), `Le bilan de vote réel de ${groupe.n} à l'Assemblée nationale, thème par thème, sur Populous.`);
+    wireShare($("#recapShare"), `Le bilan de vote réel de ${groupe.n} à l'Assemblée nationale, thème par thème, sur Populous.`,
+      urlPartage("recap", { g: groupe.s }));
   }
 }
 
@@ -2600,8 +2707,11 @@ function ouvrirRecapCheckpoint(d, groupe, themeCode){
 }
 
 /* ---------- point d'entrée ---------- */
-if(!loadProfile()) startOnboarding();
-else maybeShowDailyPopup();
+if(!gererLienPartage()){
+  if(!loadProfile()) startOnboarding();
+  else maybeShowDailyPopup();
+}
+verifierNouveauContenuPresi();
 let ecranInitial = "accueil";
 try{
   const s = sessionStorage.getItem(SCREEN_KEY);
