@@ -6,15 +6,22 @@ l'information généraliste, pas des comptes de réseaux sociaux — un flux
 Instagram n'est pas un format qu'on peut interroger sans clé d'API
 propriétaire, et rien ne garantit sa fiabilité éditoriale.
 
-Trois flux retenus, croisant volontairement des lignes différentes
-(service public, droite, gauche) plutôt qu'une seule rédaction :
+Cinq flux retenus, croisant volontairement des lignes différentes plutôt
+qu'une seule rédaction — du Parti communiste à la droite nationale :
+  - L'Humanité (proche PCF)
+  - Libération (gauche)
   - France Info (France Télévisions, service public)
-  - Le Figaro
-  - Libération
+  - Le Figaro (droite)
+  - Valeurs Actuelles (droite nationale)
 
 Le Monde a été écarté : son flux RSS porte une mention explicite
 réservant son usage à un cadre « strictement personnel, non
 professionnel et non collectif » — incompatible avec un site public.
+Marianne et Le Point ont aussi été écartés, pas pour une question de
+droits mais d'accès : leurs flux bloquent les requêtes qui s'identifient
+honnêtement comme Populous (User-Agent ci-dessous), et se faire passer
+pour un navigateur pour contourner ce blocage n'est pas une ligne qu'on
+franchit ici.
 
 Aucun résumé n'est généré : le titre et l'extrait sont ceux fournis par
 la rédaction elle-même dans son propre flux, seulement nettoyés des
@@ -41,9 +48,15 @@ UA = 'Populous/1.0 (+https://maxboilot.github.io/populous/)'
 MAX_ARTICLES = 40
 
 FLUX = [
+    # L'Humanité n'a pas de flux dédié à la rubrique politique — sa
+    # rubrique en propose un, mais c'est un flux de commentaires
+    # WordPress, pas d'articles. Flux général, filtré par mot-clé comme
+    # les autres.
+    ('L\'Humanité', 'https://www.humanite.fr/feed'),
+    ('Libération', 'https://www.liberation.fr/arc/outboundfeeds/rss-all/category/politique/'),
     ('France Info', 'https://www.francetvinfo.fr/politique.rss'),
     ('Le Figaro', 'https://www.lefigaro.fr/rss/figaro_politique.xml'),
-    ('Libération', 'https://www.liberation.fr/arc/outboundfeeds/rss-all/category/politique/'),
+    ('Valeurs Actuelles', 'https://www.valeursactuelles.com/feed?post_type=post&taxonomy_name=politique'),
 ]
 
 MOTS_CLES = [
