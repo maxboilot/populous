@@ -199,8 +199,8 @@ window.__VOTE_EARLY__ = (async function(){
   .btn.primary{background:var(--accent);color:#fff}
   .btn.primary:disabled{opacity:.35;cursor:not-allowed}
   .btn.ghost{background:var(--card-alt);border:none;color:var(--ink-soft)}
-  .btn.pour{background:#3F8F5B;color:#fff}
-  .btn.contre{background:#C0453C;color:#fff}
+  .btn.pour{background:#1B8A6B;color:#fff}
+  .btn.contre{background:#C4501C;color:#fff}
   .obDots{display:flex;gap:6px;margin-bottom:18px}
   .obDots span{flex:1;height:4px;background:var(--card-alt);border-radius:4px}
   .obDots span.done{background:var(--accent)}
@@ -310,6 +310,9 @@ window.__VOTE_EARLY__ = (async function(){
   .boussoleTile .bt-tt{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','SF Pro Display',system-ui,'Inter',Helvetica,Arial,sans-serif;
     font-weight:800;font-size:15px;color:#fff}
   .boussoleTile .bt-ts{font-size:11px;color:rgba(255,255,255,.75);margin-top:3px}
+  .bt-badge{font-size:8.5px;font-weight:800;letter-spacing:.03em;text-transform:uppercase;
+    background:rgba(255,255,255,.22);padding:2px 7px;border-radius:var(--r-pill);vertical-align:middle;margin-left:2px}
+  .bt-badge:empty{display:none}
   .dashGrid{max-width:640px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:12px}
   .dashTile{grid-column:span 1;padding:20px 18px;background:var(--card);border:none;border-radius:20px;
     color:var(--ink);text-align:left;cursor:pointer;box-shadow:var(--shadow);transition:transform .15s,box-shadow .15s}
@@ -422,15 +425,15 @@ window.__VOTE_EARLY__ = (async function(){
   .recapNode .dot{width:52px;height:52px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;
     justify-content:center;font-size:21px;background:var(--card-alt);box-shadow:0 0 0 4px var(--bg);
     position:relative;z-index:1;overflow:hidden}
-  .recapNode.done .dot{background:var(--accent-soft);color:#3F8F5B}
+  .recapNode.done .dot{background:var(--accent-soft);color:#1B8A6B}
   .recapNode.current .dot{box-shadow:0 0 0 4px var(--bg),0 0 0 7px var(--accent)}
   .recapNode .txt .tt{font-size:13px;font-weight:700;color:var(--ink)}
   .recapNode .txt .ts{font-size:10.5px;color:var(--dim);margin-top:2px}
 
   .recapTexteRow{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 12px;
     background:var(--card-alt);border-radius:12px;text-decoration:none;color:var(--ink);font-size:11.5px;line-height:1.4}
-  .recapTexteRow .p-pour{flex:0 0 auto;font-weight:800;color:#3F8F5B}
-  .recapTexteRow .p-contre{flex:0 0 auto;font-weight:800;color:#C0453C}
+  .recapTexteRow .p-pour{flex:0 0 auto;font-weight:800;color:#1B8A6B}
+  .recapTexteRow .p-contre{flex:0 0 auto;font-weight:800;color:#C4501C}
 
   @media (max-width:760px){
     .screen{padding:16px 16px 20px}
@@ -553,8 +556,8 @@ window.__VOTE_EARLY__ = (async function(){
   <button class="boussoleTile" id="acBoussole">
     <div class="bt-ic">🧭</div>
     <div style="flex:1;text-align:left">
-      <div class="bt-tt">La Boussole</div>
-      <div class="bt-ts">10 vrais scrutins, comparés aux votes réels de chaque groupe</div>
+      <div class="bt-tt">La Boussole <span class="bt-badge" id="acBoussoleBadge"></span></div>
+      <div class="bt-ts" id="acBoussoleSub">10 vrais scrutins, comparés aux votes réels de chaque groupe</div>
     </div>
     <div class="chev" style="color:rgba(255,255,255,.8)">›</div>
   </button>
@@ -729,8 +732,15 @@ const REPO_DATA_BASE = "https://raw.githubusercontent.com/maxboilot/populous/mai
 const FALLBACK_NUMERO = 8434;
 
 // Les couleurs du résultat restent vert/rouge — code universel du vote,
-// on ne teinte pas le sens du scrutin en bleu de marque.
-const VOTE_COLORS = { pour:"#3F8F5B", contre:"#C0453C", abstention:"#7C8CC4", absent:"#3A4470" };
+// on ne teinte pas le sens du scrutin en bleu de marque. Vert et rouge
+// décalés vers le sarcelle et le vermillon (palette inspirée d'Okabe-Ito)
+// plutôt qu'un vert/rouge saturés : ce sont les deux teintes les plus
+// confondues en cas de daltonisme rouge-vert (~8% des hommes), et les
+// écarter ainsi les rend distinguables sans perdre le code vert = pour,
+// rouge = contre. Complété par un symbole en plus de la couleur dans les
+// légendes (VOTE_GLYPHS) — la couleur seule ne suffit jamais.
+const VOTE_COLORS = { pour:"#1B8A6B", contre:"#C4501C", abstention:"#7C8CC4", absent:"#3A4470" };
+const VOTE_GLYPHS = { pour:"✓", contre:"✕", abstention:"–", absent:"○" };
 let voteData = null;   // null = en cours de chargement ; {error:true} = échec
 let voteFetchStarted = false;
 
@@ -1074,10 +1084,12 @@ GROUPES.forEach(g=>{
 function renderMiniLegende(){
   const el = $("#miniLegende");
   if(mode==="vote"){
+    // Le symbole (VOTE_GLYPHS) porte la même information que la couleur,
+    // pour rester lisible en cas de daltonisme rouge-vert.
     el.innerHTML = ["pour","contre","abstention","absent"].map(k=>`
       <div class="lg" style="cursor:default">
         <span class="sw" style="background:${VOTE_COLORS[k]}"></span>
-        <span style="flex:1;text-transform:capitalize">${k}</span>
+        <span style="flex:1;text-transform:capitalize">${VOTE_GLYPHS[k]} ${k}</span>
       </div>`).join("");
   } else if(mode==="age"){
     const stops=[]; for(let k=0;k<=10;k++) stops.push(mix(LAND, ageColor(AGE_MIN+(AGE_MAX-AGE_MIN)*k/10), 0.88));
@@ -1136,12 +1148,12 @@ function renderLegend(){
       const t = voteData.tally;
       body.innerHTML = `
         <div style="font-size:11.5px;line-height:1.4;margin-bottom:9px">${esc(voteData.titre)}</div>
-        <span class="tag" style="background:${voteData.adopte?"#3F8F5B":"#C0453C"}22;color:${voteData.adopte?"#3F8F5B":"#C0453C"};margin-bottom:9px;display:inline-block">
+        <span class="tag" style="background:${voteData.adopte?VOTE_COLORS.pour:VOTE_COLORS.contre}22;color:${voteData.adopte?VOTE_COLORS.pour:VOTE_COLORS.contre};margin-bottom:9px;display:inline-block">
           ${voteData.adopte?"Adopté":"Rejeté"}${voteData.solennel?" · vote solennel":""}
         </span>
         ${["pour","contre","abstention","absent"].map(k=>`<div class="lg">
           <span class="sw" style="background:${VOTE_COLORS[k]}"></span>
-          <span style="flex:1;text-transform:capitalize">${k}</span>
+          <span style="flex:1;text-transform:capitalize">${VOTE_GLYPHS[k]} ${k}</span>
           <span class="n">${t[k]}</span></div>`).join("")}
         <div class="m" style="font-size:9px;color:var(--dim);margin-top:9px">
           Scrutin n°${voteData.numero} · <a href="${esc(voteData.source)}" target="_blank" rel="noopener" style="color:var(--brass)">source officielle →</a></div>
@@ -1861,6 +1873,12 @@ function renderAccueil(){
   if(!profile) return;
   $("#acHello").textContent = ", " + profile.pseudo;
 
+  const dernierBoussole = chargerDernierResultatBoussole();
+  $("#acBoussoleBadge").textContent = dernierBoussole ? "" : "Nouveau";
+  $("#acBoussoleSub").textContent = dernierBoussole
+    ? `Ton résultat : ${dernierBoussole.pct}% d'accord avec ${dernierBoussole.nom} — refais le test`
+    : "10 vrais scrutins, comparés aux votes réels de chaque groupe";
+
   const card = $("#acToday");
   if(!voteData){
     card.innerHTML = `<div class="eyebrow">Populous</div><h2>Chargement du dernier vote…</h2>`;
@@ -2065,7 +2083,7 @@ async function loadHistorique(){
   }
 }
 function histRow(r){
-  const col = r.adopte ? "#3F8F5B" : "#C0453C";
+  const col = r.adopte ? VOTE_COLORS.pour : VOTE_COLORS.contre;
   // Le lien pointe vers la page officielle du scrutin. On prend la source
   // fournie par le pipeline, avec reconstruction de secours si absente.
   const url = r.source || ("https://www.assemblee-nationale.fr/dyn/17/scrutins/" + r.numero);
@@ -2268,6 +2286,19 @@ async function renderSondages(){
 const BOUSSOLE_N = 10;
 let boussolePool = null, boussoleQuestions = null, boussoleIdx = 0, boussoleAnswers = [];
 
+// Dernier résultat, mémorisé en local pour ne pas le perdre à la fermeture
+// et pour signaler sur l'accueil que le test a déjà été fait.
+const BOUSSOLE_RESULT_KEY = "populous_boussole_dernier";
+function chargerDernierResultatBoussole(){
+  try{ return JSON.parse(localStorage.getItem(BOUSSOLE_RESULT_KEY) || "null"); }
+  catch(e){ return null; }
+}
+function sauverResultatBoussole(groupe){
+  try{ localStorage.setItem(BOUSSOLE_RESULT_KEY, JSON.stringify({
+    pct: groupe.pct, nom: groupe.n, couleur: groupe.c, date: todayStr(),
+  })); }catch(e){}
+}
+
 // DATA.elus fait cohabiter deux graphies du même sigle de groupe ("EcoS" vs
 // "ECOS" déclaré dans DATA.groupes, "Dem" vs "DEM") et un sigle différent
 // pour un même groupe ("UDR" vs "UDDPLR") : sans cette normalisation, ces
@@ -2332,15 +2363,18 @@ function openBoussole(){
 function closeBoussole(){ $("#boussole").classList.add("hidden"); }
 
 function renderBoussoleIntro(){
+  const dernier = chargerDernierResultatBoussole();
   $("#boussoleSheet").innerHTML = `
-    <div class="eyebrow">Nouveau</div>
+    <div class="eyebrow">${dernier ? "Refaire le test" : "Nouveau"}</div>
     <h2 class="d">La Boussole</h2>
     <p class="lead">Dix scrutins réels, tirés au sort parmi les votes de l'année et déjà tranchés par l'Assemblée.
       Réponds Pour, Contre ou Neutre à chacun —
       on compare ensuite à la façon dont <b>chaque groupe parlementaire a vraiment voté</b> ces mêmes textes.</p>
+    ${dernier ? `<div class="privacyBox"><b>Ton dernier résultat : ${dernier.pct}% avec ${esc(dernier.nom)}.</b>
+      Les questions changent à chaque partie — refais le test pour voir si ça bouge.</div>` : `
     <div class="privacyBox"><b>Aucune thèse inventée.</b> Chaque pourcentage vient d'un vote déjà public,
-      jamais d'une position devinée ou attribuée.</div>
-    <div class="actions"><button class="btn primary" id="bqStart" style="flex:1">Commencer</button></div>
+      jamais d'une position devinée ou attribuée.</div>`}
+    <div class="actions"><button class="btn primary" id="bqStart" style="flex:1">${dernier ? "Refaire le test" : "Commencer"}</button></div>
     <div class="actions"><button class="btn ghost" id="bqLater" style="flex:1">Plus tard</button></div>`;
   $("#bqStart").onclick = async ()=>{
     $("#boussoleSheet").innerHTML = `<div style="text-align:center;padding:50px 0;color:var(--dim);font-size:12px">Chargement…</div>`;
@@ -2398,6 +2432,8 @@ function renderBoussoleResult(){
     .sort((a,b) => b.pct - a.pct);
   const premier = classement[0];
   const texte = `Je suis à ${premier.pct}% d'accord avec ${premier.n} sur ${qs.length} vrais votes de l'Assemblée nationale. Et toi ?`;
+  sauverResultatBoussole(premier);
+  renderAccueil(); // met à jour la tuile Boussole avec ce nouveau résultat
 
   $("#boussoleSheet").innerHTML = `
     <div style="text-align:center">
@@ -2443,6 +2479,21 @@ const THEME_ICONS = {
 let recapData = null, recapPromise = null;
 let recapGroupe = null, recapVisites = new Set();
 
+// Progrès mémorisé par groupe (thèmes déjà vus), pour ne pas repartir de
+// zéro à chaque visite — perdu sinon dès qu'on changeait de groupe.
+const RECAP_KEY = "populous_recap_progres";
+function chargerProgresRecap(){
+  try{ return JSON.parse(localStorage.getItem(RECAP_KEY) || "{}"); }
+  catch(e){ return {}; }
+}
+function sauverProgresRecap(){
+  try{
+    const progres = chargerProgresRecap();
+    progres[recapGroupe] = [...recapVisites];
+    localStorage.setItem(RECAP_KEY, JSON.stringify(progres));
+  }catch(e){}
+}
+
 function loadRecapData(){
   if(recapData) return Promise.resolve(recapData);
   if(!recapPromise){
@@ -2468,17 +2519,23 @@ async function renderRecap(){
 }
 
 function renderRecapChoix(d){
+  const progres = chargerProgresRecap();
   $("#recapBody").innerHTML = `
     <p class="lead" style="max-width:640px;margin:0 auto 4px;text-align:center">
       Choisis un groupe parlementaire et découvre comment il a voté à l'Assemblée.</p>
     <div class="recapChoix">
-      ${d.groupes.map(g=>`
+      ${d.groupes.map(g=>{
+        const vus = (progres[g.s]||[]).length;
+        const complet = vus > 0 && vus >= d.themes.length;
+        return `
         <button class="recapCard" data-g="${esc(g.s)}" style="background:${g.c}">
-          <span class="n">${esc(g.n)}</span><span class="s">${g.sg} sièges</span>
-        </button>`).join("")}
+          <span class="n">${esc(g.n)}</span>
+          <span class="s">${g.sg} sièges${complet ? " · ✓ vu" : vus ? ` · ${vus}/${d.themes.length}` : ""}</span>
+        </button>`;
+      }).join("")}
     </div>`;
   $("#recapBody").querySelectorAll(".recapCard").forEach(b=>{
-    b.onclick = ()=>{ recapGroupe = b.dataset.g; recapVisites = new Set(); renderRecapTrail(d); };
+    b.onclick = ()=>{ recapGroupe = b.dataset.g; recapVisites = new Set(progres[recapGroupe]||[]); renderRecapTrail(d); };
   });
 }
 
@@ -2521,6 +2578,7 @@ function renderRecapTrail(d){
 
 function ouvrirRecapCheckpoint(d, groupe, themeCode){
   recapVisites.add(themeCode);
+  sauverProgresRecap();
   const theme = d.themes.find(t=>t.code===themeCode);
   const don = d.donnees[recapGroupe][themeCode];
   $("#recapCheckpointSheet").innerHTML = `
