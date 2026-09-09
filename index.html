@@ -227,15 +227,22 @@ window.__VOTE_EARLY__ = (async function(){
   #dailyPopup .sheet{text-align:left}
   #dailyPopup .actions{flex-direction:column}
 
-  #impactPanel .card2{margin-top:16px;padding:16px 18px;background:var(--card-alt);border:none;border-radius:18px}
-  #impactPanel .card2 .tagLbl{font-size:10px;font-weight:700;color:var(--accent-hi)}
-  #impactPanel .card2 .chiffre{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','SF Pro Display',system-ui,'Inter',Helvetica,Arial,sans-serif;font-weight:800;font-size:27px;
-    letter-spacing:-.02em;margin-top:6px;color:var(--ink)}
-  #impactPanel .card2 .texte{font-size:13px;line-height:1.55;margin-top:7px;color:var(--ink-soft)}
-  #impactPanel .card2 .reviewed{margin-top:10px;font-size:10px;font-weight:600;
-    color:var(--dim);display:flex;align-items:center;gap:6px}
-  #impactPanel .card2 .reviewed .dotok{width:6px;height:6px;border-radius:50%;background:#2F9E58}
   #impactPanel .empty{margin-top:14px;font-size:12.5px;color:var(--ink-soft);line-height:1.65}
+  /* Extrait réel du texte adopté, cité tel quel — jamais une phrase
+     inventée sur son effet, voir openImpactPanel(). */
+  #impactPanel .excerptCard{margin-top:14px;padding:16px 18px;background:var(--card-alt);
+    border-left:4px solid var(--accent);border-radius:0 14px 14px 0}
+  #impactPanel .excerptCard .tagLbl{font-size:10px;font-weight:700;color:var(--accent-hi);
+    text-transform:uppercase;letter-spacing:.03em}
+  #impactPanel .excerptCard .intro{font-size:13px;color:var(--ink-soft);margin-top:5px}
+  #impactPanel .excerptCard .quote{font-size:13.5px;line-height:1.62;color:var(--ink);
+    margin-top:8px;font-style:italic}
+  #impactPanel .excerptCard .quote::before{content:"\00AB\2009"}
+  #impactPanel .excerptCard .quote::after{content:"\2009\00BB"}
+  #impactPanel .excerptCard .art{font-size:10px;color:var(--dim);margin-top:9px;font-weight:700;
+    letter-spacing:.02em;text-transform:uppercase}
+  #impactPanel .ipDisclaimer{font-size:10.5px;font-style:italic;color:var(--dim);
+    text-align:center;margin-top:18px;line-height:1.55}
 
   @media (max-width:760px){
     #recherche{width:220px}
@@ -1803,25 +1810,83 @@ function renderDailyPopupActu(a){
 }
 
 /* ============================================================
-   IMPACT PERSONNALISÉ — contenu éditorial, jamais généré à la volée.
-   Chaque entrée est écrite et validée par une personne avant publication ;
-   voteData seul (le résultat brut du scrutin) ne suffit jamais à produire
-   ce texte automatiquement.
+   IMPACT PERSONNALISÉ — jamais de phrase générée sur un effet supposé.
+   On croise les tags de profil avec le texte RÉEL du scrutin adopté
+   (data/texte_loi.json, voir construire_texte_loi.py) par simple
+   recherche de mots-clés, et on cite l'article exact tel quel. Si rien
+   ne correspond, on le dit honnêtement plutôt que d'inventer — voir
+   CLAUDE.md.
 
-   Indexé par numéro de scrutin (clé = String(numero)) plutôt qu'un texte
-   unique : avant, ce panneau affichait toujours le même exemple de
-   démonstration ("rénovation thermique des écoles"), sans rapport avec
-   la loi réellement chargée au-dessus, quel que soit le texte du jour —
-   trompeur, pas juste incomplet. Tant qu'aucune entrée n'existe pour le
-   scrutin en cours, le panneau l'affiche honnêtement plutôt que de
-   remplir avec un exemple sans rapport.
+   MOTS_CLES_PROFIL et INTRO_TAG sont fixes, écrits une seule fois,
+   indépendants de chaque loi : ils ne grossissent jamais avec le nombre
+   de scrutins ingérés, contrairement à un contenu éditorial par loi.
    ============================================================ */
-const IMPACT_PAR_SCRUTIN = {
-  // "8434": { bill: "...", reviewedBy: "...", reviewedDate: "...",
-  //   byTag: { "logement:proprietaire": { chiffre: "...", texte: "..." }, ... } },
+const MOTS_CLES_PROFIL = {
+  "logement:locataire": ["locataire", "bail locatif", "loyer", "location"],
+  "logement:proprietaire": ["propriétaire", "taxe foncière", "propriété bâtie"],
+  "logement:heberge": ["hébergement d'urgence", "logement social"],
+  "pro:salarie": ["salarié", "employeur", "contrat de travail", "code du travail"],
+  "pro:independant": ["travailleur indépendant", "auto-entrepreneur", "indépendant"],
+  "pro:retraite": ["retraite", "pension de retraite", "retraité"],
+  "pro:etudiant": ["étudiant", "enseignement supérieur", "bourse"],
+  "pro:sans_emploi": ["chômage", "demandeur d'emploi", "allocation chômage"],
+  "enfants:oui": ["enfant", "scolaire", "école", "allocations familiales", "crèche"],
+  "zone:urbain": ["zone urbaine", "agglomération"],
+  "zone:rural": ["zone rurale", "milieu rural", "agriculture", "exploitation agricole"],
+  "transport:voiture": ["automobile", "véhicule", "carburant", "permis de conduire"],
+  "transport:transports_commun": ["transports en commun", "transport public"],
+  "transport:velo": ["vélo", "cyclable", "mobilités douces"],
+  "sante:oui": ["handicap", "invalidité", "personne handicapée", "accessibilité"],
 };
+const INTRO_TAG = {
+  "logement:locataire": "Toi qui es locataire",
+  "logement:proprietaire": "Toi qui es propriétaire",
+  "logement:heberge": "Toi qui es hébergé·e",
+  "pro:salarie": "Toi qui es salarié·e",
+  "pro:independant": "Toi qui es indépendant·e",
+  "pro:retraite": "Toi qui es retraité·e",
+  "pro:etudiant": "Toi qui es étudiant·e",
+  "pro:sans_emploi": "Toi qui es sans emploi",
+  "enfants:oui": "Toi qui as des enfants scolarisés",
+  "zone:urbain": "Toi qui vis en zone urbaine",
+  "zone:rural": "Toi qui vis en zone rurale",
+  "transport:voiture": "Toi qui te déplaces surtout en voiture",
+  "transport:transports_commun": "Toi qui te déplaces surtout en transports en commun",
+  "transport:velo": "Toi qui te déplaces surtout à vélo",
+  "sante:oui": "Toi concerné·e par une situation de santé ou de handicap",
+};
+const CHAMPS_PROFIL_PERTINENTS = ["logement","pro","enfants","zone","transport","sante"];
 
-function openImpactPanel(){
+let texteLoiCache = null, texteLoiPromise = null;
+function chargerTexteLoi(){
+  if(texteLoiCache) return Promise.resolve(texteLoiCache);
+  if(!texteLoiPromise){
+    texteLoiPromise = fetch(REPO_DATA_BASE + "texte_loi.json", {cache:"no-store"})
+      .then(r=>r.json())
+      .then(d=>{ texteLoiCache = d; return d; })
+      .catch(()=>{ texteLoiPromise = null; return null; });
+  }
+  return texteLoiPromise;
+}
+
+// Un seul extrait par tag correspondant (le premier trouvé), 4 maximum
+// pour ne pas noyer le panneau.
+function extraitsPertinents(articles, profile){
+  const resultats = [];
+  for(const cle of Object.keys(INTRO_TAG)){
+    const [champ, valeur] = cle.split(":");
+    if(profile[champ] !== valeur) continue;
+    const mots = MOTS_CLES_PROFIL[cle];
+    const trouve = articles.find(a => {
+      const bas = a.texte.toLowerCase();
+      return mots.some(m => bas.includes(m));
+    });
+    if(trouve) resultats.push({ cle, article: trouve.article, texte: trouve.texte });
+  }
+  return resultats.slice(0, 4);
+}
+
+async function openImpactPanel(){
   const profile = loadProfile();
   const title = $("#ipTitle"), lead = $("#ipLead"), cards = $("#ipCards"), shareEl = $("#ipShare");
   title.textContent = "Ce que ça change pour toi";
@@ -1834,40 +1899,48 @@ function openImpactPanel(){
     return;
   }
   lead.innerHTML = titreSujetGras(voteData.titre);
-  const entree = IMPACT_PAR_SCRUTIN[String(voteData.numero)];
-
-  const tags = [];
-  if(profile){
-    if(profile.age) tags.push("age:"+profile.age);
-    if(profile.logement) tags.push("logement:"+profile.logement);
-    if(profile.pro) tags.push("pro:"+profile.pro);
-    if(profile.enfants) tags.push("enfants:"+profile.enfants);
-    if(profile.zone) tags.push("zone:"+profile.zone);
-    if(profile.transport) tags.push("transport:"+profile.transport);
-    if(profile.sante) tags.push("sante:"+profile.sante);
-  }
-  const matches = entree ? tags.map(t=>entree.byTag[t]).filter(Boolean) : [];
-
+  $("#impactPanel").classList.remove("hidden");
   let shareText = `${voteData.titre} — découvre ce que ça change pour toi sur Populous.`;
-  if(!entree){
-    cards.innerHTML = `<div class="empty">Rien n'a encore été documenté pour ce texte précis — ça ne veut pas dire qu'il n'a aucun effet, seulement que l'équipe éditoriale n'est pas encore passée dessus.</div>`;
-  } else if(!profile || !tags.length){
+
+  if(!voteData.adopte){
+    cards.innerHTML = `<div class="empty">🙂 Scrutin non adopté — pas de changement pour toi !</div>`;
+    shareEl.innerHTML = shareRowHTML();
+    wireShare(shareEl, shareText);
+    return;
+  }
+  if(!profile || !CHAMPS_PROFIL_PERTINENTS.some(c=>profile[c])){
     cards.innerHTML = `<div class="empty">Complète ton profil pour voir ce qui te concerne précisément.</div>`;
-  } else if(!matches.length){
-    cards.innerHTML = `<div class="empty">Rien d'identifié pour ta situation sur ce texte précis — ça ne veut pas dire qu'il n'a aucun effet, seulement que rien n'a encore été documenté pour ton profil.</div>`;
+    shareEl.innerHTML = shareRowHTML();
+    wireShare(shareEl, shareText);
+    return;
+  }
+
+  cards.innerHTML = `<div class="empty">Recherche dans le texte adopté…</div>`;
+  const donnees = await chargerTexteLoi();
+
+  if(!donnees || donnees.numero !== voteData.numero || donnees.statut !== "publie"){
+    cards.innerHTML = `<div class="empty">Le texte adopté n'est pas encore publié pour ce scrutin — reviens un peu plus tard.</div>`;
+    shareEl.innerHTML = shareRowHTML();
+    wireShare(shareEl, shareText);
+    return;
+  }
+
+  const extraits = extraitsPertinents(donnees.articles, profile);
+  if(!extraits.length){
+    cards.innerHTML = `<div class="empty">Rien, dans le texte publié, ne correspond directement à ta situation.</div>`;
   } else {
-    cards.innerHTML = matches.map(m => `
-      <div class="card2">
-        <div class="tagLbl">Estimation</div>
-        <div class="chiffre">${esc(m.chiffre)}</div>
-        <div class="texte">${esc(m.texte)}</div>
-        <div class="reviewed"><span class="dotok"></span>Relu par ${esc(entree.reviewedBy)} le ${esc(entree.reviewedDate)}</div>
-      </div>`).join("");
-    shareText = `${voteData.titre} : ${matches[0].chiffre}. ${matches[0].texte}`;
+    cards.innerHTML = extraits.map(e => `
+      <div class="excerptCard">
+        <div class="tagLbl">${esc(INTRO_TAG[e.cle])}</div>
+        <div class="intro">Voici ce que dit maintenant le texte adopté :</div>
+        <div class="quote">${esc(e.texte)}</div>
+        <div class="art">${esc(e.article || "")}</div>
+      </div>`).join("")
+      + `<p class="ipDisclaimer">Ceci est une interprétation de tes données personnelles croisées avec les données du scrutin en question.</p>`;
+    shareText = `${voteData.titre} : ${extraits[0].texte}`;
   }
   shareEl.innerHTML = shareRowHTML();
   wireShare(shareEl, shareText);
-  $("#impactPanel").classList.remove("hidden");
 }
 $("#ipClose").onclick = ()=>{ $("#impactPanel").classList.add("hidden"); };
 
