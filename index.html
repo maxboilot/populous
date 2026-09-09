@@ -1949,7 +1949,7 @@ function renderAccueil(){
       ? `Comme ${voteData.tally[pos]} autres député·es sur 577.`
       : `${voteData.tally.pour} pour · ${voteData.tally.contre} contre · ${voteData.tally.abstention} abstentions.`;
     card.innerHTML = `
-      <div class="eyebrow">${voteData.isToday ? "Hier à l'Assemblée" : "Dernier vote connu · " + dateFR(voteData.date)}</div>
+      <div class="eyebrow">${voteData.isToday ? "Hier à l'Assemblée" : "Dernier scrutin connu · " + dateFR(voteData.date)}</div>
       <h2 class="d">${headline}</h2>
       <p>${esc(tallyLine)} <i>${titreSujetGras(voteData.titre)}</i></p>
       <div class="actions">
