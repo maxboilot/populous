@@ -42,8 +42,7 @@ window.__VOTE_EARLY__ = (async function(){
     --shadow-lg:0 4px 10px rgba(16,25,63,.06), 0 20px 48px rgba(16,25,63,.14);
     --r-card:20px; --r-input:14px; --r-pill:999px;
     /* alias conservés pour compat avec le JS existant */
-    --sky:var(--bg); --land:#EEF2FC; --stone:var(--ink); --panel:var(--card);
-    --brass:var(--accent); --brassHi:var(--accent-hi);
+    --land:#EEF2FC; --brass:var(--accent); --brassHi:var(--accent-hi);
   }
   *{box-sizing:border-box}
   html,body{margin:0;height:100%;overflow:visible;background:var(--bg);
@@ -253,22 +252,20 @@ window.__VOTE_EARLY__ = (async function(){
   }
 
   /* ============ coquille de navigation ============ */
-  #screen-carte{position:absolute;inset:0}
   .screen{position:absolute;inset:0 0 78px 0;overflow-y:auto;padding:20px 20px 24px;background:var(--bg)}
   .screen.hidden{display:none}
-  #screen-carte{padding:0;overflow:hidden;bottom:0}
+  #screen-carte{position:absolute;inset:0;padding:0;overflow:hidden}
 
   #navbar{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:800;
     display:flex;
     /* Filigrane tricolore, du bleu au rouge en dégradé progressif façon
        drapeau français, pour que la barre ressorte davantage du fond. */
-    background:linear-gradient(90deg,#E4EAFB 0%,#FFFFFF 50%,#FBE7E7 100%);
+    background:linear-gradient(90deg,#BBD0F7 0%,#FFFFFF 50%,#F6C2C2 100%);
     border-top:none;border-radius:24px;
     padding:8px 6px;box-shadow:var(--shadow-lg);max-width:520px;margin:0 auto}
-  .navBtn{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;
+  .navBtn{position:relative;flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;
     padding:8px 2px;background:none;border:none;color:var(--dim);cursor:pointer;border-radius:16px;
     transition:background .15s,color .15s}
-  .navBtn{position:relative}
   .navBtn .ni{font-size:18px;line-height:1;filter:grayscale(1) opacity(.55)}
   /* En dehors de .ni : le filtre grayscale du bouton inactif s'appliquerait
      sinon aussi au point, qui doit rester visible même quand l'onglet
