@@ -2717,8 +2717,8 @@ async function renderRecap(){
 function renderRecapChoix(d){
   const progres = chargerProgresRecap();
   $("#recapBody").innerHTML = `
-    <p class="lead" style="max-width:640px;margin:0 auto 4px;text-align:center">
-      Choisis un groupe parlementaire et découvre quels scrutins a-t-il adopté ou non.</p>
+    <p class="lead" style="max-width:640px;margin:0 auto 4px;text-align:center;font-style:italic">
+      Choisis un groupe parlementaire et découvre quels scrutins a-t-il adopté ou non</p>
     <div class="recapChoix">
       ${d.groupes.map(g=>{
         const vus = (progres[g.s]||[]).length;
