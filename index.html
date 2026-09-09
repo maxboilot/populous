@@ -71,12 +71,23 @@ window.__VOTE_EARLY__ = (async function(){
      ligne sous la carte dans certains rendus. Hauteur naturelle du coup,
      d'où le repositionnement de #recherche calculé en JS plutôt qu'un
      décalage fixe. */
-  #carteTitre{position:absolute;top:16px;left:16px;z-index:600;max-width:230px;
+  #carteTitre{position:absolute;top:40px;left:16px;z-index:600;max-width:230px;
     font-size:13px;font-weight:800;line-height:1.35;color:var(--ink);
     text-shadow:0 1px 2px var(--bg), 0 0 6px var(--bg), 0 0 6px var(--bg)}
   #carteTitre:empty{display:none}
 
-  #recherche{position:absolute;top:16px;left:16px;z-index:600;width:270px;
+  /* Titre permanent de l'écran, au-dessus de tout (y compris la fiche
+     député qui glisse par-dessus) : pas de cadre, même halo que
+     #carteTitre, pour rester lisible sur la carte quel que soit le
+     contexte. Les repères habituels (titre de loi, recherche, mini
+     légende) sont décalés de 16px à 40px pour ne pas passer dessous. */
+  #carteScreenTitre{position:absolute;top:10px;left:8px;right:8px;z-index:900;
+    text-align:center;font-weight:800;font-style:italic;font-size:13px;line-height:1.2;
+    color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+    text-shadow:0 1px 2px var(--bg), 0 0 6px var(--bg), 0 0 6px var(--bg);
+    pointer-events:none}
+
+  #recherche{position:absolute;top:40px;left:16px;z-index:600;width:270px;
     transition:transform .32s cubic-bezier(.4,0,.2,1),opacity .32s,top .2s}
   #recherche.off{transform:translateX(-140%);opacity:0;pointer-events:none}
   #recherche input{width:100%;padding:12px 16px;font-size:13px;color:var(--ink);
@@ -231,7 +242,7 @@ window.__VOTE_EARLY__ = (async function(){
     #legende,#languette{display:none}
     #miniLegende:not(:empty){
       display:flex; flex-direction:column; align-items:flex-end; gap:4px;
-      position:absolute; top:16px; right:16px; z-index:600; pointer-events:none;
+      position:absolute; top:40px; right:16px; z-index:600; pointer-events:none;
     }
     #miniLegende .lg{padding:0; background:none; box-shadow:none; gap:6px; cursor:default}
     #miniLegende .lg span:not(.sw){
@@ -529,6 +540,7 @@ window.__VOTE_EARLY__ = (async function(){
 </div>
 
 <div id="screen-carte" class="screen hidden">
+<div id="carteScreenTitre">Cartographie du dernier scrutin par député(e)s</div>
 <div id="map" tabindex="0" aria-label="Carte des 577 circonscriptions législatives"></div>
 <div class="presiWatermark" aria-hidden="true">Populous</div>
 
@@ -1158,7 +1170,7 @@ function placeCarteTitre(){
   } else {
     t.innerHTML = "";
   }
-  $("#recherche").style.top = t.innerHTML ? (16 + t.offsetHeight + 10) + "px" : "16px";
+  $("#recherche").style.top = t.innerHTML ? (40 + t.offsetHeight + 10) + "px" : "40px";
 }
 function renderLegend(){
   renderMiniLegende();
