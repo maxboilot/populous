@@ -1347,6 +1347,9 @@ const AGE_BRACKETS = ["18–24","25–34","35–49","50–64","65 et +"];
 const LOGEMENT = [{k:"locataire",l:"Locataire"},{k:"proprietaire",l:"Propriétaire"},{k:"heberge",l:"Hébergé·e"}];
 const PRO = [{k:"salarie",l:"Salarié·e"},{k:"independant",l:"Indépendant·e"},{k:"retraite",l:"Retraité·e"},{k:"etudiant",l:"Étudiant·e"},{k:"sans_emploi",l:"Sans emploi"}];
 const ENFANTS = [{k:"oui",l:"Oui"},{k:"non",l:"Non"}];
+const ZONE = [{k:"urbain",l:"Zone urbaine"},{k:"rural",l:"Zone rurale"}];
+const TRANSPORT = [{k:"voiture",l:"Voiture"},{k:"transports_commun",l:"Transports en commun"},{k:"velo",l:"Vélo"}];
+const SANTE = [{k:"oui",l:"Oui"},{k:"non",l:"Non"}];
 
 /* ------------------------------------------------------------
    Avatar : photo (compressée localement), personnage historique,
@@ -1403,7 +1406,7 @@ function renderTopAvatar(){
 }
 $("#topAvatar").onclick = openProfile;
 
-let draft = { pseudo:"", age:null, circoKey:null, circoLabel:"", logement:null, pro:null, enfants:null, avatar:{type:"none"} };
+let draft = { pseudo:"", age:null, circoKey:null, circoLabel:"", logement:null, pro:null, enfants:null, zone:null, transport:null, sante:null, avatar:{type:"none"} };
 let obStep = 0;
 let viewMode = false; // true = édition d'un seul champ depuis la vue profil, pas d'enchaînement d'étapes
 
@@ -1416,6 +1419,9 @@ function obRender(){
       LOGEMENT.find(o=>o.k===draft.logement)?.l,
       PRO.find(o=>o.k===draft.pro)?.l,
       draft.enfants ? "Enfants scolarisés : " + ENFANTS.find(o=>o.k===draft.enfants).l : null,
+      ZONE.find(o=>o.k===draft.zone)?.l,
+      TRANSPORT.find(o=>o.k===draft.transport)?.l,
+      draft.sante ? "Santé ou handicap : " + SANTE.find(o=>o.k===draft.sante).l : null,
     ].filter(Boolean);
     const row = (label, value, step, thumb) => `
       <button type="button" class="profRow" data-step="${step}">
@@ -1655,6 +1661,11 @@ function obRender(){
       <div class="field"><label>Logement</label><div class="chips" id="obLog">${chipsGroup(LOGEMENT,"logement")}</div></div>
       <div class="field"><label>Situation professionnelle</label><div class="chips" id="obPro">${chipsGroup(PRO,"pro")}</div></div>
       <div class="field"><label>Enfants scolarisés</label><div class="chips" id="obEnf">${chipsGroup(ENFANTS,"enfants")}</div></div>
+      <div class="field"><label>Zone d'habitation</label><div class="chips" id="obZone">${chipsGroup(ZONE,"zone")}</div></div>
+      <div class="field"><label>Transport principal</label><div class="chips" id="obTransport">${chipsGroup(TRANSPORT,"transport")}</div></div>
+      <div class="field"><label>Situation de santé ou de handicap</label>
+        <p style="font-size:11px;color:var(--dim);margin:0 0 6px">Sensible : à ne remplir que si tu le souhaites.</p>
+        <div class="chips" id="obSante">${chipsGroup(SANTE,"sante")}</div></div>
       <div class="actions">
         <button class="btn ghost" id="obBack">${viewMode ? "Annuler" : "Retour"}</button>
         <button class="btn primary" id="obFinish">${viewMode ? "Enregistrer" : "Terminer"}</button>
@@ -1666,6 +1677,7 @@ function obRender(){
       };
     });
     wire("#obLog","logement"); wire("#obPro","pro"); wire("#obEnf","enfants");
+    wire("#obZone","zone"); wire("#obTransport","transport"); wire("#obSante","sante");
     $("#obBack").onclick = ()=>{
       if(viewMode){ draft = {...loadProfile()}; obStep="view"; } else { obStep=3; }
       obRender();
@@ -1814,9 +1826,13 @@ function openImpactPanel(){
 
   const tags = [];
   if(profile){
+    if(profile.age) tags.push("age:"+profile.age);
     if(profile.logement) tags.push("logement:"+profile.logement);
     if(profile.pro) tags.push("pro:"+profile.pro);
     if(profile.enfants) tags.push("enfants:"+profile.enfants);
+    if(profile.zone) tags.push("zone:"+profile.zone);
+    if(profile.transport) tags.push("transport:"+profile.transport);
+    if(profile.sante) tags.push("sante:"+profile.sante);
   }
   const matches = entree ? tags.map(t=>entree.byTag[t]).filter(Boolean) : [];
 
@@ -1824,7 +1840,7 @@ function openImpactPanel(){
   if(!entree){
     cards.innerHTML = `<div class="empty">Rien n'a encore été documenté pour ce texte précis — ça ne veut pas dire qu'il n'a aucun effet, seulement que l'équipe éditoriale n'est pas encore passée dessus.</div>`;
   } else if(!profile || !tags.length){
-    cards.innerHTML = `<div class="empty">Complète ton profil (logement, activité, enfants) pour voir ce qui te concerne précisément.</div>`;
+    cards.innerHTML = `<div class="empty">Complète ton profil pour voir ce qui te concerne précisément.</div>`;
   } else if(!matches.length){
     cards.innerHTML = `<div class="empty">Rien d'identifié pour ta situation sur ce texte précis — ça ne veut pas dire qu'il n'a aucun effet, seulement que rien n'a encore été documenté pour ton profil.</div>`;
   } else {
