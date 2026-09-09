@@ -1166,7 +1166,7 @@ function placeCarteTitre(){
       const dernierEspace = coupe.lastIndexOf(" ");
       sujet = (dernierEspace > 30 ? coupe.slice(0, dernierEspace) : coupe).trim() + "…";
     }
-    t.textContent = sujet ? "✅ " + sujet.charAt(0).toUpperCase() + sujet.slice(1) : "";
+    t.textContent = sujet ? (voteData.adopte ? "✅ " : "❌ ") + sujet.charAt(0).toUpperCase() + sujet.slice(1) : "";
   } else {
     t.innerHTML = "";
   }
