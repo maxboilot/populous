@@ -72,7 +72,7 @@ window.__VOTE_EARLY__ = (async function(){
      d'où le repositionnement de #recherche calculé en JS plutôt qu'un
      décalage fixe. */
   #carteTitre{position:absolute;top:40px;left:16px;z-index:600;max-width:230px;
-    font-size:13px;font-weight:800;line-height:1.35;color:var(--ink);
+    font-size:13px;font-weight:400;line-height:1.35;color:var(--ink);
     text-shadow:0 1px 2px var(--bg), 0 0 6px var(--bg), 0 0 6px var(--bg)}
   #carteTitre:empty{display:none}
 
@@ -1166,7 +1166,7 @@ function placeCarteTitre(){
       const dernierEspace = coupe.lastIndexOf(" ");
       sujet = (dernierEspace > 30 ? coupe.slice(0, dernierEspace) : coupe).trim() + "…";
     }
-    t.textContent = sujet ? sujet.charAt(0).toUpperCase() + sujet.slice(1) : "";
+    t.textContent = sujet ? "✅ " + sujet.charAt(0).toUpperCase() + sujet.slice(1) : "";
   } else {
     t.innerHTML = "";
   }
