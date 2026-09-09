@@ -227,6 +227,28 @@ window.__VOTE_EARLY__ = (async function(){
   #dailyPopup .sheet{text-align:left}
   #dailyPopup .actions{flex-direction:column}
 
+  /* Pop-up de bienvenue — une seule fois, juste après la création du
+     profil (voir INTRO_KEY). Sheet en pleine largeur, sans le padding
+     par défaut, pour que les slides puissent défiler bord à bord. */
+  #introPopup .sheet{padding:0;overflow:hidden;position:relative}
+  #introPopup .introSkip{position:absolute;top:16px;right:20px;z-index:2;
+    font-size:12px;font-weight:700;color:var(--dim);background:none;border:none;cursor:pointer}
+  #introPopup .introTrack{display:flex;transition:transform .38s cubic-bezier(.4,0,.2,1);touch-action:pan-y}
+  #introPopup .introSlide{flex:0 0 100%;box-sizing:border-box;padding:44px 26px 8px;text-align:center;
+    display:flex;flex-direction:column;align-items:center;min-height:340px}
+  #introPopup .introSlide.welcome{background:linear-gradient(180deg,var(--accent-soft) 0%,var(--card) 65%)}
+  #introPopup .introSlide .ic{font-size:52px;margin-bottom:20px}
+  #introPopup .introSlide h2{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','SF Pro Display',system-ui,'Inter',Helvetica,Arial,sans-serif;
+    font-weight:800;font-size:22px;margin:0 0 12px;letter-spacing:-.02em;color:var(--ink)}
+  #introPopup .introSlide.welcome h2{font-size:25px}
+  #introPopup .introSlide p{font-size:13.5px;line-height:1.6;color:var(--ink-soft);margin:0;max-width:300px}
+  #introPopup .introDots{display:flex;justify-content:center;gap:7px;padding:16px 0 4px}
+  #introPopup .introDots .dot{width:7px;height:7px;border-radius:50%;background:var(--card-alt);
+    border:1.5px solid var(--dim);cursor:pointer;padding:0;transition:background .2s,border-color .2s,transform .2s}
+  #introPopup .introDots .dot.on{background:var(--accent);border-color:var(--accent);transform:scale(1.25)}
+  #introPopup .introFoot{padding:6px 24px 26px}
+  #introPopup .introFoot .btn[hidden]{display:none}
+
   #impactPanel .empty{margin-top:14px;font-size:12.5px;color:var(--ink-soft);line-height:1.65}
   /* Extrait réel du texte adopté, cité tel quel — jamais une phrase
      inventée sur son effet, voir openImpactPanel(). */
@@ -547,6 +569,16 @@ window.__VOTE_EARLY__ = (async function(){
 <!-- ============ popup quotidien ============ -->
 <div id="dailyPopup" class="veil hidden">
   <div class="sheet" id="dailyPopupSheet"></div>
+</div>
+
+<!-- ============ pop-up de bienvenue, une seule fois après la création du profil ============ -->
+<div id="introPopup" class="veil hidden">
+  <div class="sheet" id="introSheet">
+    <button class="introSkip" id="introSkip" type="button">Passer</button>
+    <div class="introTrack" id="introTrack"></div>
+    <div class="introDots" id="introDots"></div>
+    <div class="introFoot"><button class="btn primary" id="introClose" hidden>Découvrir Populous</button></div>
+  </div>
 </div>
 
 <!-- ============ accueil d'un lien partagé (Boussole / Récap) ============ -->
@@ -1729,6 +1761,7 @@ function obRender(){
       $("#onboarding").classList.add("hidden");
       renderAccueil();
       if(partageEnAttente){ const a = partageEnAttente; partageEnAttente = null; a(); }
+      else if(!localStorage.getItem(INTRO_KEY)) renderIntroPopup();
       else maybeShowDailyPopup();
     };
     return;
@@ -1762,6 +1795,80 @@ function openProfile(){
    frais. Si ni l'un ni l'autre n'est disponible, pas de popup du tout.
    ============================================================ */
 function todayStr(){ return new Date().toISOString().slice(0,10); }
+
+/* ============================================================
+   POP-UP DE BIENVENUE — une seule fois, juste après la création du
+   profil (voir #obFinish). Remplace ce qui s'affichait jusqu'ici à cet
+   instant précis (l'un des deux pop-ups quotidiens ci-dessous) ; à
+   partir du lendemain, le pop-up quotidien habituel reprend normalement
+   — on marque donc aussi POPUP_KEY pour ne pas l'afficher le jour même.
+   ============================================================ */
+const INTRO_KEY = "populous_intro_vu";
+const INTRO_SLIDES = [
+  { cls:"welcome", ic:"🇫🇷", titre:"Bienvenue sur Populous",
+    texte:"Chaque jour, l'Assemblée nationale vote des lois qui te concernent — mais suivre ce qui s'y passe réellement est presque impossible. Populous existe pour te montrer les faits, sans filtre : les vrais votes de ton député, sourcés et vérifiables, pour que tu te fasses ta propre opinion." },
+  { ic:"🗺️", titre:"Le vote de ton député",
+    texte:"Sur la Carte, découvre comment ton député a voté sur le dernier texte — et compare-le à sa circonscription, son groupe politique, son âge ou son parcours avant le mandat." },
+  { ic:"🧭", titre:"Teste tes propres opinions",
+    texte:"La Boussole te compare à dix vrais scrutins pour voir quel groupe partage le plus tes positions. Le Récap te montre, thème par thème, comment chaque groupe a réellement voté — jamais une position devinée." },
+  { ic:"📜", titre:"Toute l'actualité politique",
+    texte:"Retrouve l'historique de toutes les lois votées, l'agenda à venir de l'Assemblée, et toute la présidentielle 2027 : actu, sondages et calendrier officiel." },
+];
+let introIndex = 0, introDragStartX = 0, introDragDx = 0, introDragging = false;
+
+function introMaj(){
+  $("#introTrack").style.transform = `translateX(${-introIndex*100}%)`;
+  $("#introDots").querySelectorAll(".dot").forEach((d,k)=>d.classList.toggle("on", k===introIndex));
+  $("#introClose").hidden = introIndex !== INTRO_SLIDES.length-1;
+}
+function introPointerMove(e){
+  if(!introDragging) return;
+  introDragDx = e.clientX - introDragStartX;
+  $("#introTrack").style.transform = `translateX(calc(${-introIndex*100}% + ${introDragDx}px))`;
+}
+function introPointerUp(){
+  if(!introDragging) return;
+  introDragging = false;
+  $("#introTrack").style.transition = "";
+  if(Math.abs(introDragDx) > 60){
+    introIndex = Math.max(0, Math.min(INTRO_SLIDES.length-1, introIndex + (introDragDx<0?1:-1)));
+  }
+  introDragDx = 0;
+  introMaj();
+}
+function fermerIntroPopup(){
+  $("#introPopup").classList.add("hidden");
+  window.removeEventListener("pointermove", introPointerMove);
+  window.removeEventListener("pointerup", introPointerUp);
+  try{
+    localStorage.setItem(INTRO_KEY, "1");
+    localStorage.setItem(POPUP_KEY, todayStr());
+  }catch(e){}
+}
+function renderIntroPopup(){
+  $("#introTrack").innerHTML = INTRO_SLIDES.map(s => `
+    <div class="introSlide ${s.cls||""}">
+      <div class="ic">${s.ic}</div>
+      <h2>${esc(s.titre)}</h2>
+      <p>${esc(s.texte)}</p>
+    </div>`).join("");
+  $("#introDots").innerHTML = INTRO_SLIDES.map((_,k)=>
+    `<button class="dot" type="button" data-i="${k}" aria-label="Étape ${k+1}"></button>`).join("");
+  $("#introDots").querySelectorAll(".dot").forEach(d=>{
+    d.onclick = ()=>{ introIndex = +d.dataset.i; introMaj(); };
+  });
+  introIndex = 0;
+  introMaj();
+  $("#introTrack").onpointerdown = e=>{
+    introDragging = true; introDragStartX = e.clientX; introDragDx = 0;
+    $("#introTrack").style.transition = "none";
+  };
+  window.addEventListener("pointermove", introPointerMove);
+  window.addEventListener("pointerup", introPointerUp);
+  $("#introClose").onclick = fermerIntroPopup;
+  $("#introSkip").onclick = fermerIntroPopup;
+  $("#introPopup").classList.remove("hidden");
+}
 
 async function maybeShowDailyPopup(){
   const profile = loadProfile();
