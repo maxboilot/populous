@@ -384,6 +384,18 @@ window.__VOTE_EARLY__ = (async function(){
   .chev{color:var(--dim);font-size:18px}
 
   .dashList{max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+  /* Décomptes du Calendrier 2027 — dates officielles seulement, voir
+     CALENDRIER_ECHEANCES. Rien d'autre dans cet onglet tant qu'une
+     candidature n'est pas officiellement déclarée. */
+  .calCard{padding:16px 18px;background:var(--card);border:none;border-radius:18px;
+    box-shadow:var(--shadow);display:flex;align-items:center;gap:14px}
+  .calCard .ic{font-size:24px;flex:0 0 auto}
+  .calCard .txt{flex:1;min-width:0}
+  .calCard .lbl{font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.02em}
+  .calCard .date{font-size:12.5px;color:var(--ink-soft);margin-top:2px}
+  .calCard .compte{text-align:right;flex:0 0 auto;font-family:ui-monospace,'SF Mono',SFMono-Regular,Menlo,Consolas,monospace}
+  .calCard .compte .j{font-weight:800;font-size:22px;color:var(--ink);line-height:1;letter-spacing:-.01em}
+  .calCard .compte .jlbl{font-size:9px;color:var(--dim);font-weight:700;text-transform:uppercase;margin-top:3px}
   .dRow{padding:16px 18px;background:var(--card);border:none;border-radius:18px;cursor:pointer;box-shadow:var(--shadow)}
   .dRow .k{font-size:10px;font-weight:700;color:var(--dim);
     display:flex;justify-content:space-between;gap:8px}
@@ -662,6 +674,7 @@ window.__VOTE_EARLY__ = (async function(){
   <div class="presiTabs zTop" id="presiTabs">
     <button class="presiTab on" data-ptab="actu">Actu</button>
     <button class="presiTab" data-ptab="sondage">Sondages</button>
+    <button class="presiTab" data-ptab="calendrier">Calendrier</button>
   </div>
   <div id="sondFiltre" class="sondFiltre zTop"></div>
   <div id="presiBody" class="dashList zTop"></div>
@@ -1972,6 +1985,7 @@ function showScreen(name){
   });
   document.querySelectorAll(".navBtn").forEach(b=>b.classList.toggle("on", b.dataset.go===name));
   renderTopAvatar(); // masqué sur la carte (chrome déjà dense), à jour partout ailleurs
+  if(name!=="presidentielle") clearInterval(calendrierMinuteur);
 
   if(name==="carte"){
     // Leaflet calcule sa taille à l'initialisation ; si le conteneur était
@@ -2393,14 +2407,56 @@ function renderPresidentielle(){
     b.onclick = ()=>{ presiTab = b.dataset.ptab; renderPresidentielle(); };
   });
   if(presiTab !== "sondage") $("#sondFiltre").innerHTML = "";
+  if(presiTab !== "calendrier") clearInterval(calendrierMinuteur);
   if(presiTab === "actu") renderActu();
   else if(presiTab === "sondage") renderSondages();
+  else if(presiTab === "calendrier") renderCalendrier();
+}
+
+/* ------------------------------------------------------------
+   Calendrier 2027 — trois échéances officielles seulement (dates
+   arrêtées en Conseil des ministres du 1er juillet 2026, source
+   gouvernementale). Décompte réel en jours + heures, recalculé chaque
+   minute. Volontairement rien d'autre ici (pas de liste de candidats)
+   tant qu'une candidature n'est pas officiellement déclarée.
+   ------------------------------------------------------------ */
+const CALENDRIER_ECHEANCES = [
+  { ic:"🖋️", lbl:"Dépôt des parrainages", date:"Vendredi 12 mars 2027, 18h", cible:"2027-03-12T18:00:00+01:00" },
+  { ic:"🗳️", lbl:"Premier tour", date:"Dimanche 18 avril 2027", cible:"2027-04-18T08:00:00+02:00" },
+  { ic:"🗳️", lbl:"Second tour", date:"Dimanche 2 mai 2027", cible:"2027-05-02T08:00:00+02:00" },
+];
+let calendrierMinuteur = null;
+function majDecomptesCalendrier(){
+  CALENDRIER_ECHEANCES.forEach((e,i)=>{
+    const cel = $("#calCompte"+i);
+    if(!cel) return;
+    const diff = new Date(e.cible).getTime() - Date.now();
+    if(diff <= 0){ cel.innerHTML = `<div class="j">Passé</div>`; return; }
+    const jours = Math.floor(diff/86400000);
+    const heures = Math.floor((diff%86400000)/3600000);
+    cel.innerHTML = `<div class="j">${jours} j ${String(heures).padStart(2,"0")} h</div>`;
+  });
+}
+function renderCalendrier(){
+  clearInterval(calendrierMinuteur);
+  $("#presiBody").innerHTML = CALENDRIER_ECHEANCES.map((e,i)=>`
+    <div class="calCard">
+      <div class="ic">${e.ic}</div>
+      <div class="txt">
+        <div class="lbl">${esc(e.lbl)}</div>
+        <div class="date">${esc(e.date)}</div>
+      </div>
+      <div class="compte" id="calCompte${i}"></div>
+    </div>`).join("");
+  majDecomptesCalendrier();
+  calendrierMinuteur = setInterval(majDecomptesCalendrier, 60000);
 }
 
 async function renderActu(){
   const el = $("#presiBody");
   el.innerHTML = `<div style="color:var(--dim);font-size:12px;text-align:center;margin-top:40px">Chargement…</div>`;
   const articles = await loadActu();
+  if(presiTab !== "actu") return; // l'utilisateur a changé d'onglet entre-temps
   if(!articles){
     el.innerHTML = `<div class="emptyState"><div class="ic">🇫🇷</div>
       <h3>Fil indisponible</h3>
@@ -2480,6 +2536,7 @@ async function renderSondages(){
   el.innerHTML = `<div style="color:var(--dim);font-size:12px;text-align:center;margin-top:40px">Chargement…</div>`;
   $("#sondFiltre").innerHTML = "";
   const d = await loadSondages();
+  if(presiTab !== "sondage") return; // l'utilisateur a changé d'onglet entre-temps
   if(!d || !d.sondages){
     el.innerHTML = `<div class="emptyState"><div class="ic">📊</div>
       <h3>Sondages indisponibles</h3>
