@@ -1,1176 +1,3911 @@
 [
   {
-    "numero": 3055,
-    "date": "2025-10-15",
-    "titre": "Transposition des accords nationaux interprofessionnels en faveur de l'emploi des salariés expérimentés et relatif à l'évolution du dialogue social",
+    "numero": null,
+    "dossier": "DLR5L17N51726",
+    "date": "2025-09-25",
+    "titre": "Condamner la politique de ségrégation imposée aux femmes afghanes par le régime des Talibans et prendre des mesures appropriées pour mettre un terme aux atteintes à leurs droits fondamentaux",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/3055",
+    "statut": "adopte",
     "themes": [
-      "travail"
-    ]
+      "justice",
+      "social"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/condamner_politique_segregation_femmes_afghanes_talibans",
+    "type": "main_levee"
   },
   {
     "numero": 3056,
     "date": "2025-10-15",
     "titre": "De simplification du droit de l'urbanisme et du logement",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/3056",
     "themes": [
       "logement"
-    ]
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": 3055,
+    "date": "2025-10-15",
+    "titre": "Transposition des accords nationaux interprofessionnels en faveur de l'emploi des salariés expérimentés et relatif à l'évolution du dialogue social",
+    "adopte": true,
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/3055",
+    "themes": [
+      "travail"
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52655",
+    "date": "2025-10-15",
+    "titre": "Proposition de loi organique visant à reporter le renouvellement général des membres du congrès et des assemblées de province de la Nouvelle-Calédonie pour permettre la mise en oeuvre de l'accord du 12 juillet 2025",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "institutions"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N52655",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N51477",
+    "date": "2025-10-20",
+    "titre": "Proposition de loi constitutionnelle visant à garantir la prééminence des lois de la République",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "institutions"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N51477",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52601",
+    "date": "2025-10-20",
+    "titre": "Proposition de loi relative aux formations en santé",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "sante"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N52601",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52379",
+    "date": "2025-10-20",
+    "titre": "Proposition de loi visant à permettre à une commune d’être intégrée, pour une partie de son territoire, à un parc national et, pour une autre partie, à un parc naturel régional (PNR)",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "institutions"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N52379",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L16N49280",
+    "date": "2025-10-22",
+    "titre": "Proposition de loi portant création d'un statut de l'élu local",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [
+      "institutions"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L16N49280",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52655",
+    "date": "2025-10-22",
+    "titre": "Proposition de loi organique visant à reporter le renouvellement général des membres du congrès et des assemblées de province de la Nouvelle-Calédonie pour permettre la mise en oeuvre de l'accord du 12 juillet 2025",
+    "adopte": false,
+    "statut": "rejete",
+    "themes": [
+      "institutions"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N52655",
+    "type": "main_levee"
   },
   {
     "numero": 3061,
     "date": "2025-10-23",
     "titre": "La définition pénale du viol et des agressions sexuelles",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/3061",
     "themes": [
       "justice",
       "securite"
-    ]
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N51973",
+    "date": "2025-10-23",
+    "titre": "Garantir un cadre fiscal stable, juste et lisible pour nos micro-entrepreneurs et nos petites entreprises",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [
+      "economie"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/cadre_stable_petites_entreprises_17e",
+    "type": "main_levee"
   },
   {
     "numero": 3182,
     "date": "2025-10-28",
     "titre": "Reporter le renouvellement général des membres du congrès et des assemblées de province de la Nouvelle-Calédonie afin de permettre la poursuite de la discussion en vue d'un accord consensuel sur l'avenir institutionnel de la Nouvelle-Calédonie",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/3182",
     "themes": [
       "institutions"
-    ]
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52600",
+    "date": "2025-10-28",
+    "titre": "Projet de loi de lutte contre la vie chère dans les outre-mer",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "institutions"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N52600",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N51349",
+    "date": "2025-10-29",
+    "titre": "Modifier la définition pénale du viol et des agressions sexuelles",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "justice",
+      "securite"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/definition_penale_viol_agressions_sexuelles_17e",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N51434",
+    "date": "2025-10-29",
+    "titre": "Contre les fraudes aux moyens de paiement scripturaux",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/contre_fraudes_moyens_paiement_scripturaux_17e",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52549",
+    "date": "2025-10-29",
+    "titre": "Projet de loi autorisant l’approbation de la convention entre le Gouvernement de la République française et le Gouvernement de la République de Finlande pour l’élimination de la double imposition en matière d’impôts sur le revenu et la prévention de l’évasion et de la fraude fiscales et l’approbation de l’avenant à la convention entre le Gouvernement de la République française et le Gouvernement du Royaume de Suède en vue d’éviter les doubles impositions et de prévenir l’évasion fiscale en matière d’impôts sur le revenu et sur la fortune",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "economie",
+      "defense"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N52549",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52354",
+    "date": "2025-10-29",
+    "titre": "Projet de loi autorisant l’approbation de l’accord sous forme d’échange de notes verbales entre le Gouvernement de la République française et le Gouvernement de la République de Moldavie relatif à l'échange de permis de conduire",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "transports"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N52354",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52226",
+    "date": "2025-10-29",
+    "titre": "Approbation de l’accord de coopération dans le domaine de la défense entre le Gouvernement de la République française et le Gouvernement de la République de Macédoine du Nord",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [
+      "defense"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/accord_coop_def_macnord",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52655",
+    "date": "2025-10-29",
+    "titre": "Proposition de loi organique visant à reporter le renouvellement général des membres du congrès et des assemblées de province de la Nouvelle-Calédonie pour permettre la mise en oeuvre de l'accord du 12 juillet 2025",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "institutions"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N52655",
+    "type": "main_levee"
   },
   {
     "numero": 3273,
     "date": "2025-10-30",
     "titre": "Rendre systématique l'information du consommateur sur l'origine des denrées alimentaires par le moyen de l'étiquetage",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/3273",
     "themes": [
       "economie",
       "agriculture"
-    ]
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52699",
+    "date": "2025-11-05",
+    "titre": "Proposition de loi pour la sécurisation juridique des structures économiques face aux risques de blanchiment",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "economie"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N52699",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52725",
+    "date": "2025-11-06",
+    "titre": "Proposition de loi visant à créer un répertoire national des personnes inéligibles",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N52725",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52833",
+    "date": "2025-11-06",
+    "titre": "Proposition de loi visant à libérer l'accès aux soins dentaires",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "sante"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N52833",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52037",
+    "date": "2025-11-06",
+    "titre": "Élever Alfred Dreyfus au grade de général de brigade",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/dreyfus_general_bridage_17e",
+    "type": "main_levee"
   },
   {
     "numero": 3936,
     "date": "2025-11-18",
     "titre": "De finances de fin de gestion pour 2025",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/3936",
     "themes": [
       "economie"
-    ]
+    ],
+    "type": "scrutin"
   },
   {
-    "numero": 4287,
-    "date": "2025-11-27",
-    "titre": "L’établissement de l’égalité d’accès au service public postal en outre-mer",
+    "numero": null,
+    "dossier": "DLR5L17N52985",
+    "date": "2025-11-18",
+    "titre": "Projet de loi relatif à la lutte contre les fraudes sociales et fiscales",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4287",
+    "statut": "adopte",
     "themes": [
-      "institutions"
-    ]
+      "economie"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N52985",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53135",
+    "date": "2025-11-18",
+    "titre": "Projet de loi de finances de fin de gestion pour 2025",
+    "adopte": false,
+    "statut": "rejete",
+    "themes": [
+      "economie"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/projet_de_loi_de_finances_de_fin_de_gestion_pour_2025",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53135",
+    "date": "2025-11-25",
+    "titre": "Projet de loi de finances de fin de gestion pour 2025",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [
+      "economie"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/projet_de_loi_de_finances_de_fin_de_gestion_pour_2025",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52922",
+    "date": "2025-11-26",
+    "titre": "Projet de loi de financement de la sécurité sociale pour 2026",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [
+      "securite",
+      "economie"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/PLFSS_2026",
+    "type": "main_levee"
   },
   {
     "numero": 4438,
     "date": "2025-11-27",
     "titre": "La nationalisation d'ArcelorMittal France afin de préserver la souveraineté industrielle de la France",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4438",
     "themes": [
       "economie"
-    ]
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": 4287,
+    "date": "2025-11-27",
+    "titre": "L’établissement de l’égalité d’accès au service public postal en outre-mer",
+    "adopte": true,
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4287",
+    "themes": [
+      "institutions"
+    ],
+    "type": "scrutin"
   },
   {
     "numero": 4442,
     "date": "2025-12-02",
     "titre": "De fin de gestion pour 2025",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4442",
-    "themes": []
+    "themes": [],
+    "type": "scrutin"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52716",
+    "date": "2025-12-03",
+    "titre": "La coopération européenne dans la lutte contre la cyberpédocriminalité pour la défense des droits des enfants à l’ère numérique",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "social",
+      "numerique",
+      "defense"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/cooperation-europeenne-lutte-contre-cyberpedocriminalite-defense-droits-enfants-ere-numerique",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53135",
+    "date": "2025-12-03",
+    "titre": "Projet de loi de finances de fin de gestion pour 2025",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "economie"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/projet_de_loi_de_finances_de_fin_de_gestion_pour_2025",
+    "type": "main_levee"
   },
   {
     "numero": 4691,
     "date": "2025-12-08",
     "titre": "Création d'un statut de l'élu local",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4691",
     "themes": [
       "institutions"
-    ]
+    ],
+    "type": "scrutin"
   },
   {
     "numero": 4696,
     "date": "2025-12-09",
     "titre": "De financement de la sécurité sociale pour 2026",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4696",
     "themes": [
       "securite",
       "economie"
-    ]
+    ],
+    "type": "scrutin"
   },
   {
     "numero": 4706,
     "date": "2025-12-10",
     "titre": "Modifier le II de l’article 43 de la loi organique n° 2004-192 du 27 février 2004 portant statut d’autonomie de la Polynésie française",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4706",
     "themes": [
       "institutions"
-    ]
+    ],
+    "type": "scrutin"
   },
   {
-    "numero": 4707,
-    "date": "2025-12-11",
-    "titre": "La protection sociale complémentaire des agents publics territoriaux",
+    "numero": null,
+    "dossier": "DLR5L17N51352",
+    "date": "2025-12-10",
+    "titre": "Ratification de plusieurs conventions-cadres relatives aux bureaux à contrôles nationaux juxtaposés, aux contrôles en cours de route et aux gares communes ou d’échange",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4707",
+    "statut": "adopte_modifie",
     "themes": [
-      "social"
-    ]
+      "transports",
+      "institutions"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/ratification_plusieurs_conventions_cadres_bureaux_controles",
+    "type": "main_levee"
   },
   {
-    "numero": 4714,
-    "date": "2025-12-11",
-    "titre": "Assurer le droit de chaque enfant à être assisté d'un avocat dans le cadre d'une mesure d'assistance éducative et de protection de l'enfance",
+    "numero": null,
+    "dossier": "DLR5L17N53010",
+    "date": "2025-12-10",
+    "titre": "Réaffirmer l’importance de la décarbonation du transport routier",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4714",
+    "statut": "adopte",
     "themes": [
-      "justice",
-      "social"
-    ]
+      "transports"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/reaffirmer_importance_decarbonation_transport_routier",
+    "type": "main_levee"
   },
   {
-    "numero": 4723,
-    "date": "2025-12-11",
-    "titre": "Protéger les mineurs isolés et à lutter contre le sans-abrisme",
+    "numero": null,
+    "dossier": "DLR5L17N51567",
+    "date": "2025-12-10",
+    "titre": "Se prononcer contre les « méga-camions » et construire une politique de report modal vers le ferroviaire au niveau européen",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4723",
+    "statut": "adopte",
     "themes": [
-      "social"
-    ]
+      "transports"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/contre_megacamions_report_modal",
+    "type": "main_levee"
   },
   {
-    "numero": 4745,
-    "date": "2025-12-11",
-    "titre": "Retrouver la confiance et l'équilibre dans les rapports locatifs",
+    "numero": null,
+    "dossier": "DLR5L17N52561",
+    "date": "2025-12-10",
+    "titre": "Projet de loi autorisant l’approbation de l’accord entre le Gouvernement de la République française et le Gouvernement du Monténégro relatif à la coopération dans le domaine de la défense",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4745",
+    "statut": "adopte",
     "themes": [
-      "logement"
-    ]
-  },
-  {
-    "numero": 4754,
-    "date": "2025-12-11",
-    "titre": "Garantir un renouvellement automatique des titres de séjour de longue durée",
-    "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4754",
-    "themes": [
-      "immigration"
-    ]
+      "defense"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N52561",
+    "type": "main_levee"
   },
   {
     "numero": 4755,
     "date": "2025-12-11",
     "titre": "Prendre des mesures d'urgence contre la vie chère en outre-mer dans le secteur des services",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4755",
     "themes": [
       "institutions"
-    ]
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": 4754,
+    "date": "2025-12-11",
+    "titre": "Garantir un renouvellement automatique des titres de séjour de longue durée",
+    "adopte": true,
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4754",
+    "themes": [
+      "immigration"
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": 4745,
+    "date": "2025-12-11",
+    "titre": "Retrouver la confiance et l'équilibre dans les rapports locatifs",
+    "adopte": true,
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4745",
+    "themes": [
+      "logement"
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": 4723,
+    "date": "2025-12-11",
+    "titre": "Protéger les mineurs isolés et à lutter contre le sans-abrisme",
+    "adopte": true,
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4723",
+    "themes": [
+      "social"
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": 4714,
+    "date": "2025-12-11",
+    "titre": "Assurer le droit de chaque enfant à être assisté d'un avocat dans le cadre d'une mesure d'assistance éducative et de protection de l'enfance",
+    "adopte": true,
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4714",
+    "themes": [
+      "justice",
+      "social"
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": 4707,
+    "date": "2025-12-11",
+    "titre": "La protection sociale complémentaire des agents publics territoriaux",
+    "adopte": true,
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4707",
+    "themes": [
+      "social"
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52922",
+    "date": "2025-12-12",
+    "titre": "Projet de loi de financement de la sécurité sociale pour 2026",
+    "adopte": false,
+    "statut": "rejete",
+    "themes": [
+      "securite",
+      "economie"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/PLFSS_2026",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52428",
+    "date": "2025-12-15",
+    "titre": "Projet de loi de finances pour 2026",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [
+      "economie"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/PLF_2026",
+    "type": "main_levee"
   },
   {
     "numero": 4758,
     "date": "2025-12-16",
     "titre": "De financement de la sécurité sociale pour 2026",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4758",
     "themes": [
       "securite",
       "economie"
-    ]
+    ],
+    "type": "scrutin"
   },
   {
-    "numero": 4836,
-    "date": "2025-12-18",
-    "titre": "Réparation des personnes condamnées pour homosexualité entre 1945 et 1982",
+    "numero": null,
+    "dossier": "DLR5L17N51597",
+    "date": "2025-12-16",
+    "titre": "Proposition de loi visant à reconnaître le rôle des acteurs assurant des soins de troisième recours en psychiatrie",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4836",
+    "statut": "adopte",
     "themes": [
-      "justice",
-      "social"
-    ]
+      "sante"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N51597",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53018",
+    "date": "2025-12-17",
+    "titre": "Proposition de loi visant à assouplir les contraintes à l'usage de dispositifs de lecture automatisée de plaques d'immatriculation et à sécuriser l'action des forces de l'ordre",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53018",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52900",
+    "date": "2025-12-17",
+    "titre": "Proposition de loi relative à la sécurisation des marchés publics numériques",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "economie",
+      "numerique"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N52900",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N51676",
+    "date": "2025-12-17",
+    "titre": "Reconnaissance d'un droit fondamental à l'eau et à l'assainissement de qualité au sein de l'Union européenne",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "environnement",
+      "defense"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/reconnaissance_droit_fondamental_eau_assainissement_qualite_ue",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52099",
+    "date": "2025-12-17",
+    "titre": "Approbation de la résolution n° F/BG/2023/04 relative aux amendements à l’accord portant création du Fonds africain de développement",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/creations_fonds_africain_dev",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N51519",
+    "date": "2025-12-17",
+    "titre": "Projet de loi autorisant l’approbation de l’accord entre le Gouvernement de la République française et le Gouvernement de la République de Chypre sur la coopération lors des opérations d’évacuation à partir de la région du Moyen-Orient via le territoire de la République de Chypre dans le cadre d’une situation de crise",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N51519",
+    "type": "main_levee"
   },
   {
     "numero": 4839,
     "date": "2025-12-18",
     "titre": "Reconnaître le préjudice subi par les personnes condamnées sur le fondement de la législation pénalisant l'avortement, et par toutes les femmes, avant la loi n° 75-17 du 17 janvier 1975 relative à l'interruption volontaire de grossesse",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4839",
     "themes": [
       "justice",
       "social"
-    ]
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": 4836,
+    "date": "2025-12-18",
+    "titre": "Réparation des personnes condamnées pour homosexualité entre 1945 et 1982",
+    "adopte": true,
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4836",
+    "themes": [
+      "justice",
+      "social"
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52460",
+    "date": "2025-12-18",
+    "titre": "Proposition de loi visant à protéger les jeunes de l'exposition excessive et précoce aux écrans et des méfaits des réseaux sociaux",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "numerique"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N52460",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N51329",
+    "date": "2025-12-18",
+    "titre": "Simplifier la sortie de l’indivision successorale",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/simplifier_sortie_indivision_successorale",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52305",
+    "date": "2025-12-22",
+    "titre": "Garantir l’attribution post 2030 de la bande de fréquences inférieure à 700 mégahertz à la télévision numérique terrestre",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "numerique"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/attribution_tnt_frequence",
+    "type": "main_levee"
   },
   {
     "numero": 4947,
     "date": "2025-12-23",
     "titre": "Spéciale prévue par l'article 45 de la loi organique du 1er août 2001 relative aux lois de finances",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4947",
     "themes": [
       "economie"
-    ]
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53386",
+    "date": "2025-12-23",
+    "titre": "Projet de loi spéciale prévue par l'article 45 de la loi organique n°2001-692 du 1er août 2001 relative aux lois de finances",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [
+      "economie"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/loi_speciale_2026",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52728",
+    "date": "2026-01-05",
+    "titre": "Empêcher la ratification de l’accord entre l'Union européenne et le Mercosur en demandant à l’État français la saisine de la Cour de justice de l’Union européenne pour cause d’incompatibilité de l’accord avec les traités européens",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "justice",
+      "defense"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/empecher_ratification_accord_UE_Mercosur_saisine_CJUE_incompatibilite_accord_traites_europeens",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N51863",
+    "date": "2026-01-07",
+    "titre": "Proposition de loi visant à revaloriser les métiers du travail social",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "travail"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N51863",
+    "type": "main_levee"
   },
   {
     "numero": 4962,
     "date": "2026-01-12",
     "titre": "Améliorer l'accès au logement des travailleurs des services publics",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4962",
     "themes": [
       "travail",
       "logement"
-    ]
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52803",
+    "date": "2026-01-12",
+    "titre": "Garantir l'intégrité de l'information sur le changement climatique face à la désinformation climatique et aux ingérences étrangères",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "environnement"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/garantir_integrite_information_changement_climatique_desinformation_climatique_ingerences_etrangeres",
+    "type": "main_levee"
   },
   {
     "numero": 4963,
     "date": "2026-01-13",
     "titre": "L'organisation des jeux Olympiques et Paralympiques de 2030",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4963",
     "themes": [
       "culture"
-    ]
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53159",
+    "date": "2026-01-14",
+    "titre": "Proposition de loi visant à améliorer les moyens d'action de l'Agence de gestion et de recouvrement des avoirs saisis et confisqués et à faciliter l'exercice des missions d'expert judiciaire",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "justice"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53159",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L16N49138",
+    "date": "2026-01-14",
+    "titre": "Confidentialité des consultations des juristes d’entreprise",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/confidentialite_consultations_juristes_entreprise",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53259",
+    "date": "2026-01-20",
+    "titre": "L’approbation de l’accord entre le Gouvernement de la République française et l’Agence spatiale européenne concernant les installations de l’Agence spatiale européenne en France",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/approbation_accord_Gouvernement_Agence_spatiale_europeenne_installations_France",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53292",
+    "date": "2026-01-20",
+    "titre": "Proposition de loi visant à conforter l’habitat, l’offre de logements et la construction",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "logement"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53292",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52354",
+    "date": "2026-01-20",
+    "titre": "Projet de loi autorisant l’approbation de l’accord sous forme d’échange de notes verbales entre le Gouvernement de la République française et le Gouvernement de la République de Moldavie relatif à l'échange de permis de conduire",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "transports"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N52354",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N50794",
+    "date": "2026-01-20",
+    "titre": "Projet de loi autorisant l’approbation de l’accord entre le Gouvernement de la République française et l’Observatoire du réseau d’antennes d’un kilomètre carré (SKAO) relatif à l’adhésion de la France à l’Observatoire",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N50794",
+    "type": "main_levee"
   },
   {
     "numero": 5192,
     "date": "2026-01-26",
     "titre": "Protéger les mineurs des risques auxquels les expose l'utilisation des réseaux sociaux",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5192",
     "themes": [
       "social",
       "numerique"
-    ]
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53187",
+    "date": "2026-01-26",
+    "titre": "Protéger les mineurs des risques auxquels les expose l’utilisation des réseaux sociaux",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "social",
+      "numerique"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/proteger_mineurs_reseaux_sociaux_17e",
+    "type": "main_levee"
   },
   {
     "numero": 5222,
     "date": "2026-01-27",
     "titre": "Exercer l’accès à l’emploi, à pérenniser et à étendre progressivement l’expérimentation « territoires zéro chômeur de longue durée » comme solution de retour à l’emploi pour les personnes privées durablement d’emploi",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5222",
-    "themes": []
+    "themes": [],
+    "type": "scrutin"
   },
   {
-    "numero": 5226,
-    "date": "2026-01-28",
-    "titre": "La création d'une commission d'enquête sur le traitement judiciaire des violences sexuelles incestueuses parentales commises contre les enfants et la situation des parents protecteurs, notamment des mères protectrices",
+    "numero": null,
+    "dossier": "DLR5L17N52428",
+    "date": "2026-01-27",
+    "titre": "Projet de loi de finances pour 2026",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5226",
+    "statut": "adopte",
     "themes": [
-      "justice",
-      "securite",
-      "social"
-    ]
-  },
-  {
-    "numero": 5240,
-    "date": "2026-01-28",
-    "titre": "Moderniser la gestion du patrimoine immobilier de l'État",
-    "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5240",
-    "themes": [
-      "logement",
-      "culture"
-    ]
-  },
-  {
-    "numero": 5243,
-    "date": "2026-01-28",
-    "titre": "Mettre fin au devoir conjugal",
-    "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5243",
-    "themes": [
-      "social"
-    ]
+      "economie"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/PLF_2026",
+    "type": "main_levee"
   },
   {
     "numero": 5244,
     "date": "2026-01-28",
     "titre": "Réparer les préjudices causés par la transplantation de mineurs de La Réunion en France hexagonale de 1962 à 1984",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5244",
     "themes": [
       "social"
-    ]
+    ],
+    "type": "scrutin"
   },
   {
-    "numero": 5254,
-    "date": "2026-01-29",
-    "titre": "Garantir la gratuité des parkings des hôpitaux publics pour les patients, les visiteurs et les personnels sur leur temps de travail",
+    "numero": 5243,
+    "date": "2026-01-28",
+    "titre": "Mettre fin au devoir conjugal",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5254",
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5243",
     "themes": [
-      "sante",
-      "travail"
-    ]
+      "social"
+    ],
+    "type": "scrutin"
   },
   {
-    "numero": 5266,
-    "date": "2026-01-29",
-    "titre": "Reconnaître les victimes de l'exposition aux essais nucléaires français et à améliorer leur indemnisation",
+    "numero": 5240,
+    "date": "2026-01-28",
+    "titre": "Moderniser la gestion du patrimoine immobilier de l'État",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5266",
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5240",
+    "themes": [
+      "logement",
+      "culture"
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": 5226,
+    "date": "2026-01-28",
+    "titre": "La création d'une commission d'enquête sur le traitement judiciaire des violences sexuelles incestueuses parentales commises contre les enfants et la situation des parents protecteurs, notamment des mères protectrices",
+    "adopte": true,
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5226",
     "themes": [
       "justice",
-      "environnement"
-    ]
+      "securite",
+      "social"
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N51670",
+    "date": "2026-01-28",
+    "titre": "Fin de vie",
+    "adopte": false,
+    "statut": "rejete",
+    "themes": [
+      "sante"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/fin_de_vie_17e",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52635",
+    "date": "2026-01-28",
+    "titre": "Projet de loi relatif à la restitution de biens culturels provenant d’États qui, du fait d’une appropriation illicite, en ont été privés",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "culture"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N52635",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N51672",
+    "date": "2026-01-28",
+    "titre": "Soins palliatifs et d’accompagnement",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [
+      "sante"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/soins_palliatifs_et_accompagnement_17e",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53388",
+    "date": "2026-01-28",
+    "titre": "Projet de loi autorisant l’approbation de l’accord entre le Gouvernement de la République française et le Gouvernement de la République du Kazakhstan sur la réadmission des personnes",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53388",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53235",
+    "date": "2026-01-28",
+    "titre": "Projet de loi autorisant l’approbation de l’accord entre le Gouvernement de la République française et la Communauté des Caraïbes relatif à l’adhésion au protocole sur les privilèges et immunités de la Communauté des Caraïbes du 14 janvier 1985",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53235",
+    "type": "main_levee"
   },
   {
     "numero": 5283,
     "date": "2026-01-29",
     "titre": "L'intérêt des enfants",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5283",
     "themes": [
       "social"
-    ]
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": 5266,
+    "date": "2026-01-29",
+    "titre": "Reconnaître les victimes de l'exposition aux essais nucléaires français et à améliorer leur indemnisation",
+    "adopte": true,
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5266",
+    "themes": [
+      "justice",
+      "environnement"
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": 5254,
+    "date": "2026-01-29",
+    "titre": "Garantir la gratuité des parkings des hôpitaux publics pour les patients, les visiteurs et les personnels sur leur temps de travail",
+    "adopte": true,
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5254",
+    "themes": [
+      "sante",
+      "travail"
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53276",
+    "date": "2026-01-29",
+    "titre": "Reconnaître les victimes de l'exposition aux essais nucléaires français et améliorer leur indemnisation",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "justice",
+      "environnement"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/victimes_exposition_essais_nucleaires_ameliorer_indemnisation_17e",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52744",
+    "date": "2026-01-29",
+    "titre": "Garantir la gratuité des parkings des hôpitaux publics pour les patients, les visiteurs et les personnels sur leur temps de travail",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "sante",
+      "travail"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/gratuite_parkings_hopitaux_17e",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53304",
+    "date": "2026-01-29",
+    "titre": "Proposition de loi visant à lever dans les territoires d’outre-mer l’interdiction de recherche, d’exploration et d’exploitation des hydrocarbures",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53304",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52428",
+    "date": "2026-01-29",
+    "titre": "Projet de loi de finances pour 2026",
+    "adopte": false,
+    "statut": "rejete",
+    "themes": [
+      "economie"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/PLF_2026",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53315",
+    "date": "2026-01-29",
+    "titre": "Proposition de loi visant à instaurer une procédure simplifiée de recouvrement des créances commerciales incontestées",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "justice",
+      "economie"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53315",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52428",
+    "date": "2026-02-02",
+    "titre": "Projet de loi de finances pour 2026",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "economie"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/PLF_2026",
+    "type": "main_levee"
   },
   {
     "numero": 5296,
     "date": "2026-02-03",
     "titre": "L'organisation des jeux Olympiques et Paralympiques de 2030",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5296",
     "themes": [
       "culture"
-    ]
+    ],
+    "type": "scrutin"
   },
   {
     "numero": 5354,
     "date": "2026-02-05",
     "titre": "Relancer les investissements dans le secteur de l’hydroélectricité pour contribuer à la transition énergétique",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5354",
     "themes": [
       "environnement"
-    ]
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53456",
+    "date": "2026-02-05",
+    "titre": "Proposition de loi visant à faciliter la création et le fonctionnement des communes nouvelles",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "institutions"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53456",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52100",
+    "date": "2026-02-05",
+    "titre": "Projet de loi relatif à l’organisation des jeux Olympiques et Paralympiques de 2030",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "culture"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N52100",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53198",
+    "date": "2026-02-10",
+    "titre": "Proposition de loi visant à prohiber l'achat de services sexuels virtuels personnalisés et à lutter contre le proxénétisme en ligne",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53198",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53358",
+    "date": "2026-02-10",
+    "titre": "Proposition de loi relative à la lutte contre les installations illicites des gens du voyage",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53358",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53096",
+    "date": "2026-02-10",
+    "titre": "Projet de loi relatif à l’extension des prérogatives, des moyens, de l’organisation et du contrôle des polices municipales et des gardes champêtres",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "securite"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53096",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52116",
+    "date": "2026-02-11",
+    "titre": "Proposition de loi visant à un meilleur encadrement de l'enseignement supérieur privé à but lucratif pour mieux protéger les étudiants",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "education"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N52116",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N51983",
+    "date": "2026-02-11",
+    "titre": "Proposition de loi visant à mieux reconnaître et protéger la liberté académique des enseignants-chercheurs, des enseignants et des chercheurs",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "education"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N51983",
+    "type": "main_levee"
   },
   {
     "numero": 5358,
     "date": "2026-02-12",
     "titre": "Améliorant la protection des personnes ciblées par les réseaux de criminalité organisée",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5358",
     "themes": [
       "justice"
-    ]
+    ],
+    "type": "scrutin"
   },
   {
-    "numero": 5415,
-    "date": "2026-02-16",
-    "titre": "Facilitant l'exercice en France des médecins diplômés au Royaume-Uni avant le Brexit",
+    "numero": null,
+    "dossier": "DLR5L17N50604",
+    "date": "2026-02-12",
+    "titre": "Création d’un centre hospitalier universitaire en Corse",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5415",
+    "statut": "adopte_modifie",
     "themes": [
-      "sante"
-    ]
+      "sante",
+      "education",
+      "institutions"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/creation_chu_corse",
+    "type": "main_levee"
   },
   {
-    "numero": 5427,
-    "date": "2026-02-16",
-    "titre": "Améliorer la protection des commerçants grâce à l'usage d'outils numériques",
+    "numero": null,
+    "dossier": "DLR5L17N53225",
+    "date": "2026-02-12",
+    "titre": "Proposition de loi organique portant renforcement de la chaîne pénale criminelle et diverses dispositions de modernisation du corps judiciaire",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5427",
+    "statut": "adopte",
     "themes": [
-      "economie",
-      "numerique"
-    ]
-  },
-  {
-    "numero": 5432,
-    "date": "2026-02-16",
-    "titre": "L'extension de la possibilité de préemption de baux commerciaux dans les mairies aux sociétés civiles immobilières",
-    "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5432",
-    "themes": [
-      "economie",
-      "logement"
-    ]
+      "justice"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53225",
+    "type": "main_levee"
   },
   {
     "numero": 5435,
     "date": "2026-02-16",
     "titre": "D'expérimentation pour l'instauration d'un enseignement d'éducation à l'alimentation obligatoire à l'école",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5435",
     "themes": [
       "education",
       "agriculture"
-    ]
+    ],
+    "type": "scrutin"
   },
   {
-    "numero": 5728,
-    "date": "2026-02-25",
-    "titre": "Garantir l'égal accès de tous à l'accompagnement et aux soins palliatifs",
+    "numero": 5432,
+    "date": "2026-02-16",
+    "titre": "L'extension de la possibilité de préemption de baux commerciaux dans les mairies aux sociétés civiles immobilières",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5728",
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5432",
+    "themes": [
+      "economie",
+      "logement"
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": 5427,
+    "date": "2026-02-16",
+    "titre": "Améliorer la protection des commerçants grâce à l'usage d'outils numériques",
+    "adopte": true,
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5427",
+    "themes": [
+      "economie",
+      "numerique"
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": 5415,
+    "date": "2026-02-16",
+    "titre": "Facilitant l'exercice en France des médecins diplômés au Royaume-Uni avant le Brexit",
+    "adopte": true,
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5415",
     "themes": [
       "sante"
-    ]
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53201",
+    "date": "2026-02-16",
+    "titre": "Renforcer le pilotage et la cohérence de la politique nationale du sport",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "culture"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/renforcer_pilotage_coherence_politique_nationale_sport",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53171",
+    "date": "2026-02-16",
+    "titre": "Expérimentation pour l’instauration d’un enseignement d’éducation à l’alimentation à l’école",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "education"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/enseignement_education_alimentation_17e",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53095",
+    "date": "2026-02-18",
+    "titre": "Projet de loi autorisant l’approbation de la convention d’extradition entre le Gouvernement de la République française et le Gouvernement de la République de Colombie",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53095",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53730",
+    "date": "2026-02-18",
+    "titre": "Projet de loi autorisant l'approbation de la Convention entre le Gouvernement de la République française et le Gouvernement de la République italienne relative à l’entretien courant et à l’exploitation de la section située en territoire français de la lign",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "defense"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53730",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52099",
+    "date": "2026-02-18",
+    "titre": "Approbation de la résolution n° F/BG/2023/04 relative aux amendements à l’accord portant création du Fonds africain de développement",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/creations_fonds_africain_dev",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53140",
+    "date": "2026-02-18",
+    "titre": "Projet de loi portant diverses dispositions d'adaptation au droit de l’Union européenne en matière économique, financière, environnementale, énergétique, d’information, de transport, de santé, d’agriculture et de pêche",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "sante",
+      "economie",
+      "environnement",
+      "agriculture",
+      "transports"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53140",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53706",
+    "date": "2026-02-19",
+    "titre": "Projet de loi autorisant l’approbation de la convention entre le Gouvernement de la République française et le Gouvernement de la République de Chypre pour l’élimination de la double imposition en matière d’impôts sur le revenu et la prévention de l’évasion et de la fraude fiscales",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "economie",
+      "defense"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53706",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52230",
+    "date": "2026-02-19",
+    "titre": "Proposition de loi visant à garantir le droit de visite des parlementaires et des bâtonniers dans les lieux de privation de liberté",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "institutions"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N52230",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53690",
+    "date": "2026-02-19",
+    "titre": "Proposition de loi visant à permettre le remboursement des honoraires d'expert-comptable aux candidats",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "economie",
+      "institutions"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53690",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53099",
+    "date": "2026-02-19",
+    "titre": "Proposition de loi visant à réduire les retards de paiement afin de lutter contre les défaillances d'entreprises",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "economie"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53099",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52984",
+    "date": "2026-02-24",
+    "titre": "Projet de loi constitutionnelle relatif à la Nouvelle-Calédonie",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "institutions"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N52984",
+    "type": "main_levee"
   },
   {
     "numero": 5729,
     "date": "2026-02-25",
     "titre": "Droit à l'aide à mourir",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5729",
     "themes": [
       "sante"
-    ]
+    ],
+    "type": "scrutin"
   },
   {
-    "numero": 5829,
-    "date": "2026-03-26",
-    "titre": "Missions des professionnels de santé, vétérinaires et psychothérapeutes des services d'incendie et de secours",
+    "numero": 5728,
+    "date": "2026-02-25",
+    "titre": "Garantir l'égal accès de tous à l'accompagnement et aux soins palliatifs",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5829",
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5728",
     "themes": [
-      "sante",
-      "securite",
-      "travail",
-      "agriculture"
-    ]
+      "sante"
+    ],
+    "type": "scrutin"
   },
   {
-    "numero": 5831,
-    "date": "2026-03-26",
-    "titre": "Renforcer l'effectivité des droits voisins des éditeurs et des agences de presse",
+    "numero": null,
+    "dossier": "DLR5L17N52103",
+    "date": "2026-02-25",
+    "titre": "Projet de loi autorisant l’approbation de l’avenant à la convention d’entraide judiciaire en matière pénale du 28 mai 1996 entre le Gouvernement de la République française et le Gouvernement de la République fédérative du Brésil",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5831",
-    "themes": [
-      "culture"
-    ]
-  },
-  {
-    "numero": 5832,
-    "date": "2026-03-26",
-    "titre": "Simplifier la sortie de l'indivision et la gestion des successions vacantes",
-    "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5832",
+    "statut": "adopte",
     "themes": [
       "justice"
-    ]
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N52103",
+    "type": "main_levee"
   },
   {
-    "numero": 5839,
-    "date": "2026-03-26",
-    "titre": "Renforcer la place des agriculteurs dans l'aménagement du territoire et à sécuriser l'exercice des activités agricoles face au changement climatique",
-    "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5839",
-    "themes": [
-      "environnement",
-      "agriculture"
-    ]
+    "numero": null,
+    "dossier": "DLR5L17N52977",
+    "date": "2026-02-25",
+    "titre": "Nationalisation d'ArcelorMittal France",
+    "adopte": false,
+    "statut": "rejete",
+    "themes": [],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/nationalisation_arcelormittal_2025",
+    "type": "main_levee"
   },
   {
-    "numero": 5844,
-    "date": "2026-03-26",
-    "titre": "Soutenir les collectivités territoriales dans la prévention et la gestion des inondations",
+    "numero": null,
+    "dossier": "DLR5L17N52561",
+    "date": "2026-02-25",
+    "titre": "Projet de loi autorisant l’approbation de l’accord entre le Gouvernement de la République française et le Gouvernement du Monténégro relatif à la coopération dans le domaine de la défense",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5844",
+    "statut": "adopte",
     "themes": [
-      "institutions"
-    ]
-  },
-  {
-    "numero": 5845,
-    "date": "2026-03-26",
-    "titre": "Renforcer l'enseignement de la défense nationale dans le cadre du parcours de citoyenneté",
-    "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5845",
-    "themes": [
-      "education",
       "defense"
-    ]
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N52561",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N50444",
+    "date": "2026-02-26",
+    "titre": "Optimiser la protection et l'accompagnement des parents d'enfants atteints de cancers, de maladies graves et de handicaps",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [
+      "sante",
+      "social"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/accompagnement_parents_enfants_cancers_maladies_handicaps2",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53385",
+    "date": "2026-02-26",
+    "titre": "Proposition de loi constitutionnelle visant à préciser la procédure d’examen des textes budgétaires, à renforcer la place du Parlement et à sécuriser le périmètre et la constitutionnalité des dispositions mises en œuvre par les ordonnances mentionnées aux articles 47 et 47-1 de la Constitution",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "justice",
+      "economie",
+      "institutions"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53385",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53160",
+    "date": "2026-02-26",
+    "titre": "Proposition de loi visant à réserver la vente de protoxyde d'azote aux seuls professionnels",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "travail"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53160",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52884",
+    "date": "2026-03-16",
+    "titre": "Allocations chômage des travailleurs frontaliers",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "travail",
+      "social"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/allocations_chomage_travailleurs_frontaliers",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52577",
+    "date": "2026-03-16",
+    "titre": "Le télétravail frontalier",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/teletravail-frontalier",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52576",
+    "date": "2026-03-16",
+    "titre": "L'affiliation sociale des enfants de travailleurs frontaliers",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "travail",
+      "social"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/affiliation_sociale_enfants_travailleurs_frontaliers",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N51569",
+    "date": "2026-03-25",
+    "titre": "Proposition de loi visant à encadrer l’implantation des centres de données sur le territoire français",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N51569",
+    "type": "main_levee"
   },
   {
     "numero": 5846,
     "date": "2026-03-26",
     "titre": "Renforcer le contrôle, la gouvernance et la responsabilité financière des opérateurs de l'Etat",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5846",
     "themes": [
       "economie"
-    ]
+    ],
+    "type": "scrutin"
   },
   {
-    "numero": 5849,
-    "date": "2026-03-30",
-    "titre": "Permettre le remboursement des frais d'expertise comptable aux candidats",
+    "numero": 5845,
+    "date": "2026-03-26",
+    "titre": "Renforcer l'enseignement de la défense nationale dans le cadre du parcours de citoyenneté",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5849",
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5845",
     "themes": [
-      "economie",
+      "education",
+      "defense"
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": 5844,
+    "date": "2026-03-26",
+    "titre": "Soutenir les collectivités territoriales dans la prévention et la gestion des inondations",
+    "adopte": true,
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5844",
+    "themes": [
       "institutions"
-    ]
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": 5839,
+    "date": "2026-03-26",
+    "titre": "Renforcer la place des agriculteurs dans l'aménagement du territoire et à sécuriser l'exercice des activités agricoles face au changement climatique",
+    "adopte": true,
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5839",
+    "themes": [
+      "environnement",
+      "agriculture"
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": 5832,
+    "date": "2026-03-26",
+    "titre": "Simplifier la sortie de l'indivision et la gestion des successions vacantes",
+    "adopte": true,
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5832",
+    "themes": [
+      "justice"
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": 5831,
+    "date": "2026-03-26",
+    "titre": "Renforcer l'effectivité des droits voisins des éditeurs et des agences de presse",
+    "adopte": true,
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5831",
+    "themes": [
+      "culture"
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": 5829,
+    "date": "2026-03-26",
+    "titre": "Missions des professionnels de santé, vétérinaires et psychothérapeutes des services d'incendie et de secours",
+    "adopte": true,
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5829",
+    "themes": [
+      "sante",
+      "securite",
+      "travail",
+      "agriculture"
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53387",
+    "date": "2026-03-27",
+    "titre": "Condamner les atteintes aux droits fondamentaux des personnes migrantes en Tunisie et appeler à la libération immédiate et inconditionnelle des personnes détenues pour leur engagement humanitaire et en faveur des droits humains",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "justice"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/condamner_atteintes_droits_fondamentaux_personnes_migrantes_Tunisie",
+    "type": "main_levee"
   },
   {
     "numero": 5856,
     "date": "2026-03-30",
     "titre": "Garantir le droit de visite des parlementaires et des bâtonniers dans les lieux de privation de liberté",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5856",
     "themes": [
       "institutions"
-    ]
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": 5849,
+    "date": "2026-03-30",
+    "titre": "Permettre le remboursement des frais d'expertise comptable aux candidats",
+    "adopte": true,
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5849",
+    "themes": [
+      "economie",
+      "institutions"
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N51968",
+    "date": "2026-03-30",
+    "titre": "Améliorer l'accès au logement des travailleurs des services publics",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [
+      "travail",
+      "logement"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/acces_logement_travailleurs_services_publics_17e",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52429",
+    "date": "2026-03-30",
+    "titre": "Projet de loi autorisant l’approbation de la convention de coopération judiciaire internationale entre la France et le Myanmar",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [
+      "justice"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/cooperation_judiciaire_France_Myanmar",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53187",
+    "date": "2026-03-31",
+    "titre": "Protéger les mineurs des risques auxquels les expose l’utilisation des réseaux sociaux",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [
+      "social",
+      "numerique"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/proteger_mineurs_reseaux_sociaux_17e",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53192",
+    "date": "2026-03-31",
+    "titre": "Faciliter l’exercice en France des médecins diplômés au Royaume-Uni avant le Brexit",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [
+      "sante"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/faciliter_exercice_france_medecins_diplomes_royaume_uni_avant_brexit_17e",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53600",
+    "date": "2026-03-31",
+    "titre": "Projet de loi portant habilitation de l’assemblée de Martinique à fixer elle-même des règles applicables sur son territoire en application de l’article 73 de la Constitution en matière d’énergie, d’eau et d’assainissement",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "institutions"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53600",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53730",
+    "date": "2026-03-31",
+    "titre": "Projet de loi autorisant l'approbation de la Convention entre le Gouvernement de la République française et le Gouvernement de la République italienne relative à l’entretien courant et à l’exploitation de la section située en territoire français de la lign",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "defense"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53730",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53981",
+    "date": "2026-04-01",
+    "titre": "Projet de loi portant transposition de l’avenant n°3 du 25 février 2026 au protocole d’accord du 10 novembre 2023 relatif à l’assurance chômage",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "travail"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53981",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53736",
+    "date": "2026-04-02",
+    "titre": "Protéger les financements destinés aux banques alimentaires dans le cadre de la réforme du Fonds social européen plus",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "economie",
+      "agriculture"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/fonds_social_euro_plus_banques_alimentaires",
+    "type": "main_levee"
   },
   {
     "numero": 6023,
     "date": "2026-04-07",
     "titre": "La lutte contre les fraudes sociales et fiscales",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6023",
     "themes": [
       "economie"
-    ]
+    ],
+    "type": "scrutin"
   },
   {
-    "numero": 6045,
-    "date": "2026-04-08",
-    "titre": "Simplifier le millefeuille territorial par la collectivité unique",
+    "numero": null,
+    "dossier": "DLR5L17N53656",
+    "date": "2026-04-07",
+    "titre": "Proposition de loi portant une gouvernance claire, juste et solidaire pour la gestion des milieux aquatiques et la prévention des inondations (GEMAPI)",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6045",
+    "statut": "adopte",
+    "themes": [],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53656",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53787",
+    "date": "2026-04-07",
+    "titre": "Proposition de loi visant à coordonner le droit des entreprises publiques locales avec la loi n° 2025-1249 du 22 décembre 2025 portant création d'un statut de l'élu local",
+    "adopte": true,
+    "statut": "adopte",
     "themes": [
+      "economie",
       "institutions"
-    ]
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53787",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53699",
+    "date": "2026-04-07",
+    "titre": "Proposition de loi visant au renforcement de l'attractivité de l'épargne salariale et à la mise en oeuvre d'une procédure de déblocage exceptionnelle",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "justice",
+      "travail"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53699",
+    "type": "main_levee"
   },
   {
     "numero": 6069,
     "date": "2026-04-08",
     "titre": "Reconnaître une politique nationale d'adaptation au changement climatique et à adapter les mécanismes d'assurance",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6069",
     "themes": [
       "environnement"
-    ]
+    ],
+    "type": "scrutin"
   },
   {
-    "numero": 6076,
-    "date": "2026-04-09",
-    "titre": "Encadrer les regroupements pédagogiques intercommunaux afin de garantir l'égalité d'accès à l'école en milieu rural",
+    "numero": 6045,
+    "date": "2026-04-08",
+    "titre": "Simplifier le millefeuille territorial par la collectivité unique",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6076",
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6045",
     "themes": [
-      "education",
-      "social",
-      "agriculture"
-    ]
+      "institutions"
+    ],
+    "type": "scrutin"
   },
   {
-    "numero": 6124,
-    "date": "2026-04-09",
-    "titre": "Renforcer la pénalisation de l’organisation de rave-parties",
+    "numero": null,
+    "dossier": "DLR5L17N53426",
+    "date": "2026-04-08",
+    "titre": "Accélérer la prévention cardio-neuro-vasculaire et anticiper un risque sanitaire et social majeur",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6124",
+    "statut": "adopte",
     "themes": [
-      "justice"
-    ]
+      "sante"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/accelerer_prevention_cardio_neuro_vasculaire_et_anticiper_risque_sanitaire_et_social_majeur_17e",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53359",
+    "date": "2026-04-08",
+    "titre": "Proposition de loi relative à l’instauration d’une présomption d’utilisation des contenus culturels par les fournisseurs d’intelligence artificielle",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "culture"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53359",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53369",
+    "date": "2026-04-08",
+    "titre": "Proposition de loi visant à garantir l’équilibre économique de l’exploitation des réseaux d’initiative publique par un mécanisme de péréquation",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "economie"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53369",
+    "type": "main_levee"
   },
   {
     "numero": 6131,
     "date": "2026-04-09",
     "titre": "Simplifier la gestion de la commande publique par les acheteurs publics et les opérateurs économiques",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6131",
     "themes": [
       "economie"
-    ]
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": 6124,
+    "date": "2026-04-09",
+    "titre": "Renforcer la pénalisation de l’organisation de rave-parties",
+    "adopte": true,
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6124",
+    "themes": [
+      "justice"
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": 6076,
+    "date": "2026-04-09",
+    "titre": "Encadrer les regroupements pédagogiques intercommunaux afin de garantir l'égalité d'accès à l'école en milieu rural",
+    "adopte": true,
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6076",
+    "themes": [
+      "education",
+      "social",
+      "agriculture"
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53279",
+    "date": "2026-04-09",
+    "titre": "Mettre fin au devoir conjugal",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [
+      "social"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/_mettre_fin_au_devoir_conjugual_17e",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53357",
+    "date": "2026-04-09",
+    "titre": "Proposition de loi visant à étendre à toutes les communes la compensation financière prévue pour les communes de plus de 3 500 habitants pour l’exercice de l’ensemble des compétences du service public de la petite enfance",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "economie",
+      "social",
+      "institutions"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53357",
+    "type": "main_levee"
   },
   {
     "numero": 6135,
     "date": "2026-04-10",
     "titre": "Instaurer une procédure simplifiée de recouvrement des créances commerciales incontestées",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6135",
     "themes": [
       "justice",
       "economie"
-    ]
+    ],
+    "type": "scrutin"
   },
   {
     "numero": 6180,
     "date": "2026-04-13",
     "titre": "La restitution de biens culturels provenant d’États qui, du fait d’une appropriation illicite, en ont été privés",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6180",
     "themes": [
       "culture"
-    ]
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53530",
+    "date": "2026-04-13",
+    "titre": "Relancer les investissements dans le secteur de l’hydroélectricité pour contribuer à la transition énergétique",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [
+      "environnement"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/relancer_investissements_secteur_hydroelectricite_contribuer_transition_energetique_17e",
+    "type": "main_levee"
   },
   {
     "numero": 6184,
     "date": "2026-04-14",
     "titre": "De simplification de la vie économique",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6184",
     "themes": [
       "economie"
-    ]
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53940",
+    "date": "2026-04-14",
+    "titre": "Projet de loi sur la justice criminelle et le respect des victimes",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "justice"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53940",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53942",
+    "date": "2026-04-14",
+    "titre": "Projet de loi organique relatif au renforcement des juridictions criminelles",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "justice"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53942",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53259",
+    "date": "2026-04-15",
+    "titre": "L’approbation de l’accord entre le Gouvernement de la République française et l’Agence spatiale européenne concernant les installations de l’Agence spatiale européenne en France",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/approbation_accord_Gouvernement_Agence_spatiale_europeenne_installations_France",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53844",
+    "date": "2026-04-15",
+    "titre": "Projet de loi autorisant l’approbation de l’accord de partenariat et de coopération renforcé\rentre l'Union européenne et ses Etats membres, d'une part, et la République kirghize, d'autre part",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "defense"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53844",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L16N49868",
+    "date": "2026-04-15",
+    "titre": "Projet de loi de simplification de la vie économique",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "economie"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L16N49868",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53848",
+    "date": "2026-04-15",
+    "titre": "Projet de loi autorisant l’approbation de l’accord entre le Gouvernement de la République française et le Gouvernement du Royaume des Pays-Bas portant délimitation de la frontière entre la République française (Saint-Martin) et le Royaume des Pays-Bas (Sint Maarten)",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "immigration"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53848",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53981",
+    "date": "2026-04-16",
+    "titre": "Projet de loi portant transposition de l’avenant n°3 du 25 février 2026 au protocole d’accord du 10 novembre 2023 relatif à l’assurance chômage",
+    "adopte": false,
+    "statut": "rejete",
+    "themes": [
+      "travail"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53981",
+    "type": "main_levee"
   },
   {
     "numero": 6285,
     "date": "2026-04-28",
     "titre": "Garantir le droit de visite des parlementaires et des bâtonniers dans les lieux de privation de liberté",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6285",
     "themes": [
       "institutions"
-    ]
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53785",
+    "date": "2026-04-28",
+    "titre": "Projet de loi Projet de loi-cadre relatif au développement des transports",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "transports"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53785",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52585",
+    "date": "2026-04-29",
+    "titre": "Proposition de loi visant à rationaliser l’organisation des scrutins en cas de candidature unique au second tour",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N52585",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53540",
+    "date": "2026-04-29",
+    "titre": "Proposition de loi visant à définir des critères de priorisation du raccordement des installations de production d’énergies renouvelables aux réseaux d’électricité",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "environnement"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53540",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52230",
+    "date": "2026-04-29",
+    "titre": "Proposition de loi visant à garantir le droit de visite des parlementaires et des bâtonniers dans les lieux de privation de liberté",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "institutions"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N52230",
+    "type": "main_levee"
   },
   {
     "numero": 6286,
     "date": "2026-05-04",
     "titre": "Facilitant l'exercice en France des médecins diplômés au Royaume-Uni ayant débuté leurs études avant le Brexit",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6286",
     "themes": [
       "sante"
-    ]
-  },
-  {
-    "numero": 6318,
-    "date": "2026-05-05",
-    "titre": "Renforcer la sécurité, la rétention administrative et la prévention des risques d'attentat",
-    "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6318",
-    "themes": [
-      "securite"
-    ]
+    ],
+    "type": "scrutin"
   },
   {
     "numero": 6319,
     "date": "2026-05-05",
     "titre": "La lutte contre les fraudes sociales et fiscales",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6319",
     "themes": [
       "economie"
-    ]
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": 6318,
+    "date": "2026-05-05",
+    "titre": "Renforcer la sécurité, la rétention administrative et la prévention des risques d'attentat",
+    "adopte": true,
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6318",
+    "themes": [
+      "securite"
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53936",
+    "date": "2026-05-05",
+    "titre": "Proposition de loi visant à lutter contre l’entrisme islamiste en France",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53936",
+    "type": "main_levee"
   },
   {
     "numero": 6346,
     "date": "2026-05-06",
     "titre": "La restitution de biens culturels ayant fait l'objet d'une appropriation illicite",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6346",
     "themes": [
       "culture"
-    ]
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52635",
+    "date": "2026-05-06",
+    "titre": "Projet de loi relatif à la restitution de biens culturels provenant d’États qui, du fait d’une appropriation illicite, en ont été privés",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "culture"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N52635",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N51175",
+    "date": "2026-05-06",
+    "titre": "Proposition de loi visant à soutenir les collectivités territoriales dans la prévention et la gestion des inondations",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [
+      "institutions"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N51175",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53956",
+    "date": "2026-05-06",
+    "titre": "Proposition de loi visant à donner aux acteurs locaux les moyens de lutter contre la cabanisation",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53956",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52635",
+    "date": "2026-05-07",
+    "titre": "Projet de loi relatif à la restitution de biens culturels provenant d’États qui, du fait d’une appropriation illicite, en ont été privés",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "culture"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N52635",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53427",
+    "date": "2026-05-07",
+    "titre": "Améliorer la protection des personnes ciblées par les réseaux de criminalité organisée",
+    "adopte": false,
+    "statut": "rejete",
+    "themes": [
+      "justice"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/ameliorer_protection_personnes_ciblees_reseaux_criminalite_organisee_17e",
+    "type": "main_levee"
   },
   {
     "numero": 6512,
     "date": "2026-05-11",
     "titre": "Renforcer le parcours inclusif des enfants à besoins éducatifs particuliers",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6512",
     "themes": [
       "social"
-    ]
+    ],
+    "type": "scrutin"
   },
   {
-    "numero": 6541,
-    "date": "2026-05-12",
-    "titre": "Accélérer le développement du transport maritime à propulsion vélique",
+    "numero": null,
+    "dossier": "DLR5L17N51672",
+    "date": "2026-05-11",
+    "titre": "Soins palliatifs et d’accompagnement",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6541",
+    "statut": "adopte_modifie",
     "themes": [
-      "transports"
-    ]
+      "sante"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/soins_palliatifs_et_accompagnement_17e",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52985",
+    "date": "2026-05-11",
+    "titre": "Projet de loi relatif à la lutte contre les fraudes sociales et fiscales",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "economie"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N52985",
+    "type": "main_levee"
   },
   {
     "numero": 6563,
     "date": "2026-05-12",
     "titre": "Garantir l'information et la protection effective des victimes de violences sexistes et sexuelles lors de la libération de leur agresseur",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6563",
     "themes": [
       "justice",
       "securite"
-    ]
+    ],
+    "type": "scrutin"
   },
   {
-    "numero": 6572,
-    "date": "2026-05-13",
-    "titre": "Mettre en place un programme de soutien à l'innovation thérapeutique contre les cancers, les maladies rares et les maladies orphelines de l'enfant",
+    "numero": 6541,
+    "date": "2026-05-12",
+    "titre": "Accélérer le développement du transport maritime à propulsion vélique",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6572",
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6541",
     "themes": [
-      "sante",
-      "social"
-    ]
+      "transports"
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N51670",
+    "date": "2026-05-12",
+    "titre": "Fin de vie",
+    "adopte": false,
+    "statut": "rejete",
+    "themes": [
+      "sante"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/fin_de_vie_17e",
+    "type": "main_levee"
   },
   {
     "numero": 6645,
     "date": "2026-05-13",
     "titre": "Une montagne vivante et souveraine",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6645",
     "themes": [
       "environnement"
-    ]
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": 6572,
+    "date": "2026-05-13",
+    "titre": "Mettre en place un programme de soutien à l'innovation thérapeutique contre les cancers, les maladies rares et les maladies orphelines de l'enfant",
+    "adopte": true,
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6572",
+    "themes": [
+      "sante",
+      "social"
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52104",
+    "date": "2026-05-18",
+    "titre": "Proposition de loi organique portant actualisation du corps électoral pour les élections au congrès et aux assemblées de province de la Nouvelle-Calédonie",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "institutions"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N52104",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53981",
+    "date": "2026-05-18",
+    "titre": "Projet de loi portant transposition de l’avenant n°3 du 25 février 2026 au protocole d’accord du 10 novembre 2023 relatif à l’assurance chômage",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [
+      "travail"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53981",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N50548",
+    "date": "2026-05-18",
+    "titre": "Proposition de loi relative au déclassement de restes humains kali'nas et à leur remise à la collectivité de Guyane à des fins funéraires",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "institutions"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N50548",
+    "type": "main_levee"
   },
   {
     "numero": 6736,
     "date": "2026-05-19",
     "titre": "Actualisant la programmation militaire pour les années 2024 à 2030 et portant diverses dispositions intéressant la défense",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6736",
     "themes": [
       "defense"
-    ]
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N54083",
+    "date": "2026-05-19",
+    "titre": "Projet de loi actualisant la programmation militaire pour les années 2024 à 2030 et portant diverses dispositions intéressant la défense",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "defense"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/PJL_actualisation_loi_programmation_militaire_annees_2024_2030_diverses_dispositions_defense",
+    "type": "main_levee"
   },
   {
     "numero": 6753,
     "date": "2026-05-20",
     "titre": "Régularisation des natifs dans le corps électoral pour les élections au congrès et aux assemblées de province de Nouvelle-Calédonie",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6753",
     "themes": [
       "institutions",
       "immigration"
-    ]
+    ],
+    "type": "scrutin"
   },
   {
-    "numero": 7002,
-    "date": "2026-05-28",
-    "titre": "Abrogation du « code noir »",
+    "numero": null,
+    "dossier": "DLR5L17N54094",
+    "date": "2026-05-20",
+    "titre": "Projet de loi habilitant le Gouvernement à prendre, par ordonnances, les adaptations rendues nécessaires par l’entrée en application des règlements (UE) n°s 2024/1347, 2024/1348, 2024/1349, 2024/1350, 2024/1351, 2024/1352, 2024/1356, 2024/1358, 2024/1359 du Parlement européen et du Conseil du 14 mai 2024, et les dispositions nécessaires à la transposition de la directive (UE) 2024/1346 du Parlement européen et \rdu Conseil du 14 mai 2024",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7002",
-    "themes": []
-  },
-  {
-    "numero": 7004,
-    "date": "2026-05-28",
-    "titre": "Étendre à toutes les communes la compensation financière prévue pour les communes de plus de 3 500 habitants pour l'exercice de l'ensemble des compétences du service public de la petite enfance",
-    "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7004",
+    "statut": "adopte",
     "themes": [
-      "economie",
-      "social",
       "institutions"
-    ]
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N54094",
+    "type": "main_levee"
   },
   {
-    "numero": 7027,
-    "date": "2026-05-28",
-    "titre": "La mobilisation de l'habitat existant en réponse à la crise du logement",
+    "numero": null,
+    "dossier": "DLR5L17N53284",
+    "date": "2026-05-20",
+    "titre": "Renforcer la sécurité, la rétention administrative et la prévention des risques d’attentat",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7027",
+    "statut": "adopte_modifie",
     "themes": [
-      "logement"
-    ]
+      "securite"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/retention_admin_prevention_attentats_17e",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53980",
+    "date": "2026-05-26",
+    "titre": "Projet de loi visant à offrir des réponses immédiates aux phénomènes troublant l’ordre public, la sécurité et la tranquillité de nos concitoyens",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "securite"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53980",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53818",
+    "date": "2026-05-27",
+    "titre": "Proposition de loi visant à permettre la mise en place d’une enquête administrative et le contrôle des antécédents judiciaires des personnels d’encadrement des enfants",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "justice",
+      "social"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53818",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53979",
+    "date": "2026-05-27",
+    "titre": "La reconnaissance et la commémoration du génocide des Roms, Sintis, Gitans, Manouches, Yéniches et Voyageurs",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "transports"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/reconnaissance_commemoration_genocide_Roms_Sintis_Gitans_Manouches_Yeniches_Voyageurs",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N54057",
+    "date": "2026-05-27",
+    "titre": "Proposition de loi portant réforme des critères d’attribution de l’éducation prioritaire pour l’équité des résultats et l’égalité territoriale",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N54057",
+    "type": "main_levee"
   },
   {
     "numero": 7039,
     "date": "2026-05-28",
     "titre": "Pérennisation du contrat de professionnalisation expérimental",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7039",
     "themes": [
       "travail"
-    ]
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": 7027,
+    "date": "2026-05-28",
+    "titre": "La mobilisation de l'habitat existant en réponse à la crise du logement",
+    "adopte": true,
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7027",
+    "themes": [
+      "logement"
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": 7004,
+    "date": "2026-05-28",
+    "titre": "Étendre à toutes les communes la compensation financière prévue pour les communes de plus de 3 500 habitants pour l'exercice de l'ensemble des compétences du service public de la petite enfance",
+    "adopte": true,
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7004",
+    "themes": [
+      "economie",
+      "social",
+      "institutions"
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": 7002,
+    "date": "2026-05-28",
+    "titre": "Abrogation du « code noir »",
+    "adopte": true,
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7002",
+    "themes": [],
+    "type": "scrutin"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52781",
+    "date": "2026-05-28",
+    "titre": "Assurer le droit de chaque enfant à disposer d’un avocat dans le cadre d’une mesure d’assistance éducative et de protection de l’enfance",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [
+      "justice",
+      "social"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/_droit_avocat_mesure_assistance_educative_17e",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53276",
+    "date": "2026-05-28",
+    "titre": "Reconnaître les victimes de l'exposition aux essais nucléaires français et améliorer leur indemnisation",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [
+      "justice",
+      "environnement"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/victimes_exposition_essais_nucleaires_ameliorer_indemnisation_17e",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53886",
+    "date": "2026-05-28",
+    "titre": "Proposition de loi visant à assouplir la procédure d'autorisation des établissements et services médico-sociaux à caractère expérimental",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "sante",
+      "justice"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53886",
+    "type": "main_levee"
   },
   {
     "numero": 7258,
     "date": "2026-06-01",
     "titre": "Protéger les enfants et à lutter contre les violences en milieu scolaire",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7258",
     "themes": [
       "education",
       "securite",
       "social"
-    ]
+    ],
+    "type": "scrutin"
   },
   {
-    "numero": 7259,
-    "date": "2026-06-02",
-    "titre": "D'urgence pour la protection et la souveraineté agricoles",
+    "numero": null,
+    "dossier": "DLR5L17N51968",
+    "date": "2026-06-01",
+    "titre": "Améliorer l'accès au logement des travailleurs des services publics",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7259",
+    "statut": "adopte",
     "themes": [
-      "agriculture"
-    ]
+      "travail",
+      "logement"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/acces_logement_travailleurs_services_publics_17e",
+    "type": "main_levee"
   },
   {
-    "numero": 7260,
-    "date": "2026-06-02",
-    "titre": "Transposition de l'avenant n° 3 du 25 février 2026 au protocole d'accord du 10 novembre 2023 relatif à l'assurance chômage",
+    "numero": null,
+    "dossier": "DLR5L17N53846",
+    "date": "2026-06-01",
+    "titre": "Proposition de loi concernant la représentativité au sein des unions régionales des professionnels de santé",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7260",
+    "statut": "adopte",
     "themes": [
+      "sante",
       "travail"
-    ]
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53846",
+    "type": "main_levee"
   },
   {
-    "numero": 7261,
-    "date": "2026-06-02",
-    "titre": "Reconnaître la responsabilité de l'État et à indemniser les victimes du chlordécone",
+    "numero": null,
+    "dossier": "DLR5L17N54344",
+    "date": "2026-06-01",
+    "titre": "Projet de loi relatif à la régulation de l'enseignement supérieur privé",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7261",
+    "statut": "adopte",
     "themes": [
-      "justice"
-    ]
+      "education"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/regulation_enseignement_superieur_prive_2026",
+    "type": "main_levee"
   },
   {
     "numero": 7270,
     "date": "2026-06-02",
     "titre": "Améliorer la protection et l'accompagnement des parents d'enfants atteints d'un cancer, d'une maladie grave ou d'un handicap",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7270",
     "themes": [
       "sante",
       "social"
-    ]
+    ],
+    "type": "scrutin"
   },
   {
-    "numero": 7294,
-    "date": "2026-06-03",
-    "titre": "Améliorer les moyens d'action de l'Agence de gestion et de recouvrement des avoirs saisis et confisqués et à faciliter l'exercice des missions d'expert judiciaire",
+    "numero": 7261,
+    "date": "2026-06-02",
+    "titre": "Reconnaître la responsabilité de l'État et à indemniser les victimes du chlordécone",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7294",
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7261",
     "themes": [
       "justice"
-    ]
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": 7260,
+    "date": "2026-06-02",
+    "titre": "Transposition de l'avenant n° 3 du 25 février 2026 au protocole d'accord du 10 novembre 2023 relatif à l'assurance chômage",
+    "adopte": true,
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7260",
+    "themes": [
+      "travail"
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": 7259,
+    "date": "2026-06-02",
+    "titre": "D'urgence pour la protection et la souveraineté agricoles",
+    "adopte": true,
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7259",
+    "themes": [
+      "agriculture"
+    ],
+    "type": "scrutin"
   },
   {
     "numero": 7303,
     "date": "2026-06-03",
     "titre": "Protéger l'alimentation des Français et des Françaises des contaminations au cadmium",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7303",
     "themes": [
       "sante",
       "environnement",
       "agriculture"
-    ]
+    ],
+    "type": "scrutin"
   },
   {
-    "numero": 7313,
-    "date": "2026-06-04",
-    "titre": "Garantir l'interdiction de la vaisselle en plastique dans la restauration collective accueillant du jeune public et liée à la petite enfance",
+    "numero": 7294,
+    "date": "2026-06-03",
+    "titre": "Améliorer les moyens d'action de l'Agence de gestion et de recouvrement des avoirs saisis et confisqués et à faciliter l'exercice des missions d'expert judiciaire",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7313",
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7294",
     "themes": [
-      "social",
-      "environnement"
-    ]
-  },
-  {
-    "numero": 7324,
-    "date": "2026-06-04",
-    "titre": "Plusieurs mesures de justice en faveur de la revalorisation des pensions de retraites agricoles",
-    "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7324",
-    "themes": [
-      "justice",
-      "travail",
-      "agriculture"
-    ]
+      "justice"
+    ],
+    "type": "scrutin"
   },
   {
     "numero": 7348,
     "date": "2026-06-04",
     "titre": "Prévenir le mal-être et le risque suicidaire dans le monde agricole",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7348",
     "themes": [
       "agriculture"
-    ]
+    ],
+    "type": "scrutin"
   },
   {
-    "numero": 7354,
-    "date": "2026-06-11",
-    "titre": "Renforcer la solidarité envers les retraités pauvres",
+    "numero": 7324,
+    "date": "2026-06-04",
+    "titre": "Plusieurs mesures de justice en faveur de la revalorisation des pensions de retraites agricoles",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7354",
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7324",
     "themes": [
+      "justice",
       "travail",
-      "social"
-    ]
+      "agriculture"
+    ],
+    "type": "scrutin"
   },
   {
-    "numero": 7380,
-    "date": "2026-06-11",
-    "titre": "La nationalisation d'ArcelorMittal France afin de préserver la souveraineté industrielle de la France",
+    "numero": 7313,
+    "date": "2026-06-04",
+    "titre": "Garantir l'interdiction de la vaisselle en plastique dans la restauration collective accueillant du jeune public et liée à la petite enfance",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7380",
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7313",
+    "themes": [
+      "social",
+      "environnement"
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53976",
+    "date": "2026-06-09",
+    "titre": "Proposition de loi visant à garantir la neutralité financière du don d'organes par les vivants",
+    "adopte": true,
+    "statut": "adopte",
     "themes": [
       "economie"
-    ]
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53976",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53426",
+    "date": "2026-06-09",
+    "titre": "Accélérer la prévention cardio-neuro-vasculaire et anticiper un risque sanitaire et social majeur",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [
+      "sante"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/accelerer_prevention_cardio_neuro_vasculaire_et_anticiper_risque_sanitaire_et_social_majeur_17e",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N54373",
+    "date": "2026-06-09",
+    "titre": "Projet de loi portant approbation des comptes de la sécurité sociale de l’année 2025",
+    "adopte": false,
+    "statut": "rejete",
+    "themes": [
+      "securite"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/projet_de_loi_portant_approbation_des_comptes_de_la_securite_sociale_de_annee_2025",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52549",
+    "date": "2026-06-09",
+    "titre": "Projet de loi autorisant l’approbation de la convention entre le Gouvernement de la République française et le Gouvernement de la République de Finlande pour l’élimination de la double imposition en matière d’impôts sur le revenu et la prévention de l’évasion et de la fraude fiscales et l’approbation de l’avenant à la convention entre le Gouvernement de la République française et le Gouvernement du Royaume de Suède en vue d’éviter les doubles impositions et de prévenir l’évasion fiscale en matière d’impôts sur le revenu et sur la fortune",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "economie",
+      "defense"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N52549",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N54083",
+    "date": "2026-06-09",
+    "titre": "Projet de loi actualisant la programmation militaire pour les années 2024 à 2030 et portant diverses dispositions intéressant la défense",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [
+      "defense"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/PJL_actualisation_loi_programmation_militaire_annees_2024_2030_diverses_dispositions_defense",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N51962",
+    "date": "2026-06-09",
+    "titre": "Exercer l’accès à l’emploi, pérenniser et étendre progressivement l’expérimentation Territoires zéro chômeur longue durée comme solution de retour à l’emploi pour les personnes privées durablement d’emploi",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/acces_emploi_experimentation_tzcld_17",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N51909",
+    "date": "2026-06-10",
+    "titre": "Proposition de loi relative au contrat d’édition, visant à favoriser les meilleures pratiques entre les acteurs des filières du livre et de l’œuvre musicale et portant simplification de l’exception au droit d’auteur pour les personnes en situation de handicap",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "sante",
+      "culture"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N51909",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52746",
+    "date": "2026-06-10",
+    "titre": "Moderniser la gestion du patrimoine immobilier de l'État",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [
+      "logement",
+      "culture"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/gestion_patrimoine_immobilier_etat_17e",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L16N48747",
+    "date": "2026-06-10",
+    "titre": "Ouvrir le dispositif de réduction d’activité progressive aux moniteurs de ski stagiaires",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/moniteurs_ski_stagiaires",
+    "type": "main_levee"
   },
   {
     "numero": 7397,
     "date": "2026-06-11",
     "titre": "Réformer les bourses sur critères sociaux et à lutter contre la précarité étudiante",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7397",
     "themes": [
       "education",
       "social"
-    ]
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": 7380,
+    "date": "2026-06-11",
+    "titre": "La nationalisation d'ArcelorMittal France afin de préserver la souveraineté industrielle de la France",
+    "adopte": true,
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7380",
+    "themes": [
+      "economie"
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": 7354,
+    "date": "2026-06-11",
+    "titre": "Renforcer la solidarité envers les retraités pauvres",
+    "adopte": true,
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7354",
+    "themes": [
+      "travail",
+      "social"
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53401",
+    "date": "2026-06-11",
+    "titre": "Pour l’égalité d’accès aux soins des ressortissants ultramarins en hexagone",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "sante"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/pour_egalite_acces_soins_ressortissants_ultramarins_hexagone_17e",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53851",
+    "date": "2026-06-11",
+    "titre": "Proposition de loi visant à remobiliser le bâti rural",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "agriculture"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53851",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53304",
+    "date": "2026-06-11",
+    "titre": "Proposition de loi visant à lever dans les territoires d’outre-mer l’interdiction de recherche, d’exploration et d’exploitation des hydrocarbures",
+    "adopte": false,
+    "statut": "rejete",
+    "themes": [],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53304",
+    "type": "main_levee"
   },
   {
     "numero": 7401,
     "date": "2026-06-15",
     "titre": "Habilitation de l'assemblée de Martinique à fixer des règles applicables sur son territoire en application de l'article 73 de la Constitution en matière d'énergie, d'eau et d'assainissement",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7401",
     "themes": [
       "environnement",
       "institutions"
-    ]
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53284",
+    "date": "2026-06-15",
+    "titre": "Renforcer la sécurité, la rétention administrative et la prévention des risques d’attentat",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "securite"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/retention_admin_prevention_attentats_17e",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N54096",
+    "date": "2026-06-15",
+    "titre": "Proposition de loi relative à l’expérimentation d’une gouvernance territoriale unifiée pour le centre de ressources, d’expertise et de performance sportive (CREPS) de Vichy",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "culture"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N54096",
+    "type": "main_levee"
   },
   {
     "numero": 7405,
     "date": "2026-06-16",
     "titre": "Renforcer la sécurité, la rétention administrative et la prévention des risques d’attentat",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7405",
     "themes": [
       "securite"
-    ]
+    ],
+    "type": "scrutin"
   },
   {
-    "numero": 7408,
-    "date": "2026-06-17",
-    "titre": "Améliorer l'accès au logement des travailleurs des services publics",
+    "numero": null,
+    "dossier": "DLR5L17N53530",
+    "date": "2026-06-16",
+    "titre": "Relancer les investissements dans le secteur de l’hydroélectricité pour contribuer à la transition énergétique",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7408",
+    "statut": "adopte",
     "themes": [
-      "travail",
-      "logement"
-    ]
+      "environnement"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/relancer_investissements_secteur_hydroelectricite_contribuer_transition_energetique_17e",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N54259",
+    "date": "2026-06-16",
+    "titre": "Projet de loi de sécurisation du travail le 1er mai des salariés volontaires des boulangers-pâtissiers artisanaux et des artisans fleuristes grâce au dialogue social de branche",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "economie",
+      "travail"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N54259",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N51845",
+    "date": "2026-06-16",
+    "titre": "Réparer les préjudices causés par la transplantation de mineurs de La Réunion en France hexagonale de 1962 à 1984",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [
+      "social"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/reparer_prejudices_transplantation_mineurs_la_reunion_17e",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N51330",
+    "date": "2026-06-16",
+    "titre": "Renforcer l’effectivité des droits voisins de la presse",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [
+      "culture"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/effectivite_droits_voisins_presse",
+    "type": "main_levee"
   },
   {
     "numero": 7409,
     "date": "2026-06-17",
     "titre": "Relancer les investissements dans le secteur de l'hydroélectricité pour contribuer à la transition énergétique",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7409",
     "themes": [
       "environnement"
-    ]
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": 7408,
+    "date": "2026-06-17",
+    "titre": "Améliorer l'accès au logement des travailleurs des services publics",
+    "adopte": true,
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7408",
+    "themes": [
+      "travail",
+      "logement"
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N50970",
+    "date": "2026-06-17",
+    "titre": "Proposition de loi portant diverses dispositions d’adaptation du droit des outre-mer",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "institutions"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N50970",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N54196",
+    "date": "2026-06-22",
+    "titre": "Projet de loi relative aux résultats de la gestion et portant approbation des comptes de l'année 2025",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/resultats_gestion_approbation_comptes_2025",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N54373",
+    "date": "2026-06-22",
+    "titre": "Projet de loi portant approbation des comptes de la sécurité sociale de l’année 2025",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [
+      "securite"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/projet_de_loi_portant_approbation_des_comptes_de_la_securite_sociale_de_annee_2025",
+    "type": "main_levee"
   },
   {
     "numero": 7454,
     "date": "2026-06-23",
     "titre": "Une Corse autonome au sein de la République",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7454",
     "themes": [
       "institutions"
-    ]
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N54218",
+    "date": "2026-06-23",
+    "titre": "Projet de loi constitutionnelle pour une Corse autonome au sein de la République",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "institutions"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/projet_loi_constitutionnelle_pour_Corse_autonome_au_sein_Republique",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52000",
+    "date": "2026-06-24",
+    "titre": "Projet de loi autorisant l’approbation de la convention d’entraide judiciaire en matière pénale entre le Gouvernement de la République française et le Gouvernement de la République du Suriname",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "justice"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N52000",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N54168",
+    "date": "2026-06-24",
+    "titre": "Projet de loi autorisant l’approbation de l’accord entre le Gouvernement de la République française et le Gouvernement de la République unie de Tanzanie relatif aux services aériens",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "transports"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N54168",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N54169",
+    "date": "2026-06-24",
+    "titre": "Projet de loi autorisant l’approbation de l’accord entre le Gouvernement de la République française et le Gouvernement d’Antigua-et-Barbuda relatif aux services aériens",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "transports"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N54169",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53844",
+    "date": "2026-06-24",
+    "titre": "Projet de loi autorisant l’approbation de l’accord de partenariat et de coopération renforcé\rentre l'Union européenne et ses Etats membres, d'une part, et la République kirghize, d'autre part",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "defense"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53844",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N54164",
+    "date": "2026-06-24",
+    "titre": "Projet de loi portant simplification des normes applicables aux collectivités territoriales",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "institutions"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N54164",
+    "type": "main_levee"
   },
   {
     "numero": 7893,
     "date": "2026-06-29",
     "titre": "L'organisation, à la gestion et au financement du sport professionnel",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7893",
     "themes": [
       "economie",
       "travail",
       "culture"
-    ]
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L16N49364",
+    "date": "2026-06-29",
+    "titre": "Réduire l’impact environnemental de l’industrie textile",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "environnement"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/impact_environnemental_industrie_textile",
+    "type": "main_levee"
   },
   {
     "numero": 7894,
     "date": "2026-06-30",
     "titre": "Droit à l'aide à mourir",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7894",
     "themes": [
       "sante"
-    ]
+    ],
+    "type": "scrutin"
   },
   {
-    "numero": 7904,
-    "date": "2026-07-01",
-    "titre": "Assurer le droit de chaque enfant à être assisté d'un avocat dans le cadre d'une mesure d'assistance éducative et de protection de l'enfance",
+    "numero": null,
+    "dossier": "DLR5L17N54083",
+    "date": "2026-06-30",
+    "titre": "Projet de loi actualisant la programmation militaire pour les années 2024 à 2030 et portant diverses dispositions intéressant la défense",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7904",
+    "statut": "adopte",
     "themes": [
-      "justice",
-      "social"
-    ]
+      "defense"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/PJL_actualisation_loi_programmation_militaire_annees_2024_2030_diverses_dispositions_defense",
+    "type": "main_levee"
   },
   {
     "numero": 7905,
     "date": "2026-07-01",
     "titre": "Actualisant la programmation militaire pour les années 2024 à 2030 et portant diverses dispositions intéressant la défense",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7905",
     "themes": [
       "defense"
-    ]
+    ],
+    "type": "scrutin"
   },
   {
-    "numero": 7980,
-    "date": "2026-07-07",
-    "titre": "La justice criminelle et le respect des victimes",
+    "numero": 7904,
+    "date": "2026-07-01",
+    "titre": "Assurer le droit de chaque enfant à être assisté d'un avocat dans le cadre d'une mesure d'assistance éducative et de protection de l'enfance",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7980",
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7904",
     "themes": [
-      "justice"
-    ]
+      "justice",
+      "social"
+    ],
+    "type": "scrutin"
   },
   {
-    "numero": 7981,
-    "date": "2026-07-07",
-    "titre": "Renforcement des juridictions criminelles",
+    "numero": null,
+    "dossier": "DLR5L17N54085",
+    "date": "2026-07-02",
+    "titre": "Projet de loi d’urgence pour la protection et la souveraineté agricoles",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7981",
+    "statut": "adopte_modifie",
     "themes": [
-      "justice"
-    ]
+      "agriculture"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/projet_loi_urgence_pour_protection_et_souverainete_agricoles",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52746",
+    "date": "2026-07-06",
+    "titre": "Moderniser la gestion du patrimoine immobilier de l'État",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "logement",
+      "culture"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/gestion_patrimoine_immobilier_etat_17e",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N54006",
+    "date": "2026-07-06",
+    "titre": "Pour une montagne vivante et souveraine",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [
+      "environnement"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/montagne_vivante_souveraine_17e",
+    "type": "main_levee"
   },
   {
     "numero": 7987,
     "date": "2026-07-07",
     "titre": "Reconnaître une présomption de légitime défense pour les forces de l'ordre, dans l'exercice de leurs fonctions",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7987",
     "themes": [
       "defense"
-    ]
+    ],
+    "type": "scrutin"
   },
   {
-    "numero": 8042,
-    "date": "2026-07-08",
-    "titre": "La justice criminelle et le respect des victimes",
+    "numero": 7981,
+    "date": "2026-07-07",
+    "titre": "Renforcement des juridictions criminelles",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8042",
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7981",
     "themes": [
       "justice"
-    ]
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": 7980,
+    "date": "2026-07-07",
+    "titre": "La justice criminelle et le respect des victimes",
+    "adopte": true,
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7980",
+    "themes": [
+      "justice"
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N51670",
+    "date": "2026-07-07",
+    "titre": "Fin de vie",
+    "adopte": false,
+    "statut": "rejete",
+    "themes": [
+      "sante"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/fin_de_vie_17e",
+    "type": "main_levee"
   },
   {
     "numero": 8043,
     "date": "2026-07-08",
     "titre": "Renforcement des juridictions criminelles",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8043",
     "themes": [
       "justice"
-    ]
+    ],
+    "type": "scrutin"
   },
   {
-    "numero": 8279,
-    "date": "2026-07-15",
-    "titre": "Offrir des réponses immédiates aux phénomènes troublant l'ordre public, la sécurité et la tranquillité de nos concitoyens",
+    "numero": 8042,
+    "date": "2026-07-08",
+    "titre": "La justice criminelle et le respect des victimes",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8279",
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8042",
     "themes": [
-      "securite"
-    ]
+      "justice"
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N54608",
+    "date": "2026-07-08",
+    "titre": "La relance et la décentralisation du logement",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "logement",
+      "institutions"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/PJL_relance_decentralisation_logement_2",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53940",
+    "date": "2026-07-09",
+    "titre": "Projet de loi sur la justice criminelle et le respect des victimes",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "justice"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53940",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53426",
+    "date": "2026-07-09",
+    "titre": "Accélérer la prévention cardio-neuro-vasculaire et anticiper un risque sanitaire et social majeur",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "sante"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/accelerer_prevention_cardio_neuro_vasculaire_et_anticiper_risque_sanitaire_et_social_majeur_17e",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53942",
+    "date": "2026-07-09",
+    "titre": "Projet de loi organique relatif au renforcement des juridictions criminelles",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "justice"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53942",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N54379",
+    "date": "2026-07-09",
+    "titre": "Projet de loi autorisant l’approbation de l’accord multilatéral entre autorités compétentes portant sur l’échange des informations GloBE",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N54379",
+    "type": "main_levee"
   },
   {
     "numero": 8280,
     "date": "2026-07-15",
     "titre": "Droit à l'aide à mourir",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8280",
     "themes": [
       "sante"
-    ]
+    ],
+    "type": "scrutin"
   },
   {
-    "numero": 8418,
-    "date": "2026-07-20",
-    "titre": "L'organisation, à la gestion et au financement du sport professionnel",
+    "numero": 8279,
+    "date": "2026-07-15",
+    "titre": "Offrir des réponses immédiates aux phénomènes troublant l'ordre public, la sécurité et la tranquillité de nos concitoyens",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8418",
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8279",
     "themes": [
-      "economie",
-      "travail",
-      "culture"
-    ]
+      "securite"
+    ],
+    "type": "scrutin"
   },
   {
-    "numero": 8419,
-    "date": "2026-07-20",
-    "titre": "Doter la France d'une stratégie nationale de lutte contre les maladies cardio-neuro-vasculaires",
+    "numero": null,
+    "dossier": "DLR5L17N53848",
+    "date": "2026-07-16",
+    "titre": "Projet de loi autorisant l’approbation de l’accord entre le Gouvernement de la République française et le Gouvernement du Royaume des Pays-Bas portant délimitation de la frontière entre la République française (Saint-Martin) et le Royaume des Pays-Bas (Sint Maarten)",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8419",
+    "statut": "adopte",
     "themes": [
-      "sante"
-    ]
-  },
-  {
-    "numero": 8421,
-    "date": "2026-07-20",
-    "titre": "Une montagne vivante et souveraine",
-    "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8421",
-    "themes": [
-      "environnement"
-    ]
+      "immigration"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53848",
+    "type": "main_levee"
   },
   {
     "numero": 8427,
     "date": "2026-07-20",
     "titre": "D'urgence pour la protection et la souveraineté agricoles",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8427",
     "themes": [
       "agriculture"
-    ]
+    ],
+    "type": "scrutin"
   },
   {
-    "numero": 8430,
-    "date": "2026-07-21",
-    "titre": "La protection des enfants",
+    "numero": 8421,
+    "date": "2026-07-20",
+    "titre": "Une montagne vivante et souveraine",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8430",
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8421",
     "themes": [
-      "social"
-    ]
+      "environnement"
+    ],
+    "type": "scrutin"
   },
   {
-    "numero": 8431,
-    "date": "2026-07-21",
-    "titre": "Protéger les mineurs des risques auxquels les expose l'utilisation des réseaux sociaux",
+    "numero": 8419,
+    "date": "2026-07-20",
+    "titre": "Doter la France d'une stratégie nationale de lutte contre les maladies cardio-neuro-vasculaires",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8431",
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8419",
     "themes": [
-      "social",
-      "numerique"
-    ]
+      "sante"
+    ],
+    "type": "scrutin"
   },
   {
-    "numero": 8433,
-    "date": "2026-07-21",
-    "titre": "Offrir des réponses immédiates aux phénomènes troublant l'ordre public, la sécurité et la tranquilité de nos concitoyens",
+    "numero": 8418,
+    "date": "2026-07-20",
+    "titre": "L'organisation, à la gestion et au financement du sport professionnel",
     "adopte": true,
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8433",
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8418",
     "themes": [
-      "securite"
-    ]
+      "economie",
+      "travail",
+      "culture"
+    ],
+    "type": "scrutin"
   },
   {
     "numero": 8434,
     "date": "2026-07-21",
     "titre": "Moderniser la gestion du patrimoine immobilier de l'État",
     "adopte": true,
+    "statut": "adopte",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8434",
     "themes": [
       "logement",
       "culture"
-    ]
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": 8433,
+    "date": "2026-07-21",
+    "titre": "Offrir des réponses immédiates aux phénomènes troublant l'ordre public, la sécurité et la tranquilité de nos concitoyens",
+    "adopte": true,
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8433",
+    "themes": [
+      "securite"
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": 8431,
+    "date": "2026-07-21",
+    "titre": "Protéger les mineurs des risques auxquels les expose l'utilisation des réseaux sociaux",
+    "adopte": true,
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8431",
+    "themes": [
+      "social",
+      "numerique"
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": 8430,
+    "date": "2026-07-21",
+    "titre": "La protection des enfants",
+    "adopte": true,
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8430",
+    "themes": [
+      "social"
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53187",
+    "date": "2026-07-21",
+    "titre": "Protéger les mineurs des risques auxquels les expose l’utilisation des réseaux sociaux",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "social",
+      "numerique"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/proteger_mineurs_reseaux_sociaux_17e",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N51732",
+    "date": "2026-07-21",
+    "titre": "Proposition de loi relative à l'organisation, à la gestion et au financement du sport professionnel",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "economie",
+      "travail",
+      "culture"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N51732",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N54085",
+    "date": "2026-07-21",
+    "titre": "Projet de loi d’urgence pour la protection et la souveraineté agricoles",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "agriculture"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/projet_loi_urgence_pour_protection_et_souverainete_agricoles",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N54006",
+    "date": "2026-07-21",
+    "titre": "Pour une montagne vivante et souveraine",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "environnement"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/montagne_vivante_souveraine_17e",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53980",
+    "date": "2026-07-21",
+    "titre": "Projet de loi visant à offrir des réponses immédiates aux phénomènes troublant l’ordre public, la sécurité et la tranquillité de nos concitoyens",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "securite"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53980",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N54380",
+    "date": "2026-08-19",
+    "titre": "La maîtrise des usages et impacts des produits phytopharmaceutiques",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/maitrise_usages_et_impacts_produits_phytopharmaceutiques",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N54093",
+    "date": "2026-08-19",
+    "titre": "Abandonner le conditionnement du renouvellement du permis de conduire à une visite médicale obligatoire",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "sante",
+      "transports"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/abandonner_conditionnement_renouvellement_permis_conduire_visite_medicale_obligatoire",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N54253",
+    "date": "2026-08-26",
+    "titre": "Lutter contre le vol de véhicules et les filières criminelles organisées en Europe",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "justice"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/lutter_contre_vol_vehicules_et_filieres_criminelles_organisees_Europe",
+    "type": "main_levee"
   }
 ]

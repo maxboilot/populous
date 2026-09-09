@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-09T07:27:55.422800Z",
+  "generated_at": "2026-09-09T08:25:29.512940Z",
   "depuis": "2025-09-09",
   "nombre": 113,
   "lois": [
@@ -12,6 +12,7 @@
       "lecture": "texte de la commission mixte paritaire",
       "solennel": true,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "logement",
         "culture"
@@ -23,7 +24,8 @@
         "abstention": 2,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8434"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8434",
+      "type": "scrutin"
     },
     {
       "numero": 8433,
@@ -34,6 +36,7 @@
       "lecture": "texte de la commission mixte paritaire",
       "solennel": true,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "securite"
       ],
@@ -44,7 +47,8 @@
         "abstention": 7,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8433"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8433",
+      "type": "scrutin"
     },
     {
       "numero": 8431,
@@ -55,6 +59,7 @@
       "lecture": "texte de la commission mixte paritaire",
       "solennel": true,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "social",
         "numerique"
@@ -66,7 +71,8 @@
         "abstention": 66,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8431"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8431",
+      "type": "scrutin"
     },
     {
       "numero": 8430,
@@ -77,6 +83,7 @@
       "lecture": "première lecture",
       "solennel": true,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "social"
       ],
@@ -87,7 +94,8 @@
         "abstention": 173,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8430"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8430",
+      "type": "scrutin"
     },
     {
       "numero": 8427,
@@ -98,6 +106,7 @@
       "lecture": "texte de la commission mixte paritaire",
       "solennel": true,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "agriculture"
       ],
@@ -108,7 +117,8 @@
         "abstention": 41,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8427"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8427",
+      "type": "scrutin"
     },
     {
       "numero": 8421,
@@ -119,6 +129,7 @@
       "lecture": "texte de la commission mixte paritaire",
       "solennel": true,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "environnement"
       ],
@@ -129,7 +140,8 @@
         "abstention": 4,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8421"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8421",
+      "type": "scrutin"
     },
     {
       "numero": 8419,
@@ -140,6 +152,7 @@
       "lecture": "texte de la commission mixte paritaire",
       "solennel": true,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "sante"
       ],
@@ -150,7 +163,8 @@
         "abstention": 0,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8419"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8419",
+      "type": "scrutin"
     },
     {
       "numero": 8418,
@@ -161,6 +175,7 @@
       "lecture": "texte de la commission mixte paritaire",
       "solennel": true,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "economie",
         "travail",
@@ -173,7 +188,8 @@
         "abstention": 81,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8418"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8418",
+      "type": "scrutin"
     },
     {
       "numero": 8280,
@@ -184,6 +200,7 @@
       "lecture": "lecture définitive",
       "solennel": true,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "sante"
       ],
@@ -194,7 +211,8 @@
         "abstention": 29,
         "absent": 0
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8280"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8280",
+      "type": "scrutin"
     },
     {
       "numero": 8279,
@@ -205,6 +223,7 @@
       "lecture": "première lecture",
       "solennel": true,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "securite"
       ],
@@ -215,7 +234,8 @@
         "abstention": 8,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8279"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8279",
+      "type": "scrutin"
     },
     {
       "numero": 8043,
@@ -226,6 +246,7 @@
       "lecture": "texte de la commission mixte paritaire",
       "solennel": true,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "justice"
       ],
@@ -236,7 +257,8 @@
         "abstention": 1,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8043"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8043",
+      "type": "scrutin"
     },
     {
       "numero": 8042,
@@ -247,6 +269,7 @@
       "lecture": "texte de la commission mixte paritaire",
       "solennel": true,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "justice"
       ],
@@ -257,7 +280,8 @@
         "abstention": 1,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8042"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8042",
+      "type": "scrutin"
     },
     {
       "numero": 7987,
@@ -268,6 +292,7 @@
       "lecture": "première lecture",
       "solennel": true,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "defense"
       ],
@@ -278,7 +303,8 @@
         "abstention": 5,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7987"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7987",
+      "type": "scrutin"
     },
     {
       "numero": 7981,
@@ -289,6 +315,7 @@
       "lecture": "première lecture",
       "solennel": true,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "justice"
       ],
@@ -299,7 +326,8 @@
         "abstention": 2,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7981"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7981",
+      "type": "scrutin"
     },
     {
       "numero": 7980,
@@ -310,6 +338,7 @@
       "lecture": "première lecture",
       "solennel": true,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "justice"
       ],
@@ -320,7 +349,8 @@
         "abstention": 1,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7980"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7980",
+      "type": "scrutin"
     },
     {
       "numero": 7905,
@@ -331,6 +361,7 @@
       "lecture": "texte de la commission mixte paritaire",
       "solennel": true,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "defense"
       ],
@@ -341,7 +372,8 @@
         "abstention": 2,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7905"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7905",
+      "type": "scrutin"
     },
     {
       "numero": 7904,
@@ -352,6 +384,7 @@
       "lecture": "deuxième lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "justice",
         "social"
@@ -363,7 +396,8 @@
         "abstention": 0,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7904"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7904",
+      "type": "scrutin"
     },
     {
       "numero": 7894,
@@ -374,6 +408,7 @@
       "lecture": "nouvelle lecture",
       "solennel": true,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "sante"
       ],
@@ -384,7 +419,8 @@
         "abstention": 35,
         "absent": 0
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7894"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7894",
+      "type": "scrutin"
     },
     {
       "numero": 7893,
@@ -395,6 +431,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "economie",
         "travail",
@@ -407,7 +444,8 @@
         "abstention": 1,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7893"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7893",
+      "type": "scrutin"
     },
     {
       "numero": 7454,
@@ -418,6 +456,7 @@
       "lecture": "première lecture",
       "solennel": true,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "institutions"
       ],
@@ -428,7 +467,8 @@
         "abstention": 64,
         "absent": 0
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7454"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7454",
+      "type": "scrutin"
     },
     {
       "numero": 7409,
@@ -439,6 +479,7 @@
       "lecture": "texte de la commission mixte paritaire",
       "solennel": true,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "environnement"
       ],
@@ -449,7 +490,8 @@
         "abstention": 116,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7409"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7409",
+      "type": "scrutin"
     },
     {
       "numero": 7408,
@@ -460,6 +502,7 @@
       "lecture": "texte de la commission mixte paritaire",
       "solennel": true,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "travail",
         "logement"
@@ -471,7 +514,8 @@
         "abstention": 14,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7408"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7408",
+      "type": "scrutin"
     },
     {
       "numero": 7405,
@@ -482,6 +526,7 @@
       "lecture": "texte de la commission mixte paritaire",
       "solennel": true,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "securite"
       ],
@@ -492,7 +537,8 @@
         "abstention": 11,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7405"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7405",
+      "type": "scrutin"
     },
     {
       "numero": 7401,
@@ -503,6 +549,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "environnement",
         "institutions"
@@ -514,7 +561,8 @@
         "abstention": 5,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7401"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7401",
+      "type": "scrutin"
     },
     {
       "numero": 7397,
@@ -525,6 +573,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "education",
         "social"
@@ -536,7 +585,8 @@
         "abstention": 15,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7397"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7397",
+      "type": "scrutin"
     },
     {
       "numero": 7380,
@@ -547,6 +597,7 @@
       "lecture": "deuxième lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "economie"
       ],
@@ -557,7 +608,8 @@
         "abstention": 47,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7380"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7380",
+      "type": "scrutin"
     },
     {
       "numero": 7354,
@@ -568,6 +620,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "travail",
         "social"
@@ -579,7 +632,8 @@
         "abstention": 3,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7354"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7354",
+      "type": "scrutin"
     },
     {
       "numero": 7348,
@@ -590,6 +644,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "agriculture"
       ],
@@ -600,7 +655,8 @@
         "abstention": 0,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7348"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7348",
+      "type": "scrutin"
     },
     {
       "numero": 7324,
@@ -611,6 +667,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "justice",
         "travail",
@@ -623,7 +680,8 @@
         "abstention": 5,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7324"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7324",
+      "type": "scrutin"
     },
     {
       "numero": 7313,
@@ -634,6 +692,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "social",
         "environnement"
@@ -645,7 +704,8 @@
         "abstention": 2,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7313"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7313",
+      "type": "scrutin"
     },
     {
       "numero": 7303,
@@ -656,6 +716,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "sante",
         "environnement",
@@ -668,7 +729,8 @@
         "abstention": 4,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7303"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7303",
+      "type": "scrutin"
     },
     {
       "numero": 7294,
@@ -679,6 +741,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "justice"
       ],
@@ -689,7 +752,8 @@
         "abstention": 2,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7294"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7294",
+      "type": "scrutin"
     },
     {
       "numero": 7270,
@@ -700,6 +764,7 @@
       "lecture": "deuxième lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "sante",
         "social"
@@ -711,7 +776,8 @@
         "abstention": 0,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7270"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7270",
+      "type": "scrutin"
     },
     {
       "numero": 7261,
@@ -722,6 +788,7 @@
       "lecture": "deuxième lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "justice"
       ],
@@ -732,7 +799,8 @@
         "abstention": 0,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7261"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7261",
+      "type": "scrutin"
     },
     {
       "numero": 7260,
@@ -743,6 +811,7 @@
       "lecture": "deuxième lecture",
       "solennel": true,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "travail"
       ],
@@ -753,7 +822,8 @@
         "abstention": 37,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7260"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7260",
+      "type": "scrutin"
     },
     {
       "numero": 7259,
@@ -764,6 +834,7 @@
       "lecture": "première lecture",
       "solennel": true,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "agriculture"
       ],
@@ -774,7 +845,8 @@
         "abstention": 15,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7259"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7259",
+      "type": "scrutin"
     },
     {
       "numero": 7258,
@@ -785,6 +857,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "education",
         "securite",
@@ -797,7 +870,8 @@
         "abstention": 0,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7258"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7258",
+      "type": "scrutin"
     },
     {
       "numero": 7039,
@@ -808,6 +882,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "travail"
       ],
@@ -818,7 +893,8 @@
         "abstention": 4,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7039"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7039",
+      "type": "scrutin"
     },
     {
       "numero": 7027,
@@ -829,6 +905,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "logement"
       ],
@@ -839,7 +916,8 @@
         "abstention": 20,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7027"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7027",
+      "type": "scrutin"
     },
     {
       "numero": 7004,
@@ -850,6 +928,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "economie",
         "social",
@@ -862,7 +941,8 @@
         "abstention": 0,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7004"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7004",
+      "type": "scrutin"
     },
     {
       "numero": 7002,
@@ -873,6 +953,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
@@ -881,7 +962,8 @@
         "abstention": 0,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7002"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7002",
+      "type": "scrutin"
     },
     {
       "numero": 6753,
@@ -892,6 +974,7 @@
       "lecture": "première lecture",
       "solennel": true,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "institutions",
         "immigration"
@@ -903,7 +986,8 @@
         "abstention": 3,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6753"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6753",
+      "type": "scrutin"
     },
     {
       "numero": 6736,
@@ -914,6 +998,7 @@
       "lecture": "première lecture",
       "solennel": true,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "defense"
       ],
@@ -924,7 +1009,8 @@
         "abstention": 4,
         "absent": 0
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6736"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6736",
+      "type": "scrutin"
     },
     {
       "numero": 6645,
@@ -935,6 +1021,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "environnement"
       ],
@@ -945,7 +1032,8 @@
         "abstention": 1,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6645"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6645",
+      "type": "scrutin"
     },
     {
       "numero": 6572,
@@ -956,6 +1044,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "sante",
         "social"
@@ -967,7 +1056,8 @@
         "abstention": 3,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6572"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6572",
+      "type": "scrutin"
     },
     {
       "numero": 6563,
@@ -978,6 +1068,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "justice",
         "securite"
@@ -989,7 +1080,8 @@
         "abstention": 0,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6563"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6563",
+      "type": "scrutin"
     },
     {
       "numero": 6541,
@@ -1000,6 +1092,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "transports"
       ],
@@ -1010,7 +1103,8 @@
         "abstention": 0,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6541"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6541",
+      "type": "scrutin"
     },
     {
       "numero": 6512,
@@ -1021,6 +1115,7 @@
       "lecture": "nouvelle lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "social"
       ],
@@ -1031,7 +1126,8 @@
         "abstention": 17,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6512"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6512",
+      "type": "scrutin"
     },
     {
       "numero": 6346,
@@ -1042,6 +1138,7 @@
       "lecture": "texte de la commission mixte paritaire",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "culture"
       ],
@@ -1052,7 +1149,8 @@
         "abstention": 12,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6346"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6346",
+      "type": "scrutin"
     },
     {
       "numero": 6319,
@@ -1063,6 +1161,7 @@
       "lecture": "texte de la commission mixte paritaire",
       "solennel": true,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "economie"
       ],
@@ -1073,7 +1172,8 @@
         "abstention": 5,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6319"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6319",
+      "type": "scrutin"
     },
     {
       "numero": 6318,
@@ -1084,6 +1184,7 @@
       "lecture": "première lecture",
       "solennel": true,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "securite"
       ],
@@ -1094,7 +1195,8 @@
         "abstention": 13,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6318"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6318",
+      "type": "scrutin"
     },
     {
       "numero": 6286,
@@ -1105,6 +1207,7 @@
       "lecture": "deuxième lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "sante"
       ],
@@ -1115,7 +1218,8 @@
         "abstention": 0,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6286"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6286",
+      "type": "scrutin"
     },
     {
       "numero": 6285,
@@ -1126,6 +1230,7 @@
       "lecture": "texte de la commission mixte paritaire",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "institutions"
       ],
@@ -1136,7 +1241,8 @@
         "abstention": 0,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6285"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6285",
+      "type": "scrutin"
     },
     {
       "numero": 6184,
@@ -1147,6 +1253,7 @@
       "lecture": "texte de la commission mixte paritaire",
       "solennel": true,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "economie"
       ],
@@ -1157,7 +1264,8 @@
         "abstention": 30,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6184"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6184",
+      "type": "scrutin"
     },
     {
       "numero": 6180,
@@ -1168,6 +1276,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "culture"
       ],
@@ -1178,7 +1287,8 @@
         "abstention": 1,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6180"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6180",
+      "type": "scrutin"
     },
     {
       "numero": 6135,
@@ -1189,6 +1299,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "justice",
         "economie"
@@ -1200,7 +1311,8 @@
         "abstention": 0,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6135"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6135",
+      "type": "scrutin"
     },
     {
       "numero": 6131,
@@ -1211,6 +1323,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "economie"
       ],
@@ -1221,7 +1334,8 @@
         "abstention": 11,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6131"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6131",
+      "type": "scrutin"
     },
     {
       "numero": 6124,
@@ -1232,6 +1346,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "justice"
       ],
@@ -1242,7 +1357,8 @@
         "abstention": 0,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6124"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6124",
+      "type": "scrutin"
     },
     {
       "numero": 6076,
@@ -1253,6 +1369,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "education",
         "social",
@@ -1265,7 +1382,8 @@
         "abstention": 25,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6076"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6076",
+      "type": "scrutin"
     },
     {
       "numero": 6069,
@@ -1276,6 +1394,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "environnement"
       ],
@@ -1286,7 +1405,8 @@
         "abstention": 27,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6069"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6069",
+      "type": "scrutin"
     },
     {
       "numero": 6045,
@@ -1297,6 +1417,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "institutions"
       ],
@@ -1307,7 +1428,8 @@
         "abstention": 12,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6045"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6045",
+      "type": "scrutin"
     },
     {
       "numero": 6023,
@@ -1318,6 +1440,7 @@
       "lecture": "première lecture",
       "solennel": true,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "economie"
       ],
@@ -1328,7 +1451,8 @@
         "abstention": 9,
         "absent": 0
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6023"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6023",
+      "type": "scrutin"
     },
     {
       "numero": 5856,
@@ -1339,6 +1463,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "institutions"
       ],
@@ -1349,7 +1474,8 @@
         "abstention": 25,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5856"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5856",
+      "type": "scrutin"
     },
     {
       "numero": 5849,
@@ -1360,6 +1486,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "economie",
         "institutions"
@@ -1371,7 +1498,8 @@
         "abstention": 0,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5849"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5849",
+      "type": "scrutin"
     },
     {
       "numero": 5846,
@@ -1382,6 +1510,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "economie"
       ],
@@ -1392,7 +1521,8 @@
         "abstention": 5,
         "absent": 3
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5846"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5846",
+      "type": "scrutin"
     },
     {
       "numero": 5845,
@@ -1403,6 +1533,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "education",
         "defense"
@@ -1414,7 +1545,8 @@
         "abstention": 0,
         "absent": 3
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5845"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5845",
+      "type": "scrutin"
     },
     {
       "numero": 5844,
@@ -1425,6 +1557,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "institutions"
       ],
@@ -1435,7 +1568,8 @@
         "abstention": 11,
         "absent": 3
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5844"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5844",
+      "type": "scrutin"
     },
     {
       "numero": 5839,
@@ -1446,6 +1580,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "environnement",
         "agriculture"
@@ -1457,7 +1592,8 @@
         "abstention": 0,
         "absent": 3
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5839"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5839",
+      "type": "scrutin"
     },
     {
       "numero": 5832,
@@ -1468,6 +1604,7 @@
       "lecture": "deuxième lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "justice"
       ],
@@ -1478,7 +1615,8 @@
         "abstention": 0,
         "absent": 3
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5832"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5832",
+      "type": "scrutin"
     },
     {
       "numero": 5831,
@@ -1489,6 +1627,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "culture"
       ],
@@ -1499,7 +1638,8 @@
         "abstention": 0,
         "absent": 3
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5831"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5831",
+      "type": "scrutin"
     },
     {
       "numero": 5829,
@@ -1510,6 +1650,7 @@
       "lecture": "deuxième lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "sante",
         "securite",
@@ -1523,7 +1664,8 @@
         "abstention": 2,
         "absent": 3
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5829"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5829",
+      "type": "scrutin"
     },
     {
       "numero": 5729,
@@ -1534,6 +1676,7 @@
       "lecture": "deuxième lecture",
       "solennel": true,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "sante"
       ],
@@ -1544,7 +1687,8 @@
         "abstention": 37,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5729"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5729",
+      "type": "scrutin"
     },
     {
       "numero": 5728,
@@ -1555,6 +1699,7 @@
       "lecture": "deuxième lecture",
       "solennel": true,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "sante"
       ],
@@ -1565,7 +1710,8 @@
         "abstention": 69,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5728"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5728",
+      "type": "scrutin"
     },
     {
       "numero": 5435,
@@ -1576,6 +1722,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "education",
         "agriculture"
@@ -1587,7 +1734,8 @@
         "abstention": 2,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5435"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5435",
+      "type": "scrutin"
     },
     {
       "numero": 5432,
@@ -1598,6 +1746,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "economie",
         "logement"
@@ -1609,7 +1758,8 @@
         "abstention": 0,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5432"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5432",
+      "type": "scrutin"
     },
     {
       "numero": 5427,
@@ -1620,6 +1770,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "economie",
         "numerique"
@@ -1631,7 +1782,8 @@
         "abstention": 5,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5427"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5427",
+      "type": "scrutin"
     },
     {
       "numero": 5415,
@@ -1642,6 +1794,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "sante"
       ],
@@ -1652,7 +1805,8 @@
         "abstention": 0,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5415"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5415",
+      "type": "scrutin"
     },
     {
       "numero": 5358,
@@ -1663,6 +1817,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "justice"
       ],
@@ -1673,7 +1828,8 @@
         "abstention": 133,
         "absent": 3
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5358"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5358",
+      "type": "scrutin"
     },
     {
       "numero": 5354,
@@ -1684,6 +1840,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "environnement"
       ],
@@ -1694,7 +1851,8 @@
         "abstention": 12,
         "absent": 3
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5354"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5354",
+      "type": "scrutin"
     },
     {
       "numero": 5296,
@@ -1705,6 +1863,7 @@
       "lecture": "texte de la commission mixte paritaire",
       "solennel": true,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "culture"
       ],
@@ -1715,7 +1874,8 @@
         "abstention": 19,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5296"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5296",
+      "type": "scrutin"
     },
     {
       "numero": 5283,
@@ -1726,6 +1886,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "social"
       ],
@@ -1736,7 +1897,8 @@
         "abstention": 0,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5283"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5283",
+      "type": "scrutin"
     },
     {
       "numero": 5266,
@@ -1747,6 +1909,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "justice",
         "environnement"
@@ -1758,7 +1921,8 @@
         "abstention": 0,
         "absent": 3
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5266"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5266",
+      "type": "scrutin"
     },
     {
       "numero": 5254,
@@ -1769,6 +1933,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "sante",
         "travail"
@@ -1780,7 +1945,8 @@
         "abstention": 17,
         "absent": 3
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5254"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5254",
+      "type": "scrutin"
     },
     {
       "numero": 5244,
@@ -1791,6 +1957,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "social"
       ],
@@ -1801,7 +1968,8 @@
         "abstention": 0,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5244"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5244",
+      "type": "scrutin"
     },
     {
       "numero": 5243,
@@ -1812,6 +1980,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "social"
       ],
@@ -1822,7 +1991,8 @@
         "abstention": 1,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5243"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5243",
+      "type": "scrutin"
     },
     {
       "numero": 5240,
@@ -1833,6 +2003,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "logement",
         "culture"
@@ -1844,7 +2015,8 @@
         "abstention": 0,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5240"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5240",
+      "type": "scrutin"
     },
     {
       "numero": 5226,
@@ -1855,6 +2027,7 @@
       "lecture": null,
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "justice",
         "securite",
@@ -1867,7 +2040,8 @@
         "abstention": 0,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5226"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5226",
+      "type": "scrutin"
     },
     {
       "numero": 5222,
@@ -1878,6 +2052,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
@@ -1886,7 +2061,8 @@
         "abstention": 23,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5222"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5222",
+      "type": "scrutin"
     },
     {
       "numero": 5192,
@@ -1897,6 +2073,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "social",
         "numerique"
@@ -1908,7 +2085,8 @@
         "abstention": 6,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5192"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5192",
+      "type": "scrutin"
     },
     {
       "numero": 4963,
@@ -1919,6 +2097,7 @@
       "lecture": "première lecture",
       "solennel": true,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "culture"
       ],
@@ -1929,7 +2108,8 @@
         "abstention": 18,
         "absent": 0
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4963"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4963",
+      "type": "scrutin"
     },
     {
       "numero": 4962,
@@ -1940,6 +2120,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "travail",
         "logement"
@@ -1951,7 +2132,8 @@
         "abstention": 11,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4962"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4962",
+      "type": "scrutin"
     },
     {
       "numero": 4947,
@@ -1962,6 +2144,7 @@
       "lecture": "première lecture",
       "solennel": true,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "economie"
       ],
@@ -1972,7 +2155,8 @@
         "abstention": 62,
         "absent": 0
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4947"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4947",
+      "type": "scrutin"
     },
     {
       "numero": 4839,
@@ -1983,6 +2167,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "justice",
         "social"
@@ -1994,7 +2179,8 @@
         "abstention": 0,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4839"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4839",
+      "type": "scrutin"
     },
     {
       "numero": 4836,
@@ -2005,6 +2191,7 @@
       "lecture": "deuxième lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "justice",
         "social"
@@ -2016,7 +2203,8 @@
         "abstention": 0,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4836"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4836",
+      "type": "scrutin"
     },
     {
       "numero": 4758,
@@ -2027,6 +2215,7 @@
       "lecture": "lecture définitive",
       "solennel": true,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "securite",
         "economie"
@@ -2038,7 +2227,8 @@
         "abstention": 90,
         "absent": 0
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4758"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4758",
+      "type": "scrutin"
     },
     {
       "numero": 4755,
@@ -2049,6 +2239,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "institutions"
       ],
@@ -2059,7 +2250,8 @@
         "abstention": 13,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4755"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4755",
+      "type": "scrutin"
     },
     {
       "numero": 4754,
@@ -2070,6 +2262,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "immigration"
       ],
@@ -2080,7 +2273,8 @@
         "abstention": 2,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4754"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4754",
+      "type": "scrutin"
     },
     {
       "numero": 4745,
@@ -2091,6 +2285,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "logement"
       ],
@@ -2101,7 +2296,8 @@
         "abstention": 4,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4745"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4745",
+      "type": "scrutin"
     },
     {
       "numero": 4723,
@@ -2112,6 +2308,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "social"
       ],
@@ -2122,7 +2319,8 @@
         "abstention": 2,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4723"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4723",
+      "type": "scrutin"
     },
     {
       "numero": 4714,
@@ -2133,6 +2331,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "justice",
         "social"
@@ -2144,7 +2343,8 @@
         "abstention": 1,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4714"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4714",
+      "type": "scrutin"
     },
     {
       "numero": 4707,
@@ -2155,6 +2355,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "social"
       ],
@@ -2165,7 +2366,8 @@
         "abstention": 20,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4707"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4707",
+      "type": "scrutin"
     },
     {
       "numero": 4706,
@@ -2176,6 +2378,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "institutions"
       ],
@@ -2186,7 +2389,8 @@
         "abstention": 0,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4706"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4706",
+      "type": "scrutin"
     },
     {
       "numero": 4696,
@@ -2197,6 +2401,7 @@
       "lecture": "nouvelle lecture",
       "solennel": true,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "securite",
         "economie"
@@ -2208,7 +2413,8 @@
         "abstention": 93,
         "absent": 0
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4696"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4696",
+      "type": "scrutin"
     },
     {
       "numero": 4691,
@@ -2219,6 +2425,7 @@
       "lecture": "deuxième lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "institutions"
       ],
@@ -2229,7 +2436,8 @@
         "abstention": 22,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4691"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4691",
+      "type": "scrutin"
     },
     {
       "numero": 4442,
@@ -2240,6 +2448,7 @@
       "lecture": "texte de la commission mixte paritaire",
       "solennel": true,
       "adopte": true,
+      "statut": "adopte",
       "themes": [],
       "sort": "l'Assemblée nationale a adopté",
       "tally": {
@@ -2248,7 +2457,8 @@
         "abstention": 84,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4442"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4442",
+      "type": "scrutin"
     },
     {
       "numero": 4438,
@@ -2259,6 +2469,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "economie"
       ],
@@ -2269,7 +2480,8 @@
         "abstention": 42,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4438"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4438",
+      "type": "scrutin"
     },
     {
       "numero": 4287,
@@ -2280,6 +2492,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "institutions"
       ],
@@ -2290,7 +2503,8 @@
         "abstention": 51,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4287"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4287",
+      "type": "scrutin"
     },
     {
       "numero": 3936,
@@ -2301,6 +2515,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "economie"
       ],
@@ -2311,7 +2526,8 @@
         "abstention": 82,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/3936"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/3936",
+      "type": "scrutin"
     },
     {
       "numero": 3273,
@@ -2322,6 +2538,7 @@
       "lecture": "première lecture",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "economie",
         "agriculture"
@@ -2333,7 +2550,8 @@
         "abstention": 8,
         "absent": 15
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/3273"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/3273",
+      "type": "scrutin"
     },
     {
       "numero": 3182,
@@ -2344,6 +2562,7 @@
       "lecture": "texte de la commission mixte paritaire",
       "solennel": true,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "institutions"
       ],
@@ -2354,7 +2573,8 @@
         "abstention": 9,
         "absent": 13
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/3182"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/3182",
+      "type": "scrutin"
     },
     {
       "numero": 3061,
@@ -2365,6 +2585,7 @@
       "lecture": "texte de la commission mixte paritaire",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "justice",
         "securite"
@@ -2376,7 +2597,8 @@
         "abstention": 5,
         "absent": 15
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/3061"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/3061",
+      "type": "scrutin"
     },
     {
       "numero": 3056,
@@ -2387,6 +2609,7 @@
       "lecture": "texte de la commission mixte paritaire",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "logement"
       ],
@@ -2397,7 +2620,8 @@
         "abstention": 52,
         "absent": 14
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/3056"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/3056",
+      "type": "scrutin"
     },
     {
       "numero": 3055,
@@ -2408,6 +2632,7 @@
       "lecture": "texte de la commission mixte paritaire",
       "solennel": false,
       "adopte": true,
+      "statut": "adopte",
       "themes": [
         "travail"
       ],
@@ -2418,7 +2643,8 @@
         "abstention": 8,
         "absent": 14
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/3055"
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/3055",
+      "type": "scrutin"
     }
   ]
 }

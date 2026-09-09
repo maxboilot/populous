@@ -466,6 +466,10 @@ window.__VOTE_EARLY__ = (async function(){
     -webkit-box-orient:vertical; overflow:hidden; }
   /* Filtre thématique (Historique, À venir) : menu déroulant natif */
   .filtres{ margin:0 0 12px; }
+  /* Nom du filtre, seulement quand deux filtres se suivent (Historique) —
+     sans ça, deux menus "Tous (N)" côte à côte ne se distinguent pas. */
+  .filtreLabel{ max-width:640px; margin:0 auto 6px; padding-left:4px;
+    font-size:10.5px; font-weight:700; color:var(--dim); }
   .filtreSelect{ width:100%; max-width:640px; padding:11px 14px; font:inherit; font-size:12.5px;
     font-weight:600; color:var(--ink); background:var(--card); border:none; border-radius:var(--r-input);
     box-shadow:var(--shadow); cursor:pointer; appearance:none; -webkit-appearance:none;
@@ -585,7 +589,7 @@ window.__VOTE_EARLY__ = (async function(){
       <div class="ti">📅</div><div class="tt">À venir</div><div class="ts">L'agenda de l'Assemblée</div>
     </button>
     <button class="dashTile" data-go="historique">
-      <div class="ti">📜</div><div class="tt">Historique</div><div class="ts">Lois adoptées et bilan par groupe</div>
+      <div class="ti">📜</div><div class="tt">Historique</div><div class="ts">Toutes les lois et bilan par groupe</div>
     </button>
   </div>
 </div>
@@ -605,9 +609,10 @@ window.__VOTE_EARLY__ = (async function(){
   <div class="presiWatermark" aria-hidden="true">Populous</div>
   <div class="dashHead zTop"><div class="eyebrow">Archive</div><h1 class="d">Historique</h1></div>
   <div class="presiTabs zTop" id="histTabs">
-    <button class="presiTab on" data-htab="lois">Lois adoptées</button>
+    <button class="presiTab on" data-htab="lois">Toutes les lois</button>
     <button class="presiTab" data-htab="recap">Récap</button>
   </div>
+  <div id="histFiltreStatut" class="filtres zTop"></div>
   <div id="histFiltres" class="filtres zTop"></div>
   <div id="histList" class="dashList zTop"></div>
   <div id="recapBody" class="dashList zTop hidden"></div>
@@ -2055,7 +2060,7 @@ function wireShare(container, text, url){
   });
 }
 
-let histData = [], histTheme = null;
+let histData = [], histTheme = null, histStatut = null;
 let avenirData = [], avenirTheme = null;
 
 async function chargerThemes(){
@@ -2070,7 +2075,7 @@ async function chargerThemes(){
 
 /* On ne propose que les thèmes réellement présents dans les données, triés
    par nombre décroissant : une case vide n'a aucun intérêt pour le lecteur. */
-function rendreFiltres(cible, donnees, actif, choisir){
+function rendreFiltres(cible, donnees, actif, choisir, label){
   const el = $(cible);
   if(!el) return;
   const compte = {};
@@ -2089,7 +2094,7 @@ function rendreFiltres(cible, donnees, actif, choisir){
   if(nonClasses){
     options += `<option value="_"${actif==="_"?" selected":""}>Non classé (${nonClasses})</option>`;
   }
-  el.innerHTML = `<select class="filtreSelect" aria-label="Filtrer par thème">${options}</select>`;
+  el.innerHTML = `${label ? `<div class="filtreLabel">${esc(label)}</div>` : ""}<select class="filtreSelect" aria-label="Filtrer par thème">${options}</select>`;
   el.querySelector("select").addEventListener("change", e => choisir(e.target.value === "" ? null : e.target.value));
 }
 
@@ -2099,22 +2104,56 @@ function filtrerParTheme(donnees, theme){
   return donnees.filter(r => (r.themes || []).includes(theme));
 }
 
+/* Filtre par statut (Historique uniquement) — même logique que
+   rendreFiltres, mais sur un ensemble de codes fixe (STATUT_INFO) plutôt
+   que déduit des données, pour un ordre d'affichage stable. */
+function rendreFiltreStatut(cible, donnees, actif, choisir, label){
+  const el = $(cible);
+  if(!el) return;
+  const compte = {};
+  donnees.forEach(r => { const s = statutDe(r); compte[s] = (compte[s]||0) + 1; });
+  const codes = Object.keys(STATUT_INFO).filter(c => compte[c]);
+  let options = `<option value=""${actif===null?" selected":""}>Tous (${donnees.length})</option>`;
+  codes.forEach(c => {
+    options += `<option value="${c}"${actif===c?" selected":""}>${STATUT_INFO[c].label} (${compte[c]})</option>`;
+  });
+  el.innerHTML = `${label ? `<div class="filtreLabel">${esc(label)}</div>` : ""}<select class="filtreSelect" aria-label="Filtrer par statut">${options}</select>`;
+  el.querySelector("select").addEventListener("change", e => choisir(e.target.value === "" ? null : e.target.value));
+}
+function filtrerParStatut(donnees, statut){
+  if(statut === null) return donnees;
+  return donnees.filter(r => statutDe(r) === statut);
+}
+
 function videSelection(icone){
   return `<div class="emptyState"><div class="ic">${icone}</div>
     <h3>Rien dans ce thème</h3>
     <p>Choisis un autre thème, ou reviens à « Tous ».</p></div>`;
 }
 
+// "statut" existe sur toute entrée venue d'index.json (scrutin ou main
+// levée) ; le repli sur "adopte" ne sert qu'au tout premier affichage de
+// loadHistorique(), avant que l'index ne soit chargé (voir plus bas).
+const STATUT_INFO = {
+  adopte: { label: "Adopté", couleur: VOTE_COLORS.pour },
+  adopte_modifie: { label: "Adopté avec modifications", couleur: "#2B48A5" }, // = --accent, en dur pour le repli de transparence ${col}22 des badges
+  rejete: { label: "Rejeté", couleur: VOTE_COLORS.contre },
+};
+function statutDe(r){
+  return r.statut || (r.adopte ? "adopte" : "rejete");
+}
 function histShareText(r){
-  return `${r.titre} — ${r.adopte?"adopté":"rejeté"} le ${dateFR(r.date)} à l'Assemblée nationale.`;
+  const label = STATUT_INFO[statutDe(r)].label.toLowerCase();
+  return `${r.titre} — ${label} le ${dateFR(r.date)} à l'Assemblée nationale.`;
 }
 function avenirShareText(r){
   return `${r.ordre_du_jour} — inscrit à l'agenda de l'Assemblée nationale${r.date?" le "+dateFR(r.date):""}.`;
 }
 
 function rendreHistorique(){
-  rendreFiltres("#histFiltres", histData, histTheme, t => { histTheme = t; rendreHistorique(); });
-  const vues = filtrerParTheme(histData, histTheme);
+  rendreFiltreStatut("#histFiltreStatut", histData, histStatut, s => { histStatut = s; rendreHistorique(); }, "Résultats");
+  rendreFiltres("#histFiltres", histData, histTheme, t => { histTheme = t; rendreHistorique(); }, "Secteurs");
+  const vues = filtrerParStatut(filtrerParTheme(histData, histTheme), histStatut);
   $("#histList").innerHTML = vues.length ? vues.map(r => histRow(r)).join("") : videSelection("📜");
   $("#histList").querySelectorAll(".dRow").forEach((el,i)=> wireShare(el, histShareText(vues[i])));
 }
@@ -2123,6 +2162,7 @@ let histTab = "lois";
 function afficherHistTab(){
   $("#histTabs").querySelectorAll(".presiTab").forEach(b=>b.classList.toggle("on", b.dataset.htab===histTab));
   $("#histFiltres").classList.toggle("hidden", histTab !== "lois");
+  $("#histFiltreStatut").classList.toggle("hidden", histTab !== "lois");
   $("#histList").classList.toggle("hidden", histTab !== "lois");
   $("#recapBody").classList.toggle("hidden", histTab !== "recap");
   if(histTab === "recap") renderRecap();
@@ -2173,15 +2213,22 @@ async function loadHistorique(){
   }
 }
 function histRow(r){
-  const col = r.adopte ? VOTE_COLORS.pour : VOTE_COLORS.contre;
-  // Le lien pointe vers la page officielle du scrutin. On prend la source
-  // fournie par le pipeline, avec reconstruction de secours si absente.
-  const url = r.source || ("https://www.assemblee-nationale.fr/dyn/17/scrutins/" + r.numero);
-  return `<a class="dRow histLink" href="${esc(url)}" target="_blank" rel="noopener">
-    <div class="k"><span>${dateFR(r.date)} · scrutin n°${r.numero}</span>
-      <span class="badge" style="background:${col}22;color:${col}">${r.adopte?"Adopté":"Rejeté"}</span></div>
+  const info = STATUT_INFO[statutDe(r)];
+  // r.numero n'existe que pour un vrai scrutin (voir construire_historique.py,
+  // charger_main_levee) : une décision à main levée n'a ni tally ni page de
+  // scrutin, seulement la page du dossier législatif.
+  const estScrutin = r.numero != null;
+  const url = r.source || (estScrutin ? "https://www.assemblee-nationale.fr/dyn/17/scrutins/" + r.numero : null);
+  const lien = url
+    ? `<div class="histGo">Voir ${estScrutin ? "le scrutin" : "le dossier"} sur assemblee-nationale.fr →</div>`
+    : "";
+  return `<a class="dRow histLink" href="${url ? esc(url) : "#"}" target="${url?"_blank":"_self"}" rel="noopener" style="${url?"":"cursor:default"}">
+    <div class="k">
+      <span>${dateFR(r.date)}${estScrutin ? " · scrutin n°"+r.numero : " · vote à main levée"}</span>
+      <span class="badge" style="background:${info.couleur}22;color:${info.couleur}">${info.label}</span>
+    </div>
     <div class="t">${esc(r.titre)}</div>
-    <div class="histGo">Voir le scrutin sur assemblee-nationale.fr →</div>
+    ${lien}
     ${shareRowHTML()}
   </a>`;
 }
@@ -2453,7 +2500,12 @@ function melanger(arr){
 async function chargerBoussolePool(){
   if(boussolePool) return boussolePool;
   try{
-    boussolePool = await (await fetch(REPO_DATA_BASE + "index.json", {cache:"no-store"})).json();
+    const tout = await (await fetch(REPO_DATA_BASE + "index.json", {cache:"no-store"})).json();
+    // index.json mélange scrutins réels et décisions à main levée (voir
+    // construire_historique.py) — la Boussole a besoin d'un vrai
+    // scrutins/<numero>.json derrière chaque question, qu'une décision à
+    // main levée n'a pas.
+    boussolePool = tout.filter(r => r.type === "scrutin");
   }catch(e){ boussolePool = null; }
   return boussolePool;
 }
