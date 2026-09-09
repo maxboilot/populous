@@ -315,9 +315,16 @@ window.__VOTE_EARLY__ = (async function(){
   .presiHeroCard .phCta{margin-top:16px;font-size:12.5px;font-weight:700;color:#fff;opacity:.85}
 
   /* Dernier vote : nettement réduit, la présidentielle prend le dessus. */
-  .voteCard{max-width:640px;margin:0 auto 18px;padding:16px 18px;border:none;border-radius:18px;
+  .voteCard{position:relative;max-width:640px;margin:0 auto 18px;padding:16px 18px;border:none;border-radius:18px;
     background:linear-gradient(135deg,var(--accent) 0%,#1B2E7A 100%);color:#fff;box-shadow:var(--shadow)}
   .voteCard .eyebrow{font-size:10px;font-weight:700;color:#BFD0FF}
+  /* Tampon façon encreur : incliné, double contour, couleurs reprises de
+     VOTE_COLORS (éclaircies pour rester lisibles sur le fond sombre). */
+  .voteStamp{position:absolute;top:14px;right:14px;padding:5px 12px;border-radius:6px;
+    font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+    transform:rotate(6deg);border:2px solid;background:rgba(255,255,255,.06)}
+  .voteStamp.adopte{color:#4ADE9C;border-color:#4ADE9C}
+  .voteStamp.rejete{color:#FF9166;border-color:#FF9166}
   .voteCard h2{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','SF Pro Display',system-ui,'Inter',Helvetica,Arial,sans-serif;
     font-weight:800;font-size:15px;margin:5px 0 0;line-height:1.35;color:#fff}
   .voteCard p{font-size:11.5px;line-height:1.5;color:#C9D5F5;margin:6px 0 0}
@@ -2021,6 +2028,7 @@ function renderAccueil(){
       ? `Comme ${voteData.tally[pos]} autres député·es sur 577.`
       : `${voteData.tally.pour} pour · ${voteData.tally.contre} contre · ${voteData.tally.abstention} abstentions.`;
     card.innerHTML = `
+      <div class="voteStamp ${voteData.adopte ? "adopte" : "rejete"}">${voteData.adopte ? "Adopté" : "Rejeté"}</div>
       <div class="eyebrow">${voteData.isToday ? "Hier à l'Assemblée" : "Dernier scrutin connu · " + dateFR(voteData.date)}</div>
       <h2 class="d">${headline}</h2>
       <p>${esc(tallyLine)} <i>${titreSujetGras(voteData.titre)}</i></p>
