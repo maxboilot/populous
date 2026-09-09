@@ -2014,6 +2014,7 @@ function gererLienPartage(){
       action: ()=>{
         recapGroupe = groupe.s;
         recapVisites = new Set(chargerProgresRecap()[groupe.s] || []);
+        recapCourant = null;
         showScreen("historique"); histTab = "recap"; afficherHistTab();
       },
     };
@@ -2660,7 +2661,7 @@ const THEME_ICONS = {
   numerique:"💻", defense:"🛡️", institutions:"🏛️", immigration:"🛂", culture:"🎭",
 };
 let recapData = null, recapPromise = null;
-let recapGroupe = null, recapVisites = new Set();
+let recapGroupe = null, recapVisites = new Set(), recapCourant = null;
 
 // Progrès mémorisé par groupe (thèmes déjà vus), pour ne pas repartir de
 // zéro à chaque visite — perdu sinon dès qu'on changeait de groupe.
@@ -2718,14 +2719,18 @@ function renderRecapChoix(d){
       }).join("")}
     </div>`;
   $("#recapBody").querySelectorAll(".recapCard").forEach(b=>{
-    b.onclick = ()=>{ recapGroupe = b.dataset.g; recapVisites = new Set(progres[recapGroupe]||[]); renderRecapTrail(d); };
+    b.onclick = ()=>{ recapGroupe = b.dataset.g; recapVisites = new Set(progres[recapGroupe]||[]); recapCourant = null; renderRecapTrail(d); };
   });
 }
 
 function renderRecapTrail(d){
   const groupe = d.groupes.find(g=>g.s===recapGroupe);
-  const idxCourant = d.themes.findIndex(t => !recapVisites.has(t.code));
-  const termine = idxCourant === -1;
+  // Le rond de position suit le secteur choisi par l'utilisateur, jamais une
+  // progression automatique — par défaut le premier secteur, sinon le
+  // dernier consulté.
+  let idxCourant = recapCourant ? d.themes.findIndex(t => t.code === recapCourant) : 0;
+  if(idxCourant === -1) idxCourant = 0;
+  const termine = d.themes.every(t => recapVisites.has(t.code));
 
   $("#recapBody").innerHTML = `
     <button class="recapBack" id="recapBack">← Changer de récap</button>
@@ -2762,6 +2767,7 @@ function renderRecapTrail(d){
 
 function ouvrirRecapCheckpoint(d, groupe, themeCode){
   recapVisites.add(themeCode);
+  recapCourant = themeCode;
   sauverProgresRecap();
   const theme = d.themes.find(t=>t.code===themeCode);
   const don = d.donnees[recapGroupe][themeCode];
