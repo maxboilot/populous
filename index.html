@@ -246,8 +246,13 @@ window.__VOTE_EARLY__ = (async function(){
   #introPopup .introDots .dot{width:7px;height:7px;border-radius:50%;background:var(--card-alt);
     border:1.5px solid var(--dim);cursor:pointer;padding:0;transition:background .2s,border-color .2s,transform .2s}
   #introPopup .introDots .dot.on{background:var(--accent);border-color:var(--accent);transform:scale(1.25)}
-  #introPopup .introFoot{padding:6px 24px 26px}
-  #introPopup .introFoot .btn[hidden]{display:none}
+  /* Le bouton garde sa place tout du long (opacité plutôt que hidden) :
+     un hidden aurait fait varier la hauteur du pied de page — donc la
+     taille du pop-up — pile au moment de basculer sur le dernier slide. */
+  #introPopup .introFoot{padding:8px 24px 26px;display:flex;justify-content:center}
+  #introPopup .introFoot .btn{flex:none;padding:12px 30px;font-size:13.5px;
+    opacity:0;pointer-events:none;transition:opacity .25s}
+  #introPopup .introFoot .btn.show{opacity:1;pointer-events:auto}
 
   #impactPanel .empty{margin-top:14px;font-size:12.5px;color:var(--ink-soft);line-height:1.65}
   /* Extrait réel du texte adopté, cité tel quel — jamais une phrase
@@ -577,7 +582,7 @@ window.__VOTE_EARLY__ = (async function(){
     <button class="introSkip" id="introSkip" type="button">Passer</button>
     <div class="introTrack" id="introTrack"></div>
     <div class="introDots" id="introDots"></div>
-    <div class="introFoot"><button class="btn primary" id="introClose" hidden>Découvrir Populous</button></div>
+    <div class="introFoot"><button class="btn primary" id="introClose">Découvrir Populous</button></div>
   </div>
 </div>
 
@@ -1808,7 +1813,7 @@ const INTRO_SLIDES = [
   { cls:"welcome", ic:"🇫🇷", titre:"Bienvenue sur Populous",
     texte:"Chaque jour, l'Assemblée nationale vote des lois qui te concernent — mais suivre ce qui s'y passe réellement est presque impossible. Populous existe pour te montrer les faits, sans filtre : les vrais votes de ton député, sourcés et vérifiables, pour que tu te fasses ta propre opinion." },
   { ic:"🗺️", titre:"Le vote de ton député",
-    texte:"Sur la Carte, découvre comment ton député a voté sur le dernier texte — et compare-le à sa circonscription, son groupe politique, son âge ou son parcours avant le mandat." },
+    texte:"Découvre qui sont nos députés, ce qu'ils votent et ce que ça change réellement pour toi." },
   { ic:"🧭", titre:"Teste tes propres opinions",
     texte:"La Boussole te compare à dix vrais scrutins pour voir quel groupe partage le plus tes positions. Le Récap te montre, thème par thème, comment chaque groupe a réellement voté — jamais une position devinée." },
   { ic:"📜", titre:"Toute l'actualité politique",
@@ -1819,7 +1824,7 @@ let introIndex = 0, introDragStartX = 0, introDragDx = 0, introDragging = false;
 function introMaj(){
   $("#introTrack").style.transform = `translateX(${-introIndex*100}%)`;
   $("#introDots").querySelectorAll(".dot").forEach((d,k)=>d.classList.toggle("on", k===introIndex));
-  $("#introClose").hidden = introIndex !== INTRO_SLIDES.length-1;
+  $("#introClose").classList.toggle("show", introIndex === INTRO_SLIDES.length-1);
 }
 function introPointerMove(e){
   if(!introDragging) return;
