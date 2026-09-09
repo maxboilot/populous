@@ -617,6 +617,10 @@ window.__VOTE_EARLY__ = (async function(){
 <div id="screen-avenir" class="screen hidden">
   <div class="presiWatermark" aria-hidden="true">Populous</div>
   <div class="dashHead zTop"><div class="eyebrow">Feuille blanche</div><h1 class="d">À venir</h1></div>
+  <div class="privacyBox zTop" style="max-width:640px;margin:0 auto 14px">
+    Seul un texte marqué <b>Vote solennel</b> aura sûrement un résultat enregistré dans l'historique — la plupart
+    des votes à l'Assemblée se font à main levée, sans trace publique, même après un examen inscrit ici.
+  </div>
   <div id="avenirFiltres" class="filtres zTop"></div>
   <div id="avenirList" class="dashList zTop"></div>
 </div>
@@ -2132,7 +2136,10 @@ function rendreAvenir(){
   const vues = filtrerParTheme(avenirData, avenirTheme);
   $("#avenirList").innerHTML = vues.length ? vues.map(r => `
       <div class="dRow" style="cursor:default">
-        <div class="k"><span>${dateFR(r.date)}${r.heure?" · "+esc(r.heure):""}</span></div>
+        <div class="k">
+          <span>${dateFR(r.date)}${r.heure?" · "+esc(r.heure):""}</span>
+          ${r.scrutin_annonce ? `<span class="badge" style="background:var(--accent-soft);color:var(--accent)">Vote solennel</span>` : ""}
+        </div>
         <div class="t">${esc(r.ordre_du_jour)}</div>
         ${shareRowHTML()}
       </div>`).join("") : videSelection("📅");

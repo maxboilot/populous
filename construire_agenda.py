@@ -16,6 +16,14 @@ Trois choses à savoir avant de toucher à ce fichier.
    nominations de rapporteur et autres points internes n'ont pas leur place
    dans un onglet destiné au grand public.
 
+4. La plupart des votes à l'Assemblée se font à main levée, sans scrutin
+   public — rien n'apparaîtra alors ensuite dans l'historique, et rien dans
+   les données de l'Assemblée ne permet de le savoir à l'avance. Seul le
+   « Vote solennel » (ou « Vote par scrutin public ») est un type de point
+   d'ordre du jour annoncé comme tel : scrutin_annonce reflète uniquement
+   cette annonce explicite, ce n'est jamais une prédiction pour les autres
+   types de points (Examen du texte, Discussion...).
+
 Aucun résumé n'est généré : on affiche le titre officiel du dossier tel que
 l'Assemblée le publie.
 """
@@ -47,6 +55,14 @@ ETATS_EXCLUS = {'Annulé', 'Annule'}
 # n'intéressent pas le grand public. On exclut par préfixe plutôt que par liste
 # blanche, pour qu'un type d'examen nouveau apparaisse au lieu d'être perdu.
 PREFIXES_EXCLUS = ('Nomination', 'Audition', "Rapport d'information")
+
+# Un « Vote solennel » ou « Vote par scrutin public » est le seul cas où on
+# sait à l'avance qu'un vote enregistré aura lieu — l'immense majorité des
+# votes de l'Assemblée se font à main levée, sans scrutin public, et rien ne
+# permet de le savoir à l'avance pour un simple « Examen du texte » ou
+# « Discussion ». D'où scrutin_annonce : jamais une prédiction, seulement ce
+# que l'ordre du jour annonce explicitement lui-même.
+TYPES_SCRUTIN_ANNONCE = {'Vote solennel', 'Vote par scrutin public'}
 
 # Au-delà de cette longueur, l'objet est déjà une phrase complète qui contient
 # son propre sujet : y accoler le titre du dossier ferait doublon.
@@ -116,6 +132,7 @@ def collecter(archive, depuis):
                     'objet': (point.get('objet') or '').strip(),
                     'refs': refs,
                     'incertain': etat not in ('Confirmé', 'Confirme'),
+                    'scrutin_annonce': type_point in TYPES_SCRUTIN_ANNONCE,
                 })
     return retenus
 
@@ -192,6 +209,7 @@ def construire(depuis):
                 'ordre_du_jour': texte,
                 'themes': categories.classer(titre),
                 'dossier': ref,
+                'scrutin_annonce': p['scrutin_annonce'],
             })
 
     lignes.sort(key=lambda x: (x['date'], x['heure'] or '', x['ordre_du_jour']))

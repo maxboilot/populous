@@ -4,13 +4,23 @@ on:
   schedule:
     # GitHub ne garantit pas l'heure d'une tâche planifiée : elle est mise en
     # file d'attente selon la charge, et le début de chaque heure est le pire
-    # moment. On s'écarte donc de l'heure pile, et on tente quatre fois dans
-    # la nuit et la matinée plutôt qu'une seule. Le script est idempotent :
-    # une exécution qui ne trouve rien ne coûte rien et ne commite pas.
+    # moment — on s'écarte donc de l'heure pile. Plus grave : GitHub peut
+    # carrément sauter une exécution planifiée en cas de forte charge, pas
+    # seulement la retarder (documenté par GitHub lui-même). Constaté le
+    # 9 septembre 2026 : les deux premiers créneaux du matin n'ont jamais
+    # tourné, laissant l'agenda affiché comme périmé plusieurs heures. Huit
+    # créneaux répartis sur la journée plutôt que quatre le matin seulement,
+    # pour qu'un ou deux ratés d'affilée restent sans conséquence visible.
+    # Le script est idempotent : une exécution qui ne trouve rien ne coûte
+    # rien et ne commite pas.
     - cron: '23 2 * * *'
-    - cron: '23 4 * * *'
-    - cron: '23 6 * * *'
+    - cron: '23 5 * * *'
     - cron: '23 8 * * *'
+    - cron: '23 11 * * *'
+    - cron: '23 14 * * *'
+    - cron: '23 17 * * *'
+    - cron: '23 20 * * *'
+    - cron: '23 23 * * *'
   workflow_dispatch: {}
 
 permissions:
