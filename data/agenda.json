@@ -64,5 +64,15 @@
     ],
     "dossier": "DLR5L17N54608",
     "scrutin_annonce": false
+  },
+  {
+    "date": "2026-09-30",
+    "heure": "09:30",
+    "ordre_du_jour": "Examen du texte — Protéger les mineurs isolés et à lutter contre le sans-abrisme (séance éventuelle)",
+    "themes": [
+      "social"
+    ],
+    "dossier": "DLR5L17N53051",
+    "scrutin_annonce": false
   }
 ]
