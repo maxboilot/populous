@@ -2,12 +2,30 @@
   {
     "date": "2026-09-16",
     "heure": "09:30",
+    "ordre_du_jour": "Examen du texte — Allocution du Président d'âge",
+    "themes": [],
+    "dossier": "DLR5L17N50155",
+    "scrutin_annonce": false
+  },
+  {
+    "date": "2026-09-16",
+    "heure": "09:30",
     "ordre_du_jour": "Examen du texte — La relance et la décentralisation du logement",
     "themes": [
       "logement",
       "institutions"
     ],
     "dossier": "DLR5L17N54608",
+    "scrutin_annonce": false
+  },
+  {
+    "date": "2026-09-16",
+    "heure": "11:00",
+    "ordre_du_jour": "Examen du texte — Allocution de la Présidente de l'Assemblée nationale",
+    "themes": [
+      "institutions"
+    ],
+    "dossier": "DLR5L17N50157",
     "scrutin_annonce": false
   },
   {
