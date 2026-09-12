@@ -214,6 +214,17 @@ window.__VOTE_EARLY__ = (async function(){
   .obDots{display:flex;gap:6px;margin-bottom:18px}
   .obDots span{flex:1;height:4px;background:var(--card-alt);border-radius:4px}
   .obDots span.done{background:var(--accent)}
+  /* Bouton "i" de la Boussole : dépliage sur place, jamais de
+     redirection — voir renderBoussoleQuestion(). */
+  .bqInfoBtn{flex:0 0 auto;width:22px;height:22px;border-radius:50%;border:1.5px solid var(--dim);
+    background:none;color:var(--dim);font-size:12px;font-weight:800;font-style:italic;
+    font-family:Georgia,'Times New Roman',serif;cursor:pointer;line-height:1;margin-top:2px}
+  .bqInfoBtn:hover{border-color:var(--accent);color:var(--accent)}
+  .bqInfo{margin-top:10px;padding:12px 14px;border-radius:14px;background:var(--card-alt)}
+  .bqInfo.hidden{display:none}
+  .bqInfoLine{font-size:11.5px;line-height:1.6;color:var(--ink-soft)}
+  .bqInfoLine b{color:var(--ink)}
+  .bqInfoLine + .bqInfoLine{margin-top:4px}
   .privacyBox{margin-top:20px;padding:14px 16px;border-radius:16px;background:var(--accent-soft);
     font-size:12px;line-height:1.6;color:var(--ink-soft)}
   .privacyBox b{color:var(--ink)}
@@ -387,10 +398,10 @@ window.__VOTE_EARLY__ = (async function(){
   .avNone{width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:var(--dim);
     background:var(--card-alt);border-radius:50%}
 
-  #topAvatar{position:fixed;top:calc(14px + env(safe-area-inset-top,0px));right:14px;z-index:850;
-    width:40px;height:40px;border-radius:50%;border:none;padding:0;cursor:pointer;overflow:hidden;
-    background:var(--card);box-shadow:var(--shadow-lg)}
-  #topAvatar.hidden{display:none}
+  /* Avatar de profil dans le menu du bas, à la place du badge flottant
+     en haut à droite — retours utilisateurs : plus facile à repérer et
+     cohérent avec les autres icônes de navigation. */
+  .navBtn .avSlot{width:20px;height:20px;border-radius:50%;overflow:hidden;filter:none}
 
   .avPicker{display:flex;align-items:center;gap:14px}
   .avPreview{width:64px;height:64px;border-radius:50%;flex:0 0 auto;overflow:hidden;background:var(--card-alt)}
@@ -568,9 +579,6 @@ window.__VOTE_EARLY__ = (async function(){
   <div class="sheet" id="obSheet"></div>
 </div>
 
-<!-- ============ badge profil, global, masqué sur la carte (chrome déjà dense) ============ -->
-<button id="topAvatar" class="hidden" aria-label="Mon profil"></button>
-
 <!-- ============ popup quotidien ============ -->
 <div id="dailyPopup" class="veil hidden">
   <div class="sheet" id="dailyPopupSheet"></div>
@@ -722,10 +730,10 @@ window.__VOTE_EARLY__ = (async function(){
 <!-- ============ barre de navigation ============ -->
 <nav id="navbar">
   <button class="navBtn on" data-go="accueil"><span class="ni">🏠</span><span class="nl">Accueil</span></button>
-  <button class="navBtn" data-go="carte"><span class="ni">🗺️</span><span class="nl">Carte</span></button>
   <button class="navBtn" data-go="historique"><span class="ni">📜</span><span class="nl">Historique</span></button>
   <button class="navBtn" data-go="avenir"><span class="ni">📅</span><span class="nl">À venir</span></button>
   <button class="navBtn" data-go="presidentielle"><span class="ni">🇫🇷</span><span class="navDot" id="navDotPresi" hidden></span><span class="nl">2027</span></button>
+  <button class="navBtn" id="navProfil" aria-label="Mon profil"><span class="ni avSlot" id="navAvatar"></span><span class="nl">Profil</span></button>
 </nav>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
@@ -1476,13 +1484,12 @@ function avatarHTML(av){
   return `<div class="avNone">${AVATAR_SILHOUETTE}</div>`;
 }
 function renderTopAvatar(){
-  const el = $("#topAvatar");
+  const el = $("#navAvatar");
   if(!el) return;
-  el.classList.toggle("hidden", activeScreen==="carte");
   const profile = loadProfile();
   el.innerHTML = avatarHTML(profile ? profile.avatar : null);
 }
-$("#topAvatar").onclick = openProfile;
+$("#navProfil").onclick = openProfile;
 
 let draft = { pseudo:"", age:null, circoKey:null, circoLabel:"", logement:null, pro:null, enfants:null, zone:null, transport:null, sante:null, avatar:{type:"none"} };
 let obStep = 0;
@@ -2098,7 +2105,7 @@ function showScreen(name){
     $("#screen-"+s).classList.toggle("hidden", s!==name);
   });
   document.querySelectorAll(".navBtn").forEach(b=>b.classList.toggle("on", b.dataset.go===name));
-  renderTopAvatar(); // masqué sur la carte (chrome déjà dense), à jour partout ailleurs
+  renderTopAvatar(); // avatar du menu du bas, à jour sur tous les écrans
   if(name!=="presidentielle") clearInterval(calendrierMinuteur);
 
   if(name==="carte"){
@@ -2149,17 +2156,19 @@ function renderAccueil(){
   } else {
     const e = profile.circoKey ? byKey.get(profile.circoKey) : null;
     const pos = e ? normPos(voteData.par_circonscription[e.k]) : null;
-    const headline = e && pos
-      ? `<b>${esc(e.n)}</b> ${({pour:"a voté pour",contre:"a voté contre",abstention:"s'est abstenu·e",absent:"était absent·e"})[pos]}`
-      : (voteData.adopte ? "Un texte a été adopté" : "Un texte a été rejeté");
-    const tallyLine = e && pos
-      ? `Comme ${voteData.tally[pos]} autres député·es sur 577.`
-      : `${voteData.tally.pour} pour · ${voteData.tally.contre} contre · ${voteData.tally.abstention} abstentions.`;
+    // Le sujet du texte en premier (titre), le vote du député en second
+    // (paragraphe) — les retours utilisateurs montraient que l'ordre
+    // inverse (vote d'abord) rendait le carré difficile à comprendre
+    // sans savoir de quoi le texte parlait.
+    const voteLine = e && pos
+      ? `<b>${esc(e.n)}</b> ${({pour:"a voté pour",contre:"a voté contre",abstention:"s'est abstenu·e",absent:"était absent·e"})[pos]} — comme ${voteData.tally[pos]} autres député·es sur 577.`
+      : (voteData.adopte ? "Un texte a été adopté" : "Un texte a été rejeté")
+        + ` — ${voteData.tally.pour} pour · ${voteData.tally.contre} contre · ${voteData.tally.abstention} abstentions.`;
     card.innerHTML = `
       <div class="voteStamp ${voteData.adopte ? "adopte" : "rejete"}">${voteData.adopte ? "Adopté" : "Rejeté"}</div>
       <div class="eyebrow">${voteData.isToday ? "Hier à l'Assemblée" : "Dernier scrutin connu · " + dateFR(voteData.date)}</div>
-      <h2 class="d">${headline}</h2>
-      <p>${esc(tallyLine)} <i>${titreSujetGras(voteData.titre)}</i></p>
+      <h2 class="d">${titreSujetGras(voteData.titre)}</h2>
+      <p>${voteLine}</p>
       <div class="actions">
         <button class="btn primary" id="acImpact">Ce que ça change pour moi</button>
         <button class="btn ghost" data-go="carte">Voir la carte</button>
@@ -2802,7 +2811,8 @@ async function tirerBoussoleQuestions(){
     fetch(REPO_DATA_BASE + "scrutins/" + r.numero + ".json", {cache:"no-store"}).then(res=>res.json())
   ));
   boussoleQuestions = tirage
-    .map((r,i) => ({ numero: r.numero, date: r.date, titre: r.titre, adopte: r.adopte, groupes: tauxParGroupe(scrutins[i]) }))
+    .map((r,i) => ({ numero: r.numero, date: r.date, titre: r.titre, adopte: r.adopte,
+      themes: r.themes || [], tally: scrutins[i].tally, groupes: tauxParGroupe(scrutins[i]) }))
     .sort((a,b) => a.date < b.date ? 1 : -1); // le tirage est aléatoire, l'ordre d'affichage reste chronologique
   return boussoleQuestions;
 }
@@ -2830,7 +2840,7 @@ function renderBoussoleIntro(){
     <div class="actions"><button class="btn ghost" id="bqLater" style="flex:1">Plus tard</button></div>`;
   $("#bqStart").onclick = async ()=>{
     $("#boussoleSheet").innerHTML = `<div style="text-align:center;padding:50px 0;color:var(--dim);font-size:12px">Chargement…</div>`;
-    const qs = await tirerBoussoleQuestions();
+    const [qs] = await Promise.all([tirerBoussoleQuestions(), chargerThemes()]);
     if(!qs || !qs.length){
       $("#boussoleSheet").innerHTML = `
         <div class="eyebrow">La Boussole</div><h2 class="d">Indisponible</h2>
@@ -2844,23 +2854,46 @@ function renderBoussoleIntro(){
   $("#bqLater").onclick = closeBoussole;
 }
 
+// Le titre officiel d'un scrutin n'est pas toujours clair au premier
+// coup d'oeil — le bouton "i" déplie un petit récapitulatif construit
+// uniquement à partir de données réelles déjà chargées (sujet extrait
+// du titre, thèmes classés en amont, décompte du vote) : jamais une
+// explication ou un résumé du contenu du texte, qu'on ne connaît pas
+// avec assez de certitude pour l'inventer sans risquer de le déformer.
+let boussoleInfoOuvert = false;
 function renderBoussoleQuestion(){
   const qs = boussoleQuestions, q = qs[boussoleIdx];
   const dots = `<div class="obDots">${qs.map((_,i)=>`<span class="${i<boussoleIdx?'done':''}"></span>`).join("")}</div>`;
+  const themesHTML = q.themes.length
+    ? q.themes.map(c => `${THEME_ICONS[c]||"•"} ${esc((THEMES_LIB&&THEMES_LIB[c])||c)}`).join(", ")
+    : "Non classé";
   $("#boussoleSheet").innerHTML = `
     ${dots}
     <div class="eyebrow">${boussoleIdx+1} / ${qs.length} — Scrutin réel</div>
-    <h2 class="d" style="font-size:19px;line-height:1.3">${esc(q.titre)}</h2>
+    <div style="display:flex;align-items:flex-start;gap:8px">
+      <h2 class="d" style="font-size:19px;line-height:1.3;flex:1">${esc(q.titre)}</h2>
+      <button class="bqInfoBtn" id="bqInfoBtn" aria-label="Plus d'informations sur ce texte">i</button>
+    </div>
     <p class="lead">${dateFR(q.date)} · ${q.adopte ? "Adopté" : "Rejeté"} à l'Assemblée nationale.</p>
+    <div class="bqInfo ${boussoleInfoOuvert ? "" : "hidden"}" id="bqInfo">
+      <div class="bqInfoLine"><b>Sujet</b> · ${titreSujetGras(q.titre)}</div>
+      <div class="bqInfoLine"><b>Thème</b> · ${themesHTML}</div>
+      <div class="bqInfoLine"><b>Détail du vote</b> · ${q.tally.pour} pour · ${q.tally.contre} contre · ${q.tally.abstention} abstentions</div>
+    </div>
     <div class="actions col">
       <button class="btn pour" data-v="1">Pour</button>
       <button class="btn ghost" data-v="0">Neutre</button>
       <button class="btn contre" data-v="-1">Contre</button>
     </div>`;
+  $("#bqInfoBtn").onclick = ()=>{
+    boussoleInfoOuvert = !boussoleInfoOuvert;
+    $("#bqInfo").classList.toggle("hidden", !boussoleInfoOuvert);
+  };
   $("#boussoleSheet").querySelectorAll("[data-v]").forEach(b=>{
     b.onclick = ()=>{
       boussoleAnswers.push(+b.dataset.v);
       boussoleIdx++;
+      boussoleInfoOuvert = false;
       if(boussoleIdx >= qs.length) renderBoussoleResult(); else renderBoussoleQuestion();
     };
   });
