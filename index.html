@@ -2812,9 +2812,24 @@ async function tirerBoussoleQuestions(){
   ));
   boussoleQuestions = tirage
     .map((r,i) => ({ numero: r.numero, date: r.date, titre: r.titre, adopte: r.adopte,
-      themes: r.themes || [], tally: scrutins[i].tally, groupes: tauxParGroupe(scrutins[i]) }))
+      themes: r.themes || [], groupes: tauxParGroupe(scrutins[i]) }))
     .sort((a,b) => a.date < b.date ? 1 : -1); // le tirage est aléatoire, l'ordre d'affichage reste chronologique
   return boussoleQuestions;
+}
+
+// Résumé officiel de chaque texte (voir construire_expose_motifs.py) —
+// jamais une explication qu'on écrirait nous-mêmes, toujours une
+// citation de l'exposé des motifs réel rédigé par les auteurs du texte.
+let exposeMotifsCache = null, exposeMotifsPromise = null;
+function chargerExposeMotifs(){
+  if(exposeMotifsCache) return Promise.resolve(exposeMotifsCache);
+  if(!exposeMotifsPromise){
+    exposeMotifsPromise = fetch(REPO_DATA_BASE + "expose_motifs.json", {cache:"no-store"})
+      .then(r=>r.json())
+      .then(d=>{ exposeMotifsCache = d.expose || {}; return exposeMotifsCache; })
+      .catch(()=>{ exposeMotifsPromise = null; exposeMotifsCache = {}; return exposeMotifsCache; });
+  }
+  return exposeMotifsPromise;
 }
 
 function openBoussole(){
@@ -2840,7 +2855,7 @@ function renderBoussoleIntro(){
     <div class="actions"><button class="btn ghost" id="bqLater" style="flex:1">Plus tard</button></div>`;
   $("#bqStart").onclick = async ()=>{
     $("#boussoleSheet").innerHTML = `<div style="text-align:center;padding:50px 0;color:var(--dim);font-size:12px">Chargement…</div>`;
-    const [qs] = await Promise.all([tirerBoussoleQuestions(), chargerThemes()]);
+    const [qs] = await Promise.all([tirerBoussoleQuestions(), chargerThemes(), chargerExposeMotifs()]);
     if(!qs || !qs.length){
       $("#boussoleSheet").innerHTML = `
         <div class="eyebrow">La Boussole</div><h2 class="d">Indisponible</h2>
@@ -2855,11 +2870,13 @@ function renderBoussoleIntro(){
 }
 
 // Le titre officiel d'un scrutin n'est pas toujours clair au premier
-// coup d'oeil — le bouton "i" déplie un petit récapitulatif construit
-// uniquement à partir de données réelles déjà chargées (sujet extrait
-// du titre, thèmes classés en amont, décompte du vote) : jamais une
-// explication ou un résumé du contenu du texte, qu'on ne connaît pas
-// avec assez de certitude pour l'inventer sans risquer de le déformer.
+// coup d'oeil — le bouton "i" déplie le thème classé et, quand il
+// existe, l'exposé des motifs officiel (voir construire_expose_motifs.py)
+// : jamais une explication qu'on écrirait nous-mêmes, toujours une
+// citation du document réel rédigé par les auteurs du texte. Absent
+// pour environ un tiers des textes (ceux d'abord déposés au Sénat,
+// hors de portée pour l'instant) — on le dit honnêtement plutôt que
+// d'improviser un résumé à la place.
 let boussoleInfoOuvert = false;
 function renderBoussoleQuestion(){
   const qs = boussoleQuestions, q = qs[boussoleIdx];
@@ -2867,6 +2884,7 @@ function renderBoussoleQuestion(){
   const themesHTML = q.themes.length
     ? q.themes.map(c => `${THEME_ICONS[c]||"•"} ${esc((THEMES_LIB&&THEMES_LIB[c])||c)}`).join(", ")
     : "Non classé";
+  const resume = exposeMotifsCache && exposeMotifsCache[String(q.numero)];
   $("#boussoleSheet").innerHTML = `
     ${dots}
     <div class="eyebrow">${boussoleIdx+1} / ${qs.length} — Scrutin réel</div>
@@ -2876,9 +2894,10 @@ function renderBoussoleQuestion(){
     </div>
     <p class="lead">${dateFR(q.date)} · ${q.adopte ? "Adopté" : "Rejeté"} à l'Assemblée nationale.</p>
     <div class="bqInfo ${boussoleInfoOuvert ? "" : "hidden"}" id="bqInfo">
-      <div class="bqInfoLine"><b>Sujet</b> · ${titreSujetGras(q.titre)}</div>
       <div class="bqInfoLine"><b>Thème</b> · ${themesHTML}</div>
-      <div class="bqInfoLine"><b>Détail du vote</b> · ${q.tally.pour} pour · ${q.tally.contre} contre · ${q.tally.abstention} abstentions</div>
+      <div class="bqInfoLine" style="margin-top:6px">${resume
+        ? `<b>Ce que dit le texte</b> · ${esc(resume)}`
+        : `<i>Pas de résumé officiel disponible pour ce texte pour l'instant.</i>`}</div>
     </div>
     <div class="actions col">
       <button class="btn pour" data-v="1">Pour</button>

@@ -51,6 +51,8 @@ jobs:
         run: python construire_agenda.py
       - name: Construire le texte reel du scrutin en vedette
         run: python construire_texte_loi.py
+      - name: Construire les resumes officiels pour la Boussole
+        run: python construire_expose_motifs.py
       - name: Committer les données mises à jour
         run: |
           git config user.name bot-ingestion
