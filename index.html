@@ -192,9 +192,9 @@ window.__VOTE_EARLY__ = (async function(){
   .sheet p.lead{font-size:13px;line-height:1.6;color:var(--ink-soft);margin:10px 0 0}
   .field{margin-top:20px}
   .field label{display:block;font-size:11px;font-weight:700;color:var(--ink-soft);margin-bottom:9px}
-  .field input[type=text]{width:100%;padding:14px 16px;font-size:15px;color:var(--ink);
+  .field input[type=text],.field input[type=email]{width:100%;padding:14px 16px;font-size:15px;color:var(--ink);
     background:var(--card-alt);border:2px solid transparent;border-radius:var(--r-input);outline:none;font-family:inherit}
-  .field input[type=text]:focus{border-color:var(--accent);background:var(--card)}
+  .field input[type=text]:focus,.field input[type=email]:focus{border-color:var(--accent);background:var(--card)}
   .chips{display:flex;flex-wrap:wrap;gap:8px}
   .chip{padding:10px 16px;font-size:13px;font-weight:600;border:none;background:var(--card-alt);
     color:var(--ink-soft);cursor:pointer;border-radius:var(--r-pill);transition:background .15s,color .15s}
@@ -614,14 +614,22 @@ window.__VOTE_EARLY__ = (async function(){
   <button class="modeOpt" data-mode="communal" type="button">Ma ville</button>
 </div>
 
-<!-- ============ pop-up Populous Local, ouvert via la bascule Communal ============ -->
+<!-- ============ onboarding : premier lancement uniquement ============ -->
+<div id="onboarding" class="veil hidden">
+  <div class="sheet" id="obSheet"></div>
+</div>
+
+<!-- ============ pop-up Populous Local, ouvert via la bascule Communal ou
+     depuis le profil (#onboarding) — placés après lui dans le DOM pour
+     s'afficher par-dessus quand les deux sont ouverts en même temps
+     (même z-index sur tous les .veil, donc l'ordre DOM décide). ============ -->
 <div id="localPopup" class="veil hidden">
   <div class="sheet" id="localPopupSheet"></div>
 </div>
 
-<!-- ============ onboarding : premier lancement uniquement ============ -->
-<div id="onboarding" class="veil hidden">
-  <div class="sheet" id="obSheet"></div>
+<!-- ============ formulaire "Me tenir informé·e" (Populous Local) ============ -->
+<div id="localFormPopup" class="veil hidden">
+  <div class="sheet" id="localFormSheet"></div>
 </div>
 
 <!-- ============ popup quotidien ============ -->
@@ -1467,12 +1475,76 @@ function localCardHTML(idBouton){
 function wireLocalBtn(idBouton){
   const btn = $("#"+idBouton);
   if(!btn || btn.disabled) return;
-  btn.onclick = function(){
-    try{ localStorage.setItem(LOCAL_INTERET_KEY, "1"); }catch(e){}
-    this.textContent = "✓ Tu seras informé·e";
-    this.classList.add("done");
-    this.disabled = true;
-  };
+  btn.onclick = ouvrirLocalForm;
+}
+
+/* ------------------------------------------------------------
+   Formulaire "Me tenir informé·e" — cette app est un site statique,
+   sans serveur : un vrai envoi silencieux ne peut passer que par un
+   relais tiers. formsubmit.co ne demande aucune inscription, juste un
+   email de confirmation à cliquer une fois lors de la toute première
+   demande reçue. Les coordonnées saisies ici (nom, email, ville) sont
+   donc la seule donnée de toute l'app à quitter l'appareil — jamais
+   pour rien d'autre que cette demande d'être prévenu·e.
+   ------------------------------------------------------------ */
+const LOCAL_FORM_ENDPOINT = "https://formsubmit.co/ajax/mboilot.invest@gmail.com";
+function ouvrirLocalForm(){
+  $("#localPopup").classList.add("hidden"); // évite d'empiler le teaser derrière le formulaire
+  const profile = loadProfile();
+  $("#localFormSheet").innerHTML = `
+    <button class="sheetClose" id="localFormClose" aria-label="Fermer">✕</button>
+    <div class="eyebrow">Populous Local</div>
+    <h2 class="d" style="font-size:22px">Être prévenu·e</h2>
+    <p class="lead">Laisse tes coordonnées, on te préviendra dès que Populous Local sera disponible dans ta ville.</p>
+    <form id="localForm">
+      <div class="field"><label>Pseudo</label><input type="text" id="lfPseudo" value="${esc(profile?.pseudo||"")}"></div>
+      <div class="field"><label>Nom</label><input type="text" id="lfNom" required></div>
+      <div class="field"><label>Prénom</label><input type="text" id="lfPrenom" required></div>
+      <div class="field"><label>Email</label><input type="email" id="lfEmail" required></div>
+      <div class="field"><label>Code postal - Ville</label><input type="text" id="lfVille" placeholder="Ex. 75001 - Paris" required></div>
+      <div class="actions"><button class="btn primary" type="submit" id="localFormSubmit" style="flex:1">Envoyer</button></div>
+      <p class="hidden" id="localFormErreur" style="color:#C4501C;font-size:11.5px;margin-top:12px;text-align:center">
+        Échec de l'envoi — vérifie ta connexion et réessaie.</p>
+    </form>`;
+  $("#localFormClose").onclick = fermerLocalForm;
+  $("#localForm").onsubmit = envoyerLocalForm;
+  $("#localFormPopup").classList.remove("hidden");
+}
+async function envoyerLocalForm(e){
+  e.preventDefault();
+  const btn = $("#localFormSubmit");
+  btn.disabled = true; btn.textContent = "Envoi…";
+  $("#localFormErreur").classList.add("hidden");
+  try{
+    const r = await fetch(LOCAL_FORM_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify({
+        _subject: "Populous Local — nouvelle demande d'information",
+        Pseudo: $("#lfPseudo").value.trim(),
+        Nom: $("#lfNom").value.trim(),
+        Prénom: $("#lfPrenom").value.trim(),
+        email: $("#lfEmail").value.trim(),
+        "Code postal - Ville": $("#lfVille").value.trim(),
+      }),
+    });
+    if(!r.ok) throw new Error("HTTP " + r.status);
+    try{ localStorage.setItem(LOCAL_INTERET_KEY, "1"); }catch(err){}
+    $("#localFormSheet").innerHTML = `
+      <button class="sheetClose" id="localFormClose2" aria-label="Fermer">✕</button>
+      <div style="text-align:center;padding:14px 0">
+        <div style="font-size:40px">✓</div>
+        <h2 class="d" style="font-size:20px;margin-top:10px">Tu seras informé·e</h2>
+        <p class="lead">Merci ! On te préviendra dès que Populous Local sera disponible.</p>
+      </div>`;
+    $("#localFormClose2").onclick = fermerLocalForm;
+  }catch(err){
+    btn.disabled = false; btn.textContent = "Envoyer";
+    $("#localFormErreur").classList.remove("hidden");
+  }
+}
+function fermerLocalForm(){
+  $("#localFormPopup").classList.add("hidden");
 }
 
 /* ------------------------------------------------------------
