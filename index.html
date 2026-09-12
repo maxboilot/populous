@@ -180,6 +180,12 @@ window.__VOTE_EARLY__ = (async function(){
   .veil.hidden{display:none}
   .sheet{width:min(440px,100%);max-height:88vh;overflow-y:auto;background:var(--card);
     border:none;border-radius:28px;padding:30px 28px 26px;position:relative;box-shadow:var(--shadow-lg)}
+  /* Croix de fermeture, cohérente sur tous les pop-ups skippables (pas
+     sur l'onboarding, dont l'étape de création n'est pas contournable). */
+  .sheetClose{position:absolute;top:16px;right:16px;width:28px;height:28px;background:var(--card-alt);
+    border:none;border-radius:50%;color:var(--ink-soft);cursor:pointer;font-size:13px;z-index:2;
+    display:flex;align-items:center;justify-content:center;font-family:inherit;padding:0}
+  .sheetClose:hover{background:var(--accent-soft);color:var(--accent)}
   .sheet .eyebrow{font-size:11px;font-weight:700;color:var(--accent)}
   .sheet h2{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','SF Pro Display',system-ui,'Inter',Helvetica,Arial,sans-serif;font-weight:800;font-size:25px;line-height:1.2;
     margin:8px 0 0;letter-spacing:-.02em}
@@ -262,8 +268,6 @@ window.__VOTE_EARLY__ = (async function(){
      profil (voir INTRO_KEY). Sheet en pleine largeur, sans le padding
      par défaut, pour que les slides puissent défiler bord à bord. */
   #introPopup .sheet{padding:0;overflow:hidden;position:relative}
-  #introPopup .introSkip{position:absolute;top:16px;right:20px;z-index:2;
-    font-size:12px;font-weight:700;color:var(--dim);background:none;border:none;cursor:pointer}
   #introPopup .introTrack{display:flex;transition:transform .38s cubic-bezier(.4,0,.2,1);touch-action:pan-y}
   #introPopup .introSlide{flex:0 0 100%;box-sizing:border-box;padding:44px 26px 8px;text-align:center;
     display:flex;flex-direction:column;align-items:center;min-height:340px}
@@ -422,6 +426,16 @@ window.__VOTE_EARLY__ = (async function(){
      en haut à droite — retours utilisateurs : plus facile à repérer et
      cohérent avec les autres icônes de navigation. */
   .navBtn .avSlot{width:20px;height:20px;border-radius:50%;overflow:hidden;filter:none}
+
+  /* Bascule National / Communal, à l'ancienne place du badge profil.
+     Masquée sur la carte (chrome déjà dense, voir showScreen()) — même
+     traitement que l'ancien badge à cet endroit. */
+  #modeToggle{position:fixed;top:calc(14px + env(safe-area-inset-top,0px));right:14px;z-index:850;
+    display:flex;background:var(--card);border-radius:999px;padding:3px;box-shadow:var(--shadow-lg);gap:2px}
+  #modeToggle.hidden{display:none}
+  .modeOpt{border:none;background:none;padding:7px 11px;border-radius:999px;font-size:10px;font-weight:700;
+    color:var(--dim);cursor:pointer;font-family:inherit;white-space:nowrap;transition:background .15s,color .15s}
+  .modeOpt.on{background:var(--accent);color:#fff}
 
   .avPicker{display:flex;align-items:center;gap:14px}
   .avPreview{width:64px;height:64px;border-radius:50%;flex:0 0 auto;overflow:hidden;background:var(--card-alt)}
@@ -594,6 +608,17 @@ window.__VOTE_EARLY__ = (async function(){
 </style>
 </head>
 <body>
+<!-- ============ bascule National / Communal, globale (remplace l'ancien badge profil) ============ -->
+<div id="modeToggle" class="modeToggle" role="group" aria-label="National ou communal">
+  <button class="modeOpt on" data-mode="national" type="button">National</button>
+  <button class="modeOpt" data-mode="communal" type="button">Communal</button>
+</div>
+
+<!-- ============ pop-up Populous Local, ouvert via la bascule Communal ============ -->
+<div id="localPopup" class="veil hidden">
+  <div class="sheet" id="localPopupSheet"></div>
+</div>
+
 <!-- ============ onboarding : premier lancement uniquement ============ -->
 <div id="onboarding" class="veil hidden">
   <div class="sheet" id="obSheet"></div>
@@ -607,7 +632,7 @@ window.__VOTE_EARLY__ = (async function(){
 <!-- ============ pop-up de bienvenue, une seule fois après la création du profil ============ -->
 <div id="introPopup" class="veil hidden">
   <div class="sheet" id="introSheet">
-    <button class="introSkip" id="introSkip" type="button">Passer</button>
+    <button class="sheetClose" id="introSkip" type="button" aria-label="Fermer">✕</button>
     <div class="introTrack" id="introTrack"></div>
     <div class="introDots" id="introDots"></div>
     <div class="introFoot"><button class="btn primary" id="introClose">Découvrir Populous</button></div>
@@ -622,11 +647,11 @@ window.__VOTE_EARLY__ = (async function(){
 <!-- ============ panneau d'impact personnalisé ============ -->
 <div id="impactPanel" class="veil hidden">
   <div class="sheet">
+    <button class="sheetClose" id="ipClose" aria-label="Fermer">✕</button>
     <h2 class="d" id="ipTitle"></h2>
     <p class="lead" id="ipLead"></p>
     <div id="ipCards"></div>
     <div id="ipShare"></div>
-    <div class="actions"><button class="btn ghost" id="ipClose" style="flex:none;padding:12px 22px">Fermer</button></div>
   </div>
 </div>
 
@@ -1420,6 +1445,76 @@ const POPUP_KEY = "populous_last_popup";
 const LOCAL_INTERET_KEY = "populous_local_interet";
 
 /* ------------------------------------------------------------
+   Teaser "Populous Local" — même carte réutilisée dans le profil et
+   dans le pop-up ouvert par la bascule National/Communal, pour ne
+   jamais avoir deux versions du même texte à maintenir en parallèle.
+   ------------------------------------------------------------ */
+function localCardHTML(idBouton){
+  const interesseLocal = !!localStorage.getItem(LOCAL_INTERET_KEY);
+  return `
+    <div class="localCard">
+      <div class="localBadge">🔜 Bientôt disponible</div>
+      <div class="localTitle"><div class="ic">🏘️</div><h3>Populous Local</h3></div>
+      <p class="localDesc">La vie politique de ta commune et de ton agglomération : les votes publics de
+        ton conseil municipal, comme pour l'Assemblée nationale.</p>
+      <div class="localFoot">
+        <div class="localPrice"><span class="n">1,99 €</span><span class="u">par mois</span></div>
+        <button class="localBtn ${interesseLocal ? "done" : ""}" id="${idBouton}" ${interesseLocal ? "disabled" : ""}>
+          ${interesseLocal ? "✓ Tu seras informé·e" : "Me tenir informé·e"}</button>
+      </div>
+    </div>`;
+}
+function wireLocalBtn(idBouton){
+  const btn = $("#"+idBouton);
+  if(!btn || btn.disabled) return;
+  btn.onclick = function(){
+    try{ localStorage.setItem(LOCAL_INTERET_KEY, "1"); }catch(e){}
+    this.textContent = "✓ Tu seras informé·e";
+    this.classList.add("done");
+    this.disabled = true;
+  };
+}
+
+/* ------------------------------------------------------------
+   Bascule National / Communal — à l'ancienne place du badge profil.
+   "Communal" n'est pas un vrai mode (rien à afficher tant que Populous
+   Local n'existe pas) : elle ouvre juste le teaser, puis revient
+   automatiquement sur National à la fermeture plutôt que de laisser
+   l'interface bloquée sur un mode qui n'affiche rien.
+   ------------------------------------------------------------ */
+let modeGeo = "national";
+function majModeToggle(){
+  $("#modeToggle")?.querySelectorAll(".modeOpt").forEach(b=>{
+    b.classList.toggle("on", b.dataset.mode===modeGeo);
+  });
+}
+function ouvrirLocalPopup(){
+  $("#localPopupSheet").innerHTML = `
+    <button class="sheetClose" id="localPopupClose" aria-label="Fermer">✕</button>
+    ${localCardHTML("localBtnPopup")}`;
+  wireLocalBtn("localBtnPopup");
+  $("#localPopupClose").onclick = fermerLocalPopup;
+  $("#localPopup").classList.remove("hidden");
+}
+function fermerLocalPopup(){
+  $("#localPopup").classList.add("hidden");
+  modeGeo = "national";
+  majModeToggle();
+}
+$("#modeToggle").querySelectorAll(".modeOpt").forEach(b=>{
+  b.onclick = ()=>{
+    if(b.dataset.mode === "communal"){
+      modeGeo = "communal";
+      majModeToggle();
+      ouvrirLocalPopup();
+    } else {
+      modeGeo = "national";
+      majModeToggle();
+    }
+  };
+});
+
+/* ------------------------------------------------------------
    Recherche de circonscription par ville ou code postal.
    communes.json pèse 1,9 Mo : chargé une seule fois, à la demande,
    quand l'étape de recherche s'ouvre — jamais au démarrage.
@@ -1537,33 +1632,17 @@ function obRender(){
         </div>
         <div class="chev">›</div>
       </button>`;
-    const interesseLocal = !!localStorage.getItem(LOCAL_INTERET_KEY);
     el.innerHTML = `
       <div class="eyebrow">Mon profil</div>
       <h2 class="d">Tes informations</h2>
       <p class="lead">Tout reste stocké sur cet appareil. Touche un champ pour le modifier.</p>
-      <div class="localCard">
-        <div class="localBadge">🔜 Bientôt disponible</div>
-        <div class="localTitle"><div class="ic">🏘️</div><h3>Populous Local</h3></div>
-        <p class="localDesc">La vie politique de ta commune et de ton agglomération : les votes publics de
-          ton conseil municipal, comme pour l'Assemblée nationale.</p>
-        <div class="localFoot">
-          <div class="localPrice"><span class="n">1,99 €</span><span class="u">par mois</span></div>
-          <button class="localBtn ${interesseLocal ? "done" : ""}" id="localBtn" ${interesseLocal ? "disabled" : ""}>
-            ${interesseLocal ? "✓ Tu seras informé·e" : "Me tenir informé·e"}</button>
-        </div>
-      </div>
+      ${localCardHTML("localBtn")}
       ${row("Identité", draft.pseudo || "—", 1, avatarHTML(draft.avatar))}
       ${row("Tranche d'âge", draft.age || "Non renseignée", 2)}
       ${row("Circonscription", draft.circoLabel || "Non renseignée", 3)}
       ${row("Ta situation", situationBits.length ? situationBits.join(" · ") : "Non renseignée", 4)}
       <div class="actions"><button class="btn ghost" id="profClose" style="flex:none;padding:12px 22px">Fermer</button></div>`;
-    $("#localBtn").onclick = function(){
-      try{ localStorage.setItem(LOCAL_INTERET_KEY, "1"); }catch(e){}
-      this.textContent = "✓ Tu seras informé·e";
-      this.classList.add("done");
-      this.disabled = true;
-    };
+    wireLocalBtn("localBtn");
     el.querySelectorAll(".profRow").forEach(b=>{
       b.onclick = ()=>{ viewMode = true; obStep = +b.dataset.step; obRender(); };
     });
@@ -1960,6 +2039,7 @@ function renderDailyPopupVote(profile){
     lead = esc(voteData.titre);
   }
   $("#dailyPopupSheet").innerHTML = `
+    <button class="sheetClose" id="dpCloseVote" aria-label="Fermer">✕</button>
     <div class="eyebrow">Hier à l'Assemblée</div>
     <h2 class="d">${title}</h2>
     <p class="lead">${lead}</p>
@@ -1967,6 +2047,7 @@ function renderDailyPopupVote(profile){
       <button class="btn primary" id="dpSeeMap">Voir la carte des votes</button>
       <button class="btn ghost" id="dpImpact">Ce que ça change pour moi</button>
     </div>`;
+  $("#dpCloseVote").onclick = ()=> $("#dailyPopup").classList.add("hidden");
   $("#dpSeeMap").onclick = ()=>{ $("#dailyPopup").classList.add("hidden"); showScreen("carte"); };
   $("#dpImpact").onclick = ()=>{ $("#dailyPopup").classList.add("hidden"); openImpactPanel(); };
 }
@@ -1976,13 +2057,13 @@ function actuShareText(a){
 }
 function renderDailyPopupActu(a){
   $("#dailyPopupSheet").innerHTML = `
+    <button class="sheetClose" id="dpCloseActu" aria-label="Fermer">✕</button>
     <div class="eyebrow">Présidentielle 2027 · pas de séance hier</div>
     <h2 class="d" style="font-size:22px;line-height:1.3">${esc(a.titre)}</h2>
     <p class="lead">${esc(a.source)} · ${dateFR(a.date)}${a.extrait ? " — " + esc(a.extrait) : ""}</p>
     <div id="dpShare"></div>
     <div class="actions">
       <a class="btn primary" href="${esc(a.lien)}" target="_blank" rel="noopener" style="flex:1;text-decoration:none">Lire l'article</a>
-      <button class="btn ghost" id="dpCloseActu">Plus tard</button>
     </div>`;
   $("#dpShare").innerHTML = shareRowHTML();
   wireShare($("#dpShare"), actuShareText(a));
@@ -2145,6 +2226,7 @@ function showScreen(name){
   });
   document.querySelectorAll(".navBtn").forEach(b=>b.classList.toggle("on", b.dataset.go===name));
   renderTopAvatar(); // avatar du menu du bas, à jour sur tous les écrans
+  $("#modeToggle").classList.toggle("hidden", name==="carte"); // chrome déjà dense sur la carte
   if(name!=="presidentielle") clearInterval(calendrierMinuteur);
 
   if(name==="carte"){
@@ -2296,11 +2378,11 @@ function gererLienPartage(){
 function afficherLandingPartage({titre, texte, bouton, action}){
   const profil = loadProfile();
   $("#partageLandingSheet").innerHTML = `
+    <button class="sheetClose" id="plClose" aria-label="Fermer">✕</button>
     <div class="eyebrow">Partagé sur Populous</div>
     <h2 class="d">${titre}</h2>
     <p class="lead">${texte}</p>
-    <div class="actions"><button class="btn primary" id="plAction" style="flex:1">${profil ? bouton : "Découvrir Populous"}</button></div>
-    <div class="actions"><button class="btn ghost" id="plClose" style="flex:1">Plus tard</button></div>`;
+    <div class="actions"><button class="btn primary" id="plAction" style="flex:1">${profil ? bouton : "Découvrir Populous"}</button></div>`;
   $("#partageLanding").classList.remove("hidden");
   $("#plAction").onclick = ()=>{
     $("#partageLanding").classList.add("hidden");
@@ -2881,6 +2963,7 @@ function closeBoussole(){ $("#boussole").classList.add("hidden"); }
 function renderBoussoleIntro(){
   const dernier = chargerDernierResultatBoussole();
   $("#boussoleSheet").innerHTML = `
+    <button class="sheetClose" id="bqCloseIntro" aria-label="Fermer">✕</button>
     <div class="eyebrow">${dernier ? "Refaire le test" : "Nouveau"}</div>
     <h2 class="d">La Boussole</h2>
     <p class="lead">Dix scrutins réels, tirés au sort parmi les votes de l'année et déjà tranchés par l'Assemblée.
@@ -2890,22 +2973,21 @@ function renderBoussoleIntro(){
       Les questions changent à chaque partie — refais le test pour voir si ça bouge.</div>` : `
     <div class="privacyBox"><b>Aucune thèse inventée.</b> Chaque pourcentage vient d'un vote déjà public,
       jamais d'une position devinée ou attribuée.</div>`}
-    <div class="actions"><button class="btn primary" id="bqStart" style="flex:1">${dernier ? "Refaire le test" : "Commencer"}</button></div>
-    <div class="actions"><button class="btn ghost" id="bqLater" style="flex:1">Plus tard</button></div>`;
+    <div class="actions"><button class="btn primary" id="bqStart" style="flex:1">${dernier ? "Refaire le test" : "Commencer"}</button></div>`;
+  $("#bqCloseIntro").onclick = closeBoussole;
   $("#bqStart").onclick = async ()=>{
     $("#boussoleSheet").innerHTML = `<div style="text-align:center;padding:50px 0;color:var(--dim);font-size:12px">Chargement…</div>`;
     const [qs] = await Promise.all([tirerBoussoleQuestions(), chargerThemes(), chargerExposeMotifs()]);
     if(!qs || !qs.length){
       $("#boussoleSheet").innerHTML = `
+        <button class="sheetClose" id="bqClose2" aria-label="Fermer">✕</button>
         <div class="eyebrow">La Boussole</div><h2 class="d">Indisponible</h2>
-        <p class="lead">Impossible de charger les scrutins pour l'instant — réessaie un peu plus tard.</p>
-        <div class="actions"><button class="btn ghost" id="bqClose2" style="flex:1">Fermer</button></div>`;
+        <p class="lead">Impossible de charger les scrutins pour l'instant — réessaie un peu plus tard.</p>`;
       $("#bqClose2").onclick = closeBoussole;
       return;
     }
     renderBoussoleQuestion();
   };
-  $("#bqLater").onclick = closeBoussole;
 }
 
 // Le titre officiel d'un scrutin n'est pas toujours clair au premier
@@ -2925,6 +3007,7 @@ function renderBoussoleQuestion(){
     : "Non classé";
   const resume = exposeMotifsCache && exposeMotifsCache[String(q.numero)];
   $("#boussoleSheet").innerHTML = `
+    <button class="sheetClose" id="bqCloseQ" aria-label="Fermer">✕</button>
     ${dots}
     <div class="eyebrow">${boussoleIdx+1} / ${qs.length} — Scrutin réel</div>
     <div style="display:flex;align-items:flex-start;gap:8px">
@@ -2943,6 +3026,7 @@ function renderBoussoleQuestion(){
       <button class="btn ghost" data-v="0">Neutre</button>
       <button class="btn contre" data-v="-1">Contre</button>
     </div>`;
+  $("#bqCloseQ").onclick = closeBoussole;
   $("#bqInfoBtn").onclick = ()=>{
     boussoleInfoOuvert = !boussoleInfoOuvert;
     $("#bqInfo").classList.toggle("hidden", !boussoleInfoOuvert);
@@ -2979,6 +3063,7 @@ function renderBoussoleResult(){
   renderAccueil(); // met à jour la tuile Boussole avec ce nouveau résultat
 
   $("#boussoleSheet").innerHTML = `
+    <button class="sheetClose" id="bqClose3" aria-label="Fermer">✕</button>
     <div style="text-align:center">
       <div class="eyebrow">Ton résultat</div>
       <div style="font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,sans-serif;font-weight:800;
@@ -2997,8 +3082,7 @@ function renderBoussoleResult(){
         </div>`).join("")}
     </div>
     <div id="bqShare" style="margin-top:22px"></div>
-    <div class="actions"><button class="btn ghost" id="bqRestart" style="flex:1">Refaire le test</button></div>
-    <div class="actions"><button class="btn ghost" id="bqClose3" style="flex:1">Fermer</button></div>`;
+    <div class="actions"><button class="btn ghost" id="bqRestart" style="flex:1">Refaire le test</button></div>`;
   $("#bqShare").innerHTML = shareRowHTML();
   wireShare($("#bqShare"), texte, urlPartage("boussole", { g: premier.s, pct: premier.pct }));
   $("#bqRestart").onclick = openBoussole;
@@ -3131,6 +3215,7 @@ function ouvrirRecapCheckpoint(d, groupe, themeCode){
   const theme = d.themes.find(t=>t.code===themeCode);
   const don = d.donnees[recapGroupe][themeCode];
   $("#recapCheckpointSheet").innerHTML = `
+    <button class="sheetClose" id="recapCheckpointClose" aria-label="Fermer">✕</button>
     <div class="eyebrow">${THEME_ICONS[themeCode]||""} ${esc(theme.libelle)}</div>
     <h2 class="d" style="font-size:30px">${don.taux} % pour</h2>
     <p class="lead">${esc(groupe.n)} a voté <b>pour</b> ${don.taux}% des ${don.n_textes} texte${don.n_textes>1?"s":""}
@@ -3145,7 +3230,9 @@ function ouvrirRecapCheckpoint(d, groupe, themeCode){
     </div>
     <div class="actions" style="margin-top:20px"><button class="btn primary" id="recapContinuer" style="flex:1">Continuer</button></div>`;
   $("#recapCheckpoint").classList.remove("hidden");
-  $("#recapContinuer").onclick = ()=>{ $("#recapCheckpoint").classList.add("hidden"); renderRecapTrail(d); };
+  const fermerCheckpoint = ()=>{ $("#recapCheckpoint").classList.add("hidden"); renderRecapTrail(d); };
+  $("#recapContinuer").onclick = fermerCheckpoint;
+  $("#recapCheckpointClose").onclick = fermerCheckpoint;
 }
 
 /* ---------- point d'entrée ---------- */
