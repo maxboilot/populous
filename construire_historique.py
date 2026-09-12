@@ -21,13 +21,12 @@
 # et le tirage de la Boussole ont besoin d un vrai scrutins/<numero>.json
 # derriere chaque entree, qu une decision a main levee n a pas.
 import json
-import ssl
 import unicodedata
-import urllib.request
 import zipfile
 from io import BytesIO
 
 import categories
+import reseau
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
@@ -139,10 +138,7 @@ def decoupe(titre):
 
 
 def telecharger(url):
-    ctx = ssl.create_default_context()
-    req = urllib.request.Request(url, headers={'User-Agent': UA_DOSSIERS})
-    with urllib.request.urlopen(req, timeout=DELAI_DOSSIERS, context=ctx) as r:
-        return BytesIO(r.read())
+    return BytesIO(reseau.telecharger(url, timeout=DELAI_DOSSIERS, headers={'User-Agent': UA_DOSSIERS}))
 
 
 def classer_statut(fam_code):

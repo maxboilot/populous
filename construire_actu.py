@@ -37,11 +37,12 @@ import html
 import json
 import re
 import unicodedata
-import urllib.request
 from datetime import timezone
 from email.utils import parsedate_to_datetime
 from pathlib import Path
 from xml.etree import ElementTree as ET
+
+import reseau
 
 SORTIE = Path('data') / 'actu.json'
 UA = 'Populous/1.0 (+https://maxboilot.github.io/populous/)'
@@ -112,9 +113,8 @@ def nettoyer_html(texte):
 
 
 def telecharger(url):
-    req = urllib.request.Request(url, headers={'User-Agent': UA, 'Accept': 'application/rss+xml, text/xml'})
-    with urllib.request.urlopen(req, timeout=30) as r:
-        return r.read()
+    return reseau.telecharger(url, timeout=30,
+        headers={'User-Agent': UA, 'Accept': 'application/rss+xml, text/xml'})
 
 
 def texte(el, tag):

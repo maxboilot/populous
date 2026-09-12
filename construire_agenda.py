@@ -28,15 +28,14 @@ Aucun résumé n'est généré : on affiche le titre officiel du dossier tel que
 l'Assemblée le publie.
 """
 import json
-import ssl
 import sys
-import urllib.request
 import zipfile
 from datetime import datetime, timezone
 from io import BytesIO
 from pathlib import Path
 
 import categories
+import reseau
 
 LEGISLATURE = 17
 BASE = 'https://data.assemblee-nationale.fr/static/openData/repository'
@@ -70,10 +69,7 @@ OBJET_AUTOSUFFISANT = 60
 
 
 def telecharger(url):
-    ctx = ssl.create_default_context()
-    req = urllib.request.Request(url, headers={'User-Agent': UA})
-    with urllib.request.urlopen(req, timeout=DELAI, context=ctx) as r:
-        return BytesIO(r.read())
+    return BytesIO(reseau.telecharger(url, timeout=DELAI, headers={'User-Agent': UA}))
 
 
 def liste(valeur):

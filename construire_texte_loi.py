@@ -26,11 +26,11 @@ entre deux lectures d'un même dossier.
 import html
 import json
 import re
-import ssl
-import urllib.request
 import zipfile
 from io import BytesIO
 from pathlib import Path
+
+import reseau
 
 DATA_DIR = Path('data')
 SORTIE = DATA_DIR / 'texte_loi.json'
@@ -53,10 +53,7 @@ LONGUEUR_MIN_PARAGRAPHE = 25
 
 
 def telecharger(url, timeout=DELAI):
-    ctx = ssl.create_default_context()
-    req = urllib.request.Request(url, headers={'User-Agent': UA})
-    with urllib.request.urlopen(req, timeout=timeout, context=ctx) as r:
-        return r.read()
+    return reseau.telecharger(url, timeout=timeout, headers={'User-Agent': UA})
 
 
 def _ref_texte(decision):

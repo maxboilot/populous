@@ -22,11 +22,12 @@ uniquement quand l'utilisateur ouvre la recherche, jamais au démarrage.
 """
 import json
 import unicodedata
-import urllib.request
 import xml.etree.ElementTree as ET
 import zipfile
 from io import BytesIO
 from pathlib import Path
+
+import reseau
 
 NS = '{http://schemas.openxmlformats.org/spreadsheetml/2006/main}'
 URL_INSEE = 'https://www.insee.fr/fr/statistiques/fichier/6436476/circo_composition.xlsx'
@@ -37,9 +38,7 @@ UA = 'Populous/1.0 (+https://maxboilot.github.io/populous/)'
 
 
 def telecharger(url):
-    req = urllib.request.Request(url, headers={'User-Agent': UA})
-    with urllib.request.urlopen(req, timeout=180) as r:
-        return r.read()
+    return reseau.telecharger(url, timeout=180, headers={'User-Agent': UA})
 
 
 def sans_accents(t):
