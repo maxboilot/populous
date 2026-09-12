@@ -235,6 +235,26 @@ window.__VOTE_EARLY__ = (async function(){
   .profRow .pv{font-size:14px;font-weight:600;color:var(--ink);margin-top:3px}
   .profRow .chev{color:var(--dim);font-size:16px;flex:0 0 auto}
 
+  /* Teaser "Populous Local" dans le profil — pas de vrai paiement (pas de
+     serveur dans cette app), donc un CTA d'intérêt plutôt qu'un faux
+     bouton d'abonnement, voir #localBtn. */
+  .localCard{position:relative;margin-top:20px;padding:20px 20px 18px;border-radius:22px;overflow:hidden;
+    background:linear-gradient(135deg,#1B2E7A 0%,#2B48A5 55%,#3E5FC9 100%);color:#fff;box-shadow:var(--shadow-lg)}
+  .localBadge{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:999px;
+    background:rgba(255,255,255,.16);font-size:10px;font-weight:800;letter-spacing:.03em;
+    text-transform:uppercase;color:#BFD0FF}
+  .localTitle{display:flex;align-items:center;gap:10px;margin-top:12px}
+  .localTitle .ic{font-size:28px}
+  .localTitle h3{margin:0;font-size:18px;font-weight:800;letter-spacing:-.01em}
+  .localDesc{font-size:12.5px;line-height:1.55;color:#D3DCFA;margin:10px 0 0;max-width:300px}
+  .localFoot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:18px}
+  .localPrice{display:flex;flex-direction:column;line-height:1.1}
+  .localPrice .n{font-size:20px;font-weight:800}
+  .localPrice .u{font-size:10px;color:#AEBEEE;font-weight:600}
+  .localBtn{padding:11px 18px;border:none;border-radius:999px;background:#fff;color:var(--accent);
+    font-weight:800;font-size:12.5px;cursor:pointer;white-space:nowrap;font-family:inherit}
+  .localBtn.done{background:rgba(255,255,255,.16);color:#fff;cursor:default}
+
   #dailyPopup .sheet{text-align:left}
   #dailyPopup .actions{flex-direction:column}
 
@@ -1397,6 +1417,7 @@ loadVote();
    ============================================================ */
 const PROFILE_KEY = "populous_profile_v1";
 const POPUP_KEY = "populous_last_popup";
+const LOCAL_INTERET_KEY = "populous_local_interet";
 
 /* ------------------------------------------------------------
    Recherche de circonscription par ville ou code postal.
@@ -1516,15 +1537,33 @@ function obRender(){
         </div>
         <div class="chev">›</div>
       </button>`;
+    const interesseLocal = !!localStorage.getItem(LOCAL_INTERET_KEY);
     el.innerHTML = `
       <div class="eyebrow">Mon profil</div>
       <h2 class="d">Tes informations</h2>
       <p class="lead">Tout reste stocké sur cet appareil. Touche un champ pour le modifier.</p>
+      <div class="localCard">
+        <div class="localBadge">🔜 Bientôt disponible</div>
+        <div class="localTitle"><div class="ic">🏘️</div><h3>Populous Local</h3></div>
+        <p class="localDesc">La vie politique de ta commune et de ton agglomération : les votes publics de
+          ton conseil municipal, comme pour l'Assemblée nationale.</p>
+        <div class="localFoot">
+          <div class="localPrice"><span class="n">1,99 €</span><span class="u">par mois</span></div>
+          <button class="localBtn ${interesseLocal ? "done" : ""}" id="localBtn" ${interesseLocal ? "disabled" : ""}>
+            ${interesseLocal ? "✓ Tu seras informé·e" : "Me tenir informé·e"}</button>
+        </div>
+      </div>
       ${row("Identité", draft.pseudo || "—", 1, avatarHTML(draft.avatar))}
       ${row("Tranche d'âge", draft.age || "Non renseignée", 2)}
       ${row("Circonscription", draft.circoLabel || "Non renseignée", 3)}
       ${row("Ta situation", situationBits.length ? situationBits.join(" · ") : "Non renseignée", 4)}
       <div class="actions"><button class="btn ghost" id="profClose" style="flex:none;padding:12px 22px">Fermer</button></div>`;
+    $("#localBtn").onclick = function(){
+      try{ localStorage.setItem(LOCAL_INTERET_KEY, "1"); }catch(e){}
+      this.textContent = "✓ Tu seras informé·e";
+      this.classList.add("done");
+      this.disabled = true;
+    };
     el.querySelectorAll(".profRow").forEach(b=>{
       b.onclick = ()=>{ viewMode = true; obStep = +b.dataset.step; obRender(); };
     });
