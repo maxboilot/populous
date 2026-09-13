@@ -361,6 +361,19 @@ window.__VOTE_EARLY__ = (async function(){
   .dashHead .eyebrow{font-size:11px;font-weight:700;color:var(--accent)}
   .dashHead h1{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','SF Pro Display',system-ui,'Inter',Helvetica,Arial,sans-serif;font-weight:800;font-size:30px;margin:6px 0 0;letter-spacing:-.02em}
 
+  .refJourItem{background:var(--card-alt);border-radius:16px;padding:14px 16px;margin-top:12px}
+  .refJourItem:first-of-type{margin-top:18px}
+  .refJourMeta{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .refJourChip{display:inline-flex;align-items:center;gap:5px;font-size:10.5px;font-weight:800;
+    letter-spacing:.03em;color:var(--accent);text-transform:uppercase;white-space:nowrap}
+  .refJourAgo{font-size:10.5px;font-weight:700;color:var(--dim);white-space:nowrap}
+  .refJourTitre{font-size:16.5px;font-weight:800;color:var(--ink);margin-top:7px;letter-spacing:-.01em}
+  .refJourTexte{font-size:13px;line-height:1.55;color:var(--ink-soft);margin:5px 0 0}
+  .refJourSource{display:inline-block;margin-top:9px;font-size:11.5px;font-weight:700;color:var(--accent);text-decoration:none}
+  .refJourSource:active{opacity:.6}
+  .refJourEmpty{text-align:center;padding:14px 0 2px}
+  .refJourEmpty .ic{font-size:32px;opacity:.45;margin-bottom:6px}
+
   /* Présidentielle 2027 : bannière la plus mise en avant de l'accueil,
      volontairement un cran au-dessus du dernier vote. */
   .presiHeroCard{display:block;width:100%;max-width:640px;margin:0 auto 14px;padding:30px 28px;
@@ -436,6 +449,16 @@ window.__VOTE_EARLY__ = (async function(){
   .modeOpt{border:none;background:none;padding:7px 11px;border-radius:999px;font-size:10px;font-weight:700;
     color:var(--dim);cursor:pointer;font-family:inherit;white-space:nowrap;transition:background .15s,color .15s}
   .modeOpt.on{background:var(--accent);color:#fff}
+
+  /* Badge "La Ref du jour" : un sceau rond, sous la bascule Mon Pays /
+     Ma ville — même logique de visibilité (accueil uniquement). */
+  .refJourFab{position:fixed;top:calc(14px + env(safe-area-inset-top,0px) + 50px);right:14px;z-index:840;
+    width:56px;height:56px;border:none;border-radius:50%;padding:0;cursor:pointer;
+    background:var(--card);box-shadow:var(--shadow-lg);display:flex;align-items:center;justify-content:center}
+  .refJourFab.hidden{display:none}
+  .refJourFab svg{position:absolute;inset:0;width:100%;height:100%}
+  .refJourFab svg text{fill:var(--accent)}
+  .refJourFab .refJourFabIc{position:relative;font-size:18px;pointer-events:none}
 
   .avPicker{display:flex;align-items:center;gap:14px}
   .avPreview{width:64px;height:64px;border-radius:50%;flex:0 0 auto;overflow:hidden;background:var(--card-alt)}
@@ -614,6 +637,21 @@ window.__VOTE_EARLY__ = (async function(){
   <button class="modeOpt" data-mode="communal" type="button">Ma ville</button>
 </div>
 
+<!-- ============ badge "La Ref du jour", sous la bascule Mon Pays / Ma
+     ville — même logique d'affichage (accueil uniquement, voir
+     showScreen()). Le texte est étiré sur toute la circonférence du
+     cercle (textLength = 2πr, r=37) pour que la boucle se referme
+     exactement sur elle-même, sans espace ni chevauchement. ============ -->
+<button class="refJourFab" id="acRefJour" type="button" aria-label="La Ref du jour">
+  <svg viewBox="0 0 100 100" aria-hidden="true">
+    <path id="refJourArc" d="M 50,50 m -37,0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none"/>
+    <text font-size="9" font-weight="800" letter-spacing="1.6" textLength="232.5" lengthAdjust="spacingAndGlyphs">
+      <textPath href="#refJourArc" startOffset="0%">RÉF DU JOUR • RÉF DU JOUR •</textPath>
+    </text>
+  </svg>
+  <span class="refJourFabIc" aria-hidden="true">🗓️</span>
+</button>
+
 <!-- ============ onboarding : premier lancement uniquement ============ -->
 <div id="onboarding" class="veil hidden">
   <div class="sheet" id="obSheet"></div>
@@ -630,6 +668,11 @@ window.__VOTE_EARLY__ = (async function(){
 <!-- ============ formulaire "Me tenir informé·e" (Populous Local) ============ -->
 <div id="localFormPopup" class="veil hidden">
   <div class="sheet" id="localFormSheet"></div>
+</div>
+
+<!-- ============ La Ref du jour, accessible uniquement depuis l'accueil ============ -->
+<div id="refJourPopup" class="veil hidden">
+  <div class="sheet" id="refJourSheet"></div>
 </div>
 
 <!-- ============ popup quotidien ============ -->
@@ -2299,6 +2342,7 @@ function showScreen(name){
   document.querySelectorAll(".navBtn").forEach(b=>b.classList.toggle("on", b.dataset.go===name));
   renderTopAvatar(); // avatar du menu du bas, à jour sur tous les écrans
   $("#modeToggle").classList.toggle("hidden", name!=="accueil"); // affiché uniquement sur l'accueil
+  $(".refJourFab").classList.toggle("hidden", name!=="accueil");
   if(name!=="presidentielle") clearInterval(calendrierMinuteur);
 
   if(name==="carte"){
@@ -3161,6 +3205,68 @@ function renderBoussoleResult(){
   $("#bqClose3").onclick = closeBoussole;
 }
 $("#acBoussole").onclick = openBoussole;
+
+/* ============================================================
+   LA REF DU JOUR — un fait politique français réellement daté,
+   pour le jour du calendrier en cours (mois-jour, indépendant de
+   l'année). Couverture volontairement partielle : seuls les jours
+   qui reposent sur un fait vérifié sont renseignés dans
+   data/refs_jour.json ; les autres jours, l'appli le dit
+   honnêtement plutôt que d'inventer une référence — voir CLAUDE.md.
+   ============================================================ */
+let refsJourCache = null;
+async function chargerRefsJour(){
+  if(refsJourCache) return refsJourCache;
+  try{
+    const d = await (await fetch(REPO_DATA_BASE + "refs_jour.json", {cache:"no-store"})).json();
+    refsJourCache = d.refs || {};
+  }catch(e){ refsJourCache = {}; }
+  return refsJourCache;
+}
+const REF_JOUR_CATEGORIES = {
+  evenement:  { ic:"🏛️", label:"Grand événement" },
+  naissance:  { ic:"🎂", label:"Naissance" },
+  mort:       { ic:"🕊️", label:"Disparition" },
+  texte:      { ic:"📜", label:"Voté ce jour" },
+};
+function refJourItemHTML(r){
+  const cat = REF_JOUR_CATEGORIES[r.categorie] || { ic:"🏛️", label:"" };
+  const ans = new Date().getFullYear() - r.annee;
+  const anciennete = ans <= 0 ? "cette année" : `il y a ${ans} an${ans>1?"s":""}`;
+  return `
+    <div class="refJourItem">
+      <div class="refJourMeta">
+        <span class="refJourChip">${cat.ic} ${esc(cat.label)}</span>
+        <span class="refJourAgo">${esc(String(r.annee))} · ${anciennete}</span>
+      </div>
+      <div class="refJourTitre">${esc(r.titre)}</div>
+      <p class="refJourTexte">${esc(r.texte)}</p>
+      ${r.source ? `<a class="refJourSource" href="${esc(r.source)}" target="_blank" rel="noopener">Voir la source ↗</a>` : ""}
+    </div>`;
+}
+async function ouvrirRefJour(){
+  const refs = await chargerRefsJour();
+  const auj = new Date();
+  const cle = String(auj.getMonth()+1).padStart(2,"0") + "-" + String(auj.getDate()).padStart(2,"0");
+  const dateTexte = auj.toLocaleDateString("fr-FR", { day:"numeric", month:"long" });
+  const entrees = refs[cle] || [];
+  $("#refJourSheet").innerHTML = `
+    <button class="sheetClose" id="refJourClose" aria-label="Fermer">✕</button>
+    <div class="eyebrow">La Ref du jour</div>
+    <h2 class="d">${esc(dateTexte)}</h2>
+    ${entrees.length
+      ? entrees.map(refJourItemHTML).join("")
+      : `<div class="refJourEmpty"><div class="ic">🗓️</div><p class="lead">Pas de Ref pour aujourd'hui. Reviens demain.</p></div>`}
+    ${entrees.length ? `<div id="refJourShare" style="margin-top:18px"></div>` : ""}`;
+  $("#refJourPopup").classList.remove("hidden");
+  $("#refJourClose").onclick = ()=>{ $("#refJourPopup").classList.add("hidden"); };
+  if(entrees.length){
+    $("#refJourShare").innerHTML = shareRowHTML();
+    const texte = entrees.map(r => `${r.titre} (${r.annee}) — ${r.texte}`).join("\n\n");
+    wireShare($("#refJourShare"), texte, SITE_URL);
+  }
+}
+$("#acRefJour").onclick = ouvrirRefJour;
 
 /* ============================================================
    HISTORIQUE — onglet Récap.

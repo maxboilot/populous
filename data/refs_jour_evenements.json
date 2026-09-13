@@ -1,0 +1,625 @@
+{
+  "source_note": "Dates et faits vérifiés (Légifrance, Assemblée nationale, France Mémoire, INA, Herodote.net, Encyclopædia Universalis). Couverture assumée comme partielle : seuls les jours reposant sur un fait vérifié sont renseignés.",
+  "refs": {
+    "01-01": [
+      {
+        "annee": 2002,
+        "categorie": "evenement",
+        "titre": "Naissance de l'euro",
+        "texte": "Les pièces et billets en euros entrent en circulation dans onze pays, dont la France, remplaçant les monnaies nationales."
+      }
+    ],
+    "01-08": [
+      {
+        "annee": 1996,
+        "categorie": "mort",
+        "titre": "Mort de François Mitterrand",
+        "texte": "Il s'éteint quelques mois après avoir quitté l'Élysée, au terme du plus long mandat présidentiel de la Ve République."
+      }
+    ],
+    "01-11": [
+      {
+        "annee": 1907,
+        "categorie": "naissance",
+        "titre": "Naissance de Pierre Mendès France",
+        "texte": "Président du Conseil en 1954-1955, resté un symbole d'intégrité politique."
+      }
+    ],
+    "01-17": [
+      {
+        "annee": 1975,
+        "categorie": "evenement",
+        "titre": "Loi Veil",
+        "texte": "La loi autorisant l'interruption volontaire de grossesse (IVG), portée par la ministre de la Santé Simone Veil, est promulguée."
+      }
+    ],
+    "01-21": [
+      {
+        "annee": 1793,
+        "categorie": "evenement",
+        "titre": "Exécution de Louis XVI",
+        "texte": "Le roi Louis XVI est guillotiné place de la Révolution, à Paris, après sa condamnation par la Convention nationale."
+      }
+    ],
+    "02-02": [
+      {
+        "annee": 1926,
+        "categorie": "naissance",
+        "titre": "Naissance de Valéry Giscard d'Estaing",
+        "texte": "Président de la République de 1974 à 1981."
+      }
+    ],
+    "02-07": [
+      {
+        "annee": 1992,
+        "categorie": "evenement",
+        "titre": "Signature du traité de Maastricht",
+        "texte": "Les douze États membres de la Communauté européenne signent le traité instituant l'Union européenne."
+      }
+    ],
+    "02-24": [
+      {
+        "annee": 1848,
+        "categorie": "evenement",
+        "titre": "Proclamation de la IIe République",
+        "texte": "Après les journées révolutionnaires de février, Louis-Philippe abdique et la IIe République est proclamée à Paris."
+      }
+    ],
+    "03-07": [
+      {
+        "annee": 1932,
+        "categorie": "mort",
+        "titre": "Mort d'Aristide Briand",
+        "texte": "Onze fois président du Conseil et prix Nobel de la paix 1926, pour le traité de Locarno."
+      }
+    ],
+    "03-16": [
+      {
+        "annee": 1979,
+        "categorie": "mort",
+        "titre": "Mort de Jean Monnet",
+        "texte": "L'un des inspirateurs du projet européen, considéré comme l'un des « pères de l'Europe »."
+      }
+    ],
+    "03-25": [
+      {
+        "annee": 1957,
+        "categorie": "evenement",
+        "titre": "Traités de Rome",
+        "texte": "La France signe, avec cinq autres pays, les traités instituant la Communauté économique européenne (CEE), ancêtre de l'Union européenne."
+      }
+    ],
+    "03-28": [
+      {
+        "annee": 1862,
+        "categorie": "naissance",
+        "titre": "Naissance d'Aristide Briand",
+        "texte": "Onze fois président du Conseil entre 1909 et 1932, prix Nobel de la paix en 1926."
+      }
+    ],
+    "03-30": [
+      {
+        "annee": 1950,
+        "categorie": "mort",
+        "titre": "Mort de Léon Blum",
+        "texte": "Ancien chef du gouvernement du Front populaire, rescapé du camp de Buchenwald."
+      }
+    ],
+    "04-02": [
+      {
+        "annee": 1974,
+        "categorie": "mort",
+        "titre": "Mort de Georges Pompidou",
+        "texte": "Il meurt en cours de mandat, à Paris — le premier président de la Ve République à mourir en exercice."
+      }
+    ],
+    "04-05": [
+      {
+        "annee": 1794,
+        "categorie": "mort",
+        "titre": "Mort de Georges Danton",
+        "texte": "Figure de la Révolution française, il est guillotiné à Paris sur ordre du Comité de salut public dont il avait été un des premiers membres."
+      }
+    ],
+    "04-09": [
+      {
+        "annee": 1872,
+        "categorie": "naissance",
+        "titre": "Naissance de Léon Blum",
+        "texte": "Premier président du Conseil socialiste de l'histoire, à la tête du gouvernement du Front populaire en 1936."
+      }
+    ],
+    "04-21": [
+      {
+        "annee": 1944,
+        "categorie": "evenement",
+        "titre": "Droit de vote des femmes",
+        "texte": "Une ordonnance du Gouvernement provisoire, prise à Alger, accorde pour la première fois aux femmes françaises le droit de vote et d'éligibilité."
+      },
+      {
+        "annee": 2002,
+        "categorie": "evenement",
+        "titre": "Séisme du premier tour",
+        "texte": "Jean-Marie Le Pen se qualifie pour le second tour de l'élection présidentielle face à Jacques Chirac, écartant Lionel Jospin dès le premier tour."
+      }
+    ],
+    "04-23": [
+      {
+        "annee": 2013,
+        "categorie": "evenement",
+        "titre": "Mariage pour tous : adoption définitive",
+        "texte": "Le Parlement adopte définitivement la loi ouvrant le mariage et l'adoption aux couples de personnes de même sexe."
+      }
+    ],
+    "04-24": [
+      {
+        "annee": 2022,
+        "categorie": "evenement",
+        "titre": "Réélection d'Emmanuel Macron",
+        "texte": "Emmanuel Macron est réélu président de la République face à Marine Le Pen."
+      }
+    ],
+    "04-27": [
+      {
+        "annee": 1848,
+        "categorie": "evenement",
+        "titre": "Abolition de l'esclavage",
+        "texte": "Le gouvernement provisoire de la IIe République signe le décret, porté par Victor Schœlcher, abolissant l'esclavage dans toutes les colonies françaises."
+      }
+    ],
+    "04-29": [
+      {
+        "annee": 1945,
+        "categorie": "evenement",
+        "titre": "Premier vote des Françaises",
+        "texte": "Les femmes votent pour la première fois en France, lors des élections municipales."
+      }
+    ],
+    "05-05": [
+      {
+        "annee": 1789,
+        "categorie": "evenement",
+        "titre": "Ouverture des États généraux",
+        "texte": "Louis XVI réunit à Versailles les représentants des trois ordres (clergé, noblesse, tiers état), point de départ de la Révolution française."
+      },
+      {
+        "annee": 1821,
+        "categorie": "mort",
+        "titre": "Mort de Napoléon Bonaparte",
+        "texte": "Il meurt en exil sur l'île de Sainte-Hélène, six ans après sa défaite à Waterloo."
+      }
+    ],
+    "05-06": [
+      {
+        "annee": 1758,
+        "categorie": "naissance",
+        "titre": "Naissance de Robespierre",
+        "texte": "Figure centrale de la Révolution française et de la période de la Terreur."
+      },
+      {
+        "annee": 2007,
+        "categorie": "evenement",
+        "titre": "Élection de Nicolas Sarkozy",
+        "texte": "Nicolas Sarkozy est élu président de la République face à Ségolène Royal."
+      },
+      {
+        "annee": 2012,
+        "categorie": "evenement",
+        "titre": "Élection de François Hollande",
+        "texte": "François Hollande est élu président de la République face à Nicolas Sarkozy."
+      }
+    ],
+    "05-07": [
+      {
+        "annee": 1748,
+        "categorie": "naissance",
+        "titre": "Naissance d'Olympe de Gouges",
+        "texte": "Autrice de la Déclaration des droits de la femme et de la citoyenne, publiée en 1791."
+      }
+    ],
+    "05-09": [
+      {
+        "annee": 1950,
+        "categorie": "evenement",
+        "titre": "Déclaration Schuman",
+        "texte": "Le ministre des Affaires étrangères Robert Schuman propose de mettre en commun les productions franco-allemandes de charbon et d'acier — l'acte fondateur de la construction européenne."
+      }
+    ],
+    "05-10": [
+      {
+        "annee": 1981,
+        "categorie": "evenement",
+        "titre": "Élection de François Mitterrand",
+        "texte": "François Mitterrand est élu président de la République face à Valéry Giscard d'Estaing."
+      }
+    ],
+    "05-18": [
+      {
+        "annee": 2013,
+        "categorie": "evenement",
+        "titre": "Promulgation du mariage pour tous",
+        "texte": "La loi ouvrant le mariage aux couples de personnes de même sexe est promulguée par le président François Hollande."
+      }
+    ],
+    "05-21": [
+      {
+        "annee": 2001,
+        "categorie": "evenement",
+        "titre": "Loi Taubira",
+        "texte": "La loi reconnaissant la traite et l'esclavage comme crime contre l'humanité, portée par la députée Christiane Taubira, est promulguée."
+      }
+    ],
+    "06-18": [
+      {
+        "annee": 1940,
+        "categorie": "evenement",
+        "titre": "Appel du 18 juin",
+        "texte": "Depuis Londres, le général de Gaulle appelle les Français à poursuivre le combat après l'armistice."
+      }
+    ],
+    "06-20": [
+      {
+        "annee": 1789,
+        "categorie": "evenement",
+        "titre": "Serment du Jeu de paume",
+        "texte": "Les députés du tiers état, réunis dans une salle de jeu de paume à Versailles, jurent de ne pas se séparer avant d'avoir doté la France d'une constitution."
+      }
+    ],
+    "06-29": [
+      {
+        "annee": 1886,
+        "categorie": "naissance",
+        "titre": "Naissance de Robert Schuman",
+        "texte": "Un des pères fondateurs de la construction européenne."
+      }
+    ],
+    "06-30": [
+      {
+        "annee": 2017,
+        "categorie": "mort",
+        "titre": "Mort de Simone Veil",
+        "texte": "Rescapée de la déportation, ministre de la Santé et première présidente élue du Parlement européen."
+      }
+    ],
+    "07-02": [
+      {
+        "annee": 2016,
+        "categorie": "mort",
+        "titre": "Mort de Michel Rocard",
+        "texte": "Premier ministre de 1988 à 1991."
+      }
+    ],
+    "07-05": [
+      {
+        "annee": 1911,
+        "categorie": "naissance",
+        "titre": "Naissance de Georges Pompidou",
+        "texte": "Président de la République de 1969 à 1974."
+      }
+    ],
+    "07-13": [
+      {
+        "annee": 1927,
+        "categorie": "naissance",
+        "titre": "Naissance de Simone Veil",
+        "texte": "Rescapée de la déportation, elle deviendra ministre de la Santé puis première présidente élue du Parlement européen."
+      }
+    ],
+    "07-14": [
+      {
+        "annee": 1789,
+        "categorie": "evenement",
+        "titre": "Prise de la Bastille",
+        "texte": "Le peuple parisien s'empare de la forteresse de la Bastille, symbole de l'arbitraire royal — événement fondateur de la Révolution française."
+      },
+      {
+        "annee": 1790,
+        "categorie": "evenement",
+        "titre": "Fête de la Fédération",
+        "texte": "Un an après la prise de la Bastille, Paris célèbre l'unité nationale retrouvée lors d'une grande fête populaire au Champ-de-Mars."
+      }
+    ],
+    "07-22": [
+      {
+        "annee": 1804,
+        "categorie": "naissance",
+        "titre": "Naissance de Victor Schœlcher",
+        "texte": "Artisan du décret d'abolition de l'esclavage de 1848."
+      }
+    ],
+    "07-27": [
+      {
+        "annee": 1794,
+        "categorie": "evenement",
+        "titre": "Chute de Robespierre",
+        "texte": "Robespierre est arrêté lors de la journée du 9 Thermidor, mettant fin à la Terreur ; il sera guillotiné le lendemain."
+      }
+    ],
+    "07-28": [
+      {
+        "annee": 1794,
+        "categorie": "mort",
+        "titre": "Mort de Robespierre",
+        "texte": "Il est guillotiné à Paris, au lendemain de son arrestation lors du 9 Thermidor."
+      }
+    ],
+    "07-31": [
+      {
+        "annee": 1914,
+        "categorie": "mort",
+        "titre": "Assassinat de Jean Jaurès",
+        "texte": "Il est tué à Paris, trois jours avant le déclenchement de la Première Guerre mondiale, alors qu'il militait pour la paix."
+      }
+    ],
+    "08-04": [
+      {
+        "annee": 1789,
+        "categorie": "evenement",
+        "titre": "Abolition des privilèges",
+        "texte": "Dans la nuit du 4 août, l'Assemblée constituante vote l'abolition des privilèges féodaux."
+      }
+    ],
+    "08-10": [
+      {
+        "annee": 1792,
+        "categorie": "evenement",
+        "titre": "Prise des Tuileries",
+        "texte": "Le peuple parisien prend d'assaut le palais des Tuileries ; la royauté est suspendue de fait."
+      }
+    ],
+    "08-15": [
+      {
+        "annee": 1769,
+        "categorie": "naissance",
+        "titre": "Naissance de Napoléon Bonaparte",
+        "texte": "Futur général, puis empereur des Français."
+      }
+    ],
+    "08-23": [
+      {
+        "annee": 1930,
+        "categorie": "naissance",
+        "titre": "Naissance de Michel Rocard",
+        "texte": "Premier ministre de 1988 à 1991."
+      }
+    ],
+    "08-25": [
+      {
+        "annee": 1944,
+        "categorie": "evenement",
+        "titre": "Libération de Paris",
+        "texte": "Paris est libéré de l'occupation allemande ; le général de Gaulle défile sur les Champs-Élysées le lendemain."
+      }
+    ],
+    "08-26": [
+      {
+        "annee": 1789,
+        "categorie": "evenement",
+        "titre": "Déclaration des droits de l'homme",
+        "texte": "L'Assemblée constituante adopte la Déclaration des droits de l'homme et du citoyen."
+      }
+    ],
+    "09-03": [
+      {
+        "annee": 1859,
+        "categorie": "naissance",
+        "titre": "Naissance de Jean Jaurès",
+        "texte": "Figure fondatrice du socialisme français et fervent opposant à la guerre."
+      }
+    ],
+    "09-04": [
+      {
+        "annee": 1870,
+        "categorie": "evenement",
+        "titre": "Proclamation de la IIIe République",
+        "texte": "Après la capture de Napoléon III à Sedan, la République est proclamée à l'Hôtel de Ville de Paris."
+      },
+      {
+        "annee": 1963,
+        "categorie": "mort",
+        "titre": "Mort de Robert Schuman",
+        "texte": "Auteur de la déclaration du 9 mai 1950 à l'origine de la construction européenne."
+      }
+    ],
+    "09-20": [
+      {
+        "annee": 1792,
+        "categorie": "evenement",
+        "titre": "Bataille de Valmy",
+        "texte": "L'armée française repousse les troupes prussiennes à Valmy, la veille de la proclamation de la République."
+      },
+      {
+        "annee": 1992,
+        "categorie": "evenement",
+        "titre": "Référendum sur Maastricht",
+        "texte": "Les Français approuvent de justesse, à 51 % des voix, le traité de Maastricht — un résultat surnommé le « petit oui »."
+      }
+    ],
+    "09-21": [
+      {
+        "annee": 1792,
+        "categorie": "evenement",
+        "titre": "Proclamation de la Ire République",
+        "texte": "La Convention nationale, réunie pour la première fois, abolit la royauté et proclame la République."
+      }
+    ],
+    "09-26": [
+      {
+        "annee": 2019,
+        "categorie": "mort",
+        "titre": "Mort de Jacques Chirac",
+        "texte": "Président de la République de 1995 à 2007."
+      }
+    ],
+    "09-28": [
+      {
+        "annee": 1841,
+        "categorie": "naissance",
+        "titre": "Naissance de Georges Clemenceau",
+        "texte": "Surnommé « le Tigre », deux fois président du Conseil (1906-1909, 1917-1920)."
+      },
+      {
+        "annee": 1958,
+        "categorie": "evenement",
+        "titre": "Référendum sur la Ve République",
+        "texte": "Les Français approuvent massivement, par référendum, la nouvelle Constitution portée par le général de Gaulle."
+      }
+    ],
+    "10-04": [
+      {
+        "annee": 1945,
+        "categorie": "evenement",
+        "titre": "Création de la Sécurité sociale",
+        "texte": "Une ordonnance du gouvernement provisoire crée la Sécurité sociale, pour protéger les travailleurs et leurs familles contre les risques de la vie."
+      },
+      {
+        "annee": 1958,
+        "categorie": "evenement",
+        "titre": "Constitution de la Ve République",
+        "texte": "La nouvelle Constitution, approuvée par référendum, est promulguée — la Ve République est proclamée le lendemain."
+      }
+    ],
+    "10-09": [
+      {
+        "annee": 1981,
+        "categorie": "evenement",
+        "titre": "Abolition de la peine de mort",
+        "texte": "La loi portée par le garde des Sceaux Robert Badinter, abolissant la peine de mort en France, est promulguée."
+      }
+    ],
+    "10-18": [
+      {
+        "annee": 1982,
+        "categorie": "mort",
+        "titre": "Mort de Pierre Mendès France",
+        "texte": "Président du Conseil en 1954-1955, resté un symbole d'intégrité politique."
+      }
+    ],
+    "10-21": [
+      {
+        "annee": 1945,
+        "categorie": "evenement",
+        "titre": "Premières femmes élues à l'Assemblée",
+        "texte": "33 femmes sont élues à l'Assemblée constituante, un an après l'obtention du droit de vote."
+      }
+    ],
+    "10-26": [
+      {
+        "annee": 1759,
+        "categorie": "naissance",
+        "titre": "Naissance de Georges Danton",
+        "texte": "Figure de la Révolution française, une des voix qui ont porté la chute de la monarchie."
+      },
+      {
+        "annee": 1916,
+        "categorie": "naissance",
+        "titre": "Naissance de François Mitterrand",
+        "texte": "Président de la République de 1981 à 1995 — le plus long mandat de l'histoire de la Ve République."
+      }
+    ],
+    "11-03": [
+      {
+        "annee": 1793,
+        "categorie": "mort",
+        "titre": "Mort d'Olympe de Gouges",
+        "texte": "Autrice de la Déclaration des droits de la femme, elle est guillotinée à Paris pendant la Terreur."
+      }
+    ],
+    "11-09": [
+      {
+        "annee": 1799,
+        "categorie": "evenement",
+        "titre": "Coup d'État du 18 Brumaire",
+        "texte": "Napoléon Bonaparte renverse le Directoire, ouvrant la voie au Consulat puis à l'Empire."
+      },
+      {
+        "annee": 1888,
+        "categorie": "naissance",
+        "titre": "Naissance de Jean Monnet",
+        "texte": "Inspirateur du projet européen, considéré comme l'un des « pères de l'Europe »."
+      },
+      {
+        "annee": 1970,
+        "categorie": "mort",
+        "titre": "Mort de Charles de Gaulle",
+        "texte": "Il meurt à Colombey-les-Deux-Églises, d'une rupture d'anévrisme."
+      }
+    ],
+    "11-11": [
+      {
+        "annee": 1918,
+        "categorie": "evenement",
+        "titre": "Armistice de 1918",
+        "texte": "L'armistice signé à Rethondes met fin aux combats de la Première Guerre mondiale."
+      }
+    ],
+    "11-22": [
+      {
+        "annee": 1890,
+        "categorie": "naissance",
+        "titre": "Naissance de Charles de Gaulle",
+        "texte": "Fondateur de la Ve République, président de la République de 1959 à 1969."
+      }
+    ],
+    "11-24": [
+      {
+        "annee": 1929,
+        "categorie": "mort",
+        "titre": "Mort de Georges Clemenceau",
+        "texte": "Surnommé « le Tigre », deux fois président du Conseil français."
+      }
+    ],
+    "11-29": [
+      {
+        "annee": 1932,
+        "categorie": "naissance",
+        "titre": "Naissance de Jacques Chirac",
+        "texte": "Président de la République de 1995 à 2007."
+      }
+    ],
+    "12-02": [
+      {
+        "annee": 1804,
+        "categorie": "evenement",
+        "titre": "Sacre de Napoléon Ier",
+        "texte": "Napoléon Bonaparte se couronne empereur des Français à Notre-Dame de Paris."
+      },
+      {
+        "annee": 1851,
+        "categorie": "evenement",
+        "titre": "Coup d'État du 2 décembre",
+        "texte": "Louis-Napoléon Bonaparte, président de la République, dissout l'Assemblée par la force, ouvrant la voie au Second Empire."
+      },
+      {
+        "annee": 2020,
+        "categorie": "mort",
+        "titre": "Mort de Valéry Giscard d'Estaing",
+        "texte": "Président de la République de 1974 à 1981, il meurt des suites de la Covid-19."
+      }
+    ],
+    "12-09": [
+      {
+        "annee": 1905,
+        "categorie": "evenement",
+        "titre": "Séparation des Églises et de l'État",
+        "texte": "La loi instaurant la laïcité de l'État et la liberté de culte est promulguée."
+      }
+    ],
+    "12-13": [
+      {
+        "annee": 2007,
+        "categorie": "evenement",
+        "titre": "Signature du traité de Lisbonne",
+        "texte": "Les chefs d'État et de gouvernement de l'Union européenne signent le traité de Lisbonne, qui réforme le fonctionnement des institutions européennes."
+      }
+    ],
+    "12-25": [
+      {
+        "annee": 1893,
+        "categorie": "mort",
+        "titre": "Mort de Victor Schœlcher",
+        "texte": "Artisan du décret d'abolition de l'esclavage de 1848."
+      }
+    ]
+  }
+}
