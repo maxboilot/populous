@@ -456,8 +456,9 @@ window.__VOTE_EARLY__ = (async function(){
     width:56px;height:56px;border:none;border-radius:50%;padding:0;cursor:pointer;
     background:var(--card);box-shadow:var(--shadow-lg);display:flex;align-items:center;justify-content:center}
   .refJourFab.hidden{display:none}
-  .refJourFab svg{position:absolute;inset:0;width:100%;height:100%}
-  .refJourFab svg text{fill:var(--accent)}
+  .refJourRing{position:absolute;inset:0}
+  .refJourRing span{position:absolute;left:50%;top:50%;transform-origin:0 0;
+    font-size:6.6px;font-weight:800;letter-spacing:.01em;color:var(--accent);line-height:1}
   .refJourFab .refJourFabIc{position:relative;font-size:18px;pointer-events:none}
 
   .avPicker{display:flex;align-items:center;gap:14px}
@@ -639,16 +640,14 @@ window.__VOTE_EARLY__ = (async function(){
 
 <!-- ============ badge "La Ref du jour", sous la bascule Mon Pays / Ma
      ville — même logique d'affichage (accueil uniquement, voir
-     showScreen()). Le texte est étiré sur toute la circonférence du
-     cercle (textLength = 2πr, r=37) pour que la boucle se referme
-     exactement sur elle-même, sans espace ni chevauchement. ============ -->
+     showScreen()). Le texte "SVG textPath + textLength" ne se referme
+     pas correctement sur mobile (Safari iOS ignore lengthAdjust sur un
+     textPath, laissant un grand espace) — remplacé par un placement
+     lettre à lettre en CSS pur, réparti sur 360° par construction,
+     donc fiable quel que soit le moteur de rendu. Voir
+     placerTexteRefJour() plus bas. ============ -->
 <button class="refJourFab" id="acRefJour" type="button" aria-label="La Ref du jour">
-  <svg viewBox="0 0 100 100" aria-hidden="true">
-    <path id="refJourArc" d="M 50,50 m -37,0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none"/>
-    <text font-size="9" font-weight="800" letter-spacing="1.6" textLength="232.5" lengthAdjust="spacingAndGlyphs">
-      <textPath href="#refJourArc" startOffset="0%">RÉF DU JOUR • RÉF DU JOUR •</textPath>
-    </text>
-  </svg>
+  <div class="refJourRing" id="refJourRing" aria-hidden="true"></div>
   <span class="refJourFabIc" aria-hidden="true">🗓️</span>
 </button>
 
@@ -3267,6 +3266,22 @@ async function ouvrirRefJour(){
   }
 }
 $("#acRefJour").onclick = ouvrirRefJour;
+
+// Texte circulaire du badge "La Ref du jour", lettre par lettre en CSS
+// (transform: rotate + translate), réparti sur 360° par construction —
+// donc toujours refermé sur lui-même, y compris sur mobile où un
+// SVG textPath + textLength ne tient pas cette promesse de façon fiable.
+(function placerTexteRefJour(){
+  const anneau = $("#refJourRing");
+  if(!anneau) return;
+  const texte = "RÉF DU JOUR • RÉF DU JOUR • ";
+  const lettres = [...texte];
+  const rayon = 23; // px, distance au centre d'un badge de 56px
+  anneau.innerHTML = lettres.map((car, i) => {
+    const angle = (360 / lettres.length) * i;
+    return `<span style="transform:rotate(${angle}deg) translateY(-${rayon}px)">${esc(car)}</span>`;
+  }).join("");
+})();
 
 /* ============================================================
    HISTORIQUE — onglet Récap.
