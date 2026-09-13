@@ -2298,7 +2298,7 @@ function showScreen(name){
   });
   document.querySelectorAll(".navBtn").forEach(b=>b.classList.toggle("on", b.dataset.go===name));
   renderTopAvatar(); // avatar du menu du bas, à jour sur tous les écrans
-  $("#modeToggle").classList.toggle("hidden", name==="carte"); // chrome déjà dense sur la carte
+  $("#modeToggle").classList.toggle("hidden", name!=="accueil"); // affiché uniquement sur l'accueil
   if(name!=="presidentielle") clearInterval(calendrierMinuteur);
 
   if(name==="carte"){
