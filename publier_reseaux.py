@@ -90,11 +90,11 @@ def contenu_presidentielle():
     date_fr = datetime.date.fromisoformat(dernier['date']).strftime('%d/%m/%Y')
     detail = ' · '.join(f"{noms.get(cle, cle)} {score:.0f}%" for cle, score in classement)
     return {
-        'eyebrow': 'Actu presidentielle 2027',
-        'titre': f"{noms.get(tete[0], tete[0])} en tete a {tete[1]:.0f}%",
+        'eyebrow': 'Actu présidentielle 2027',
+        'titre': f"{noms.get(tete[0], tete[0])} en tête à {tete[1]:.0f}%",
         'texte': f"Sondage {dernier['institut']} du {date_fr} ({dernier['echantillon']} personnes) : {detail}.",
         'legende': (
-            f"Presidentielle 2027 — sondage {dernier['institut']} du {date_fr}\n\n{detail}\n\n"
+            f"Présidentielle 2027 — sondage {dernier['institut']} du {date_fr}\n\n{detail}\n\n"
             f"Source : {dernier['source']}\n\n#Populous #Presidentielle2027 #Sondage"
         ),
     }
@@ -105,12 +105,12 @@ def contenu_depute():
     elu = random.choice(elus)
     detail = f"{elu['gn']} · {elu['vn']} · {elu['pro']}"
     return {
-        'eyebrow': 'Depute du jour',
+        'eyebrow': 'Député du jour',
         'titre': elu['n'],
         'texte': detail,
         'legende': (
             f"{elu['n']} ({elu['g']})\n\n{elu['gn']}\nCirconscription de {elu['vn']}\nProfession : {elu['pro']}\n\n"
-            f"Retrouve son activite complete a l'Assemblee sur Populous.\n\n#Populous #AssembleeNationale #{elu['g']}"
+            f"Retrouve son activité complète à l'Assemblée sur Populous.\n\n#Populous #AssembleeNationale #{elu['g']}"
         ),
         'a_index': elu['a'],
     }
@@ -128,10 +128,10 @@ def contenu_avenir():
         sujet = item['ordre_du_jour'].split('—', 1)[-1].strip()
         lignes.append(f"{date_fr} : {sujet}")
     return {
-        'eyebrow': 'A venir',
+        'eyebrow': 'À venir',
         'titre': "Cette semaine à l'Assemblée",
         'texte': '  •  '.join(lignes),
-        'legende': "Cette semaine a l'Assemblee nationale :\n\n" + '\n'.join(f"- {l}" for l in lignes)
+        'legende': "Cette semaine à l'Assemblée nationale :\n\n" + '\n'.join(f"- {l}" for l in lignes)
         + "\n\nSuis chaque vote en direct sur Populous.\n\n#Populous #AssembleeNationale",
     }
 
@@ -139,11 +139,11 @@ def contenu_avenir():
 def contenu_boussole():
     return {
         'eyebrow': 'Boussole politique',
-        'titre': 'Compare tes opinions aux votes reels de tes elus',
-        'texte': "Reponds a quelques questions et decouvre quel groupe politique vote le plus comme toi.",
+        'titre': 'Compare tes opinions aux votes réels de tes élus',
+        'texte': "Réponds à quelques questions et découvre quel groupe politique vote le plus comme toi.",
         'legende': (
-            "Ta boussole politique : compare tes opinions aux votes reels de tes elus, "
-            "sans jugement ni etiquette imposee.\n\nTeste la boussole sur Populous.\n\n#Populous #BoussolePolitique"
+            "Ta boussole politique : compare tes opinions aux votes réels de tes élus, "
+            "sans jugement ni étiquette imposée.\n\nTeste la boussole sur Populous.\n\n#Populous #BoussolePolitique"
         ),
     }
 
