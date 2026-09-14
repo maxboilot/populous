@@ -1,13 +1,28 @@
 {
-  "generated_at": "2026-09-14T12:18:15.507505Z",
-  "source_note": "Dates et faits vérifiés (Légifrance, Assemblée nationale, France Mémoire, INA, Herodote.net, Encyclopædia Universalis). Couverture assumée comme partielle : seuls les jours reposant sur un fait vérifié sont renseignés.",
+  "generated_at": "2026-09-14T12:18:06.527357Z",
+  "source": "https://fr.wikipedia.org/ (pages du jour, section \"Événements\", CC BY-SA)",
   "refs": {
     "01-01": [
       {
-        "annee": 2002,
+        "annee": 1515,
         "categorie": "evenement",
-        "titre": "Naissance de l'euro",
-        "texte": "Les pièces et billets en euros entrent en circulation dans onze pays, dont la France, remplaçant les monnaies nationales."
+        "titre": null,
+        "texte": "mort du roi Louis XII de France, son cousin François I lui succède.",
+        "source": "https://fr.wikipedia.org/wiki/1er_janvier"
+      },
+      {
+        "annee": 1537,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "mariage de Madeleine de France, fille de François I, avec le roi Jacques V d'Écosse.",
+        "source": "https://fr.wikipedia.org/wiki/1er_janvier"
+      },
+      {
+        "annee": 1804,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "indépendance de Haïti vis-à-vis de la France consulaire.",
+        "source": "https://fr.wikipedia.org/wiki/1er_janvier"
       }
     ],
     "01-03": [
@@ -120,10 +135,25 @@
     ],
     "01-08": [
       {
-        "annee": 1996,
-        "categorie": "mort",
-        "titre": "Mort de François Mitterrand",
-        "texte": "Il s'éteint quelques mois après avoir quitté l'Élysée, au terme du plus long mandat présidentiel de la Ve République."
+        "annee": 1499,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "remariage de Louis XII de France et d'Anne de Bretagne, après le veuvage de cette dernière vis-à-vis de Charles VIII de France.",
+        "source": "https://fr.wikipedia.org/wiki/8_janvier"
+      },
+      {
+        "annee": 1761,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "capitulation de la garnison française de Pondichéry.",
+        "source": "https://fr.wikipedia.org/wiki/8_janvier"
+      },
+      {
+        "annee": 1796,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "deuxième amalgame de l'armée française.",
+        "source": "https://fr.wikipedia.org/wiki/8_janvier"
       }
     ],
     "01-09": [
@@ -160,10 +190,18 @@
     ],
     "01-11": [
       {
-        "annee": 1907,
-        "categorie": "naissance",
-        "titre": "Naissance de Pierre Mendès France",
-        "texte": "Président du Conseil en 1954-1955, resté un symbole d'intégrité politique."
+        "annee": 1871,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "début de la bataille du Mans en France.",
+        "source": "https://fr.wikipedia.org/wiki/11_janvier"
+      },
+      {
+        "annee": 2013,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "l'armée française intervient dans le conflit malien (opération Serval) et en profite pour libérer l'otage Denis Allex.",
+        "source": "https://fr.wikipedia.org/wiki/11_janvier"
       }
     ],
     "01-12": [
@@ -202,9 +240,23 @@
       {
         "annee": 1852,
         "categorie": "evenement",
-        "titre": "La Constitution de 1852",
-        "texte": "Peu après le coup d’État du 2 décembre 1851, une nouvelle Constitution est rapidement rédigée et promulguée le 14 janvier 1852.",
-        "source": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/la-constitution-de-1852"
+        "titre": null,
+        "texte": "promulgation de la Constitution impériale instituant le Second Empire en France.",
+        "source": "https://fr.wikipedia.org/wiki/14_janvier"
+      },
+      {
+        "annee": 1858,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "attentat manqué contre Napoléon III en France.",
+        "source": "https://fr.wikipedia.org/wiki/14_janvier"
+      },
+      {
+        "annee": 1918,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "arrestation de l’ancien président du Conseil français Joseph Caillaux sur accusation de trahison.",
+        "source": "https://fr.wikipedia.org/wiki/14_janvier"
       }
     ],
     "01-15": [
@@ -255,10 +307,25 @@
     ],
     "01-17": [
       {
-        "annee": 1975,
+        "annee": 1793,
         "categorie": "evenement",
-        "titre": "Loi Veil",
-        "texte": "La loi autorisant l'interruption volontaire de grossesse (IVG), portée par la ministre de la Santé Simone Veil, est promulguée."
+        "titre": null,
+        "texte": "votes sur la mort de Louis XVI à Paris.",
+        "source": "https://fr.wikipedia.org/wiki/17_janvier"
+      },
+      {
+        "annee": 1895,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "élection de Félix Faure à la présidence de la République française.",
+        "source": "https://fr.wikipedia.org/wiki/17_janvier"
+      },
+      {
+        "annee": 1913,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "élection de Raymond Poincaré à la Présidence de la République française.",
+        "source": "https://fr.wikipedia.org/wiki/17_janvier"
       }
     ],
     "01-18": [
@@ -320,8 +387,23 @@
       {
         "annee": 1793,
         "categorie": "evenement",
-        "titre": "Exécution de Louis XVI",
-        "texte": "Le roi Louis XVI est guillotiné place de la Révolution, à Paris, après sa condamnation par la Convention nationale."
+        "titre": null,
+        "texte": "L'ancien roi de France Louis XVI est guillotiné à 10 h 22.",
+        "source": "https://fr.wikipedia.org/wiki/21_janvier"
+      },
+      {
+        "annee": 1794,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "début des « colonnes infernales » en Vendée (ouest de la France).",
+        "source": "https://fr.wikipedia.org/wiki/21_janvier"
+      },
+      {
+        "annee": 1870,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "dans le département français méridional des Pyrénées-Orientales, Collioure subit un événement climatique exceptionnel observé par le botaniste Charles Naudin en recevant un mètre de neige en une journée, de nombreux vergers et plantations de chênes-lièges sont détruits.",
+        "source": "https://fr.wikipedia.org/wiki/21_janvier"
       }
     ],
     "01-22": [
@@ -475,11 +557,25 @@
     ],
     "01-30": [
       {
-        "annee": 1879,
+        "annee": 1413,
         "categorie": "evenement",
-        "titre": "La \"Constitution Grévy\"",
-        "texte": "Après la démission du maréchal Patrice de Mac Mahon le 30 janvier 1879, Jules Grévy, avocat, député depuis 1848 et élu deux fois président de la Chambre des députés en 1871 puis en 1876, est élu président de la République pour sept ans par les deux assemblées réunies à Versailles. Républicain convaincu, il déclare dans un message aux chambres, le 6 février, que « soumis avec sincérité à la grande loi du régime…",
-        "source": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/la-constitution-grevy"
+        "titre": null,
+        "texte": "le roi de France Charles VI convoque les États généraux",
+        "source": "https://fr.wikipedia.org/wiki/30_janvier"
+      },
+      {
+        "annee": 1631,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "ayant rejoint la cabale de la reine leur mère Marie de Médicis après les journées de duperie(s) de novembre précédent, « Monsieur » le frère du roi Louis XIII de France Gaston d'Orléans vient officialiser directement sa désapprobation à Richelieu en fin de matinée dans la cour grouillante de gentilshommes armés du Palais-Cardinal rue Saint-Honoré à Paris non loin du Louvre. Il…",
+        "source": "https://fr.wikipedia.org/wiki/30_janvier"
+      },
+      {
+        "annee": 1853,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "mariage de Napoléon III avec Eugénie de Montijo Palafox, comtesse de Teba.",
+        "source": "https://fr.wikipedia.org/wiki/30_janvier"
       }
     ],
     "01-31": [
@@ -516,19 +612,18 @@
     ],
     "02-02": [
       {
-        "annee": 1926,
-        "categorie": "naissance",
-        "titre": "Naissance de Valéry Giscard d'Estaing",
-        "texte": "Président de la République de 1974 à 1981."
-      }
-    ],
-    "02-03": [
-      {
-        "annee": 1919,
+        "annee": 1610,
         "categorie": "evenement",
-        "titre": "Premier chef d’État reçu dans l'hémicycle : Woodrow Wilson",
-        "texte": "Le lundi 3 février 1919, le Président des États-Unis d’Amérique Woodrow Wilson est reçu par la Chambre des députés, dans le cadre de la conférence de la paix.",
-        "source": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/premier-chef-d-etat-recu-dans-l-hemicycle-woodrow-wilson"
+        "titre": null,
+        "texte": "le roi de France Henri IV signe une alliance avec l'Union protestante allemande.",
+        "source": "https://fr.wikipedia.org/wiki/2_f%C3%A9vrier"
+      },
+      {
+        "annee": 1794,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "bataille de Chauché pendant la guerre de Vendée (ouest de la France, ancien Bas-Poitou).",
+        "source": "https://fr.wikipedia.org/wiki/2_f%C3%A9vrier"
       }
     ],
     "02-04": [
@@ -602,10 +697,25 @@
     ],
     "02-07": [
       {
-        "annee": 1992,
+        "annee": 1623,
         "categorie": "evenement",
-        "titre": "Signature du traité de Maastricht",
-        "texte": "Les douze États membres de la Communauté européenne signent le traité instituant l'Union européenne."
+        "titre": null,
+        "texte": "traité de Paris entre la France, les États de Savoie et la république de Venise contre l'Espagne.",
+        "source": "https://fr.wikipedia.org/wiki/7_f%C3%A9vrier"
+      },
+      {
+        "annee": 1653,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "Nicolas Fouquet est nommé surintendant des finances en France.",
+        "source": "https://fr.wikipedia.org/wiki/7_f%C3%A9vrier"
+      },
+      {
+        "annee": 1792,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "alliance austro-prussienne contre la France.",
+        "source": "https://fr.wikipedia.org/wiki/7_f%C3%A9vrier"
       }
     ],
     "02-08": [
@@ -964,19 +1074,48 @@
     ],
     "02-24": [
       {
-        "annee": 1848,
+        "annee": 1320,
         "categorie": "evenement",
-        "titre": "Proclamation de la IIe République",
-        "texte": "Après les journées révolutionnaires de février, Louis-Philippe abdique et la IIe République est proclamée à Paris."
+        "titre": null,
+        "texte": "un arrêt du Parlement de Paris prescrit que les châteaux, terres et droits qui avaient été l’objet de donations de la part des rois de France Philippe III le Hardi et son fils et successeur direct Philippe IV le Bel feront retour au domaine de la couronne, en application d'une décision prise par le roi Philippe V le Long en juin 1318.",
+        "source": "https://fr.wikipedia.org/wiki/24_f%C3%A9vrier"
+      },
+      {
+        "annee": 1495,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "le roi de France Charles VIII entre victorieux dans Naples.",
+        "source": "https://fr.wikipedia.org/wiki/24_f%C3%A9vrier"
+      },
+      {
+        "annee": 1510,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "le pape Jules II lève l'excommunication à l'encontre de Venise et prend parti contre le roi de France tandis que Matthieu Schiner détourne les Suisses d'une alliance avec les Français.",
+        "source": "https://fr.wikipedia.org/wiki/24_f%C3%A9vrier"
       }
     ],
     "02-25": [
       {
-        "annee": 1875,
+        "annee": 1429,
         "categorie": "evenement",
-        "titre": "Amendement Wallon",
-        "texte": "La Troisième République combat une opposition qui souhaite un retour à la monarchie. Dans le cadre de la discussion de la loi constitutionnelle relative à l'organisation des pouvoirs publics, un amendement présenté par Henri Alexandre Wallon dispose que \"Le Président de la République est élu à la majorité absolue des suffrages par le Sénat et la Chambre des députés réunis en Assemblée nationale. Il est élu pour sept…",
-        "source": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/troisieme-republique"
+        "titre": null,
+        "texte": "Jeanne d'Arc reconnaît le roi de France Charles VII bien qu'habillé sans faste dans son refuge de Chinon dans la région du val de Loire.",
+        "source": "https://fr.wikipedia.org/wiki/25_f%C3%A9vrier"
+      },
+      {
+        "annee": 1633,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "le garde des sceaux Monsieur de Châteauneuf voit entrer chez lui au château de Saint-Germain à 8 heures du soir le secrétaire d'État Monsieur de La Vrillière qui lui demande au nom du roi de France Louis XIII de lui remettre tous papiers et sceaux car il est démis de sa charge pour être \"confiné\" au château d'Angoulême (comme opposant à Richelieu).",
+        "source": "https://fr.wikipedia.org/wiki/25_f%C3%A9vrier"
+      },
+      {
+        "annee": 1796,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "le chef vendéen Jean-Nicolas Stofflet est fusillé à Angers dans l'ouest français.",
+        "source": "https://fr.wikipedia.org/wiki/25_f%C3%A9vrier"
       }
     ],
     "02-26": [
@@ -1188,10 +1327,25 @@
     ],
     "03-07": [
       {
-        "annee": 1932,
-        "categorie": "mort",
-        "titre": "Mort d'Aristide Briand",
-        "texte": "Onze fois président du Conseil et prix Nobel de la paix 1926, pour le traité de Locarno."
+        "annee": 1793,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "la France déclare la guerre à l'Espagne, et l'armée espagnole envahit la Navarre française et le Roussillon.",
+        "source": "https://fr.wikipedia.org/wiki/7_mars"
+      },
+      {
+        "annee": 1799,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "prise de Jaffa par le général Bonaparte.",
+        "source": "https://fr.wikipedia.org/wiki/7_mars"
+      },
+      {
+        "annee": 1805,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "Napoléon accepte de devenir roi d'Italie.",
+        "source": "https://fr.wikipedia.org/wiki/7_mars"
       }
     ],
     "03-08": [
@@ -1357,19 +1511,48 @@
     ],
     "03-15": [
       {
+        "annee": 1714,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "Hagopdjan de Deritchan, plus riche marchand arménien, quitte Erevan avec l'ambassadeur de Perse et prend la route de l'Europe pour transporter des présents du Chah de Perse Hussein I au roi de France Louis XIV.",
+        "source": "https://fr.wikipedia.org/wiki/15_mars"
+      },
+      {
         "annee": 1850,
         "categorie": "evenement",
-        "titre": "La loi Falloux",
-        "texte": "La loi du 15 mars 1850 relative à l’enseignement, dite loi Falloux, du nom du ministre de l’instruction publique et des cultes, Alfred de Falloux, consacre la liberté de l’enseignement dans le secondaire et dans le primaire, laissant une place ample à l'enseignement confessionnel.",
-        "source": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/la-loi-falloux"
+        "titre": null,
+        "texte": "vote de la loi Falloux, loi française sur l'instruction publique.",
+        "source": "https://fr.wikipedia.org/wiki/15_mars"
+      },
+      {
+        "annee": 1874,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "en Asie du Sud-Est, la France signe, avec l'Annam, un traité, à Saïgon, qui reconnaît la présence de la France en Basse-Cochinchine et lui accorde la liberté de navigation.",
+        "source": "https://fr.wikipedia.org/wiki/15_mars"
       }
     ],
     "03-16": [
       {
-        "annee": 1979,
-        "categorie": "mort",
-        "titre": "Mort de Jean Monnet",
-        "texte": "L'un des inspirateurs du projet européen, considéré comme l'un des « pères de l'Europe »."
+        "annee": 1244,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "Hugues d’Arcis, Pierre Amiel l'archevêque de Narbonne, et Durand l'évêque d’Albi brûlent plus de 200 cathares, qui viennent de se rendre, après la prise du château de Montségur, dans le Midi de la France.",
+        "source": "https://fr.wikipedia.org/wiki/16_mars"
+      },
+      {
+        "annee": 1517,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "le concile du Latran à Rome déclare nulles et non avenues les résolutions prises lors du concile réuni à Pise de 1511 à 1512, à l'instigation du roi de France et de l'empereur.",
+        "source": "https://fr.wikipedia.org/wiki/16_mars"
+      },
+      {
+        "annee": 1578,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "lettres patentes du roi de France Henri III autorisant la construction du Pont Neuf sur la Seine à Paris.",
+        "source": "https://fr.wikipedia.org/wiki/16_mars"
       }
     ],
     "03-17": [
@@ -1558,10 +1741,25 @@
     ],
     "03-25": [
       {
-        "annee": 1957,
+        "annee": 1507,
         "categorie": "evenement",
-        "titre": "Traités de Rome",
-        "texte": "La France signe, avec cinq autres pays, les traités instituant la Communauté économique européenne (CEE), ancêtre de l'Union européenne."
+        "titre": null,
+        "texte": "l'armée du roi de France Louis XII intervient à Gênes pour rétablir [son] ordre.",
+        "source": "https://fr.wikipedia.org/wiki/25_mars"
+      },
+      {
+        "annee": 1799,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "l'armée française commandée par Jean-Baptiste Jourdan est battue par l'armée autrichienne commandée par l'archiduc Charles à la bataille de Stockach.",
+        "source": "https://fr.wikipedia.org/wiki/25_mars"
+      },
+      {
+        "annee": 1802,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "la paix d'Amiens est signée entre la France d'une part, et le Royaume-Uni, l'Espagne, La Hollande, et l'Empire ottoman, d'autre part, qui met fin à la guerre de la deuxième coalition.",
+        "source": "https://fr.wikipedia.org/wiki/25_mars"
       }
     ],
     "03-26": [
@@ -1612,10 +1810,25 @@
     ],
     "03-28": [
       {
-        "annee": 1862,
-        "categorie": "naissance",
-        "titre": "Naissance d'Aristide Briand",
-        "texte": "Onze fois président du Conseil entre 1909 et 1932, prix Nobel de la paix en 1926."
+        "annee": 1820,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "traité de Courtrai fixant la frontière entre la France et les Pays-Bas (devenue depuis la frontière entre la France et la Belgique).",
+        "source": "https://fr.wikipedia.org/wiki/28_mars"
+      },
+      {
+        "annee": 1882,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "l'enseignement primaire (de 6 à 13 ans), en France, déjà gratuit, devient laïc et obligatoire.",
+        "source": "https://fr.wikipedia.org/wiki/28_mars"
+      },
+      {
+        "annee": 1942,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "naissance du mouvement de résistance intérieure française des Francs-tireurs et partisans (FTP).",
+        "source": "https://fr.wikipedia.org/wiki/28_mars"
       }
     ],
     "03-29": [
@@ -1643,10 +1856,25 @@
     ],
     "03-30": [
       {
-        "annee": 1950,
-        "categorie": "mort",
-        "titre": "Mort de Léon Blum",
-        "texte": "Ancien chef du gouvernement du Front populaire, rescapé du camp de Buchenwald."
+        "annee": 1282,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "ce samedi saint, aux Vêpres siciliennes, révolte à Palerme, et dans toute l'île de Sicile, contre la domination angevine. 8 000 Français sont massacrés.",
+        "source": "https://fr.wikipedia.org/wiki/30_mars"
+      },
+      {
+        "annee": 1349,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "les héritiers du trône de France portent désormais le titre de dauphin.",
+        "source": "https://fr.wikipedia.org/wiki/30_mars"
+      },
+      {
+        "annee": 1793,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "la France accepte l'acte de la Convention germanique du Rhin de Georg Forster, Adam Lux et André Patocki sur demande l'intégration de la république de Mayence, dans l'État français. Elle ne parvint jamais à Mayence, qui avait entretemps été reprise par les forces impériales.",
+        "source": "https://fr.wikipedia.org/wiki/30_mars"
       }
     ],
     "03-31": [
@@ -1697,10 +1925,25 @@
     ],
     "04-02": [
       {
-        "annee": 1974,
-        "categorie": "mort",
-        "titre": "Mort de Georges Pompidou",
-        "texte": "Il meurt en cours de mandat, à Paris — le premier président de la Ve République à mourir en exercice."
+        "annee": 1305,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "Le prince Louis, futur Louis X de France, devient roi de Navarre.",
+        "source": "https://fr.wikipedia.org/wiki/2_avril"
+      },
+      {
+        "annee": 1700,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "Décret interdisant la langue catalane en Roussillon (actuellement les Pyrénées-Orientales), par lequel Louis XIV promulgue que tous les actes publics doivent être rédigés en français sous peine de nullité.",
+        "source": "https://fr.wikipedia.org/wiki/2_avril"
+      },
+      {
+        "annee": 1800,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "la Russie et l'Empire ottoman s'entendent, dans le traité de Constantinople, pour former la « République fédérative des Sept-Îles », nom donné à l'entité regroupant sept îles de la mer Ionienne (anciennement vénitiennes), situées entre la Grèce et l'Italie, que la France s’était attribuées au traité de Campo-Formio en 1797.",
+        "source": "https://fr.wikipedia.org/wiki/2_avril"
       }
     ],
     "04-03": [
@@ -1737,10 +1980,25 @@
     ],
     "04-05": [
       {
+        "annee": 1356,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "arrestation par le roi Valois Jean II le Bon de France de son cousin Charles le Mauvais de Navarre après son rapprochement avec leur parent le roi Édouard III d'Angleterre en pleine guerre de Cent ans.",
+        "source": "https://fr.wikipedia.org/wiki/5_avril"
+      },
+      {
         "annee": 1794,
-        "categorie": "mort",
-        "titre": "Mort de Georges Danton",
-        "texte": "Figure de la Révolution française, il est guillotiné à Paris sur ordre du Comité de salut public dont il avait été un des premiers membres."
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "ce 16 germinal an II, exécution de Danton et de ses partisans.",
+        "source": "https://fr.wikipedia.org/wiki/5_avril"
+      },
+      {
+        "annee": 1795,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "ce 16 germinal an III, par le traité de Bâle, le royaume de Prusse se retire de la guerre contre la France.",
+        "source": "https://fr.wikipedia.org/wiki/5_avril"
       }
     ],
     "04-06": [
@@ -1807,19 +2065,48 @@
     ],
     "04-09": [
       {
-        "annee": 1872,
-        "categorie": "naissance",
-        "titre": "Naissance de Léon Blum",
-        "texte": "Premier président du Conseil socialiste de l'histoire, à la tête du gouvernement du Front populaire en 1936."
+        "annee": 1609,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "signature, grâce à une médiation du roi de France Henri IV, de la trêve de Douze Ans entre l'Espagne et les Provinces-Unies (Hollande), qui aboutit à une reconnaissance de fait de l'indépendance de celles-ci.",
+        "source": "https://fr.wikipedia.org/wiki/9_avril"
+      },
+      {
+        "annee": 1682,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "René-Robert Cavelier de La Salle prend possession du Mississippi au nom de la France.",
+        "source": "https://fr.wikipedia.org/wiki/9_avril"
+      },
+      {
+        "annee": 1771,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "Pierre Étienne Bourgeois de Boynes est nommé secrétaire d'État de la Marine par Louis XV.",
+        "source": "https://fr.wikipedia.org/wiki/9_avril"
       }
     ],
     "04-10": [
       {
-        "annee": 1867,
+        "annee": 1500,
         "categorie": "evenement",
-        "titre": "Gratuité de l'enseignement de l'école primaire",
-        "texte": "La loi du 10 avril 1867, portée par le ministre de l’instruction publique Victor Duruy, contribue au développement de l’enseignement primaire en obligeant les communes de plus de 500 habitants à se doter d’une école publique pour filles. Cette mesure permet d’établir la gratuité totale de l’enseignement primaire en autorisant à lever un impôt communal « de quatre centimes additionnels ».",
-        "source": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/second-empire"
+        "titre": null,
+        "texte": "les Suisses se retirent de Novare, capturent Ludovic Sforza et le livrent aux Français.",
+        "source": "https://fr.wikipedia.org/wiki/10_avril"
+      },
+      {
+        "annee": 1809,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "pendant les guerres napoléoniennes, les troupes autrichiennes envahissent la Bavière, menant à la guerre de la cinquième coalition.",
+        "source": "https://fr.wikipedia.org/wiki/10_avril"
+      },
+      {
+        "annee": 1814,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "bataille de Toulouse, entre les troupes de la coalition anglo-hispano-portugaise, commandée par le marquis de Wellington, et les troupes napoléoniennes du maréchal Soult.",
+        "source": "https://fr.wikipedia.org/wiki/10_avril"
       }
     ],
     "04-11": [
@@ -2033,16 +2320,25 @@
     ],
     "04-21": [
       {
-        "annee": 1944,
+        "annee": 1792,
         "categorie": "evenement",
-        "titre": "Droit de vote des femmes",
-        "texte": "Une ordonnance du Gouvernement provisoire, prise à Alger, accorde pour la première fois aux femmes françaises le droit de vote et d'éligibilité."
+        "titre": null,
+        "texte": "projet de décret, sur l’organisation générale de l’instruction publique, présenté à l'Assemblée constituante par Condorcet.",
+        "source": "https://fr.wikipedia.org/wiki/21_avril"
       },
       {
-        "annee": 2002,
+        "annee": 1797,
         "categorie": "evenement",
-        "titre": "Séisme du premier tour",
-        "texte": "Jean-Marie Le Pen se qualifie pour le second tour de l'élection présidentielle face à Jacques Chirac, écartant Lionel Jospin dès le premier tour."
+        "titre": null,
+        "texte": "Napoléon Bonaparte bat les Sardes, lors de la bataille de Mondovi.",
+        "source": "https://fr.wikipedia.org/wiki/21_avril"
+      },
+      {
+        "annee": 1809,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "Napoléon I bat les Autrichiens, à la bataille de Landshut.",
+        "source": "https://fr.wikipedia.org/wiki/21_avril"
       }
     ],
     "04-22": [
@@ -2056,18 +2352,48 @@
     ],
     "04-23": [
       {
-        "annee": 2013,
+        "annee": 1848,
         "categorie": "evenement",
-        "titre": "Mariage pour tous : adoption définitive",
-        "texte": "Le Parlement adopte définitivement la loi ouvrant le mariage et l'adoption aux couples de personnes de même sexe."
+        "titre": null,
+        "texte": "première élection au suffrage universel masculin depuis 1792, en France (élection de l'Assemblée constituante d'alors).",
+        "source": "https://fr.wikipedia.org/wiki/23_avril"
+      },
+      {
+        "annee": 1860,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "à Nice, un plébiscite approuve le traité de Turin, par lequel la Savoie et Nice passent de la maison de Savoie à la France.",
+        "source": "https://fr.wikipedia.org/wiki/23_avril"
+      },
+      {
+        "annee": 1905,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "création de la Section française de la II Internationale ouvrière (SFIO), lors du congrès du Globe.",
+        "source": "https://fr.wikipedia.org/wiki/23_avril"
       }
     ],
     "04-24": [
       {
-        "annee": 2022,
+        "annee": 1558,
         "categorie": "evenement",
-        "titre": "Réélection d'Emmanuel Macron",
-        "texte": "Emmanuel Macron est réélu président de la République face à Marine Le Pen."
+        "titre": null,
+        "texte": "le futur roi de France François II, alors encore dauphin, devient roi consort d'Écosse, en épousant Marie Stuart.",
+        "source": "https://fr.wikipedia.org/wiki/24_avril"
+      },
+      {
+        "annee": 1951,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "la France légalise la corrida, par un amendement de la loi Grammont.",
+        "source": "https://fr.wikipedia.org/wiki/24_avril"
+      },
+      {
+        "annee": 2002,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "le R.P.R. approuve la création d’une Union pour la majorité présidentielle (U.M.P.) en France.",
+        "source": "https://fr.wikipedia.org/wiki/24_avril"
       }
     ],
     "04-25": [
@@ -2090,10 +2416,18 @@
     ],
     "04-27": [
       {
+        "annee": 1662,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "traité de Paris instituant une alliance défensive entre la France et les Provinces-Unies.",
+        "source": "https://fr.wikipedia.org/wiki/27_avril"
+      },
+      {
         "annee": 1848,
         "categorie": "evenement",
-        "titre": "Abolition de l'esclavage",
-        "texte": "Le gouvernement provisoire de la IIe République signe le décret, porté par Victor Schœlcher, abolissant l'esclavage dans toutes les colonies françaises."
+        "titre": null,
+        "texte": "décret d'abolition de l'esclavage en France impulsé par Victor Schœlcher.",
+        "source": "https://fr.wikipedia.org/wiki/27_avril"
       }
     ],
     "04-28": [
@@ -2121,10 +2455,25 @@
     ],
     "04-29": [
       {
-        "annee": 1945,
+        "annee": 1624,
         "categorie": "evenement",
-        "titre": "Premier vote des Françaises",
-        "texte": "Les femmes votent pour la première fois en France, lors des élections municipales."
+        "titre": null,
+        "texte": "le cardinal de Richelieu devient ministre de Louis XIII.",
+        "source": "https://fr.wikipedia.org/wiki/29_avril"
+      },
+      {
+        "annee": 1627,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "Richelieu fonde la Compagnie de la Nouvelle-France.",
+        "source": "https://fr.wikipedia.org/wiki/29_avril"
+      },
+      {
+        "annee": 1758,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "bataille de Gondelour entre la France et le Royaume-Uni.",
+        "source": "https://fr.wikipedia.org/wiki/29_avril"
       }
     ],
     "04-30": [
@@ -2244,44 +2593,71 @@
     ],
     "05-05": [
       {
-        "annee": 1789,
+        "annee": 1681,
         "categorie": "evenement",
-        "titre": "Ouverture des États généraux",
-        "texte": "Louis XVI réunit à Versailles les représentants des trois ordres (clergé, noblesse, tiers état), point de départ de la Révolution française."
+        "titre": null,
+        "texte": "par lettre patente, Louis XIV attribue, au directoire de la noblesse de Basse-Alsace, les compétences d'un présidial.",
+        "source": "https://fr.wikipedia.org/wiki/5_mai"
       },
       {
-        "annee": 1821,
-        "categorie": "mort",
-        "titre": "Mort de Napoléon Bonaparte",
-        "texte": "Il meurt en exil sur l'île de Sainte-Hélène, six ans après sa défaite à Waterloo."
+        "annee": 1789,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "à Versailles, en France, le roi Louis XVI proclame et préside l'ouverture des États généraux, qui rassemblent, pour la première fois depuis environ 175 ans, les députés des trois ordres du royaume (clergé, noblesse et tiers état).Ouverture des États généraux à Versailles en 1789",
+        "source": "https://fr.wikipedia.org/wiki/5_mai"
+      },
+      {
+        "annee": 1862,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "au Mexique, première bataille de Puebla, entre les forces françaises et mexicaines.",
+        "source": "https://fr.wikipedia.org/wiki/5_mai"
       }
     ],
     "05-06": [
       {
-        "annee": 1758,
-        "categorie": "naissance",
-        "titre": "Naissance de Robespierre",
-        "texte": "Figure centrale de la Révolution française et de la période de la Terreur."
+        "annee": 1682,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "Louis XIV de France déplace sa cour au château de Versailles.",
+        "source": "https://fr.wikipedia.org/wiki/6_mai"
+      },
+      {
+        "annee": 1932,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "le président de la république française, Paul Doumer, est assassiné par Gorgoulov, un russe fascisant.",
+        "source": "https://fr.wikipedia.org/wiki/6_mai"
       },
       {
         "annee": 2007,
         "categorie": "evenement",
-        "titre": "Élection de Nicolas Sarkozy",
-        "texte": "Nicolas Sarkozy est élu président de la République face à Ségolène Royal."
-      },
-      {
-        "annee": 2012,
-        "categorie": "evenement",
-        "titre": "Élection de François Hollande",
-        "texte": "François Hollande est élu président de la République face à Nicolas Sarkozy."
+        "titre": null,
+        "texte": "au second tour de l'élection présidentielle française, Nicolas Sarkozy est élu président de la République française.",
+        "source": "https://fr.wikipedia.org/wiki/6_mai"
       }
     ],
     "05-07": [
       {
-        "annee": 1748,
-        "categorie": "naissance",
-        "titre": "Naissance d'Olympe de Gouges",
-        "texte": "Autrice de la Déclaration des droits de la femme et de la citoyenne, publiée en 1791."
+        "annee": 1794,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "Robespierre fait adopter une nouvelle religion déiste par la Convention, le culte de l'Être suprême.",
+        "source": "https://fr.wikipedia.org/wiki/7_mai"
+      },
+      {
+        "annee": 1995,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "Jacques Chirac est élu président de la République française.",
+        "source": "https://fr.wikipedia.org/wiki/7_mai"
+      },
+      {
+        "annee": 2017,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "l'ancien ministre de l'Économie sous François Hollande Emmanuel Macron est élu et lui succède ainsi comme président de la République française.",
+        "source": "https://fr.wikipedia.org/wiki/7_mai"
       }
     ],
     "05-08": [
@@ -2309,18 +2685,41 @@
     ],
     "05-09": [
       {
-        "annee": 1950,
+        "annee": 1769,
         "categorie": "evenement",
-        "titre": "Déclaration Schuman",
-        "texte": "Le ministre des Affaires étrangères Robert Schuman propose de mettre en commun les productions franco-allemandes de charbon et d'acier — l'acte fondateur de la construction européenne."
+        "titre": null,
+        "texte": "les indépendantistes corses sont défaits par l'armée française, à la bataille de Ponte-Novo (aujourd'hui en Haute-Corse).",
+        "source": "https://fr.wikipedia.org/wiki/9_mai"
+      },
+      {
+        "annee": 2010,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "des forces armées du Royaume-Uni, de France et des États-Unis, défilent pour la première fois sur la place Rouge à Moscou, à l’occasion du défilé du Jour de la Victoire.",
+        "source": "https://fr.wikipedia.org/wiki/9_mai"
       }
     ],
     "05-10": [
       {
-        "annee": 1981,
+        "annee": 1517,
         "categorie": "evenement",
-        "titre": "Élection de François Mitterrand",
-        "texte": "François Mitterrand est élu président de la République face à Valéry Giscard d'Estaing."
+        "titre": null,
+        "texte": "couronnement de Claude de France, épouse du roi François I, en la basilique Saint-Denis.",
+        "source": "https://fr.wikipedia.org/wiki/10_mai"
+      },
+      {
+        "annee": 1534,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "le navigateur malouin Jacques Cartier atteint Terre-Neuve pour le compte de la France du roi François I.",
+        "source": "https://fr.wikipedia.org/wiki/10_mai"
+      },
+      {
+        "annee": 1774,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "à Versailles, Mort du roi Louis XV de France et avènement de son petit-fils Louis XVI.(voir ci-après).",
+        "source": "https://fr.wikipedia.org/wiki/10_mai"
       }
     ],
     "05-11": [
@@ -2440,11 +2839,25 @@
     ],
     "05-16": [
       {
-        "annee": 1877,
+        "annee": 1527,
         "categorie": "evenement",
-        "titre": "La crise du 16 mai 1877",
-        "texte": "Un désaccord sur l’interprétation des lois constitutionnelles de 1875 oppose la majorité républicaine élue à la Chambre en 1876 et le maréchal Patrice de Mac Mahon, président de la République légitimiste.",
-        "source": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/la-crise-du-16-mai-1877"
+        "titre": null,
+        "texte": "début de la troisième République de Florence.",
+        "source": "https://fr.wikipedia.org/wiki/16_mai"
+      },
+      {
+        "annee": 1770,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "célébration du mariage du futur Louis XVI avec Marie-Antoinette d'Autriche.",
+        "source": "https://fr.wikipedia.org/wiki/16_mai"
+      },
+      {
+        "annee": 1916,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "accord secret Sykes-Picot, sur le partage des colonies turques du Proche-Orient, entre la France et le Royaume-Uni.",
+        "source": "https://fr.wikipedia.org/wiki/16_mai"
       }
     ],
     "05-17": [
@@ -2472,10 +2885,25 @@
     ],
     "05-18": [
       {
-        "annee": 2013,
+        "annee": 1514,
         "categorie": "evenement",
-        "titre": "Promulgation du mariage pour tous",
-        "texte": "La loi ouvrant le mariage aux couples de personnes de même sexe est promulguée par le président François Hollande."
+        "titre": null,
+        "texte": "mariage du futur roi de France François I avec Claude de France, fille du roi Louis XII, à Saint-Germain-en-Laye.",
+        "source": "https://fr.wikipedia.org/wiki/18_mai"
+      },
+      {
+        "annee": 1643,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "Anne d'Autriche devient régente de France, quatre jours après le décès de son royal époux Louis XIII, son successeur leur fils Louis XIV n'ayant alors que 5 ans.",
+        "source": "https://fr.wikipedia.org/wiki/18_mai"
+      },
+      {
+        "annee": 1804,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "Constitution de l'an XII, en France.",
+        "source": "https://fr.wikipedia.org/wiki/18_mai"
       }
     ],
     "05-19": [
@@ -2526,10 +2954,25 @@
     ],
     "05-21": [
       {
+        "annee": 1420,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "Traité de Troyes entre la France et l'Angleterre : la partie de la France sise au nord de la Loire - à l'exception du Comté de Champagne - est occupée par les troupes Anglaises. Paris reçoit pour gouverneur le duc de Bedford, frère du roi d'Angleterre. Le dauphin est déclaré illégitime et la succession au trône assurée au roi d'Angleterre.",
+        "source": "https://fr.wikipedia.org/wiki/21_mai"
+      },
+      {
+        "annee": 1813,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "fin de la bataille de Bautzen, victoire de la Grande Armée de Napoléon I contre les troupes russo-prussiennes commandées par le maréchal Wittgenstein.",
+        "source": "https://fr.wikipedia.org/wiki/21_mai"
+      },
+      {
         "annee": 2001,
         "categorie": "evenement",
-        "titre": "Loi Taubira",
-        "texte": "La loi reconnaissant la traite et l'esclavage comme crime contre l'humanité, portée par la députée Christiane Taubira, est promulguée."
+        "titre": null,
+        "texte": "en France, promulgation de la loi tendant à la reconnaissance de la traite et de l'esclavage en tant que crime contre l'Humanité.",
+        "source": "https://fr.wikipedia.org/wiki/21_mai"
       }
     ],
     "05-22": [
@@ -2628,11 +3071,18 @@
     ],
     "05-27": [
       {
-        "annee": 1943,
+        "annee": 1968,
         "categorie": "evenement",
-        "titre": "Création du Conseil de la Résistance et programme du CNR",
-        "texte": "En mars 1943 à Londres, Jean Moulin reçoit du général de Gaulle la mission d'unifier la Résistance en France au sein d'un \"Conseil de la Résistance\".",
-        "source": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/creation-du-conseil-de-la-resistance-et-programme-du-cnr"
+        "titre": null,
+        "texte": "conclusion en France des accords de Grenelle, à l'origine de l'expression médiatico-politique un/le Grenelle de ....",
+        "source": "https://fr.wikipedia.org/wiki/27_mai"
+      },
+      {
+        "annee": 1974,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "nomination de Jacques Chirac au poste de Premier ministre de la France.",
+        "source": "https://fr.wikipedia.org/wiki/27_mai"
       }
     ],
     "05-28": [
@@ -2777,11 +3227,25 @@
     ],
     "06-04": [
       {
-        "annee": 1814,
+        "annee": 1813,
         "categorie": "evenement",
-        "titre": "La Charte constitutionnelle",
-        "texte": "La Charte constitutionnelle, ainsi nommée pour ne pas reprendre le terme de Constitution jugé trop révolutionnaire, est « octroyée » à ses sujets, le 4 juin 1814, par Louis XVIII. Elle marque la fin de l’Empire et l’établissement de la Restauration. La Charte renoue avec la souveraineté royale, faiblement tempérée par l’existence de deux assemblées aux pouvoirs très limités : la Chambre des députés des départements…",
-        "source": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/la-charte-constitutionnelle"
+        "titre": null,
+        "texte": "signature de l'armistice de Pleiswitz, entre Napoléon Bonaparte et la sixième coalition.",
+        "source": "https://fr.wikipedia.org/wiki/4_juin"
+      },
+      {
+        "annee": 1859,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "Napoléon III bat Ferencz Gyulai, à la bataille de Magenta, pendant la deuxième guerre d'indépendance italienne.",
+        "source": "https://fr.wikipedia.org/wiki/4_juin"
+      },
+      {
+        "annee": 1936,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "Léon Blum est élu président du Conseil en France. Il succède au radical-socialiste Albert Sarraut.",
+        "source": "https://fr.wikipedia.org/wiki/4_juin"
       }
     ],
     "06-05": [
@@ -3027,10 +3491,25 @@
     ],
     "06-18": [
       {
-        "annee": 1940,
+        "annee": 1429,
         "categorie": "evenement",
-        "titre": "Appel du 18 juin",
-        "texte": "Depuis Londres, le général de Gaulle appelle les Français à poursuivre le combat après l'armistice."
+        "titre": null,
+        "texte": "bataille de Patay. Victoire des Français, dirigés par Jeanne d'Arc, sur les Anglais.",
+        "source": "https://fr.wikipedia.org/wiki/18_juin"
+      },
+      {
+        "annee": 1574,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "Henri I de Pologne quitte la Pologne, pour devenir roi de France sous le nom de Henri III.",
+        "source": "https://fr.wikipedia.org/wiki/18_juin"
+      },
+      {
+        "annee": 1954,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "Pierre Mendès France devient président du Conseil, en France.",
+        "source": "https://fr.wikipedia.org/wiki/18_juin"
       }
     ],
     "06-19": [
@@ -3058,10 +3537,18 @@
     ],
     "06-20": [
       {
-        "annee": 1789,
+        "annee": 1791,
         "categorie": "evenement",
-        "titre": "Serment du Jeu de paume",
-        "texte": "Les députés du tiers état, réunis dans une salle de jeu de paume à Versailles, jurent de ne pas se séparer avant d'avoir doté la France d'une constitution."
+        "titre": null,
+        "texte": "tentative de fuite de France de son roi Louis XVI, stoppée avec sa famille à Varennes.",
+        "source": "https://fr.wikipedia.org/wiki/20_juin"
+      },
+      {
+        "annee": 2021,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "en Arménie, les élections législatives ont lieu afin de renouveler les membres de l'Assemblée nationale, de manière anticipée à la suite des tensions causées par la défaite arménienne dans la guerre de 2020 au Haut-Karabagh. Le parti du Premier ministre Nikol Pachinian remporte le scrutin.",
+        "source": "https://fr.wikipedia.org/wiki/20_juin"
       }
     ],
     "06-21": [
@@ -3103,22 +3590,27 @@
         "source": "https://fr.wikipedia.org/wiki/22_juin"
       }
     ],
-    "06-23": [
-      {
-        "annee": 2026,
-        "categorie": "texte",
-        "titre": "Une Corse autonome au sein de la République",
-        "texte": "Ce jour-là, l'Assemblée nationale a adopté projet de loi constitutionnelle « Une Corse autonome au sein de la République », par 271 voix contre 202.",
-        "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7454"
-      }
-    ],
     "06-24": [
       {
-        "annee": 1793,
+        "annee": 1322,
         "categorie": "evenement",
-        "titre": "La Constitution montagnarde",
-        "texte": "Le 24 juin 1793, en remplacement du projet décentralisateur de la Constitution girondine, la Constitution montagnarde est adoptée par la Convention nationale. Une déclaration des Droits de l’homme et du citoyen proclame que « le but de la société est le bonheur commun ». Dans le contexte de guerre contre les monarchies européennes, sa mise en œuvre est ajournée en attendant la paix.",
-        "source": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/la-constitution-montagnarde"
+        "titre": null,
+        "texte": "ordonnance d'expulsion des Juifs de France, exécutée en 1323.",
+        "source": "https://fr.wikipedia.org/wiki/24_juin"
+      },
+      {
+        "annee": 1635,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "ordonnance du cardinal de Richelieu, prise à la demande du roi de France Louis XIII, accordant aux Arméniens de France la liberté du commerce.",
+        "source": "https://fr.wikipedia.org/wiki/24_juin"
+      },
+      {
+        "annee": 1812,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "pendant la campagne de Russie, la Grande Armée de Napoléon Bonaparte franchit le Niémen, et pénètre dans l'Empire russe.",
+        "source": "https://fr.wikipedia.org/wiki/24_juin"
       }
     ],
     "06-25": [
@@ -3208,18 +3700,41 @@
     ],
     "06-29": [
       {
-        "annee": 1886,
-        "categorie": "naissance",
-        "titre": "Naissance de Robert Schuman",
-        "texte": "Un des pères fondateurs de la construction européenne."
+        "annee": 922,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "Robert I devient roi de Francie occidentale (alternance sur ce trône de rois voire empereurs carolingiens et de comtes de Paris voire ducs (d'Île-) de(-)France robertiens comme ledit Robert (ces derniers ancêtres des \"Capétiens\" à partir de 987).",
+        "source": "https://fr.wikipedia.org/wiki/29_juin"
+      },
+      {
+        "annee": 1880,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "la France annexe l'île de Tahiti.",
+        "source": "https://fr.wikipedia.org/wiki/29_juin"
       }
     ],
     "06-30": [
       {
-        "annee": 2017,
-        "categorie": "mort",
-        "titre": "Mort de Simone Veil",
-        "texte": "Rescapée de la déportation, ministre de la Santé et première présidente élue du Parlement européen."
+        "annee": 763,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "victoire de l'Empire byzantin de Constantin V sur le premier Empire bulgare de Teletz lors de la bataille d'Anchialos.",
+        "source": "https://fr.wikipedia.org/wiki/30_juin"
+      },
+      {
+        "annee": 1559,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "le roi Henri II est blessé grièvement, au cours d'une joute équestre organisée à Paris, rue Saint-Antoine, pour fêter la signature de la paix du Cateau-Cambrésis, et les mariages des sœur et fille du roi. Sa mort, consécutive à ses blessures le 10 juillet suivant, marque la fin des sports de chevalerie en France, et la destruction par sa veuve, Catherine de Médicis, de l'Hôtel…",
+        "source": "https://fr.wikipedia.org/wiki/30_juin"
+      },
+      {
+        "annee": 1749,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "lancement du Soleil-Royal, troisième du nom à intégrer la flotte française.",
+        "source": "https://fr.wikipedia.org/wiki/30_juin"
       }
     ],
     "07-01": [
@@ -3233,10 +3748,25 @@
     ],
     "07-02": [
       {
-        "annee": 2016,
-        "categorie": "mort",
-        "titre": "Mort de Michel Rocard",
-        "texte": "Premier ministre de 1988 à 1991."
+        "annee": 1431,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "bataille de Bulgnéville, qui oppose, pour la succession du duché de Lorraine, d'une part René d'Anjou, duc de Lorraine et de Bar, futur roi de Naples, allié aux Français ; et d'autre part le comte Antoine de Vaudémont, neveu de Charles II et partisan de Philippe le Bon, duc de Bourgogne, allié aux Anglais.",
+        "source": "https://fr.wikipedia.org/wiki/2_juillet"
+      },
+      {
+        "annee": 1782,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "capitulation de Genève, assiégée par trois armées coalisées - française, sarde et bernoise -, qui veulent mettre fin à la Révolution de Genève, inspirée par les idées de Jean-Jacques Rousseau, dont l'exemple pourrait être contagieux.",
+        "source": "https://fr.wikipedia.org/wiki/2_juillet"
+      },
+      {
+        "annee": 2019,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "le Conseil européen propose l'Allemande Ursula von der Leyen comme présidente de la Commission européenne, le Belge Charles Michel comme président du Conseil européen, l'Espagnol Josep Borrell comme haut représentant pour les Affaires étrangères et la Française Christine Lagarde ex-dirigeante du FMI à la tête de la Banque centrale européenne.",
+        "source": "https://fr.wikipedia.org/wiki/2_juillet"
       }
     ],
     "07-03": [
@@ -3280,10 +3810,25 @@
     ],
     "07-05": [
       {
-        "annee": 1911,
-        "categorie": "naissance",
-        "titre": "Naissance de Georges Pompidou",
-        "texte": "Président de la République de 1969 à 1974."
+        "annee": 1194,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "bataille de Fréteval entre le roi anglo-\"angevin\" Richard I dit Cœur de Lion et le roi français Philippe II dit l'Auguste vaincu mais qui parvient à s'enfuir en abandonnant son trésor et ses archives à l'ennemi d'où une germination de l'idée d'un service d'archives royales plus fixes et sécurisées.",
+        "source": "https://fr.wikipedia.org/wiki/5_juillet"
+      },
+      {
+        "annee": 1809,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "début de la bataille de Wagram entre Napoléon I et archiduc Charles.",
+        "source": "https://fr.wikipedia.org/wiki/5_juillet"
+      },
+      {
+        "annee": 1863,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "établissement d'un protectorat français au Cambodge par signature d'un traité avec le roi Norodom I.",
+        "source": "https://fr.wikipedia.org/wiki/5_juillet"
       }
     ],
     "07-07": [
@@ -3405,24 +3950,41 @@
     ],
     "07-13": [
       {
-        "annee": 1927,
-        "categorie": "naissance",
-        "titre": "Naissance de Simone Veil",
-        "texte": "Rescapée de la déportation, elle deviendra ministre de la Santé puis première présidente élue du Parlement européen."
+        "annee": 1380,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "siège de Châteauneuf-de-Randon en actuelle Lozère au cours duquel le connétable breton de France Bertrand du Guesclin trouve la mort (ci-après).",
+        "source": "https://fr.wikipedia.org/wiki/13_juillet"
+      },
+      {
+        "annee": 1810,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "Napoléon I annexe le royaume de Hollande à la France, et le divise en sept départements.",
+        "source": "https://fr.wikipedia.org/wiki/13_juillet"
       }
     ],
     "07-14": [
       {
-        "annee": 1789,
+        "annee": 1223,
         "categorie": "evenement",
-        "titre": "Prise de la Bastille",
-        "texte": "Le peuple parisien s'empare de la forteresse de la Bastille, symbole de l'arbitraire royal — événement fondateur de la Révolution française."
+        "titre": null,
+        "texte": "Louis VIII dit le lion devient roi de France pour environ trois années entre son père et prédécesseur Philippe II Philippe-Auguste (voir décès plus bas) sous le règne duquel il a provisoirement conquis Londres, et son fils et successeur Louis IX futur saint Louis via la régence de sa veuve Blanche de Castille mère de celui-ci.",
+        "source": "https://fr.wikipedia.org/wiki/14_juillet"
+      },
+      {
+        "annee": 1610,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "une première messe est célébrée, en la toute neuve chapelle Saint-Louis, de l'actuel hôpital éponyme et adjacent lui-même tout juste sortant de terre, dans un écart proche de Paris (de l'actuel X arrondissement). L'office est dédié à la mémoire du feu roi de France Henri IV, assassiné deux mois auparavant jour pour jour, qui avait posé la première pierre de l'édifice le 13…",
+        "source": "https://fr.wikipedia.org/wiki/14_juillet"
       },
       {
         "annee": 1790,
         "categorie": "evenement",
-        "titre": "Fête de la Fédération",
-        "texte": "Un an après la prise de la Bastille, Paris célèbre l'unité nationale retrouvée lors d'une grande fête populaire au Champ-de-Mars."
+        "titre": null,
+        "texte": "fête de la Fédération au Champ-de-Mars de Paris, un an après la prise de la Bastille supra, censée mettre fin à la révolution alors commencée, et qui servira de jalon à la création de l'actuelle fête nationale française, à partir de la fin du siècle suivant (cf. Célébrations infra).",
+        "source": "https://fr.wikipedia.org/wiki/14_juillet"
       }
     ],
     "07-15": [
@@ -3510,30 +4072,13 @@
         "source": "https://fr.wikipedia.org/wiki/18_juillet"
       }
     ],
-    "07-20": [
-      {
-        "annee": 2026,
-        "categorie": "texte",
-        "titre": "D'urgence pour la protection et la souveraineté agricoles",
-        "texte": "Ce jour-là, l'Assemblée nationale a adopté projet de loi « D'urgence pour la protection et la souveraineté agricoles », par 296 voix contre 224.",
-        "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8427"
-      }
-    ],
-    "07-21": [
-      {
-        "annee": 2026,
-        "categorie": "texte",
-        "titre": "Moderniser la gestion du patrimoine immobilier de l'État",
-        "texte": "Ce jour-là, l'Assemblée nationale a adopté proposition de loi « Moderniser la gestion du patrimoine immobilier de l'État », par 276 voix contre 86.",
-        "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8434"
-      }
-    ],
     "07-22": [
       {
-        "annee": 1804,
-        "categorie": "naissance",
-        "titre": "Naissance de Victor Schœlcher",
-        "texte": "Artisan du décret d'abolition de l'esclavage de 1848."
+        "annee": 1808,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "fin de la bataille de Bailén (soulèvement de l'Andalousie contre l'envahisseur français napoléonien).",
+        "source": "https://fr.wikipedia.org/wiki/22_juillet"
       }
     ],
     "07-23": [
@@ -3630,27 +4175,71 @@
     ],
     "07-27": [
       {
-        "annee": 1794,
+        "annee": 1214,
         "categorie": "evenement",
-        "titre": "Chute de Robespierre",
-        "texte": "Robespierre est arrêté lors de la journée du 9 Thermidor, mettant fin à la Terreur ; il sera guillotiné le lendemain."
+        "titre": null,
+        "texte": "Le Dimanche de Bouvines (cf. ouvrage éponyme de M. le professeur Georges Duby au XX siècle), le roi Philippe II de France dit l'Auguste est victorieux de Jean d'Angleterre dit sans terre lors de la bataille des mêmes nom et endroit.",
+        "source": "https://fr.wikipedia.org/wiki/27_juillet"
+      },
+      {
+        "annee": 1563,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "lors des guerres de religion, les Français réoccupent Le Havre, dont la garnison anglaise est décimée par la peste, une maladie qu'elle introduira dans son pays à son retour.",
+        "source": "https://fr.wikipedia.org/wiki/27_juillet"
+      },
+      {
+        "annee": 1605,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "fondation de Port-Royal, en Acadie, colonie française en Amérique du Nord. Les Français sont les premiers Européens à s'implanter dans ce qui est devenu depuis le Canada, ouvrant ainsi la voie à la création d'un empire colonial français.",
+        "source": "https://fr.wikipedia.org/wiki/27_juillet"
       }
     ],
     "07-28": [
       {
+        "annee": 1556,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "Gattières, enclave étrangère sur la rive droite du Var, devenue en 1338 la frontière orientale de la France, est occupée par les Français.",
+        "source": "https://fr.wikipedia.org/wiki/28_juillet"
+      },
+      {
         "annee": 1794,
-        "categorie": "mort",
-        "titre": "Mort de Robespierre",
-        "texte": "Il est guillotiné à Paris, au lendemain de son arrestation lors du 9 Thermidor."
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "exécution des frères Robespierre, de Saint-Just, Couthon, et d'autres robespierristes, marquant le début de la fin de la Terreur révolutionnaire, et de la Convention montagnarde, sous la Révolution française.",
+        "source": "https://fr.wikipedia.org/wiki/28_juillet"
+      },
+      {
+        "annee": 1808,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "Napoléon Bonaparte, en visite à Montauban, décide de faire de cette ville le chef-lieu du nouveau département de Tarn-et-Garonne.",
+        "source": "https://fr.wikipedia.org/wiki/28_juillet"
       }
     ],
     "07-29": [
       {
-        "annee": 1913,
+        "annee": 1014,
         "categorie": "evenement",
-        "titre": "Secret et liberté du vote",
-        "texte": "La loi du 29 juillet 1913 a pour objectif d'assurer le secret et la liberté du vote, ainsi que l’authenticité des opérations électorales. Elle réglemente l'établissement des listes électorales et instaure, pour la première fois depuis la Révolution, un espace où l’électeur peut s'isoler avant de déposer sous enveloppe son bulletin dans l'urne. Il s'agit de la cabine d'isolement, le terme « isoloir » étant plus…",
-        "source": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/troisieme-republique"
+        "titre": null,
+        "texte": "victoire décisive byzantine sur le Premier Empire bulgare à la bataille de la passe de Kleidion.",
+        "source": "https://fr.wikipedia.org/wiki/29_juillet"
+      },
+      {
+        "annee": 1789,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "l’Assemblée nationale se donne un règlement.",
+        "source": "https://fr.wikipedia.org/wiki/29_juillet"
+      },
+      {
+        "annee": 1836,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "à Paris, inauguration de l’Arc de triomphe de l'Étoile, voulu par Napoléon I, par Adolphe Thiers.",
+        "source": "https://fr.wikipedia.org/wiki/29_juillet"
       }
     ],
     "07-30": [
@@ -3664,10 +4253,25 @@
     ],
     "07-31": [
       {
+        "annee": 1423,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "à Cravant, sur les rives de l'Yonne, les Franco-Écossais de Louis de Bourbon, comte de Vendôme et de Jean Stuart, futur connétable de France, venant de Bourges, sont défaites et massacrées par les Anglo-Bourguignons venant d'Auxerre, de Thomas Montaigu, comte de Salisbury, et de Jean II de Toulongeon, maréchal de Bourgogne ; Jean Stuart est fait prisonnier.",
+        "source": "https://fr.wikipedia.org/wiki/31_juillet"
+      },
+      {
+        "annee": 1620,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "la paix d'Ulm, conclue avec la médiation de la France, prévoit la cessation des combats entre la Ligue catholique et l'Union évangélique.",
+        "source": "https://fr.wikipedia.org/wiki/31_juillet"
+      },
+      {
         "annee": 1914,
-        "categorie": "mort",
-        "titre": "Assassinat de Jean Jaurès",
-        "texte": "Il est tué à Paris, trois jours avant le déclenchement de la Première Guerre mondiale, alors qu'il militait pour la paix."
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "assassinat de Jean Jaurès à Paris.",
+        "source": "https://fr.wikipedia.org/wiki/31_juillet"
       }
     ],
     "08-01": [
@@ -3727,10 +4331,25 @@
     ],
     "08-04": [
       {
+        "annee": 1060,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "Philippe I succède à son père Henri I (quant à lui in décès ci-après) sur le trône de France, pour un règne d'environ 48 années (l'un des plus longs de ce pays bien que moins connu en cela que ceux de Louis XIV et Louis XV ultérieurement ou même Charlemagne antérieurement).",
+        "source": "https://fr.wikipedia.org/wiki/4_ao%C3%BBt"
+      },
+      {
+        "annee": 1532,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "traité de rattachement de la Bretagne à la France.",
+        "source": "https://fr.wikipedia.org/wiki/4_ao%C3%BBt"
+      },
+      {
         "annee": 1789,
         "categorie": "evenement",
-        "titre": "Abolition des privilèges",
-        "texte": "Dans la nuit du 4 août, l'Assemblée constituante vote l'abolition des privilèges féodaux."
+        "titre": null,
+        "texte": "dans la nuit du 4 au 5 août, abolition des privilèges en France, par l'Assemblée nationale constituante.",
+        "source": "https://fr.wikipedia.org/wiki/4_ao%C3%BBt"
       }
     ],
     "08-05": [
@@ -3843,10 +4462,25 @@
     ],
     "08-10": [
       {
-        "annee": 1792,
+        "annee": 1498,
         "categorie": "evenement",
-        "titre": "Prise des Tuileries",
-        "texte": "Le peuple parisien prend d'assaut le palais des Tuileries ; la royauté est suspendue de fait."
+        "titre": null,
+        "texte": "début du procès pour la dissolution du mariage de Louis XII avec Jeanne de France, afin de permettre au premier d'épouser Anne de Bretagne en rattachant ainsi à la France son précieux duché.",
+        "source": "https://fr.wikipedia.org/wiki/10_ao%C3%BBt"
+      },
+      {
+        "annee": 1535,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "l’explorateur malouin Jacques Cartier émissaire de la France du roi François atteint la région du fleuve Saint-Laurent ce jour de la \"fête\" ci-après de (St) Laurent de Rome et attribue d'abord ce nom au seul estuaire dudit cours d'eau du \"Nouveau monde\".",
+        "source": "https://fr.wikipedia.org/wiki/10_ao%C3%BBt"
+      },
+      {
+        "annee": 1557,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "bataille de Saint-Quentin, victoire des Espagnols sur les Français.",
+        "source": "https://fr.wikipedia.org/wiki/10_ao%C3%BBt"
       }
     ],
     "08-11": [
@@ -3899,19 +4533,41 @@
     ],
     "08-14": [
       {
-        "annee": 1830,
+        "annee": 1385,
         "categorie": "evenement",
-        "titre": "La Charte constitutionnelle révisée",
-        "texte": "Le 9 août 1830, Louis-Philippe d’Orléans, proclamé « roi des Français », accepte la révision par les chambres de la Charte de 1814. Elle instaure un régime plus équilibré, à mi-chemin entre la monarchie traditionnelle et le parlementarisme moderne.",
-        "source": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/la-charte-constitutionnelle-revisee"
+        "titre": null,
+        "texte": "bataille d'Aljubarrota. Victoire portugaise des hommes de Jean I et de Don Nuno Álvares Pereira, soutenus par les Anglais, sur les troupes castillanes de Jean I de Castille, aidées par les Français.",
+        "source": "https://fr.wikipedia.org/wiki/14_ao%C3%BBt"
+      },
+      {
+        "annee": 1678,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "bataille de Saint-Denis (guerre de Hollande), opposant les Français, de François-Henri de Montmorency-Luxembourg, aux Néerlandais de Guillaume III. Aucun camp ne triomphe vraiment, et la bataille devient la plus dévastatrice du conflit.",
+        "source": "https://fr.wikipedia.org/wiki/14_ao%C3%BBt"
+      },
+      {
+        "annee": 1844,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "bataille d’Isly. Dernière bataille ayant lieu dans le cadre de l’expédition française au Maroc ; les troupes françaises sortent victorieuses de l’affrontement.",
+        "source": "https://fr.wikipedia.org/wiki/14_ao%C3%BBt"
       }
     ],
     "08-15": [
       {
-        "annee": 1769,
-        "categorie": "naissance",
-        "titre": "Naissance de Napoléon Bonaparte",
-        "texte": "Futur général, puis empereur des Français."
+        "annee": 1461,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "sacre de Louis XI de France, en la cathédrale de Reims.",
+        "source": "https://fr.wikipedia.org/wiki/15_ao%C3%BBt"
+      },
+      {
+        "annee": 1768,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "Louis XV proclame officiellement la réunion de la Corse au royaume de France (voir naissance corse en 1769 ci-après).",
+        "source": "https://fr.wikipedia.org/wiki/15_ao%C3%BBt"
       }
     ],
     "08-16": [
@@ -4021,17 +4677,39 @@
       {
         "annee": 1795,
         "categorie": "evenement",
-        "titre": "Constitution de l'an III - le Directoire",
-        "texte": "Le 22 août 1795, la Convention adopte la première Constitution républicaine appliquée en France. Elle est fondée sur la séparation des pouvoirs et vise à conforter la République en évitant tout retour à la tyrannie.",
-        "source": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/constitution-de-l-an-iii-le-directoire"
+        "titre": null,
+        "texte": "approbation, par plébiscite, de la Constitution de l'an III de la jeune I République, en France.",
+        "source": "https://fr.wikipedia.org/wiki/22_ao%C3%BBt"
+      },
+      {
+        "annee": 1926,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "dimanche sanglant de Colmar, affrontements entre autonomistes alsaciens et Alsaciens pro-français, à la suite de la politique d'assimilation française après le rattachement de l'Alsace-Lorraine à la France.",
+        "source": "https://fr.wikipedia.org/wiki/22_ao%C3%BBt"
+      },
+      {
+        "annee": 1975,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "événements d'Aléria. Des militants de l'Action régionaliste corse occupent une cave viticole tenue par un pied-noir à Aléria, en Corse. Engendrant une réponse musclée du gouvernement français, elle-même à l'origine de violentes émeutes en Corse, notamment à Bastia, ces événements sont considérés comme l'acte fondateur du nationalisme corse moderne.",
+        "source": "https://fr.wikipedia.org/wiki/22_ao%C3%BBt"
       }
     ],
     "08-23": [
       {
-        "annee": 1930,
-        "categorie": "naissance",
-        "titre": "Naissance de Michel Rocard",
-        "texte": "Premier ministre de 1988 à 1991."
+        "annee": 1328,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "bataille de Cassel, victoire des troupes françaises de Philippe VI, sur les Flamands de Nicolaas Zannekin.",
+        "source": "https://fr.wikipedia.org/wiki/23_ao%C3%BBt"
+      },
+      {
+        "annee": 1813,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "bataille de Gross Beeren (campagne d’Allemagne). Victoire des coalisés sur les Français d’Oudinot.",
+        "source": "https://fr.wikipedia.org/wiki/23_ao%C3%BBt"
       }
     ],
     "08-24": [
@@ -4059,18 +4737,34 @@
     ],
     "08-25": [
       {
-        "annee": 1944,
+        "annee": 2014,
         "categorie": "evenement",
-        "titre": "Libération de Paris",
-        "texte": "Paris est libéré de l'occupation allemande ; le général de Gaulle défile sur les Champs-Élysées le lendemain."
+        "titre": null,
+        "texte": "en France, Manuel Valls présente la démission de son gouvernement.",
+        "source": "https://fr.wikipedia.org/wiki/25_ao%C3%BBt"
       }
     ],
     "08-26": [
       {
+        "annee": 1346,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "bataille de Crécy (guerre de Cent Ans), victoire des soldats anglais d’Édouard III, sur ceux de Philippe VI de France.",
+        "source": "https://fr.wikipedia.org/wiki/26_ao%C3%BBt"
+      },
+      {
+        "annee": 1660,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "Louis XIV de France et sa fiancée, l’infante Marie-Thérèse, font leur entrée dans Paris via son ancien faubourg frondeur de l'est, pour annoncer ainsi leur future noce royale, d'où le futur nom de place du Trône, laissé à cet endroit, rebaptisé plus tard place de la Nation.",
+        "source": "https://fr.wikipedia.org/wiki/26_ao%C3%BBt"
+      },
+      {
         "annee": 1789,
         "categorie": "evenement",
-        "titre": "Déclaration des droits de l'homme",
-        "texte": "L'Assemblée constituante adopte la Déclaration des droits de l'homme et du citoyen."
+        "titre": null,
+        "texte": "adoption, en France, de la Déclaration des droits de l’Homme et du citoyen, par l'assemblée réunie à Versailles.",
+        "source": "https://fr.wikipedia.org/wiki/26_ao%C3%BBt"
       }
     ],
     "08-27": [
@@ -4187,40 +4881,57 @@
     ],
     "09-03": [
       {
-        "annee": 1859,
-        "categorie": "naissance",
-        "titre": "Naissance de Jean Jaurès",
-        "texte": "Figure fondatrice du socialisme français et fervent opposant à la guerre."
+        "annee": 1791,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "l'Assemblée constituante vote la Constitution qui institue en France une monarchie constitutionnelle.",
+        "source": "https://fr.wikipedia.org/wiki/3_septembre"
       }
     ],
     "09-04": [
       {
-        "annee": 1870,
+        "annee": 1796,
         "categorie": "evenement",
-        "titre": "Proclamation de la IIIe République",
-        "texte": "Après la capture de Napoléon III à Sedan, la République est proclamée à l'Hôtel de Ville de Paris."
+        "titre": null,
+        "texte": "combat de Rovereto, opposant l'armée d'Italie, commandée par Napoléon Bonaparte, aux forces autrichiennes de Paul Davidovitch.",
+        "source": "https://fr.wikipedia.org/wiki/4_septembre"
       },
       {
-        "annee": 1963,
-        "categorie": "mort",
-        "titre": "Mort de Robert Schuman",
-        "texte": "Auteur de la déclaration du 9 mai 1950 à l'origine de la construction européenne."
+        "annee": 1797,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "coup d'État du 18 fructidor an V, mené par le Directoire à la fois contre les royalistes et les jacobins.",
+        "source": "https://fr.wikipedia.org/wiki/4_septembre"
+      },
+      {
+        "annee": 1800,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "victoire britannique et fin du blocus de Malte, pendant les guerres de la Révolution française.",
+        "source": "https://fr.wikipedia.org/wiki/4_septembre"
       }
     ],
     "09-05": [
       {
-        "annee": 1791,
+        "annee": 1638,
         "categorie": "evenement",
-        "titre": "Déclaration des droits de la femme et de la citoyenne - Olympe de Gouges",
-        "texte": "Née en 1748 à Montauban, Marie Gouze, mariée à 17 ans, est veuve l’année suivante. Elle gagne alors Paris avec son fils, mène une vie de femme de lettres en tenant un salon. Sous le pseudonyme d’Olympe de Gouges, ses œuvres principales regroupent des pièces de théâtre et des textes politiques tels que le drame Zamore et Mirza (1784) dénonçant l’esclavage ou un plaidoyer pour le droit au divorce en 1790. 16 pièces de…",
-        "source": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/declaration-des-droits-de-la-femme-et-de-la-citoyenne-olympe-de-gouges"
+        "titre": null,
+        "texte": "naissance de Louis XIV, dit « le Grand » ou « le Roi-Soleil », au château Neuf de Saint-Germain-en-Laye.",
+        "source": "https://fr.wikipedia.org/wiki/5_septembre"
       },
       {
-        "annee": 1798,
+        "annee": 1661,
         "categorie": "evenement",
-        "titre": "Loi du 19 fructidor An VI instituant la conscription et le service militaire obligatoire",
-        "texte": "Le 19 fructidor An VI (5 septembre 1798), l'Assemblée des Cinq-Cents adopte une loi instituant la conscription et le service militaire obligatoire. L'article premier de la loi dispose que « Tout Français est soldat et se doit à la défense de la patrie » . Elle représente, malgré des réformes ultérieures, la base du recrutement des armées françaises pendant près de deux siècles.",
-        "source": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/loi-du-19-fructidor-an-vi-instituant-la-conscription-et-le-service-militaire-obligatoire"
+        "titre": null,
+        "texte": "sur ordre du roi de France Louis XIV, arrestation de Nicolas Fouquet dans la cour du château de Nantes par le capitaine d'Artagnan.",
+        "source": "https://fr.wikipedia.org/wiki/5_septembre"
+      },
+      {
+        "annee": 1695,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "capitulation des Français, au siège de Namur (guerre de Neuf Ans).",
+        "source": "https://fr.wikipedia.org/wiki/5_septembre"
       }
     ],
     "09-06": [
@@ -4337,10 +5048,25 @@
     ],
     "09-14": [
       {
+        "annee": 1641,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "signature du traité de Péronne, par lequel Honoré II de Monaco assure au roi de France Louis XIII la tutelle de ses territoires.",
+        "source": "https://fr.wikipedia.org/wiki/14_septembre"
+      },
+      {
         "annee": 1791,
         "categorie": "evenement",
-        "titre": "Serment de Louis XVI à la Constitution",
-        "texte": "Louis XVI prête serment à la Constitution de 1791 devant l'Assemblée nationale constituante, dans la salle du Manège aux Tuileries — la France devient une monarchie constitutionnelle."
+        "titre": null,
+        "texte": "Olympe de Gouges publie la Déclaration des droits de la femme et de la citoyenne.",
+        "source": "https://fr.wikipedia.org/wiki/14_septembre"
+      },
+      {
+        "annee": 1791,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "le roi Louis XVI prête serment à la Constitution.",
+        "source": "https://fr.wikipedia.org/wiki/14_septembre"
       }
     ],
     "09-15": [
@@ -4460,24 +5186,41 @@
     ],
     "09-20": [
       {
-        "annee": 1792,
+        "annee": 1697,
         "categorie": "evenement",
-        "titre": "Bataille de Valmy",
-        "texte": "L'armée française repousse les troupes prussiennes à Valmy, la veille de la proclamation de la République."
+        "titre": null,
+        "texte": "traité de Ryswick (guerre de la Ligue d'Augsbourg), mettant fin à la guerre entre Louis XIV et la ligue d'Augsbourg.",
+        "source": "https://fr.wikipedia.org/wiki/20_septembre"
       },
       {
-        "annee": 1992,
+        "annee": 1792,
         "categorie": "evenement",
-        "titre": "Référendum sur Maastricht",
-        "texte": "Les Français approuvent de justesse, à 51 % des voix, le traité de Maastricht — un résultat surnommé le « petit oui »."
+        "titre": null,
+        "texte": "bataille de Valmy (guerre de la Première Coalition), victoire des républicains français, sur les royalistes et autres coalisés européens.",
+        "source": "https://fr.wikipedia.org/wiki/20_septembre"
       }
     ],
     "09-21": [
       {
+        "annee": 1746,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "le général Labourdonnaye et les troupes françaises prennent la ville de Madras aux Indes, dans le cadre de la guerre de succession d'Autriche.",
+        "source": "https://fr.wikipedia.org/wiki/21_septembre"
+      },
+      {
         "annee": 1792,
         "categorie": "evenement",
-        "titre": "Proclamation de la Ire République",
-        "texte": "La Convention nationale, réunie pour la première fois, abolit la royauté et proclame la République."
+        "titre": null,
+        "texte": "mise en place de la Convention nationale, et abolition de la royauté en France.",
+        "source": "https://fr.wikipedia.org/wiki/21_septembre"
+      },
+      {
+        "annee": 1920,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "démission du président de la République française Paul Deschanel.",
+        "source": "https://fr.wikipedia.org/wiki/21_septembre"
       }
     ],
     "09-22": [
@@ -4528,11 +5271,25 @@
     ],
     "09-24": [
       {
+        "annee": 1803,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "réorganisation des corps d'infanterie français par le premier consul.",
+        "source": "https://fr.wikipedia.org/wiki/24_septembre"
+      },
+      {
+        "annee": 1853,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "la Nouvelle-Calédonie est proclamée colonie française.",
+        "source": "https://fr.wikipedia.org/wiki/24_septembre"
+      },
+      {
         "annee": 1941,
         "categorie": "evenement",
-        "titre": "Institution du Comité national français",
-        "texte": "Le 24 septembre 1941, le général de Gaulle, chef des « Français libres » signe, à Londres, une ordonnance portant organisation nouvelle des pouvoirs publics publiée au Journal Officiel de la France libre et instituant un Comité national français.",
-        "source": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/institution-du-comite-national-francais"
+        "titre": null,
+        "texte": "création du Comité national français, instance de la France libre qui tient lieu de gouvernement en exil, de 1941 à 1943 (seconde guerre mondiale).",
+        "source": "https://fr.wikipedia.org/wiki/24_septembre"
       }
     ],
     "09-25": [
@@ -4560,10 +5317,25 @@
     ],
     "09-26": [
       {
-        "annee": 2019,
-        "categorie": "mort",
-        "titre": "Mort de Jacques Chirac",
-        "texte": "Président de la République de 1995 à 2007."
+        "annee": 1350,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "couronnement du roi de France Jean II le Bon en la cathédrale de Reims.",
+        "source": "https://fr.wikipedia.org/wiki/26_septembre"
+      },
+      {
+        "annee": 1423,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "bataille de la Brossinière (guerre de Cent Ans), victoire française sur les Anglais.",
+        "source": "https://fr.wikipedia.org/wiki/26_septembre"
+      },
+      {
+        "annee": 1852,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "le prince président Louis-Napoléon Bonaparte dépose la première pierre de la Cathédrale de la Major à Marseille, amorçant sa construction.",
+        "source": "https://fr.wikipedia.org/wiki/26_septembre"
       }
     ],
     "09-27": [
@@ -4591,16 +5363,25 @@
     ],
     "09-28": [
       {
-        "annee": 1841,
-        "categorie": "naissance",
-        "titre": "Naissance de Georges Clemenceau",
-        "texte": "Surnommé « le Tigre », deux fois président du Conseil (1906-1909, 1917-1920)."
+        "annee": 1791,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "promulgation en France d'une loi sur l'émancipation des juifs.",
+        "source": "https://fr.wikipedia.org/wiki/28_septembre"
+      },
+      {
+        "annee": 1794,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "création en France de la future École polytechnique.",
+        "source": "https://fr.wikipedia.org/wiki/28_septembre"
       },
       {
         "annee": 1958,
         "categorie": "evenement",
-        "titre": "Référendum sur la Ve République",
-        "texte": "Les Français approuvent massivement, par référendum, la nouvelle Constitution portée par le général de Gaulle."
+        "titre": null,
+        "texte": "le référendum du 28 septembre 1958 approuve la constitution de la Cinquième République française.",
+        "source": "https://fr.wikipedia.org/wiki/28_septembre"
       }
     ],
     "09-29": [
@@ -4667,11 +5448,18 @@
     ],
     "10-02": [
       {
-        "annee": 1919,
+        "annee": 1518,
         "categorie": "evenement",
-        "titre": "Autorisation de la ratification du traité de Versailles par la Chambre des députés",
-        "texte": "Plusieurs traités de paix sanctionnant la fin de la première guerre mondiale sont signés par la France entre 1919 et 1920, notamment ceux de Saint-Germain-en-Laye avec l’Autriche, de Neuilly avec la Bulgarie, de Trianon avec la Hongrie, de Sèvres avec l’empire ottoman. Ils complètent le traité de paix signé à Versailles entre les alliés et l’empire allemand. L’article 8 de la loi constitutionnelle du 16 juillet 1875…",
-        "source": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/troisieme-republique"
+        "titre": null,
+        "texte": "le cardinal Thomas Wolsey élabore la Paix de Londres, entre l'Angleterre, la France, l'empereur Maximilien I, l'Espagne et la papauté.",
+        "source": "https://fr.wikipedia.org/wiki/2_octobre"
+      },
+      {
+        "annee": 1700,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "le roi d'Espagne Charles II rédige un testament, attribuant la couronne d'Espagne au |duc d'Anjou, futur Philippe V, petit-fils de Louis XIV de France (succession de Charles II d'Espagne).",
+        "source": "https://fr.wikipedia.org/wiki/2_octobre"
       }
     ],
     "10-03": [
@@ -4692,16 +5480,25 @@
     ],
     "10-04": [
       {
-        "annee": 1945,
+        "annee": 1515,
         "categorie": "evenement",
-        "titre": "Création de la Sécurité sociale",
-        "texte": "Une ordonnance du gouvernement provisoire crée la Sécurité sociale, pour protéger les travailleurs et leurs familles contre les risques de la vie."
+        "titre": null,
+        "texte": "reddition de Maximilien Sforza, qui cède le duché de Milan à François Ier de France.",
+        "source": "https://fr.wikipedia.org/wiki/4_octobre"
       },
       {
-        "annee": 1958,
+        "annee": 1693,
         "categorie": "evenement",
-        "titre": "Constitution de la Ve République",
-        "texte": "La nouvelle Constitution, approuvée par référendum, est promulguée — la Ve République est proclamée le lendemain."
+        "titre": null,
+        "texte": "victoire française à la bataille de La Marsaille, pendant la guerre de la Ligue d’Augsbourg.",
+        "source": "https://fr.wikipedia.org/wiki/4_octobre"
+      },
+      {
+        "annee": 1816,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "victoire des royalistes libéraux à la Chambre des députés française.",
+        "source": "https://fr.wikipedia.org/wiki/4_octobre"
       }
     ],
     "10-05": [
@@ -4777,10 +5574,25 @@
     ],
     "10-09": [
       {
-        "annee": 1981,
+        "annee": 1683,
         "categorie": "evenement",
-        "titre": "Abolition de la peine de mort",
-        "texte": "La loi portée par le garde des Sceaux Robert Badinter, abolissant la peine de mort en France, est promulguée."
+        "titre": null,
+        "texte": "le roi de France Louis XIV épouse en secret Madame de Maintenon, en secondes noces.",
+        "source": "https://fr.wikipedia.org/wiki/9_octobre"
+      },
+      {
+        "annee": 1806,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "batailles de Saalbourg et de Schleiz, les forces françaises de Bernadotte battent les coalisés prusso-saxons.",
+        "source": "https://fr.wikipedia.org/wiki/9_octobre"
+      },
+      {
+        "annee": 2024,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "au Mozambique, l'élection présidentielle a lieu afin d'élire le président, elle est doublée avec les élections législatives pour renouveler les 250 sièges de l'Assemblée nationale.",
+        "source": "https://fr.wikipedia.org/wiki/9_octobre"
       }
     ],
     "10-10": [
@@ -4927,10 +5739,18 @@
     ],
     "10-18": [
       {
-        "annee": 1982,
-        "categorie": "mort",
-        "titre": "Mort de Pierre Mendès France",
-        "texte": "Président du Conseil en 1954-1955, resté un symbole d'intégrité politique."
+        "annee": 1681,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "la régence d’Alger déclare la guerre à la France.",
+        "source": "https://fr.wikipedia.org/wiki/18_octobre"
+      },
+      {
+        "annee": 1813,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "bataille de Leipzig, à la suite de laquelle Napoléon I est obligé d'évacuer l'Allemagne.",
+        "source": "https://fr.wikipedia.org/wiki/18_octobre"
       }
     ],
     "10-20": [
@@ -4951,10 +5771,18 @@
     ],
     "10-21": [
       {
+        "annee": 1792,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "prise de Mayence par les troupes françaises de Custine.",
+        "source": "https://fr.wikipedia.org/wiki/21_octobre"
+      },
+      {
         "annee": 1945,
         "categorie": "evenement",
-        "titre": "Premières femmes élues à l'Assemblée",
-        "texte": "33 femmes sont élues à l'Assemblée constituante, un an après l'obtention du droit de vote."
+        "titre": null,
+        "texte": "élections constituantes françaises.",
+        "source": "https://fr.wikipedia.org/wiki/21_octobre"
       }
     ],
     "10-22": [
@@ -5037,25 +5865,41 @@
     ],
     "10-26": [
       {
-        "annee": 1759,
-        "categorie": "naissance",
-        "titre": "Naissance de Georges Danton",
-        "texte": "Figure de la Révolution française, une des voix qui ont porté la chute de la monarchie."
+        "annee": 1587,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "bataille de Vimory (huitième guerre de religion). Les troupes de l’armée royale française — catholiques —, dirigées par le duc de Guise, soumettent les mercenaires germano-suisses engagés par les protestants, à la tête desquels se trouve Henri de Navarre, lui-même roi de France deux ans plus tard.",
+        "source": "https://fr.wikipedia.org/wiki/26_octobre"
       },
       {
-        "annee": 1916,
-        "categorie": "naissance",
-        "titre": "Naissance de François Mitterrand",
-        "texte": "Président de la République de 1981 à 1995 — le plus long mandat de l'histoire de la Ve République."
+        "annee": 1795,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "installation du Directoire en France (la Convention vote pour ce Directoire).",
+        "source": "https://fr.wikipedia.org/wiki/26_octobre"
       }
     ],
     "10-27": [
       {
-        "annee": 1946,
+        "annee": 1614,
         "categorie": "evenement",
-        "titre": "La Constitution de 1946 et l’instauration de la IVe République",
-        "texte": "La Constitution de la IV e République, approuvée à une faible majorité, est promulguée le 27 octobre 1946. Elle résulte d'un compromis entre les partisans du régime d'assemblée et ceux du régime parlementaire. Elle consacre la primauté du pouvoir législatif.",
-        "source": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/la-constitution-de-1946-et-l-instauration-de-la-ive-republique"
+        "titre": null,
+        "texte": "ouverture des États généraux du royaume de France le lundi, dans la grande salle de l'Hôtel du Petit-Bourbon, en face du palais royal du Louvre à Paris.",
+        "source": "https://fr.wikipedia.org/wiki/27_octobre"
+      },
+      {
+        "annee": 1662,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "Louis XIV rachète Dunkerque à l'Angleterre, la ville devient ainsi définitivement française.",
+        "source": "https://fr.wikipedia.org/wiki/27_octobre"
+      },
+      {
+        "annee": 1806,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "entrée de l'armée française à Berlin.",
+        "source": "https://fr.wikipedia.org/wiki/27_octobre"
       }
     ],
     "10-28": [
@@ -5191,19 +6035,34 @@
     ],
     "11-03": [
       {
-        "annee": 1793,
-        "categorie": "mort",
-        "titre": "Mort d'Olympe de Gouges",
-        "texte": "Autrice de la Déclaration des droits de la femme, elle est guillotinée à Paris pendant la Terreur."
+        "annee": 1388,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "Charles VI de France reprend le pouvoir royal effectif aux ducs de Bourgogne et de Berry.",
+        "source": "https://fr.wikipedia.org/wiki/3_novembre"
       }
     ],
     "11-04": [
       {
+        "annee": 1380,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "sacre de Charles VI comme roi de France.",
+        "source": "https://fr.wikipedia.org/wiki/4_novembre"
+      },
+      {
         "annee": 1848,
         "categorie": "evenement",
-        "titre": "La Constitution républicaine",
-        "texte": "Le 4 novembre 1848, l’adoption de la nouvelle loi fondamentale crée la Deuxième République. Empruntant à la tradition révolutionnaire de 1789 ses références morales et philosophiques et s’inspirant du modèle constitutionnel américain, elle institue un régime représentatif monocaméral avec une assez stricte séparation des pouvoirs.",
-        "source": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/la-constitution-republicaine"
+        "titre": null,
+        "texte": "promulgation de la Constitution de la deuxième République française.",
+        "source": "https://fr.wikipedia.org/wiki/4_novembre"
+      },
+      {
+        "annee": 2018,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "en France, référendum sur l'indépendance de la Nouvelle-Calédonie, collectivité territoriale dans l'Océan pacifique.",
+        "source": "https://fr.wikipedia.org/wiki/4_novembre"
       }
     ],
     "11-05": [
@@ -5251,20 +6110,23 @@
       {
         "annee": 1799,
         "categorie": "evenement",
-        "titre": "Coup d'État du 18 Brumaire",
-        "texte": "Napoléon Bonaparte renverse le Directoire, ouvrant la voie au Consulat puis à l'Empire."
+        "titre": null,
+        "texte": "coup d'État du 18 Brumaire, en France, conduisant à la chute du Directoire et à l’institution du Consulat, lequel est dirigé par Lebrun, Cambacérès et — surtout — le premier consul Bonaparte.",
+        "source": "https://fr.wikipedia.org/wiki/9_novembre"
       },
       {
-        "annee": 1888,
-        "categorie": "naissance",
-        "titre": "Naissance de Jean Monnet",
-        "texte": "Inspirateur du projet européen, considéré comme l'un des « pères de l'Europe »."
+        "annee": 1870,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "bataille de Coulmiers (guerre franco-allemande de 1870), qui se conclut en victoire à la Pyrrhus pour l’armée française.",
+        "source": "https://fr.wikipedia.org/wiki/9_novembre"
       },
       {
         "annee": 1970,
-        "categorie": "mort",
-        "titre": "Mort de Charles de Gaulle",
-        "texte": "Il meurt à Colombey-les-Deux-Églises, d'une rupture d'anévrisme."
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "mort du général de Gaulle, ancien chef de la résistance (1940/1945), puis premier président de la cinquième République française (1958/1969).",
+        "source": "https://fr.wikipedia.org/wiki/9_novembre"
       }
     ],
     "11-10": [
@@ -5278,10 +6140,25 @@
     ],
     "11-11": [
       {
-        "annee": 1918,
+        "annee": 1591,
         "categorie": "evenement",
-        "titre": "Armistice de 1918",
-        "texte": "L'armistice signé à Rethondes met fin aux combats de la Première Guerre mondiale."
+        "titre": null,
+        "texte": "début du siège de Rouen aux mains de la Ligue, par les troupes du nouveau roi de France Henri IV, siège qui s'achèvera le 21 avril suivant.",
+        "source": "https://fr.wikipedia.org/wiki/11_novembre"
+      },
+      {
+        "annee": 1940,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "manifestation d'étudiants place de l'Étoile à Paris, pour commémorer le 11 novembre 1918 en entonnant La Marseillaise, alors que le nord et le littoral ouest de la France sont occupés par les troupes allemandes.",
+        "source": "https://fr.wikipedia.org/wiki/11_novembre"
+      },
+      {
+        "annee": 2018,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "commémoration internationale de l'armistice de 1918, près de l'arc de triomphe de l'Étoile à Paris, en présence de plusieurs chefs d'États, de gouvernements, et des instances de l'Union européenne (Emmanuel Macron en maître de maison, Angela Merkel, Donald Trump, Justin Trudeau, Vladimir Poutine, le Libyen Fayez el-Sarraj, etc.), puis à l'Élysée pour un forum sur la paix et…",
+        "source": "https://fr.wikipedia.org/wiki/11_novembre"
       }
     ],
     "11-12": [
@@ -5430,10 +6307,11 @@
     ],
     "11-22": [
       {
-        "annee": 1890,
-        "categorie": "naissance",
-        "titre": "Naissance de Charles de Gaulle",
-        "texte": "Fondateur de la Ve République, président de la République de 1959 à 1969."
+        "annee": 2024,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "au Nicaragua, l'Assemblée nationale se prononce en faveur d'une révision constitutionnelle accroissant les pouvoirs du président de la République Daniel Ortega.",
+        "source": "https://fr.wikipedia.org/wiki/22_novembre"
       }
     ],
     "11-23": [
@@ -5454,10 +6332,11 @@
     ],
     "11-24": [
       {
-        "annee": 1929,
-        "categorie": "mort",
-        "titre": "Mort de Georges Clemenceau",
-        "texte": "Surnommé « le Tigre », deux fois président du Conseil français."
+        "annee": 1831,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "les Poires, dessin (ci-contre) de Daumier paraissant dans La Caricature, deviennent le symbole de la lutte des républicains contre le régime de la monarchie de Juillet du roi des Français Louis-Philippe.",
+        "source": "https://fr.wikipedia.org/wiki/24_novembre"
       }
     ],
     "11-25": [
@@ -5517,10 +6396,11 @@
     ],
     "11-29": [
       {
-        "annee": 1932,
-        "categorie": "naissance",
-        "titre": "Naissance de Jacques Chirac",
-        "texte": "Président de la République de 1995 à 2007."
+        "annee": 1226,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "sacre de Louis IX de France comme nouveau roi (et futur Saint-Louis).",
+        "source": "https://fr.wikipedia.org/wiki/29_novembre"
       }
     ],
     "11-30": [
@@ -5534,22 +6414,25 @@
     ],
     "12-02": [
       {
+        "annee": 1355,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "en France, Jean II le Bon ouvre les États-généraux.",
+        "source": "https://fr.wikipedia.org/wiki/2_d%C3%A9cembre"
+      },
+      {
+        "annee": 1615,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "mariage de Louis XIII de France et d'Anne d'Autriche.",
+        "source": "https://fr.wikipedia.org/wiki/2_d%C3%A9cembre"
+      },
+      {
         "annee": 1804,
         "categorie": "evenement",
-        "titre": "Sacre de Napoléon Ier",
-        "texte": "Napoléon Bonaparte se couronne empereur des Français à Notre-Dame de Paris."
-      },
-      {
-        "annee": 1851,
-        "categorie": "evenement",
-        "titre": "Coup d'État du 2 décembre",
-        "texte": "Louis-Napoléon Bonaparte, président de la République, dissout l'Assemblée par la force, ouvrant la voie au Second Empire."
-      },
-      {
-        "annee": 2020,
-        "categorie": "mort",
-        "titre": "Mort de Valéry Giscard d'Estaing",
-        "texte": "Président de la République de 1974 à 1981, il meurt des suites de la Covid-19."
+        "titre": null,
+        "texte": "en la cathédrale Notre-Dame de Paris, en présence du pape Pie VII, du corps diplomatique, et de sa famille, a lieu le sacre du Premier consul Napoléon Bonaparte — proclamé empereur des Français par sénatus-consulte du 18 mai précédent — et de son épouse Joséphine de Beauharnais.",
+        "source": "https://fr.wikipedia.org/wiki/2_d%C3%A9cembre"
       }
     ],
     "12-03": [
@@ -5625,11 +6508,18 @@
     ],
     "12-07": [
       {
-        "annee": 1954,
+        "annee": 1770,
         "categorie": "evenement",
-        "titre": "La loi de révision constitutionnelle de 1954",
-        "texte": "La loi constitutionnelle portant révision de la Constitution de la IV e République est promulguée le 7 décembre 1954. Elle fait suite à un long processus de révision commencé en novembre 1950, dont l’objectif était d’améliorer le fonctionnement des institutions et de remédier à l’instabilité politique de la IV e République.",
-        "source": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/la-loi-de-revision-constitutionnelle-de-1954"
+        "titre": null,
+        "texte": "Louis XV de France enregistre, en lit de justice, un édit de discipline, qui provoque la démission de tout le Parlement de Paris. L'édit amorce une réforme radicale de la Justice.",
+        "source": "https://fr.wikipedia.org/wiki/7_d%C3%A9cembre"
+      },
+      {
+        "annee": 1792,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "à Bruxelles, une manifestation favorable à l’indépendance de la Belgique est sévèrement réprimée par l’armée française de Dumouriez.",
+        "source": "https://fr.wikipedia.org/wiki/7_d%C3%A9cembre"
       }
     ],
     "12-08": [
@@ -5643,10 +6533,25 @@
     ],
     "12-09": [
       {
+        "annee": 1582,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "en France, du fait du passage du calendrier julien au calendrier grégorien, le lendemain du 9 décembre sera directement le 20 décembre (cf. 10 décembre sqq).",
+        "source": "https://fr.wikipedia.org/wiki/9_d%C3%A9cembre"
+      },
+      {
+        "annee": 1893,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "attentat de l'Assemblée nationale par Auguste Vaillant pendant l'Ère des attentats.",
+        "source": "https://fr.wikipedia.org/wiki/9_d%C3%A9cembre"
+      },
+      {
         "annee": 1905,
         "categorie": "evenement",
-        "titre": "Séparation des Églises et de l'État",
-        "texte": "La loi instaurant la laïcité de l'État et la liberté de culte est promulguée."
+        "titre": null,
+        "texte": "en France, adoption de la Loi de séparation des Églises et de l'État.",
+        "source": "https://fr.wikipedia.org/wiki/9_d%C3%A9cembre"
       }
     ],
     "12-10": [
@@ -5720,10 +6625,25 @@
     ],
     "12-13": [
       {
-        "annee": 2007,
+        "annee": 1560,
         "categorie": "evenement",
-        "titre": "Signature du traité de Lisbonne",
-        "texte": "Les chefs d'État et de gouvernement de l'Union européenne signent le traité de Lisbonne, qui réforme le fonctionnement des institutions européennes."
+        "titre": null,
+        "texte": "ouverture des états généraux du royaume de France.",
+        "source": "https://fr.wikipedia.org/wiki/13_d%C3%A9cembre"
+      },
+      {
+        "annee": 1582,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "l'année n'a pas eu en France de 13 décembre. Du fait de l'adoption du calendrier grégorien par ce pays, le lendemain du dimanche 9 décembre a été le lundi 20 décembre directement.",
+        "source": "https://fr.wikipedia.org/wiki/13_d%C3%A9cembre"
+      },
+      {
+        "annee": 1799,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "adoption de la Constitution du 22 frimaire an VIII, instaurant le Consulat, tout en restant officiellement dans le cadre de la Première République, offrant un pouvoir exécutif fort, sans réels contre-pouvoirs au Premier Consul Bonaparte, et mettant fin au régime du Directoire.",
+        "source": "https://fr.wikipedia.org/wiki/13_d%C3%A9cembre"
       }
     ],
     "12-14": [
@@ -5960,10 +6880,25 @@
     ],
     "12-25": [
       {
-        "annee": 1893,
-        "categorie": "mort",
-        "titre": "Mort de Victor Schœlcher",
-        "texte": "Artisan du décret d'abolition de l'esclavage de 1848."
+        "annee": 604,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "victoire de Thierry II sur Clotaire II, à la bataille d'Étampes (actuelle Île-de-France).",
+        "source": "https://fr.wikipedia.org/wiki/25_d%C3%A9cembre"
+      },
+      {
+        "annee": 987,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "Hugues Capet associe au trône de France son fils Robert, futur deuxième roi capétien, Robert II « le Pieux ».",
+        "source": "https://fr.wikipedia.org/wiki/25_d%C3%A9cembre"
+      },
+      {
+        "annee": 1797,
+        "categorie": "evenement",
+        "titre": null,
+        "texte": "Bonaparte est élu à l'Institut.",
+        "source": "https://fr.wikipedia.org/wiki/25_d%C3%A9cembre"
       }
     ],
     "12-26": [

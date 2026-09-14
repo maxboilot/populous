@@ -27,13 +27,15 @@ jobs:
       - run: pip install requests
       - name: Frise "Histoire et patrimoine" de l Assemblee nationale
         run: python construire_refs_jour_an.py
+      - name: Pages du jour Wikipedia (couvre les 366 jours)
+        run: python construire_refs_jour_wikipedia.py
       - name: Fusionner les sources de la Ref du jour
         run: python construire_refs_jour.py
       - name: Committer si changement
         run: |
           git config user.name bot-ingestion
           git config user.email bot@example.invalid
-          git add data/refs_jour_an.json data/refs_jour.json
+          git add data/refs_jour_an.json data/refs_jour_wikipedia.json data/refs_jour.json
           if git diff --cached --quiet; then
             echo 'Aucune donnee modifiee.'
             exit 0

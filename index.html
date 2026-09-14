@@ -3253,7 +3253,7 @@ function refJourItemHTML(r){
         <span class="refJourChip">${cat.ic} ${esc(cat.label)}</span>
         <span class="refJourAgo">${esc(String(r.annee))} · ${anciennete}</span>
       </div>
-      <div class="refJourTitre">${esc(r.titre)}</div>
+      ${r.titre ? `<div class="refJourTitre">${esc(r.titre)}</div>` : ""}
       <p class="refJourTexte">${esc(r.texte)}</p>
       ${r.source ? `<a class="refJourSource" href="${esc(r.source)}" target="_blank" rel="noopener">Voir la source ↗</a>` : ""}
     </div>`;

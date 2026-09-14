@@ -3,7 +3,7 @@
 l'accueil (bouton "La Ref du jour"), pour le jour du calendrier en cours
 (mois-jour, indépendant de l'année).
 
-Trois sources, jamais mélangées avec une thèse inventée — voir
+Quatre sources, jamais mélangées avec une thèse inventée — voir
 CLAUDE.md — classées par priorité décroissante :
 
 1. data/refs_jour_evenements.json — une liste écrite et vérifiée à la
@@ -19,18 +19,25 @@ CLAUDE.md — classées par priorité décroissante :
    du HTML — comme construire_expose_motifs.py pour les exposés des
    motifs. Ne comble que les jours que l'étape 1 n'a pas déjà couverts.
 
-3. data/historique.json — les lois réellement adoptées par l'Assemblée
-   nationale, déjà construites par construire_historique.py. Pour un jour
-   du calendrier qui n'a aucune entrée vérifiée dans les deux étapes
-   précédentes, on complète honnêtement avec un texte réellement voté ce
-   jour-là (titre, date, résultat du vote : rien n'est résumé ni
-   interprété). Quand plusieurs textes tombent le même jour, on préfère
-   celui voté en solennel, plus identifiable.
+3. data/refs_jour_wikipedia.json — construit par
+   construire_refs_jour_wikipedia.py à partir des pages "jour" de
+   Wikipédia (une par date du calendrier, donc la seule source d'ici à
+   couvrir les 366 jours). Même principe : le texte est celui déjà
+   écrit sur Wikipédia, filtré par mots-clés pour ne garder que ce qui
+   est manifestement de la politique française — jamais réécrit.
 
-Le résultat ne couvre donc pas les 365 jours de l'année — seuls les jours
-qui ont un fait vérifié en ont un. Les autres, l'application le dit
-honnêtement (voir renderRefJour() dans index.html) plutôt que d'inventer
-une référence.
+4. data/historique.json — les lois réellement adoptées par l'Assemblée
+   nationale, déjà construites par construire_historique.py. Dernier
+   recours, pour les rares jours qu'aucune des sources précédentes ne
+   couvre : un texte réellement voté ce jour-là (titre, date, résultat
+   du vote — rien n'est résumé ni interprété). Quand plusieurs textes
+   tombent le même jour, on préfère celui voté en solennel, plus
+   identifiable.
+
+Même avec ces quatre sources, le résultat ne couvre pas forcément les
+366 jours de l'année — seuls les jours qui ont un fait vérifié en ont
+un. Les autres, l'application le dit honnêtement (voir renderRefJour()
+dans index.html) plutôt que d'inventer une référence.
 """
 import json
 from collections import defaultdict
@@ -40,6 +47,7 @@ from pathlib import Path
 DATA_DIR = Path('data')
 EVENEMENTS = DATA_DIR / 'refs_jour_evenements.json'
 REFS_AN = DATA_DIR / 'refs_jour_an.json'
+REFS_WIKIPEDIA = DATA_DIR / 'refs_jour_wikipedia.json'
 HISTORIQUE = DATA_DIR / 'historique.json'
 SORTIE = DATA_DIR / 'refs_jour.json'
 
@@ -81,6 +89,19 @@ def main():
         print(f'{ajoutes} jour(s) complété(s) avec la frise "Histoire et patrimoine" de l\'Assemblée nationale.')
     else:
         print('refs_jour_an.json absent : pas de complément depuis la frise de l\'Assemblée (lancer construire_refs_jour_an.py).')
+
+    if REFS_WIKIPEDIA.exists():
+        refs_wp = json.loads(REFS_WIKIPEDIA.read_text(encoding='utf-8')).get('refs', {})
+        ajoutes = 0
+        for jour, entrees in refs_wp.items():
+            if jour in jours_couverts:
+                continue
+            refs[jour] = entrees
+            jours_couverts.add(jour)
+            ajoutes += 1
+        print(f'{ajoutes} jour(s) complété(s) avec Wikipédia (pages du jour, filtrées).')
+    else:
+        print('refs_jour_wikipedia.json absent : pas de complément Wikipédia (lancer construire_refs_jour_wikipedia.py).')
 
     if HISTORIQUE.exists():
         historique = json.loads(HISTORIQUE.read_text(encoding='utf-8'))
