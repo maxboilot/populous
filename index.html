@@ -1683,29 +1683,32 @@ const SANTE = [{k:"oui",l:"Oui"},{k:"non",l:"Non"}];
    choix — plus proposé dans le sélecteur, mais rendu correctement s'il
    est déjà stocké dans le profil.
    ------------------------------------------------------------ */
+// Triés par date historique (naissance ; Marianne par son origine
+// révolutionnaire, 1792, n'étant pas une personne réelle) — mélange
+// hommes/femmes qui en découle, pas un classement thématique séparé.
 const AVATAR_HISTORIQUES = [
-  {cle:"napoleon", nom:"Napoléon Bonaparte", couleur:"#6B5B3E",
-    photo:"https://thumb.wikimedia.org/wikipedia/commons/thumb/3/31/Napoleon_I_of_France_by_Andrea_Appiani.jpg/250px-Napoleon_I_of_France_by_Andrea_Appiani.jpg"},
+  {cle:"jeanne", nom:"Jeanne d'Arc", couleur:"#8891B0",
+    photo:"https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c3/Joan_of_Arc_miniature_graded.jpg/250px-Joan_of_Arc_miniature_graded.jpg"},
   {cle:"catherine", nom:"Catherine de Médicis", couleur:"#4A2E3B",
     photo:"https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5c/Catherine_de_M%C3%A9dicis_-_atelier_de_Fran%C3%A7ois_Clouet.jpg/250px-Catherine_de_M%C3%A9dicis_-_atelier_de_Fran%C3%A7ois_Clouet.jpg"},
   {cle:"gouges", nom:"Olympe de Gouges", couleur:"#9C4A6B",
     photo:"https://thumb.wikimedia.org/wikipedia/commons/thumb/0/05/Olympe_de_Gouges.png/250px-Olympe_de_Gouges.png"},
+  {cle:"napoleon", nom:"Napoléon Bonaparte", couleur:"#6B5B3E",
+    photo:"https://thumb.wikimedia.org/wikipedia/commons/thumb/3/31/Napoleon_I_of_France_by_Andrea_Appiani.jpg/250px-Napoleon_I_of_France_by_Andrea_Appiani.jpg"},
+  {cle:"marianne", nom:"Marianne", couleur:"#C00D0D",
+    photo:"https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f9/Marianne_-_symbol_of_French_Republic.jpg/250px-Marianne_-_symbol_of_French_Republic.jpg"},
   {cle:"hugo", nom:"Victor Hugo", couleur:"#3E4A6B",
     photo:"https://thumb.wikimedia.org/wikipedia/commons/thumb/2/25/Victor_Hugo_001.jpg/250px-Victor_Hugo_001.jpg"},
   {cle:"jaures", nom:"Jean Jaurès", couleur:"#7A1F1F",
     photo:"https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8e/Jean_Jaur%C3%A8s%2C_1904%2C_by_Nadar.jpg/250px-Jean_Jaur%C3%A8s%2C_1904%2C_by_Nadar.jpg"},
-  {cle:"cesaire", nom:"Aimé Césaire", couleur:"#2F6B4A",
-    photo:"https://thumb.wikimedia.org/wikipedia/commons/thumb/0/04/Aime_Cesaire_2003.jpg/250px-Aime_Cesaire_2003.jpg"},
   {cle:"churchill", nom:"Winston Churchill", couleur:"#3C4A5C",
     photo:"https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bc/Sir_Winston_Churchill_-_19086236948.jpg/250px-Sir_Winston_Churchill_-_19086236948.jpg"},
   {cle:"degaulle", nom:"Charles de Gaulle", couleur:"#2B48A5",
     photo:"https://thumb.wikimedia.org/wikipedia/commons/thumb/2/20/UNESCO_History%2C_President_Charles_de_Gaulle_-_UNESCO_-_PHOTO0000002721_0001.tiff/lossy-page1-250px-UNESCO_History%2C_President_Charles_de_Gaulle_-_UNESCO_-_PHOTO0000002721_0001.tiff.jpg"},
+  {cle:"cesaire", nom:"Aimé Césaire", couleur:"#2F6B4A",
+    photo:"https://thumb.wikimedia.org/wikipedia/commons/thumb/0/04/Aime_Cesaire_2003.jpg/250px-Aime_Cesaire_2003.jpg"},
   {cle:"veil", nom:"Simone Veil", couleur:"#7B4591",
     photo:"https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fc/Official_portrait_of_Simone_Veil_%28cropped%29.jpg/250px-Official_portrait_of_Simone_Veil_%28cropped%29.jpg"},
-  {cle:"marianne", nom:"Marianne", couleur:"#C00D0D",
-    photo:"https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f9/Marianne_-_symbol_of_French_Republic.jpg/250px-Marianne_-_symbol_of_French_Republic.jpg"},
-  {cle:"jeanne", nom:"Jeanne d'Arc", couleur:"#8891B0",
-    photo:"https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c3/Joan_of_Arc_miniature_graded.jpg/250px-Joan_of_Arc_miniature_graded.jpg"},
 ];
 const AVATAR_SILHOUETTE = `<svg viewBox="0 0 24 24" width="60%" height="60%" fill="currentColor" aria-hidden="true"><path d="M12 12.5c2.9 0 5.2-2.3 5.2-5.2S14.9 2 12 2 6.8 4.4 6.8 7.3s2.3 5.2 5.2 5.2zm0 2.3c-3.5 0-10.5 1.8-10.5 5.3V22h21v-1.9c0-3.5-7-5.3-10.5-5.3z"/></svg>`;
 function avatarHTML(av){
