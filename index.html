@@ -34,7 +34,7 @@ window.__VOTE_EARLY__ = (async function(){
      Bleu extrait de l'icône Populous, gardé comme seul accent.
      ============================================================ */
   :root{
-    --bg:#FAFAF9; --card:#FFFFFF; --card-alt:#F4F6FC;
+    --bg:#F3F3F2; --card:#FFFFFF; --card-alt:#F4F6FC;
     --ink:#10193F; --ink-soft:#4A5578; --dim:#8891B0;
     /* Bleu plus vif que le Bleu France institutionnel (#000091, jugé trop
        sombre) : plus clair, plus saturé, meilleur contraste/lisibilité.
@@ -366,10 +366,7 @@ window.__VOTE_EARLY__ = (async function(){
   #screen-carte{position:absolute;inset:0;padding:0;overflow:hidden}
 
   #navbar{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:800;
-    display:flex;
-    /* Filigrane tricolore, du bleu au rouge en dégradé progressif façon
-       drapeau français, pour que la barre ressorte davantage du fond. */
-    background:linear-gradient(90deg,#C4C4F0 0%,#FFFFFF 50%,#F6C2C2 100%);
+    display:flex;background:var(--card);
     border-top:none;border-radius:18px;
     padding:8px 6px;box-shadow:var(--shadow-lg);max-width:520px;margin:0 auto}
   /* Glisse d'un onglet à l'autre (translateX en % d'elle-même, un cran
@@ -559,7 +556,7 @@ window.__VOTE_EARLY__ = (async function(){
     overflow:hidden;pointer-events:none;z-index:0;writing-mode:vertical-rl;
     font-family:var(--font-d);
     font-weight:800;font-size:clamp(60px,14vh,200px);letter-spacing:-.03em;color:var(--ink);
-    opacity:.08;white-space:nowrap}
+    opacity:.13;white-space:nowrap}
   .zTop{position:relative;z-index:1}
   .presiTabs{max-width:640px;margin:0 auto 16px;display:flex;gap:8px}
   .presiTab{flex:1;padding:10px 10px;font-size:12px;font-weight:700;border:none;
