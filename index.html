@@ -26,7 +26,7 @@ window.__VOTE_EARLY__ = (async function(){
 })().catch(function(){ return null; });
 </script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,800;9..144,900&family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&display=swap" rel="stylesheet">
 <style>
   /* ============================================================
      Palette « Jour » — inspirée Airbnb / Stripe : fond clair,
@@ -36,23 +36,24 @@ window.__VOTE_EARLY__ = (async function(){
   :root{
     --bg:#FAFAF9; --card:#FFFFFF; --card-alt:#F4F6FC;
     --ink:#10193F; --ink-soft:#4A5578; --dim:#8891B0;
-    /* Bleu France (#000091) — la couleur de référence de l'identité de
-       l'État (systeme-de-design.gouv.fr), pas un bleu SaaS générique.
-       Choix cohérent avec le sujet : les sources citées dans l'app
-       (assemblee-nationale.fr, vie-publique.fr...) utilisent ce même bleu. */
-    --accent:#000091; --accent-hi:#2323B3; --accent-soft:#E3E3FB;
+    /* Bleu plus vif que le Bleu France institutionnel (#000091, jugé trop
+       sombre) : plus clair, plus saturé, meilleur contraste/lisibilité.
+       --accent-hi sert de second point de dégradé, nettement plus clair
+       que --accent pour que le dégradé se voie vraiment. */
+    --accent:#1B3BDB; --accent-hi:#3E5EF5; --accent-soft:#E7EAFF;
     --line:rgba(16,25,63,.08);
     --shadow:0 1px 2px rgba(16,25,63,.04), 0 8px 24px rgba(16,25,63,.07);
     --shadow-lg:0 4px 10px rgba(16,25,63,.06), 0 20px 48px rgba(16,25,63,.14);
     --r-card:14px; --r-input:12px; --r-pill:999px;
     /* alias conservés pour compat avec le JS existant */
     --land:#EEF2FC; --brass:var(--accent); --brassHi:var(--accent-hi);
-    /* Fraunces pour les titres (un caractère éditorial, pas la police
-       système par défaut), Public Sans pour tout le reste — dessinée pour
-       les services publics, plus posée qu'Inter sans tomber dans le même
-       défaut "safe" que la pile système. */
-    --font-d:'Fraunces',Georgia,'Times New Roman',serif;
-    --font-s:'Public Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    /* Une seule famille partout (comme blablacar.fr) plutôt qu'un couple
+       titres/texte. La police du site, GT Eesti (Grilli Type), est une
+       police payante dont la licence ne couvre pas ce projet — Plus
+       Jakarta Sans en reprend l'esprit (grotesque arrondie, chaleureuse)
+       en restant libre. */
+    --font-d:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    --font-s:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
   }
   *{box-sizing:border-box}
   html,body{margin:0;height:100%;overflow:visible;background:var(--bg);
@@ -62,7 +63,7 @@ window.__VOTE_EARLY__ = (async function(){
   .leaflet-control-attribution{background:var(--card)!important;color:var(--dim)!important;
     font-size:9px!important;border-radius:8px 0 0 0!important}
   .leaflet-control-attribution a{color:var(--accent)!important}
-  .d{font-family:var(--font-d);font-weight:700;letter-spacing:-.01em}
+  .d{font-family:var(--font-d);font-weight:800;letter-spacing:-.02em}
   .m{font-family:ui-monospace,'SF Mono',SFMono-Regular,Menlo,Consolas,monospace}
   .card{background:var(--card);border:none;border-radius:var(--r-card);box-shadow:var(--shadow)}
   button,input{font-family:inherit}
@@ -265,18 +266,18 @@ window.__VOTE_EARLY__ = (async function(){
      serveur dans cette app), donc un CTA d'intérêt plutôt qu'un faux
      bouton d'abonnement, voir #localBtn. */
   .localCard{position:relative;margin-top:20px;padding:20px 20px 18px;border-radius:16px;overflow:hidden;
-    background:linear-gradient(135deg,#050047 0%,var(--accent) 55%,var(--accent-hi) 100%);color:#fff;box-shadow:var(--shadow-lg)}
+    background:linear-gradient(135deg,var(--accent) 0%,var(--accent-hi) 100%);color:#fff;box-shadow:var(--shadow-lg)}
   .localBadge{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:999px;
     background:rgba(255,255,255,.16);font-size:10px;font-weight:800;letter-spacing:.03em;
-    text-transform:uppercase;color:#BFD0FF}
+    text-transform:uppercase;color:rgba(255,255,255,.85)}
   .localTitle{display:flex;align-items:center;gap:10px;margin-top:12px}
   .localTitle .ic{font-size:28px}
   .localTitle h3{margin:0;font-size:18px;font-weight:800;letter-spacing:-.01em}
-  .localDesc{font-size:12.5px;line-height:1.55;color:#D3DCFA;margin:10px 0 0;max-width:300px}
+  .localDesc{font-size:12.5px;line-height:1.55;color:rgba(255,255,255,.85);margin:10px 0 0;max-width:300px}
   .localFoot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:18px}
   .localPrice{display:flex;flex-direction:column;line-height:1.1}
   .localPrice .n{font-size:20px;font-weight:800}
-  .localPrice .u{font-size:10px;color:#AEBEEE;font-weight:600}
+  .localPrice .u{font-size:10px;color:rgba(255,255,255,.8);font-weight:600}
   .localBtn{padding:11px 18px;border:none;border-radius:999px;background:#fff;color:var(--accent);
     font-weight:800;font-size:12.5px;cursor:pointer;white-space:nowrap;font-family:inherit}
   .localBtn.done{background:rgba(255,255,255,.16);color:#fff;cursor:default}
@@ -397,7 +398,7 @@ window.__VOTE_EARLY__ = (async function(){
 
   .dashHead{max-width:640px;margin:10px auto 20px}
   .dashHead .eyebrow{font-size:11px;font-weight:700;color:var(--accent)}
-  .dashHead h1{font-family:var(--font-d);font-weight:800;font-size:30px;margin:6px 0 0;letter-spacing:-.02em}
+  .dashHead h1{font-family:var(--font-d);font-weight:800;font-size:56px;margin:6px 0 0;letter-spacing:-.03em}
 
   .refJourItem{background:var(--card-alt);border-radius:16px;padding:14px 16px;margin-top:12px}
   .refJourItem:first-of-type{margin-top:18px}
@@ -416,13 +417,13 @@ window.__VOTE_EARLY__ = (async function(){
      volontairement un cran au-dessus du dernier vote. */
   .presiHeroCard{display:block;width:100%;max-width:640px;margin:0 auto 14px;padding:30px 28px;
     border:none;border-radius:16px;text-align:left;cursor:pointer;font:inherit;
-    background:linear-gradient(135deg,#050047 0%,var(--accent) 100%);color:#fff;box-shadow:var(--shadow-lg);
+    background:linear-gradient(135deg,var(--accent) 0%,var(--accent-hi) 100%);color:#fff;box-shadow:var(--shadow-lg);
     transition:transform .15s,box-shadow .15s}
   .presiHeroCard:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(0,0,60,.28)}
   .presiHeroCard:active{transform:scale(.98)}
   .presiHeroCard .phTop{display:flex;align-items:center;gap:8px}
   .presiHeroCard .phFlag{font-size:22px;line-height:1}
-  .presiHeroCard .phEyebrow{font-size:11px;font-weight:700;letter-spacing:.02em;color:#BFD0FF;text-transform:uppercase}
+  .presiHeroCard .phEyebrow{font-size:11px;font-weight:700;letter-spacing:.02em;color:rgba(255,255,255,.85);text-transform:uppercase}
   .presiHeroCard .phTitle{font-family:var(--font-d);
     font-weight:800;font-size:24px;line-height:1.3;margin-top:12px;color:#fff;
     display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
@@ -430,8 +431,8 @@ window.__VOTE_EARLY__ = (async function(){
 
   /* Dernier vote : nettement réduit, la présidentielle prend le dessus. */
   .voteCard{position:relative;max-width:640px;margin:0 auto 18px;padding:16px 18px;border:none;border-radius:14px;
-    background:linear-gradient(135deg,var(--accent) 0%,#050047 100%);color:#fff;box-shadow:var(--shadow)}
-  .voteCard .eyebrow{font-size:10px;font-weight:700;color:#BFD0FF}
+    background:linear-gradient(160deg,var(--accent) 0%,var(--accent-hi) 100%);color:#fff;box-shadow:var(--shadow)}
+  .voteCard .eyebrow{font-size:10px;font-weight:700;color:rgba(255,255,255,.85)}
   /* Tampon façon encreur : incliné, double contour, couleurs reprises de
      VOTE_COLORS (éclaircies pour rester lisibles sur le fond sombre). */
   .voteStamp{position:absolute;top:14px;right:14px;padding:5px 12px;border-radius:6px;
@@ -441,7 +442,7 @@ window.__VOTE_EARLY__ = (async function(){
   .voteStamp.rejete{color:#FF9166;border-color:#FF9166}
   .voteCard h2{font-family:var(--font-d);
     font-weight:800;font-size:15px;margin:5px 0 0;line-height:1.35;color:#fff}
-  .voteCard p{font-size:11.5px;line-height:1.5;color:#C9D5F5;margin:6px 0 0}
+  .voteCard p{font-size:11.5px;line-height:1.5;color:rgba(255,255,255,.85);margin:6px 0 0}
   .voteCard .actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
   .voteCard .btn{flex:1 1 130px;padding:10px 14px;font-size:12px}
   .voteCard .btn.primary{background:#fff;color:var(--accent)}
@@ -628,7 +629,7 @@ window.__VOTE_EARLY__ = (async function(){
 
   @media (max-width:760px){
     .screen{padding:16px 16px 20px}
-    .dashHead h1{font-size:25px}
+    .dashHead h1{font-size:46px}
   }
   /* Lignes cliquables de l'historique */
   a.histLink{ display:block; text-decoration:none; color:inherit; cursor:pointer;
