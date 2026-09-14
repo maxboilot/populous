@@ -1811,6 +1811,7 @@ function obRender(){
         <div class="chev">›</div>
       </button>`;
     el.innerHTML = `
+      <button class="sheetClose" id="profCloseX" aria-label="Fermer">✕</button>
       <div class="eyebrow">Mon profil</div>
       <h2 class="d">Tes informations</h2>
       <p class="lead">Tout reste stocké sur cet appareil. Touche un champ pour le modifier.</p>
@@ -1824,7 +1825,7 @@ function obRender(){
     el.querySelectorAll(".profRow").forEach(b=>{
       b.onclick = ()=>{ viewMode = true; obStep = +b.dataset.step; obRender(); };
     });
-    $("#profClose").onclick = ()=>{ $("#onboarding").classList.add("hidden"); };
+    $("#profClose").onclick = $("#profCloseX").onclick = ()=>{ $("#onboarding").classList.add("hidden"); };
     return;
   }
 
