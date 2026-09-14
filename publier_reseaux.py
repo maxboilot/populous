@@ -47,7 +47,16 @@ GRAPH = 'https://graph.facebook.com/v21.0'
 
 
 def lire_env():
+    """Cle -> valeur pour FB_PAGE_ID / FB_PAGE_TOKEN / IG_USER_ID.
+
+    En local : fichier .env (jamais commite, cf. .gitignore). Sur
+    GitHub Actions : pas de .env dans le depot (memes secrets, mais
+    exposes en variables d'environnement par le workflow) — on y
+    retombe si le fichier n'existe pas, plutot que d'exiger deux
+    facons differentes de renseigner les identifiants."""
     chemin = DOSSIER / '.env'
+    if not chemin.exists():
+        return {cle: os.environ[cle] for cle in ('FB_PAGE_ID', 'FB_PAGE_TOKEN', 'IG_USER_ID') if cle in os.environ}
     valeurs = {}
     for ligne in chemin.read_text(encoding='utf-8').splitlines():
         if '=' in ligne and not ligne.startswith('#'):

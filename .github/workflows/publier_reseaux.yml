@@ -1,0 +1,51 @@
+name: Publication réseaux sociaux
+
+on:
+  schedule:
+    # Heures Paris (CEST, UTC+2 — comme actuellement en septembre ; a
+    # decaler d'une heure a l'entree en heure d'hiver fin octobre, meme
+    # limite que les autres workflows planifies de ce depot qui ne
+    # geolocalisent pas non plus leurs horaires).
+    - cron: '0 5 * * *'   # 07:00 Paris — fait du jour
+    - cron: '0 10 * * *'  # 12:00 Paris — actu presidentielle
+    - cron: '0 12 * * *'  # 14:00 Paris — depute du jour
+    - cron: '0 17 * * *'  # 19:00 Paris — a venir a l'Assemblee
+    - cron: '0 19 * * *'  # 21:00 Paris — boussole politique
+  workflow_dispatch:
+    inputs:
+      type:
+        description: "Type de contenu (fait, presidentiel, depute, avenir, boussole)"
+        required: true
+        default: fait
+
+concurrency:
+  group: publier-reseaux
+  cancel-in-progress: false
+
+jobs:
+  publier:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Installer les dependances
+        run: pip install requests Pillow
+      - name: Determiner le type de contenu pour ce declenchement
+        id: type
+        run: |
+          case "${{ github.event.schedule }}" in
+            '0 5 * * *')  echo "type=fait" >> "$GITHUB_OUTPUT" ;;
+            '0 10 * * *') echo "type=presidentiel" >> "$GITHUB_OUTPUT" ;;
+            '0 12 * * *') echo "type=depute" >> "$GITHUB_OUTPUT" ;;
+            '0 17 * * *') echo "type=avenir" >> "$GITHUB_OUTPUT" ;;
+            '0 19 * * *') echo "type=boussole" >> "$GITHUB_OUTPUT" ;;
+            *) echo "type=${{ github.event.inputs.type }}" >> "$GITHUB_OUTPUT" ;;
+          esac
+      - name: Publier
+        env:
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+        run: python publier_reseaux.py --type ${{ steps.type.outputs.type }} --publier
