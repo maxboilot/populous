@@ -285,7 +285,7 @@ window.__VOTE_EARLY__ = (async function(){
      slides, lui superposer une autre animation à l'ouverture le rendait
      moins fluide au premier balayage plutôt que plus soigné. */
   #introPopup .sheet{padding:0;overflow:hidden;position:relative;animation:none}
-  #introPopup .introTrack{display:flex;transition:transform .45s cubic-bezier(.16,1,.3,1);touch-action:pan-y;will-change:transform}
+  #introPopup .introTrack{display:flex;transition:transform .32s cubic-bezier(.22,1,.36,1);touch-action:pan-y;will-change:transform}
   #introPopup .introSlide{flex:0 0 100%;box-sizing:border-box;padding:44px 26px 8px;text-align:center;
     display:flex;flex-direction:column;align-items:center;min-height:340px}
   #introPopup .introSlide.welcome{background:linear-gradient(180deg,var(--accent-soft) 0%,var(--card) 65%)}
@@ -2099,29 +2099,62 @@ const INTRO_SLIDES = [
     texte:"Découvre qui sont nos députés, ce qu'ils votent et ce que ça change réellement pour toi." },
 ];
 let introIndex = 0, introDragStartX = 0, introDragStartT = 0, introDragDx = 0, introDragging = false;
+let introPointerId = null, introRAF = 0;
 
 function introMaj(){
-  $("#introTrack").style.transform = `translateX(${-introIndex*100}%)`;
+  $("#introTrack").style.transform = `translate3d(${-introIndex*100}%,0,0)`;
   $("#introDots").querySelectorAll(".dot").forEach((d,k)=>d.classList.toggle("on", k===introIndex));
   $("#introClose").classList.toggle("show", introIndex === INTRO_SLIDES.length-1);
 }
-function introPointerMove(e){
-  if(!introDragging) return;
-  introDragDx = e.clientX - introDragStartX;
-  $("#introTrack").style.transform = `translateX(calc(${-introIndex*100}% + ${introDragDx}px))`;
-}
-function introPointerUp(){
-  if(!introDragging) return;
-  introDragging = false;
-  $("#introTrack").style.transition = "";
-  // Un petit coup rapide doit suffire à changer de slide, pas seulement un
-  // grand glissement — sinon le geste se sent "collant" plutôt que fluide.
-  const vitesse = Math.abs(introDragDx) / Math.max(1, Date.now() - introDragStartT);
-  if(Math.abs(introDragDx) > 60 || (Math.abs(introDragDx) > 16 && vitesse > 0.45)){
-    introIndex = Math.max(0, Math.min(INTRO_SLIDES.length-1, introIndex + (introDragDx<0?1:-1)));
-  }
-  introDragDx = 0;
+function introAller(delta){
+  introIndex = Math.max(0, Math.min(INTRO_SLIDES.length-1, introIndex + delta));
   introMaj();
+}
+// La résistance en butée (0 ou dernière slide) évite un espace vide qui se
+// verrait si le doigt tirait au-delà — un geste natif ralentit, il ne
+// s'arrête jamais net.
+function introDxAmorti(){
+  const enButee = (introIndex === 0 && introDragDx > 0) || (introIndex === INTRO_SLIDES.length-1 && introDragDx < 0);
+  return enButee ? introDragDx * 0.35 : introDragDx;
+}
+function introAppliquerDrag(){
+  introRAF = 0;
+  $("#introTrack").style.transform = `translate3d(calc(${-introIndex*100}% + ${introDxAmorti()}px),0,0)`;
+}
+function introPointerMove(e){
+  if(!introDragging || e.pointerId !== introPointerId) return;
+  introDragDx = e.clientX - introDragStartX;
+  // Un seul rendu par frame : appliquer le style à chaque événement brut
+  // (parfois bien plus de 60/s) est ce qui produit la saccade, pas le
+  // geste lui-même.
+  if(!introRAF) introRAF = requestAnimationFrame(introAppliquerDrag);
+}
+function introPointerUp(e){
+  if(!introDragging || (introPointerId !== null && e.pointerId !== introPointerId)) return;
+  introDragging = false;
+  introPointerId = null;
+  if(introRAF){ cancelAnimationFrame(introRAF); introRAF = 0; }
+  $("#introTrack").style.transition = "";
+  const dt = Date.now() - introDragStartT;
+  if(Math.abs(introDragDx) < 6 && dt < 300){
+    // Un vrai tap, pas un glissement : la moitié touchée donne le sens,
+    // comme un carrousel de stories — pas besoin de flèches. Le cadre
+    // visible est celui de .sheet (qui ne bouge pas) : #introTrack lui,
+    // se déplace par transform, donc son propre getBoundingClientRect()
+    // ne correspond plus à la fenêtre visible dès qu'on n'est plus sur
+    // la 1ère slide.
+    const rect = $("#introTrack").parentElement.getBoundingClientRect();
+    introAller(introDragStartX < rect.left + rect.width / 2 ? -1 : 1);
+  } else {
+    // Un petit coup rapide doit suffire à changer de slide, pas seulement un
+    // grand glissement — sinon le geste se sent "collant" plutôt que fluide.
+    const vitesse = Math.abs(introDragDx) / Math.max(1, dt);
+    if(Math.abs(introDragDx) > 60 || (Math.abs(introDragDx) > 16 && vitesse > 0.45)){
+      introIndex = Math.max(0, Math.min(INTRO_SLIDES.length-1, introIndex + (introDragDx<0?1:-1)));
+    }
+    introDragDx = 0;
+    introMaj();
+  }
 }
 function fermerIntroPopup(){
   $("#introPopup").classList.add("hidden");
@@ -2148,6 +2181,11 @@ function renderIntroPopup(){
   introMaj();
   $("#introTrack").onpointerdown = e=>{
     introDragging = true; introDragStartX = e.clientX; introDragStartT = Date.now(); introDragDx = 0;
+    introPointerId = e.pointerId;
+    // Capturer le pointeur évite qu'un geste de scroll natif du navigateur
+    // ne se déclenche en même temps que le glissement JS, à mi-parcours —
+    // c'est cette bagarre entre les deux qui casse la fluidité.
+    try{ e.currentTarget.setPointerCapture(e.pointerId); }catch(err){}
     $("#introTrack").style.transition = "none";
   };
   window.addEventListener("pointermove", introPointerMove);
