@@ -660,8 +660,11 @@ window.__VOTE_EARLY__ = (async function(){
      On les tronque à l'affichage, sans rien retirer des données. */
   #avenirList .dRow .t{ display:-webkit-box; -webkit-line-clamp:3;
     -webkit-box-orient:vertical; overflow:hidden; }
-  /* Filtre thématique (Historique, À venir) : menu déroulant natif */
-  .filtres{ margin:0 0 12px; }
+  /* Filtre thématique (Historique, À venir) : menu déroulant natif —
+     même largeur/centrage que .filtreLabel et .dashList juste en
+     dessous, sinon les menus restent collés à gauche en desktop large
+     pendant que le reste du contenu se centre. */
+  .filtres{ max-width:640px; margin:0 auto 12px; }
   /* Nom du filtre, seulement quand deux filtres se suivent (Historique) —
      sans ça, deux menus "Tous (N)" côte à côte ne se distinguent pas. */
   .filtreLabel{ max-width:640px; margin:0 auto 6px; padding-left:4px;
