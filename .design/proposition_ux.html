@@ -1,0 +1,395 @@
+<title>Populous, prochain chapitre</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+  :root{
+    --ink:#10193F; --ink-soft:#4A5578; --dim:#8891B0;
+    --accent:#2B48A5; --accent-hi:#3E5FC9; --accent-soft:#EAEFFC;
+    --bg:#FAFAF9; --card:#FFFFFF; --card-alt:#F4F6FC; --line:rgba(16,25,63,.09);
+    --spot:#9A6A1E; --spot-soft:#F5EBD9;
+    --good:#1F7A4D;
+    --shadow:0 1px 2px rgba(16,25,63,.05), 0 10px 28px rgba(16,25,63,.08);
+    --shadow-lg:0 6px 16px rgba(16,25,63,.08), 0 24px 56px rgba(16,25,63,.16);
+    --serif:'Fraunces', Georgia, serif;
+    --sans:'Inter',-apple-system,BlinkMacSystemFont,'SF Pro Text',system-ui,Helvetica,Arial,sans-serif;
+    --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#EEF1FB; --ink-soft:#C3CAE6; --dim:#8791B8;
+      --accent:#7C97F2; --accent-hi:#93AAF5; --accent-soft:#1C2650;
+      --bg:#0B0F26; --card:#131A3B; --card-alt:#171F49; --line:rgba(230,235,255,.10);
+      --spot:#E0AE64; --spot-soft:#2B2211;
+      --good:#4FC98A;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 28px rgba(0,0,0,.35);
+      --shadow-lg:0 6px 16px rgba(0,0,0,.35), 0 24px 56px rgba(0,0,0,.5);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#EEF1FB; --ink-soft:#C3CAE6; --dim:#8791B8;
+    --accent:#7C97F2; --accent-hi:#93AAF5; --accent-soft:#1C2650;
+    --bg:#0B0F26; --card:#131A3B; --card-alt:#171F49; --line:rgba(230,235,255,.10);
+    --spot:#E0AE64; --spot-soft:#2B2211;
+    --good:#4FC98A;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 28px rgba(0,0,0,.35);
+    --shadow-lg:0 6px 16px rgba(0,0,0,.35), 0 24px 56px rgba(0,0,0,.5);
+  }
+
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);margin:0;
+    padding:0 20px 90px;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:860px;margin:0 auto}
+  ::selection{background:var(--accent-soft);color:var(--ink)}
+
+  /* ---------- hero ---------- */
+  .hero{padding:64px 0 40px;border-bottom:1px solid var(--line)}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.09em;
+    text-transform:uppercase;color:var(--spot)}
+  .hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(34px,5.6vw,54px);
+    line-height:1.06;letter-spacing:-.01em;margin:14px 0 22px;text-wrap:balance;max-width:14ch}
+  .hero .lede{font-size:17px;line-height:1.65;color:var(--ink-soft);max-width:60ch;margin:0}
+  .hero .lede b{color:var(--ink);font-weight:600}
+
+  /* ---------- references band ---------- */
+  .refs{padding:44px 0 8px}
+  .refs h2{font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.09em;
+    text-transform:uppercase;color:var(--dim);margin:0 0 18px}
+  .refGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  @media (max-width:720px){.refGrid{grid-template-columns:repeat(2,1fr)}}
+  .refCard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 16px;
+    box-shadow:var(--shadow)}
+  .refSwatch{width:100%;height:44px;border-radius:9px;margin-bottom:14px;position:relative;overflow:hidden}
+  .refCard h3{font-family:var(--serif);font-weight:600;font-size:17px;margin:0 0 6px;letter-spacing:-.01em}
+  .refCard p{font-size:12.3px;line-height:1.55;color:var(--ink-soft);margin:0}
+  .refCard .borrow{margin-top:12px;font-family:var(--mono);font-size:10.3px;font-weight:600;
+    letter-spacing:.03em;color:var(--spot);text-transform:uppercase}
+
+  /* ---------- section groups ---------- */
+  .section{padding:56px 0 8px}
+  .section .head{display:flex;align-items:baseline;gap:14px;margin-bottom:6px}
+  .section .num{font-family:var(--mono);font-size:12.5px;color:var(--dim);font-weight:600}
+  .section h2{font-family:var(--serif);font-weight:500;font-size:28px;letter-spacing:-.01em;margin:0}
+  .section .dek{font-size:14px;color:var(--ink-soft);line-height:1.6;max-width:56ch;margin:10px 0 30px}
+
+  .proposal{display:grid;grid-template-columns:1fr;gap:0;background:var(--card);
+    border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);overflow:hidden;margin-bottom:20px}
+  .proposal.split{grid-template-columns:1fr 1fr}
+  @media (max-width:720px){.proposal.split{grid-template-columns:1fr}}
+  .pBody{padding:26px 28px}
+  .pTag{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10.3px;
+    font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--spot);
+    background:var(--spot-soft);padding:4px 9px;border-radius:999px;margin-bottom:12px}
+  .proposal h3{font-family:var(--sans);font-weight:800;font-size:19px;letter-spacing:-.01em;
+    margin:0 0 9px;color:var(--ink)}
+  .proposal p{font-size:13.6px;line-height:1.65;color:var(--ink-soft);margin:0}
+  .proposal p+p{margin-top:10px}
+  .mock{background:var(--card-alt);border-left:1px solid var(--line);padding:22px;
+    display:flex;align-items:center;justify-content:center;min-height:200px}
+  @media (max-width:720px){.mock{border-left:none;border-top:1px solid var(--line)}}
+
+  /* ---------- populous-styled mockup fragments ---------- */
+  .pf{--pf-accent:#2B48A5;--pf-ink:#10193F;--pf-ink-soft:#4A5578;--pf-dim:#8891B0;
+    --pf-card:#FFFFFF;--pf-alt:#F4F6FC;--pf-bg:#FAFAF9;
+    font-family:var(--sans);width:100%;max-width:280px;color:var(--pf-ink)}
+  .pf-phone{background:var(--pf-bg);border-radius:22px;padding:14px;box-shadow:0 1px 0 rgba(16,25,63,.06) inset,var(--shadow-lg)}
+  .pf-label{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--dim);margin-bottom:8px;display:block}
+  .pf-eyebrow{font-size:9px;font-weight:700;color:var(--pf-accent)}
+  .pf-h1{font-weight:800;font-size:19px;margin:2px 0 8px;letter-spacing:-.02em}
+  .pf-hero{background:linear-gradient(135deg,#1B2E7A,#2B48A5 65%);border-radius:14px;padding:12px 13px;
+    color:#fff;margin-bottom:8px}
+  .pf-hero .t{font-size:9px;font-weight:700;opacity:.75;letter-spacing:.03em;text-transform:uppercase}
+  .pf-hero .b{font-size:12.5px;font-weight:700;line-height:1.35;margin-top:5px}
+  .pf-card{background:var(--pf-card);border-radius:13px;padding:11px 12px;margin-bottom:7px;
+    box-shadow:0 1px 2px rgba(16,25,63,.06)}
+  .pf-card.ghost{background:var(--pf-alt);box-shadow:none}
+  .pf-card .t{font-size:8.5px;color:var(--pf-dim);font-weight:700;text-transform:uppercase;letter-spacing:.03em}
+  .pf-card .b{font-size:11.5px;font-weight:700;margin-top:4px;line-height:1.3}
+  .pf-card .s{font-size:9.5px;color:var(--pf-ink-soft);margin-top:3px;line-height:1.4}
+  .pf-row{display:flex;gap:7px}
+  .pf-row .pf-card{flex:1}
+  .pf-dim{opacity:.35;filter:grayscale(.3)}
+  .pf-fade{opacity:.6;transform:scale(.97)}
+  .pf-nav{display:flex;justify-content:space-around;background:var(--pf-card);border-radius:12px;
+    padding:8px 4px;margin-top:8px}
+  .pf-nav .n{font-size:7.5px;color:var(--pf-dim);font-weight:700;text-align:center}
+  .pf-nav .n.on{color:var(--pf-accent)}
+  .pf-nav .ic{width:14px;height:14px;border-radius:5px;background:var(--pf-alt);margin:0 auto 3px}
+  .pf-nav .n.on .ic{background:var(--pf-accent)}
+  .pf-pill{display:inline-flex;align-items:center;gap:6px;background:#fff;border-radius:999px;
+    padding:7px 11px;box-shadow:var(--shadow);font-size:10px;font-weight:700;color:var(--pf-accent)}
+  .pf-dot{width:6px;height:6px;border-radius:50%;background:var(--good)}
+  .pf-strip{display:flex;gap:6px;overflow:hidden}
+  .pf-strip .pf-card{min-width:86px;flex:none}
+  .pf-search{display:flex;align-items:center;gap:8px;background:var(--pf-card);border-radius:12px;
+    padding:10px 12px;box-shadow:0 1px 2px rgba(16,25,63,.06);font-size:11px;color:var(--pf-dim)}
+  .pf-search svg{flex:none;color:var(--pf-dim)}
+
+  /* ---------- annotated diagram (motion tokens) ---------- */
+  .flow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center}
+  .flow .step{background:#fff;border-radius:12px;padding:10px 13px;box-shadow:0 1px 2px rgba(16,25,63,.06);
+    font-family:var(--mono);font-size:10px;color:var(--pf-ink-soft);text-align:center;min-width:74px}
+  .flow .step b{display:block;font-family:var(--sans);font-size:12.5px;color:var(--pf-ink);font-weight:700;margin-bottom:2px}
+  .flow .arrow{color:var(--dim);font-size:14px}
+
+  /* ---------- priority ---------- */
+  .prio{padding:52px 0 20px}
+  .prio h2{font-family:var(--serif);font-weight:500;font-size:28px;margin:0 0 8px;letter-spacing:-.01em}
+  .prio .dek{font-size:14px;color:var(--ink-soft);line-height:1.6;max-width:56ch;margin:0 0 26px}
+  .prioList{list-style:none;margin:0;padding:0;counter-reset:p}
+  .prioList li{counter-increment:p;display:flex;gap:16px;padding:16px 0;border-top:1px solid var(--line)}
+  .prioList li:before{content:counter(p);font-family:var(--serif);font-weight:600;font-size:22px;
+    color:var(--spot);flex:none;width:30px}
+  .prioList .txt b{display:block;font-size:14.5px;font-weight:700;color:var(--ink);margin-bottom:3px}
+  .prioList .txt span{font-size:12.8px;color:var(--ink-soft);line-height:1.5}
+
+  .closing{padding:44px 0 20px;border-top:1px solid var(--line);margin-top:12px}
+  .closing p{font-size:15px;line-height:1.7;color:var(--ink-soft);max-width:58ch}
+  .closing p b{color:var(--ink)}
+</style>
+
+<div class="wrap">
+
+  <div class="hero">
+    <span class="eyebrow">Proposition — septembre 2026</span>
+    <h1>Populous, prochain chapitre</h1>
+    <p class="lede">Populous a déjà ce que beaucoup d'apps civiques n'ont pas : une identité visuelle propre, des données réelles, et une discipline de non-invention rare. Ce qui manque n'est pas une refonte — c'est <b>la rigueur d'exécution</b> de quatre apps qui ont chacune déjà résolu un problème que Populous a aussi : la surcharge de l'accueil, le geste peu fluide, la hiérarchie de l'info, la friction du premier usage.</p>
+  </div>
+
+  <div class="refs">
+    <h2>Les 4 boussoles</h2>
+    <div class="refGrid">
+
+      <div class="refCard">
+        <div class="refSwatch" style="background:linear-gradient(135deg,#FF7A45,#FFB648)"></div>
+        <h3>Crouton</h3>
+        <p>Cartes tactiles, chaleur, micro-interactions qui répondent au doigt.</p>
+        <div class="borrow">→ Pression, tactilité</div>
+      </div>
+
+      <div class="refCard">
+        <div class="refSwatch" style="background:linear-gradient(135deg,#4B3FE4,#8A7CFF)"></div>
+        <h3>Speechify</h3>
+        <p>Un seul contrôle persistant, toujours accessible, jamais dans le chemin.</p>
+        <div class="borrow">→ Mini-lecteur flottant</div>
+      </div>
+
+      <div class="refCard">
+        <div class="refSwatch" style="background:linear-gradient(135deg,#1A1A1A,#4A4A4A)"></div>
+        <h3>iA Writer</h3>
+        <p>Un seul sujet à la fois. Tout le reste s'efface pour le laisser respirer.</p>
+        <div class="borrow">→ Un hero, une échelle</div>
+      </div>
+
+      <div class="refCard">
+        <div class="refSwatch" style="background:linear-gradient(135deg,#0F1E3D,#3E5FC9)"></div>
+        <h3>Arc Search</h3>
+        <p>Une seule entrée, une réponse directe. La navigation s'efface derrière l'intention.</p>
+        <div class="borrow">→ Recherche unique, mouvement continu</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============ 1. DESIGN & QUALITÉ ============ -->
+  <div class="section">
+    <div class="head"><span class="num">01</span><h2>Design &amp; qualité</h2></div>
+    <p class="dek">Le vocabulaire visuel de Populous est déjà cohérent par écran. Il ne l'est pas encore <i>entre</i> les écrans : trois tailles de titre différentes pour trois pop-ups qui font le même métier, aucun retour tactile sur les cartes qu'on touche le plus.</p>
+
+    <div class="proposal split">
+      <div class="pBody">
+        <span class="pTag">Crouton</span>
+        <h3>Un vrai état de pression</h3>
+        <p>Aujourd'hui, toucher le carré du scrutin, la tuile Boussole ou une carte Historique ne produit aucun retour visuel avant le changement d'écran — le doigt touche, rien ne bouge, puis ça saute. Crouton fait l'inverse : chaque carte s'enfonce légèrement (échelle 0,97, ombre resserrée, 120 ms) avant de répondre.</p>
+        <p>Un seul état <code>:active</code> partagé, posé sur toutes les cartes tapables de l'app — pas une animation par écran.</p>
+      </div>
+      <div class="mock">
+        <div class="pf">
+          <div class="pf-label">Avant → après (relâché)</div>
+          <div class="pf-row">
+            <div class="pf-card" style="box-shadow:0 1px 2px rgba(16,25,63,.06)">
+              <div class="t">Historique</div>
+              <div class="b">📜 Toutes les lois</div>
+            </div>
+            <div class="pf-card" style="transform:scale(.97);box-shadow:none;background:var(--pf-alt)">
+              <div class="t">Historique</div>
+              <div class="b">📜 Toutes les lois</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="proposal split">
+      <div class="pBody">
+        <span class="pTag">iA Writer</span>
+        <h3>Une seule échelle typographique</h3>
+        <p>Le pop-up quotidien, le panneau d'impact et la Ref du jour utilisent chacun leur propre taille de titre (22px, 20px, 30px…) alors qu'ils font le même métier : une phrase, un contexte, une action. iA Writer tient toute une app d'écriture sur cinq tailles.</p>
+        <p>Fixer une échelle unique — <span style="font-family:var(--mono);font-size:12px">11 · 13 · 15 · 17 · 22 · 30</span> — et y ramener chaque pop-up existant plutôt que d'en choisir une nouvelle à chaque fois.</p>
+      </div>
+      <div class="mock">
+        <div class="flow">
+          <div class="step">11<br><b>Étiquette</b></div>
+          <span class="arrow">→</span>
+          <div class="step">13<br><b>Corps</b></div>
+          <span class="arrow">→</span>
+          <div class="step">17<br><b>Titre carte</b></div>
+          <span class="arrow">→</span>
+          <div class="step">30<br><b>Titre écran</b></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 2. FLUIDITÉ ============ -->
+  <div class="section">
+    <div class="head"><span class="num">02</span><h2>Fluidité</h2></div>
+    <p class="dek">Changer d'onglet dans la barre du bas est instantané — un peu trop : l'écran saute plutôt que de glisser. Et quitter le Récap en cours de partie fait perdre le fil, sans aucun moyen d'y revenir sans retourner dans Historique.</p>
+
+    <div class="proposal split">
+      <div class="pBody">
+        <span class="pTag">Speechify</span>
+        <h3>Une pastille pour reprendre le Récap</h3>
+        <p>Le badge "Réf du jour" qu'on vient de construire — rond, fixe, discret — est exactement le bon gabarit pour autre chose : reprendre une partie de Récap laissée en cours. Speechify garde toujours son lecteur accessible, où qu'on aille dans l'app ; le Récap mérite le même traitement.</p>
+        <p>Une pastille apparaît uniquement s'il y a une partie en cours, montre le groupe et la progression, et ramène directement à la bonne case en un tap.</p>
+      </div>
+      <div class="mock">
+        <div class="pf">
+          <div class="pf-label">Pastille flottante, visible partout</div>
+          <div class="pf-pill">
+            <span class="pf-dot"></span>
+            Récap · RN · 7/16
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="proposal split">
+      <div class="pBody">
+        <span class="pTag">Arc Search</span>
+        <h3>Les onglets glissent, ils ne sautent pas</h3>
+        <p>Arc traite chaque espace comme un même décor qu'on fait glisser, jamais comme des pages qu'on recharge. Passer d'Accueil à Historique dans Populous pourrait suivre le même principe : un fondu-glissé de 180 ms dans le sens du tap plutôt qu'un remplacement sec — sans toucher au contenu, juste à la transition.</p>
+      </div>
+      <div class="mock">
+        <div class="flow">
+          <div class="step">Accueil<br><b>écran A</b></div>
+          <span class="arrow">⇢</span>
+          <div class="step">180ms<br><b>glissé + fondu</b></div>
+          <span class="arrow">⇢</span>
+          <div class="step">Historique<br><b>écran B</b></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 3. HIÉRARCHIE ============ -->
+  <div class="section">
+    <div class="head"><span class="num">03</span><h2>Hiérarchie de l'information</h2></div>
+    <p class="dek">L'accueil empile aujourd'hui quatre blocs de poids égal : l'actu 2027, le dernier scrutin, la Boussole, puis Historique et À venir. Rien ne dit à l'œil par où commencer — tout crie en même temps.</p>
+
+    <div class="proposal split">
+      <div class="pBody">
+        <span class="pTag">iA Writer</span>
+        <h3>Un seul hero, le reste en second plan</h3>
+        <p>iA Writer choisit toujours ce qui compte maintenant et estompe tout le reste. L'accueil de Populous pourrait élire <i>une</i> chose comme sujet du jour — le dernier scrutin s'il est récent, sinon l'actu 2027 — l'afficher en grand, et réduire les autres entrées à une bande basse, compacte, qu'on parcourt d'un geste plutôt que de faire défiler quatre cartes pleine largeur.</p>
+      </div>
+      <div class="mock">
+        <div class="pf">
+          <div class="pf-label">Accueil resserré</div>
+          <div class="pf-hero">
+            <div class="t">Dernier scrutin · 21/07/2026</div>
+            <div class="b">Moderniser la gestion du patrimoine immobilier de l'État</div>
+          </div>
+          <div class="pf-strip">
+            <div class="pf-card ghost"><div class="t">Boussole</div><div class="b">🧭 Tester</div></div>
+            <div class="pf-card ghost"><div class="t">2027</div><div class="b">🇫🇷 Suivre</div></div>
+            <div class="pf-card ghost"><div class="t">Historique</div><div class="b">📜 Toutes les lois</div></div>
+            <div class="pf-card ghost"><div class="t">À venir</div><div class="b">📅 Agenda</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="proposal split">
+      <div class="pBody">
+        <span class="pTag">Crouton</span>
+        <h3>Un seul gabarit de fiche "info"</h3>
+        <p>Le "i" de la Boussole, le panneau d'impact, la case Récap et la Ref du jour révèlent chacun un petit contenu contextuel — et chacun le fait avec sa propre mise en page. La Ref du jour vient de fixer le bon modèle (étiquette de catégorie, titre, texte, source) : le généraliser aux trois autres ferait apprendre le motif une seule fois à la personne qui l'utilise.</p>
+      </div>
+      <div class="mock">
+        <div class="pf">
+          <div class="pf-label">Un seul gabarit, quatre usages</div>
+          <div class="pf-card">
+            <div class="t">🏛️ Grand événement</div>
+            <div class="b">Constitution de la Ve République</div>
+            <div class="s">1958 · voir la source ↗</div>
+          </div>
+          <div class="pf-card" style="margin-top:6px">
+            <div class="t">🧭 Thème du scrutin</div>
+            <div class="b">Logement</div>
+            <div class="s">Ce que dit le texte · voir la source ↗</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 4. SIMPLICITÉ D'USAGE ============ -->
+  <div class="section">
+    <div class="head"><span class="num">04</span><h2>Simplicité d'usage</h2></div>
+    <p class="dek">Trouver un texte précis demande de savoir dans quel onglet il vit, puis de dérouler les bons filtres. Et le premier contact avec l'app demande quatre étapes avant de voir quoi que ce soit de concret sur soi.</p>
+
+    <div class="proposal split">
+      <div class="pBody">
+        <span class="pTag">Arc Search</span>
+        <h3>Une seule recherche, pas quatre filtres</h3>
+        <p>Arc Search part d'une conviction simple : une seule entrée suffit si elle est assez intelligente. Aujourd'hui, retrouver une loi précise passe par Historique, puis par ses menus déroulants Résultats et Secteurs. Une barre de recherche unique — accessible depuis l'accueil — pourrait chercher d'un coup dans les lois, les thèmes, les députés et les communes, et renvoyer directement le bon écran plutôt que de faire choisir le bon onglet d'abord.</p>
+      </div>
+      <div class="mock">
+        <div class="pf">
+          <div class="pf-label">Une entrée, plusieurs mondes</div>
+          <div class="pf-search">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+            logement, Clermont-Ferrand, IVG…
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="proposal split">
+      <div class="pBody">
+        <span class="pTag">Speechify</span>
+        <h3>La circonscription d'abord, le reste après</h3>
+        <p>Speechify fait lire un premier mot avant de demander quoi que ce soit d'autre. L'onboarding de Populous demande pseudo, avatar, âge <i>et</i> situation avant de montrer une seule ligne sur le lecteur. La circonscription est la seule information qui débloque une vraie valeur immédiate (le vote de son député) — elle pourrait passer en premier, avec un aperçu concret juste après, et le reste du profil proposé ensuite comme un complément, pas un péage.</p>
+      </div>
+      <div class="mock">
+        <div class="pf">
+          <div class="pf-label">Ordre proposé</div>
+          <div class="flow" style="justify-content:flex-start">
+            <div class="step"><b>1</b>Circonscription</div>
+            <span class="arrow">→</span>
+            <div class="step"><b>2</b>Aperçu réel</div>
+            <span class="arrow">→</span>
+            <div class="step" style="opacity:.55"><b>3</b>Pseudo, âge…</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="prio">
+    <h2>Par où commencer</h2>
+    <p class="dek">Quatre chantiers, du plus visible au plus structurant. Aucun ne demande de retoucher les données ou les sources — seulement l'habillage et le geste.</p>
+    <ul class="prioList">
+      <li><div class="txt"><b>Système de mouvement unique</b><span>Un jeu de tokens de transition (durée, courbe) posé une fois, réutilisé sur chaque pop-up et changement d'onglet — la base de tout le reste.</span></div></li>
+      <li><div class="txt"><b>Accueil resserré autour d'un hero</b><span>Le changement le plus visible : un sujet du jour, le reste en bande secondaire.</span></div></li>
+      <li><div class="txt"><b>Pastille "reprendre le Récap"</b><span>Réutilise directement le gabarit du badge Ref du jour tout juste construit.</span></div></li>
+      <li><div class="txt"><b>Recherche unique</b><span>Le chantier le plus structurant — touche Historique, Carte et le profil à la fois.</span></div></li>
+    </ul>
+  </div>
+
+  <div class="closing">
+    <p>Rien ici ne touche à la règle qui définit Populous depuis le début : <b>aucune donnée, aucun fait n'est inventé</b> — ce sont des propositions de forme, pas de fond. Dis-moi lesquelles retenir, et par laquelle commencer.</p>
+  </div>
+
+</div>
