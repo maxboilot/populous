@@ -20,6 +20,8 @@ VOLATILES = {
     'data/actu.json': ['generated_at'],
     'data/sondages.json': ['generated_at'],
     'data/groupes_themes.json': ['generated_at'],
+    'data/refs_jour_an.json': ['generated_at'],
+    'data/refs_jour.json': ['generated_at'],
 }
 
 

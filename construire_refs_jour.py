@@ -3,7 +3,8 @@
 l'accueil (bouton "La Ref du jour"), pour le jour du calendrier en cours
 (mois-jour, indépendant de l'année).
 
-Deux sources, jamais mélangées avec une thèse inventée — voir CLAUDE.md :
+Trois sources, jamais mélangées avec une thèse inventée — voir
+CLAUDE.md — classées par priorité décroissante :
 
 1. data/refs_jour_evenements.json — une liste écrite et vérifiée à la
    main (grands événements politiques, naissances et morts de
@@ -11,13 +12,20 @@ Deux sources, jamais mélangées avec une thèse inventée — voir CLAUDE.md :
    ajoutée. Ce fichier n'est jamais généré automatiquement ; seul un humain
    l'édite.
 
-2. data/historique.json — les lois réellement adoptées par l'Assemblée
+2. data/refs_jour_an.json — construit par construire_refs_jour_an.py à
+   partir de la frise "Histoire et patrimoine" de l'Assemblée nationale.
+   Entièrement automatique, mais pas inventé pour autant : le titre et le
+   texte sont ceux publiés par l'Assemblée elle-même, seulement nettoyés
+   du HTML — comme construire_expose_motifs.py pour les exposés des
+   motifs. Ne comble que les jours que l'étape 1 n'a pas déjà couverts.
+
+3. data/historique.json — les lois réellement adoptées par l'Assemblée
    nationale, déjà construites par construire_historique.py. Pour un jour
-   du calendrier qui n'a aucune entrée vérifiée dans le fichier ci-dessus,
-   on complète honnêtement avec un texte réellement voté ce jour-là (titre,
-   date, résultat du vote : rien n'est résumé ni interprété). Quand
-   plusieurs textes tombent le même jour, on préfère celui voté en
-   solennel, plus identifiable.
+   du calendrier qui n'a aucune entrée vérifiée dans les deux étapes
+   précédentes, on complète honnêtement avec un texte réellement voté ce
+   jour-là (titre, date, résultat du vote : rien n'est résumé ni
+   interprété). Quand plusieurs textes tombent le même jour, on préfère
+   celui voté en solennel, plus identifiable.
 
 Le résultat ne couvre donc pas les 365 jours de l'année — seuls les jours
 qui ont un fait vérifié en ont un. Les autres, l'application le dit
@@ -31,6 +39,7 @@ from pathlib import Path
 
 DATA_DIR = Path('data')
 EVENEMENTS = DATA_DIR / 'refs_jour_evenements.json'
+REFS_AN = DATA_DIR / 'refs_jour_an.json'
 HISTORIQUE = DATA_DIR / 'historique.json'
 SORTIE = DATA_DIR / 'refs_jour.json'
 
@@ -59,6 +68,19 @@ def main():
     curated = json.loads(EVENEMENTS.read_text(encoding='utf-8'))
     refs = {k: list(v) for k, v in curated.get('refs', {}).items()}
     jours_couverts = set(refs.keys())
+
+    if REFS_AN.exists():
+        refs_an = json.loads(REFS_AN.read_text(encoding='utf-8')).get('refs', {})
+        ajoutes = 0
+        for jour, entrees in refs_an.items():
+            if jour in jours_couverts:
+                continue  # un fait déjà vérifié à la main prime sur la frise de l'Assemblée
+            refs[jour] = entrees
+            jours_couverts.add(jour)
+            ajoutes += 1
+        print(f'{ajoutes} jour(s) complété(s) avec la frise "Histoire et patrimoine" de l\'Assemblée nationale.')
+    else:
+        print('refs_jour_an.json absent : pas de complément depuis la frise de l\'Assemblée (lancer construire_refs_jour_an.py).')
 
     if HISTORIQUE.exists():
         historique = json.loads(HISTORIQUE.read_text(encoding='utf-8'))

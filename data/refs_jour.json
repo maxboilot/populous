@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-14T11:41:47.226967Z",
+  "generated_at": "2026-09-14T11:53:40.501601Z",
   "source_note": "Dates et faits vérifiés (Légifrance, Assemblée nationale, France Mémoire, INA, Herodote.net, Encyclopædia Universalis). Couverture assumée comme partielle : seuls les jours reposant sur un fait vérifié sont renseignés.",
   "refs": {
     "01-01": [
@@ -42,6 +42,15 @@
         "titre": "L'organisation des jeux Olympiques et Paralympiques de 2030",
         "texte": "Ce jour-là, l'Assemblée nationale a adopté projet de loi « L'organisation des jeux Olympiques et Paralympiques de 2030 », par 403 voix contre 99.",
         "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4963"
+      }
+    ],
+    "01-14": [
+      {
+        "annee": 1852,
+        "categorie": "evenement",
+        "titre": "La Constitution de 1852",
+        "texte": "Peu après le coup d’État du 2 décembre 1851, une nouvelle Constitution est rapidement rédigée et promulguée le 14 janvier 1852.",
+        "source": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/la-constitution-de-1852"
       }
     ],
     "01-17": [
@@ -96,6 +105,15 @@
         "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5283"
       }
     ],
+    "01-30": [
+      {
+        "annee": 1879,
+        "categorie": "evenement",
+        "titre": "La \"Constitution Grévy\"",
+        "texte": "Après la démission du maréchal Patrice de Mac Mahon le 30 janvier 1879, Jules Grévy, avocat, député depuis 1848 et élu deux fois président de la Chambre des députés en 1871 puis en 1876, est élu président de la République pour sept ans par les deux assemblées réunies à Versailles. Républicain convaincu, il déclare dans un message aux chambres, le 6 février, que « soumis avec sincérité à la grande loi du régime…",
+        "source": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/la-constitution-grevy"
+      }
+    ],
     "02-02": [
       {
         "annee": 1926,
@@ -106,11 +124,11 @@
     ],
     "02-03": [
       {
-        "annee": 2026,
-        "categorie": "texte",
-        "titre": "L'organisation des jeux Olympiques et Paralympiques de 2030",
-        "texte": "Ce jour-là, l'Assemblée nationale a adopté projet de loi « L'organisation des jeux Olympiques et Paralympiques de 2030 », par 390 voix contre 99.",
-        "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5296"
+        "annee": 1919,
+        "categorie": "evenement",
+        "titre": "Premier chef d’État reçu dans l'hémicycle : Woodrow Wilson",
+        "texte": "Le lundi 3 février 1919, le Président des États-Unis d’Amérique Woodrow Wilson est reçu par la Chambre des députés, dans le cadre de la conférence de la paix.",
+        "source": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/premier-chef-d-etat-recu-dans-l-hemicycle-woodrow-wilson"
       }
     ],
     "02-05": [
@@ -158,11 +176,11 @@
     ],
     "02-25": [
       {
-        "annee": 2026,
-        "categorie": "texte",
-        "titre": "Droit à l'aide à mourir",
-        "texte": "Ce jour-là, l'Assemblée nationale a adopté proposition de loi « Droit à l'aide à mourir », par 299 voix contre 226.",
-        "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5729"
+        "annee": 1875,
+        "categorie": "evenement",
+        "titre": "Amendement Wallon",
+        "texte": "La Troisième République combat une opposition qui souhaite un retour à la monarchie. Dans le cadre de la discussion de la loi constitutionnelle relative à l'organisation des pouvoirs publics, un amendement présenté par Henri Alexandre Wallon dispose que \"Le Président de la République est élu à la majorité absolue des suffrages par le Sénat et la Chambre des députés réunis en Assemblée nationale. Il est élu pour sept…",
+        "source": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/troisieme-republique"
       }
     ],
     "03-07": [
@@ -171,6 +189,15 @@
         "categorie": "mort",
         "titre": "Mort d'Aristide Briand",
         "texte": "Onze fois président du Conseil et prix Nobel de la paix 1926, pour le traité de Locarno."
+      }
+    ],
+    "03-15": [
+      {
+        "annee": 1850,
+        "categorie": "evenement",
+        "titre": "La loi Falloux",
+        "texte": "La loi du 15 mars 1850 relative à l’enseignement, dite loi Falloux, du nom du ministre de l’instruction publique et des cultes, Alfred de Falloux, consacre la liberté de l’enseignement dans le secondaire et dans le primaire, laissant une place ample à l'enseignement confessionnel.",
+        "source": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/la-loi-falloux"
       }
     ],
     "03-16": [
@@ -258,11 +285,11 @@
     ],
     "04-10": [
       {
-        "annee": 2026,
-        "categorie": "texte",
-        "titre": "Instaurer une procédure simplifiée de recouvrement des créances commerciales incontestées",
-        "texte": "Ce jour-là, l'Assemblée nationale a adopté proposition de loi « Instaurer une procédure simplifiée de recouvrement des créances commerciales incontestées », par 41 voix contre 14.",
-        "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6135"
+        "annee": 1867,
+        "categorie": "evenement",
+        "titre": "Gratuité de l'enseignement de l'école primaire",
+        "texte": "La loi du 10 avril 1867, portée par le ministre de l’instruction publique Victor Duruy, contribue au développement de l’enseignement primaire en obligeant les communes de plus de 500 habitants à se doter d’une école publique pour filles. Cette mesure permet d’établir la gratuité totale de l’enseignement primaire en autorisant à lever un impôt communal « de quatre centimes additionnels ».",
+        "source": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/second-empire"
       }
     ],
     "04-13": [
@@ -432,6 +459,15 @@
         "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6645"
       }
     ],
+    "05-16": [
+      {
+        "annee": 1877,
+        "categorie": "evenement",
+        "titre": "La crise du 16 mai 1877",
+        "texte": "Un désaccord sur l’interprétation des lois constitutionnelles de 1875 oppose la majorité républicaine élue à la Chambre en 1876 et le maréchal Patrice de Mac Mahon, président de la République légitimiste.",
+        "source": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/la-crise-du-16-mai-1877"
+      }
+    ],
     "05-18": [
       {
         "annee": 2013,
@@ -464,6 +500,15 @@
         "categorie": "evenement",
         "titre": "Loi Taubira",
         "texte": "La loi reconnaissant la traite et l'esclavage comme crime contre l'humanité, portée par la députée Christiane Taubira, est promulguée."
+      }
+    ],
+    "05-27": [
+      {
+        "annee": 1943,
+        "categorie": "evenement",
+        "titre": "Création du Conseil de la Résistance et programme du CNR",
+        "texte": "En mars 1943 à Londres, Jean Moulin reçoit du général de Gaulle la mission d'unifier la Résistance en France au sein d'un \"Conseil de la Résistance\".",
+        "source": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/creation-du-conseil-de-la-resistance-et-programme-du-cnr"
       }
     ],
     "05-28": [
@@ -504,11 +549,11 @@
     ],
     "06-04": [
       {
-        "annee": 2026,
-        "categorie": "texte",
-        "titre": "Prévenir le mal-être et le risque suicidaire dans le monde agricole",
-        "texte": "Ce jour-là, l'Assemblée nationale a adopté proposition de loi « Prévenir le mal-être et le risque suicidaire dans le monde agricole », par 76 voix contre 0.",
-        "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7348"
+        "annee": 1814,
+        "categorie": "evenement",
+        "titre": "La Charte constitutionnelle",
+        "texte": "La Charte constitutionnelle, ainsi nommée pour ne pas reprendre le terme de Constitution jugé trop révolutionnaire, est « octroyée » à ses sujets, le 4 juin 1814, par Louis XVIII. Elle marque la fin de l’Empire et l’établissement de la Restauration. La Charte renoue avec la souveraineté royale, faiblement tempérée par l’existence de deux assemblées aux pouvoirs très limités : la Chambre des députés des départements…",
+        "source": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/la-charte-constitutionnelle"
       }
     ],
     "06-11": [
@@ -570,6 +615,15 @@
         "titre": "Une Corse autonome au sein de la République",
         "texte": "Ce jour-là, l'Assemblée nationale a adopté projet de loi constitutionnelle « Une Corse autonome au sein de la République », par 271 voix contre 202.",
         "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7454"
+      }
+    ],
+    "06-24": [
+      {
+        "annee": 1793,
+        "categorie": "evenement",
+        "titre": "La Constitution montagnarde",
+        "texte": "Le 24 juin 1793, en remplacement du projet décentralisateur de la Constitution girondine, la Constitution montagnarde est adoptée par la Convention nationale. Une déclaration des Droits de l’homme et du citoyen proclame que « le but de la société est le bonheur commun ». Dans le contexte de guerre contre les monarchies européennes, sa mise en œuvre est ajournée en attendant la paix.",
+        "source": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/la-constitution-montagnarde"
       }
     ],
     "06-29": [
@@ -704,6 +758,15 @@
         "texte": "Il est guillotiné à Paris, au lendemain de son arrestation lors du 9 Thermidor."
       }
     ],
+    "07-29": [
+      {
+        "annee": 1913,
+        "categorie": "evenement",
+        "titre": "Secret et liberté du vote",
+        "texte": "La loi du 29 juillet 1913 a pour objectif d'assurer le secret et la liberté du vote, ainsi que l’authenticité des opérations électorales. Elle réglemente l'établissement des listes électorales et instaure, pour la première fois depuis la Révolution, un espace où l’électeur peut s'isoler avant de déposer sous enveloppe son bulletin dans l'urne. Il s'agit de la cabine d'isolement, le terme « isoloir » étant plus…",
+        "source": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/troisieme-republique"
+      }
+    ],
     "07-31": [
       {
         "annee": 1914,
@@ -728,12 +791,30 @@
         "texte": "Le peuple parisien prend d'assaut le palais des Tuileries ; la royauté est suspendue de fait."
       }
     ],
+    "08-14": [
+      {
+        "annee": 1830,
+        "categorie": "evenement",
+        "titre": "La Charte constitutionnelle révisée",
+        "texte": "Le 9 août 1830, Louis-Philippe d’Orléans, proclamé « roi des Français », accepte la révision par les chambres de la Charte de 1814. Elle instaure un régime plus équilibré, à mi-chemin entre la monarchie traditionnelle et le parlementarisme moderne.",
+        "source": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/la-charte-constitutionnelle-revisee"
+      }
+    ],
     "08-15": [
       {
         "annee": 1769,
         "categorie": "naissance",
         "titre": "Naissance de Napoléon Bonaparte",
         "texte": "Futur général, puis empereur des Français."
+      }
+    ],
+    "08-22": [
+      {
+        "annee": 1795,
+        "categorie": "evenement",
+        "titre": "Constitution de l'an III - le Directoire",
+        "texte": "Le 22 août 1795, la Convention adopte la première Constitution républicaine appliquée en France. Elle est fondée sur la séparation des pouvoirs et vise à conforter la République en évitant tout retour à la tyrannie.",
+        "source": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/constitution-de-l-an-iii-le-directoire"
       }
     ],
     "08-23": [
@@ -782,6 +863,22 @@
         "texte": "Auteur de la déclaration du 9 mai 1950 à l'origine de la construction européenne."
       }
     ],
+    "09-05": [
+      {
+        "annee": 1791,
+        "categorie": "evenement",
+        "titre": "Déclaration des droits de la femme et de la citoyenne - Olympe de Gouges",
+        "texte": "Née en 1748 à Montauban, Marie Gouze, mariée à 17 ans, est veuve l’année suivante. Elle gagne alors Paris avec son fils, mène une vie de femme de lettres en tenant un salon. Sous le pseudonyme d’Olympe de Gouges, ses œuvres principales regroupent des pièces de théâtre et des textes politiques tels que le drame Zamore et Mirza (1784) dénonçant l’esclavage ou un plaidoyer pour le droit au divorce en 1790. 16 pièces de…",
+        "source": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/declaration-des-droits-de-la-femme-et-de-la-citoyenne-olympe-de-gouges"
+      },
+      {
+        "annee": 1798,
+        "categorie": "evenement",
+        "titre": "Loi du 19 fructidor An VI instituant la conscription et le service militaire obligatoire",
+        "texte": "Le 19 fructidor An VI (5 septembre 1798), l'Assemblée des Cinq-Cents adopte une loi instituant la conscription et le service militaire obligatoire. L'article premier de la loi dispose que « Tout Français est soldat et se doit à la défense de la patrie » . Elle représente, malgré des réformes ultérieures, la base du recrutement des armées françaises pendant près de deux siècles.",
+        "source": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/loi-du-19-fructidor-an-vi-instituant-la-conscription-et-le-service-militaire-obligatoire"
+      }
+    ],
     "09-14": [
       {
         "annee": 1791,
@@ -812,6 +909,15 @@
         "texte": "La Convention nationale, réunie pour la première fois, abolit la royauté et proclame la République."
       }
     ],
+    "09-24": [
+      {
+        "annee": 1941,
+        "categorie": "evenement",
+        "titre": "Institution du Comité national français",
+        "texte": "Le 24 septembre 1941, le général de Gaulle, chef des « Français libres » signe, à Londres, une ordonnance portant organisation nouvelle des pouvoirs publics publiée au Journal Officiel de la France libre et instituant un Comité national français.",
+        "source": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/institution-du-comite-national-francais"
+      }
+    ],
     "09-26": [
       {
         "annee": 2019,
@@ -832,6 +938,15 @@
         "categorie": "evenement",
         "titre": "Référendum sur la Ve République",
         "texte": "Les Français approuvent massivement, par référendum, la nouvelle Constitution portée par le général de Gaulle."
+      }
+    ],
+    "10-02": [
+      {
+        "annee": 1919,
+        "categorie": "evenement",
+        "titre": "Autorisation de la ratification du traité de Versailles par la Chambre des députés",
+        "texte": "Plusieurs traités de paix sanctionnant la fin de la première guerre mondiale sont signés par la France entre 1919 et 1920, notamment ceux de Saint-Germain-en-Laye avec l’Autriche, de Neuilly avec la Bulgarie, de Trianon avec la Hongrie, de Sèvres avec l’empire ottoman. Ils complètent le traité de paix signé à Versailles entre les alliés et l’empire allemand. L’article 8 de la loi constitutionnelle du 16 juillet 1875…",
+        "source": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/troisieme-republique"
       }
     ],
     "10-04": [
@@ -904,6 +1019,15 @@
         "texte": "Président de la République de 1981 à 1995 — le plus long mandat de l'histoire de la Ve République."
       }
     ],
+    "10-27": [
+      {
+        "annee": 1946,
+        "categorie": "evenement",
+        "titre": "La Constitution de 1946 et l’instauration de la IVe République",
+        "texte": "La Constitution de la IV e République, approuvée à une faible majorité, est promulguée le 27 octobre 1946. Elle résulte d'un compromis entre les partisans du régime d'assemblée et ceux du régime parlementaire. Elle consacre la primauté du pouvoir législatif.",
+        "source": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/la-constitution-de-1946-et-l-instauration-de-la-ive-republique"
+      }
+    ],
     "10-28": [
       {
         "annee": 2025,
@@ -928,6 +1052,15 @@
         "categorie": "mort",
         "titre": "Mort d'Olympe de Gouges",
         "texte": "Autrice de la Déclaration des droits de la femme, elle est guillotinée à Paris pendant la Terreur."
+      }
+    ],
+    "11-04": [
+      {
+        "annee": 1848,
+        "categorie": "evenement",
+        "titre": "La Constitution républicaine",
+        "texte": "Le 4 novembre 1848, l’adoption de la nouvelle loi fondamentale crée la Deuxième République. Empruntant à la tradition révolutionnaire de 1789 ses références morales et philosophiques et s’inspirant du modèle constitutionnel américain, elle institue un régime représentatif monocaméral avec une assez stricte séparation des pouvoirs.",
+        "source": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/la-constitution-republicaine"
       }
     ],
     "11-09": [
@@ -1018,6 +1151,15 @@
         "categorie": "mort",
         "titre": "Mort de Valéry Giscard d'Estaing",
         "texte": "Président de la République de 1974 à 1981, il meurt des suites de la Covid-19."
+      }
+    ],
+    "12-07": [
+      {
+        "annee": 1954,
+        "categorie": "evenement",
+        "titre": "La loi de révision constitutionnelle de 1954",
+        "texte": "La loi constitutionnelle portant révision de la Constitution de la IV e République est promulguée le 7 décembre 1954. Elle fait suite à un long processus de révision commencé en novembre 1950, dont l’objectif était d’améliorer le fonctionnement des institutions et de remédier à l’instabilité politique de la IV e République.",
+        "source": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/la-loi-de-revision-constitutionnelle-de-1954"
       }
     ],
     "12-08": [
