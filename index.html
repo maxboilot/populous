@@ -26,7 +26,7 @@ window.__VOTE_EARLY__ = (async function(){
 })().catch(function(){ return null; });
 </script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,800;9..144,900&family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   /* ============================================================
      Palette « Jour » — inspirée Airbnb / Stripe : fond clair,
@@ -36,23 +36,33 @@ window.__VOTE_EARLY__ = (async function(){
   :root{
     --bg:#FAFAF9; --card:#FFFFFF; --card-alt:#F4F6FC;
     --ink:#10193F; --ink-soft:#4A5578; --dim:#8891B0;
-    --accent:#2B48A5; --accent-hi:#3E5FC9; --accent-soft:#EAEFFC;
+    /* Bleu France (#000091) — la couleur de référence de l'identité de
+       l'État (systeme-de-design.gouv.fr), pas un bleu SaaS générique.
+       Choix cohérent avec le sujet : les sources citées dans l'app
+       (assemblee-nationale.fr, vie-publique.fr...) utilisent ce même bleu. */
+    --accent:#000091; --accent-hi:#2323B3; --accent-soft:#E3E3FB;
     --line:rgba(16,25,63,.08);
     --shadow:0 1px 2px rgba(16,25,63,.04), 0 8px 24px rgba(16,25,63,.07);
     --shadow-lg:0 4px 10px rgba(16,25,63,.06), 0 20px 48px rgba(16,25,63,.14);
-    --r-card:20px; --r-input:14px; --r-pill:999px;
+    --r-card:14px; --r-input:12px; --r-pill:999px;
     /* alias conservés pour compat avec le JS existant */
     --land:#EEF2FC; --brass:var(--accent); --brassHi:var(--accent-hi);
+    /* Fraunces pour les titres (un caractère éditorial, pas la police
+       système par défaut), Public Sans pour tout le reste — dessinée pour
+       les services publics, plus posée qu'Inter sans tomber dans le même
+       défaut "safe" que la pile système. */
+    --font-d:'Fraunces',Georgia,'Times New Roman',serif;
+    --font-s:'Public Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
   }
   *{box-sizing:border-box}
   html,body{margin:0;height:100%;overflow:visible;background:var(--bg);
-    font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','SF Pro Display',system-ui,'Inter',Helvetica,Arial,sans-serif;color:var(--ink)}
+    font-family:var(--font-s);color:var(--ink)}
   #map{position:absolute;inset:0;background:var(--land);outline:none}
   .leaflet-container{background:var(--land);font-family:inherit}
   .leaflet-control-attribution{background:var(--card)!important;color:var(--dim)!important;
     font-size:9px!important;border-radius:8px 0 0 0!important}
   .leaflet-control-attribution a{color:var(--accent)!important}
-  .d{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','SF Pro Display',system-ui,'Inter',Helvetica,Arial,sans-serif;font-weight:800;letter-spacing:-.02em}
+  .d{font-family:var(--font-d);font-weight:700;letter-spacing:-.01em}
   .m{font-family:ui-monospace,'SF Mono',SFMono-Regular,Menlo,Consolas,monospace}
   .card{background:var(--card);border:none;border-radius:var(--r-card);box-shadow:var(--shadow)}
   button,input{font-family:inherit}
@@ -108,7 +118,7 @@ window.__VOTE_EARLY__ = (async function(){
     padding:4px;box-shadow:var(--shadow);gap:2px}
   #mesure .grp button{padding:8px 14px;min-width:78px;border:none;background:none;color:var(--dim);
     cursor:pointer;text-align:center;transition:background .2s,color .2s;border-radius:var(--r-pill)}
-  #mesure .grp button .t{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','SF Pro Display',system-ui,'Inter',Helvetica,Arial,sans-serif;font-weight:700;font-size:12.5px;line-height:1.3}
+  #mesure .grp button .t{font-family:var(--font-s);font-weight:700;font-size:12.5px;line-height:1.3}
   #mesure .grp button .s{font-size:8px;letter-spacing:.02em;margin-top:1px;opacity:.8}
   #mesure .grp button.on{background:var(--accent);color:#FFFFFF}
   /* Petite légende, discrète : fond transparent, texte lisible par-dessus
@@ -189,7 +199,7 @@ window.__VOTE_EARLY__ = (async function(){
     .veil:not(.hidden),.veil:not(.hidden) .sheet{animation:none}
   }
   .sheet{width:min(440px,100%);max-height:88vh;overflow-y:auto;background:var(--card);
-    border:none;border-radius:28px;padding:30px 28px 26px;position:relative;box-shadow:var(--shadow-lg)}
+    border:none;border-radius:20px;padding:30px 28px 26px;position:relative;box-shadow:var(--shadow-lg)}
   /* Croix de fermeture, cohérente sur tous les pop-ups skippables (pas
      sur l'onboarding, dont l'étape de création n'est pas contournable). */
   .sheetClose{position:absolute;top:16px;right:16px;width:28px;height:28px;background:var(--card-alt);
@@ -197,7 +207,7 @@ window.__VOTE_EARLY__ = (async function(){
     display:flex;align-items:center;justify-content:center;font-family:inherit;padding:0}
   .sheetClose:hover{background:var(--accent-soft);color:var(--accent)}
   .sheet .eyebrow{font-size:11px;font-weight:700;color:var(--accent)}
-  .sheet h2{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','SF Pro Display',system-ui,'Inter',Helvetica,Arial,sans-serif;font-weight:800;font-size:25px;line-height:1.2;
+  .sheet h2{font-family:var(--font-d);font-weight:800;font-size:25px;line-height:1.2;
     margin:8px 0 0;letter-spacing:-.02em}
   .sheet p.lead{font-size:13px;line-height:1.6;color:var(--ink-soft);margin:10px 0 0}
   .field{margin-top:20px}
@@ -219,7 +229,7 @@ window.__VOTE_EARLY__ = (async function(){
   .obChip button{background:none;border:none;color:var(--accent);cursor:pointer;font-size:14px;padding:0;opacity:.7}
   .sheet .actions{display:flex;gap:10px;margin-top:28px}
   .sheet .actions.col{flex-direction:column}
-  .btn{flex:1;padding:15px 18px;border:none;cursor:pointer;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','SF Pro Display',system-ui,'Inter',Helvetica,Arial,sans-serif;
+  .btn{flex:1;padding:15px 18px;border:none;cursor:pointer;font-family:var(--font-s);
     font-weight:700;font-size:14.5px;text-align:center;border-radius:var(--r-pill);transition:transform .12s,opacity .15s}
   .btn:active{transform:scale(.97)}
   .btn.primary{background:var(--accent);color:#fff}
@@ -254,8 +264,8 @@ window.__VOTE_EARLY__ = (async function(){
   /* Teaser "Populous Local" dans le profil — pas de vrai paiement (pas de
      serveur dans cette app), donc un CTA d'intérêt plutôt qu'un faux
      bouton d'abonnement, voir #localBtn. */
-  .localCard{position:relative;margin-top:20px;padding:20px 20px 18px;border-radius:22px;overflow:hidden;
-    background:linear-gradient(135deg,#1B2E7A 0%,#2B48A5 55%,#3E5FC9 100%);color:#fff;box-shadow:var(--shadow-lg)}
+  .localCard{position:relative;margin-top:20px;padding:20px 20px 18px;border-radius:16px;overflow:hidden;
+    background:linear-gradient(135deg,#050047 0%,var(--accent) 55%,var(--accent-hi) 100%);color:#fff;box-shadow:var(--shadow-lg)}
   .localBadge{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:999px;
     background:rgba(255,255,255,.16);font-size:10px;font-weight:800;letter-spacing:.03em;
     text-transform:uppercase;color:#BFD0FF}
@@ -290,8 +300,8 @@ window.__VOTE_EARLY__ = (async function(){
      vraie coupure de couleur visible au bord pendant le glissement. */
   #introPopup .introSlide{flex:0 0 100%;box-sizing:border-box;padding:44px 26px 8px;text-align:center;
     display:flex;flex-direction:column;align-items:center;min-height:340px;background:var(--card)}
-  #introPopup .introSlide .ic{font-size:52px;margin-bottom:20px}
-  #introPopup .introSlide h2{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','SF Pro Display',system-ui,'Inter',Helvetica,Arial,sans-serif;
+  #introPopup .introSlide .ic{font-size:52px;margin-bottom:20px;color:var(--accent)}
+  #introPopup .introSlide h2{font-family:var(--font-d);
     font-weight:800;font-size:22px;margin:0 0 12px;letter-spacing:-.02em;color:var(--ink)}
   #introPopup .introSlide.welcome h2{font-size:25px}
   #introPopup .introSlide p{font-size:13.5px;line-height:1.6;color:var(--ink-soft);margin:0;max-width:300px}
@@ -358,8 +368,8 @@ window.__VOTE_EARLY__ = (async function(){
     display:flex;
     /* Filigrane tricolore, du bleu au rouge en dégradé progressif façon
        drapeau français, pour que la barre ressorte davantage du fond. */
-    background:linear-gradient(90deg,#BBD0F7 0%,#FFFFFF 50%,#F6C2C2 100%);
-    border-top:none;border-radius:24px;
+    background:linear-gradient(90deg,#C4C4F0 0%,#FFFFFF 50%,#F6C2C2 100%);
+    border-top:none;border-radius:18px;
     padding:8px 6px;box-shadow:var(--shadow-lg);max-width:520px;margin:0 auto}
   /* Glisse d'un onglet à l'autre (translateX en % d'elle-même, un cran
      par onglet) plutôt que de réapparaître ailleurs — voir NAV_ORDRE et
@@ -373,20 +383,21 @@ window.__VOTE_EARLY__ = (async function(){
   .navBtn{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;
     padding:8px 2px;background:none;border:none;color:var(--dim);cursor:pointer;border-radius:16px;
     transition:color .15s}
-  .navBtn .ni{font-size:18px;line-height:1;filter:grayscale(1) opacity(.55)}
-  /* En dehors de .ni : le filtre grayscale du bouton inactif s'appliquerait
-     sinon aussi au point, qui doit rester visible même quand l'onglet
-     n'est pas sélectionné — c'est justement le but du badge. */
+  /* SVG (stroke=currentColor) plutôt qu'émoji : la couleur suit
+     directement .navBtn/.navBtn.on, plus besoin du filtre grayscale
+     qu'un émoji (toujours en couleurs propres) demandait pour s'éteindre
+     à l'état inactif. */
+  .navBtn .ni{font-size:18px;line-height:1;opacity:.65}
   .navDot{position:absolute;top:4px;right:calc(50% - 19px);width:8px;height:8px;border-radius:50%;
     background:var(--accent);box-shadow:0 0 0 2px var(--card)}
   .navDot[hidden]{display:none}
   .navBtn .nl{font-size:9px;font-weight:700;letter-spacing:.01em}
   .navBtn.on{color:var(--accent)}
-  .navBtn.on .ni{filter:none}
+  .navBtn.on .ni{opacity:1}
 
   .dashHead{max-width:640px;margin:10px auto 20px}
   .dashHead .eyebrow{font-size:11px;font-weight:700;color:var(--accent)}
-  .dashHead h1{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','SF Pro Display',system-ui,'Inter',Helvetica,Arial,sans-serif;font-weight:800;font-size:30px;margin:6px 0 0;letter-spacing:-.02em}
+  .dashHead h1{font-family:var(--font-d);font-weight:800;font-size:30px;margin:6px 0 0;letter-spacing:-.02em}
 
   .refJourItem{background:var(--card-alt);border-radius:16px;padding:14px 16px;margin-top:12px}
   .refJourItem:first-of-type{margin-top:18px}
@@ -404,22 +415,22 @@ window.__VOTE_EARLY__ = (async function(){
   /* Présidentielle 2027 : bannière la plus mise en avant de l'accueil,
      volontairement un cran au-dessus du dernier vote. */
   .presiHeroCard{display:block;width:100%;max-width:640px;margin:0 auto 14px;padding:30px 28px;
-    border:none;border-radius:28px;text-align:left;cursor:pointer;font:inherit;
-    background:linear-gradient(135deg,#19273C 0%,#25406B 100%);color:#fff;box-shadow:var(--shadow-lg);
+    border:none;border-radius:16px;text-align:left;cursor:pointer;font:inherit;
+    background:linear-gradient(135deg,#050047 0%,var(--accent) 100%);color:#fff;box-shadow:var(--shadow-lg);
     transition:transform .15s,box-shadow .15s}
-  .presiHeroCard:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(25,39,60,.28)}
+  .presiHeroCard:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(0,0,60,.28)}
   .presiHeroCard:active{transform:scale(.98)}
   .presiHeroCard .phTop{display:flex;align-items:center;gap:8px}
   .presiHeroCard .phFlag{font-size:22px;line-height:1}
   .presiHeroCard .phEyebrow{font-size:11px;font-weight:700;letter-spacing:.02em;color:#BFD0FF;text-transform:uppercase}
-  .presiHeroCard .phTitle{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','SF Pro Display',system-ui,'Inter',Helvetica,Arial,sans-serif;
+  .presiHeroCard .phTitle{font-family:var(--font-d);
     font-weight:800;font-size:24px;line-height:1.3;margin-top:12px;color:#fff;
     display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
   .presiHeroCard .phCta{margin-top:16px;font-size:12.5px;font-weight:700;color:#fff;opacity:.85}
 
   /* Dernier vote : nettement réduit, la présidentielle prend le dessus. */
-  .voteCard{position:relative;max-width:640px;margin:0 auto 18px;padding:16px 18px;border:none;border-radius:18px;
-    background:linear-gradient(135deg,var(--accent) 0%,#1B2E7A 100%);color:#fff;box-shadow:var(--shadow)}
+  .voteCard{position:relative;max-width:640px;margin:0 auto 18px;padding:16px 18px;border:none;border-radius:14px;
+    background:linear-gradient(135deg,var(--accent) 0%,#050047 100%);color:#fff;box-shadow:var(--shadow)}
   .voteCard .eyebrow{font-size:10px;font-weight:700;color:#BFD0FF}
   /* Tampon façon encreur : incliné, double contour, couleurs reprises de
      VOTE_COLORS (éclaircies pour rester lisibles sur le fond sombre). */
@@ -428,7 +439,7 @@ window.__VOTE_EARLY__ = (async function(){
     transform:rotate(6deg);border:2px solid;background:rgba(255,255,255,.06)}
   .voteStamp.adopte{color:#4ADE9C;border-color:#4ADE9C}
   .voteStamp.rejete{color:#FF9166;border-color:#FF9166}
-  .voteCard h2{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','SF Pro Display',system-ui,'Inter',Helvetica,Arial,sans-serif;
+  .voteCard h2{font-family:var(--font-d);
     font-weight:800;font-size:15px;margin:5px 0 0;line-height:1.35;color:#fff}
   .voteCard p{font-size:11.5px;line-height:1.5;color:#C9D5F5;margin:6px 0 0}
   .voteCard .actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
@@ -438,25 +449,25 @@ window.__VOTE_EARLY__ = (async function(){
   .voteCard .m{color:#fff}
 
   .boussoleTile{display:flex;align-items:center;gap:14px;width:100%;max-width:640px;margin:0 auto 12px;
-    padding:18px 20px;border:none;border-radius:22px;text-align:left;cursor:pointer;font:inherit;
-    background:linear-gradient(135deg,#6A3FA0 0%,#3A2160 100%);color:#fff;box-shadow:var(--shadow-lg);
+    padding:18px 20px;border:none;border-radius:16px;text-align:left;cursor:pointer;font:inherit;
+    background:linear-gradient(135deg,#6A3FA0 0%,#3A2160 100%);color:#fff;box-shadow:var(--shadow);
     transition:transform .15s,box-shadow .15s}
   .boussoleTile:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(58,33,96,.28)}
   .boussoleTile:active{transform:scale(.98)}
   .boussoleTile .bt-ic{font-size:26px;flex:0 0 auto}
-  .boussoleTile .bt-tt{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','SF Pro Display',system-ui,'Inter',Helvetica,Arial,sans-serif;
+  .boussoleTile .bt-tt{font-family:var(--font-d);
     font-weight:800;font-size:15px;color:#fff}
   .boussoleTile .bt-ts{font-size:11px;color:rgba(255,255,255,.75);margin-top:3px}
   .bt-badge{font-size:8.5px;font-weight:800;letter-spacing:.03em;text-transform:uppercase;
     background:rgba(255,255,255,.22);padding:2px 7px;border-radius:var(--r-pill);vertical-align:middle;margin-left:2px}
   .bt-badge:empty{display:none}
   .dashGrid{max-width:640px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:12px}
-  .dashTile{grid-column:span 1;padding:20px 18px;background:var(--card);border:none;border-radius:20px;
-    color:var(--ink);text-align:left;cursor:pointer;box-shadow:var(--shadow);transition:transform .15s,box-shadow .15s}
-  .dashTile:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+  .dashTile{grid-column:span 1;padding:20px 18px;background:var(--card);border:1px solid var(--line);
+    border-radius:var(--r-card);color:var(--ink);text-align:left;cursor:pointer;transition:transform .15s,box-shadow .15s}
+  .dashTile:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
   .dashTile:active{transform:scale(.97)}
   .dashTile .ti{font-size:24px;line-height:1}
-  .dashTile .tt{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','SF Pro Display',system-ui,'Inter',Helvetica,Arial,sans-serif;font-weight:700;font-size:15px;margin-top:11px}
+  .dashTile .tt{font-family:var(--font-d);font-weight:700;font-size:15px;margin-top:11px}
   .dashTile .ts{font-size:11px;color:var(--dim);margin-top:3px}
 
   /* ============ avatar : badge global + sélecteur d'onboarding ============ */
@@ -491,7 +502,7 @@ window.__VOTE_EARLY__ = (async function(){
   .refJourRing{position:absolute;inset:0}
   .refJourRing span{position:absolute;left:50%;top:50%;transform-origin:0 0;
     font-size:6.6px;font-weight:800;letter-spacing:.01em;color:var(--accent);line-height:1}
-  .refJourFab .refJourFabIc{position:relative;font-size:18px;pointer-events:none}
+  .refJourFab .refJourFabIc{position:relative;font-size:18px;pointer-events:none;color:var(--accent)}
 
   .avPicker{display:flex;align-items:center;gap:14px}
   .avPreview{width:64px;height:64px;border-radius:50%;flex:0 0 auto;overflow:hidden;background:var(--card-alt)}
@@ -515,8 +526,8 @@ window.__VOTE_EARLY__ = (async function(){
   /* Décomptes du Calendrier 2027 — dates officielles seulement, voir
      CALENDRIER_ECHEANCES. Rien d'autre dans cet onglet tant qu'une
      candidature n'est pas officiellement déclarée. */
-  .calCard{padding:16px 18px;background:var(--card);border:none;border-radius:18px;
-    box-shadow:var(--shadow);display:flex;align-items:center;gap:14px}
+  .calCard{padding:16px 18px;background:var(--card);border:1px solid var(--line);border-radius:var(--r-card);
+    display:flex;align-items:center;gap:14px}
   .calCard .ic{font-size:24px;flex:0 0 auto}
   .calCard .txt{flex:1;min-width:0}
   .calCard .lbl{font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.02em}
@@ -525,7 +536,7 @@ window.__VOTE_EARLY__ = (async function(){
     font-variant-numeric:tabular-nums;color:#D6293E}
   .calCard .compte .jh{font-weight:800;font-size:19px;line-height:1.2;letter-spacing:-.01em}
   .calCard .compte .ms{font-weight:700;font-size:13px;line-height:1.3;margin-top:1px;opacity:.9}
-  .dRow{padding:16px 18px;background:var(--card);border:none;border-radius:18px;cursor:pointer;box-shadow:var(--shadow);
+  .dRow{padding:16px 18px;background:var(--card);border:1px solid var(--line);border-radius:var(--r-card);cursor:pointer;
     transition:transform .12s}
   .dRow:active{transform:scale(.98)}
   .dRow .k{font-size:10px;font-weight:700;color:var(--dim);
@@ -534,7 +545,7 @@ window.__VOTE_EARLY__ = (async function(){
   .dRow .badge{font-size:9.5px;font-weight:700;padding:3px 9px;border-radius:var(--r-pill);flex:0 0 auto}
   .emptyState{max-width:520px;margin:50px auto;text-align:center;padding:0 20px}
   .emptyState .ic{font-size:34px;opacity:.5}
-  .emptyState h3{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','SF Pro Display',system-ui,'Inter',Helvetica,Arial,sans-serif;font-weight:800;font-size:17px;margin:16px 0 0}
+  .emptyState h3{font-family:var(--font-d);font-weight:800;font-size:17px;margin:16px 0 0}
   .emptyState p{font-size:13px;color:var(--dim);line-height:1.65;margin:8px 0 0}
 
   /* Filigrane de fond, en test sur tous les écrans (pas seulement
@@ -545,7 +556,7 @@ window.__VOTE_EARLY__ = (async function(){
      positionné du même parent, même à z-index égal ou inférieur. */
   .presiWatermark{position:fixed;top:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;
     overflow:hidden;pointer-events:none;z-index:0;writing-mode:vertical-rl;
-    font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','SF Pro Display',system-ui,'Inter',Helvetica,Arial,sans-serif;
+    font-family:var(--font-d);
     font-weight:800;font-size:clamp(60px,14vh,200px);letter-spacing:-.03em;color:var(--ink);
     opacity:.08;white-space:nowrap}
   .zTop{position:relative;z-index:1}
@@ -682,7 +693,7 @@ window.__VOTE_EARLY__ = (async function(){
      placerTexteRefJour() plus bas. ============ -->
 <button class="refJourFab" id="acRefJour" type="button" aria-label="La Ref du jour">
   <div class="refJourRing" id="refJourRing" aria-hidden="true"></div>
-  <span class="refJourFabIc" aria-hidden="true">🗓️</span>
+  <span class="refJourFabIc" aria-hidden="true"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="16" rx="2.2"/><path d="M8 3v4M16 3v4M3.5 10h17"/></svg></span>
 </button>
 
 <!-- ============ onboarding : premier lancement uniquement ============ -->
@@ -783,13 +794,13 @@ window.__VOTE_EARLY__ = (async function(){
     <div class="eyebrow">Bonjour<span id="acHello"></span></div>
   </div>
   <button class="presiHeroCard zTop" data-go="presidentielle">
-    <div class="phTop"><span class="phFlag">🇫🇷</span><span class="phEyebrow">Présidentielle 2027</span></div>
+    <div class="phTop"><span class="phFlag"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21V4"/><path d="M5 4.5c1.8-1.2 3.6-1.2 5.4 0s3.6 1.2 5.4 0c1.2-.8 2.2-.5 3.2 0v9c-1.8 1.2-3.6 1.2-5.4 0s-3.6-1.2-5.4 0c-1.2.8-2.2.5-3.2 0Z"/></svg></span><span class="phEyebrow">Présidentielle 2027</span></div>
     <div class="phTitle" id="acPresiSub">Le fil de la campagne</div>
     <div class="phCta">Suivre la campagne →</div>
   </button>
   <div id="acToday" class="voteCard zTop"></div>
   <button class="boussoleTile zTop" id="acBoussole">
-    <div class="bt-ic">🧭</div>
+    <div class="bt-ic"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m15 9-2.2 5.2L9 15l2.2-5.2Z"/></svg></div>
     <div style="flex:1;text-align:left">
       <div class="bt-tt">La Boussole <span class="bt-badge" id="acBoussoleBadge"></span></div>
       <div class="bt-ts" id="acBoussoleSub">10 vrais scrutins, comparés aux votes réels de chaque groupe</div>
@@ -798,10 +809,10 @@ window.__VOTE_EARLY__ = (async function(){
   </button>
   <div class="dashGrid zTop">
     <button class="dashTile" data-go="historique">
-      <div class="ti">📜</div><div class="tt">Historique</div><div class="ts">Toutes les lois et bilan par groupe</div>
+      <div class="ti"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l4 4v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"/><path d="M14 3v4h4"/><path d="M9 12h6M9 15.5h6M9 8.5h2"/></svg></div><div class="tt">Historique</div><div class="ts">Toutes les lois et bilan par groupe</div>
     </button>
     <button class="dashTile" data-go="avenir">
-      <div class="ti">📅</div><div class="tt">À venir</div><div class="ts">L'agenda de l'Assemblée</div>
+      <div class="ti"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="16" rx="2.2"/><path d="M8 3v4M16 3v4M3.5 10h17"/></svg></div><div class="tt">À venir</div><div class="ts">L'agenda de l'Assemblée</div>
     </button>
   </div>
 </div>
@@ -859,10 +870,10 @@ window.__VOTE_EARLY__ = (async function(){
 <!-- ============ barre de navigation ============ -->
 <nav id="navbar">
   <div id="navIndicator" aria-hidden="true"></div>
-  <button class="navBtn on" data-go="accueil"><span class="ni">🏠</span><span class="nl">Accueil</span></button>
-  <button class="navBtn" data-go="historique"><span class="ni">📜</span><span class="nl">Historique</span></button>
-  <button class="navBtn" data-go="avenir"><span class="ni">📅</span><span class="nl">À venir</span></button>
-  <button class="navBtn" data-go="presidentielle"><span class="ni">🇫🇷</span><span class="navDot" id="navDotPresi" hidden></span><span class="nl">2027</span></button>
+  <button class="navBtn on" data-go="accueil"><span class="ni"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11.5 12 4l8 7.5"/><path d="M6 10v9a1 1 0 0 0 1 1h3v-5.5h4V20h3a1 1 0 0 0 1-1v-9"/></svg></span><span class="nl">Accueil</span></button>
+  <button class="navBtn" data-go="historique"><span class="ni"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l4 4v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"/><path d="M14 3v4h4"/><path d="M9 12h6M9 15.5h6M9 8.5h2"/></svg></span><span class="nl">Historique</span></button>
+  <button class="navBtn" data-go="avenir"><span class="ni"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="16" rx="2.2"/><path d="M8 3v4M16 3v4M3.5 10h17"/></svg></span><span class="nl">À venir</span></button>
+  <button class="navBtn" data-go="presidentielle"><span class="ni"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21V4"/><path d="M5 4.5c1.8-1.2 3.6-1.2 5.4 0s3.6 1.2 5.4 0c1.2-.8 2.2-.5 3.2 0v9c-1.8 1.2-3.6 1.2-5.4 0s-3.6-1.2-5.4 0c-1.2.8-2.2.5-3.2 0Z"/></svg></span><span class="navDot" id="navDotPresi" hidden></span><span class="nl">2027</span></button>
   <button class="navBtn" id="navProfil" aria-label="Mon profil"><span class="ni avSlot" id="navAvatar"></span><span class="nl">Profil</span></button>
 </nav>
 
@@ -968,6 +979,21 @@ const MODES = [
 ];
 
 let mode="vote", filterGroup=null, selected=null, panelOpen=true;
+
+/* ---------- icônes : traits simples (stroke=currentColor), pas d'émoji —
+   dimensionnées en "1em" pour suivre le font-size de leur conteneur,
+   exactement comme le faisaient les émojis qu'elles remplacent. ---------- */
+const ICONS = {
+  archive: `<svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l4 4v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"/><path d="M14 3v4h4"/><path d="M9 12h6M9 15.5h6M9 8.5h2"/></svg>`,
+  calendar: `<svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="16" rx="2.2"/><path d="M8 3v4M16 3v4M3.5 10h17"/></svg>`,
+  flag: `<svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21V4"/><path d="M5 4.5c1.8-1.2 3.6-1.2 5.4 0s3.6 1.2 5.4 0c1.2-.8 2.2-.5 3.2 0v9c-1.8 1.2-3.6 1.2-5.4 0s-3.6-1.2-5.4 0c-1.2.8-2.2.5-3.2 0Z"/></svg>`,
+  compass: `<svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m15 9-2.2 5.2L9 15l2.2-5.2Z"/></svg>`,
+  landmark: `<svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"/><path d="M4 21V10M9 21V10M15 21V10M20 21V10"/><path d="M2.5 10 12 4l9.5 6Z"/></svg>`,
+  star: `<svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5 14 9l5.5.4-4.3 3.6L16.5 19 12 15.9 7.5 19l1.3-6-4.3-3.6L10 9Z"/></svg>`,
+  flame: `<svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21c-3.5 0-6-2.4-6-5.8 0-2.6 1.7-4.4 2.8-6.6.6-1.2.8-2.4.6-3.6 2 .8 3.4 2.6 3.6 4.6.9-1 1.2-2.4 1-3.6 2.4 1.4 4 4 4 7C18 18.5 15.5 21 12 21Z"/></svg>`,
+  pin: `<svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.3"/></svg>`,
+  chart: `<svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M12 20V4M20 20v-7"/><path d="M2.5 20h19"/></svg>`,
+};
 
 /* ---------- vote réel du jour, chargé en direct depuis le dépôt ---------- */
 // Un seul endroit à changer si le dépôt est renommé ou déplacé.
@@ -2090,13 +2116,13 @@ function todayStr(){ return new Date().toISOString().slice(0,10); }
    ============================================================ */
 const INTRO_KEY = "populous_intro_vu";
 const INTRO_SLIDES = [
-  { cls:"welcome", ic:"🇫🇷", titre:"Bienvenue sur Populous",
+  { cls:"welcome", ic:ICONS.flag, titre:"Bienvenue sur Populous",
     texte:"Chaque jour, l'Assemblée nationale vote des lois qui te concernent mais suivre ce qui s'y passe réellement est presque impossible. Populous existe pour te montrer les faits, sans filtre." },
-  { ic:"📜", titre:"Toute l'actualité politique",
+  { ic:ICONS.archive, titre:"Toute l'actualité politique",
     texte:"Retrouve l'historique de toutes les lois votées, l'agenda à venir de l'Assemblée, et toute la présidentielle 2027 : actu, sondages et calendrier officiel." },
-  { ic:"🧭", titre:"Teste tes propres opinions",
+  { ic:ICONS.compass, titre:"Teste tes propres opinions",
     texte:"La Boussole te compare à dix vrais scrutins pour voir quel groupe partage le plus tes positions. Le Récap te montre, thème par thème, comment chaque groupe a réellement voté — jamais une position devinée." },
-  { ic:"🗺️", titre:"Le vote de ton député",
+  { ic:ICONS.pin, titre:"Le vote de ton député",
     texte:"Découvre qui sont nos députés, ce qu'ils votent et ce que ça change réellement pour toi." },
 ];
 let introIndex = 0, introDragStartX = 0, introDragStartT = 0, introDragDx = 0, introDragging = false;
@@ -2741,7 +2767,7 @@ function rendreHistorique(){
   rendreFiltreStatut("#histFiltreStatut", histData, histStatut, s => { histStatut = s; rendreHistorique(); }, "Résultats");
   rendreFiltres("#histFiltres", histData, histTheme, t => { histTheme = t; rendreHistorique(); }, "Secteurs");
   const vues = filtrerParStatut(filtrerParTheme(histData, histTheme), histStatut);
-  $("#histList").innerHTML = vues.length ? vues.map(r => histRow(r)).join("") : videSelection("📜");
+  $("#histList").innerHTML = vues.length ? vues.map(r => histRow(r)).join("") : videSelection(ICONS.archive);
   $("#histList").querySelectorAll(".dRow").forEach((el,i)=> wireShare(el, histShareText(vues[i])));
 }
 
@@ -2769,7 +2795,7 @@ function rendreAvenir(){
         </div>
         <div class="t">${esc(r.ordre_du_jour)}</div>
         ${shareRowHTML()}
-      </div>`).join("") : videSelection("📅");
+      </div>`).join("") : videSelection(ICONS.calendar);
   $("#avenirList").querySelectorAll(".dRow").forEach((el,i)=> wireShare(el, avenirShareText(vues[i])));
 }
 
@@ -2789,13 +2815,13 @@ async function loadHistorique(){
     // L'index n'existe pas encore côté pipeline : on retombe honnêtement sur
     // le seul scrutin qu'on connaît déjà, plutôt que de prétendre à un vide.
     el.innerHTML = histRow(voteData) + `
-      <div class="emptyState"><div class="ic">📜</div>
+      <div class="emptyState"><div class="ic">${ICONS.archive}</div>
         <h3>L'archive complète arrive bientôt</h3>
         <p>Le pipeline ne construit pas encore d'index consultable jour par jour — pour l'instant, seul le dernier vote connu est listé ici.</p>
       </div>`;
     wireShare(el.querySelector(".dRow"), histShareText(voteData));
   } else {
-    el.innerHTML = `<div class="emptyState"><div class="ic">📜</div>
+    el.innerHTML = `<div class="emptyState"><div class="ic">${ICONS.archive}</div>
       <h3>Historique indisponible</h3><p>Impossible de joindre le dépôt de données pour l'instant.</p></div>`;
   }
 }
@@ -2834,7 +2860,7 @@ async function loadAvenir(){
     avenirData = rows.filter(r => r.ordre_du_jour);
     rendreAvenir();
   } else {
-    el.innerHTML = `<div class="emptyState"><div class="ic">📅</div>
+    el.innerHTML = `<div class="emptyState"><div class="ic">${ICONS.calendar}</div>
       <h3>Pas d'agenda publié pour l'instant</h3>
       <p>La feuille verte est mise à jour chaque semaine après la Conférence des présidents — souvent vide pendant les périodes de trêve parlementaire.</p></div>`;
   }
@@ -2926,13 +2952,13 @@ async function renderActu(){
   const articles = await loadActu();
   if(presiTab !== "actu") return; // l'utilisateur a changé d'onglet entre-temps
   if(!articles){
-    el.innerHTML = `<div class="emptyState"><div class="ic">🇫🇷</div>
+    el.innerHTML = `<div class="emptyState"><div class="ic">${ICONS.flag}</div>
       <h3>Fil indisponible</h3>
       <p>Impossible de joindre le fil d'actualité pour l'instant — réessaie un peu plus tard.</p></div>`;
     return;
   }
   if(!articles.length){
-    el.innerHTML = `<div class="emptyState"><div class="ic">🇫🇷</div>
+    el.innerHTML = `<div class="emptyState"><div class="ic">${ICONS.flag}</div>
       <h3>Rien de nouveau</h3>
       <p>Aucun article sur la présidentielle 2027 dans les dernières heures chez les rédactions suivies.</p></div>`;
     return;
@@ -3006,7 +3032,7 @@ async function renderSondages(){
   const d = await loadSondages();
   if(presiTab !== "sondage") return; // l'utilisateur a changé d'onglet entre-temps
   if(!d || !d.sondages){
-    el.innerHTML = `<div class="emptyState"><div class="ic">📊</div>
+    el.innerHTML = `<div class="emptyState"><div class="ic">${ICONS.chart}</div>
       <h3>Sondages indisponibles</h3>
       <p>Impossible de joindre les données pour l'instant — réessaie un peu plus tard.</p></div>`;
     return;
@@ -3026,7 +3052,7 @@ async function renderSondages(){
 
   const vues = sondageInstitut ? d.sondages.filter(s=>s.institut===sondageInstitut) : d.sondages;
   if(!vues.length){
-    el.innerHTML = `<div class="emptyState"><div class="ic">📊</div>
+    el.innerHTML = `<div class="emptyState"><div class="ic">${ICONS.chart}</div>
       <h3>Rien pour ce filtre</h3><p>Choisis un autre institut, ou reviens à « Tous ».</p></div>`;
     return;
   }
@@ -3286,7 +3312,7 @@ function renderBoussoleResult(){
     <button class="sheetClose" id="bqClose3" aria-label="Fermer">✕</button>
     <div style="text-align:center">
       <div class="eyebrow">Ton résultat</div>
-      <div style="font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,sans-serif;font-weight:800;
+      <div style="font-family:var(--font-d);font-weight:800;
         font-size:44px;letter-spacing:-.02em;margin-top:8px;color:${premier.c}">${premier.pct}%</div>
       <div style="font-size:14px;font-weight:700;margin-top:4px">d'accord avec ${esc(premier.n)}</div>
       <p class="lead">Sur ${qs.length} textes réels tranchés à l'Assemblée nationale.</p>
@@ -3328,13 +3354,13 @@ async function chargerRefsJour(){
   return refsJourCache;
 }
 const REF_JOUR_CATEGORIES = {
-  evenement:  { ic:"🏛️", label:"Grand événement" },
-  naissance:  { ic:"🎂", label:"Naissance" },
-  mort:       { ic:"🕊️", label:"Disparition" },
-  texte:      { ic:"📜", label:"Voté ce jour" },
+  evenement:  { ic:ICONS.landmark, label:"Grand événement" },
+  naissance:  { ic:ICONS.star, label:"Naissance" },
+  mort:       { ic:ICONS.flame, label:"Disparition" },
+  texte:      { ic:ICONS.archive, label:"Voté ce jour" },
 };
 function refJourItemHTML(r){
-  const cat = REF_JOUR_CATEGORIES[r.categorie] || { ic:"🏛️", label:"" };
+  const cat = REF_JOUR_CATEGORIES[r.categorie] || { ic:ICONS.landmark, label:"" };
   const ans = new Date().getFullYear() - r.annee;
   const anciennete = ans <= 0 ? "cette année" : `il y a ${ans} an${ans>1?"s":""}`;
   return `
@@ -3435,7 +3461,7 @@ async function renderRecap(){
   el.innerHTML = `<div style="color:var(--dim);font-size:12px;text-align:center;margin-top:40px">Chargement…</div>`;
   const d = await loadRecapData();
   if(!d){
-    el.innerHTML = `<div class="emptyState"><div class="ic">📜</div>
+    el.innerHTML = `<div class="emptyState"><div class="ic">${ICONS.archive}</div>
       <h3>Récap indisponible</h3>
       <p>Impossible de charger les données pour l'instant — réessaie un peu plus tard.</p></div>`;
     return;
