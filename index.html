@@ -286,9 +286,10 @@ window.__VOTE_EARLY__ = (async function(){
      moins fluide au premier balayage plutôt que plus soigné. */
   #introPopup .sheet{padding:0;overflow:hidden;position:relative;animation:none}
   #introPopup .introTrack{display:flex;transition:transform .32s cubic-bezier(.22,1,.36,1);touch-action:pan-y;will-change:transform}
+  /* Même fond sur les 4 slides — un dégradé réservé à la 1ère créait une
+     vraie coupure de couleur visible au bord pendant le glissement. */
   #introPopup .introSlide{flex:0 0 100%;box-sizing:border-box;padding:44px 26px 8px;text-align:center;
-    display:flex;flex-direction:column;align-items:center;min-height:340px}
-  #introPopup .introSlide.welcome{background:linear-gradient(180deg,var(--accent-soft) 0%,var(--card) 65%)}
+    display:flex;flex-direction:column;align-items:center;min-height:340px;background:var(--card)}
   #introPopup .introSlide .ic{font-size:52px;margin-bottom:20px}
   #introPopup .introSlide h2{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','SF Pro Display',system-ui,'Inter',Helvetica,Arial,sans-serif;
     font-weight:800;font-size:22px;margin:0 0 12px;letter-spacing:-.02em;color:var(--ink)}
@@ -2099,10 +2100,16 @@ const INTRO_SLIDES = [
     texte:"Découvre qui sont nos députés, ce qu'ils votent et ce que ça change réellement pour toi." },
 ];
 let introIndex = 0, introDragStartX = 0, introDragStartT = 0, introDragDx = 0, introDragging = false;
-let introPointerId = null, introRAF = 0;
+let introPointerId = null, introRAF = 0, introLargeur = 0;
 
+// Tout en pixels, jamais en %/calc() : une valeur déjà calculée coûte
+// moins cher à composer à chaque frame qu'une expression que le
+// navigateur recalcule par rapport à la largeur de l'élément.
+function introMesurerLargeur(){
+  introLargeur = $("#introPopup .sheet").getBoundingClientRect().width || introLargeur;
+}
 function introMaj(){
-  $("#introTrack").style.transform = `translate3d(${-introIndex*100}%,0,0)`;
+  $("#introTrack").style.transform = `translate3d(${-introIndex*introLargeur}px,0,0)`;
   $("#introDots").querySelectorAll(".dot").forEach((d,k)=>d.classList.toggle("on", k===introIndex));
   $("#introClose").classList.toggle("show", introIndex === INTRO_SLIDES.length-1);
 }
@@ -2119,7 +2126,7 @@ function introDxAmorti(){
 }
 function introAppliquerDrag(){
   introRAF = 0;
-  $("#introTrack").style.transform = `translate3d(calc(${-introIndex*100}% + ${introDxAmorti()}px),0,0)`;
+  $("#introTrack").style.transform = `translate3d(${-introIndex*introLargeur + introDxAmorti()}px,0,0)`;
 }
 function introPointerMove(e){
   if(!introDragging || e.pointerId !== introPointerId) return;
@@ -2175,11 +2182,11 @@ function renderIntroPopup(){
   $("#introDots").innerHTML = INTRO_SLIDES.map((_,k)=>
     `<button class="dot" type="button" data-i="${k}" aria-label="Étape ${k+1}"></button>`).join("");
   $("#introDots").querySelectorAll(".dot").forEach(d=>{
-    d.onclick = ()=>{ introIndex = +d.dataset.i; introMaj(); };
+    d.onclick = ()=>{ introMesurerLargeur(); introIndex = +d.dataset.i; introMaj(); };
   });
   introIndex = 0;
-  introMaj();
   $("#introTrack").onpointerdown = e=>{
+    introMesurerLargeur();
     introDragging = true; introDragStartX = e.clientX; introDragStartT = Date.now(); introDragDx = 0;
     introPointerId = e.pointerId;
     // Capturer le pointeur évite qu'un geste de scroll natif du navigateur
@@ -2192,7 +2199,12 @@ function renderIntroPopup(){
   window.addEventListener("pointerup", introPointerUp);
   $("#introClose").onclick = fermerIntroPopup;
   $("#introSkip").onclick = fermerIntroPopup;
+  // Mesurer la largeur seulement une fois le pop-up affiché : caché
+  // (display:none), le sheet mesure 0 et le tout premier calage serait
+  // faux tant qu'aucun glissement ou clic ne l'aurait remesuré.
   $("#introPopup").classList.remove("hidden");
+  introMesurerLargeur();
+  introMaj();
 }
 
 async function maybeShowDailyPopup(){
