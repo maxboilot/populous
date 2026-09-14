@@ -30,7 +30,18 @@
   },
   {
     "date": "2026-09-16",
-    "heure": "18:45",
+    "heure": "14:30",
+    "ordre_du_jour": "Examen du texte — Adapter l'autorité judiciaire à la lutte contre les violences sexuelles et intrafamiliales",
+    "themes": [
+      "justice",
+      "securite"
+    ],
+    "dossier": "DLR5L17N54777",
+    "scrutin_annonce": false
+  },
+  {
+    "date": "2026-09-16",
+    "heure": "14:30",
     "ordre_du_jour": "Examen du texte — Apporter une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants",
     "themes": [
       "securite",
