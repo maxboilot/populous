@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-14T10:47:40.073443Z",
+  "generated_at": "2026-09-14T11:41:47.226967Z",
   "source_note": "Dates et faits vérifiés (Légifrance, Assemblée nationale, France Mémoire, INA, Herodote.net, Encyclopædia Universalis). Couverture assumée comme partielle : seuls les jours reposant sur un fait vérifié sont renseignés.",
   "refs": {
     "01-01": [
@@ -780,6 +780,14 @@
         "categorie": "mort",
         "titre": "Mort de Robert Schuman",
         "texte": "Auteur de la déclaration du 9 mai 1950 à l'origine de la construction européenne."
+      }
+    ],
+    "09-14": [
+      {
+        "annee": 1791,
+        "categorie": "evenement",
+        "titre": "Serment de Louis XVI à la Constitution",
+        "texte": "Louis XVI prête serment à la Constitution de 1791 devant l'Assemblée nationale constituante, dans la salle du Manège aux Tuileries — la France devient une monarchie constitutionnelle."
       }
     ],
     "09-20": [
