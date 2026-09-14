@@ -1,0 +1,52 @@
+name: Ref du jour quotidienne
+
+on:
+  schedule:
+    # Vers 1h du matin heure française (00:15 UTC ; ~1h15 en hiver, ~2h15
+    # en été — la précision de l'heure importe peu ici, contrairement au
+    # pipeline de scrutins : c'est un contenu qui change une fois par jour
+    # au plus, pas huit fois, donc pas besoin des mêmes créneaux répétés.
+    - cron: '15 0 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refs-jour
+  cancel-in-progress: false
+
+jobs:
+  construire:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests
+      - name: Frise "Histoire et patrimoine" de l Assemblee nationale
+        run: python construire_refs_jour_an.py
+      - name: Fusionner les sources de la Ref du jour
+        run: python construire_refs_jour.py
+      - name: Committer si changement
+        run: |
+          git config user.name bot-ingestion
+          git config user.email bot@example.invalid
+          git add data/refs_jour_an.json data/refs_jour.json
+          if git diff --cached --quiet; then
+            echo 'Aucune donnee modifiee.'
+            exit 0
+          fi
+          if python3 verif_changement_utile.py; then
+            echo 'Seul l horodatage a change : pas de commit.'
+            exit 0
+          fi
+          git commit -m 'Ref du jour du '$(date -u +%F)
+          for i in 1 2 3 4 5; do
+            git pull --rebase --autostash && git push && exit 0
+            echo "Push echoue (tentative $i/5), nouvel essai..."
+            sleep $((RANDOM % 10 + 5))
+          done
+          echo "Echec apres 5 tentatives."
+          exit 1
