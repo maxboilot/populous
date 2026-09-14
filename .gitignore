@@ -2,6 +2,16 @@
 __pycache__/
 .DS_Store
 
+# Identifiants API (Meta, etc.) : jamais dans le depot.
+.env
+
+# Visuels generes a chaque run de publier_reseaux.py (un par jour et
+# par type) : ephemeres, jamais les memes deux jours de suite, aucun
+# interet a les versionner. Les assets sources (polices, atlas de
+# portraits, logo) restent trackes puisqu'ils sont stables.
+assets_social/20*.png
+assets_social/apercu.png
+
 # Prototype local anterieur au reskin, conserve hors du depot.
 # Supprimable sans risque : reference nulle part.
 carte-vote-en-direct.html

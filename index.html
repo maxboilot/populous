@@ -2307,8 +2307,8 @@ function renderDailyPopupVote(profile){
   $("#dpImpact").onclick = ()=>{ $("#dailyPopup").classList.add("hidden"); openImpactPanel(); };
 }
 
-function actuShareText(a){
-  return `${a.titre} — ${a.source}, ${dateFR(a.date)}.`;
+function actuShareVisuel(a){
+  return { eyebrow: "Actualité", titre: a.titre, texte: `${a.source} · ${dateFR(a.date)}${a.extrait ? " — " + a.extrait : ""}` };
 }
 function renderDailyPopupActu(a){
   $("#dailyPopupSheet").innerHTML = `
@@ -2322,7 +2322,7 @@ function renderDailyPopupActu(a){
     </div>
     <button class="dpLater" id="dpLaterActu" type="button">Plus tard</button>`;
   $("#dpShare").innerHTML = shareRowHTML();
-  wireShare($("#dpShare"), actuShareText(a));
+  wireShare($("#dpShare"), actuShareVisuel(a));
   $("#dpCloseActu").onclick = ()=> $("#dailyPopup").classList.add("hidden");
   $("#dpLaterActu").onclick = ()=> $("#dailyPopup").classList.add("hidden");
 }
@@ -2418,18 +2418,18 @@ async function openImpactPanel(){
   }
   lead.innerHTML = titreSujetGras(voteData.titre);
   $("#impactPanel").classList.remove("hidden");
-  let shareText = `${voteData.titre} — découvre ce que ça change pour toi sur Populous.`;
+  let shareVisuel = { eyebrow: "Impact pour toi", titre: voteData.titre, texte: "Découvre ce que ça change pour toi sur Populous." };
 
   if(!voteData.adopte){
     cards.innerHTML = `<div class="empty">🙂 Scrutin non adopté — pas de changement pour toi !</div>`;
     shareEl.innerHTML = shareRowHTML();
-    wireShare(shareEl, shareText);
+    wireShare(shareEl, shareVisuel);
     return;
   }
   if(!profile || !CHAMPS_PROFIL_PERTINENTS.some(c=>profile[c])){
     cards.innerHTML = `<div class="empty">Complète ton profil pour voir ce qui te concerne précisément.</div>`;
     shareEl.innerHTML = shareRowHTML();
-    wireShare(shareEl, shareText);
+    wireShare(shareEl, shareVisuel);
     return;
   }
 
@@ -2439,7 +2439,7 @@ async function openImpactPanel(){
   if(!donnees || donnees.numero !== voteData.numero || donnees.statut !== "publie"){
     cards.innerHTML = `<div class="empty">Le texte adopté n'est pas encore publié pour ce scrutin — reviens un peu plus tard.</div>`;
     shareEl.innerHTML = shareRowHTML();
-    wireShare(shareEl, shareText);
+    wireShare(shareEl, shareVisuel);
     return;
   }
 
@@ -2455,10 +2455,10 @@ async function openImpactPanel(){
         <div class="art">${esc(e.article || "")}</div>
       </div>`).join("")
       + `<p class="ipDisclaimer">Ceci est une interprétation de tes données personnelles croisées avec les données du scrutin en question.</p>`;
-    shareText = `${voteData.titre} : ${extraits[0].texte}`;
+    shareVisuel = { eyebrow: "Impact pour toi", titre: voteData.titre, texte: extraits[0].texte };
   }
   shareEl.innerHTML = shareRowHTML();
-  wireShare(shareEl, shareText);
+  wireShare(shareEl, shareVisuel);
 }
 $("#ipClose").onclick = ()=>{ $("#impactPanel").classList.add("hidden"); };
 
@@ -2669,17 +2669,161 @@ function toast(msg){
   clearTimeout(toast._h);
   toast._h = setTimeout(()=>t.classList.remove("on"), 2600);
 }
-async function shareItem(text, url){
-  url = url || SITE_URL;
-  if(navigator.share){
-    try{ await navigator.share({ title:"Populous", text, url }); }
-    catch(e){ /* partage annulé par l'utilisateur : rien à faire */ }
-  } else {
-    try{
-      await navigator.clipboard.writeText(text + "\n" + url);
-      toast("Copié — colle-le dans ta story");
-    }catch(e){ toast("Copie impossible sur ce navigateur"); }
+/* ------------------------------------------------------------
+   Visuel de partage — meme gabarit que le pipeline de publication
+   automatique (generer_visuel.py) : fond gris, "Populous" en filigrane
+   vertical (haut en bas), carte blanche arrondie, grands guillemets
+   bleus, "Populous App -> App Store" en pied de page. Dessine sur un
+   <canvas> au lieu d'un fichier Python puisque c'est ici l'appareil de
+   la personne qui genere l'image, pas un cron sur un serveur — mais
+   les memes chiffres (marges, tailles) pour que les deux sources
+   produisent visuellement le meme rendu.
+   ------------------------------------------------------------ */
+const VISUEL_L = 1080, VISUEL_H = 1350;
+function roundRectPath(ctx, x, y, w, h, r){
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.arcTo(x + w, y, x + w, y + h, r);
+  ctx.arcTo(x + w, y + h, x, y + h, r);
+  ctx.arcTo(x, y + h, x, y, r);
+  ctx.arcTo(x, y, x + w, y, r);
+  ctx.closePath();
+}
+function wrapPourLargeur(ctx, texte, largeurMax){
+  const mots = texte.split(/\s+/);
+  const lignes = []; let ligne = "";
+  for(const mot of mots){
+    const essai = (ligne + " " + mot).trim();
+    if(ctx.measureText(essai).width <= largeurMax) ligne = essai;
+    else { if(ligne) lignes.push(ligne); ligne = mot; }
   }
+  if(ligne) lignes.push(ligne);
+  return lignes;
+}
+async function genererVisuelPartage({eyebrow, titre, texte}){
+  if(document.fonts && document.fonts.ready) await document.fonts.ready;
+  const c = document.createElement("canvas");
+  c.width = VISUEL_L; c.height = VISUEL_H;
+  const ctx = c.getContext("2d");
+  const GRIS = "#f3f3f2", ENCRE = "#10193f", BLEU = "#1b3bdb";
+
+  ctx.fillStyle = GRIS;
+  ctx.fillRect(0, 0, VISUEL_L, VISUEL_H);
+
+  // Filigrane "Populous" vertical, lecture de haut en bas, encre a 13%.
+  ctx.save();
+  ctx.font = "800 180px 'Plus Jakarta Sans'";
+  ctx.textBaseline = "middle";
+  ctx.textAlign = "center";
+  ctx.translate(VISUEL_L - 20 - 90, VISUEL_H / 2);
+  ctx.rotate(Math.PI / 2);
+  ctx.globalAlpha = 0.13;
+  ctx.fillStyle = ENCRE;
+  ctx.fillText("Populous", 0, 0);
+  ctx.restore();
+
+  const margeCarte = 96, cx0 = margeCarte, cy0 = 300, cx1 = VISUEL_L - margeCarte, cy1 = VISUEL_H - 300, rayon = 44;
+
+  ctx.save();
+  ctx.shadowColor = "rgba(16,25,63,0.28)";
+  ctx.shadowBlur = 40;
+  ctx.shadowOffsetY = 18;
+  ctx.fillStyle = "#fff";
+  roundRectPath(ctx, cx0, cy0, cx1 - cx0, cy1 - cy0, rayon);
+  ctx.fill();
+  ctx.restore();
+
+  ctx.textBaseline = "top";
+  ctx.textAlign = "left";
+
+  // Grands guillemets bleus encadrant la carte.
+  ctx.fillStyle = BLEU;
+  ctx.font = "800 520px 'Plus Jakarta Sans'";
+  ctx.fillText("“", cx0 - 70, cy0 - 250);
+  const largeurFermant = ctx.measureText("”").width;
+  const yGuillemetFermant = cy1 - 260;
+  ctx.fillText("”", cx1 - largeurFermant + 50, yGuillemetFermant);
+
+  // Contenu de la carte.
+  const pad = 84, innerX0 = cx0 + pad, innerX1 = cx1 - pad;
+  let y = cy0 + 84;
+
+  ctx.fillStyle = BLEU;
+  ctx.font = "700 30px 'Plus Jakarta Sans'";
+  ctx.fillText((eyebrow || "").toUpperCase(), innerX0, y);
+  y += 56;
+
+  let taille = 68, lignesTitre = [], hauteurLigne = 0;
+  for(taille of [68, 58, 50, 44, 40]){
+    ctx.font = `800 ${taille}px 'Plus Jakarta Sans'`;
+    lignesTitre = wrapPourLargeur(ctx, titre, innerX1 - innerX0);
+    hauteurLigne = Math.round(taille * 1.2);
+    if(hauteurLigne * lignesTitre.length <= 330 || taille === 40) break;
+  }
+  ctx.fillStyle = ENCRE;
+  ctx.font = `800 ${taille}px 'Plus Jakarta Sans'`;
+  for(const ligne of lignesTitre){ ctx.fillText(ligne, innerX0, y); y += hauteurLigne; }
+  y += 30;
+
+  if(texte){
+    ctx.font = "500 32px 'Plus Jakarta Sans'";
+    ctx.fillStyle = "#4a5578";
+    let lignesTexte = wrapPourLargeur(ctx, texte, innerX1 - innerX0);
+    const maxLignes = Math.max(1, Math.floor((yGuillemetFermant - 20 - y) / 46));
+    if(lignesTexte.length > maxLignes){
+      lignesTexte = lignesTexte.slice(0, maxLignes);
+      lignesTexte[lignesTexte.length - 1] = lignesTexte[lignesTexte.length - 1].replace(/\s+$/, "") + "…";
+    }
+    for(const ligne of lignesTexte){ ctx.fillText(ligne, innerX0, y); y += 46; }
+  }
+
+  // Pied de page : "Populous App -> App Store", petit, en bas a gauche.
+  ctx.fillStyle = ENCRE;
+  ctx.font = "700 22px 'Plus Jakarta Sans'";
+  const gauche = "Populous App", droite = "App Store";
+  const lGauche = ctx.measureText(gauche).width;
+  const largeurFleche = 34;
+  let x = margeCarte;
+  const yPied = VISUEL_H - 64;
+  ctx.fillText(gauche, x, yPied);
+  x += lGauche + 16;
+  const yMid = yPied + 15;
+  ctx.strokeStyle = ENCRE; ctx.lineWidth = 3; ctx.lineCap = "round";
+  ctx.beginPath(); ctx.moveTo(x, yMid); ctx.lineTo(x + largeurFleche, yMid); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(x + largeurFleche - 10, yMid - 9); ctx.lineTo(x + largeurFleche, yMid); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(x + largeurFleche - 10, yMid + 9); ctx.lineTo(x + largeurFleche, yMid); ctx.stroke();
+  x += largeurFleche + 16;
+  ctx.fillText(droite, x, yPied);
+
+  return new Promise(resolve => c.toBlob(resolve, "image/png"));
+}
+
+async function shareItem({eyebrow, titre, texte, url}){
+  url = url || SITE_URL;
+  const legende = texte ? `${titre}\n\n${texte}` : titre;
+  let fichier = null;
+  try{
+    const blob = await genererVisuelPartage({ eyebrow: eyebrow || "Populous", titre, texte });
+    fichier = new File([blob], "populous.png", { type: "image/png" });
+  }catch(e){ /* le visuel est un plus, pas un bloquant : on degrade en texte seul */ }
+
+  if(fichier && navigator.canShare && navigator.canShare({ files: [fichier] })){
+    try{ await navigator.share({ files: [fichier], title: "Populous", text: legende }); return; }
+    catch(e){ return; /* partage annule par la personne : rien a faire */ }
+  }
+  if(navigator.share){
+    try{ await navigator.share({ title: "Populous", text: legende, url }); return; }
+    catch(e){ return; }
+  }
+  try{
+    if(fichier && navigator.clipboard && navigator.clipboard.write && window.ClipboardItem){
+      await navigator.clipboard.write([new ClipboardItem({ "image/png": fichier })]);
+      toast("Image copiée — colle-la dans ta story");
+    } else {
+      await navigator.clipboard.writeText(legende + "\n" + url);
+      toast("Copié — colle-le dans ta story");
+    }
+  }catch(e){ toast("Partage impossible sur ce navigateur"); }
 }
 function shareRowHTML(){
   return `<div class="shareRow">
@@ -2687,10 +2831,10 @@ function shareRowHTML(){
     <button type="button" class="shareBtn" data-net="tiktok" aria-label="Partager sur TikTok">${ICON_TT}</button>
   </div>`;
 }
-function wireShare(container, text, url){
+function wireShare(container, visuel){
   if(!container) return;
   container.querySelectorAll(".shareBtn").forEach(b=>{
-    b.onclick = e=>{ e.preventDefault(); e.stopPropagation(); shareItem(text, url); };
+    b.onclick = e=>{ e.preventDefault(); e.stopPropagation(); shareItem(visuel); };
   });
 }
 
@@ -2776,12 +2920,12 @@ const STATUT_INFO = {
 function statutDe(r){
   return r.statut || (r.adopte ? "adopte" : "rejete");
 }
-function histShareText(r){
-  const label = STATUT_INFO[statutDe(r)].label.toLowerCase();
-  return `${r.titre} — ${label} le ${dateFR(r.date)} à l'Assemblée nationale.`;
+function histShareVisuel(r){
+  const label = STATUT_INFO[statutDe(r)].label;
+  return { eyebrow: label, titre: r.titre, texte: `Voté le ${dateFR(r.date)} à l'Assemblée nationale.` };
 }
-function avenirShareText(r){
-  return `${r.ordre_du_jour} — inscrit à l'agenda de l'Assemblée nationale${r.date?" le "+dateFR(r.date):""}.`;
+function avenirShareVisuel(r){
+  return { eyebrow: "À venir", titre: r.ordre_du_jour, texte: `Inscrit à l'agenda de l'Assemblée nationale${r.date ? " le " + dateFR(r.date) : ""}.` };
 }
 
 function rendreHistorique(){
@@ -2789,7 +2933,7 @@ function rendreHistorique(){
   rendreFiltres("#histFiltres", histData, histTheme, t => { histTheme = t; rendreHistorique(); }, "Secteurs");
   const vues = filtrerParStatut(filtrerParTheme(histData, histTheme), histStatut);
   $("#histList").innerHTML = vues.length ? vues.map(r => histRow(r)).join("") : videSelection(ICONS.archive);
-  $("#histList").querySelectorAll(".dRow").forEach((el,i)=> wireShare(el, histShareText(vues[i])));
+  $("#histList").querySelectorAll(".dRow").forEach((el,i)=> wireShare(el, histShareVisuel(vues[i])));
 }
 
 let histTab = "lois";
@@ -2817,7 +2961,7 @@ function rendreAvenir(){
         <div class="t">${esc(r.ordre_du_jour)}</div>
         ${shareRowHTML()}
       </div>`).join("") : videSelection(ICONS.calendar);
-  $("#avenirList").querySelectorAll(".dRow").forEach((el,i)=> wireShare(el, avenirShareText(vues[i])));
+  $("#avenirList").querySelectorAll(".dRow").forEach((el,i)=> wireShare(el, avenirShareVisuel(vues[i])));
 }
 
 async function loadHistorique(){
@@ -2840,7 +2984,7 @@ async function loadHistorique(){
         <h3>L'archive complète arrive bientôt</h3>
         <p>Le pipeline ne construit pas encore d'index consultable jour par jour — pour l'instant, seul le dernier vote connu est listé ici.</p>
       </div>`;
-    wireShare(el.querySelector(".dRow"), histShareText(voteData));
+    wireShare(el.querySelector(".dRow"), histShareVisuel(voteData));
   } else {
     el.innerHTML = `<div class="emptyState"><div class="ic">${ICONS.archive}</div>
       <h3>Historique indisponible</h3><p>Impossible de joindre le dépôt de données pour l'instant.</p></div>`;
@@ -3325,7 +3469,7 @@ function renderBoussoleResult(){
     .map(g => ({...g, pct: Math.round(totaux[g.s].reduce((a,b)=>a+b,0) / totaux[g.s].length)}))
     .sort((a,b) => b.pct - a.pct);
   const premier = classement[0];
-  const texte = `Je suis à ${premier.pct}% d'accord avec ${premier.n} sur ${qs.length} vrais votes de l'Assemblée nationale. Et toi ?`;
+  const texte = `Sur ${qs.length} vrais votes de l'Assemblée nationale. Et toi ?`;
   sauverResultatBoussole(premier);
   renderAccueil(); // met à jour la tuile Boussole avec ce nouveau résultat
 
@@ -3351,7 +3495,10 @@ function renderBoussoleResult(){
     <div id="bqShare" style="margin-top:22px"></div>
     <div class="actions"><button class="btn ghost" id="bqRestart" style="flex:1">Refaire le test</button></div>`;
   $("#bqShare").innerHTML = shareRowHTML();
-  wireShare($("#bqShare"), texte, urlPartage("boussole", { g: premier.s, pct: premier.pct }));
+  wireShare($("#bqShare"), {
+    eyebrow: "Boussole politique", titre: `${premier.pct}% d'accord avec ${premier.n}`, texte,
+    url: urlPartage("boussole", { g: premier.s, pct: premier.pct }),
+  });
   $("#bqRestart").onclick = openBoussole;
   $("#bqClose3").onclick = closeBoussole;
 }
@@ -3413,8 +3560,11 @@ async function ouvrirRefJour(){
   $("#refJourClose").onclick = ()=>{ $("#refJourPopup").classList.add("hidden"); };
   if(entrees.length){
     $("#refJourShare").innerHTML = shareRowHTML();
-    const texte = entrees.map(r => `${r.titre} (${r.annee}) — ${r.texte}`).join("\n\n");
-    wireShare($("#refJourShare"), texte, SITE_URL);
+    const premiere = entrees[0];
+    wireShare($("#refJourShare"), {
+      eyebrow: "La Ref du jour", titre: `${dateTexte} — ${premiere.titre} (${premiere.annee})`, texte: premiere.texte,
+      url: SITE_URL,
+    });
   }
 }
 $("#acRefJour").onclick = ouvrirRefJour;
@@ -3548,8 +3698,11 @@ function renderRecapTrail(d){
   });
   if(termine){
     $("#recapShare").innerHTML = shareRowHTML();
-    wireShare($("#recapShare"), `Le bilan de vote réel de ${groupe.n} à l'Assemblée nationale, thème par thème, sur Populous.`,
-      urlPartage("recap", { g: groupe.s }));
+    wireShare($("#recapShare"), {
+      eyebrow: "Récap", titre: `Le bilan de vote de ${groupe.n}`,
+      texte: "Comment ce groupe a réellement voté à l'Assemblée nationale, thème par thème.",
+      url: urlPartage("recap", { g: groupe.s }),
+    });
   }
 }
 
