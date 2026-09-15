@@ -36,6 +36,7 @@ import json
 import os
 import random
 import sys
+import time
 from pathlib import Path
 
 import requests
@@ -199,6 +200,16 @@ CHOIX = {
 }
 
 
+def _lever_avec_detail(r):
+    """r.raise_for_status(), mais avec le corps de la reponse dans le
+    message d'erreur — sans ca, un echec Graph API ne montre dans les
+    logs GitHub Actions qu'un « 400 Client Error » sans dire pourquoi."""
+    try:
+        r.raise_for_status()
+    except requests.exceptions.HTTPError as e:
+        raise requests.exceptions.HTTPError(f"{e} — corps de la reponse : {r.text}", response=r) from None
+
+
 def publier_photo_facebook(page_id, page_token, chemin_image, legende):
     with open(chemin_image, 'rb') as f:
         r = requests.post(
@@ -207,13 +218,13 @@ def publier_photo_facebook(page_id, page_token, chemin_image, legende):
             files={'source': f},
             timeout=30,
         )
-    r.raise_for_status()
+    _lever_avec_detail(r)
     return r.json()  # {'id': photo_id, 'post_id': page_id_postid}
 
 
 def url_publique_photo(photo_id, token):
     r = requests.get(f'{GRAPH}/{photo_id}', params={'fields': 'images', 'access_token': token}, timeout=20)
-    r.raise_for_status()
+    _lever_avec_detail(r)
     images = r.json().get('images', [])
     if not images:
         raise RuntimeError("Aucune URL publique retournee pour la photo.")
@@ -226,14 +237,31 @@ def publier_instagram(ig_user_id, page_token, image_url, legende):
         data={'image_url': image_url, 'caption': legende, 'access_token': page_token},
         timeout=30,
     )
-    r.raise_for_status()
+    _lever_avec_detail(r)
     creation_id = r.json()['id']
+
+    # Le traitement du container (recuperation + encodage de l'image cote
+    # Instagram) est asynchrone : publier immediatement echoue parfois
+    # (400) si le statut n'est pas encore FINISHED. On sonde plutot que
+    # de publier a l'aveugle juste apres la creation.
+    for _ in range(10):
+        r = requests.get(f'{GRAPH}/{creation_id}', params={'fields': 'status_code', 'access_token': page_token}, timeout=20)
+        _lever_avec_detail(r)
+        statut = r.json().get('status_code')
+        if statut == 'FINISHED':
+            break
+        if statut == 'ERROR':
+            raise RuntimeError(f"Le container Instagram {creation_id} a echoue (status_code=ERROR).")
+        time.sleep(3)
+    else:
+        raise RuntimeError(f"Le container Instagram {creation_id} n'etait toujours pas pret apres 30s d'attente.")
+
     r = requests.post(
         f'{GRAPH}/{ig_user_id}/media_publish',
         data={'creation_id': creation_id, 'access_token': page_token},
         timeout=30,
     )
-    r.raise_for_status()
+    _lever_avec_detail(r)
     return r.json()
 
 
