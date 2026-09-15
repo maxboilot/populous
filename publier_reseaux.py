@@ -40,10 +40,29 @@ from pathlib import Path
 
 import requests
 
-from generer_visuel import generer, portrait_depute
+from generer_visuel import generer, portrait_depute, pile_boussole_exemple
 
 DOSSIER = Path(__file__).parent
 GRAPH = 'https://graph.facebook.com/v21.0'
+
+MOIS_FR = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin',
+           'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre']
+
+# Memes tables que index.html (DEP_NAMES, VOTE_COLORS, POS_LABEL) : dupliquees
+# ici pour que le bloc « depute du jour » du visuel reprenne exactement la
+# meme information que la fiche depute de l'app, jusqu'au dernier vote connu.
+DEP_NAMES = {"01": "Ain", "02": "Aisne", "03": "Allier", "04": "Alpes-de-Haute-Provence", "05": "Hautes-Alpes", "06": "Alpes-Maritimes", "07": "Ardèche", "08": "Ardennes", "09": "Ariège", "10": "Aube", "11": "Aude", "12": "Aveyron", "13": "Bouches-du-Rhône", "14": "Calvados", "15": "Cantal", "16": "Charente", "17": "Charente-Maritime", "18": "Cher", "19": "Corrèze", "2A": "Corse-du-Sud", "2B": "Haute-Corse", "21": "Côte-d'Or", "22": "Côtes-d'Armor", "23": "Creuse", "24": "Dordogne", "25": "Doubs", "26": "Drôme", "27": "Eure", "28": "Eure-et-Loir", "29": "Finistère", "30": "Gard", "31": "Haute-Garonne", "32": "Gers", "33": "Gironde", "34": "Hérault", "35": "Ille-et-Vilaine", "36": "Indre", "37": "Indre-et-Loire", "38": "Isère", "39": "Jura", "40": "Landes", "41": "Loir-et-Cher", "42": "Loire", "43": "Haute-Loire", "44": "Loire-Atlantique", "45": "Loiret", "46": "Lot", "47": "Lot-et-Garonne", "48": "Lozère", "49": "Maine-et-Loire", "50": "Manche", "51": "Marne", "52": "Haute-Marne", "53": "Mayenne", "54": "Meurthe-et-Moselle", "55": "Meuse", "56": "Morbihan", "57": "Moselle", "58": "Nièvre", "59": "Nord", "60": "Oise", "61": "Orne", "62": "Pas-de-Calais", "63": "Puy-de-Dôme", "64": "Pyrénées-Atlantiques", "65": "Hautes-Pyrénées", "66": "Pyrénées-Orientales", "67": "Bas-Rhin", "68": "Haut-Rhin", "69": "Rhône", "70": "Haute-Saône", "71": "Saône-et-Loire", "72": "Sarthe", "73": "Savoie", "74": "Haute-Savoie", "75": "Paris", "76": "Seine-Maritime", "77": "Seine-et-Marne", "78": "Yvelines", "79": "Deux-Sèvres", "80": "Somme", "81": "Tarn", "82": "Tarn-et-Garonne", "83": "Var", "84": "Vaucluse", "85": "Vendée", "86": "Vienne", "87": "Haute-Vienne", "88": "Vosges", "89": "Yonne", "90": "Territoire de Belfort", "91": "Essonne", "92": "Hauts-de-Seine", "93": "Seine-Saint-Denis", "94": "Val-de-Marne", "95": "Val-d'Oise", "971": "Guadeloupe", "972": "Martinique", "973": "Guyane", "974": "La Réunion", "975": "Saint-Pierre-et-Miquelon", "976": "Mayotte", "977": "Saint-Barthélemy / Saint-Martin", "986": "Wallis-et-Futuna", "987": "Polynésie française", "988": "Nouvelle-Calédonie", "099": "Français de l'étranger"}
+VOTE_COLORS = {'pour': (27, 138, 107), 'contre': (196, 80, 28), 'abstention': (124, 140, 196), 'absent': (58, 68, 112)}
+POS_LABEL = {'pour': "A voté pour", 'contre': "A voté contre", 'abstention': "S'est abstenu·e", 'absent': "Absent·e lors du vote"}
+
+
+def _norm_pos(p):
+    return 'absent' if p in (None, 'non_votant') else p
+
+
+def _hex_vers_rgb(hexcode):
+    h = hexcode.lstrip('#')
+    return tuple(int(h[i:i + 2], 16) for i in (0, 2, 4))
 
 
 def lire_env():
@@ -73,10 +92,13 @@ def contenu_fait_du_jour():
         return None
     ref = refs[0]
     titre = f"{ref['annee']} : {ref['titre']}" if ref.get('titre') else ref['texte'][:80]
+    mois, jour = cle.split('-')
+    date_badge = f"{int(jour)} {MOIS_FR[int(mois) - 1]} {ref['annee']}"
     return {
         'eyebrow': 'Fait du jour',
         'titre': titre,
         'texte': ref['texte'],
+        'date_badge': date_badge,
         'legende': f"{titre}\n\n{ref['texte']}\n\n#Populous #HistoirePolitique #AssembleeNationale",
     }
 
@@ -103,13 +125,32 @@ def contenu_presidentielle():
 def contenu_depute():
     elus = json.loads((DOSSIER / 'elus.json').read_text(encoding='utf-8'))['elus']
     elu = random.choice(elus)
-    detail = f"{elu['gn']} · {elu['vn']} · {elu['pro']}"
+
+    today = json.loads((DOSSIER / 'data' / 'today.json').read_text(encoding='utf-8'))
+    numero = today.get('featured_numero') or today.get('last_featured_numero')
+    vote_txt, vote_bloc = '', None
+    if numero is not None:
+        scrutin = json.loads((DOSSIER / 'data' / 'scrutins' / f'{numero}.json').read_text(encoding='utf-8'))
+        pos = _norm_pos(scrutin['par_circonscription'].get(elu['k']))
+        label = 'Vote du jour' if today.get('featured_numero') is not None else 'Dernier vote connu'
+        date_fr = datetime.date.fromisoformat(scrutin['date']).strftime('%d/%m/%Y')
+        vote_bloc = {
+            'label': label, 'titre': scrutin['titre'], 'numero': scrutin['numero'], 'date': date_fr,
+            'position_label': POS_LABEL[pos], 'couleur': VOTE_COLORS[pos],
+        }
+        vote_txt = f"\n{label} : {scrutin['titre']}\n{POS_LABEL[pos]} — scrutin n°{scrutin['numero']} du {date_fr}\n"
+
+    circonscription = f"{DEP_NAMES.get(elu['dep'], elu['dep'])} — {elu['ci']}e circonscription · {elu['age']} ans"
+    profession = elu['pro'] or 'Non renseignée'
     return {
         'eyebrow': 'Député du jour',
         'titre': elu['n'],
-        'texte': detail,
+        'bloc_depute': {
+            'groupe_sigle': elu['g'], 'groupe_couleur': _hex_vers_rgb(elu['col']), 'groupe_nom': elu['gn'],
+            'circonscription': circonscription, 'profession': profession, 'vote': vote_bloc,
+        },
         'legende': (
-            f"{elu['n']} ({elu['g']})\n\n{elu['gn']}\nCirconscription de {elu['vn']}\nProfession : {elu['pro']}\n\n"
+            f"{elu['n']} ({elu['g']})\n\n{elu['gn']}\n{circonscription}\nProfession : {profession}\n{vote_txt}\n"
             f"Retrouve son activité complète à l'Assemblée sur Populous.\n\n#Populous #AssembleeNationale #{elu['g']}"
         ),
         'a_index': elu['a'],
@@ -141,6 +182,7 @@ def contenu_boussole():
         'eyebrow': 'Boussole politique',
         'titre': 'Compare tes opinions aux votes réels de tes élus',
         'texte': "Réponds à quelques questions et découvre quel groupe politique vote le plus comme toi.",
+        'pile_resultats': pile_boussole_exemple(),
         'legende': (
             "Ta boussole politique : compare tes opinions aux votes réels de tes élus, "
             "sans jugement ni étiquette imposée.\n\nTeste la boussole sur Populous.\n\n#Populous #BoussolePolitique"
@@ -208,7 +250,11 @@ def main():
 
     chemin_image = DOSSIER / 'assets_social' / f'{datetime.date.today().isoformat()}-{args.type}.png'
     photo = portrait_depute(contenu['a_index']) if 'a_index' in contenu else None
-    generer(chemin_image, eyebrow=contenu['eyebrow'], titre=contenu['titre'], texte=contenu.get('texte'), photo=photo)
+    generer(
+        chemin_image, eyebrow=contenu['eyebrow'], titre=contenu['titre'], texte=contenu.get('texte'), photo=photo,
+        date_badge=contenu.get('date_badge'), bloc_depute=contenu.get('bloc_depute'),
+        pile_resultats=contenu.get('pile_resultats'),
+    )
 
     print(f"Visuel : {chemin_image}")
     print(f"Legende :\n{contenu['legende']}\n")
