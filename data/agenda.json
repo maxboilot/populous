@@ -30,6 +30,16 @@
   },
   {
     "date": "2026-09-16",
+    "heure": "12:30",
+    "ordre_du_jour": "Examen du texte — Redéfinir le cadre d'attribution des subventions accordées par les collectivités territoriales",
+    "themes": [
+      "institutions"
+    ],
+    "dossier": "DLR5L17N50644",
+    "scrutin_annonce": false
+  },
+  {
+    "date": "2026-09-16",
     "heure": "18:45",
     "ordre_du_jour": "Examen du texte — Apporter une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants",
     "themes": [
@@ -180,6 +190,16 @@
       "social"
     ],
     "dossier": "DLR5L17N54776",
+    "scrutin_annonce": false
+  },
+  {
+    "date": "2026-09-30",
+    "heure": "09:30",
+    "ordre_du_jour": "Examen du texte — Abroger les zones à faibles émissions-mobilités (séance éventuelle)",
+    "themes": [
+      "transports"
+    ],
+    "dossier": "DLR5L17N54557",
     "scrutin_annonce": false
   },
   {
