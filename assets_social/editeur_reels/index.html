@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Éditeur de Reels — Populous</title>
+<style>
+  :root{
+    --bg:#14161c; --panel:#1b1e27; --panel2:#20232e; --line:#2c303c;
+    --ink:#eef0f5; --dim:#8a90a4; --accent:#1b3bdb; --accent2:#5a72ff;
+    --ok:#1b8a6b; --warn:#c4501c;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+  header{padding:20px 28px;border-bottom:1px solid var(--line)}
+  header h1{margin:0 0 4px;font-size:19px}
+  header p{margin:0;color:var(--dim);font-size:12.5px}
+  main{display:grid;grid-template-columns:1fr 1fr;gap:0;max-width:1280px;margin:0 auto}
+  section{padding:22px 28px;border-right:1px solid var(--line)}
+  main>section:last-child{border-right:none}
+  h2{font-size:13px;text-transform:uppercase;letter-spacing:.04em;color:var(--dim);margin:0 0 14px}
+  .zone-depot{border:1.5px dashed var(--line);border-radius:10px;padding:18px;text-align:center;cursor:pointer;transition:border-color .15s,background .15s}
+  .zone-depot:hover{border-color:var(--accent2);background:#1b1e2a}
+  .zone-depot input{display:none}
+  .zone-depot .lbl{font-weight:600}
+  .zone-depot .sub{color:var(--dim);font-size:12px;margin-top:4px}
+  .grille-bib{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+  .carte{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px;display:flex;flex-direction:column;gap:8px}
+  .carte .apercu{width:100%;height:90px;border-radius:6px;background:#000;overflow:hidden;display:flex;align-items:center;justify-content:center}
+  .carte .apercu img,.carte .apercu video{width:100%;height:100%;object-fit:cover}
+  .carte .apercu .icone-audio{font-size:26px;color:var(--dim)}
+  .carte .nom{font-size:11.5px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .carte .actions{display:flex;gap:6px}
+  button{font:inherit;cursor:pointer;border:none;border-radius:7px;padding:7px 11px;font-size:12px;font-weight:600}
+  .btn-primaire{background:var(--accent);color:#fff}
+  .btn-primaire:hover{background:var(--accent2)}
+  .btn-discret{background:var(--panel2);color:var(--ink)}
+  .btn-discret:hover{background:#282c39}
+  .btn-danger{background:transparent;color:var(--warn)}
+  button:disabled{opacity:.4;cursor:not-allowed}
+  .ligne-tl{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:10px;display:flex;gap:12px;align-items:flex-start}
+  .ligne-tl .num{width:22px;height:22px;border-radius:50%;background:var(--panel2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--dim);flex-shrink:0;margin-top:2px}
+  .ligne-tl .corps{flex:1;min-width:0}
+  .ligne-tl .titre-ligne{font-weight:600;font-size:13px;margin-bottom:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .champ{display:flex;align-items:center;gap:6px;margin-bottom:6px;font-size:12px;color:var(--dim)}
+  .champ input[type=number]{width:64px;background:var(--panel2);border:1px solid var(--line);border-radius:5px;color:var(--ink);padding:4px 6px;font:inherit}
+  .champ select{background:var(--panel2);border:1px solid var(--line);border-radius:5px;color:var(--ink);padding:4px 6px;font:inherit;max-width:170px}
+  .champ label{display:flex;align-items:center;gap:5px}
+  .ligne-tl .colonne-ctrl{display:flex;flex-direction:column;gap:4px;flex-shrink:0}
+  .vide{color:var(--dim);font-size:12.5px;padding:14px 0}
+  .piste-audio-box{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px;display:flex;justify-content:space-between;align-items:center}
+  .actions-export{margin-top:22px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .statut{font-size:12.5px;color:var(--dim)}
+  .barre{height:6px;background:var(--panel2);border-radius:3px;overflow:hidden;margin-top:10px;width:100%}
+  .barre .rempli{height:100%;background:var(--accent2);width:0%;transition:width .15s}
+  .resultat{margin-top:16px}
+  .resultat video{width:100%;max-width:260px;border-radius:10px;border:1px solid var(--line)}
+  .stage-apercu{width:100%;max-width:260px;aspect-ratio:9/16;background:#000;border-radius:10px;overflow:hidden;position:relative;margin-bottom:14px}
+  .stage-apercu img,.stage-apercu video{width:100%;height:100%;object-fit:cover;display:none}
+  .note{background:#1b1e2a;border:1px solid var(--line);border-radius:8px;padding:12px 14px;font-size:12px;color:var(--dim);margin-top:18px}
+  .note b{color:var(--ink)}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Éditeur de Reels — Populous</h1>
+  <p>Outil local, aucun envoi sur un serveur : tout se passe dans ce navigateur. Ajoute tes propres médias (vidéos, gifs, sons), monte la timeline, exporte un .mp4 vertical prêt pour Reels.</p>
+</header>
+
+<main>
+
+<section id="section-bib">
+  <h2>1. Bibliothèque</h2>
+  <label class="zone-depot">
+    <div class="lbl">+ Ajouter des fichiers</div>
+    <div class="sub">Vidéos, gifs, images, sons — restent sur ton ordinateur</div>
+    <input id="input-fichiers" type="file" multiple accept="video/*,image/*,audio/*">
+  </label>
+  <div class="grille-bib" id="grille-bib"></div>
+
+  <h2 style="margin-top:26px">2. Piste audio de fond (optionnel)</h2>
+  <div id="zone-piste-audio"></div>
+
+  <div class="note">
+    <b>Astuce montage</b> — dans la timeline, chaque élément peut recevoir son propre effet sonore (scratch, boom…) déclenché à son début, en plus de la piste de fond qui tourne en continu. Ajoute d'abord tes sons dans la bibliothèque ci-dessus, ils apparaîtront dans le menu "effet" de chaque ligne.
+  </div>
+</section>
+
+<section id="section-timeline">
+  <h2>3. Timeline</h2>
+  <div id="liste-timeline"><div class="vide">Ajoute des fichiers dans la bibliothèque, puis clique "+ Timeline" sur chacun dans l'ordre voulu.</div></div>
+
+  <div class="stage-apercu" id="stage-apercu">
+    <img id="stage-img"><video id="stage-video" muted playsinline></video>
+  </div>
+
+  <div class="actions-export">
+    <button class="btn-discret" id="btn-apercu">▶ Aperçu rapide</button>
+    <button class="btn-primaire" id="btn-export">⬇ Exporter en .mp4 (1080×1920)</button>
+  </div>
+  <div class="statut" id="statut">Prêt.</div>
+  <div class="barre" id="barre" style="display:none"><div class="rempli" id="barre-rempli"></div></div>
+
+  <div class="resultat" id="resultat" style="display:none">
+    <video controls id="video-resultat"></video><br>
+    <a id="lien-telecharger" class="btn-primaire" style="display:inline-block;margin-top:10px;text-decoration:none" download="populous_reel.mp4">Télécharger le .mp4</a>
+  </div>
+
+  <div class="note">
+    Une fois le .mp4 exporté et téléchargé, dépose-le dans <b>assets_social/reels_bruts/</b> du projet et dis-le à Claude — la publication automatique en Reels sur Facebook/Instagram sera branchée à partir de ce fichier.
+  </div>
+</section>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.11.6/dist/ffmpeg.min.js"></script>
+<script>
+// API v0.11 (createFFmpeg / fetchFile) plutot que v0.12 (ESM + Worker) :
+// v0.12 exige un Worker instancie depuis l'URL du CDN, que Chrome refuse
+// pour des raisons de cross-origin (meme en passant le coeur wasm par un
+// blob) — v0.11 est concue pour un chargement CDN direct sans ce probleme.
+const { createFFmpeg, fetchFile } = FFmpeg;
+
+// --- Etat -------------------------------------------------------------
+let bib = [];        // {id, name, type: 'video'|'image'|'audio', file, url, duree}
+let timeline = [];   // {libId, debut, fin, duree, gardeAudio, sfxLibId}
+let pisteAudioId = null;
+let prochainId = 1;
+
+const $ = (sel) => document.querySelector(sel);
+const grilleBib = $('#grille-bib');
+const listeTimeline = $('#liste-timeline');
+const zonePisteAudio = $('#zone-piste-audio');
+const statutEl = $('#statut');
+
+// --- Ajout de fichiers --------------------------------------------------
+$('#input-fichiers').addEventListener('change', async (e) => {
+  for (const file of e.target.files) {
+    const type = file.type.startsWith('video') ? 'video'
+      : file.type.startsWith('audio') ? 'audio'
+      : 'image';
+    const item = { id: prochainId++, name: file.name, type, file, url: URL.createObjectURL(file), duree: null };
+    if (type === 'video') {
+      const v = document.createElement('video');
+      v.src = item.url;
+      await new Promise((res) => { v.onloadedmetadata = res; });
+      item.duree = v.duration;
+    }
+    bib.push(item);
+  }
+  e.target.value = '';
+  renderBib();
+});
+
+function renderBib() {
+  grilleBib.innerHTML = '';
+  for (const it of bib) {
+    const carte = document.createElement('div');
+    carte.className = 'carte';
+    const apercu = document.createElement('div');
+    apercu.className = 'apercu';
+    if (it.type === 'video') {
+      const v = document.createElement('video');
+      v.src = it.url; v.muted = true;
+      apercu.appendChild(v);
+    } else if (it.type === 'image') {
+      const img = document.createElement('img');
+      img.src = it.url;
+      apercu.appendChild(img);
+    } else {
+      apercu.innerHTML = '<span class="icone-audio">♪</span>';
+    }
+    const nom = document.createElement('div');
+    nom.className = 'nom'; nom.textContent = it.name;
+    const actions = document.createElement('div');
+    actions.className = 'actions';
+    if (it.type === 'audio') {
+      const btn = document.createElement('button');
+      btn.className = 'btn-discret'; btn.textContent = 'Piste de fond';
+      btn.onclick = () => { pisteAudioId = it.id; renderPisteAudio(); };
+      actions.appendChild(btn);
+    } else {
+      const btn = document.createElement('button');
+      btn.className = 'btn-primaire'; btn.textContent = '+ Timeline';
+      btn.onclick = () => {
+        timeline.push({
+          libId: it.id,
+          debut: 0,
+          fin: it.type === 'video' ? Math.min(it.duree, 3) : undefined,
+          duree: it.type === 'image' ? 2 : undefined,
+          gardeAudio: it.type === 'video',
+          sfxLibId: '',
+        });
+        renderTimeline();
+      };
+      actions.appendChild(btn);
+    }
+    carte.append(apercu, nom, actions);
+    grilleBib.appendChild(carte);
+  }
+}
+
+function renderPisteAudio() {
+  const it = bib.find((b) => b.id === pisteAudioId);
+  if (!it) { zonePisteAudio.innerHTML = '<div class="vide">Aucune — clique "Piste de fond" sur un son de la bibliothèque.</div>'; return; }
+  zonePisteAudio.innerHTML = '';
+  const box = document.createElement('div');
+  box.className = 'piste-audio-box';
+  const nom = document.createElement('div'); nom.textContent = it.name;
+  const btn = document.createElement('button'); btn.className = 'btn-danger'; btn.textContent = 'Retirer';
+  btn.onclick = () => { pisteAudioId = null; renderPisteAudio(); };
+  box.append(nom, btn);
+  zonePisteAudio.appendChild(box);
+}
+
+function libItem(libId) { return bib.find((b) => b.id === libId); }
+
+function renderTimeline() {
+  listeTimeline.innerHTML = '';
+  if (!timeline.length) {
+    listeTimeline.innerHTML = '<div class="vide">Ajoute des fichiers dans la bibliothèque, puis clique "+ Timeline" sur chacun dans l\'ordre voulu.</div>';
+    return;
+  }
+  timeline.forEach((t, i) => {
+    const lib = libItem(t.libId);
+    const ligne = document.createElement('div');
+    ligne.className = 'ligne-tl';
+
+    const num = document.createElement('div'); num.className = 'num'; num.textContent = i + 1;
+
+    const corps = document.createElement('div'); corps.className = 'corps';
+    const titre = document.createElement('div'); titre.className = 'titre-ligne'; titre.textContent = lib.name;
+    corps.appendChild(titre);
+
+    if (lib.type === 'video') {
+      const champDebut = champNombre('Début (s)', t.debut, 0, lib.duree, (v) => t.debut = v);
+      const champFin = champNombre('Fin (s)', t.fin, 0, lib.duree, (v) => t.fin = v);
+      const champGarde = document.createElement('div'); champGarde.className = 'champ';
+      const lbl = document.createElement('label');
+      const cb = document.createElement('input'); cb.type = 'checkbox'; cb.checked = t.gardeAudio;
+      cb.onchange = () => t.gardeAudio = cb.checked;
+      lbl.append(cb, document.createTextNode('garder le son original'));
+      champGarde.appendChild(lbl);
+      corps.append(champDebut, champFin, champGarde);
+    } else {
+      const champDuree = champNombre('Durée affichée (s)', t.duree, 0.2, 30, (v) => t.duree = v);
+      corps.appendChild(champDuree);
+    }
+
+    const champSfx = document.createElement('div'); champSfx.className = 'champ';
+    const lblSfx = document.createElement('label'); lblSfx.textContent = 'Effet sonore au début : ';
+    const select = document.createElement('select');
+    select.innerHTML = '<option value="">— aucun —</option>' +
+      bib.filter((b) => b.type === 'audio').map((b) => `<option value="${b.id}" ${t.sfxLibId == b.id ? 'selected' : ''}>${b.name}</option>`).join('');
+    select.onchange = () => t.sfxLibId = select.value;
+    champSfx.append(lblSfx, select);
+    corps.appendChild(champSfx);
+
+    const ctrl = document.createElement('div'); ctrl.className = 'colonne-ctrl';
+    const up = boutonCtrl('▲', () => { if (i > 0) { [timeline[i - 1], timeline[i]] = [timeline[i], timeline[i - 1]]; renderTimeline(); } });
+    const down = boutonCtrl('▼', () => { if (i < timeline.length - 1) { [timeline[i + 1], timeline[i]] = [timeline[i], timeline[i + 1]]; renderTimeline(); } });
+    const del = boutonCtrl('🗑', () => { timeline.splice(i, 1); renderTimeline(); });
+    ctrl.append(up, down, del);
+
+    ligne.append(num, corps, ctrl);
+    listeTimeline.appendChild(ligne);
+  });
+}
+
+function champNombre(label, val, min, max, onChange) {
+  const champ = document.createElement('div'); champ.className = 'champ';
+  const lbl = document.createElement('label'); lbl.textContent = label + ' :';
+  const input = document.createElement('input');
+  input.type = 'number'; input.step = '0.1'; input.min = min; input.max = max ?? '';
+  input.value = val ?? 0;
+  input.oninput = () => onChange(parseFloat(input.value) || 0);
+  champ.append(lbl, input);
+  return champ;
+}
+function boutonCtrl(txt, onClick) {
+  const b = document.createElement('button'); b.className = 'btn-discret'; b.textContent = txt; b.onclick = onClick;
+  b.style.padding = '4px 8px';
+  return b;
+}
+
+renderBib(); renderPisteAudio(); renderTimeline();
+
+// Expose pour tests / debug console.
+window.__editeur = { bib, timeline, get pisteAudioId(){return pisteAudioId}, set pisteAudioId(v){pisteAudioId=v},
+  renderBib, renderPisteAudio, renderTimeline, prochainId: () => prochainId++ };
+
+// --- Apercu rapide (lecture native, approximative) ----------------------
+$('#btn-apercu').addEventListener('click', () => {
+  if (!timeline.length) return;
+  const stageImg = $('#stage-img'), stageVideo = $('#stage-video');
+  let i = 0;
+  const bgAudio = pisteAudioId ? new Audio(libItem(pisteAudioId).url) : null;
+  if (bgAudio) { bgAudio.volume = 0.4; bgAudio.play(); }
+  const suivant = () => {
+    if (i >= timeline.length) { if (bgAudio) bgAudio.pause(); stageImg.style.display = 'none'; stageVideo.style.display = 'none'; return; }
+    const t = timeline[i]; const lib = libItem(t.libId);
+    if (t.sfxLibId) { const s = new Audio(libItem(parseInt(t.sfxLibId)).url); s.play(); }
+    if (lib.type === 'video') {
+      stageImg.style.display = 'none'; stageVideo.style.display = 'block';
+      stageVideo.src = lib.url; stageVideo.currentTime = t.debut; stageVideo.muted = !t.gardeAudio;
+      stageVideo.play();
+      const duree = Math.max(0.1, t.fin - t.debut);
+      setTimeout(() => { i++; suivant(); }, duree * 1000);
+    } else {
+      stageVideo.style.display = 'none'; stageImg.style.display = 'block';
+      stageImg.src = lib.url;
+      setTimeout(() => { i++; suivant(); }, Math.max(0.1, t.duree) * 1000);
+    }
+  };
+  suivant();
+});
+
+// --- Export ffmpeg.wasm ---------------------------------------------------
+let ffmpeg = null;
+async function chargerFFmpeg() {
+  if (ffmpeg) return ffmpeg;
+  statutEl.textContent = 'Chargement du moteur vidéo (une fois)…';
+  ffmpeg = createFFmpeg({
+    log: false,
+    corePath: 'https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.11.0/dist/ffmpeg-core.js',
+    progress: ({ ratio }) => {
+      $('#barre').style.display = 'block';
+      $('#barre-rempli').style.width = Math.min(100, Math.max(0, Math.round(ratio * 100))) + '%';
+    },
+  });
+  await ffmpeg.load();
+  return ffmpeg;
+}
+
+$('#btn-export').addEventListener('click', async () => {
+  if (!timeline.length) { statutEl.textContent = 'Ajoute au moins un élément à la timeline.'; return; }
+  const btn = $('#btn-export'); btn.disabled = true;
+  try {
+    const ff = await chargerFFmpeg();
+    const ecrits = new Set();
+    async function assurerFichier(libId) {
+      const nom = `src${libId}`;
+      if (!ecrits.has(libId)) {
+        const lib = libItem(libId);
+        ff.FS('writeFile', nom, await fetchFile(lib.file));
+        ecrits.add(libId);
+      }
+      return nom;
+    }
+
+    const clips = [];
+    for (let i = 0; i < timeline.length; i++) {
+      const t = timeline[i]; const lib = libItem(t.libId);
+      statutEl.textContent = `Traitement ${i + 1}/${timeline.length} — ${lib.name}`;
+      const srcNom = await assurerFichier(t.libId);
+      const vNom = `v${i}.mp4`;
+      const longueur = lib.type === 'video' ? Math.max(0.1, t.fin - t.debut) : Math.max(0.1, t.duree);
+
+      if (lib.type === 'video') {
+        await ff.run('-ss', String(t.debut), '-to', String(t.fin), '-i', srcNom,
+          '-vf', 'scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30,format=yuv420p',
+          '-an', '-c:v', 'libx264', '-preset', 'ultrafast', '-crf', '23', vNom);
+      } else {
+        await ff.run('-loop', '1', '-t', String(longueur), '-i', srcNom,
+          '-vf', 'scale=1080:1920:force_original_aspect_ratio=decrease,pad=1080:1920:(ow-iw)/2:(oh-ih)/2:color=black,fps=30,format=yuv420p',
+          '-c:v', 'libx264', '-preset', 'ultrafast', '-crf', '23', vNom);
+      }
+
+      // Piste audio du clip : son original (si video + garde) sinon silence, puis effet sonore mixe par-dessus.
+      const aBaseNom = `abase${i}.m4a`;
+      if (lib.type === 'video' && t.gardeAudio) {
+        await ff.run('-ss', String(t.debut), '-to', String(t.fin), '-i', srcNom, '-vn', '-ar', '44100', '-ac', '2', aBaseNom);
+      } else {
+        await ff.run('-f', 'lavfi', '-i', 'anullsrc=r=44100:cl=stereo', '-t', String(longueur), aBaseNom);
+      }
+      let aFinalNom = aBaseNom;
+      if (t.sfxLibId) {
+        const sfxSrcNom = await assurerFichier(parseInt(t.sfxLibId));
+        aFinalNom = `afinal${i}.m4a`;
+        await ff.run('-i', aBaseNom, '-i', sfxSrcNom, '-filter_complex',
+          '[0:a][1:a]amix=inputs=2:duration=first:dropout_transition=0[a]', '-map', '[a]', aFinalNom);
+      }
+
+      const clipNom = `clip${i}.mp4`;
+      await ff.run('-i', vNom, '-i', aFinalNom, '-map', '0:v', '-map', '1:a',
+        '-c:v', 'copy', '-c:a', 'aac', '-shortest', clipNom);
+      clips.push(clipNom);
+    }
+
+    statutEl.textContent = 'Assemblage final…';
+    const listeTxt = clips.map((c) => `file '${c}'`).join('\n');
+    ff.FS('writeFile', 'liste.txt', new TextEncoder().encode(listeTxt));
+    await ff.run('-f', 'concat', '-safe', '0', '-i', 'liste.txt', '-c', 'copy', 'assemble.mp4');
+
+    let finalNom = 'assemble.mp4';
+    if (pisteAudioId) {
+      const bgNom = await assurerFichier(pisteAudioId);
+      const dureeTotale = timeline.reduce((s, t) => {
+        const lib = libItem(t.libId);
+        return s + (lib.type === 'video' ? Math.max(0.1, t.fin - t.debut) : Math.max(0.1, t.duree));
+      }, 0);
+      await ff.run('-i', 'assemble.mp4', '-stream_loop', '-1', '-i', bgNom,
+        '-filter_complex', `[1:a]atrim=0:${dureeTotale},volume=0.35[bg];[0:a][bg]amix=inputs=2:duration=first:dropout_transition=0[a]`,
+        '-map', '0:v', '-map', '[a]', '-c:v', 'copy', '-c:a', 'aac', 'export.mp4');
+      finalNom = 'export.mp4';
+    }
+
+    const data = ff.FS('readFile', finalNom);
+    const blob = new Blob([data.buffer], { type: 'video/mp4' });
+    const url = URL.createObjectURL(blob);
+    $('#video-resultat').src = url;
+    $('#lien-telecharger').href = url;
+    $('#resultat').style.display = 'block';
+    statutEl.textContent = 'Export terminé.';
+    $('#barre-rempli').style.width = '100%';
+  } catch (err) {
+    console.error(err);
+    statutEl.textContent = 'Erreur pendant l\'export : ' + err.message;
+  } finally {
+    btn.disabled = false;
+  }
+});
+</script>
+
+</body>
+</html>

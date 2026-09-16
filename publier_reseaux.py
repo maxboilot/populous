@@ -12,9 +12,11 @@ exactement ce qu'il poste plutot que de tirer au hasard :
                   portrait officiel (meme atlas que index.html)
   - avenir      : les 3 prochains points a l'ordre du jour de
                   l'Assemblee, deja recuperes dans data/agenda.json
+                  (planifie 1x/semaine, cf. publier_reseaux.yml)
   - boussole    : accroche fixe invitant a tester la boussole politique
                   de l'app (texte relu une fois pour toutes, jamais
-                  genere a la demande)
+                  genere a la demande) — planifie 1x/mois (le 15), pour
+                  ne pas repeter un visuel quasi identique chaque jour
 
 Par defaut le script tourne en mode "brouillon" : il genere le visuel
 et affiche la legende sans rien publier. Il faut explicitement passer

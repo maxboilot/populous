@@ -15,3 +15,8 @@ assets_social/apercu.png
 # Prototype local anterieur au reskin, conserve hors du depot.
 # Supprimable sans risque : reference nulle part.
 carte-vote-en-direct.html
+
+# Exports bruts de l'editeur de Reels (assets_social/editeur_reels/) :
+# fichiers video volumineux, jamais destines a etre verses au depot.
+assets_social/reels_bruts/*
+!assets_social/reels_bruts/.gitkeep
