@@ -1,7 +1,7 @@
 [
   {
     "date": "2026-09-17",
-    "heure": "09:30",
+    "heure": "09:35",
     "ordre_du_jour": "Examen du texte — La relance et la décentralisation du logement",
     "themes": [
       "logement",
@@ -160,6 +160,34 @@
       "social"
     ],
     "dossier": "DLR5L17N53051",
+    "scrutin_annonce": false
+  },
+  {
+    "date": "2026-09-30",
+    "heure": "10:00",
+    "ordre_du_jour": "Examen du texte — Projet de loi autorisant l’approbation de l’accord entre le Gouvernement de la République française et le Gouvernement de la République unie de Tanzanie relatif aux services aériens (séance éventuelle)",
+    "themes": [
+      "transports"
+    ],
+    "dossier": "DLR5L17N54168",
+    "scrutin_annonce": false
+  },
+  {
+    "date": "2026-09-30",
+    "heure": "10:00",
+    "ordre_du_jour": "Examen du texte — Projet de loi autorisant l’approbation de l’accord entre le Gouvernement de la République française et le Gouvernement d’Antigua-et-Barbuda relatif aux services aériens (séance éventuelle)",
+    "themes": [
+      "transports"
+    ],
+    "dossier": "DLR5L17N54169",
+    "scrutin_annonce": false
+  },
+  {
+    "date": "2026-09-30",
+    "heure": "10:00",
+    "ordre_du_jour": "Examen du texte — Projet de loi autorisant l’approbation de l’accord multilatéral entre autorités compétentes portant sur l’échange des informations GloBE (séance éventuelle)",
+    "themes": [],
+    "dossier": "DLR5L17N54379",
     "scrutin_annonce": false
   }
 ]
