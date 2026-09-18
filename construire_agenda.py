@@ -24,6 +24,16 @@ Trois choses à savoir avant de toucher à ce fichier.
    cette annonce explicite, ce n'est jamais une prédiction pour les autres
    types de points (Examen du texte, Discussion...).
 
+5. Un même dossier repasse par l'Assemblée à plusieurs stades (1ère lecture,
+   commission, 2e lecture, CMP...), parfois à des mois d'intervalle et sans
+   qu'un vote n'ait encore eu lieu sur ce passage précis — d'où des textes
+   qui semblent « revenir » dans l'onglet. Le champ lecture donne ce repère :
+   il vient du codeActe des actesLegislatifs du dossier (même archive que
+   pour le titre), dont le préfixe (AN1, AN2, CMP, ANNLEC...) code le stade.
+   Convention observée empiriquement en scannant les ~3000 dossiers de la
+   législature (voir LIBELLES_LECTURE) plutôt que documentée officiellement :
+   à corriger si un nouveau préfixe apparaît sans traduction.
+
 Aucun résumé n'est généré : on affiche le titre officiel du dossier tel que
 l'Assemblée le publie.
 """
@@ -66,6 +76,24 @@ TYPES_SCRUTIN_ANNONCE = {'Vote solennel', 'Vote par scrutin public'}
 # Au-delà de cette longueur, l'objet est déjà une phrase complète qui contient
 # son propre sujet : y accoler le titre du dossier ferait doublon.
 OBJET_AUTOSUFFISANT = 60
+
+# Préfixe de codeActe (premier segment, ex. "AN1-COM-FOND-REUNION" -> "AN1")
+# -> libellé affiché. N'y figurent que les stades qui précèdent un vote sur
+# le fond ; les stades d'après-adoption (promulgation, saisine du Conseil
+# constitutionnel, suivi d'application...) sont volontairement absents, tout
+# comme deux codes rencontrés dans l'archive dont le sens exact n'est pas
+# sûr (AN20, AN21) — mieux vaut aucun badge qu'un libellé incertain.
+LIBELLES_LECTURE = {
+    'AN1': '1ʳᵉ lecture',
+    'AN2': '2ᵉ lecture',
+    'ANLUNI': 'Lecture unique',
+    'ANNLEC': 'Nouvelle lecture',
+    'ANLDEF': 'Lecture définitive',
+    'CMP': 'Commission mixte paritaire',
+    'SN1': '1ʳᵉ lecture (Sénat)',
+    'SN2': '2ᵉ lecture (Sénat)',
+    'SNNLEC': 'Nouvelle lecture (Sénat)',
+}
 
 
 def telecharger(url):
@@ -133,8 +161,49 @@ def collecter(archive, depuis):
     return retenus
 
 
-def titres(archive, refs_voulues):
-    """Résout les références de dossiers vers leur titre officiel."""
+def etapes_dossier(node, top=None):
+    """Parcourt récursivement les actesLegislatifs d'un dossier (même arbre
+    que decisions_du_dossier dans construire_historique.py) et renvoie la
+    liste (date, codeActe_de_l_etape_racine) de chaque acte daté. `top` est
+    fixé une seule fois, au premier noeud rencontré dans chaque branche
+    (l'Etape_Type de tête, ex. "AN1"), puis reporté sur ses descendants —
+    c'est ce qui permet de rattacher un acte profond (une réunion de
+    commission) à son stade de lecture plutôt qu'à son seul intitulé propre.
+    """
+    trouves = []
+    if isinstance(node, dict):
+        code = node.get('codeActe') or ''
+        if top is None:
+            top = code
+        date = node.get('dateActe')
+        if date:
+            trouves.append((date[:10], top))
+        sous = node.get('actesLegislatifs')
+        if sous:
+            interieur = sous.get('acteLegislatif') if isinstance(sous, dict) else sous
+            for it in liste(interieur):
+                trouves.extend(etapes_dossier(it, top))
+    elif isinstance(node, list):
+        for it in node:
+            trouves.extend(etapes_dossier(it, top))
+    return trouves
+
+
+def lecture_actuelle(etapes, date):
+    """Le stade de lecture le plus probable à la date d'un point d'ordre du
+    jour : le dernier stade daté à cette date ou avant (les actes d'un même
+    stade ne sont pas toujours dans l'ordre chronologique dans l'archive,
+    d'où le tri), à défaut le tout premier stade connu du dossier."""
+    if not etapes:
+        return None
+    precedentes = [code for d, code in etapes if d <= date]
+    code = precedentes[-1] if precedentes else etapes[0][1]
+    return LIBELLES_LECTURE.get(code)
+
+
+def dossiers(archive, refs_voulues):
+    """Résout les références de dossiers vers leur titre officiel et
+    l'historique de leurs stades de lecture (pour lecture_actuelle)."""
     trouves = {}
     with zipfile.ZipFile(archive) as z:
         index = {}
@@ -151,8 +220,13 @@ def titres(archive, refs_voulues):
                 continue
             d = brut.get('dossierParlementaire', brut)
             titre = ((d.get('titreDossier') or {}).get('titre') or '').strip()
-            if titre:
-                trouves[ref] = titre
+            if not titre:
+                continue
+            actes = (d.get('actesLegislatifs') or {}).get('acteLegislatif')
+            etapes = sorted(
+                (dt, code) for it in liste(actes) for dt, code in etapes_dossier(it) if dt and code
+            )
+            trouves[ref] = {'titre': titre, 'etapes': etapes}
     return trouves
 
 
@@ -182,16 +256,17 @@ def construire(depuis):
     print(f'points a venir rattaches a un dossier : {len(retenus)}')
 
     voulues = {r for p in retenus for r in p['refs']}
-    resolus = titres(telecharger(URL_DOSSIERS), voulues) if voulues else {}
+    resolus = dossiers(telecharger(URL_DOSSIERS), voulues) if voulues else {}
     print(f'dossiers resolus : {len(resolus)} / {len(voulues)}')
 
     lignes = []
     deja = set()
     for p in retenus:
         for ref in p['refs']:
-            titre = resolus.get(ref)
-            if not titre:
+            info = resolus.get(ref)
+            if not info:
                 continue
+            titre = info['titre']
             cle = (p['date'], ref)
             if cle in deja:
                 continue
@@ -206,6 +281,7 @@ def construire(depuis):
                 'themes': categories.classer(titre),
                 'dossier': ref,
                 'scrutin_annonce': p['scrutin_annonce'],
+                'lecture': lecture_actuelle(info['etapes'], p['date']),
             })
 
     lignes.sort(key=lambda x: (x['date'], x['heure'] or '', x['ordre_du_jour']))

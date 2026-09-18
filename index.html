@@ -2956,7 +2956,10 @@ function rendreAvenir(){
       <div class="dRow" style="cursor:default">
         <div class="k">
           <span>${dateFR(r.date)}${r.heure?" · "+esc(r.heure):""}</span>
-          ${r.scrutin_annonce ? `<span class="badge" style="background:var(--accent-soft);color:var(--accent)">Vote solennel</span>` : ""}
+          <span style="display:flex;gap:6px">
+            ${r.lecture ? `<span class="badge" style="background:var(--line);color:var(--dim)">${esc(r.lecture)}</span>` : ""}
+            ${r.scrutin_annonce ? `<span class="badge" style="background:var(--accent-soft);color:var(--accent)">Vote solennel</span>` : ""}
+          </span>
         </div>
         <div class="t">${esc(r.ordre_du_jour)}</div>
         ${shareRowHTML()}

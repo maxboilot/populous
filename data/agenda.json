@@ -8,7 +8,8 @@
       "securite"
     ],
     "dossier": "DLR5L17N54777",
-    "scrutin_annonce": false
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
   },
   {
     "date": "2026-09-21",
@@ -19,7 +20,8 @@
       "social"
     ],
     "dossier": "DLR5L17N54776",
-    "scrutin_annonce": false
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
   },
   {
     "date": "2026-09-21",
@@ -30,7 +32,8 @@
       "institutions"
     ],
     "dossier": "DLR5L17N54608",
-    "scrutin_annonce": false
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
   },
   {
     "date": "2026-09-22",
@@ -41,7 +44,8 @@
       "securite"
     ],
     "dossier": "DLR5L17N54777",
-    "scrutin_annonce": false
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
   },
   {
     "date": "2026-09-22",
@@ -52,7 +56,8 @@
       "social"
     ],
     "dossier": "DLR5L17N54776",
-    "scrutin_annonce": false
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
   },
   {
     "date": "2026-09-22",
@@ -63,7 +68,8 @@
       "institutions"
     ],
     "dossier": "DLR5L17N54608",
-    "scrutin_annonce": false
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
   },
   {
     "date": "2026-09-23",
@@ -74,7 +80,8 @@
       "securite"
     ],
     "dossier": "DLR5L17N54777",
-    "scrutin_annonce": false
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
   },
   {
     "date": "2026-09-23",
@@ -85,7 +92,8 @@
       "social"
     ],
     "dossier": "DLR5L17N54776",
-    "scrutin_annonce": false
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
   },
   {
     "date": "2026-09-23",
@@ -96,7 +104,8 @@
       "institutions"
     ],
     "dossier": "DLR5L17N54608",
-    "scrutin_annonce": false
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
   },
   {
     "date": "2026-09-24",
@@ -107,7 +116,8 @@
       "social"
     ],
     "dossier": "DLR5L17N54776",
-    "scrutin_annonce": false
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
   },
   {
     "date": "2026-09-24",
@@ -118,7 +128,8 @@
       "institutions"
     ],
     "dossier": "DLR5L17N54608",
-    "scrutin_annonce": false
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
   },
   {
     "date": "2026-09-25",
@@ -129,7 +140,8 @@
       "social"
     ],
     "dossier": "DLR5L17N54776",
-    "scrutin_annonce": false
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
   },
   {
     "date": "2026-09-29",
@@ -139,7 +151,8 @@
       "logement"
     ],
     "dossier": "DLR5L17N54817",
-    "scrutin_annonce": false
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
   },
   {
     "date": "2026-09-30",
@@ -149,7 +162,8 @@
       "transports"
     ],
     "dossier": "DLR5L17N54557",
-    "scrutin_annonce": false
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
   },
   {
     "date": "2026-09-30",
@@ -159,7 +173,8 @@
       "social"
     ],
     "dossier": "DLR5L17N53051",
-    "scrutin_annonce": false
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture (Sénat)"
   },
   {
     "date": "2026-09-30",
@@ -167,7 +182,8 @@
     "ordre_du_jour": "Examen du texte — Projet de loi autorisant l’approbation de l’accord multilatéral entre autorités compétentes portant sur l’échange des informations GloBE (séance éventuelle)",
     "themes": [],
     "dossier": "DLR5L17N54379",
-    "scrutin_annonce": false
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
   },
   {
     "date": "2026-10-01",
@@ -175,7 +191,8 @@
     "ordre_du_jour": "Examen du texte — Étendre le statut et les conditions d’attribution de la mention « Mort pour le service de la Nation",
     "themes": [],
     "dossier": "DLR5L17N52296",
-    "scrutin_annonce": false
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
   },
   {
     "date": "2026-10-07",
@@ -185,6 +202,7 @@
       "logement"
     ],
     "dossier": "DLR5L17N54817",
-    "scrutin_annonce": false
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
   }
 ]
