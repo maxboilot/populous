@@ -87,6 +87,15 @@ def lire_env():
     return valeurs
 
 
+def _titre_court(texte, limite=80):
+    """Tronque sur un mot entier — utilise uniquement quand la source ne
+    fournit pas de titre distinct du texte (cf. contenu_fait_du_jour)."""
+    if len(texte) <= limite:
+        return texte
+    coupe = texte[:limite].rsplit(' ', 1)[0]
+    return coupe.rstrip('.,;: ') + '…'
+
+
 def contenu_fait_du_jour():
     d = json.loads((DOSSIER / 'data' / 'refs_jour.json').read_text(encoding='utf-8'))
     cle = datetime.date.today().strftime('%m-%d')
@@ -94,15 +103,29 @@ def contenu_fait_du_jour():
     if not refs:
         return None
     ref = refs[0]
-    titre = f"{ref['annee']} : {ref['titre']}" if ref.get('titre') else ref['texte'][:80]
     mois, jour = cle.split('-')
     date_badge = f"{int(jour)} {MOIS_FR[int(mois) - 1]} {ref['annee']}"
+
+    if ref.get('titre'):
+        titre = f"{ref['annee']} : {ref['titre']}"
+        texte = ref['texte']
+        legende = f"{titre}\n\n{texte}\n\n#Populous #HistoirePolitique #AssembleeNationale"
+    else:
+        # Faits sans titre distinct (notamment ceux venus de Wikipedia via
+        # construire_refs_jour_wikipedia.py, largement majoritaires dans
+        # refs_jour.json) : le texte EST le titre. Le reprendre aussi comme
+        # paragraphe secondaire produirait une repetition exacte a l'ecran
+        # comme dans la legende — on ne l'affiche donc qu'une fois.
+        titre = f"{ref['annee']} : {_titre_court(ref['texte'])}"
+        texte = None
+        legende = f"{ref['texte']}\n\n#Populous #HistoirePolitique #AssembleeNationale"
+
     return {
         'eyebrow': 'Fait du jour',
         'titre': titre,
-        'texte': ref['texte'],
+        'texte': texte,
         'date_badge': date_badge,
-        'legende': f"{titre}\n\n{ref['texte']}\n\n#Populous #HistoirePolitique #AssembleeNationale",
+        'legende': legende,
     }
 
 
