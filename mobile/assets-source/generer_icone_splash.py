@@ -17,12 +17,12 @@ Deux dessins distincts, pas le meme motif recycle partout :
     gauche/droit et donc le mot.
 
   - Avatar reseaux sociaux (assets_social/logo_avatar_reseaux.png) :
-    juste "P", blanc sur fond noir, dans un rond qui remplit le
-    cercle inscrit. Facebook et Instagram affichent la photo de
-    profil en cercle, ou le mot "Populous" entier (meme centre)
-    devenait illisible a la petite taille d'un avatar — retour de Max
-    apres deux essais avec le mot complet. Ce script ne publie rien
-    lui-meme.
+    le mot "Populous" en entier (Max y tient, malgre le risque de
+    lisibilite reduite une fois recadre en petit cercle par
+    Facebook/Instagram — un essai en "P" seul, plus lisible en cercle,
+    a ete refuse), centre plutot que cale en bas a gauche pour rester
+    dans le disque inscrit au cadrage circulaire. Ce script ne publie
+    rien lui-meme.
 
 A relancer puis reconstruire dans Xcode si le texte, la police ou la
 couleur du titre changent un jour dans index.html.
@@ -67,19 +67,18 @@ def wordmark(taille):
     return img
 
 
-def avatar_p(taille):
-    """Avatar reseaux sociaux : "P" seul, blanc sur noir, cale pour un
-    cadrage circulaire (photo de profil Facebook/Instagram)."""
-    img = Image.new('RGB', (taille, taille), NOIR)
+def avatar_reseaux(taille):
+    """Avatar reseaux sociaux : "Populous" en entier, noir sur blanc,
+    centre (pas en bas a gauche) pour rester dans le disque inscrit au
+    cadrage circulaire de Facebook/Instagram."""
+    img = Image.new('RGB', (taille, taille), BLANC)
     trace = ImageDraw.Draw(img)
-    # Le rayon du cercle inscrit vaut taille/2 : on vise confortablement
-    # en dessous pour une marge de securite au cadrage circulaire.
-    cible = taille * 0.62
-    police, boite = _plus_grand_corps(trace, 'P', cible, cible, corps_depart=round(taille * 0.9))
+    marge = round(taille * MARGE_RATIO)
+    police, boite = _plus_grand_corps(trace, 'Populous', taille - 2 * marge, corps_depart=round(taille * 0.3))
     largeur, hauteur = boite[2] - boite[0], boite[3] - boite[1]
     x = (taille - largeur) // 2 - boite[0]
     y = (taille - hauteur) // 2 - boite[1]
-    trace.text((x, y), 'P', font=police, fill=BLANC)
+    trace.text((x, y), 'Populous', font=police, fill=NOIR)
     return img
 
 
@@ -95,7 +94,7 @@ def main():
         splash.save(dossier_splash / nom)
         print('Splash ecrit :', dossier_splash / nom)
 
-    avatar = avatar_p(1024)
+    avatar = avatar_reseaux(1024)
     avatar.save(SORTIE_AVATAR)
     print('Avatar reseaux sociaux ecrit :', SORTIE_AVATAR)
 
