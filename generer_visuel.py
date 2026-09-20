@@ -37,7 +37,25 @@ def _police(nom, taille):
     return ImageFont.truetype(str(FONTS / nom), taille)
 
 
+def _tronquer_pour_largeur(trace, texte, police, largeur_max):
+    """Filet de securite pour un seul mot plus large que la carte (nom de
+    famille compose tres long, sans espace pour casser en fin de ligne) :
+    tronque caractere par caractere avec une ellipse plutot que deborder."""
+    if trace.textlength(texte, font=police) <= largeur_max:
+        return texte
+    tronque = texte
+    while len(tronque) > 1 and trace.textlength(tronque + '…', font=police) > largeur_max:
+        tronque = tronque[:-1]
+    return tronque + '…'
+
+
 def _wrap_pour_largeur(trace, texte, police, largeur_max):
+    """Casse uniquement sur les espaces : un mot seul plus large que
+    `largeur_max` (nom de famille compose, sans espace pour casser) reste
+    donc tel quel sur sa ligne — a l'appelant de s'assurer que la taille de
+    police choisie lui laisse assez de place (cf. la boucle de `generer()`
+    qui verifie la largeur reelle) ou, en dernier recours, de tronquer via
+    `_tronquer_pour_largeur`."""
     mots = texte.split()
     lignes, ligne = [], ''
     for mot in mots:
@@ -331,8 +349,20 @@ def generer(sortie, *, eyebrow, titre, texte=None, photo=None,
         police_titre = _police('PlusJakartaSans-ExtraBold.ttf', taille)
         lignes_titre = _wrap_pour_largeur(trace, titre, police_titre, largeur_titre)
         hauteur_ligne = int(taille * 1.2)
-        if hauteur_ligne * len(lignes_titre) <= 330 or taille == 40:
+        # Il ne suffit pas que le total tienne en hauteur (330px) : un mot
+        # compose sans espace (nom de famille a rallonge) peut rester seul
+        # sur une ligne trop large tout en respectant le budget de hauteur,
+        # et deborder de la carte sans que cette condition ne le detecte.
+        largeur_reelle = max(trace.textlength(l, font=police_titre) for l in lignes_titre)
+        if (hauteur_ligne * len(lignes_titre) <= 330 and largeur_reelle <= largeur_titre) or taille == 40:
             break
+
+    # Filet de securite final : meme a 40 (la plus petite taille testee),
+    # un mot compose exceptionnellement long resterait plus large que la
+    # carte — on le tronque plutot que de le laisser deborder. N'affecte
+    # pas les cas normaux : a ce stade la ligne tient deja la plupart du
+    # temps, _tronquer_pour_largeur est un no-op si elle rentre deja.
+    lignes_titre = [_tronquer_pour_largeur(trace, l, police_titre, largeur_titre) for l in lignes_titre]
 
     y_titre = y
     for ligne in lignes_titre:

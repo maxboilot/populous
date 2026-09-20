@@ -7,7 +7,10 @@ Contenu (jamais invente, cf. CLAUDE.md) : cinq types, choisis avec
 exactement ce qu'il poste plutot que de tirer au hasard :
   - fait        : le fait du jour deja curate dans data/refs_jour.json
   - presidentiel: le dernier sondage 2027 deja recupere (et source) dans
-                  data/sondages.json
+                  data/sondages.json — le cron tourne quotidiennement mais
+                  ne publie que si ce sondage n'a pas deja ete poste (les
+                  instituts n'en sortent pas un par jour), etat garde dans
+                  data/state_publication.json
   - depute      : un depute tire au hasard dans elus.json, avec son
                   portrait officiel (meme atlas que index.html)
   - avenir      : les 3 prochains points a l'ordre du jour de
@@ -66,6 +69,19 @@ def _norm_pos(p):
 def _hex_vers_rgb(hexcode):
     h = hexcode.lstrip('#')
     return tuple(int(h[i:i + 2], 16) for i in (0, 2, 4))
+
+
+ETAT_PUBLICATION = DOSSIER / 'data' / 'state_publication.json'
+
+
+def lire_etat_publication():
+    if not ETAT_PUBLICATION.exists():
+        return {}
+    return json.loads(ETAT_PUBLICATION.read_text(encoding='utf-8'))
+
+
+def ecrire_etat_publication(etat):
+    ETAT_PUBLICATION.write_text(json.dumps(etat, ensure_ascii=False, indent=2, sort_keys=True), encoding='utf-8')
 
 
 def lire_env():
@@ -132,6 +148,16 @@ def contenu_fait_du_jour():
 def contenu_presidentielle():
     d = json.loads((DOSSIER / 'data' / 'sondages.json').read_text(encoding='utf-8'))
     dernier = max(d['sondages'], key=lambda s: s['date'])
+
+    # Les instituts ne publient pas un sondage par jour : reposter le meme
+    # chaque jour (le cron tourne quotidiennement) donnait un fil repetitif.
+    # On ne publie donc que si ce sondage precis (date + institut, car
+    # plusieurs instituts publient parfois le meme jour) n'a encore jamais
+    # ete poste — cf. main(), qui met a jour l'etat apres publication reelle.
+    identifiant = f"{dernier['date']}|{dernier['institut']}"
+    if identifiant == lire_etat_publication().get('dernier_sondage_publie'):
+        return None
+
     noms = {c['cle']: c['nom'] for c in d['candidats']}
     classement = sorted(dernier['scores'].items(), key=lambda kv: -kv[1])[:3]
     tete = classement[0]
@@ -145,6 +171,8 @@ def contenu_presidentielle():
             f"Présidentielle 2027 — sondage {dernier['institut']} du {date_fr}\n\n{detail}\n\n"
             f"Source : {dernier['source']}\n\n#Populous #Presidentielle2027 #Sondage"
         ),
+        'cle_etat': 'dernier_sondage_publie',
+        'valeur_etat': identifiant,
     }
 
 
@@ -325,6 +353,12 @@ def main():
     url_image = url_publique_photo(reponse_fb['id'], page_token)
     reponse_ig = publier_instagram(ig_user_id, page_token, url_image, contenu['legende'])
     print(f"Instagram publie : {reponse_ig}")
+
+    if 'cle_etat' in contenu:
+        etat = lire_etat_publication()
+        etat[contenu['cle_etat']] = contenu['valeur_etat']
+        ecrire_etat_publication(etat)
+        print(f"Etat mis a jour : {contenu['cle_etat']} = {contenu['valeur_etat']}")
 
 
 if __name__ == '__main__':

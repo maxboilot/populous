@@ -56,3 +56,27 @@ jobs:
           FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
         run: python publier_reseaux.py --type ${{ steps.type.outputs.type }} --publier
+      - name: Committer l'etat de publication mis a jour
+        # Necessaire depuis que contenu_presidentielle() se souvient du
+        # dernier sondage poste (data/state_publication.json) pour ne pas
+        # reposter le meme sondage chaque jour : sans ce commit, l'etat
+        # ecrit sur le runner serait perdu au prochain declenchement, qui
+        # repart d'un checkout propre. Meme logique que
+        # ingest_scrutins.yml (plusieurs workflows commitent sur main
+        # independamment : on retente en cas de collision).
+        run: |
+          git config user.name bot-publication
+          git config user.email bot@example.invalid
+          git add data/state_publication.json
+          if git diff --cached --quiet; then
+            echo 'Aucun etat a committer.'
+            exit 0
+          fi
+          git commit -m 'Etat de publication du '$(date -u +%F)
+          for i in 1 2 3 4 5; do
+            git pull --rebase --autostash && git push && exit 0
+            echo "Push echoue (tentative $i/5), nouvel essai..."
+            sleep $((RANDOM % 10 + 5))
+          done
+          echo "Echec apres 5 tentatives."
+          exit 1
