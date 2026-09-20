@@ -25,6 +25,9 @@ on:
         required: true
         default: fait
 
+permissions:
+  contents: write
+
 concurrency:
   group: publier-reseaux
   cancel-in-progress: false
