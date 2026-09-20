@@ -40,7 +40,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: pip install requests
+      - run: pip install requests "httpx[http2]" "PyJWT[crypto]"
       - name: Exécuter l'ingestion
         run: python ingest_scrutins.py
       - name: Construire l historique des lois
@@ -53,6 +53,36 @@ jobs:
         run: python construire_texte_loi.py
       - name: Construire les resumes officiels pour la Boussole
         run: python construire_expose_motifs.py
+      - name: Notifier si un nouveau scrutin vient de sortir
+        # featured_numero n'est non-null que si CE run vient de trouver un
+        # nouveau scrutin (cf. write_today_pointer dans ingest_scrutins.py) —
+        # jamais declenche par un simple re-passage sans nouveaute.
+        # continue-on-error : les notifications sont un bonus, jamais un
+        # motif pour faire echouer l'ingestion des donnees elle-meme.
+        if: ${{ secrets.APNS_KEY_ID != '' }}
+        continue-on-error: true
+        env:
+          APNS_KEY_ID: ${{ secrets.APNS_KEY_ID }}
+          APNS_TEAM_ID: ${{ secrets.APNS_TEAM_ID }}
+          APNS_AUTH_KEY: ${{ secrets.APNS_AUTH_KEY }}
+          FIREBASE_PROJECT_ID: populous-66469
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: |
+          python3 - <<'PYEOF'
+          import json, subprocess, sys
+          today = json.load(open('data/today.json'))
+          numero = today.get('featured_numero')
+          if numero is None:
+              print('Pas de nouveau scrutin vedette sur ce run, rien a notifier.')
+              sys.exit(0)
+          scrutin = json.load(open(f'data/scrutins/{numero}.json'))
+          sort = 'adopté' if scrutin.get('adopte') else 'rejeté'
+          texte = f"{scrutin['titre'][:120]} — {sort}"
+          subprocess.run(
+              ['python3', 'notifier_push.py', '--titre', "Un vote vient d'avoir lieu à l'Assemblée", '--texte', texte],
+              check=True,
+          )
+          PYEOF
       - name: Committer les données mises à jour
         run: |
           git config user.name bot-ingestion

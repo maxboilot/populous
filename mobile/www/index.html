@@ -3748,6 +3748,48 @@ try{
   if(s && SCREENS.includes(s)) ecranInitial = s;
 }catch(e){}
 showScreen(ecranInitial);
+
+/* ---------- notifications push (app native uniquement) ----------
+   Capacitor.isNativePlatform() vaut false sur le web : ce bloc ne fait
+   rigoureusement rien en dehors de l'app iOS. Le jeton APNs est envoye
+   a Firestore en ECRITURE SEULE (cf. regles de securite : allow create,
+   deny read/update/delete) qui sert uniquement de liste d'abonnes pour
+   le pipeline de publication (cf. notifier_push.py) — jamais lu ni
+   exploite cote app elle-meme, aucune donnee personnelle transmise. */
+const FIRESTORE_PROJET_ID = "populous-66469";
+
+async function initNotificationsPush(){
+  const cap = window.Capacitor;
+  if(!cap || !cap.isNativePlatform || !cap.isNativePlatform()) return;
+  const { PushNotifications } = cap.Plugins || {};
+  if(!PushNotifications) return;
+
+  try{
+    const etat = await PushNotifications.requestPermissions();
+    if(etat.receive !== "granted") return;
+    await PushNotifications.register();
+  }catch(e){ console.error("Notifications push : demande de permission impossible", e); return; }
+
+  PushNotifications.addListener("registration", async (jeton)=>{
+    try{
+      await fetch(`https://firestore.googleapis.com/v1/projects/${FIRESTORE_PROJET_ID}/databases/(default)/documents/pushTokens`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fields: {
+            token: { stringValue: jeton.value },
+            plateforme: { stringValue: cap.getPlatform ? cap.getPlatform() : "ios" },
+            enregistreLe: { timestampValue: new Date().toISOString() },
+          },
+        }),
+      });
+    }catch(e){ console.error("Notifications push : enregistrement du jeton impossible", e); }
+  });
+  PushNotifications.addListener("registrationError", (err)=>{
+    console.error("Notifications push : erreur d'enregistrement", err);
+  });
+}
+initNotificationsPush();
 </script>
 </body>
 </html>
