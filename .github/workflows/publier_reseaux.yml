@@ -70,7 +70,14 @@ jobs:
         run: |
           git config user.name bot-publication
           git config user.email bot@example.invalid
-          git add data/state_publication.json
+          # N'existe que si contenu_presidentielle() a deja poste un sondage
+          # au moins une fois (cf. lire_etat_publication/ecrire_etat_publication
+          # dans publier_reseaux.py) — absent pour tout autre type de
+          # contenu, "git add" planterait sinon avec "pathspec ... did not
+          # match any files".
+          if [ -f data/state_publication.json ]; then
+            git add data/state_publication.json
+          fi
           if git diff --cached --quiet; then
             echo 'Aucun etat a committer.'
             exit 0
