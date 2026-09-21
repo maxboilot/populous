@@ -59,7 +59,10 @@ jobs:
         # jamais declenche par un simple re-passage sans nouveaute.
         # continue-on-error : les notifications sont un bonus, jamais un
         # motif pour faire echouer l'ingestion des donnees elle-meme.
-        if: ${{ secrets.APNS_KEY_ID != '' }}
+        # Pas de "if: secrets.APNS_KEY_ID != ''" ici : le contexte secrets
+        # n'est pas autorise dans une condition if d'etape (GitHub rejette
+        # alors le workflow entier comme invalide). La verification se fait
+        # donc dans le script Python ci-dessous, sur la variable d'env.
         continue-on-error: true
         env:
           APNS_KEY_ID: ${{ secrets.APNS_KEY_ID }}
@@ -69,7 +72,10 @@ jobs:
           FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
         run: |
           python3 - <<'PYEOF'
-          import json, subprocess, sys
+          import json, os, subprocess, sys
+          if not os.environ.get('APNS_KEY_ID'):
+              print('Secrets APNs pas encore configures, rien a notifier.')
+              sys.exit(0)
           today = json.load(open('data/today.json'))
           numero = today.get('featured_numero')
           if numero is None:
