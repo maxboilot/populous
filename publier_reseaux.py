@@ -208,6 +208,11 @@ def contenu_depute():
             f"Retrouve son activité complète à l'Assemblée sur Populous.\n\n#Populous #AssembleeNationale #{elu['g']}"
         ),
         'a_index': elu['a'],
+        # Portrait + donnees de vote viennent de l'Assemblee (Licence
+        # Ouverte Etalab, mention de source obligatoire) — remplace le
+        # pied de page "Populous App -> App Store" habituel (cf.
+        # docstring pied_source dans generer_visuel.generer).
+        'pied_source': 'Source : Assemblée nationale (data.assemblee-nationale.fr)',
     }
 
 
@@ -334,7 +339,7 @@ def main():
     generer(
         chemin_image, eyebrow=contenu['eyebrow'], titre=contenu['titre'], texte=contenu.get('texte'), photo=photo,
         date_badge=contenu.get('date_badge'), bloc_depute=contenu.get('bloc_depute'),
-        pile_resultats=contenu.get('pile_resultats'),
+        pile_resultats=contenu.get('pile_resultats'), pied_source=contenu.get('pied_source'),
     )
 
     print(f"Visuel : {chemin_image}")

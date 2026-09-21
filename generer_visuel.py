@@ -31,6 +31,7 @@ ENCRE = (16, 25, 63)
 BLEU = (27, 59, 219)
 BLANC = (255, 255, 255)
 ROUGE = (196, 26, 26)
+GRIS_SOURCE = (146, 150, 168)
 
 
 def _police(nom, taille):
@@ -247,7 +248,7 @@ def _dessiner_bloc_depute(img, trace, x0, x1, y, bloc):
 
 
 def generer(sortie, *, eyebrow, titre, texte=None, photo=None,
-            date_badge=None, bloc_depute=None, pile_resultats=None):
+            date_badge=None, bloc_depute=None, pile_resultats=None, pied_source=None):
     """Ecrit un PNG 1080x1350 dans `sortie` (Path ou str).
 
     eyebrow : categorie courte ("FAIT DU JOUR", "A VENIR"...), affichee
@@ -265,6 +266,13 @@ def generer(sortie, *, eyebrow, titre, texte=None, photo=None,
       `texte` — cf. contenu_depute() dans publier_reseaux.py.
     pile_resultats : image PIL (RGBA) deja composee — cf.
       pile_boussole_exemple() — collee sous `texte`.
+    pied_source : si fourni, remplace le pied de page "Populous App ->
+      App Store" par ce texte (petit, gris clair) au meme endroit —
+      utilise pour les posts « depute du jour » : la photo et les
+      donnees de vote viennent de l'Assemblee, la Licence Ouverte
+      Etalab impose la mention de la source, et l'accoler a un appel a
+      telecharger l'app risquerait de la faire lire comme un usage
+      publicitaire (licence photos de l'Assemblee interdite en pub).
     """
     carte_etendue = bool(bloc_depute) or bool(pile_resultats)
 
@@ -391,24 +399,33 @@ def generer(sortie, *, eyebrow, titre, texte=None, photo=None,
         py = y - 10
         img.alpha_composite(pile_resultats, (px, py))
 
-    # Pied de page hors carte, petit et aligne a gauche : "Populous App
-    # -> App Store". La fleche est dessinee a la main (le glyphe ->
-    # n'existe pas dans Plus Jakarta Sans et se rendrait en tofu).
+    # Pied de page hors carte, petit et aligne a gauche.
     trace = ImageDraw.Draw(img)
-    police_pied = _police('PlusJakartaSans-Bold.ttf', 22)
-    gauche, droite = 'Populous App', 'App Store'
-    l_gauche = trace.textlength(gauche, font=police_pied)
-    largeur_fleche = 34
-    x = marge_carte
     y_pied = HAUTEUR - 64
-    trace.text((x, y_pied), gauche, font=police_pied, fill=ENCRE)
-    x += l_gauche + 16
-    y_mid = y_pied + 15
-    trace.line((x, y_mid, x + largeur_fleche, y_mid), fill=ENCRE, width=3)
-    trace.line((x + largeur_fleche - 10, y_mid - 9, x + largeur_fleche, y_mid), fill=ENCRE, width=3)
-    trace.line((x + largeur_fleche - 10, y_mid + 9, x + largeur_fleche, y_mid), fill=ENCRE, width=3)
-    x += largeur_fleche + 16
-    trace.text((x, y_pied), droite, font=police_pied, fill=ENCRE)
+    if pied_source:
+        # Petit, gris clair mais lisible : simple mention de source, pas
+        # d'appel a l'action (cf. docstring de `pied_source`).
+        police_source = _police('PlusJakartaSans-Medium.ttf', 22)
+        largeur_dispo = (LARGEUR - marge_carte) - marge_carte
+        texte_source = _tronquer_pour_largeur(trace, pied_source, police_source, largeur_dispo)
+        trace.text((marge_carte, y_pied), texte_source, font=police_source, fill=GRIS_SOURCE)
+    else:
+        # "Populous App -> App Store". La fleche est dessinee a la main
+        # (le glyphe -> n'existe pas dans Plus Jakarta Sans et se
+        # rendrait en tofu).
+        police_pied = _police('PlusJakartaSans-Bold.ttf', 22)
+        gauche, droite = 'Populous App', 'App Store'
+        l_gauche = trace.textlength(gauche, font=police_pied)
+        largeur_fleche = 34
+        x = marge_carte
+        trace.text((x, y_pied), gauche, font=police_pied, fill=ENCRE)
+        x += l_gauche + 16
+        y_mid = y_pied + 15
+        trace.line((x, y_mid, x + largeur_fleche, y_mid), fill=ENCRE, width=3)
+        trace.line((x + largeur_fleche - 10, y_mid - 9, x + largeur_fleche, y_mid), fill=ENCRE, width=3)
+        trace.line((x + largeur_fleche - 10, y_mid + 9, x + largeur_fleche, y_mid), fill=ENCRE, width=3)
+        x += largeur_fleche + 16
+        trace.text((x, y_pied), droite, font=police_pied, fill=ENCRE)
 
     Path(sortie).parent.mkdir(parents=True, exist_ok=True)
     img.convert('RGB').save(sortie, 'PNG')
