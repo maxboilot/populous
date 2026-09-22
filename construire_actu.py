@@ -69,6 +69,28 @@ MOTS_CLES = [
 MOTS_CLES_AVEC_ANNEE = ['candidat*', 'election*', 'sondage*']
 ANNEE = '2027'
 
+# "Élection présidentielle" est aussi le nom de la présidentielle
+# brésilienne, américaine, etc. — un flux "Politique" généraliste
+# couvre régulièrement ces scrutins étrangers avec les mêmes mots.
+# Si l'un de ces pays est cité, on exige en plus une ancre clairement
+# française (Élysée, Macron, 2027...) avant de retenir l'article.
+PAYS_ETRANGERS = [
+    'bresil', 'bresilien*', 'etats unis', 'americain*', 'argentine', 'argentin*',
+    'chili', 'chilien*', 'venezuela', 'venezuelien*', 'colombie', 'colombien*',
+    'perou', 'peruvien*', 'equateur', 'equatorien*', 'bolivie', 'bolivien*',
+    'mexique', 'mexicain*', 'pologne', 'polonais*', 'roumanie', 'roumain*',
+    'portugal', 'portugais*', 'autriche', 'autrichien*', 'tcheque*',
+    'coree du sud', 'sud coreen*', 'taiwan', 'taiwanais*', 'turquie', 'turc', 'turque*',
+    'iran', 'iranien*', 'russie', 'russe*', 'ukraine', 'ukrainien*',
+    'cote d ivoire', 'ivoirien*', 'cameroun', 'camerounais*', 'gabon', 'gabonais*',
+    'senegal', 'senegalais*', 'madagascar', 'malgache*', 'tanzanie', 'tanzanien*',
+    'ouganda', 'ougandais*', 'algerie', 'algerien*', 'tunisie', 'tunisien*',
+    'egypte', 'egyptien*',
+]
+ANCRES_FRANCE = [
+    'elysee', 'macron', '2027', 'en france', 'presidentielle francaise', 'hexagone',
+]
+
 
 def sans_accents(texte):
     return unicodedata.normalize('NFD', texte or '').encode('ascii', 'ignore').decode('ascii')
@@ -92,15 +114,23 @@ def _motif(mot):
 
 MOTIFS = [_motif(m) for m in MOTS_CLES]
 MOTIFS_AVEC_ANNEE = [_motif(m) for m in MOTS_CLES_AVEC_ANNEE]
+MOTIFS_PAYS_ETRANGERS = [_motif(m) for m in PAYS_ETRANGERS]
+MOTIFS_ANCRES_FRANCE = [_motif(m) for m in ANCRES_FRANCE]
 
 
 def pertinent(titre, extrait):
     t = normaliser((titre or '') + ' ' + (extrait or ''))
     if any(m.search(t) for m in MOTIFS):
-        return True
-    if ANNEE in t and any(m.search(t) for m in MOTIFS_AVEC_ANNEE):
-        return True
-    return False
+        match = True
+    elif ANNEE in t and any(m.search(t) for m in MOTIFS_AVEC_ANNEE):
+        match = True
+    else:
+        match = False
+    if not match:
+        return False
+    if any(m.search(t) for m in MOTIFS_PAYS_ETRANGERS):
+        return any(m.search(t) for m in MOTIFS_ANCRES_FRANCE)
+    return True
 
 
 def nettoyer_html(texte):

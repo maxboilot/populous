@@ -5,6 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
 <title>Populous</title>
 <script>
+/* Repère de départ pour l'écran de démarrage (#bootSplash, voir plus bas
+   dans <body>) : le splash reste visible au moins 2 s, et plus longtemps
+   si le chargement réel prend plus de temps — voir le point d'entrée en
+   fin de fichier, juste après showScreen(ecranInitial). */
+window.__BOOT_START__ = Date.now();
+
 /* Démarrage anticipé du chargement du vote vedette.
 
    Cette page embarque 1,2 Mo de données en dur : contours, députés, groupes.
@@ -64,6 +70,25 @@ window.__VOTE_EARLY__ = (async function(){
     font-size:9px!important;border-radius:8px 0 0 0!important}
   .leaflet-control-attribution a{color:var(--accent)!important}
   .d{font-family:var(--font-d);font-weight:800;letter-spacing:-.02em}
+
+  /* ============ écran de démarrage ============
+     Couvre l'app dès le premier paint (blanc + texte sombre, comme
+     l'écran de lancement natif iOS qu'il prolonge) et reste au moins
+     2 s — voir __BOOT_START__ en tête de page et le point d'entrée en
+     fin de script, qui pilote la disparition. La barre est volontairement
+     indéterminée pour l'instant (chargement quasi instantané) mais assez
+     générique pour, plus tard, refléter un vrai temps de chargement si
+     l'app vient à charger davantage de données à l'ouverture. */
+  #bootSplash{position:fixed;inset:0;z-index:2000;background:#FFFFFF;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;
+    transition:opacity .4s ease}
+  #bootSplash.out{opacity:0;pointer-events:none}
+  .bootMark{font-family:var(--font-d);font-weight:800;font-size:30px;letter-spacing:-.02em;color:var(--ink)}
+  .bootBar{width:104px;height:4px;border-radius:var(--r-pill);background:var(--accent-soft);overflow:hidden}
+  .bootBarFill{width:38%;height:100%;border-radius:var(--r-pill);background:var(--accent);
+    animation:bootBarSlide 1.05s cubic-bezier(.4,0,.2,1) infinite}
+  @keyframes bootBarSlide{0%{transform:translateX(-100%)}100%{transform:translateX(270%)}}
+  @media (prefers-reduced-motion: reduce){ .bootBarFill{animation:none;width:70%} }
   .m{font-family:ui-monospace,'SF Mono',SFMono-Regular,Menlo,Consolas,monospace}
   .card{background:var(--card);border:none;border-radius:var(--r-card);box-shadow:var(--shadow)}
   button,input{font-family:inherit}
@@ -478,7 +503,7 @@ window.__VOTE_EARLY__ = (async function(){
   .bt-badge{font-size:8.5px;font-weight:800;letter-spacing:.03em;text-transform:uppercase;
     background:rgba(255,255,255,.22);padding:2px 7px;border-radius:var(--r-pill);vertical-align:middle;margin-left:2px}
   .bt-badge:empty{display:none}
-  .dashGrid{max-width:640px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .dashGrid{max-width:640px;margin:0 auto 20px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
   .dashTile{grid-column:span 1;padding:20px 18px;background:var(--card);border:1px solid var(--line);
     border-radius:var(--r-card);color:var(--ink);text-align:left;cursor:pointer;transition:transform .15s,box-shadow .15s}
   .dashTile:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
@@ -697,6 +722,12 @@ window.__VOTE_EARLY__ = (async function(){
 </style>
 </head>
 <body>
+<!-- ============ écran de démarrage (voir CSS #bootSplash + point d'entrée en fin de script) ============ -->
+<div id="bootSplash" aria-hidden="true">
+  <div class="bootMark">Populous</div>
+  <div class="bootBar"><div class="bootBarFill"></div></div>
+</div>
+
 <!-- ============ bascule National / Communal, globale (remplace l'ancien badge profil) ============ -->
 <div id="modeToggle" class="modeToggle" role="group" aria-label="National ou communal">
   <button class="modeOpt on" data-mode="national" type="button">Mon Pays</button>
@@ -3748,6 +3779,19 @@ try{
   if(s && SCREENS.includes(s)) ecranInitial = s;
 }catch(e){}
 showScreen(ecranInitial);
+
+/* L'app est utilisable à ce point : on masque l'écran de démarrage,
+   sans jamais descendre sous 2 s d'affichage (voir __BOOT_START__ en
+   tête de page) même si tout ci-dessus s'est exécuté en quelques ms. */
+(function(){
+  const attente = Math.max(0, 2000 - (Date.now() - (window.__BOOT_START__ || Date.now())));
+  setTimeout(function(){
+    const s = document.getElementById("bootSplash");
+    if(!s) return;
+    s.classList.add("out");
+    setTimeout(function(){ s.remove(); }, 420);
+  }, attente);
+})();
 
 /* ---------- notifications push (app native uniquement) ----------
    Capacitor.isNativePlatform() vaut false sur le web : ce bloc ne fait
