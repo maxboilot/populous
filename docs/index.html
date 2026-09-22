@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Populous — Politique de confidentialité</title>
+<style>
+  :root{
+    --bg:#F3F3F2; --card:#FFFFFF; --card-alt:#F4F6FC;
+    --ink:#10193F; --ink-soft:#4A5578; --dim:#8891B0;
+    --accent:#1B3BDB; --accent-soft:#E7EAFF;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.6;
+  }
+  .wrap{max-width:720px; margin:0 auto; padding:48px 20px 80px}
+  .eyebrow{
+    color:var(--accent); font-weight:700; font-size:13px;
+    letter-spacing:.04em; text-transform:uppercase; margin:0 0 8px;
+  }
+  h1{font-size:28px; margin:0 0 6px; line-height:1.25}
+  .maj{color:var(--dim); font-size:14px; margin:0 0 36px}
+  .card{
+    background:var(--card); border-radius:20px; padding:28px 28px 8px;
+    box-shadow:0 1px 2px rgba(16,25,63,.06);
+  }
+  h2{font-size:17px; margin:0 0 10px; padding-top:22px}
+  h2:first-child{padding-top:0}
+  p{margin:0 0 20px; color:var(--ink-soft); font-size:15px}
+  ul{margin:0 0 20px; padding-left:20px; color:var(--ink-soft); font-size:15px}
+  li{margin-bottom:6px}
+  strong{color:var(--ink)}
+  a{color:var(--accent); text-decoration:none}
+  a:hover{text-decoration:underline}
+  .contact{
+    background:var(--accent-soft); border-radius:14px; padding:18px 20px;
+    margin:28px 0 8px; font-size:15px;
+  }
+  .contact p{margin:0; color:var(--ink)}
+  footer{text-align:center; color:var(--dim); font-size:13px; margin-top:32px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="eyebrow">Populous</p>
+  <h1>Politique de confidentialité</h1>
+  <p class="maj">Dernière mise à jour : 22 septembre 2026</p>
+
+  <div class="card">
+
+    <h2>Qui édite cette app</h2>
+    <p>Populous est éditée par Maxime Boilot, développeur indépendant. Cette politique décrit quelles données l'app Populous (iOS) collecte, pourquoi, et comment les faire supprimer.</p>
+
+    <h2>Aucun compte, aucune inscription</h2>
+    <p>Populous ne demande ni création de compte, ni identifiant, ni mot de passe, ni adresse e-mail pour être utilisée. L'app est utilisable en intégralité sans rien renseigner sur vous.</p>
+
+    <h2>Notifications push</h2>
+    <p>Si vous autorisez les notifications, votre appareil reçoit un jeton anonyme (fourni par Apple) que l'app enregistre pour pouvoir vous notifier des nouveaux votes à l'Assemblée nationale. Ce jeton est stocké avec la plateforme (« ios ») et la date d'enregistrement — <strong>aucune autre information</strong> (nom, e-mail, localisation, identifiant publicitaire) n'y est associée.</p>
+    <p>Ce jeton est conservé tant que vous gardez les notifications activées, dans une base de données (Firestore, hébergée par Google Cloud) en écriture seule : l'app ne peut jamais relire, modifier ou consulter les jetons enregistrés, y compris les vôtres. Il est transmis à Apple (service APNs) uniquement pour acheminer la notification jusqu'à votre appareil.</p>
+    <p>Vous pouvez désactiver les notifications à tout moment dans Réglages → Notifications → Populous. Pour demander la suppression du jeton associé à votre appareil, contactez-nous (coordonnées ci-dessous).</p>
+
+    <h2>Boussole politique</h2>
+    <p>Vos réponses à la boussole politique (comparaison de vos opinions aux votes des élus) restent <strong>uniquement stockées sur votre appareil</strong> (mémoire locale du téléphone). Elles ne sont jamais envoyées à un serveur, ni à nous, ni à un tiers.</p>
+
+    <h2>Pas de traceurs, pas de publicité</h2>
+    <p>Populous n'intègre aucun outil de mesure d'audience, aucun traceur publicitaire, aucun SDK tiers de profilage, et n'affiche aucune publicité.</p>
+
+    <h2>Données publiques affichées dans l'app</h2>
+    <p>Populous affiche des informations publiques sur les député·es et les scrutins de l'Assemblée nationale (identité, mandat, votes, groupe politique), ainsi que des sondages d'intention de vote. Ces données proviennent de sources ouvertes et vérifiables :</p>
+    <ul>
+      <li>Open data de l'Assemblée nationale (<a href="https://data.assemblee-nationale.fr" target="_blank" rel="noopener">data.assemblee-nationale.fr</a>), sous Licence Ouverte / Open Licence Etalab ;</li>
+      <li>Wikidata et Wikipédia, via le jeu de données ouvert « quinousrepresente » (licence MIT) ;</li>
+      <li>Instituts de sondage, cités individuellement dans chaque publication.</li>
+    </ul>
+    <p>Aucune donnée n'est inventée ou déduite : un champ non documenté par la source est affiché comme tel plutôt que complété. Si vous êtes un·e élu·e concerné·e et souhaitez signaler une inexactitude, contactez-nous.</p>
+
+    <h2>Vos droits</h2>
+    <p>Conformément au RGPD, vous pouvez demander l'accès, la rectification ou la suppression de toute donnée vous concernant traitée par Populous, en écrivant à l'adresse ci-dessous. Le jeton de notification étant anonyme, nous ne pouvons pas vous identifier autrement que par les informations que vous nous transmettez volontairement dans votre demande.</p>
+
+    <h2>Mineurs</h2>
+    <p>Populous ne collecte pas sciemment de données visant spécifiquement des mineurs et ne propose aucune fonctionnalité de collecte de données personnelles.</p>
+
+    <h2>Modifications</h2>
+    <p>Cette politique peut être mise à jour ; la date en haut de page reflète la dernière version. Les changements significatifs seront reflétés dans les notes de version de l'app.</p>
+
+  </div>
+
+  <div class="contact">
+    <p><strong>Contact :</strong> <a href="mailto:boilot.maxime@gmail.com">boilot.maxime@gmail.com</a></p>
+  </div>
+
+  <footer>Populous — Assemblée nationale, votes et actualité politique</footer>
+</div>
+</body>
+</html>
