@@ -1,7 +1,7 @@
 [
   {
     "date": "2026-09-22",
-    "heure": "09:00",
+    "heure": "09:05",
     "ordre_du_jour": "Examen du texte — Adapter l'autorité judiciaire à la lutte contre les violences sexuelles et intrafamiliales",
     "themes": [
       "justice",
@@ -13,7 +13,7 @@
   },
   {
     "date": "2026-09-22",
-    "heure": "09:00",
+    "heure": "09:05",
     "ordre_du_jour": "Examen du texte — Apporter une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants",
     "themes": [
       "securite",
@@ -159,6 +159,124 @@
     "lecture": "1ʳᵉ lecture"
   },
   {
+    "date": "2026-10-01",
+    "heure": "15:00",
+    "ordre_du_jour": "Discussion de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants",
+    "themes": [
+      "securite",
+      "social"
+    ],
+    "dossier": "DLR5L17N54776",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-01",
+    "heure": "15:00",
+    "ordre_du_jour": "Discussion de la proposition de loi organique visant à adapter l'autorité judiciaire à la lutte contre les violences sexuelles et intrafamiliales",
+    "themes": [
+      "justice",
+      "securite"
+    ],
+    "dossier": "DLR5L17N54777",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-02",
+    "heure": "09:00",
+    "ordre_du_jour": "Suite de la discussion de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants",
+    "themes": [
+      "securite",
+      "social"
+    ],
+    "dossier": "DLR5L17N54776",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-02",
+    "heure": "09:00",
+    "ordre_du_jour": "Suite de la discussion de la proposition de loi organique visant à adapter l'autorité judiciaire à la lutte contre les violences sexuelles et intrafamiliales",
+    "themes": [
+      "justice",
+      "securite"
+    ],
+    "dossier": "DLR5L17N54777",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-05",
+    "heure": "16:00",
+    "ordre_du_jour": "Discussion du projet de loi autorisant l’approbation de l’accord entre la France et la Moldavie dans le domaine de la sécurité sociale",
+    "themes": [
+      "securite"
+    ],
+    "dossier": "DLR5L17N53743",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-05",
+    "heure": "16:00",
+    "ordre_du_jour": "Discussion du projet de loi autorisant l’approbation de l’accord entre la France et la Moldavie relatif à la coopération dans le domaine de la défense",
+    "themes": [
+      "defense"
+    ],
+    "dossier": "DLR5L17N53075",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-05",
+    "heure": "21:30",
+    "ordre_du_jour": "Suite de la discussion de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants",
+    "themes": [
+      "securite",
+      "social"
+    ],
+    "dossier": "DLR5L17N54776",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-05",
+    "heure": "21:30",
+    "ordre_du_jour": "Suite de la discussion de la proposition de loi organique visant à adapter l'autorité judiciaire à la lutte contre les violences sexuelles et intrafamiliales",
+    "themes": [
+      "justice",
+      "securite"
+    ],
+    "dossier": "DLR5L17N54777",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-06",
+    "heure": "15:00",
+    "ordre_du_jour": "Suite de la discussion de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants",
+    "themes": [
+      "securite",
+      "social"
+    ],
+    "dossier": "DLR5L17N54776",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-06",
+    "heure": "15:00",
+    "ordre_du_jour": "Suite de la discussion de la proposition de loi organique visant à adapter l'autorité judiciaire à la lutte contre les violences sexuelles et intrafamiliales",
+    "themes": [
+      "justice",
+      "securite"
+    ],
+    "dossier": "DLR5L17N54777",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
     "date": "2026-10-07",
     "heure": "19:30",
     "ordre_du_jour": "Examen du texte — Renforcer la responsabilité des occupants et des bailleurs dans le logement social (séance éventuelle)",
@@ -166,6 +284,197 @@
       "logement"
     ],
     "dossier": "DLR5L17N54817",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-07",
+    "heure": "21:30",
+    "ordre_du_jour": "Suite de la discussion de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants",
+    "themes": [
+      "securite",
+      "social"
+    ],
+    "dossier": "DLR5L17N54776",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-07",
+    "heure": "21:30",
+    "ordre_du_jour": "Suite de la discussion de la proposition de loi organique visant à adapter l'autorité judiciaire à la lutte contre les violences sexuelles et intrafamiliales",
+    "themes": [
+      "justice",
+      "securite"
+    ],
+    "dossier": "DLR5L17N54777",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-07",
+    "heure": "21:30",
+    "ordre_du_jour": "Suite de la discussion du projet de loi, adopté par le Sénat, relatif à la résilience des infrastructures critiques et au renforcement de la cybersécurité",
+    "themes": [
+      "numerique"
+    ],
+    "dossier": "DLR5L17N50731",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-08",
+    "heure": "15:00",
+    "ordre_du_jour": "Suite de la discussion de la proposition de loi pour étendre le statut et les conditions d’attribution de la mention « Mort pour le service de la Nation »",
+    "themes": [],
+    "dossier": "DLR5L17N52296",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-08",
+    "heure": "15:00",
+    "ordre_du_jour": "Suite de la discussion de la proposition de loi renforçant la responsabilité des locataires et des bailleurs dans le logement social",
+    "themes": [
+      "logement"
+    ],
+    "dossier": "DLR5L17N54817",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-08",
+    "heure": "15:00",
+    "ordre_du_jour": "Suite de la discussion de la proposition de loi visant à abroger les zones à faibles émissions-mobilités",
+    "themes": [
+      "transports"
+    ],
+    "dossier": "DLR5L17N54557",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-08",
+    "heure": "15:00",
+    "ordre_du_jour": "Suite de la discussion de la proposition de loi visant à redéfinir le cadre d’attribution des subventions accordées par les collectivités territoriales",
+    "themes": [
+      "institutions"
+    ],
+    "dossier": "DLR5L17N50644",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-08",
+    "heure": "15:00",
+    "ordre_du_jour": "Suite de la discussion de la proposition de résolution invitant le Gouvernement à engager les démarches en vue de soutenir l’entrée au Panthéon d’Olympe de Gouges, de l’abbé Charles-Michel de l’Épée et de Zéna M’Déré",
+    "themes": [],
+    "dossier": "DLR5L17N54916",
+    "scrutin_annonce": false,
+    "lecture": "Lecture unique"
+  },
+  {
+    "date": "2026-10-08",
+    "heure": "15:00",
+    "ordre_du_jour": "Suite de la discussion de la proposition de résolution, déposée en application de l’article 34-1 de la Constitution, visant à garantir un accès continu à l’eau potable dans les territoires ultramarins",
+    "themes": [],
+    "dossier": "DLR5L17N54844",
+    "scrutin_annonce": false,
+    "lecture": "Lecture unique"
+  },
+  {
+    "date": "2026-10-08",
+    "heure": "15:00",
+    "ordre_du_jour": "Suite de la discussion de la proposition de résolution, déposée en application de l’article 34-1 de la Constitution, visant à mobiliser la commande publique au service de l’emploi, de la production et de l’innovation en France",
+    "themes": [],
+    "dossier": "DLR5L17N54841",
+    "scrutin_annonce": false,
+    "lecture": "Lecture unique"
+  },
+  {
+    "date": "2026-10-08",
+    "heure": "15:00",
+    "ordre_du_jour": "Suite de la discussion de la proposition de résolution, déposée en application de l’article 34-1 de la Constitution, visant à refonder l'espace Schengen en instaurant une double frontière nationale et européenne",
+    "themes": [
+      "immigration"
+    ],
+    "dossier": "DLR5L17N54847",
+    "scrutin_annonce": false,
+    "lecture": "Lecture unique"
+  },
+  {
+    "date": "2026-10-09",
+    "heure": "21:30",
+    "ordre_du_jour": "Suite de la discussion de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants",
+    "themes": [
+      "securite",
+      "social"
+    ],
+    "dossier": "DLR5L17N54776",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-09",
+    "heure": "21:30",
+    "ordre_du_jour": "Suite de la discussion de la proposition de loi organique visant à adapter l'autorité judiciaire à la lutte contre les violences sexuelles et intrafamiliales",
+    "themes": [
+      "justice",
+      "securite"
+    ],
+    "dossier": "DLR5L17N54777",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-09",
+    "heure": "21:30",
+    "ordre_du_jour": "Suite de la discussion du projet de loi, adopté par le Sénat, relatif à la résilience des infrastructures critiques et au renforcement de la cybersécurité",
+    "themes": [
+      "numerique"
+    ],
+    "dossier": "DLR5L17N50731",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-12",
+    "heure": "16:00",
+    "ordre_du_jour": "Discussion de la proposition de loi visant à moderniser et rééquilibrer le fonctionnement du titre-restaurant",
+    "themes": [],
+    "dossier": "DLR5L17N54445",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-12",
+    "heure": "16:00",
+    "ordre_du_jour": "Discussion de la proposition de loi, adoptée par le Sénat, relative à l’expérimentation d’une gouvernance territoriale unifiée pour le centre de ressources, d’expertise et de performance sportive (CREPS) de Vichy",
+    "themes": [
+      "culture"
+    ],
+    "dossier": "DLR5L17N54096",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-12",
+    "heure": "16:00",
+    "ordre_du_jour": "Discussion de la proposition de loi, adoptée par le Sénat, visant à assouplir la procédure d’autorisation des établissements et services sociaux et médico-sociaux à caractère expérimental",
+    "themes": [
+      "sante",
+      "justice"
+    ],
+    "dossier": "DLR5L17N53886",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture (Sénat)"
+  },
+  {
+    "date": "2026-10-12",
+    "heure": "16:00",
+    "ordre_du_jour": "Discussion du projet de loi autorisant l’approbation de la convention d’extradition entre le Gouvernement de la République française et le Gouvernement de la République de Colombie",
+    "themes": [],
+    "dossier": "DLR5L17N53095",
     "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
   }
