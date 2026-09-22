@@ -1,0 +1,52 @@
+name: Tester une notification push
+
+# Declenchement manuel uniquement : sert a verifier que les secrets APNs/
+# Firebase sont correctement configures (auth Firestore + APNs), sans
+# attendre qu'un nouveau scrutin sorte (seul autre declencheur de
+# notifier_push.py, cf. ingest_scrutins.yml). "dry_run" ne fait que
+# compter les appareils abonnes dans Firestore, sans envoyer ; decoche-le
+# une fois pret pour un vrai envoi de test.
+on:
+  workflow_dispatch:
+    inputs:
+      titre:
+        description: "Titre de la notification"
+        required: true
+        default: "Test Populous"
+      texte:
+        description: "Texte de la notification"
+        required: true
+        default: "Ceci est un envoi de test."
+      dry_run:
+        description: "Dry-run (ne fait que compter les appareils abonnes, n'envoie rien)"
+        type: boolean
+        default: true
+
+jobs:
+  tester:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install "httpx[http2]" "PyJWT[crypto]"
+      - name: Envoyer (ou simuler) la notification de test
+        env:
+          APNS_KEY_ID: ${{ secrets.APNS_KEY_ID }}
+          APNS_TEAM_ID: ${{ secrets.APNS_TEAM_ID }}
+          APNS_AUTH_KEY: ${{ secrets.APNS_AUTH_KEY }}
+          FIREBASE_PROJECT_ID: populous-66469
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          # Titre/texte passes en variables d'env plutot qu'interpoles
+          # directement dans le shell : evite tout risque d'injection si
+          # jamais l'un des deux contient des caracteres speciaux.
+          TITRE: ${{ inputs.titre }}
+          TEXTE: ${{ inputs.texte }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          if [ "$DRY_RUN" = "true" ]; then
+            python3 notifier_push.py --titre "$TITRE" --texte "$TEXTE" --dry-run
+          else
+            python3 notifier_push.py --titre "$TITRE" --texte "$TEXTE"
+          fi
