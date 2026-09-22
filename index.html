@@ -2704,7 +2704,7 @@ function toast(msg){
    Visuel de partage — meme gabarit que le pipeline de publication
    automatique (generer_visuel.py) : fond gris, "Populous" en filigrane
    vertical (haut en bas), carte blanche arrondie, grands guillemets
-   bleus, "Populous App -> App Store" en pied de page. Dessine sur un
+   bleus, "Populous - iOS" en pied de page. Dessine sur un
    <canvas> au lieu d'un fichier Python puisque c'est ici l'appareil de
    la personne qui genere l'image, pas un cron sur un serveur — mais
    les memes chiffres (marges, tailles) pour que les deux sources
@@ -2808,23 +2808,11 @@ async function genererVisuelPartage({eyebrow, titre, texte}){
     for(const ligne of lignesTexte){ ctx.fillText(ligne, innerX0, y); y += 46; }
   }
 
-  // Pied de page : "Populous App -> App Store", petit, en bas a gauche.
+  // Pied de page : "Populous - iOS", petit, en bas a gauche.
   ctx.fillStyle = ENCRE;
   ctx.font = "700 22px 'Plus Jakarta Sans'";
-  const gauche = "Populous App", droite = "App Store";
-  const lGauche = ctx.measureText(gauche).width;
-  const largeurFleche = 34;
-  let x = margeCarte;
   const yPied = VISUEL_H - 64;
-  ctx.fillText(gauche, x, yPied);
-  x += lGauche + 16;
-  const yMid = yPied + 15;
-  ctx.strokeStyle = ENCRE; ctx.lineWidth = 3; ctx.lineCap = "round";
-  ctx.beginPath(); ctx.moveTo(x, yMid); ctx.lineTo(x + largeurFleche, yMid); ctx.stroke();
-  ctx.beginPath(); ctx.moveTo(x + largeurFleche - 10, yMid - 9); ctx.lineTo(x + largeurFleche, yMid); ctx.stroke();
-  ctx.beginPath(); ctx.moveTo(x + largeurFleche - 10, yMid + 9); ctx.lineTo(x + largeurFleche, yMid); ctx.stroke();
-  x += largeurFleche + 16;
-  ctx.fillText(droite, x, yPied);
+  ctx.fillText("Populous - iOS", margeCarte, yPied);
 
   return new Promise(resolve => c.toBlob(resolve, "image/png"));
 }

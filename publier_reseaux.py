@@ -210,8 +210,8 @@ def contenu_depute():
         'a_index': elu['a'],
         # Portrait + donnees de vote viennent de l'Assemblee (Licence
         # Ouverte Etalab, mention de source obligatoire) — remplace le
-        # pied de page "Populous App -> App Store" habituel (cf.
-        # docstring pied_source dans generer_visuel.generer).
+        # pied de page "Populous - iOS" habituel (cf. docstring
+        # pied_source dans generer_visuel.generer).
         'pied_source': 'Source : Assemblée nationale (data.assemblee-nationale.fr)',
     }
 
