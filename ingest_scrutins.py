@@ -44,6 +44,7 @@ import io
 import json
 import logging
 import sys
+import time
 import zipfile
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -116,12 +117,24 @@ def load_roster() -> dict[str, dict]:
 # ============================================================
 def fetch_scrutins_zip() -> zipfile.ZipFile:
     log.info("téléchargement de %s", SCRUTINS_ZIP_URL)
-    resp = requests.get(
-        SCRUTINS_ZIP_URL, headers={"User-Agent": USER_AGENT}, timeout=TIMEOUT
-    )
-    resp.raise_for_status()
-    log.info("archive reçue : %.1f Mo", len(resp.content) / 1_000_000)
-    return zipfile.ZipFile(io.BytesIO(resp.content))
+    # Gros fichier (~25 Mo) : le serveur de l'AN coupe parfois la connexion
+    # en cours de route (IncompleteRead) sans rapport avec notre requête —
+    # on retente plutot que de faire echouer tout le run pour un accroc reseau.
+    derniere_erreur = None
+    for tentative in range(1, 4):
+        try:
+            resp = requests.get(
+                SCRUTINS_ZIP_URL, headers={"User-Agent": USER_AGENT}, timeout=TIMEOUT
+            )
+            resp.raise_for_status()
+            log.info("archive reçue : %.1f Mo", len(resp.content) / 1_000_000)
+            return zipfile.ZipFile(io.BytesIO(resp.content))
+        except requests.RequestException as e:
+            derniere_erreur = e
+            log.warning("téléchargement échoué (tentative %d/3) : %s", tentative, e)
+            if tentative < 3:
+                time.sleep(5 * tentative)
+    raise derniere_erreur
 
 
 def as_list(x):
