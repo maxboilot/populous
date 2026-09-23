@@ -2733,19 +2733,17 @@ async function genererVisuelPartage({eyebrow, titre, texte, net}){
   ctx.fillText("Populous", 0, 0);
   ctx.restore();
 
-  // "@populous_officiel", centre en haut : lisible des la republication,
-  // et associe au lien tappable vers le compte cote natif (voir
-  // PartageStoriesPlugin.partagerStory, cle contentURL). Seulement pour
-  // Instagram : la page Facebook n'a pas encore de nom d'utilisateur
-  // convivial (URL en profile.php?id=...), donc rien de propre a afficher
-  // — le lien tappable natif suffit a remonter jusqu'a la page.
-  if(net === "instagram"){
+  // "@handle", centre en haut : lisible des la republication, et associe
+  // au lien tappable vers le compte/la page cote natif (voir
+  // PartageStoriesPlugin.partagerStory, cle contentURL).
+  const handleReseau = { instagram: "@populous_officiel", facebook: "@Media Populous" }[net];
+  if(handleReseau){
     ctx.save();
     ctx.textAlign = "center";
     ctx.textBaseline = "top";
     ctx.font = "800 34px 'Plus Jakarta Sans'";
     ctx.fillStyle = ENCRE;
-    ctx.fillText("@populous_officiel", VISUEL_L / 2, 64);
+    ctx.fillText(handleReseau, VISUEL_L / 2, 64);
     ctx.restore();
   }
 
