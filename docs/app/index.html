@@ -163,8 +163,8 @@ window.__VOTE_EARLY__ = (async function(){
      bord gauche, symétrique de #languette à droite, pour libérer toute la
      carte d'un geste plutôt que de fermer chaque panneau séparément. */
   #pliCarte{position:absolute;top:50%;left:0;z-index:750;transform:translateY(-50%);
-    width:24px;height:64px;background:var(--card);border:none;border-radius:0 16px 16px 0;
-    box-shadow:var(--shadow);color:var(--dim);cursor:pointer;font-size:13px}
+    width:26px;height:64px;background:var(--card);border:none;border-radius:0 16px 16px 0;
+    box-shadow:var(--shadow);color:var(--accent);cursor:pointer;font-size:19px;font-weight:800}
 
   #legende{position:absolute;right:16px;bottom:calc(90px + env(safe-area-inset-bottom,0px));z-index:600;width:226px;padding:16px 17px;
     transition:transform .32s cubic-bezier(.4,0,.2,1)}
@@ -1372,6 +1372,13 @@ function hover(i){
 
 /* ---------- modes ---------- */
 const modesEl = $("#modes");
+// La rangee de partis (#groupes) n'a de sens qu'en mode "Groupe" — les
+// legendes des autres modes (Pour/Contre/Abstention/Absent pour Vote,
+// Prive/Public/Politique pour Parcours, degrade pour Age) portent deja
+// l'information propre au mode, cf. renderLegend()/renderMiniLegende().
+function majVisibiliteGroupes(){
+  $("#groupes").style.display = mode==="groupe" ? "" : "none";
+}
 MODES.forEach(m=>{
   const b = document.createElement("button");
   b.dataset.m = m.id;
@@ -1380,6 +1387,11 @@ MODES.forEach(m=>{
   b.onclick = ()=>{
     mode = m.id;
     [...modesEl.children].forEach(x=>x.classList.toggle("on", x===b));
+    if(mode!=="groupe" && filterGroup!=null){
+      filterGroup = null;
+      [...gEl.children].forEach(x=>x.classList.remove("on"));
+    }
+    majVisibiliteGroupes();
     restyle(); renderLegend(); refreshAvatars();
     if(selected!=null) renderFiche(selected);
   };
@@ -1398,6 +1410,7 @@ GROUPES.forEach(g=>{
   };
   gEl.appendChild(b);
 });
+majVisibiliteGroupes();
 
 /* ---------- légende ---------- */
 // Version compacte, sans compteurs ni interaction : seule vue disponible
