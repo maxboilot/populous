@@ -2736,6 +2736,17 @@ async function genererVisuelPartage({eyebrow, titre, texte}){
   ctx.fillText("Populous", 0, 0);
   ctx.restore();
 
+  // "@populous_officiel", centre en haut : lisible des la republication,
+  // et associe au lien tappable vers le compte cote natif (voir
+  // InstagramSharePlugin.partagerStory, cle contentURL).
+  ctx.save();
+  ctx.textAlign = "center";
+  ctx.textBaseline = "top";
+  ctx.font = "800 34px 'Plus Jakarta Sans'";
+  ctx.fillStyle = ENCRE;
+  ctx.fillText("@populous_officiel", VISUEL_L / 2, 64);
+  ctx.restore();
+
   const margeCarte = 96, cx0 = margeCarte, cy0 = 300, cx1 = VISUEL_L - margeCarte, cy1 = VISUEL_H - 300, rayon = 44;
 
   ctx.save();

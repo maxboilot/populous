@@ -26,6 +26,12 @@ public class InstagramSharePlugin: CAPPlugin, CAPBridgedPlugin {
     // source autorisee a preremplir une story.
     private let idAppMeta = "1008098912281717"
 
+    // Cle documentee par Meta pour attacher un lien tappable a la story
+    // partagee (sticker "Lien") — c'est ce qui permet a la personne qui
+    // voit la story de remonter jusqu'au compte, en plus du "@" dessine
+    // dans le visuel lui-meme.
+    private let urlProfilInstagram = "https://www.instagram.com/populous_officiel/"
+
     @objc func partagerStory(_ call: CAPPluginCall) {
         guard let base64 = call.getString("image"), let data = Data(base64Encoded: base64) else {
             call.reject("Image manquante ou invalide")
@@ -40,7 +46,10 @@ public class InstagramSharePlugin: CAPPlugin, CAPBridgedPlugin {
                 call.resolve(["ouvert": false]) // Instagram non installé
                 return
             }
-            let items: [String: Any] = [self.cleFondStory: data]
+            let items: [String: Any] = [
+                self.cleFondStory: data,
+                "com.instagram.sharedSticker.contentURL": self.urlProfilInstagram
+            ]
             let options: [UIPasteboard.OptionsKey: Any] = [.expirationDate: Date().addingTimeInterval(300)]
             UIPasteboard.general.setItems([items], options: options)
             // Appel natif (pas une navigation WKWebView) : bascule
