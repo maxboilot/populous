@@ -2857,16 +2857,16 @@ async function shareItem({eyebrow, titre, texte, url}, net){
   }catch(e){ /* le visuel est un plus, pas un bloquant : on degrade en texte seul */ }
 
   if(net === "instagram" && fichier && navigator.clipboard && navigator.clipboard.write && window.ClipboardItem){
-    const cap = window.Capacitor;
-    if(cap && cap.isNativePlatform && cap.isNativePlatform()){
-      try{
-        await navigator.clipboard.write([new ClipboardItem({ "image/png": fichier })]);
-        if(await tenterOuvrirInstagramStories()){
-          toast("Colle l'image dans ta story");
-          return;
-        }
-      }catch(e){ /* on retombe sur le partage générique ci-dessous */ }
-    }
+    // Le schéma instagram-stories:// s'ouvre aussi bien depuis Safari
+    // (web) que depuis l'app native — pas besoin d'être dans l'app
+    // compilée, contrairement à initNotificationsPush() plus bas.
+    try{
+      await navigator.clipboard.write([new ClipboardItem({ "image/png": fichier })]);
+      if(await tenterOuvrirInstagramStories()){
+        toast("Colle l'image dans ta story");
+        return;
+      }
+    }catch(e){ /* on retombe sur le partage générique ci-dessous */ }
   }
 
   if(fichier && navigator.canShare && navigator.canShare({ files: [fichier] })){
