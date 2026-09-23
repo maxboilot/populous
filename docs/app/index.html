@@ -701,11 +701,13 @@ window.__VOTE_EARLY__ = (async function(){
     background-repeat:no-repeat; background-position:right 12px center; background-size:16px; }
   .filtreSelect:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
 
-  /* Partage : Facebook et Instagram n'ont pas de lien web "partager ce texte" —
-     on passe par la feuille de partage native (navigator.share), qui les
-     propose si installées ; repli en copie presse-papier sinon. */
-  .shareRow{ display:flex; justify-content:flex-end; gap:6px; margin-top:10px; }
-  .shareBtn{ width:30px; height:30px; border-radius:50%; border:none; background:var(--card-alt);
+  /* Partage : Instagram ouvre directement Stories (image dans le presse-
+     papier, à coller) dans l'app native ; Facebook (et tout le reste, web
+     compris) passe par la feuille de partage native (navigator.share),
+     qui le propose si installé ; repli en copie presse-papier sinon.
+     Voir wireShare()/shareItem() et tenterOuvrirInstagramStories(). */
+  .shareRow{ display:flex; justify-content:flex-end; gap:8px; margin-top:10px; }
+  .shareBtn{ width:40px; height:40px; border-radius:50%; border:none; background:var(--card-alt);
     color:var(--ink-soft); cursor:pointer; display:flex; align-items:center; justify-content:center;
     transition:background .15s,color .15s; }
   .shareBtn:hover{ background:var(--accent-soft); color:var(--accent); }
@@ -2689,8 +2691,8 @@ function afficherLandingPartage({titre, texte, bouton, action}){
   };
   $("#plClose").onclick = ()=>{ $("#partageLanding").classList.add("hidden"); };
 }
-const ICON_FB = `<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M15 8.5h2.2V5.2c-.4-.05-1.7-.17-3.2-.17-3.2 0-5.4 2-5.4 5.6v2.9H5.2v3.7h3.4V21h3.7v-3.8h3.3l.5-3.7h-3.8v-2.5c0-1.1.3-1.8 1.7-1.8z"/></svg>`;
-const ICON_IG = `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg>`;
+const ICON_FB = `<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M15 8.5h2.2V5.2c-.4-.05-1.7-.17-3.2-.17-3.2 0-5.4 2-5.4 5.6v2.9H5.2v3.7h3.4V21h3.7v-3.8h3.3l.5-3.7h-3.8v-2.5c0-1.1.3-1.8 1.7-1.8z"/></svg>`;
+const ICON_IG = `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg>`;
 
 function toast(msg){
   let t = $("#toast");
@@ -2817,7 +2819,35 @@ async function genererVisuelPartage({eyebrow, titre, texte}){
   return new Promise(resolve => c.toBlob(resolve, "image/png"));
 }
 
-async function shareItem({eyebrow, titre, texte, url}){
+/* Tente d'ouvrir directement l'appareil photo Stories d'Instagram
+   (schéma instagram-stories://, app native uniquement — inutile sur le
+   web). Ni le presse-papier web ni ce schéma ne permettent de préremplir
+   le fond de la story sans code natif dédié (clé de presse-papier privée
+   d'Instagram, hors de portée du Clipboard API standard) : l'image est
+   copiée à côté, la personne l'ajoute avec un tap de plus dans Instagram.
+   On détecte le succès via visibilitychange — si l'app passe au premier
+   plan d'Instagram, la page se met en arrière-plan ; sinon (Instagram pas
+   installé), rien ne se passe et on retombe sur le partage générique. */
+function tenterOuvrirInstagramStories(){
+  return new Promise(resolve=>{
+    let decide = false;
+    const surChangement = ()=>{
+      if(decide || document.visibilityState !== "hidden") return;
+      decide = true;
+      document.removeEventListener("visibilitychange", surChangement);
+      resolve(true);
+    };
+    document.addEventListener("visibilitychange", surChangement);
+    setTimeout(()=>{
+      if(decide) return;
+      decide = true;
+      document.removeEventListener("visibilitychange", surChangement);
+      resolve(false);
+    }, 800);
+    window.location.href = "instagram-stories://share";
+  });
+}
+async function shareItem({eyebrow, titre, texte, url}, net){
   url = url || SITE_URL;
   const legende = texte ? `${titre}\n\n${texte}` : titre;
   let fichier = null;
@@ -2825,6 +2855,19 @@ async function shareItem({eyebrow, titre, texte, url}){
     const blob = await genererVisuelPartage({ eyebrow: eyebrow || "Populous", titre, texte });
     fichier = new File([blob], "populous.png", { type: "image/png" });
   }catch(e){ /* le visuel est un plus, pas un bloquant : on degrade en texte seul */ }
+
+  if(net === "instagram" && fichier && navigator.clipboard && navigator.clipboard.write && window.ClipboardItem){
+    const cap = window.Capacitor;
+    if(cap && cap.isNativePlatform && cap.isNativePlatform()){
+      try{
+        await navigator.clipboard.write([new ClipboardItem({ "image/png": fichier })]);
+        if(await tenterOuvrirInstagramStories()){
+          toast("Colle l'image dans ta story");
+          return;
+        }
+      }catch(e){ /* on retombe sur le partage générique ci-dessous */ }
+    }
+  }
 
   if(fichier && navigator.canShare && navigator.canShare({ files: [fichier] })){
     try{ await navigator.share({ files: [fichier], title: "Populous", text: legende }); return; }
@@ -2853,7 +2896,7 @@ function shareRowHTML(){
 function wireShare(container, visuel){
   if(!container) return;
   container.querySelectorAll(".shareBtn").forEach(b=>{
-    b.onclick = e=>{ e.preventDefault(); e.stopPropagation(); shareItem(visuel); };
+    b.onclick = e=>{ e.preventDefault(); e.stopPropagation(); shareItem(visuel, b.dataset.net); };
   });
 }
 
