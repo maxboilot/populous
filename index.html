@@ -2819,17 +2819,36 @@ async function genererVisuelPartage({eyebrow, titre, texte}){
   return new Promise(resolve => c.toBlob(resolve, "image/png"));
 }
 
-/* `net` ("facebook"/"instagram", cf. data-net dans shareRowHTML) n'a
-   volontairement aucun effet ici pour l'instant : un lien
-   instagram-stories:// direct a été essayé et retiré (voir historique
-   git) — iOS affiche sa propre alerte "Ouvrir dans Instagram ?" qu'on
-   ne peut pas détecter en JS, ce qui déclenchait la feuille de partage
-   générique PAR-DESSUS avant même que la personne ait répondu ; et même
-   acceptée, Instagram n'offre pas l'image (la case de presse-papier
-   qu'il lit pour préremplir une story n'est accessible qu'en code
-   natif, pas via le Clipboard API du web). Les deux réseaux passent
-   donc par la même feuille de partage native, qui les propose s'ils
-   sont installés, avec l'image déjà en pièce jointe. */
+/* Convertit un File/Blob en base64 brut (sans le prefixe data:...;base64,)
+   — format attendu par InstagramSharePlugin.partagerStory() cote Swift,
+   les appels de plugin Capacitor passant par un pont JSON qui ne sait
+   pas serialiser un Blob directement. */
+function versBase64(fichier){
+  return new Promise((resolve, reject)=>{
+    const lecteur = new FileReader();
+    lecteur.onload = ()=> resolve(String(lecteur.result).split(",")[1] || "");
+    lecteur.onerror = reject;
+    lecteur.readAsDataURL(fichier);
+  });
+}
+/* Ouvre Instagram Stories avec l'image deja en fond, via le plugin natif
+   InstagramSharePlugin (voir mobile/ios/App/App/) — n'existe que dans
+   l'app compilee, jamais sur le web (Capacitor.Plugins.InstagramShare
+   est simplement absent hors de l'app native, d'ou le garde-fou ici).
+   Contrairement a la tentative precedente en pur JS (retiree, voir
+   historique git), cet appel est natif de bout en bout : pas d'alerte
+   Safari a detecter, pas de course contre une temporisation — on sait
+   immediatement et de facon fiable si Instagram s'est ouvert ou non. */
+async function partagerVersInstagramStories(fichier){
+  const cap = window.Capacitor;
+  const plugin = cap && cap.Plugins && cap.Plugins.InstagramShare;
+  if(!plugin) return false;
+  try{
+    const image = await versBase64(fichier);
+    const { ouvert } = await plugin.partagerStory({ image });
+    return !!ouvert;
+  }catch(e){ return false; }
+}
 async function shareItem({eyebrow, titre, texte, url}, net){
   url = url || SITE_URL;
   const legende = texte ? `${titre}\n\n${texte}` : titre;
@@ -2838,6 +2857,8 @@ async function shareItem({eyebrow, titre, texte, url}, net){
     const blob = await genererVisuelPartage({ eyebrow: eyebrow || "Populous", titre, texte });
     fichier = new File([blob], "populous.png", { type: "image/png" });
   }catch(e){ /* le visuel est un plus, pas un bloquant : on degrade en texte seul */ }
+
+  if(net === "instagram" && fichier && await partagerVersInstagramStories(fichier)) return;
 
   if(fichier && navigator.canShare && navigator.canShare({ files: [fichier] })){
     try{ await navigator.share({ files: [fichier], title: "Populous", text: legende }); return; }
