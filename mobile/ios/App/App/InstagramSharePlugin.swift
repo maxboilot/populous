@@ -20,12 +20,18 @@ public class InstagramSharePlugin: CAPPlugin, CAPBridgedPlugin {
     // suffit pas.
     private let cleFondStory = "com.instagram.sharedSticker.backgroundImage"
 
+    // ID de l'app Meta "Populous Social" (developers.facebook.com) —
+    // sans ce parametre, Instagram s'ouvre mais ignore le contenu du
+    // presse-papier : il n'identifie pas l'app appelante comme une
+    // source autorisee a preremplir une story.
+    private let idAppMeta = "1008098912281717"
+
     @objc func partagerStory(_ call: CAPPluginCall) {
         guard let base64 = call.getString("image"), let data = Data(base64Encoded: base64) else {
             call.reject("Image manquante ou invalide")
             return
         }
-        guard let url = URL(string: "instagram-stories://share") else {
+        guard let url = URL(string: "instagram-stories://share?source_application=\(idAppMeta)") else {
             call.resolve(["ouvert": false])
             return
         }
