@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-23T10:19:28.108817Z",
+  "generated_at": "2026-09-23T11:52:03.552069Z",
   "depuis": "2025-09-23",
   "nombre": 113,
   "lois": [
@@ -24,7 +24,7 @@
         "abstention": 2,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8434",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0341_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -47,7 +47,7 @@
         "abstention": 7,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8433",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0340_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -71,7 +71,7 @@
         "abstention": 66,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8431",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0339_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -94,7 +94,7 @@
         "abstention": 173,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8430",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0338_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -117,7 +117,7 @@
         "abstention": 41,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8427",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0337_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -140,7 +140,7 @@
         "abstention": 4,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8421",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0336_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -163,7 +163,7 @@
         "abstention": 0,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8419",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0335_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -188,7 +188,7 @@
         "abstention": 81,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8418",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0334_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -211,7 +211,7 @@
         "abstention": 29,
         "absent": 0
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8280",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0332_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -234,7 +234,7 @@
         "abstention": 8,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8279",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0331_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -257,7 +257,7 @@
         "abstention": 1,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8043",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0330_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -280,7 +280,7 @@
         "abstention": 1,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8042",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0329_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -303,7 +303,7 @@
         "abstention": 5,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7987",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0328_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -326,7 +326,7 @@
         "abstention": 2,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7981",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0327_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -349,7 +349,7 @@
         "abstention": 1,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7980",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0326_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -372,7 +372,7 @@
         "abstention": 2,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7905",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0325_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -396,7 +396,7 @@
         "abstention": 0,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7904",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0324_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -419,7 +419,7 @@
         "abstention": 35,
         "absent": 0
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7894",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0323_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -444,7 +444,7 @@
         "abstention": 1,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7893",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0322_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -490,7 +490,7 @@
         "abstention": 116,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7409",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0317_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -514,7 +514,7 @@
         "abstention": 14,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7408",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0316_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -537,7 +537,7 @@
         "abstention": 11,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7405",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0315_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -561,7 +561,7 @@
         "abstention": 5,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7401",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0314_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -585,7 +585,7 @@
         "abstention": 15,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7397",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0311_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -608,7 +608,7 @@
         "abstention": 47,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7380",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0309_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -632,7 +632,7 @@
         "abstention": 3,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7354",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0308_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -655,7 +655,7 @@
         "abstention": 0,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7348",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0303_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -680,7 +680,7 @@
         "abstention": 5,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7324",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0302_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -704,7 +704,7 @@
         "abstention": 2,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7313",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0301_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -729,7 +729,7 @@
         "abstention": 4,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7303",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0300_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -752,7 +752,7 @@
         "abstention": 2,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7294",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0299_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -776,7 +776,7 @@
         "abstention": 0,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7270",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0298_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -799,7 +799,7 @@
         "abstention": 0,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7261",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0297_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -822,7 +822,7 @@
         "abstention": 37,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7260",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0296_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -845,7 +845,7 @@
         "abstention": 15,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7259",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0295_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -870,7 +870,7 @@
         "abstention": 0,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7258",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0294_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -893,7 +893,7 @@
         "abstention": 4,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7039",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0293_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -916,7 +916,7 @@
         "abstention": 20,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7027",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0292_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -941,7 +941,7 @@
         "abstention": 0,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7004",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0291_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -962,7 +962,7 @@
         "abstention": 0,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/7002",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0290_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -986,7 +986,7 @@
         "abstention": 3,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6753",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0288_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -1032,7 +1032,7 @@
         "abstention": 1,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6645",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0286_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -1056,7 +1056,7 @@
         "abstention": 3,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6572",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0285_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -1080,7 +1080,7 @@
         "abstention": 0,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6563",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0284_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -1103,7 +1103,7 @@
         "abstention": 0,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6541",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0283_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -1126,7 +1126,7 @@
         "abstention": 17,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6512",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0281_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -1172,7 +1172,7 @@
         "abstention": 5,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6319",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0279_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -1195,7 +1195,7 @@
         "abstention": 13,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6318",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0278_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -1218,7 +1218,7 @@
         "abstention": 0,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6286",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0277_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -1241,7 +1241,7 @@
         "abstention": 0,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6285",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0276_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -1264,7 +1264,7 @@
         "abstention": 30,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6184",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0273_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -1287,7 +1287,7 @@
         "abstention": 1,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6180",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0272_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -1311,7 +1311,7 @@
         "abstention": 0,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6135",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0271_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -1334,7 +1334,7 @@
         "abstention": 11,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6131",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0269_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -1357,7 +1357,7 @@
         "abstention": 0,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6124",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0268_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -1382,7 +1382,7 @@
         "abstention": 25,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6076",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0267_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -1405,7 +1405,7 @@
         "abstention": 27,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6069",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0266_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -1428,7 +1428,7 @@
         "abstention": 12,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6045",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0264_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -1451,7 +1451,7 @@
         "abstention": 9,
         "absent": 0
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/6023",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0263_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -1474,7 +1474,7 @@
         "abstention": 25,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5856",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0259_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -1498,7 +1498,7 @@
         "abstention": 0,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5849",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0258_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -1521,7 +1521,7 @@
         "abstention": 5,
         "absent": 3
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5846",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0255_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -1545,7 +1545,7 @@
         "abstention": 0,
         "absent": 3
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5845",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0254_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -1568,7 +1568,7 @@
         "abstention": 11,
         "absent": 3
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5844",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0253_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -1592,7 +1592,7 @@
         "abstention": 0,
         "absent": 3
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5839",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0252_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -1615,7 +1615,7 @@
         "abstention": 0,
         "absent": 3
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5832",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0251_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -1638,7 +1638,7 @@
         "abstention": 0,
         "absent": 3
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5831",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0250_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -1664,7 +1664,7 @@
         "abstention": 2,
         "absent": 3
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5829",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0249_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -1687,7 +1687,7 @@
         "abstention": 37,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5729",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0243_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -1710,7 +1710,7 @@
         "abstention": 69,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5728",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0242_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -1758,7 +1758,7 @@
         "abstention": 0,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5432",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0240_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -1782,7 +1782,7 @@
         "abstention": 5,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5427",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0239_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -1805,7 +1805,7 @@
         "abstention": 0,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5415",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0237_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -1828,7 +1828,7 @@
         "abstention": 133,
         "absent": 3
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5358",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0236_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -1851,7 +1851,7 @@
         "abstention": 12,
         "absent": 3
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5354",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0235_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -1874,7 +1874,7 @@
         "abstention": 19,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5296",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0228_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -1897,7 +1897,7 @@
         "abstention": 0,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5283",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0226_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -1968,7 +1968,7 @@
         "abstention": 0,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5244",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0223_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -1991,7 +1991,7 @@
         "abstention": 1,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5243",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0222_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -2015,7 +2015,7 @@
         "abstention": 0,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5240",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0221_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -2040,7 +2040,7 @@
         "abstention": 0,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5226",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0220_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -2061,7 +2061,7 @@
         "abstention": 23,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/5222",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0219_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -2108,7 +2108,7 @@
         "abstention": 18,
         "absent": 0
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4963",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0211_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -2132,7 +2132,7 @@
         "abstention": 11,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4962",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0210_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -2155,7 +2155,7 @@
         "abstention": 62,
         "absent": 0
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4947",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0207_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -2179,7 +2179,7 @@
         "abstention": 0,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4839",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0205_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -2203,7 +2203,7 @@
         "abstention": 0,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4836",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0204_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -2227,7 +2227,7 @@
         "abstention": 90,
         "absent": 0
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4758",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0199_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -2250,7 +2250,7 @@
         "abstention": 13,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4755",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0198_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -2273,7 +2273,7 @@
         "abstention": 2,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4754",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0197_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -2296,7 +2296,7 @@
         "abstention": 4,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4745",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0196_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -2319,7 +2319,7 @@
         "abstention": 2,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4723",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0195_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -2343,7 +2343,7 @@
         "abstention": 1,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4714",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0194_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -2366,7 +2366,7 @@
         "abstention": 20,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4707",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0193_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -2389,7 +2389,7 @@
         "abstention": 0,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4706",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0192_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -2413,7 +2413,7 @@
         "abstention": 93,
         "absent": 0
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4696",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0188_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -2436,7 +2436,7 @@
         "abstention": 22,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4691",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0187_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -2457,7 +2457,7 @@
         "abstention": 84,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4442",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0185_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -2480,7 +2480,7 @@
         "abstention": 42,
         "absent": 2
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4438",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0184_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -2503,7 +2503,7 @@
         "abstention": 51,
         "absent": 1
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/4287",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0183_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -2550,7 +2550,7 @@
         "abstention": 8,
         "absent": 15
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/3273",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0178_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -2573,7 +2573,7 @@
         "abstention": 9,
         "absent": 13
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/3182",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0176_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -2597,7 +2597,7 @@
         "abstention": 5,
         "absent": 15
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/3061",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0175_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -2620,7 +2620,7 @@
         "abstention": 52,
         "absent": 14
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/3056",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0172_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -2643,7 +2643,7 @@
         "abstention": 8,
         "absent": 14
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/3055",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0171_texte-adopte-seance.pdf",
       "type": "scrutin"
     }
   ]

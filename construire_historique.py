@@ -21,6 +21,7 @@
 # et le tirage de la Boussole ont besoin d un vrai scrutins/<numero>.json
 # derriere chaque entree, qu une decision a main levee n a pas.
 import json
+import re
 import unicodedata
 import zipfile
 from io import BytesIO
@@ -141,6 +142,77 @@ def telecharger(url):
     return BytesIO(reseau.telecharger(url, timeout=DELAI_DOSSIERS, headers={'User-Agent': UA_DOSSIERS}))
 
 
+def _ref_texte_bta(decision):
+    # BTA (« Bulletin du Texte Adopte ») est la seule reference qui pointe
+    # vers un texte reellement consultable - meme constat que
+    # construire_texte_loi.py::_ref_texte (TAP existe dans les memes
+    # donnees mais ne mene a rien de publie, verifie en conditions reelles).
+    textes = (decision.get('textesAssocies') or {}).get('texteAssocie')
+    if isinstance(textes, dict):
+        textes = [textes]
+    for t in (textes or []):
+        if t.get('typeTexte') == 'BTA':
+            return t.get('refTexteAssocie')
+    return None
+
+
+# Une reference BTA ne mene pas toujours a un texte adopte par
+# l Assemblee : un dossier melange les lectures AN et Senat, et un texte
+# adopte par le Senat porte une reference du type "...SNR5S479BTA0094"
+# (verifie le 23/09/2026), sans page /dyn/17/textes/... cote AN. On ne
+# construit l URL que pour les references qui portent explicitement la
+# legislature AN ("ANR5L17"), les autres restent sans PDF derive plutot
+# que de pointer vers une URL cassee.
+_RE_BTA_AN = re.compile(rf'ANR5L{LEGISLATURE}BTA(\d+)$')
+
+
+def url_pdf_texte_adopte(ref_bta):
+    """Deduit l URL du PDF du texte adopte a partir d une reference BTA
+    (ex. "PIONANR5L17BTA0071" -> l17t0071_texte-adopte-seance.pdf) plutot
+    que de renvoyer vers la seule page de resultats du scrutin. Verifie
+    manuellement le 23/09/2026 sur plusieurs scrutins reels : la page HTML
+    /dyn/17/textes/l17t0071_texte-adopte-seance contient un lien vers
+    exactement cette URL .pdf, qui repond en HTTP 200 / application/pdf."""
+    m = _RE_BTA_AN.search(ref_bta or '')
+    if not m:
+        return None
+    return f'https://www.assemblee-nationale.fr/dyn/{LEGISLATURE}/textes/l{LEGISLATURE}t{m.group(1)}_texte-adopte-seance.pdf'
+
+
+def construire_index_bta():
+    """{voteRef: reference_BTA} pour tous les scrutins de l archive qui ont
+    un texte adopte publie - sert a lier chaque loi de historique.json au
+    PDF du texte adopte plutot qu a la seule page de resultats du scrutin,
+    cf. url_pdf_texte_adopte(). Un seul passage sur toute l archive plutot
+    qu une recherche par scrutin (voir construire_texte_loi.py, qui ne
+    cherche qu un seul numero a la fois : inutile de reparcourir 3000+
+    dossiers autant de fois qu il y a de lois dans la fenetre affichee."""
+    try:
+        archive = telecharger(URL_DOSSIERS)
+    except Exception as e:
+        print(f'  index BTA : echec telechargement ({e})')
+        return {}
+    index = {}
+    with zipfile.ZipFile(archive) as z:
+        for nom in z.namelist():
+            if not nom.endswith('.json') or '/dossierParlementaire/' not in nom:
+                continue
+            try:
+                d = json.loads(z.read(nom))
+            except Exception:
+                continue
+            dp = d.get('dossierParlementaire', d)
+            actes = (dp.get('actesLegislatifs') or {}).get('acteLegislatif')
+            if not actes:
+                continue
+            for dec in decisions_du_dossier(actes):
+                vr = (dec.get('voteRefs') or {}).get('voteRef')
+                ref = _ref_texte_bta(dec)
+                if vr and ref:
+                    index[vr] = ref
+    return index
+
+
 def classer_statut(fam_code):
     if fam_code in FAM_ADOPTE:
         return 'adopte', True
@@ -206,7 +278,11 @@ def charger_main_levee(limite):
                 statut, adopte = classer_statut(fam_code)
                 if statut is None:
                     continue
-                source = (
+                # Le PDF du texte adopte quand on peut le retrouver a partir
+                # de cette decision precise (meme sans scrutin nomme, elle
+                # porte parfois sa propre reference BTA), sinon la page du
+                # dossier comme avant.
+                source = url_pdf_texte_adopte(_ref_texte_bta(dec)) or (
                     f'https://www.assemblee-nationale.fr/dyn/{LEGISLATURE}/dossiers/{chemin_titre}'
                     if chemin_titre else None
                 )
@@ -226,6 +302,7 @@ def charger_main_levee(limite):
 
 def charger():
     limite = (datetime.now(timezone.utc) - timedelta(days=FENETRE_JOURS)).strftime('%Y-%m-%d')
+    index_bta = construire_index_bta()
     lois = []
     for chemin in SCRUTINS_DIR.glob('*.json'):
         try:
@@ -239,8 +316,14 @@ def charger():
         if not repere.startswith('l' + APOS + 'ensemble'):
             continue
         nature, lecture, court = decoupe(f.get('titre'))
+        numero = f.get('numero')
+        voteref = f'VTANR5L{LEGISLATURE}V{numero}'
+        # Le PDF du texte adopte (en bas de la page du dossier sur
+        # assemblee-nationale.fr) plutot que la seule page de resultats du
+        # scrutin, quand on peut le retrouver - voir url_pdf_texte_adopte().
+        source = url_pdf_texte_adopte(index_bta.get(voteref)) or f.get('source')
         lois.append({
-            'numero': f.get('numero'),
+            'numero': numero,
             'date': date,
             'titre': court,
             'titre_officiel': (f.get('titre') or '').strip(),
@@ -252,7 +335,7 @@ def charger():
             'themes': categories.classer(f.get('titre') or ''),
             'sort': f.get('sort'),
             'tally': f.get('tally'),
-            'source': f.get('source'),
+            'source': source,
             'type': 'scrutin',
         })
     lois.sort(key=lambda x: (x['date'], x['numero'] or 0), reverse=True)
