@@ -107,7 +107,7 @@ window.__VOTE_EARLY__ = (async function(){
      ligne sous la carte dans certains rendus. Hauteur naturelle du coup,
      d'où le repositionnement de #recherche calculé en JS plutôt qu'un
      décalage fixe. */
-  #carteTitre{position:absolute;top:40px;left:16px;z-index:600;max-width:230px;
+  #carteTitre{position:absolute;top:calc(40px + env(safe-area-inset-top,0px));left:16px;z-index:600;max-width:230px;
     font-size:13px;font-weight:400;line-height:1.35;color:var(--ink);
     text-shadow:0 1px 2px var(--bg), 0 0 6px var(--bg), 0 0 6px var(--bg)}
   #carteTitre:empty{display:none}
@@ -117,13 +117,13 @@ window.__VOTE_EARLY__ = (async function(){
      #carteTitre, pour rester lisible sur la carte quel que soit le
      contexte. Les repères habituels (titre de loi, recherche, mini
      légende) sont décalés de 16px à 40px pour ne pas passer dessous. */
-  #carteScreenTitre{position:absolute;top:10px;left:8px;right:8px;z-index:900;
+  #carteScreenTitre{position:absolute;top:calc(10px + env(safe-area-inset-top,0px));left:8px;right:8px;z-index:900;
     text-align:center;font-weight:800;font-style:italic;font-size:13px;line-height:1.2;
     color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
     text-shadow:0 1px 2px var(--bg), 0 0 6px var(--bg), 0 0 6px var(--bg);
     pointer-events:none}
 
-  #recherche{position:absolute;top:40px;left:16px;z-index:600;width:270px;transition:top .2s}
+  #recherche{position:absolute;top:calc(40px + env(safe-area-inset-top,0px));left:16px;z-index:600;width:270px;transition:top .2s}
   #recherche input{width:100%;padding:12px 16px;font-size:13px;color:var(--ink);
     background:var(--card);border:none;border-radius:var(--r-pill);outline:none;box-shadow:var(--shadow)}
   #recherche input::placeholder{color:var(--dim)}
@@ -371,7 +371,7 @@ window.__VOTE_EARLY__ = (async function(){
     #legende,#languette{display:none}
     #miniLegende:not(:empty){
       display:flex; flex-direction:column; align-items:flex-end; gap:4px;
-      position:absolute; top:40px; right:16px; z-index:600; pointer-events:none;
+      position:absolute; top:calc(40px + env(safe-area-inset-top,0px)); right:16px; z-index:600; pointer-events:none;
     }
     #miniLegende .lg{padding:0; background:none; box-shadow:none; gap:6px; cursor:default}
     #miniLegende .lg span:not(.sw){
@@ -690,11 +690,12 @@ window.__VOTE_EARLY__ = (async function(){
     background-repeat:no-repeat; background-position:right 12px center; background-size:16px; }
   .filtreSelect:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
 
-  /* Partage : Instagram ouvre directement Stories (image dans le presse-
-     papier, à coller) dans l'app native ; Facebook (et tout le reste, web
-     compris) passe par la feuille de partage native (navigator.share),
-     qui le propose si installé ; repli en copie presse-papier sinon.
-     Voir wireShare()/shareItem() et tenterOuvrirInstagramStories(). */
+  /* Partage : Instagram ouvre directement Stories via le plugin natif
+     InstagramSharePlugin (jamais de repli vers la feuille générale) ;
+     Facebook (et tout le reste, web compris) passe par la feuille de
+     partage native (navigator.share), qui le propose si installé ;
+     repli en copie presse-papier sinon. Voir wireShare()/shareItem()
+     et partagerVersInstagramStories(). */
   .shareRow{ display:flex; justify-content:flex-end; gap:8px; margin-top:10px; }
   .shareBtn{ width:40px; height:40px; border-radius:50%; border:none; background:var(--card-alt);
     color:var(--ink-soft); cursor:pointer; display:flex; align-items:center; justify-content:center;
@@ -1439,7 +1440,9 @@ function placeCarteTitre(){
   } else {
     t.innerHTML = "";
   }
-  $("#recherche").style.top = t.innerHTML ? (40 + t.offsetHeight + 10) + "px" : "40px";
+  $("#recherche").style.top = t.innerHTML
+    ? `calc(${40 + t.offsetHeight + 10}px + env(safe-area-inset-top,0px))`
+    : `calc(40px + env(safe-area-inset-top,0px))`;
 }
 function renderLegend(){
   renderMiniLegende();
@@ -2820,12 +2823,12 @@ function versBase64(fichier){
 async function partagerVersInstagramStories(fichier){
   const cap = window.Capacitor;
   const plugin = cap && cap.Plugins && cap.Plugins.InstagramShare;
-  if(!plugin) return false;
+  if(!plugin) return { ouvert:false, raison:"le plugin natif n'est pas present (build pas a jour ?)" };
   try{
     const image = await versBase64(fichier);
     const { ouvert } = await plugin.partagerStory({ image });
-    return !!ouvert;
-  }catch(e){ return false; }
+    return { ouvert: !!ouvert, raison: ouvert ? null : "Instagram n'a pas pu s'ouvrir (app absente ?)" };
+  }catch(e){ return { ouvert:false, raison:"erreur : " + (e && e.message || e) }; }
 }
 async function shareItem({eyebrow, titre, texte, url}, net){
   url = url || SITE_URL;
@@ -2836,7 +2839,16 @@ async function shareItem({eyebrow, titre, texte, url}, net){
     fichier = new File([blob], "populous.png", { type: "image/png" });
   }catch(e){ /* le visuel est un plus, pas un bloquant : on degrade en texte seul */ }
 
-  if(net === "instagram" && fichier && await partagerVersInstagramStories(fichier)) return;
+  // Instagram ne degrade jamais vers la feuille de partage generale : soit
+  // le plugin natif ouvre Stories avec le visuel deja en fond, soit on le
+  // dit clairement (toast) — jamais le repli generique que Max ne veut pas
+  // voir sur ce bouton precis.
+  if(net === "instagram"){
+    if(!fichier){ toast("Impossible de générer le visuel à partager"); return; }
+    const { ouvert, raison } = await partagerVersInstagramStories(fichier);
+    if(!ouvert) toast(raison || "Impossible d'ouvrir Instagram");
+    return;
+  }
 
   if(fichier && navigator.canShare && navigator.canShare({ files: [fichier] })){
     try{ await navigator.share({ files: [fichier], title: "Populous", text: legende }); return; }
