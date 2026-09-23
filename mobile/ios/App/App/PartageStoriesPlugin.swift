@@ -47,7 +47,8 @@ public class PartageStoriesPlugin: CAPPlugin, CAPBridgedPlugin {
             call.reject("Image manquante ou invalide")
             return
         }
-        guard let reseau = reseaux[call.getString("reseau") ?? ""] else {
+        let reseauNom = call.getString("reseau") ?? ""
+        guard let reseau = reseaux[reseauNom] else {
             call.reject("Réseau inconnu (attendu : instagram ou facebook)")
             return
         }
@@ -60,10 +61,18 @@ public class PartageStoriesPlugin: CAPPlugin, CAPBridgedPlugin {
                 call.resolve(["ouvert": false]) // app non installée
                 return
             }
-            let items: [String: Any] = [
+            var items: [String: Any] = [
                 "\(reseau.prefixeCle).backgroundImage": data,
                 "\(reseau.prefixeCle).contentURL": reseau.urlProfil
             ]
+            // Facebook exige en plus l'ID d'app dans le presse-papier lui
+            // meme (contrairement a Instagram, ou le parametre
+            // source_application de l'URL suffit) — sans cette cle,
+            // l'app s'ouvre mais reste sur le fil d'actualite au lieu
+            // d'ouvrir le compositeur de story.
+            if reseauNom == "facebook" {
+                items["\(reseau.prefixeCle).appID"] = self.idAppMeta
+            }
             let options: [UIPasteboard.OptionsKey: Any] = [.expirationDate: Date().addingTimeInterval(300)]
             UIPasteboard.general.setItems([items], options: options)
             // Appel natif (pas une navigation WKWebView) : bascule
