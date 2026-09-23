@@ -123,9 +123,7 @@ window.__VOTE_EARLY__ = (async function(){
     text-shadow:0 1px 2px var(--bg), 0 0 6px var(--bg), 0 0 6px var(--bg);
     pointer-events:none}
 
-  #recherche{position:absolute;top:40px;left:16px;z-index:600;width:270px;
-    transition:transform .32s cubic-bezier(.4,0,.2,1),opacity .32s,top .2s}
-  #recherche.off{transform:translateX(-140%);opacity:0;pointer-events:none}
+  #recherche{position:absolute;top:40px;left:16px;z-index:600;width:270px;transition:top .2s}
   #recherche input{width:100%;padding:12px 16px;font-size:13px;color:var(--ink);
     background:var(--card);border:none;border-radius:var(--r-pill);outline:none;box-shadow:var(--shadow)}
   #recherche input::placeholder{color:var(--dim)}
@@ -137,9 +135,7 @@ window.__VOTE_EARLY__ = (async function(){
   #resultats button:hover{background:var(--accent-soft)}
   .mini{width:26px;height:26px;border-radius:50%;flex:0 0 auto;background-repeat:no-repeat;border:2px solid}
 
-  #mesure{position:absolute;left:16px;bottom:calc(90px + env(safe-area-inset-bottom,0px));z-index:600;
-    transition:transform .32s cubic-bezier(.4,0,.2,1),opacity .32s}
-  #mesure.off{transform:translateX(-140%);opacity:0;pointer-events:none}
+  #mesure{position:absolute;left:16px;bottom:calc(90px + env(safe-area-inset-bottom,0px));z-index:600}
   #mesure .grp{display:flex;border:none;background:var(--card);border-radius:var(--r-pill);
     padding:4px;box-shadow:var(--shadow);gap:2px}
   #mesure .grp button{padding:8px 14px;min-width:78px;border:none;background:none;color:var(--dim);
@@ -154,17 +150,6 @@ window.__VOTE_EARLY__ = (async function(){
      que sous 760px, plus bas dans cette feuille de style. */
   #miniLegende{display:none}
   #miniLegende:empty{display:none !important}
-  #groupes{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;max-width:300px}
-  #groupes button{display:flex;align-items:center;gap:5px;padding:6px 11px;font-size:10.5px;font-weight:600;
-    border:none;background:var(--card);color:var(--ink-soft);cursor:pointer;border-radius:var(--r-pill);box-shadow:var(--shadow)}
-  #groupes button.on{background:var(--accent);color:#fff}
-
-  /* Repli des commandes (recherche + colorer par + partis) : un onglet au
-     bord gauche, symétrique de #languette à droite, pour libérer toute la
-     carte d'un geste plutôt que de fermer chaque panneau séparément. */
-  #pliCarte{position:absolute;top:50%;left:0;z-index:750;transform:translateY(-50%);
-    width:26px;height:64px;background:var(--card);border:none;border-radius:0 16px 16px 0;
-    box-shadow:var(--shadow);color:var(--accent);cursor:pointer;font-size:19px;font-weight:800}
 
   #legende{position:absolute;right:16px;bottom:calc(90px + env(safe-area-inset-bottom,0px));z-index:600;width:226px;padding:16px 17px;
     transition:transform .32s cubic-bezier(.4,0,.2,1)}
@@ -173,6 +158,8 @@ window.__VOTE_EARLY__ = (async function(){
   .lg{display:flex;align-items:center;gap:8px;padding:3px 0;font-size:11px;cursor:pointer}
   .lg .sw{width:14px;height:11px;flex:0 0 auto;border-radius:4px}
   .lg .n{margin-left:auto;font-size:10px;font-weight:700;color:var(--dim)}
+  .lg.on{font-weight:800;color:var(--accent)}
+  .lg.on .sw{box-shadow:0 0 0 2px var(--accent)}
   .grad{height:10px;margin:4px 0 3px;border-radius:6px}
   .gradlbl{display:flex;justify-content:space-between;font-size:9px;color:var(--dim)}
 
@@ -392,6 +379,8 @@ window.__VOTE_EARLY__ = (async function(){
       text-shadow:0 1px 2px var(--bg), 0 0 6px var(--bg), 0 0 6px var(--bg);
     }
     #miniLegende .sw{width:9px; height:9px; border-radius:50%; box-shadow:0 0 0 1px rgba(255,255,255,.55)}
+    #miniLegende .lg.on span:not(.sw){color:var(--accent)}
+    #miniLegende .lg.on .sw{box-shadow:0 0 0 2px var(--accent)}
     #miniLegende .grad{width:110px}
     #miniLegende .gradlbl{width:110px; font-size:9px; font-weight:700}
     #miniLegende .gradlbl span{
@@ -808,8 +797,6 @@ window.__VOTE_EARLY__ = (async function(){
 <div id="map" tabindex="0" aria-label="Carte des 577 circonscriptions législatives"></div>
 <div class="presiWatermark" aria-hidden="true">Populous</div>
 
-<button id="pliCarte" aria-label="Replier les commandes">‹</button>
-
 <div id="carteTitre"></div>
 
 <div id="recherche">
@@ -819,7 +806,6 @@ window.__VOTE_EARLY__ = (async function(){
 
 <div id="mesure">
   <div class="grp" id="modes"></div>
-  <div id="groupes"></div>
 </div>
 
 <div id="miniLegende"></div>
@@ -1372,13 +1358,6 @@ function hover(i){
 
 /* ---------- modes ---------- */
 const modesEl = $("#modes");
-// La rangee de partis (#groupes) n'a de sens qu'en mode "Groupe" — les
-// legendes des autres modes (Pour/Contre/Abstention/Absent pour Vote,
-// Prive/Public/Politique pour Parcours, degrade pour Age) portent deja
-// l'information propre au mode, cf. renderLegend()/renderMiniLegende().
-function majVisibiliteGroupes(){
-  $("#groupes").style.display = mode==="groupe" ? "" : "none";
-}
 MODES.forEach(m=>{
   const b = document.createElement("button");
   b.dataset.m = m.id;
@@ -1387,37 +1366,20 @@ MODES.forEach(m=>{
   b.onclick = ()=>{
     mode = m.id;
     [...modesEl.children].forEach(x=>x.classList.toggle("on", x===b));
-    if(mode!=="groupe" && filterGroup!=null){
-      filterGroup = null;
-      [...gEl.children].forEach(x=>x.classList.remove("on"));
-    }
-    majVisibiliteGroupes();
+    if(mode!=="groupe") filterGroup = null;
     restyle(); renderLegend(); refreshAvatars();
     if(selected!=null) renderFiche(selected);
   };
   modesEl.appendChild(b);
 });
 
-/* ---------- filtres par groupe ---------- */
-const gEl = $("#groupes");
-GROUPES.forEach(g=>{
-  const b=document.createElement("button"); b.title=g.n;
-  b.innerHTML=`<span class="dot" style="background:${g.c};width:8px;height:8px"></span>${g.s}`;
-  b.onclick=()=>{
-    filterGroup = filterGroup===g.s ? null : g.s;
-    [...gEl.children].forEach((x,k)=>x.classList.toggle("on", GROUPES[k].s===filterGroup));
-    restyle(); refreshAvatars();
-  };
-  gEl.appendChild(b);
-});
-majVisibiliteGroupes();
-
 /* ---------- légende ---------- */
-// Version compacte, sans compteurs ni interaction : seule vue disponible
-// sur mobile, où #legende (le panneau détaillé à droite) est masquée
-// faute de place. "Groupe" n'a pas besoin de sa propre entrée ici : les
-// puces de #groupes juste en dessous, une par parti avec sa couleur,
-// remplissent déjà ce rôle.
+// Version compacte : seule vue disponible sur mobile, où #legende (le
+// panneau détaillé à droite) est masquée faute de place. "Groupe" y a
+// sa propre entrée comme les trois autres modes (auparavant une rangée
+// séparée sous le sélecteur de mode, #groupes, retirée — moins cohérent
+// et redondant avec ce panneau) : seule elle reste cliquable, pour
+// garder le filtre par parti.
 function renderMiniLegende(){
   const el = $("#miniLegende");
   if(mode==="vote"){
@@ -1428,6 +1390,18 @@ function renderMiniLegende(){
         <span class="sw" style="background:${VOTE_COLORS[k]}"></span>
         <span style="flex:1;text-transform:capitalize">${VOTE_GLYPHS[k]} ${k}</span>
       </div>`).join("");
+  } else if(mode==="groupe"){
+    el.innerHTML = GROUPES.map(g=>`
+      <div class="lg${g.s===filterGroup?" on":""}" data-g="${esc(g.s)}" style="cursor:pointer;pointer-events:auto">
+        <span class="sw" style="background:${g.c}"></span>
+        <span style="flex:1">${esc(g.s)}</span>
+      </div>`).join("");
+    el.querySelectorAll(".lg").forEach(div=>{
+      div.onclick = ()=>{
+        filterGroup = filterGroup===div.dataset.g ? null : div.dataset.g;
+        restyle(); refreshAvatars(); renderMiniLegende();
+      };
+    });
   } else if(mode==="age"){
     const stops=[]; for(let k=0;k<=10;k++) stops.push(mix(LAND, ageColor(AGE_MIN+(AGE_MAX-AGE_MIN)*k/10), 0.88));
     el.innerHTML = `<div class="grad" style="background:linear-gradient(90deg,${stops.join(",")})"></div>
@@ -1506,7 +1480,7 @@ function renderLegend(){
     body.querySelectorAll(".lg").forEach(el=>{
       el.onclick = ()=>{
         filterGroup = filterGroup===el.dataset.g ? null : el.dataset.g;
-        [...gEl.children].forEach((x,k)=>x.classList.toggle("on", GROUPES[k].s===filterGroup));
+        body.querySelectorAll(".lg").forEach(x=>x.classList.toggle("on", x.dataset.g===filterGroup));
         restyle(); refreshAvatars();
       };
     });
@@ -1587,15 +1561,6 @@ qEl.oninput = async ()=>{
 };
 
 /* ---------- commandes ---------- */
-let carteControlsOpen = true;
-function placePliCarte(){ $("#pliCarte").textContent = carteControlsOpen ? "‹" : "›"; }
-$("#pliCarte").onclick = ()=>{
-  carteControlsOpen = !carteControlsOpen;
-  $("#recherche").classList.toggle("off", !carteControlsOpen);
-  $("#mesure").classList.toggle("off", !carteControlsOpen);
-  placePliCarte();
-};
-placePliCarte();
 function placeTab(){
   const l=$("#languette");
   if(!panelOpen){ l.style.right="0px"; l.textContent="‹"; return; }
