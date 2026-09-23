@@ -10,9 +10,15 @@ problème, mais qui faisait planter tout le run (et donc perdre la mise
 téléchargent les mêmes sources et sont exposés au même risque.
 
 On ne retente que les échecs qui ont une chance de se résoudre tout
-seuls : une erreur HTTP 5xx (problème temporaire côté serveur) ou une
-erreur réseau (coupure, timeout). Une erreur 4xx (ex. 404) est
-définitive — la retenter n'aurait aucun sens, donc pas de nouvel essai.
+seuls : une erreur HTTP 5xx (problème temporaire côté serveur), une
+erreur réseau (coupure, timeout), ou une erreur de protocole HTTP en
+cours de lecture de la réponse (ex. IncompleteRead — le serveur coupe
+la connexion avant d'avoir envoyé tout le corps annoncé ; constaté
+plusieurs fois sur construire_agenda.py, même symptôme que les
+coupures gérées ci-dessus mais une exception différente, non
+capturée jusqu'ici car levée par r.read(), après le retour de
+urlopen()). Une erreur 4xx (ex. 404) est définitive — la retenter
+n'aurait aucun sens, donc pas de nouvel essai.
 
 Le magasin de certificats par défaut du système peut être incomplet
 selon l'environnement (constaté le 14 septembre 2026 : SSL
@@ -22,6 +28,7 @@ avec "requests" — valide le même certificat sans problème). On
 utilise donc son magasin quand il est disponible, sans que ce soit une
 condition bloquante ailleurs.
 """
+import http.client
 import ssl
 import time
 import urllib.error
@@ -48,7 +55,7 @@ def telecharger(url, *, timeout, headers, tentatives=TENTATIVES):
             if e.code < 500 or essai == tentatives:
                 raise
             erreur = e
-        except (urllib.error.URLError, TimeoutError) as e:
+        except (urllib.error.URLError, TimeoutError, http.client.HTTPException) as e:
             if essai == tentatives:
                 raise
             erreur = e
