@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Genere l'image (1080x1350, format portrait Instagram) d'un post
+"""Genere l'image (1080x1600, format portrait Instagram) d'un post
 reseaux sociaux : un seul et unique gabarit pour toutes les
 publications, repris de l'ecran d'accueil de l'app elle-meme — fond
 gris avec « Populous » en filigrane vertical (meme .presiWatermark que
@@ -23,7 +23,7 @@ from PIL import Image, ImageDraw, ImageFilter, ImageFont
 DOSSIER = Path(__file__).parent
 FONTS = DOSSIER / 'assets_social' / 'fonts'
 
-LARGEUR, HAUTEUR = 1080, 1350
+LARGEUR, HAUTEUR = 1080, 1600
 
 # Memes valeurs que index.html : --bg, --ink, --accent, --card.
 GRIS_FOND = (243, 243, 242)
@@ -353,16 +353,17 @@ def generer(sortie, *, eyebrow, titre, texte=None, photo=None,
         texte_x0 = inner_x0
 
     largeur_titre = inner_x1 - texte_x0
+    max_hauteur_titre = 420
     for taille in (68, 58, 50, 44, 40):
         police_titre = _police('PlusJakartaSans-ExtraBold.ttf', taille)
         lignes_titre = _wrap_pour_largeur(trace, titre, police_titre, largeur_titre)
         hauteur_ligne = int(taille * 1.2)
-        # Il ne suffit pas que le total tienne en hauteur (330px) : un mot
+        # Il ne suffit pas que le total tienne en hauteur (420px) : un mot
         # compose sans espace (nom de famille a rallonge) peut rester seul
         # sur une ligne trop large tout en respectant le budget de hauteur,
         # et deborder de la carte sans que cette condition ne le detecte.
         largeur_reelle = max(trace.textlength(l, font=police_titre) for l in lignes_titre)
-        if (hauteur_ligne * len(lignes_titre) <= 330 and largeur_reelle <= largeur_titre) or taille == 40:
+        if (hauteur_ligne * len(lignes_titre) <= max_hauteur_titre and largeur_reelle <= largeur_titre) or taille == 40:
             break
 
     # Filet de securite final : meme a 40 (la plus petite taille testee),
@@ -371,6 +372,16 @@ def generer(sortie, *, eyebrow, titre, texte=None, photo=None,
     # pas les cas normaux : a ce stade la ligne tient deja la plupart du
     # temps, _tronquer_pour_largeur est un no-op si elle rentre deja.
     lignes_titre = [_tronquer_pour_largeur(trace, l, police_titre, largeur_titre) for l in lignes_titre]
+
+    # Meme a la plus petite taille, un titre tres long (certains textes de
+    # loi depassent 200 caracteres) peut encore deborder du budget de
+    # hauteur : on le tronque a un nombre de lignes fixe plutot que de
+    # laisser le "texte" en dessous se faire ecraser contre le guillemet
+    # fermant.
+    max_lignes_titre = max(1, max_hauteur_titre // hauteur_ligne)
+    if len(lignes_titre) > max_lignes_titre:
+        lignes_titre = lignes_titre[:max_lignes_titre]
+        lignes_titre[-1] = lignes_titre[-1].rstrip() + '…'
 
     y_titre = y
     for ligne in lignes_titre:

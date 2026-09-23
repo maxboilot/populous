@@ -2690,7 +2690,7 @@ function toast(msg){
    les memes chiffres (marges, tailles) pour que les deux sources
    produisent visuellement le meme rendu.
    ------------------------------------------------------------ */
-const VISUEL_L = 1080, VISUEL_H = 1350;
+const VISUEL_L = 1080, VISUEL_H = 1600;
 function roundRectPath(ctx, x, y, w, h, r){
   ctx.beginPath();
   ctx.moveTo(x + r, y);
@@ -2778,12 +2778,23 @@ async function genererVisuelPartage({eyebrow, titre, texte, net}){
   ctx.fillText((eyebrow || "").toUpperCase(), innerX0, y);
   y += 56;
 
+  const maxHauteurTitre = 420;
   let taille = 68, lignesTitre = [], hauteurLigne = 0;
   for(taille of [68, 58, 50, 44, 40]){
     ctx.font = `800 ${taille}px 'Plus Jakarta Sans'`;
     lignesTitre = wrapPourLargeur(ctx, titre, innerX1 - innerX0);
     hauteurLigne = Math.round(taille * 1.2);
-    if(hauteurLigne * lignesTitre.length <= 330 || taille === 40) break;
+    if(hauteurLigne * lignesTitre.length <= maxHauteurTitre || taille === 40) break;
+  }
+  // Meme a la plus petite taille, un titre tres long (certains textes de
+  // loi depassent 200 caracteres) peut encore deborder du budget : on le
+  // tronque a un nombre de lignes fixe plutot que de laisser le "texte"
+  // en dessous se faire ecraser contre le guillemet fermant — c'etait le
+  // bug rapporte par Max ("la phrase coupee au deuxieme mot").
+  const maxLignesTitre = Math.floor(maxHauteurTitre / hauteurLigne);
+  if(lignesTitre.length > maxLignesTitre){
+    lignesTitre = lignesTitre.slice(0, maxLignesTitre);
+    lignesTitre[lignesTitre.length - 1] = lignesTitre[lignesTitre.length - 1].replace(/\s+$/, "") + "…";
   }
   ctx.fillStyle = ENCRE;
   ctx.font = `800 ${taille}px 'Plus Jakarta Sans'`;
