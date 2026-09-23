@@ -690,12 +690,10 @@ window.__VOTE_EARLY__ = (async function(){
     background-repeat:no-repeat; background-position:right 12px center; background-size:16px; }
   .filtreSelect:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
 
-  /* Partage : Instagram ouvre directement Stories via le plugin natif
-     InstagramSharePlugin (jamais de repli vers la feuille générale) ;
-     Facebook (et tout le reste, web compris) passe par la feuille de
-     partage native (navigator.share), qui le propose si installé ;
-     repli en copie presse-papier sinon. Voir wireShare()/shareItem()
-     et partagerVersInstagramStories(). */
+  /* Partage : Instagram et Facebook ouvrent tous deux directement leur
+     Stories via le plugin natif PartageStoriesPlugin, jamais de repli
+     vers la feuille générale. Voir wireShare()/shareItem() et
+     partagerVersStories(). */
   .shareRow{ display:flex; justify-content:flex-end; gap:8px; margin-top:10px; }
   .shareBtn{ width:40px; height:40px; border-radius:50%; border:none; background:var(--card-alt);
     color:var(--ink-soft); cursor:pointer; display:flex; align-items:center; justify-content:center;
@@ -2597,10 +2595,9 @@ function renderAccueil(){
 let THEMES_LIB = null;
 /* ------------------------------------------------------------
    Partage — Facebook et Instagram n'ont pas de lien web du type
-   "partager ce texte" (contrairement à WhatsApp ou X). La seule
-   voie honnête est la feuille de partage native (navigator.share),
-   où ces apps apparaissent si installées. Repli en copie
-   presse-papier là où l'API n'existe pas (desktop, surtout).
+   "partager ce texte" (contrairement à WhatsApp ou X). Les deux
+   ouvrent directement leur Stories via le plugin natif
+   PartageStoriesPlugin, visuel déjà en fond (voir shareItem()).
    Icônes dessinées en interne : le projet n'embarque aucun asset
    externe, jamais de logo de marque.
    ------------------------------------------------------------ */
@@ -2714,7 +2711,7 @@ function wrapPourLargeur(ctx, texte, largeurMax){
   if(ligne) lignes.push(ligne);
   return lignes;
 }
-async function genererVisuelPartage({eyebrow, titre, texte}){
+async function genererVisuelPartage({eyebrow, titre, texte, net}){
   if(document.fonts && document.fonts.ready) await document.fonts.ready;
   const c = document.createElement("canvas");
   c.width = VISUEL_L; c.height = VISUEL_H;
@@ -2738,14 +2735,19 @@ async function genererVisuelPartage({eyebrow, titre, texte}){
 
   // "@populous_officiel", centre en haut : lisible des la republication,
   // et associe au lien tappable vers le compte cote natif (voir
-  // InstagramSharePlugin.partagerStory, cle contentURL).
-  ctx.save();
-  ctx.textAlign = "center";
-  ctx.textBaseline = "top";
-  ctx.font = "800 34px 'Plus Jakarta Sans'";
-  ctx.fillStyle = ENCRE;
-  ctx.fillText("@populous_officiel", VISUEL_L / 2, 64);
-  ctx.restore();
+  // PartageStoriesPlugin.partagerStory, cle contentURL). Seulement pour
+  // Instagram : la page Facebook n'a pas encore de nom d'utilisateur
+  // convivial (URL en profile.php?id=...), donc rien de propre a afficher
+  // — le lien tappable natif suffit a remonter jusqu'a la page.
+  if(net === "instagram"){
+    ctx.save();
+    ctx.textAlign = "center";
+    ctx.textBaseline = "top";
+    ctx.font = "800 34px 'Plus Jakarta Sans'";
+    ctx.fillStyle = ENCRE;
+    ctx.fillText("@populous_officiel", VISUEL_L / 2, 64);
+    ctx.restore();
+  }
 
   const margeCarte = 96, cx0 = margeCarte, cy0 = 300, cx1 = VISUEL_L - margeCarte, cy1 = VISUEL_H - 300, rayon = 44;
 
@@ -2812,7 +2814,7 @@ async function genererVisuelPartage({eyebrow, titre, texte}){
 }
 
 /* Convertit un File/Blob en base64 brut (sans le prefixe data:...;base64,)
-   — format attendu par InstagramSharePlugin.partagerStory() cote Swift,
+   — format attendu par PartageStoriesPlugin.partagerStory() cote Swift,
    les appels de plugin Capacitor passant par un pont JSON qui ne sait
    pas serialiser un Blob directement. */
 function versBase64(fichier){
@@ -2823,61 +2825,39 @@ function versBase64(fichier){
     lecteur.readAsDataURL(fichier);
   });
 }
-/* Ouvre Instagram Stories avec l'image deja en fond, via le plugin natif
-   InstagramSharePlugin (voir mobile/ios/App/App/) — n'existe que dans
-   l'app compilee, jamais sur le web (Capacitor.Plugins.InstagramShare
-   est simplement absent hors de l'app native, d'ou le garde-fou ici).
-   Contrairement a la tentative precedente en pur JS (retiree, voir
-   historique git), cet appel est natif de bout en bout : pas d'alerte
-   Safari a detecter, pas de course contre une temporisation — on sait
-   immediatement et de facon fiable si Instagram s'est ouvert ou non. */
-async function partagerVersInstagramStories(fichier){
+/* Ouvre la story Instagram ou Facebook avec l'image deja en fond, via le
+   plugin natif PartageStoriesPlugin (voir mobile/ios/App/App/) — n'existe
+   que dans l'app compilee, jamais sur le web (Capacitor.Plugins.
+   PartageStories est simplement absent hors de l'app native, d'ou le
+   garde-fou ici). Contrairement a la tentative precedente en pur JS pour
+   Instagram (retiree, voir historique git), cet appel est natif de bout
+   en bout : pas d'alerte Safari a detecter, pas de course contre une
+   temporisation — on sait immediatement et de facon fiable si le reseau
+   s'est ouvert ou non. */
+async function partagerVersStories(fichier, reseau){
   const cap = window.Capacitor;
-  const plugin = cap && cap.Plugins && cap.Plugins.InstagramShare;
+  const plugin = cap && cap.Plugins && cap.Plugins.PartageStories;
+  const nomReseau = reseau === "facebook" ? "Facebook" : "Instagram";
   if(!plugin) return { ouvert:false, raison:"le plugin natif n'est pas present (build pas a jour ?)" };
   try{
     const image = await versBase64(fichier);
-    const { ouvert } = await plugin.partagerStory({ image });
-    return { ouvert: !!ouvert, raison: ouvert ? null : "Instagram n'a pas pu s'ouvrir (app absente ?)" };
+    const { ouvert } = await plugin.partagerStory({ image, reseau });
+    return { ouvert: !!ouvert, raison: ouvert ? null : `${nomReseau} n'a pas pu s'ouvrir (app absente ?)` };
   }catch(e){ return { ouvert:false, raison:"erreur : " + (e && e.message || e) }; }
 }
-async function shareItem({eyebrow, titre, texte, url}, net){
-  url = url || SITE_URL;
-  const legende = texte ? `${titre}\n\n${texte}` : titre;
+// Ni Instagram ni Facebook ne degradent vers une feuille de partage
+// generale : soit le plugin natif ouvre la story avec le visuel deja en
+// fond, soit on le dit clairement (toast) — jamais le repli generique
+// que Max ne veut voir sur aucun des deux boutons.
+async function shareItem({eyebrow, titre, texte}, net){
   let fichier = null;
   try{
-    const blob = await genererVisuelPartage({ eyebrow: eyebrow || "Populous", titre, texte });
+    const blob = await genererVisuelPartage({ eyebrow: eyebrow || "Populous", titre, texte, net });
     fichier = new File([blob], "populous.png", { type: "image/png" });
-  }catch(e){ /* le visuel est un plus, pas un bloquant : on degrade en texte seul */ }
-
-  // Instagram ne degrade jamais vers la feuille de partage generale : soit
-  // le plugin natif ouvre Stories avec le visuel deja en fond, soit on le
-  // dit clairement (toast) — jamais le repli generique que Max ne veut pas
-  // voir sur ce bouton precis.
-  if(net === "instagram"){
-    if(!fichier){ toast("Impossible de générer le visuel à partager"); return; }
-    const { ouvert, raison } = await partagerVersInstagramStories(fichier);
-    if(!ouvert) toast(raison || "Impossible d'ouvrir Instagram");
-    return;
-  }
-
-  if(fichier && navigator.canShare && navigator.canShare({ files: [fichier] })){
-    try{ await navigator.share({ files: [fichier], title: "Populous", text: legende }); return; }
-    catch(e){ return; /* partage annule par la personne : rien a faire */ }
-  }
-  if(navigator.share){
-    try{ await navigator.share({ title: "Populous", text: legende, url }); return; }
-    catch(e){ return; }
-  }
-  try{
-    if(fichier && navigator.clipboard && navigator.clipboard.write && window.ClipboardItem){
-      await navigator.clipboard.write([new ClipboardItem({ "image/png": fichier })]);
-      toast("Image copiée — colle-la dans ta story");
-    } else {
-      await navigator.clipboard.writeText(legende + "\n" + url);
-      toast("Copié — colle-le dans ta story");
-    }
-  }catch(e){ toast("Partage impossible sur ce navigateur"); }
+  }catch(e){ /* pas de visuel, rien a partager en story */ }
+  if(!fichier){ toast("Impossible de générer le visuel à partager"); return; }
+  const { ouvert, raison } = await partagerVersStories(fichier, net);
+  if(!ouvert) toast(raison || `Impossible d'ouvrir ${net === "facebook" ? "Facebook" : "Instagram"}`);
 }
 function shareRowHTML(){
   return `<div class="shareRow">

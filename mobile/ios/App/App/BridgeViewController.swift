@@ -7,6 +7,6 @@ import Capacitor
 /// CAPBridgeViewController tel quel.
 class BridgeViewController: CAPBridgeViewController {
     override func capacitorDidLoad() {
-        bridge?.registerPluginInstance(InstagramSharePlugin())
+        bridge?.registerPluginInstance(PartageStoriesPlugin())
     }
 }
