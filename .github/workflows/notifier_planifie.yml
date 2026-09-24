@@ -1,17 +1,13 @@
 name: Notifications push planifiees
 
 # Trois notifications recurrentes, en plus de celle du nouveau scrutin
-# (ingest_scrutins.yml) : le fait du jour (quotidien, ~8h Paris),
-# l'agenda de la semaine (lundi, ~9h) et la veille d'un vote solennel
-# (~18h, seulement si l'agenda en annonce un pour le lendemain).
-# Heures en UTC pour l'heure d'ete (CEST, UTC+2) ; a decaler d'une heure
-# fin octobre. Minutes decalees de :00 (retards GitHub sur les heures
-# rondes) — un retard de quelques dizaines de minutes reste possible.
+# (ingest_scrutins.yml) : le fait du jour (quotidien, 8h Paris),
+# l'agenda de la semaine (lundi, 9h) et la veille d'un vote solennel
+# (18h30, seulement si l'agenda en annonce un pour le lendemain).
+# Horaires geres par planificateur/worker.js (heure de Paris, changement
+# d'heure automatique) — ce workflow n'a plus de cron propre.
 on:
-  schedule:
-    - cron: '4 6 * * *'     # ~08:04 Paris — fait du jour
-    - cron: '9 7 * * 1'     # ~09:09 Paris, le lundi — agenda de la semaine
-    - cron: '3 16 * * *'    # ~18:03 Paris — vote solennel demain
+  # Déclenché à l'heure exacte par le Worker Cloudflare (planificateur/).
   workflow_dispatch:
     inputs:
       type:

@@ -1,23 +1,9 @@
 name: Publication réseaux sociaux
 
 on:
-  schedule:
-    # Heures Paris (CEST, UTC+2 — comme actuellement en septembre ; a
-    # decaler d'une heure a l'entree en heure d'hiver fin octobre, meme
-    # limite que les autres workflows planifies de ce depot qui ne
-    # geolocalisent pas non plus leurs horaires).
-    #
-    # Minutes volontairement decalees des heures rondes (:07, :13, :22...)
-    # plutot que :00 — GitHub documente que les crons pile a l'heure ronde
-    # subissent plus de retard, tout le monde les utilisant. Ca n'elimine
-    # pas les delais constates (2-5h observes les 15-16/09), juste une
-    # attenuation en attendant mieux (cf. strategie de declenchement externe
-    # via workflow_dispatch, evoquee avec Max le 16/09).
-    - cron: '7 5 * * *'     # 07:07 Paris — fait du jour (quotidien)
-    - cron: '13 10 * * *'   # 12:13 Paris — actu presidentielle (quotidien)
-    - cron: '22 12 * * *'   # 14:22 Paris — depute du jour (quotidien)
-    - cron: '38 17 * * 1'   # 19:38 Paris, le lundi — a venir a l'Assemblee (hebdomadaire)
-    - cron: '51 19 15 * *'  # 21:51 Paris, le 15 du mois — boussole politique (mensuel)
+  # Plus de `schedule:` ici : GitHub retardait ses crons de 1 à 9 h. Le
+  # déclenchement se fait désormais à l'heure exacte par le Worker
+  # Cloudflare (planificateur/), via workflow_dispatch.
   workflow_dispatch:
     inputs:
       type:
