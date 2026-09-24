@@ -40,6 +40,7 @@ window.__VOTE_EARLY__ = (async function(){
      Bleu extrait de l'icône Populous, gardé comme seul accent.
      ============================================================ */
   :root{
+    --colW:640px;
     --bg:#F3F3F2; --card:#FFFFFF; --card-alt:#F4F6FC;
     --ink:#10193F; --ink-soft:#4A5578; --dim:#8891B0;
     /* Bleu plus vif que le Bleu France institutionnel (#000091, jugé trop
@@ -409,6 +410,10 @@ window.__VOTE_EARLY__ = (async function(){
     display:flex;background:var(--card);
     border-top:none;border-radius:18px;
     padding:8px 6px;box-shadow:var(--shadow-lg);max-width:520px;margin:0 auto}
+  /* Tablette : la colonne de contenu s'élargit (au lieu de rester à 640px
+     au milieu d'un grand écran vide) et la barre du bas suit. */
+  @media (min-width:768px){ :root{--colW:820px} #navbar{max-width:640px} }
+  @media (min-width:1100px){ :root{--colW:980px} #navbar{max-width:720px} }
   /* Glisse d'un onglet à l'autre (translateX en % d'elle-même, un cran
      par onglet) plutôt que de réapparaître ailleurs — voir NAV_ORDRE et
      showScreen(). Sous les boutons (z-index), eux-mêmes transparents à
@@ -433,7 +438,7 @@ window.__VOTE_EARLY__ = (async function(){
   .navBtn.on{color:var(--accent)}
   .navBtn.on .ni{opacity:1}
 
-  .dashHead{max-width:640px;margin:10px auto 20px}
+  .dashHead{max-width:var(--colW);margin:10px auto 20px}
   .dashHead .eyebrow{font-size:11px;font-weight:700;color:var(--accent)}
   .dashHead h1{font-family:var(--font-d);font-weight:800;font-size:56px;margin:6px 0 0;letter-spacing:-.03em}
 
@@ -452,7 +457,7 @@ window.__VOTE_EARLY__ = (async function(){
 
   /* Présidentielle 2027 : bannière la plus mise en avant de l'accueil,
      volontairement un cran au-dessus du dernier vote. */
-  .presiHeroCard{display:block;width:100%;max-width:640px;margin:0 auto 14px;padding:30px 28px;
+  .presiHeroCard{display:block;width:100%;max-width:var(--colW);margin:0 auto 14px;padding:30px 28px;
     border:none;border-radius:16px;text-align:left;cursor:pointer;font:inherit;
     background:linear-gradient(135deg,var(--accent) 0%,var(--accent-hi) 100%);color:#fff;box-shadow:var(--shadow-lg);
     transition:transform .15s,box-shadow .15s}
@@ -467,7 +472,7 @@ window.__VOTE_EARLY__ = (async function(){
   .presiHeroCard .phCta{margin-top:16px;font-size:12.5px;font-weight:700;color:#fff;opacity:.85}
 
   /* Dernier vote : nettement réduit, la présidentielle prend le dessus. */
-  .voteCard{position:relative;max-width:640px;margin:0 auto 18px;padding:16px 18px;border:none;border-radius:14px;
+  .voteCard{position:relative;max-width:var(--colW);margin:0 auto 18px;padding:16px 18px;border:none;border-radius:14px;
     background:linear-gradient(160deg,var(--accent) 0%,var(--accent-hi) 100%);color:#fff;box-shadow:var(--shadow)}
   .voteCard .eyebrow{font-size:10px;font-weight:700;color:rgba(255,255,255,.85)}
   /* Tampon façon encreur : incliné, double contour, couleurs reprises de
@@ -486,7 +491,7 @@ window.__VOTE_EARLY__ = (async function(){
   .voteCard .btn.ghost{background:rgba(255,255,255,.14);color:#fff}
   .voteCard .m{color:#fff}
 
-  .boussoleTile{display:flex;align-items:center;gap:14px;width:100%;max-width:640px;margin:0 auto 12px;
+  .boussoleTile{display:flex;align-items:center;gap:14px;width:100%;max-width:var(--colW);margin:0 auto 12px;
     padding:18px 20px;border:none;border-radius:16px;text-align:left;cursor:pointer;font:inherit;
     background:linear-gradient(135deg,#6E3F10 0%,#9C5F1C 100%);color:#fff;box-shadow:var(--shadow);
     transition:transform .15s,box-shadow .15s}
@@ -499,7 +504,7 @@ window.__VOTE_EARLY__ = (async function(){
   .bt-badge{font-size:8.5px;font-weight:800;letter-spacing:.03em;text-transform:uppercase;
     background:rgba(255,255,255,.22);padding:2px 7px;border-radius:var(--r-pill);vertical-align:middle;margin-left:2px}
   .bt-badge:empty{display:none}
-  .dashGrid{max-width:640px;margin:0 auto 20px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .dashGrid{max-width:var(--colW);margin:0 auto 20px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
   .dashTile{grid-column:span 1;padding:20px 18px;background:var(--card);border:1px solid var(--line);
     border-radius:var(--r-card);color:var(--ink);text-align:left;cursor:pointer;transition:transform .15s,box-shadow .15s}
   .dashTile:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
@@ -560,7 +565,7 @@ window.__VOTE_EARLY__ = (async function(){
   .avThumb{width:32px;height:32px;border-radius:50%;flex:0 0 auto;overflow:hidden}
   .chev{color:var(--dim);font-size:18px}
 
-  .dashList{max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+  .dashList{max-width:var(--colW);margin:0 auto;display:flex;flex-direction:column;gap:10px}
   /* Décomptes du Calendrier 2027 — dates officielles seulement, voir
      CALENDRIER_ECHEANCES. Rien d'autre dans cet onglet tant qu'une
      candidature n'est pas officiellement déclarée. */
@@ -598,7 +603,7 @@ window.__VOTE_EARLY__ = (async function(){
     font-weight:800;font-size:clamp(60px,14vh,200px);letter-spacing:-.03em;color:var(--ink);
     opacity:.13;white-space:nowrap}
   .zTop{position:relative;z-index:1}
-  .presiTabs{max-width:640px;margin:0 auto 16px;display:flex;gap:8px}
+  .presiTabs{max-width:var(--colW);margin:0 auto 16px;display:flex;gap:8px}
   .presiTab{flex:1;padding:10px 10px;font-size:12px;font-weight:700;border:none;
     background:var(--card);color:var(--ink-soft);cursor:pointer;border-radius:var(--r-pill);
     box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;gap:2px}
@@ -618,7 +623,7 @@ window.__VOTE_EARLY__ = (async function(){
   .actuRow.featured .t{font-size:16px}
   .actuRow.featured .x{-webkit-line-clamp:3}
 
-  .sondFiltre{max-width:640px;margin:0 auto 14px}
+  .sondFiltre{max-width:var(--colW);margin:0 auto 14px}
   .institutBadge{display:inline-flex;align-items:center;padding:3px 10px;font-size:9.5px;font-weight:800;
     letter-spacing:.02em;border-radius:var(--r-pill);text-transform:uppercase}
   .sondCard .k{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:11px;color:var(--dim);font-weight:600}
@@ -635,7 +640,7 @@ window.__VOTE_EARLY__ = (async function(){
   .sondSource{display:inline-block;margin-top:14px;font-size:10.5px;font-weight:600;color:var(--accent);text-decoration:none}
 
   /* ============ Récap (Historique) ============ */
-  .recapChoix{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px;max-width:640px;margin-left:auto;margin-right:auto}
+  .recapChoix{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px;max-width:var(--colW);margin-left:auto;margin-right:auto}
   .recapCard{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:14px 16px;
     border-radius:16px;border:none;cursor:pointer;color:#fff;text-align:left;transition:transform .15s;font:inherit}
   .recapCard:hover{transform:translateY(-2px)}
@@ -643,10 +648,10 @@ window.__VOTE_EARLY__ = (async function(){
   .recapCard .s{font-size:10px;opacity:.85;margin-top:3px}
 
   .recapBack{background:none;border:none;color:var(--dim);font-size:11px;cursor:pointer;font-weight:700;padding:0}
-  .recapHead{display:flex;align-items:center;gap:10px;max-width:640px;margin:10px auto 0}
+  .recapHead{display:flex;align-items:center;gap:10px;max-width:var(--colW);margin:10px auto 0}
   .recapHeadBadge{padding:4px 11px;border-radius:999px;font-size:10.5px;font-weight:800;color:#fff;flex:0 0 auto}
 
-  .recapTrail{position:relative;max-width:640px;margin:20px auto 0;padding-left:2px}
+  .recapTrail{position:relative;max-width:var(--colW);margin:20px auto 0;padding-left:2px}
   .recapTrail::before{content:"";position:absolute;left:25px;top:10px;bottom:10px;width:2px;
     background-image:linear-gradient(var(--line) 50%, transparent 0);background-size:2px 10px;background-repeat:repeat-y}
   .recapNode{position:relative;display:flex;align-items:center;gap:14px;padding:8px 0;cursor:pointer;
@@ -685,12 +690,12 @@ window.__VOTE_EARLY__ = (async function(){
      même largeur/centrage que .filtreLabel et .dashList juste en
      dessous, sinon les menus restent collés à gauche en desktop large
      pendant que le reste du contenu se centre. */
-  .filtres{ max-width:640px; margin:0 auto 12px; }
+  .filtres{ max-width:var(--colW); margin:0 auto 12px; }
   /* Nom du filtre, seulement quand deux filtres se suivent (Historique) —
      sans ça, deux menus "Tous (N)" côte à côte ne se distinguent pas. */
-  .filtreLabel{ max-width:640px; margin:0 auto 6px; padding-left:4px;
+  .filtreLabel{ max-width:var(--colW); margin:0 auto 6px; padding-left:4px;
     font-size:10.5px; font-weight:700; color:var(--dim); }
-  .filtreSelect{ width:100%; max-width:640px; padding:11px 14px; font:inherit; font-size:12.5px;
+  .filtreSelect{ width:100%; max-width:var(--colW); padding:11px 14px; font:inherit; font-size:12.5px;
     font-weight:600; color:var(--ink); background:var(--card); border:none; border-radius:var(--r-input);
     box-shadow:var(--shadow); cursor:pointer; appearance:none; -webkit-appearance:none;
     background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%238891B0" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>');
@@ -890,7 +895,7 @@ window.__VOTE_EARLY__ = (async function(){
 <div id="screen-avenir" class="screen hidden">
   <div class="presiWatermark" aria-hidden="true">Populous</div>
   <div class="dashHead zTop"><div class="eyebrow">Feuille blanche</div><h1 class="d">À venir</h1></div>
-  <div class="privacyBox zTop" style="max-width:640px;margin:0 auto 14px">
+  <div class="privacyBox zTop" style="max-width:var(--colW);margin:0 auto 14px">
     Seul un texte marqué <b>Vote solennel</b> donnera le détail du vote de chaque député (Carte, Boussole, Récap).
     Les autres textes, votés à main levée, apparaîtront quand même dans Historique avec leur résultat une fois
     la décision prise — mais sans savoir qui a voté quoi.
@@ -3747,7 +3752,7 @@ async function renderRecap(){
 function renderRecapChoix(d){
   const progres = chargerProgresRecap();
   $("#recapBody").innerHTML = `
-    <p class="lead" style="max-width:640px;margin:0 auto 4px;text-align:center;font-style:italic">
+    <p class="lead" style="max-width:var(--colW);margin:0 auto 4px;text-align:center;font-style:italic">
       Choisis un groupe parlementaire et découvre quels scrutins a-t-il adopté ou non</p>
     <div class="recapChoix">
       ${d.groupes.map(g=>{
@@ -3780,7 +3785,7 @@ function renderRecapTrail(d){
       <span class="recapHeadBadge" style="background:${groupe.c}">${esc(groupe.s)}</span>
       <span style="font-size:12.5px;color:var(--ink-soft)">${esc(groupe.n)}</span>
     </div>
-    ${termine ? `<div id="recapShare" style="max-width:640px;margin:16px auto 0"></div>` : ""}
+    ${termine ? `<div id="recapShare" style="max-width:var(--colW);margin:16px auto 0"></div>` : ""}
     <div class="recapTrail">
       ${d.themes.map((t,i)=>{
         const donnees = (d.donnees[recapGroupe]||{})[t.code];
