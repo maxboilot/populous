@@ -916,6 +916,14 @@ window.__VOTE_EARLY__ = (async function(){
 </nav>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<!-- ============ LinkedIn : explication avant l'ouverture (fermeture = ouvre LinkedIn) ============ -->
+<div id="linkedinInfo" class="veil hidden" role="dialog" aria-modal="true" aria-label="Partager sur LinkedIn">
+  <div class="sheet">
+    <button class="sheetClose" id="linkedinInfoClose" type="button" aria-label="Fermer">✕</button>
+    <p class="lead" style="font-size:17px;line-height:1.5;color:var(--ink);font-weight:600;margin:0;padding-right:34px">Image de partage dans ta galerie. Clic sur « Publier » et l'icône « image » pour partager sur LinkedIn.</p>
+  </div>
+</div>
+
 <script>
 /* ============================================================
    Carte des 577 circonscriptions législatives — XVIIᵉ législature
@@ -2865,17 +2873,26 @@ const LINKEDIN_PAGE_URL = "https://www.linkedin.com/company/media-populous/";
    feuille de partage du navigateur, puis compositeur web en texte seul.
    Aucun lien dans le texte : il ferait apparaitre un apercu qui prendrait
    la place de l'image. */
+// Fenetre fixe (fermeture par la croix seulement) : LinkedIn ne s'ouvre
+// qu'une fois qu'elle est fermee, pour que la consigne soit lue.
+function afficherInfoLinkedIn(){
+  return new Promise(resolve => {
+    const v = $("#linkedinInfo");
+    v.classList.remove("hidden");
+    $("#linkedinInfoClose").onclick = ()=>{ v.classList.add("hidden"); resolve(); };
+  });
+}
 async function partagerVersLinkedIn(fichier, titre){
   const cap = window.Capacitor;
   const plugin = cap && cap.Plugins && cap.Plugins.PartageStories;
-  if(plugin && plugin.partagerLinkedIn){
+  if(plugin && plugin.enregistrerPhoto && plugin.ouvrirLinkedIn){
     try{
       const image = await versBase64(fichier);
-      toast("Image enregistrée dans Photos, texte copié. Dans LinkedIn : icône photo pour l'image, appui long puis « Coller » pour le texte", 4200);
-      await new Promise(r => setTimeout(r, 3800));
-      const { ouvert, photo } = await plugin.partagerLinkedIn({ image, texte: titre });
+      const { photo } = await plugin.enregistrerPhoto({ image });
+      if(!photo){ toast("Image non enregistrée : autorise l'ajout de photos pour Populous dans Réglages", 4200); return; }
+      await afficherInfoLinkedIn();
+      const { ouvert } = await plugin.ouvrirLinkedIn({ texte: titre });
       if(!ouvert) toast("Impossible d'ouvrir LinkedIn");
-      else if(!photo) toast("Image non enregistrée : autorise l'ajout de photos pour Populous dans Réglages");
     }catch(e){ toast("Partage LinkedIn impossible : " + (e && e.message || e)); }
     return;
   }

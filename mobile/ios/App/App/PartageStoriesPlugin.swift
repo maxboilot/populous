@@ -15,7 +15,8 @@ public class PartageStoriesPlugin: CAPPlugin, CAPBridgedPlugin {
     public let jsName = "PartageStories"
     public let pluginMethods: [CAPPluginMethod] = [
         CAPPluginMethod(name: "partagerStory", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "partagerLinkedIn", returnType: CAPPluginReturnPromise)
+        CAPPluginMethod(name: "enregistrerPhoto", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "ouvrirLinkedIn", returnType: CAPPluginReturnPromise)
     ]
 
     // ID de l'app Meta "Populous Social" (developers.facebook.com) —
@@ -88,47 +89,48 @@ public class PartageStoriesPlugin: CAPPlugin, CAPBridgedPlugin {
 
     /// LinkedIn n'a pas d'API publique pour precharger une image dans son
     /// compositeur, et son champ de texte n'accepte pas le collage d'image
-    /// (constate sur iPhone). Voie fiable : l'image est enregistree dans
-    /// Photos (a ajouter avec l'icone photo du post), le texte est copie
-    /// dans le presse-papier, et on ouvre LinkedIn (lien universel : l'app
-    /// si elle est installee, sinon Safari).
-    @objc func partagerLinkedIn(_ call: CAPPluginCall) {
+    /// (constate sur iPhone). Voie fiable, en deux temps pilotes par le JS
+    /// (une fenetre d'explication s'intercale entre les deux) : l'image est
+    /// d'abord enregistree dans Photos, puis LinkedIn s'ouvre.
+    @objc func enregistrerPhoto(_ call: CAPPluginCall) {
         guard let base64 = call.getString("image"), let data = Data(base64Encoded: base64),
               let image = UIImage(data: data) else {
             call.reject("Image manquante ou invalide")
             return
         }
-        let texte = call.getString("texte") ?? ""
+        PHPhotoLibrary.requestAuthorization(for: .addOnly) { statut in
+            guard statut == .authorized || statut == .limited else {
+                call.resolve(["photo": false])
+                return
+            }
+            PHPhotoLibrary.shared().performChanges({
+                PHAssetCreationRequest.creationRequestForAsset(from: image)
+            }) { ok, _ in call.resolve(["photo": ok]) }
+        }
+    }
+
+    /// Ouvre LinkedIn par lien universel (l'app si elle est installee,
+    /// sinon Safari), compositeur de post avec le texte deja rempli.
+    @objc func ouvrirLinkedIn(_ call: CAPPluginCall) {
         var composants = URLComponents(string: "https://www.linkedin.com/feed/")!
         composants.queryItems = [
             URLQueryItem(name: "shareActive", value: "true"),
-            URLQueryItem(name: "text", value: texte)
+            URLQueryItem(name: "text", value: call.getString("texte") ?? "")
         ]
         guard let url = composants.url else {
-            call.resolve(["ouvert": false, "app": false, "photo": false])
+            call.resolve(["ouvert": false, "app": false])
             return
         }
-        PHPhotoLibrary.requestAuthorization(for: .addOnly) { statut in
-            let autorise = (statut == .authorized || statut == .limited)
-            let ouvrir = { (photoEnregistree: Bool) in
-                DispatchQueue.main.async {
-                    let options: [UIPasteboard.OptionsKey: Any] = [.expirationDate: Date().addingTimeInterval(600)]
-                    UIPasteboard.general.setItems([["public.utf8-plain-text": texte]], options: options)
-                    UIApplication.shared.open(url, options: [.universalLinksOnly: true]) { dansApp in
-                        if dansApp {
-                            call.resolve(["ouvert": true, "app": true, "photo": photoEnregistree])
-                        } else {
-                            UIApplication.shared.open(url, options: [:]) { ouvert in
-                                call.resolve(["ouvert": ouvert, "app": false, "photo": photoEnregistree])
-                            }
-                        }
+        DispatchQueue.main.async {
+            UIApplication.shared.open(url, options: [.universalLinksOnly: true]) { dansApp in
+                if dansApp {
+                    call.resolve(["ouvert": true, "app": true])
+                } else {
+                    UIApplication.shared.open(url, options: [:]) { ouvert in
+                        call.resolve(["ouvert": ouvert, "app": false])
                     }
                 }
             }
-            guard autorise else { ouvrir(false); return }
-            PHPhotoLibrary.shared().performChanges({
-                PHAssetCreationRequest.creationRequestForAsset(from: image)
-            }) { ok, _ in ouvrir(ok) }
         }
     }
 }
