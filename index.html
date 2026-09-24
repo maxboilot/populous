@@ -195,6 +195,31 @@ window.__VOTE_EARLY__ = (async function(){
   #pied{position:absolute;left:16px;top:254px;z-index:500;
     font-size:9px;letter-spacing:.02em;color:var(--dim);max-width:300px;line-height:1.7;opacity:.75}
 
+  /* Tablette : la carte reprend la disposition "bureau" (panneau de légende
+     à droite, commandes en bas) mais avec des commandes plus grandes, à la
+     mesure d'un écran tactile de 10 à 13 pouces. */
+  @media (min-width:761px) and (max-width:1366px){
+    #carteTitre{max-width:360px;font-size:15px}
+    #carteScreenTitre{font-size:15px}
+    #recherche{width:360px}
+    #recherche input{padding:14px 20px;font-size:15px}
+    #resultats button{padding:12px 14px;font-size:14px}
+    #mesure .grp{padding:5px}
+    #mesure .grp button{padding:11px 20px;min-width:104px}
+    #mesure .grp button .t{font-size:15px}
+    #mesure .grp button .s{font-size:10px}
+    #legende{width:286px;padding:20px 22px}
+    #legende .hd{font-size:12.5px}
+    .lg{font-size:13.5px;padding:5px 0}
+    .lg .n{font-size:12px}
+    .gradlbl{font-size:11px}
+    #languette{width:28px;height:76px}
+    #survol{font-size:13px;max-width:300px}
+    #pied{top:292px;font-size:10.5px;max-width:360px}
+    #fiche{width:min(460px,94vw)}
+    .kv{font-size:13.5px}.sec li{font-size:14px}.sec .hd{font-size:12px}
+  }
+
   .av{border-radius:50%;background-repeat:no-repeat;box-shadow:0 0 0 3px var(--card) inset,0 2px 10px rgba(16,25,63,.18)}
   .leaflet-marker-icon{transition:none}
 
@@ -1586,7 +1611,9 @@ function placeTab(){
   const l=$("#languette");
   if(!panelOpen){ l.style.right="0px"; l.textContent="‹"; return; }
   l.textContent="›";
-  l.style.right = $("#fiche").classList.contains("on") ? "min(370px, 94vw)" : "252px";
+  // Largeurs lues dans le DOM (et non 370/252 figés) : elles changent sur tablette.
+  l.style.right = ($("#fiche").classList.contains("on")
+    ? Math.min($("#fiche").offsetWidth - 10, innerWidth * .94) : $("#legende").offsetWidth + 26) + "px";
 }
 $("#languette").onclick = ()=>{
   panelOpen = !panelOpen;
