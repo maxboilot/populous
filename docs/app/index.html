@@ -2674,13 +2674,13 @@ const ICON_IG = `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" str
 
 const ICON_LI = `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3.5"/><path d="M8 10.5V16M12 16v-5.5M12 12.8a2.3 2.3 0 0 1 4.6 0V16"/><circle cx="8" cy="7.6" r=".9" fill="currentColor" stroke="none"/></svg>`;
 
-function toast(msg){
+function toast(msg, duree = 2600){
   let t = $("#toast");
   if(!t){ t = document.createElement("div"); t.id = "toast"; document.body.appendChild(t); }
   t.textContent = msg;
   t.classList.add("on");
   clearTimeout(toast._h);
-  toast._h = setTimeout(()=>t.classList.remove("on"), 2600);
+  toast._h = setTimeout(()=>t.classList.remove("on"), duree);
 }
 /* ------------------------------------------------------------
    Visuel de partage — meme gabarit que le pipeline de publication
@@ -2858,22 +2858,24 @@ async function partagerVersStories(fichier, reseau){
 }
 const LINKEDIN_PAGE_URL = "https://www.linkedin.com/company/media-populous/";
 /* LinkedIn n'a pas d'API publique pour precharger une image dans son
-   compositeur (contrairement aux Stories Meta). Dans l'app : le plugin
-   natif copie l'image dans le presse-papier et ouvre directement le
-   compositeur LinkedIn, texte deja rempli — il reste a "Coller" l'image.
-   Hors app (web) : feuille de partage du navigateur, puis compositeur web
-   en texte seul. Le texte n'embarque volontairement AUCUN lien : un lien
-   dans le post ferait apparaitre un apercu qui prend la place de l'image. */
+   compositeur, et son champ de texte n'accepte pas le collage d'image
+   (constate sur iPhone). Dans l'app : le plugin natif enregistre l'image
+   dans Photos, copie le texte et ouvre LinkedIn — il reste a ajouter la
+   photo (icone photo du post) et a "Coller" le texte. Hors app (web) :
+   feuille de partage du navigateur, puis compositeur web en texte seul.
+   Aucun lien dans le texte : il ferait apparaitre un apercu qui prendrait
+   la place de l'image. */
 async function partagerVersLinkedIn(fichier, titre){
   const cap = window.Capacitor;
   const plugin = cap && cap.Plugins && cap.Plugins.PartageStories;
   if(plugin && plugin.partagerLinkedIn){
     try{
       const image = await versBase64(fichier);
-      toast("Image copiée — dans LinkedIn, appuie longuement dans le post puis « Coller »");
-      await new Promise(r => setTimeout(r, 1200));
-      const { ouvert } = await plugin.partagerLinkedIn({ image, texte: titre });
+      toast("Image enregistrée dans Photos, texte copié. Dans LinkedIn : icône photo pour l'image, appui long puis « Coller » pour le texte", 4200);
+      await new Promise(r => setTimeout(r, 3800));
+      const { ouvert, photo } = await plugin.partagerLinkedIn({ image, texte: titre });
       if(!ouvert) toast("Impossible d'ouvrir LinkedIn");
+      else if(!photo) toast("Image non enregistrée : autorise l'ajout de photos pour Populous dans Réglages");
     }catch(e){ toast("Partage LinkedIn impossible : " + (e && e.message || e)); }
     return;
   }

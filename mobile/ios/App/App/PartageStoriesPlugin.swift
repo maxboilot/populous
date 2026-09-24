@@ -1,5 +1,6 @@
 import Capacitor
 import UIKit
+import Photos
 
 /// Ouvre la story Instagram ou Facebook avec le visuel généré par l'app
 /// déjà en fond — la seule chose que le Clipboard API du web ne permet
@@ -86,12 +87,14 @@ public class PartageStoriesPlugin: CAPPlugin, CAPBridgedPlugin {
     }
 
     /// LinkedIn n'a pas d'API publique pour precharger une image dans son
-    /// compositeur : on copie l'image dans le presse-papier (a coller dans
-    /// le post) et on ouvre le compositeur avec le texte deja rempli. Lien
-    /// universel d'abord (ouvre l'app LinkedIn si elle est installee), puis
-    /// repli sur Safari.
+    /// compositeur, et son champ de texte n'accepte pas le collage d'image
+    /// (constate sur iPhone). Voie fiable : l'image est enregistree dans
+    /// Photos (a ajouter avec l'icone photo du post), le texte est copie
+    /// dans le presse-papier, et on ouvre LinkedIn (lien universel : l'app
+    /// si elle est installee, sinon Safari).
     @objc func partagerLinkedIn(_ call: CAPPluginCall) {
-        guard let base64 = call.getString("image"), let data = Data(base64Encoded: base64) else {
+        guard let base64 = call.getString("image"), let data = Data(base64Encoded: base64),
+              let image = UIImage(data: data) else {
             call.reject("Image manquante ou invalide")
             return
         }
@@ -102,21 +105,30 @@ public class PartageStoriesPlugin: CAPPlugin, CAPBridgedPlugin {
             URLQueryItem(name: "text", value: texte)
         ]
         guard let url = composants.url else {
-            call.resolve(["ouvert": false, "app": false])
+            call.resolve(["ouvert": false, "app": false, "photo": false])
             return
         }
-        DispatchQueue.main.async {
-            let options: [UIPasteboard.OptionsKey: Any] = [.expirationDate: Date().addingTimeInterval(300)]
-            UIPasteboard.general.setItems([["public.png": data]], options: options)
-            UIApplication.shared.open(url, options: [.universalLinksOnly: true]) { dansApp in
-                if dansApp {
-                    call.resolve(["ouvert": true, "app": true])
-                } else {
-                    UIApplication.shared.open(url, options: [:]) { ouvert in
-                        call.resolve(["ouvert": ouvert, "app": false])
+        PHPhotoLibrary.requestAuthorization(for: .addOnly) { statut in
+            let autorise = (statut == .authorized || statut == .limited)
+            let ouvrir = { (photoEnregistree: Bool) in
+                DispatchQueue.main.async {
+                    let options: [UIPasteboard.OptionsKey: Any] = [.expirationDate: Date().addingTimeInterval(600)]
+                    UIPasteboard.general.setItems([["public.utf8-plain-text": texte]], options: options)
+                    UIApplication.shared.open(url, options: [.universalLinksOnly: true]) { dansApp in
+                        if dansApp {
+                            call.resolve(["ouvert": true, "app": true, "photo": photoEnregistree])
+                        } else {
+                            UIApplication.shared.open(url, options: [:]) { ouvert in
+                                call.resolve(["ouvert": ouvert, "app": false, "photo": photoEnregistree])
+                            }
+                        }
                     }
                 }
             }
+            guard autorise else { ouvrir(false); return }
+            PHPhotoLibrary.shared().performChanges({
+                PHAssetCreationRequest.creationRequestForAsset(from: image)
+            }) { ok, _ in ouvrir(ok) }
         }
     }
 }
