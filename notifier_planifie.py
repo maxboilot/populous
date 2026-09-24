@@ -48,7 +48,7 @@ def notif_fait():
         return None
     ref = refs[0]
     corps = f"{ref['annee']} : {ref['titre']}" if ref.get('titre') else f"{ref['annee']} : {ref['texte']}"
-    return "Découvre le fait du jour", _court(corps)
+    return "Découvre le fait du jour", _court(corps), "refjour"
 
 
 def notif_semaine():
@@ -62,7 +62,7 @@ def notif_semaine():
         return None
     n = len(items)
     debut = f"{n} point{'s' if n > 1 else ''} à l'ordre du jour, dont : "
-    return "Cette semaine à l'Assemblée", _court(debut + _sujet(items[0]))
+    return "Cette semaine à l'Assemblée", _court(debut + _sujet(items[0])), "avenir"
 
 
 def notif_solennel():
@@ -70,7 +70,7 @@ def notif_solennel():
     items = [a for a in _lire('agenda.json') if a['date'] == demain and a.get('scrutin_annonce')]
     if not items:
         return None
-    return "Vote solennel demain", _court(_sujet(items[0]))
+    return "Vote solennel demain", _court(_sujet(items[0])), "avenir"
 
 
 TYPES = {'fait': notif_fait, 'semaine': notif_semaine, 'solennel': notif_solennel}
@@ -86,11 +86,11 @@ def main():
     if not contenu:
         print(f"Rien a notifier pour --type {args.type} aujourd'hui.")
         return
-    titre, texte = contenu
-    print(f'{titre} | {texte}')
+    titre, texte, cible = contenu
+    print(f'{titre} | {texte} | cible={cible}')
     if args.dry_run:
         return
-    sys.exit(subprocess.run(['python3', str(DOSSIER / 'notifier_push.py'), '--titre', titre, '--texte', texte]).returncode)
+    sys.exit(subprocess.run(['python3', str(DOSSIER / 'notifier_push.py'), '--titre', titre, '--texte', texte, '--cible', cible]).returncode)
 
 
 if __name__ == '__main__':

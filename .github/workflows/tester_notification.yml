@@ -17,6 +17,9 @@ on:
         description: "Texte de la notification"
         required: true
         default: "Ceci est un envoi de test."
+      cible:
+        description: "Ecran ouvert au toucher (refjour, avenir, carte, presidentielle ; vide = accueil)"
+        default: "refjour"
       dry_run:
         description: "Dry-run (ne fait que compter les appareils abonnes, n'envoie rien)"
         type: boolean
@@ -43,10 +46,11 @@ jobs:
           # jamais l'un des deux contient des caracteres speciaux.
           TITRE: ${{ inputs.titre }}
           TEXTE: ${{ inputs.texte }}
+          CIBLE: ${{ inputs.cible }}
           DRY_RUN: ${{ inputs.dry_run }}
         run: |
           if [ "$DRY_RUN" = "true" ]; then
-            python3 notifier_push.py --titre "$TITRE" --texte "$TEXTE" --dry-run
+            python3 notifier_push.py --titre "$TITRE" --texte "$TEXTE" ${CIBLE:+--cible "$CIBLE"} --dry-run
           else
-            python3 notifier_push.py --titre "$TITRE" --texte "$TEXTE"
+            python3 notifier_push.py --titre "$TITRE" --texte "$TEXTE" ${CIBLE:+--cible "$CIBLE"}
           fi

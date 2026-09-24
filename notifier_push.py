@@ -44,7 +44,16 @@ DOSSIER = Path(__file__).parent
 # n'est distribuee qu'en debug/simulateur. A passer a 'production' (et
 # changer APNS_HOST ci-dessous) une fois de vraies builds TestFlight/App
 # Store en circulation, signees avec un profil de distribution.
-APNS_HOST = os.environ.get('APNS_HOST', 'https://api.sandbox.push.apple.com')
+APNS_HOSTS = {
+    'production': 'https://api.push.apple.com',
+    'sandbox': 'https://api.sandbox.push.apple.com',
+}
+# Un jeton appartient a UN environnement : les builds App Store/TestFlight
+# (entitlement production) et les builds Xcode sur iPhone (App/AppDebug.
+# entitlements, development) n'ont pas les memes. On essaie donc la
+# production d'abord, puis le bac a sable si Apple repond BadDeviceToken.
+# APNS_HOST force un seul hote si besoin.
+APNS_HOST_FORCE = os.environ.get('APNS_HOST')
 APNS_BUNDLE_ID = 'com.populous.app'
 
 
@@ -105,7 +114,7 @@ def jetons_abonnes(project_id, jeton_acces):
     return jetons
 
 
-def envoyer_une(device_token, titre, texte, url_cible, apns_jwt):
+def envoyer_une(device_token, titre, texte, url_cible, apns_jwt, cible=None):
     entetes = {
         'authorization': f'bearer {apns_jwt}',
         'apns-topic': APNS_BUNDLE_ID,
@@ -117,13 +126,21 @@ def envoyer_une(device_token, titre, texte, url_cible, apns_jwt):
     }
     if url_cible:
         charge['url'] = url_cible
+    if cible:
+        # Lue par l'app au toucher (pushNotificationActionPerformed, index.html).
+        charge['cible'] = cible
+    hotes = [APNS_HOST_FORCE] if APNS_HOST_FORCE else [APNS_HOSTS['production'], APNS_HOSTS['sandbox']]
     with httpx.Client(http2=True) as client:
-        return client.post(
-            f'{APNS_HOST}/3/device/{device_token}',
-            headers=entetes,
-            content=json.dumps(charge),
-            timeout=20,
-        )
+        for hote in hotes:
+            r = client.post(
+                f'{hote}/3/device/{device_token}',
+                headers=entetes,
+                content=json.dumps(charge),
+                timeout=20,
+            )
+            if r.status_code != 400 or 'BadDeviceToken' not in r.text:
+                return r
+        return r
 
 
 def main():
@@ -131,6 +148,8 @@ def main():
     parser.add_argument('--titre', required=True)
     parser.add_argument('--texte', required=True)
     parser.add_argument('--url', default=None, help="Deep link optionnel ouvert au tap de la notif.")
+    parser.add_argument('--cible', default=None, choices=['refjour', 'avenir', 'carte', 'presidentielle'],
+                        help="Ecran ouvert par l'app au toucher de la notification.")
     parser.add_argument('--dry-run', action='store_true', help="N'envoie rien, affiche juste qui recevrait quoi.")
     args = parser.parse_args()
 
@@ -150,7 +169,7 @@ def main():
     apns = jeton_apns(os.environ['APNS_KEY_ID'], os.environ['APNS_TEAM_ID'], os.environ['APNS_AUTH_KEY'])
     echecs = 0
     for device_token in jetons:
-        r = envoyer_une(device_token, args.titre, args.texte, args.url, apns)
+        r = envoyer_une(device_token, args.titre, args.texte, args.url, apns, args.cible)
         if r.status_code != 200:
             echecs += 1
             print(f'  echec pour {device_token[:12]}... : {r.status_code} {r.text}')

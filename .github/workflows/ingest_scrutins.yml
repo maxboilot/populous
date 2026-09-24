@@ -85,7 +85,7 @@ jobs:
           sort = 'adopté' if scrutin.get('adopte') else 'rejeté'
           texte = f"{scrutin['titre'][:120]} — {sort}"
           subprocess.run(
-              ['python3', 'notifier_push.py', '--titre', "Un vote vient d'avoir lieu à l'Assemblée", '--texte', texte],
+              ['python3', 'notifier_push.py', '--titre', "Un vote vient d'avoir lieu à l'Assemblée", '--texte', texte, '--cible', 'carte'],
               check=True,
           )
           PYEOF
