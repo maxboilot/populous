@@ -1,5 +1,8 @@
 {
   "appId": "com.populous.app",
   "appName": "Populous",
-  "webDir": "www"
+  "webDir": "www",
+  "ios": {
+    "backgroundColor": "#FFFFFF"
+  }
 }
