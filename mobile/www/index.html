@@ -229,6 +229,13 @@ window.__VOTE_EARLY__ = (async function(){
     border:none;border-radius:50%;color:var(--ink-soft);cursor:pointer;font-size:13px;z-index:2;
     display:flex;align-items:center;justify-content:center;font-family:inherit;padding:0}
   .sheetClose:hover{background:var(--accent-soft);color:var(--accent)}
+  /* Icones inline de la fenetre LinkedIn : reprennent les pictos de l'app
+     LinkedIn (onglet Publier, bouton image) a l'echelle du texte. */
+  .liIcoPublier{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;
+    margin:0 3px;color:#9094a3;line-height:1}
+  .liIcoPublier small{font-size:9.5px;font-weight:600;margin-top:2px;letter-spacing:.01em}
+  .liIcoImage{display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;
+    width:30px;height:30px;margin:0 3px;border-radius:50%;background:var(--card-alt);color:var(--ink-soft)}
   .sheet .eyebrow{font-size:11px;font-weight:700;color:var(--accent)}
   .sheet h2{font-family:var(--font-d);font-weight:800;font-size:25px;line-height:1.2;
     margin:8px 0 0;letter-spacing:-.02em}
@@ -920,7 +927,7 @@ window.__VOTE_EARLY__ = (async function(){
 <div id="linkedinInfo" class="veil hidden" role="dialog" aria-modal="true" aria-label="Partager sur LinkedIn">
   <div class="sheet">
     <button class="sheetClose" id="linkedinInfoClose" type="button" aria-label="Fermer">✕</button>
-    <p class="lead" style="font-size:17px;line-height:1.5;color:var(--ink);font-weight:600;margin:0;padding-right:34px">Image de partage dans ta galerie. Clic sur « Publier » et l'icône « image » pour partager sur LinkedIn.</p>
+    <p class="lead" style="font-size:17px;line-height:1.5;color:var(--ink);font-weight:600;margin:0;padding-right:34px">Image de partage dans ta galerie. Clic sur <span class="liIcoPublier" role="img" aria-label="Publier"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="1.5" y="1.5" width="21" height="21" rx="5" fill="currentColor"/><path d="M12 6.5v11M6.5 12h11" stroke="#1b2038" stroke-width="2.6" stroke-linecap="round"/></svg><small>Publier</small></span> et <span class="liIcoImage" role="img" aria-label="image"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3.5"/><circle cx="9" cy="9.5" r="1.6" fill="currentColor" stroke="none"/><path d="M4 17.5l5-5 3.5 3.5 2.5-2.5 5 5"/></svg></span> pour partager sur LinkedIn.</p>
   </div>
 </div>
 
