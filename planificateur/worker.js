@@ -12,6 +12,10 @@ const BRANCHE = "main";
 
 // h/m : heure de Paris. jourSemaine : 1 = lundi … 7 = dimanche. jourMois : 1-31.
 const CRENEAUX = [
+  // Collecte des sondages 30 min avant la publication présidentielle : les
+  // crons GitHub de sondages.yml sont retardés de plusieurs heures, un
+  // sondage sorti le matin pouvait donc attendre le lendemain.
+  { h: 12, m: 0,  workflow: "sondages.yml", sansInputs: true },
   { h: 7,  m: 0,  workflow: "publier_reseaux.yml",   type: "fait" },
   { h: 8,  m: 0,  workflow: "notifier_planifie.yml", type: "fait" },
   { h: 9,  m: 0,  jourSemaine: 1, workflow: "publier_reseaux.yml",   type: "avenir" },
@@ -43,7 +47,7 @@ export function creneauxDus(ms) {
 }
 
 async function declencher(c, jeton) {
-  const inputs = { type: c.type };
+  const inputs = c.sansInputs ? {} : { type: c.type };
   if (c.workflow === "notifier_planifie.yml") inputs.dry_run = "false";
   const url = `https://api.github.com/repos/${DEPOT}/actions/workflows/${c.workflow}/dispatches`;
   for (let essai = 1; essai <= 3; essai++) {
@@ -57,7 +61,7 @@ async function declencher(c, jeton) {
       },
       body: JSON.stringify({ ref: BRANCHE, inputs }),
     });
-    if (r.status === 204) { console.log(`OK ${c.workflow} ${c.type}`); return true; }
+    if (r.status === 204) { console.log(`OK ${c.workflow} ${c.type || ""}`); return true; }
     console.log(`Échec ${c.workflow} ${c.type} (essai ${essai}) : ${r.status} ${await r.text()}`);
     await new Promise(res => setTimeout(res, 2000 * essai));
   }

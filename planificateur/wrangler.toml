@@ -4,5 +4,5 @@ compatibility_date = "2025-01-01"
 
 [triggers]
 # Toutes les 30 minutes (UTC) ; worker.js ne déclenche que les créneaux
-# dont l'heure de Paris correspond (7h00, 8h00, 9h00, 12h30, 18h30, 20h00, 21h00).
+# dont l'heure de Paris correspond (7h00, 8h00, 9h00, 12h00, 12h30, 18h30, 20h00, 21h00).
 crons = ["0,30 * * * *"]

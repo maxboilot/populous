@@ -10,6 +10,7 @@ créneaux (heures de Paris, changement d'heure géré automatiquement).
 | 7h00               | Publication « fait du jour »              |
 | 8h00               | Notification « Découvre le fait du jour » |
 | Lundi 9h00         | Publication « à venir » + notification « cette semaine à l'Assemblée » |
+| 12h00              | Collecte des sondages (sondages.yml), pour que la publication de 12h30 voie les nouveautés |
 | 12h30              | Publication « actu présidentielle »       |
 | 18h30              | Notification « vote solennel demain »     |
 | 20h00, le 15       | Publication « boussole »                  |
