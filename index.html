@@ -216,6 +216,9 @@ window.__VOTE_EARLY__ = (async function(){
     #languette{width:28px;height:76px}
     #survol{font-size:13px;max-width:300px}
     #pied{bottom:calc(160px + env(safe-area-inset-bottom,0px));font-size:10.5px;max-width:400px}
+    /* Portrait : la rangée de carrés du hémicycle occupe le bas au centre — on garde
+       les mentions dans la colonne de gauche, plus étroites. */
+    @media (orientation:portrait){ #pied{max-width:185px;font-size:9.5px} }
     #fiche{width:min(460px,94vw)}
     .kv{font-size:13.5px}.sec li{font-size:14px}.sec .hd{font-size:12px}
   }
