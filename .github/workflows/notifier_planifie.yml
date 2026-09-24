@@ -1,0 +1,66 @@
+name: Notifications push planifiees
+
+# Trois notifications recurrentes, en plus de celle du nouveau scrutin
+# (ingest_scrutins.yml) : le fait du jour (quotidien, ~8h Paris),
+# l'agenda de la semaine (lundi, ~9h) et la veille d'un vote solennel
+# (~18h, seulement si l'agenda en annonce un pour le lendemain).
+# Heures en UTC pour l'heure d'ete (CEST, UTC+2) ; a decaler d'une heure
+# fin octobre. Minutes decalees de :00 (retards GitHub sur les heures
+# rondes) — un retard de quelques dizaines de minutes reste possible.
+on:
+  schedule:
+    - cron: '4 6 * * *'     # ~08:04 Paris — fait du jour
+    - cron: '9 7 * * 1'     # ~09:09 Paris, le lundi — agenda de la semaine
+    - cron: '3 16 * * *'    # ~18:03 Paris — vote solennel demain
+  workflow_dispatch:
+    inputs:
+      type:
+        description: "Type (fait, semaine, solennel)"
+        required: true
+        default: fait
+      dry_run:
+        description: "Dry-run (affiche la notification sans l'envoyer)"
+        type: boolean
+        default: true
+
+concurrency:
+  group: notifier-planifie
+  cancel-in-progress: false
+
+jobs:
+  notifier:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install "httpx[http2]" "PyJWT[crypto]"
+      - name: Choisir le type selon le declencheur
+        id: type
+        env:
+          CRON: ${{ github.event.schedule }}
+          MANUEL: ${{ inputs.type }}
+        run: |
+          if [ -n "$MANUEL" ]; then T="$MANUEL"
+          elif [ "$CRON" = "9 7 * * 1" ]; then T=semaine
+          elif [ "$CRON" = "3 16 * * *" ]; then T=solennel
+          else T=fait; fi
+          echo "type=$T" >> "$GITHUB_OUTPUT"
+      - name: Envoyer la notification
+        env:
+          APNS_KEY_ID: ${{ secrets.APNS_KEY_ID }}
+          APNS_TEAM_ID: ${{ secrets.APNS_TEAM_ID }}
+          APNS_AUTH_KEY: ${{ secrets.APNS_AUTH_KEY }}
+          FIREBASE_PROJECT_ID: populous-66469
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          # Le workflow tourne sur la branche par defaut : les donnees
+          # (refs_jour, agenda) sont celles du dernier commit.
+          TYPE: ${{ steps.type.outputs.type }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          if [ "$DRY_RUN" = "true" ]; then
+            python3 notifier_planifie.py --type "$TYPE" --dry-run
+          else
+            python3 notifier_planifie.py --type "$TYPE"
+          fi
