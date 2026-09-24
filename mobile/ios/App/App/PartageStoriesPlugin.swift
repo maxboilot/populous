@@ -13,7 +13,8 @@ public class PartageStoriesPlugin: CAPPlugin, CAPBridgedPlugin {
     public let identifier = "PartageStoriesPlugin"
     public let jsName = "PartageStories"
     public let pluginMethods: [CAPPluginMethod] = [
-        CAPPluginMethod(name: "partagerStory", returnType: CAPPluginReturnPromise)
+        CAPPluginMethod(name: "partagerStory", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "partagerLinkedIn", returnType: CAPPluginReturnPromise)
     ]
 
     // ID de l'app Meta "Populous Social" (developers.facebook.com) —
@@ -80,6 +81,41 @@ public class PartageStoriesPlugin: CAPPlugin, CAPBridgedPlugin {
             // X ?" de Safari qui bloquait la détection en JS.
             UIApplication.shared.open(url, options: [:]) { ouvert in
                 call.resolve(["ouvert": ouvert])
+            }
+        }
+    }
+
+    /// LinkedIn n'a pas d'API publique pour precharger une image dans son
+    /// compositeur : on copie l'image dans le presse-papier (a coller dans
+    /// le post) et on ouvre le compositeur avec le texte deja rempli. Lien
+    /// universel d'abord (ouvre l'app LinkedIn si elle est installee), puis
+    /// repli sur Safari.
+    @objc func partagerLinkedIn(_ call: CAPPluginCall) {
+        guard let base64 = call.getString("image"), let data = Data(base64Encoded: base64) else {
+            call.reject("Image manquante ou invalide")
+            return
+        }
+        let texte = call.getString("texte") ?? ""
+        var composants = URLComponents(string: "https://www.linkedin.com/feed/")!
+        composants.queryItems = [
+            URLQueryItem(name: "shareActive", value: "true"),
+            URLQueryItem(name: "text", value: texte)
+        ]
+        guard let url = composants.url else {
+            call.resolve(["ouvert": false, "app": false])
+            return
+        }
+        DispatchQueue.main.async {
+            let options: [UIPasteboard.OptionsKey: Any] = [.expirationDate: Date().addingTimeInterval(300)]
+            UIPasteboard.general.setItems([["public.png": data]], options: options)
+            UIApplication.shared.open(url, options: [.universalLinksOnly: true]) { dansApp in
+                if dansApp {
+                    call.resolve(["ouvert": true, "app": true])
+                } else {
+                    UIApplication.shared.open(url, options: [:]) { ouvert in
+                        call.resolve(["ouvert": ouvert, "app": false])
+                    }
+                }
             }
         }
     }

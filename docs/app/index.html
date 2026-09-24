@@ -2857,18 +2857,32 @@ async function partagerVersStories(fichier, reseau){
   }catch(e){ return { ouvert:false, raison:"erreur : " + (e && e.message || e) }; }
 }
 const LINKEDIN_PAGE_URL = "https://www.linkedin.com/company/media-populous/";
-/* LinkedIn n'a pas d'equivalent des Stories Meta (visuel precharge en un
-   tap, sans API partenaire) : la voie qui garde l'image est la feuille de
-   partage iOS, ou LinkedIn apparait s'il est installe. Repli web : le
-   compositeur LinkedIn avec le texte seul. */
+/* LinkedIn n'a pas d'API publique pour precharger une image dans son
+   compositeur (contrairement aux Stories Meta). Dans l'app : le plugin
+   natif copie l'image dans le presse-papier et ouvre directement le
+   compositeur LinkedIn, texte deja rempli — il reste a "Coller" l'image.
+   Hors app (web) : feuille de partage du navigateur, puis compositeur web
+   en texte seul. Le texte n'embarque volontairement AUCUN lien : un lien
+   dans le post ferait apparaitre un apercu qui prend la place de l'image. */
 async function partagerVersLinkedIn(fichier, titre){
-  const legende = `${titre}\n\n${LINKEDIN_PAGE_URL}`;
+  const cap = window.Capacitor;
+  const plugin = cap && cap.Plugins && cap.Plugins.PartageStories;
+  if(plugin && plugin.partagerLinkedIn){
+    try{
+      const image = await versBase64(fichier);
+      toast("Image copiée — dans LinkedIn, appuie longuement dans le post puis « Coller »");
+      await new Promise(r => setTimeout(r, 1200));
+      const { ouvert } = await plugin.partagerLinkedIn({ image, texte: titre });
+      if(!ouvert) toast("Impossible d'ouvrir LinkedIn");
+    }catch(e){ toast("Partage LinkedIn impossible : " + (e && e.message || e)); }
+    return;
+  }
   if(navigator.canShare && navigator.canShare({ files: [fichier] })){
-    try{ await navigator.share({ files: [fichier], text: legende }); }
+    try{ await navigator.share({ files: [fichier], text: `${titre}\n\n${LINKEDIN_PAGE_URL}` }); }
     catch(e){ /* partage annule : rien a faire */ }
     return;
   }
-  window.open("https://www.linkedin.com/feed/?shareActive=true&text=" + encodeURIComponent(legende), "_blank", "noopener");
+  window.open("https://www.linkedin.com/feed/?shareActive=true&text=" + encodeURIComponent(titre), "_blank", "noopener");
 }
 // Instagram et Facebook ne degradent vers aucune feuille de partage
 // generale : soit le plugin natif ouvre la story avec le visuel deja en
