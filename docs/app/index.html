@@ -3772,7 +3772,13 @@ function ouvrirRecapCheckpoint(d, groupe, themeCode){
           <span class="p-${t.position}">${t.position==='pour'?'Pour':'Contre'}</span>
         </a>`).join("")}
     </div>
-    <div class="actions" style="margin-top:20px"><button class="btn primary" id="recapContinuer" style="flex:1">Continuer</button></div>`;
+    <div id="recapCheckpointShare">${shareRowHTML()}</div>
+    <div class="actions" style="margin-top:12px"><button class="btn primary" id="recapContinuer" style="flex:1">Continuer</button></div>`;
+  wireShare($("#recapCheckpointShare"), {
+    eyebrow: `Récap · ${theme.libelle}`,
+    titre: `${groupe.n} a voté pour ${don.taux} % des ${don.n_textes} texte${don.n_textes>1?"s":""} ${theme.libelle.toLowerCase()} tranché${don.n_textes>1?"s":""} cette année.`,
+    texte: "Le bilan de vote de chaque groupe, thème par thème, dans Populous.",
+  });
   $("#recapCheckpoint").classList.remove("hidden");
   const fermerCheckpoint = ()=>{ $("#recapCheckpoint").classList.add("hidden"); renderRecapTrail(d); };
   $("#recapContinuer").onclick = fermerCheckpoint;
