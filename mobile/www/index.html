@@ -3946,7 +3946,9 @@ async function initNotificationsPush(){
 
   PushNotifications.addListener("registration", async (jeton)=>{
     try{
-      await fetch(`https://firestore.googleapis.com/v1/projects/${FIRESTORE_PROJET_ID}/databases/(default)/documents/pushTokens`, {
+      // documentId = le jeton lui-même : un appareil = un seul document, les
+      // relances suivantes reçoivent un 409 (déjà créé) sans conséquence.
+      await fetch(`https://firestore.googleapis.com/v1/projects/${FIRESTORE_PROJET_ID}/databases/(default)/documents/pushTokens?documentId=${encodeURIComponent(jeton.value)}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

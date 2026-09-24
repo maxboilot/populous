@@ -111,7 +111,10 @@ def jetons_abonnes(project_id, jeton_acces):
         page_token = page.get('nextPageToken')
         if not page_token:
             break
-    return jetons
+    # Dedoublonnage : l'app enregistrait son jeton a CHAQUE lancement (une
+    # ligne de plus a chaque fois) — sans ceci, un meme iPhone recevait
+    # autant de bannieres identiques que de lancements.
+    return list(dict.fromkeys(jetons))
 
 
 def envoyer_une(device_token, titre, texte, url_cible, apns_jwt, cible=None):
@@ -122,7 +125,9 @@ def envoyer_une(device_token, titre, texte, url_cible, apns_jwt, cible=None):
         'apns-priority': '10',
     }
     charge = {
-        'aps': {'alert': {'title': titre, 'body': texte}, 'sound': 'default'},
+        # badge 1 : pastille rouge sur l'icone, remise a zero par l'app a son
+        # ouverture (AppDelegate.applicationDidBecomeActive).
+        'aps': {'alert': {'title': titre, 'body': texte}, 'sound': 'default', 'badge': 1},
     }
     if url_cible:
         charge['url'] = url_cible
