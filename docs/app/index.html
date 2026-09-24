@@ -189,11 +189,11 @@ window.__VOTE_EARLY__ = (async function(){
     width:24px;height:64px;background:var(--card);border:none;border-radius:16px 0 0 16px;
     box-shadow:var(--shadow);color:var(--dim);cursor:pointer;font-size:13px;transition:right .32s cubic-bezier(.4,0,.2,1)}
   #survol{position:absolute;top:64px;right:16px;z-index:600;padding:10px 14px;font-size:11px;max-width:250px;display:none}
-  /* Sous la recherche plutôt qu'en bas à gauche : la légende "Colorer par"
-     y grandit avec le nombre de groupes et ne laisse pas une hauteur fixe
-     fiable pour ces mentions. */
-  #pied{position:absolute;left:16px;top:254px;z-index:500;
-    font-size:9px;letter-spacing:.02em;color:var(--dim);max-width:300px;line-height:1.7;opacity:.75}
+  /* Mentions de sources : en bas à gauche, juste au-dessus des commandes
+     (#mesure), plutôt que sous la recherche où elles passaient par-dessus
+     la carte et le hémicycle. Masquées sur mobile (voir plus bas). */
+  #pied{position:absolute;left:16px;bottom:calc(158px + env(safe-area-inset-bottom,0px));z-index:500;
+    font-size:9px;letter-spacing:.02em;color:var(--dim);max-width:250px;line-height:1.6;opacity:.75}
 
   /* Tablette : la carte reprend la disposition "bureau" (panneau de légende
      à droite, commandes en bas) mais avec des commandes plus grandes, à la
@@ -215,7 +215,7 @@ window.__VOTE_EARLY__ = (async function(){
     .gradlbl{font-size:11px}
     #languette{width:28px;height:76px}
     #survol{font-size:13px;max-width:300px}
-    #pied{top:292px;font-size:10.5px;max-width:360px}
+    #pied{bottom:calc(176px + env(safe-area-inset-bottom,0px));font-size:10.5px;max-width:300px}
     #fiche{width:min(460px,94vw)}
     .kv{font-size:13.5px}.sec li{font-size:14px}.sec .hd{font-size:12px}
   }
