@@ -206,6 +206,15 @@
   },
   {
     "date": "2026-10-07",
+    "heure": "14:00",
+    "ordre_du_jour": "Discussion du projet de loi autorisant l’approbation de l’accord multilatéral entre autorités compétentes portant sur l’échange des informations GloBE",
+    "themes": [],
+    "dossier": "DLR5L17N54379",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-07",
     "heure": "19:30",
     "ordre_du_jour": "Examen du texte — Renforcer la responsabilité des occupants et des bailleurs dans le logement social (séance éventuelle)",
     "themes": [
