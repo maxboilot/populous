@@ -56,15 +56,6 @@
   },
   {
     "date": "2026-10-01",
-    "heure": "14:00",
-    "ordre_du_jour": "Examen du texte — Étendre le statut et les conditions d’attribution de la mention « Mort pour le service de la Nation",
-    "themes": [],
-    "dossier": "DLR5L17N52296",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-10-01",
     "heure": "15:00",
     "ordre_du_jour": "Discussion de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants",
     "themes": [
@@ -113,7 +104,7 @@
   },
   {
     "date": "2026-10-05",
-    "heure": "15:00",
+    "heure": "16:00",
     "ordre_du_jour": "Discussion du projet de loi autorisant l’approbation de l’accord entre la France et la Moldavie dans le domaine de la sécurité sociale",
     "themes": [
       "securite"
@@ -124,7 +115,7 @@
   },
   {
     "date": "2026-10-05",
-    "heure": "15:00",
+    "heure": "16:00",
     "ordre_du_jour": "Discussion du projet de loi autorisant l’approbation de l’accord entre la France et la Moldavie relatif à la coopération dans le domaine de la défense",
     "themes": [
       "defense"
@@ -262,15 +253,6 @@
   {
     "date": "2026-10-08",
     "heure": "15:00",
-    "ordre_du_jour": "Suite de la discussion de la proposition de loi pour étendre le statut et les conditions d’attribution de la mention « Mort pour le service de la Nation »",
-    "themes": [],
-    "dossier": "DLR5L17N52296",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-10-08",
-    "heure": "15:00",
     "ordre_du_jour": "Suite de la discussion de la proposition de loi renforçant la responsabilité des locataires et des bailleurs dans le logement social",
     "themes": [
       "logement"
@@ -304,7 +286,7 @@
   {
     "date": "2026-10-08",
     "heure": "15:00",
-    "ordre_du_jour": "Suite de la discussion de la proposition de résolution invitant le Gouvernement à engager les démarches en vue de soutenir l’entrée au Panthéon d’Olympe de Gouges, de l’abbé Charles-Michel de l’Épée et de Zéna M’Déré",
+    "ordre_du_jour": "Suite de la discussion de la proposition de résolution, déposée en application de l’article 34-1 de la Constitution, invitant le Gouvernement à engager les démarches en vue de soutenir l’entrée au Panthéon d’Olympe de Gouges, de l’abbé Charles-Michel de l’Épée et de Zéna M’Déré",
     "themes": [],
     "dossier": "DLR5L17N54916",
     "scrutin_annonce": false,
@@ -414,5 +396,214 @@
     "dossier": "DLR5L17N53095",
     "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-13",
+    "heure": "21:30",
+    "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (première partie)",
+    "themes": [
+      "economie"
+    ],
+    "dossier": "DLR5L17N54629",
+    "scrutin_annonce": false,
+    "lecture": null
+  },
+  {
+    "date": "2026-10-14",
+    "heure": "21:30",
+    "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (première partie)",
+    "themes": [
+      "economie"
+    ],
+    "dossier": "DLR5L17N54629",
+    "scrutin_annonce": false,
+    "lecture": null
+  },
+  {
+    "date": "2026-10-15",
+    "heure": "15:00",
+    "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (première partie)",
+    "themes": [
+      "economie"
+    ],
+    "dossier": "DLR5L17N54629",
+    "scrutin_annonce": false,
+    "lecture": null
+  },
+  {
+    "date": "2026-10-16",
+    "heure": "15:00",
+    "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (première partie)",
+    "themes": [
+      "economie"
+    ],
+    "dossier": "DLR5L17N54629",
+    "scrutin_annonce": false,
+    "lecture": null
+  },
+  {
+    "date": "2026-10-19",
+    "heure": "21:30",
+    "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (première partie)",
+    "themes": [
+      "economie"
+    ],
+    "dossier": "DLR5L17N54629",
+    "scrutin_annonce": false,
+    "lecture": null
+  },
+  {
+    "date": "2026-10-27",
+    "heure": "21:30",
+    "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (seconde partie)",
+    "themes": [
+      "economie"
+    ],
+    "dossier": "DLR5L17N54629",
+    "scrutin_annonce": false,
+    "lecture": null
+  },
+  {
+    "date": "2026-10-28",
+    "heure": "14:00",
+    "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (seconde partie)",
+    "themes": [
+      "economie"
+    ],
+    "dossier": "DLR5L17N54629",
+    "scrutin_annonce": false,
+    "lecture": null
+  },
+  {
+    "date": "2026-10-30",
+    "heure": "21:30",
+    "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (seconde partie)",
+    "themes": [
+      "economie"
+    ],
+    "dossier": "DLR5L17N54629",
+    "scrutin_annonce": false,
+    "lecture": null
+  },
+  {
+    "date": "2026-11-02",
+    "heure": "09:00",
+    "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (seconde partie)",
+    "themes": [
+      "economie"
+    ],
+    "dossier": "DLR5L17N54629",
+    "scrutin_annonce": false,
+    "lecture": null
+  },
+  {
+    "date": "2026-11-03",
+    "heure": "21:30",
+    "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (seconde partie)",
+    "themes": [
+      "economie"
+    ],
+    "dossier": "DLR5L17N54629",
+    "scrutin_annonce": false,
+    "lecture": null
+  },
+  {
+    "date": "2026-11-04",
+    "heure": "21:30",
+    "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027",
+    "themes": [
+      "economie"
+    ],
+    "dossier": "DLR5L17N54629",
+    "scrutin_annonce": false,
+    "lecture": null
+  },
+  {
+    "date": "2026-11-05",
+    "heure": "15:00",
+    "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (seconde partie)",
+    "themes": [
+      "economie"
+    ],
+    "dossier": "DLR5L17N54629",
+    "scrutin_annonce": false,
+    "lecture": null
+  },
+  {
+    "date": "2026-11-06",
+    "heure": "09:00",
+    "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (seconde partie)",
+    "themes": [
+      "economie"
+    ],
+    "dossier": "DLR5L17N54629",
+    "scrutin_annonce": false,
+    "lecture": null
+  },
+  {
+    "date": "2026-11-09",
+    "heure": "09:00",
+    "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (seconde partie)",
+    "themes": [
+      "economie"
+    ],
+    "dossier": "DLR5L17N54629",
+    "scrutin_annonce": false,
+    "lecture": null
+  },
+  {
+    "date": "2026-11-10",
+    "heure": "21:30",
+    "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (seconde partie)",
+    "themes": [
+      "economie"
+    ],
+    "dossier": "DLR5L17N54629",
+    "scrutin_annonce": false,
+    "lecture": null
+  },
+  {
+    "date": "2026-11-12",
+    "heure": "21:30",
+    "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (seconde partie)",
+    "themes": [
+      "economie"
+    ],
+    "dossier": "DLR5L17N54629",
+    "scrutin_annonce": false,
+    "lecture": null
+  },
+  {
+    "date": "2026-11-13",
+    "heure": "21:30",
+    "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (seconde partie)",
+    "themes": [
+      "economie"
+    ],
+    "dossier": "DLR5L17N54629",
+    "scrutin_annonce": false,
+    "lecture": null
+  },
+  {
+    "date": "2026-11-14",
+    "heure": "21:30",
+    "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (seconde partie)",
+    "themes": [
+      "economie"
+    ],
+    "dossier": "DLR5L17N54629",
+    "scrutin_annonce": false,
+    "lecture": null
+  },
+  {
+    "date": "2026-11-16",
+    "heure": "09:00",
+    "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (seconde partie)",
+    "themes": [
+      "economie"
+    ],
+    "dossier": "DLR5L17N54629",
+    "scrutin_annonce": false,
+    "lecture": null
   }
 ]
