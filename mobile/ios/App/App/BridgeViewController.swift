@@ -20,5 +20,6 @@ class BridgeViewController: CAPBridgeViewController {
 
     override func capacitorDidLoad() {
         bridge?.registerPluginInstance(PartageStoriesPlugin())
+        bridge?.registerPluginInstance(AvisPlugin())
     }
 }

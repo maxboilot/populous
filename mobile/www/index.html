@@ -3966,6 +3966,35 @@ async function initNotificationsPush(){
   });
 }
 initNotificationsPush();
+
+/* ---------- invite native "Donnez votre avis" (app native uniquement) ----------
+   SKStoreReviewController décide elle-même si le popup s'affiche vraiment
+   (limite système iOS : 3 fois max par appareil sur 365 jours, aucun moyen
+   de le savoir côté app) — on choisit juste un bon MOMENT pour le suggérer :
+   pas au tout premier lancement (onboarding), et seulement à certains
+   lancements plus tardifs pour laisser le temps de s'attacher à l'app. */
+const AVIS_OUVERTURES_KEY = "populous_avis_ouvertures";
+const AVIS_SEUILS = [3, 10, 25]; // Nèmes ouvertures où on retente la demande
+
+function demanderAvis(){
+  try{
+    const cap = window.Capacitor;
+    if(!cap || !cap.isNativePlatform || !cap.isNativePlatform()) return;
+    const { Avis } = cap.Plugins || {};
+    if(!Avis) return;
+    if(!loadProfile()) return; // jamais pendant l'onboarding du tout premier lancement
+
+    let n = parseInt(localStorage.getItem(AVIS_OUVERTURES_KEY) || "0", 10);
+    if(!Number.isFinite(n)) n = 0;
+    n += 1;
+    localStorage.setItem(AVIS_OUVERTURES_KEY, String(n));
+    if(!AVIS_SEUILS.includes(n)) return;
+
+    const attente = Math.max(0, 3200 - (Date.now() - (window.__BOOT_START__ || 0)));
+    setTimeout(()=>{ Avis.demander().catch(()=>{}); }, attente);
+  }catch(e){ console.error("Invite d'avis : impossible de la déclencher", e); }
+}
+demanderAvis();
 </script>
 </body>
 </html>
