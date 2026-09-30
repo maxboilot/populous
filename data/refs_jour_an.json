@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-29T05:39:53.769872Z",
+  "generated_at": "2026-09-30T05:27:01.185612Z",
   "source": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine",
   "refs": {
     "01-14": [
@@ -110,6 +110,15 @@
         "source": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/creation-du-conseil-de-la-resistance-et-programme-du-cnr"
       }
     ],
+    "06-04": [
+      {
+        "annee": 1814,
+        "categorie": "evenement",
+        "titre": "La Charte constitutionnelle",
+        "texte": "La Charte constitutionnelle, ainsi nommée pour ne pas reprendre le terme de Constitution jugé trop révolutionnaire, est « octroyée » à ses sujets, le 4 juin 1814, par Louis XVIII. Elle marque la fin de l’Empire et l’établissement de la Restauration. La Charte renoue avec la souveraineté royale, faiblement tempérée par l’existence de deux assemblées aux pouvoirs très limités : la Chambre des députés des départements…",
+        "source": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/la-charte-constitutionnelle"
+      }
+    ],
     "06-18": [
       {
         "annee": 1940,
@@ -178,6 +187,15 @@
         "titre": "Journée insurrectionnelle parisienne - Abolition de la royauté",
         "texte": "Au cours de la guerre, les indignations populaires à l’encontre de la monarchie constitutionnelle et les aspirations républicaines des révolutionnaires mènent à une insurrection parisienne violente, le 10 août 1792.",
         "source": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/journee-insurrectionnelle-parisienne-abolition-de-la-royaute"
+      }
+    ],
+    "08-14": [
+      {
+        "annee": 1830,
+        "categorie": "evenement",
+        "titre": "La Charte constitutionnelle révisée",
+        "texte": "Le 9 août 1830, Louis-Philippe d’Orléans, proclamé « roi des Français », accepte la révision par les chambres de la Charte de 1814. Elle instaure un régime plus équilibré, à mi-chemin entre la monarchie traditionnelle et le parlementarisme moderne.",
+        "source": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/la-charte-constitutionnelle-revisee"
       }
     ],
     "08-22": [

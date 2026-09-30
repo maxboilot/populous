@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-29T05:40:05.951449Z",
+  "generated_at": "2026-09-30T05:27:13.354911Z",
   "source_note": "Dates et faits vérifiés (Légifrance, Assemblée nationale, France Mémoire, INA, Herodote.net, Encyclopædia Universalis). Couverture assumée comme partielle : seuls les jours reposant sur un fait vérifié sont renseignés.",
   "refs": {
     "01-01": [
@@ -2777,25 +2777,11 @@
     ],
     "06-04": [
       {
-        "annee": 1813,
+        "annee": 1814,
         "categorie": "evenement",
-        "titre": null,
-        "texte": "signature de l'armistice de Pleiswitz, entre Napoléon Bonaparte et la sixième coalition.",
-        "source": "https://fr.wikipedia.org/wiki/4_juin"
-      },
-      {
-        "annee": 1859,
-        "categorie": "evenement",
-        "titre": null,
-        "texte": "Napoléon III bat Ferencz Gyulai, à la bataille de Magenta, pendant la deuxième guerre d'indépendance italienne.",
-        "source": "https://fr.wikipedia.org/wiki/4_juin"
-      },
-      {
-        "annee": 1936,
-        "categorie": "evenement",
-        "titre": null,
-        "texte": "Léon Blum est élu président du Conseil en France. Il succède au radical-socialiste Albert Sarraut.",
-        "source": "https://fr.wikipedia.org/wiki/4_juin"
+        "titre": "La Charte constitutionnelle",
+        "texte": "La Charte constitutionnelle, ainsi nommée pour ne pas reprendre le terme de Constitution jugé trop révolutionnaire, est « octroyée » à ses sujets, le 4 juin 1814, par Louis XVIII. Elle marque la fin de l’Empire et l’établissement de la Restauration. La Charte renoue avec la souveraineté royale, faiblement tempérée par l’existence de deux assemblées aux pouvoirs très limités : la Chambre des députés des départements…",
+        "source": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/la-charte-constitutionnelle"
       }
     ],
     "06-05": [
@@ -3913,25 +3899,11 @@
     ],
     "08-14": [
       {
-        "annee": 1385,
+        "annee": 1830,
         "categorie": "evenement",
-        "titre": null,
-        "texte": "bataille d'Aljubarrota. Victoire portugaise des hommes de Jean I et de Don Nuno Álvares Pereira, soutenus par les Anglais, sur les troupes castillanes de Jean I de Castille, aidées par les Français.",
-        "source": "https://fr.wikipedia.org/wiki/14_ao%C3%BBt"
-      },
-      {
-        "annee": 1678,
-        "categorie": "evenement",
-        "titre": null,
-        "texte": "bataille de Saint-Denis (guerre de Hollande), opposant les Français, de François-Henri de Montmorency-Luxembourg, aux Néerlandais de Guillaume III. Aucun camp ne triomphe vraiment, et la bataille devient la plus dévastatrice du conflit.",
-        "source": "https://fr.wikipedia.org/wiki/14_ao%C3%BBt"
-      },
-      {
-        "annee": 1844,
-        "categorie": "evenement",
-        "titre": null,
-        "texte": "bataille d’Isly. Dernière bataille ayant lieu dans le cadre de l’expédition française au Maroc ; les troupes françaises sortent victorieuses de l’affrontement.",
-        "source": "https://fr.wikipedia.org/wiki/14_ao%C3%BBt"
+        "titre": "La Charte constitutionnelle révisée",
+        "texte": "Le 9 août 1830, Louis-Philippe d’Orléans, proclamé « roi des Français », accepte la révision par les chambres de la Charte de 1814. Elle instaure un régime plus équilibré, à mi-chemin entre la monarchie traditionnelle et le parlementarisme moderne.",
+        "source": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/la-charte-constitutionnelle-revisee"
       }
     ],
     "08-15": [
