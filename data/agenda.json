@@ -151,8 +151,19 @@
   },
   {
     "date": "2026-10-07",
+    "heure": "18:00",
+    "ordre_du_jour": "Amendements art. 88 — Redéfinir le cadre d'attribution des subventions accordées par les collectivités territoriales",
+    "themes": [
+      "institutions"
+    ],
+    "dossier": "DLR5L17N50644",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-07",
     "heure": "19:30",
-    "ordre_du_jour": "Examen du texte — Renforcer la responsabilité des occupants et des bailleurs dans le logement social (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Renforcer la responsabilité des occupants et des bailleurs dans le logement social",
     "themes": [
       "logement"
     ],
