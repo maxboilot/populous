@@ -1,49 +1,5 @@
 [
   {
-    "date": "2026-09-30",
-    "heure": "09:30",
-    "ordre_du_jour": "Examen du texte — Abroger les zones à faibles émissions-mobilités",
-    "themes": [
-      "transports"
-    ],
-    "dossier": "DLR5L17N54557",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-09-30",
-    "heure": "09:30",
-    "ordre_du_jour": "Examen du texte — Redéfinir le cadre d'attribution des subventions accordées par les collectivités territoriales",
-    "themes": [
-      "institutions"
-    ],
-    "dossier": "DLR5L17N50644",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-09-30",
-    "heure": "10:00",
-    "ordre_du_jour": "Examen du texte — Projet de loi autorisant l’approbation de l’accord multilatéral entre autorités compétentes portant sur l’échange des informations GloBE",
-    "themes": [],
-    "dossier": "DLR5L17N54379",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-09-30",
-    "heure": "15:05",
-    "ordre_du_jour": "Examen du texte — Garantir la protection des travailleurs des métiers de la fleur coupée en réglementant les seuils de résidus de pesticides contenus dans les fleurs commercialisées en Europe",
-    "themes": [
-      "economie",
-      "travail",
-      "environnement"
-    ],
-    "dossier": "DLR5L17N52134",
-    "scrutin_annonce": false,
-    "lecture": "Lecture unique"
-  },
-  {
     "date": "2026-10-01",
     "heure": "15:00",
     "ordre_du_jour": "Discussion de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants",
