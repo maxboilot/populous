@@ -369,6 +369,19 @@ def generer(vote, contours, titre, sortie):
     img.convert('RGB').save(sortie)
 
 
+def generer_slide_resume(titre, resume, source, sortie):
+    """Seconde image du diaporama : « De quoi parle cette loi ? ». `resume`
+    est un EXTRAIT de l'expose des motifs (texte des auteurs de la loi),
+    choisi et relu par un humain — jamais ecrit par nous (cf. CLAUDE.md).
+    Meme gabarit que les autres posts (grands guillemets bleus), 1080x1350
+    comme la carte pour que le diaporama Instagram ne soit pas recadre."""
+    gv.generer(
+        sortie, eyebrow='DE QUOI PARLE CETTE LOI ?', titre=titre, texte=resume,
+        pied_source=f'Source : {source} · assemblee-nationale.fr',
+        hauteur=HAUTEUR, etendue=True, refuser_troncature=True,
+    )
+
+
 def main():
     ap = argparse.ArgumentParser(description="Visuel « Vote d'hier » Populous")
     ap.add_argument('numero', nargs='?', type=int, help='numero du scrutin (defaut : scrutin mis en avant)')

@@ -17,8 +17,14 @@ on:
       titre:
         description: "(vote) titre synthetique, relu par un humain"
         required: false
+      resume:
+        description: "(vote) extrait de l'expose des motifs, relu par un humain (ajoute une 2e image au diaporama) ; vide = image seule"
+        required: false
+      source_resume:
+        description: "(vote) source du resume, ex. exposé des motifs de la proposition de loi n°3106"
+        required: false
       publier:
-        description: "(vote) true = publier ; false = brouillon (image en artefact du run)"
+        description: "(vote) true = publier ; false = brouillon (images en artefact du run)"
         required: false
         default: "false"
 
@@ -60,20 +66,23 @@ jobs:
           # jamais interpolees dans le script shell (injection de commande).
           INPUT_NUMERO: ${{ github.event.inputs.numero }}
           INPUT_TITRE: ${{ github.event.inputs.titre }}
+          INPUT_RESUME: ${{ github.event.inputs.resume }}
+          INPUT_SOURCE_RESUME: ${{ github.event.inputs.source_resume }}
           INPUT_PUBLIER: ${{ github.event.inputs.publier }}
         run: |
           if [ "$TYPE" = "vote" ]; then
             ARGS=(--type vote --numero "$INPUT_NUMERO" --titre "$INPUT_TITRE")
+            if [ -n "$INPUT_RESUME" ]; then ARGS+=(--resume "$INPUT_RESUME" --source-resume "$INPUT_SOURCE_RESUME"); fi
             if [ "$INPUT_PUBLIER" = "true" ]; then ARGS+=(--publier); fi
             python publier_reseaux.py "${ARGS[@]}"
           else
             python publier_reseaux.py --type "$TYPE" --publier
           fi
-      - name: Joindre le visuel du vote (brouillon a relire)
+      - name: Joindre les visuels du vote (brouillon a relire)
         if: steps.type.outputs.type == 'vote'
         uses: actions/upload-artifact@v4
         with:
-          name: visuel-vote
+          name: visuels-vote
           path: assets_social/*-vote-*.png
       - name: Committer l'etat de publication mis a jour
         # Necessaire depuis que contenu_presidentielle() se souvient du

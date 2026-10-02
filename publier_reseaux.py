@@ -26,7 +26,10 @@ exactement ce qu'il poste plutot que de tirer au hasard :
                   main avec --numero et --titre (le titre synthetique est
                   relu et fourni par un humain), et refuse de republier
                   le meme scrutin (data/state_publication.json) sauf
-                  --forcer.
+                  --forcer. Avec --resume (extrait de l'expose des motifs,
+                  relu par un humain) et --source-resume, le post devient
+                  un diaporama de 2 images : la carte, puis « De quoi parle
+                  cette loi ? ».
 
 Par defaut le script tourne en mode "brouillon" : il genere le visuel
 et affiche la legende sans rien publier. Il faut explicitement passer
@@ -332,22 +335,103 @@ def publier_instagram(ig_user_id, page_token, image_url, legende):
 
 
 def preparer_vote(args):
-    """Visuel + legende du post « Vote d'hier ». Lit data/ et index.html du
-    checkout (le workflow tourne sur une copie fraiche de main)."""
+    """Visuels + legende du post « Vote d'hier ». Lit data/ et index.html du
+    checkout (le workflow tourne sur une copie fraiche de main). Renvoie
+    ([images], contenu) : 1 image (la carte) ou 2 (carte + resume de la loi)."""
     if not args.numero or not args.titre:
         sys.exit("--type vote exige --numero et --titre (titre synthetique relu par un humain).")
+    if args.resume and not args.source_resume:
+        sys.exit("--resume exige --source-resume (ex. « exposé des motifs de la proposition de loi n°3106 »).")
     vote = json.loads((DOSSIER / 'data' / 'scrutins' / f'{args.numero}.json').read_text(encoding='utf-8'))
     if args.publier and not args.forcer and lire_etat_publication().get('dernier_vote_publie') == args.numero:
         sys.exit(f"Le scrutin {args.numero} a deja ete publie (--forcer pour republier).")
     contours = generer_post_vote.charger_contours((DOSSIER / 'index.html').read_text(encoding='utf-8'))
     chemin = DOSSIER / 'assets_social' / f"{vote['date']}-vote-{args.numero}.png"
     generer_post_vote.generer(vote, contours, args.titre, chemin)
+    images = [chemin]
+    if args.resume:
+        chemin_loi = DOSSIER / 'assets_social' / f"{vote['date']}-vote-{args.numero}-loi.png"
+        try:
+            generer_post_vote.generer_slide_resume(args.titre, args.resume, args.source_resume, chemin_loi)
+        except ValueError as e:
+            sys.exit(str(e))
+        images.append(chemin_loi)
     contenu = {
         'legende': generer_post_vote.legende(vote, args.titre, contours),
         'cle_etat': 'dernier_vote_publie',
         'valeur_etat': args.numero,
     }
-    return chemin, contenu
+    return images, contenu
+
+
+def _attendre_conteneur_instagram(creation_id, page_token):
+    """Sonde le statut d'un container Instagram jusqu'a FINISHED (cf.
+    publier_instagram : publier a l'aveugle echoue parfois en 400)."""
+    for _ in range(10):
+        r = requests.get(f'{GRAPH}/{creation_id}', params={'fields': 'status_code', 'access_token': page_token}, timeout=20)
+        _lever_avec_detail(r)
+        statut = r.json().get('status_code')
+        if statut == 'FINISHED':
+            return
+        if statut == 'ERROR':
+            raise RuntimeError(f"Le container Instagram {creation_id} a echoue (status_code=ERROR).")
+        time.sleep(3)
+    raise RuntimeError(f"Le container Instagram {creation_id} n'etait toujours pas pret apres 30s d'attente.")
+
+
+def publier_diaporama_facebook(page_id, page_token, chemins_images, legende):
+    """Diaporama Facebook : chaque image est envoyee NON publiee
+    (published=false), puis un seul post /feed les rassemble via
+    attached_media. Renvoie (reponse du post, [ids des photos])."""
+    ids = []
+    for chemin in chemins_images:
+        with open(chemin, 'rb') as f:
+            r = requests.post(
+                f'{GRAPH}/{page_id}/photos',
+                data={'published': 'false', 'access_token': page_token},
+                files={'source': f},
+                timeout=30,
+            )
+        _lever_avec_detail(r)
+        ids.append(r.json()['id'])
+    data = {'message': legende, 'access_token': page_token}
+    for i, photo_id in enumerate(ids):
+        data[f'attached_media[{i}]'] = json.dumps({'media_fbid': photo_id})
+    r = requests.post(f'{GRAPH}/{page_id}/feed', data=data, timeout=30)
+    _lever_avec_detail(r)
+    return r.json(), ids
+
+
+def publier_diaporama_instagram(ig_user_id, page_token, urls_images, legende):
+    """Carrousel Instagram : un container enfant par image
+    (is_carousel_item=true), puis un container CAROUSEL qui les reference,
+    puis media_publish. La legende ne se met que sur le container parent."""
+    enfants = []
+    for url in urls_images:
+        r = requests.post(
+            f'{GRAPH}/{ig_user_id}/media',
+            data={'image_url': url, 'is_carousel_item': 'true', 'access_token': page_token},
+            timeout=30,
+        )
+        _lever_avec_detail(r)
+        enfants.append(r.json()['id'])
+    for enfant in enfants:
+        _attendre_conteneur_instagram(enfant, page_token)
+    r = requests.post(
+        f'{GRAPH}/{ig_user_id}/media',
+        data={'media_type': 'CAROUSEL', 'children': ','.join(enfants), 'caption': legende, 'access_token': page_token},
+        timeout=30,
+    )
+    _lever_avec_detail(r)
+    parent = r.json()['id']
+    _attendre_conteneur_instagram(parent, page_token)
+    r = requests.post(
+        f'{GRAPH}/{ig_user_id}/media_publish',
+        data={'creation_id': parent, 'access_token': page_token},
+        timeout=30,
+    )
+    _lever_avec_detail(r)
+    return r.json()
 
 
 def main():
@@ -357,10 +441,14 @@ def main():
     parser.add_argument('--numero', type=int, help="(vote) numero du scrutin.")
     parser.add_argument('--titre', help="(vote) titre synthetique, relu par un humain.")
     parser.add_argument('--forcer', action='store_true', help="(vote) republie meme si deja publie.")
+    parser.add_argument('--resume', help="(vote) extrait de l'expose des motifs, relu par un humain : ajoute une 2e image.")
+    parser.add_argument('--source-resume', dest='source_resume', help="(vote) source du resume, ex. « exposé des motifs de la proposition de loi n°3106 ».")
     args = parser.parse_args()
 
+    images = None
     if args.type == 'vote':
-        chemin_image, contenu = preparer_vote(args)
+        images, contenu = preparer_vote(args)
+        chemin_image = images[0]
     else:
         contenu = CHOIX[args.type]()
         if contenu is None:
@@ -375,7 +463,7 @@ def main():
             pile_resultats=contenu.get('pile_resultats'), pied_source=contenu.get('pied_source'),
         )
 
-    print(f"Visuel : {chemin_image}")
+    print(f"Visuel : {' + '.join(str(i) for i in images) if images else chemin_image}")
     print(f"Legende :\n{contenu['legende']}\n")
 
     if not args.publier:
@@ -385,11 +473,17 @@ def main():
     env = lire_env()
     page_id, page_token, ig_user_id = env['FB_PAGE_ID'], env['FB_PAGE_TOKEN'], env['IG_USER_ID']
 
-    reponse_fb = publier_photo_facebook(page_id, page_token, chemin_image, contenu['legende'])
-    print(f"Facebook publie : {reponse_fb}")
+    if images and len(images) > 1:
+        reponse_fb, ids_photos = publier_diaporama_facebook(page_id, page_token, images, contenu['legende'])
+        print(f"Facebook publie (diaporama) : {reponse_fb}")
+        urls = [url_publique_photo(pid, page_token) for pid in ids_photos]
+        reponse_ig = publier_diaporama_instagram(ig_user_id, page_token, urls, contenu['legende'])
+    else:
+        reponse_fb = publier_photo_facebook(page_id, page_token, chemin_image, contenu['legende'])
+        print(f"Facebook publie : {reponse_fb}")
 
-    url_image = url_publique_photo(reponse_fb['id'], page_token)
-    reponse_ig = publier_instagram(ig_user_id, page_token, url_image, contenu['legende'])
+        url_image = url_publique_photo(reponse_fb['id'], page_token)
+        reponse_ig = publier_instagram(ig_user_id, page_token, url_image, contenu['legende'])
     print(f"Instagram publie : {reponse_ig}")
 
     if 'cle_etat' in contenu:

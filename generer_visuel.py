@@ -248,7 +248,7 @@ def _dessiner_bloc_depute(img, trace, x0, x1, y, bloc):
 
 
 def generer(sortie, *, eyebrow, titre, texte=None, photo=None,
-            date_badge=None, bloc_depute=None, pile_resultats=None, pied_source=None):
+            date_badge=None, bloc_depute=None, pile_resultats=None, pied_source=None, hauteur=None, etendue=False, refuser_troncature=False):
     """Ecrit un PNG 1080x1350 dans `sortie` (Path ou str).
 
     eyebrow : categorie courte ("FAIT DU JOUR", "A VENIR"...), affichee
@@ -274,10 +274,15 @@ def generer(sortie, *, eyebrow, titre, texte=None, photo=None,
       telecharger l'app risquerait de la faire lire comme un usage
       publicitaire (licence photos de l'Assemblee interdite en pub).
     """
-    carte_etendue = bool(bloc_depute) or bool(pile_resultats)
+    # hauteur : permet un format different de 1080x1600 (ex. 1350, ratio 4:5
+    # d'un diaporama Instagram dont la premiere image fait 1080x1350).
+    # etendue : marges reduites (carte plus grande) pour un texte long.
+    hauteur = hauteur or HAUTEUR
+    carte_etendue = bool(bloc_depute) or bool(pile_resultats) or etendue
+    texte_long = etendue and not bloc_depute and not pile_resultats
 
-    img = Image.new('RGBA', (LARGEUR, HAUTEUR), (*GRIS_FOND, 255))
-    img.alpha_composite(_filigrane_vertical(LARGEUR, HAUTEUR))
+    img = Image.new('RGBA', (LARGEUR, hauteur), (*GRIS_FOND, 255))
+    img.alpha_composite(_filigrane_vertical(LARGEUR, hauteur))
 
     # Ombre de la carte : calque noir flou derriere le rectangle blanc.
     # Marges genereuses pour que le gris + le filigrane restent visibles
@@ -285,10 +290,10 @@ def generer(sortie, *, eyebrow, titre, texte=None, photo=None,
     # Les posts a contenu dense (depute, boussole) reduisent ces marges
     # pour agrandir la carte, sans jamais empieter sur le pied de page.
     marge_carte = 96
-    marge_haut = 180 if carte_etendue else 300
-    marge_bas = 240 if carte_etendue else 300
+    marge_haut = 150 if texte_long else (180 if carte_etendue else 300)
+    marge_bas = 200 if texte_long else (240 if carte_etendue else 300)
     cx0, cy0 = marge_carte, marge_haut
-    cx1, cy1 = LARGEUR - marge_carte, HAUTEUR - marge_bas
+    cx1, cy1 = LARGEUR - marge_carte, hauteur - marge_bas
     rayon = 44
 
     ombre = Image.new('RGBA', img.size, (0, 0, 0, 0))
@@ -354,7 +359,7 @@ def generer(sortie, *, eyebrow, titre, texte=None, photo=None,
 
     largeur_titre = inner_x1 - texte_x0
     max_hauteur_titre = 420
-    for taille in (68, 58, 50, 44, 40):
+    for taille in ((52, 48, 44, 40) if texte_long else (68, 58, 50, 44, 40)):
         police_titre = _police('PlusJakartaSans-ExtraBold.ttf', taille)
         lignes_titre = _wrap_pour_largeur(trace, titre, police_titre, largeur_titre)
         hauteur_ligne = int(taille * 1.2)
@@ -393,15 +398,18 @@ def generer(sortie, *, eyebrow, titre, texte=None, photo=None,
     if bloc_depute:
         y = _dessiner_bloc_depute(img, trace, inner_x0, inner_x1, y, bloc_depute)
     elif texte:
-        police_texte = _police('PlusJakartaSans-Medium.ttf', 32)
+        interligne = 42 if texte_long else 46
+        police_texte = _police('PlusJakartaSans-Medium.ttf', 30 if texte_long else 32)
         lignes_texte = _wrap_pour_largeur(trace, texte, police_texte, inner_x1 - inner_x0)
-        max_lignes = max(1, (y_guillemet_fermant - 20 - y) // 46)
+        max_lignes = max(1, (y_guillemet_fermant - 20 - y) // interligne)
         if len(lignes_texte) > max_lignes:
+            if refuser_troncature:
+                raise ValueError(f"texte trop long pour la carte ({len(lignes_texte)} lignes, {max_lignes} max) : raccourcir le resume")
             lignes_texte = lignes_texte[:max_lignes]
             lignes_texte[-1] = lignes_texte[-1].rstrip() + '…'
         for ligne in lignes_texte:
             trace.text((inner_x0, y), ligne, font=police_texte, fill=(74, 85, 120))
-            y += 46
+            y += interligne
 
     if pile_resultats is not None:
         # Cale a gauche (et deborde un peu du cadre a gauche) pour ne
@@ -412,7 +420,7 @@ def generer(sortie, *, eyebrow, titre, texte=None, photo=None,
 
     # Pied de page hors carte, petit et aligne a gauche.
     trace = ImageDraw.Draw(img)
-    y_pied = HAUTEUR - 64
+    y_pied = hauteur - 64
     if pied_source:
         # Petit, gris clair mais lisible : simple mention de source, pas
         # d'appel a l'action (cf. docstring de `pied_source`).
