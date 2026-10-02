@@ -499,6 +499,40 @@ window.__VOTE_EARLY__ = (async function(){
     display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
   .presiHeroCard .phCta{margin-top:16px;font-size:12.5px;font-weight:700;color:#fff;opacity:.85}
 
+  /* Fenêtre « Détail » du dernier jour de vote : loi > article > amendements
+     > sous-amendements, un scrutin par ligne (voir data/detail_jour.json). */
+  .dtlHow{margin-top:14px;background:var(--card-alt);border-radius:12px;padding:10px 13px}
+  .dtlHow summary{font-size:12.5px;font-weight:700;color:var(--accent);cursor:pointer}
+  .dtlHow p{font-size:12px;line-height:1.55;color:var(--ink-soft);margin:7px 0 0}
+  .dtlHow .dtlHowTitre{font-weight:800;color:var(--ink);margin-top:12px}
+  .dtlHow ol{margin:6px 0 0;padding-left:18px;font-size:12px;line-height:1.55;color:var(--ink-soft)}
+  .dtlHow li{margin-top:5px}
+  .dtlHow b{color:var(--ink)}
+  .dtlHow .dtlHowNb{margin-top:12px;font-size:12.5px;color:var(--ink)}
+  .dtlLoi{margin-top:18px}
+  .dtlLoiNom{font-family:var(--font-d);font-weight:800;font-size:15px;line-height:1.3;letter-spacing:-.01em}
+  .dtlMeta{font-size:11px;color:var(--ink-soft);margin-top:3px;line-height:1.45}
+  .dtlArt{margin-top:12px;border:1.5px solid var(--line);border-radius:12px;padding:11px 13px}
+  .dtlArt.vedette{border-color:var(--accent)}
+  .dtlArt.aVenir{border-style:dashed}
+  .dtlTop{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+  .dtlNom{font-size:13px;font-weight:700;line-height:1.35}
+  .dtlNom small{display:block;font-size:11px;font-weight:500;color:var(--ink-soft);margin-top:1px}
+  .dtlBadge{font-size:10px;font-weight:700;color:var(--accent);margin-left:6px}
+  /* Tampon « Adopté / Rejeté » : même gabarit que .voteStamp de l'accueil
+     (incliné, double contour, majuscules), couleurs VOTE_COLORS pour fond blanc. */
+  .dtlStamp{flex:none;padding:3px 9px;border-radius:5px;border:2px solid;font-size:10px;font-weight:800;
+    letter-spacing:.06em;text-transform:uppercase;transform:rotate(6deg);margin:2px 4px 0 0}
+  .dtlStamp.adopte{color:#1B8A6B;border-color:#1B8A6B;background:rgba(27,138,107,.07)}
+  .dtlStamp.rejete{color:#C4501C;border-color:#C4501C;background:rgba(196,80,28,.07)}
+  .dtlBar{display:flex;height:6px;border-radius:3px;overflow:hidden;margin-top:7px;background:var(--accent-soft)}
+  .dtlBar i{display:block;height:100%}
+  .dtlSec{font-size:10.5px;font-weight:800;color:var(--dim);margin:12px 0 0;letter-spacing:.02em;text-transform:uppercase}
+  .dtlRow{border-top:1px solid var(--line);padding:10px 0}
+  .dtlRow:first-of-type{border-top:none}
+  .dtlSub{margin:8px 0 0 10px;padding-left:10px;border-left:2px solid var(--accent-soft)}
+  .dtlSrc{font-size:10px;color:var(--dim);margin-top:14px;line-height:1.4}
+
   /* Dernier vote : nettement réduit, la présidentielle prend le dessus. */
   .voteCard{position:relative;max-width:var(--colW);margin:0 auto 18px;padding:16px 18px;border:none;border-radius:14px;
     background:linear-gradient(160deg,var(--accent) 0%,var(--accent-hi) 100%);color:#fff;box-shadow:var(--shadow)}
@@ -513,8 +547,14 @@ window.__VOTE_EARLY__ = (async function(){
   .voteCard h2{font-family:var(--font-d);
     font-weight:800;font-size:15px;margin:5px 0 0;line-height:1.35;color:#fff}
   .voteCard p{font-size:11.5px;line-height:1.5;color:rgba(255,255,255,.85);margin:6px 0 0}
-  .voteCard .actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
-  .voteCard .btn{flex:1 1 130px;padding:10px 14px;font-size:12px}
+  .voteCard .actions{display:flex;gap:8px;margin-top:12px}
+  /* Trois boutons côte à côte (Détail · Ce que ça change pour moi · Carte
+     des votes) : largeur partagée plutôt que 130px minimum + retour à la
+     ligne, texte centré horizontalement et verticalement. */
+  .voteCard .btn{flex:1 1 0;min-width:0;padding:10px 8px;font-size:11.5px;line-height:1.2;
+    display:flex;align-items:center;justify-content:center;text-align:center}
+  .voteCard #acDetail{flex:.8 1 0}
+  .voteCard #acImpact{flex:1.5 1 0}
   .voteCard .btn.primary{background:#fff;color:var(--accent)}
   .voteCard .btn.ghost{background:rgba(255,255,255,.14);color:#fff}
   .voteCard .m{color:#fff}
@@ -793,6 +833,11 @@ window.__VOTE_EARLY__ = (async function(){
 <!-- ============ formulaire "Me tenir informé·e" (Populous Local) ============ -->
 <div id="localFormPopup" class="veil hidden">
   <div class="sheet" id="localFormSheet"></div>
+</div>
+
+<!-- ============ Détail du vote du jour (bouton « Détail » de l'accueil) ============ -->
+<div id="detailPopup" class="veil hidden">
+  <div class="sheet" id="detailSheet"></div>
 </div>
 
 <!-- ============ La Ref du jour, accessible uniquement depuis l'accueil ============ -->
@@ -1318,6 +1363,58 @@ function extraireSujet(titreBrut){
   const apres = reste.slice(sujet.length);
   return { avant, sujet, apres };
 }
+/* ---------- Nature d'un scrutin ----------
+   Un scrutin n'est pas toujours le vote d'un texte entier : c'est parfois un
+   article, un amendement, un sous-amendement. Les phrases de l'app doivent le
+   dire (miroir de structure_scrutins.py côté pipeline). */
+function natureVote(titre){
+  const t = (titre||"").trim().toLowerCase().replace(/’/g, "'");
+  if(t.startsWith("le sous-amendement")) return "sous-amendement";
+  if(t.startsWith("l'amendement")) return "amendement";
+  if(t.startsWith("l'article")) return "article";
+  if(t.startsWith("l'ensemble")) return "ensemble";
+  if(t.startsWith("la motion")) return "motion";
+  return "autre";
+}
+const VOTE_SUJET = { "ensemble":["Le texte","adopté"], "article":["Un article","adopté"],
+  "amendement":["Une modification","adoptée"], "sous-amendement":["Une modification","adoptée"],
+  "motion":["La motion","adoptée"], "autre":["Un texte","adopté"] };
+/* « Un article a été adopté », « Le texte a été rejeté »... */
+function phraseVote(v, aux){
+  const [sujet, adopte] = VOTE_SUJET[natureVote(v.titre)];
+  const rejete = adopte.replace("adopt","rejet");
+  return `${sujet} ${aux||"a été"} ${v.adopte ? adopte : rejete}`;
+}
+function phraseVenir(v){ /* « Un article vient d'être adopté » */
+  const [sujet, adopte] = VOTE_SUJET[natureVote(v.titre)];
+  return `${sujet} vient d'être ${v.adopte ? adopte : adopte.replace("adopt","rejet")}`;
+}
+
+/* ---------- « comme N autres député·es » et « Hier / Aujourd'hui » ----------
+   Le décompte officiel (tally) ne compte « absent » que pour les NON-votants
+   (1 ou 2 personnes) : l'utiliser tel quel disait « comme 1 autre député » à
+   quelqu'un d'absent alors que des centaines l'étaient. Les absents sont donc
+   les 577 moins ceux qui ont voté ; on retire aussi la personne elle-même. */
+function nbAutresMemePosition(pos){
+  const t = voteData.tally;
+  const total = pos==="absent" ? Math.max(0, 577 - (t.pour + t.contre + t.abstention)) : (t[pos]||0);
+  return Math.max(0, total - 1);
+}
+function phraseCommeAutres(pos){
+  const n = nbAutresMemePosition(pos);
+  return n === 0 ? "seul·e dans ce cas sur 577 député·es"
+                 : `comme ${n} autre${n>1?"s":""} député·e${n>1?"s":""} sur 577`;
+}
+/* « Aujourd'hui » / « Hier » d'après la date réelle du scrutin (fuseau de
+   Paris), jamais d'après le moment où le pipeline a tourné. */
+function quandVote(dateIso){
+  const fmt = d => new Intl.DateTimeFormat("sv-SE", {timeZone:"Europe/Paris"}).format(d);
+  const maintenant = new Date();
+  if(dateIso === fmt(maintenant)) return "Aujourd'hui à l'Assemblée";
+  if(dateIso === fmt(new Date(maintenant.getTime() - 864e5))) return "Hier à l'Assemblée";
+  return null;
+}
+
 function titreSujetGras(titreBrut){
   const p = extraireSujet(titreBrut);
   if(!p) return "";
@@ -2348,9 +2445,13 @@ function renderDailyPopupVote(profile){
     }[pos];
     const col = VOTE_COLORS[pos];
     title = `<b>${esc(e.n)}</b> ${esc(posPhrase)}`;
-    lead = `Comme <span style="color:${col};font-weight:600">${voteData.tally[pos]} autres député·es</span> sur 577 — l'Assemblée a ${voteData.adopte?"adopté":"rejeté"} <i>${esc(voteData.titre)}</i>.`;
+    const nAutres = nbAutresMemePosition(pos), pl = nAutres>1 ? "s" : "";
+    lead = (nAutres === 0
+        ? "Seul·e dans ce cas sur 577 député·es"
+        : `Comme <span style="color:${col};font-weight:600">${nAutres} autre${pl} député·e${pl}</span> sur 577`)
+      + ` — l'Assemblée a ${voteData.adopte?"adopté":"rejeté"} <i>${esc(voteData.titre)}</i>.`;
   } else {
-    title = voteData.adopte ? "Un texte vient d'être adopté" : "Un texte vient d'être rejeté";
+    title = phraseVenir(voteData);
     lead = esc(voteData.titre);
   }
   $("#dailyPopupSheet").innerHTML = `
@@ -2483,7 +2584,7 @@ async function openImpactPanel(){
   let shareVisuel = { eyebrow: "Impact pour toi", titre: voteData.titre, texte: "Découvre ce que ça change pour toi sur Populous." };
 
   if(!voteData.adopte){
-    cards.innerHTML = `<div class="empty">🙂 Scrutin non adopté — pas de changement pour toi !</div>`;
+    cards.innerHTML = `<div class="empty">🙂 Non adopté — pas de changement pour toi !</div>`;
     shareEl.innerHTML = shareRowHTML();
     wireShare(shareEl, shareVisuel);
     return;
@@ -2499,20 +2600,27 @@ async function openImpactPanel(){
   const donnees = await chargerTexteLoi();
 
   if(!donnees || donnees.numero !== voteData.numero || donnees.statut !== "publie"){
-    cards.innerHTML = `<div class="empty">Le texte adopté n'est pas encore publié pour ce scrutin — reviens un peu plus tard.</div>`;
+    cards.innerHTML = `<div class="empty">${natureVote(voteData.titre)==="article" ? "Le texte de cet article n'est pas encore publié" : "Le texte adopté n'est pas encore publié pour ce scrutin"} — reviens un peu plus tard.</div>`;
     shareEl.innerHTML = shareRowHTML();
     wireShare(shareEl, shareVisuel);
     return;
   }
 
   const extraits = extraitsPertinents(donnees.articles, profile);
+  // Vote d'un ARTICLE : le texte définitif n'existe qu'après le vote sur
+  // l'ensemble. On cite l'article tel que présenté aux députés (texte de la
+  // commission) et on le dit, au lieu de le faire passer pour « le texte adopté ».
+  const parArticle = donnees.portee === "article";
+  const noteArticle = parArticle
+    ? `<p class="ipDisclaimer">Article ${esc(donnees.article_ref)} tel que présenté aux députés. Des amendements adoptés peuvent le modifier ; le texte final sera connu après le vote sur l'ensemble.</p>`
+    : "";
   if(!extraits.length){
-    cards.innerHTML = `<div class="empty">Rien, dans le texte publié, ne correspond directement à ta situation.</div>`;
+    cards.innerHTML = `<div class="empty">Rien, dans le texte publié, ne correspond directement à ta situation.</div>` + noteArticle;
   } else {
-    cards.innerHTML = extraits.map(e => `
+    cards.innerHTML = noteArticle + extraits.map(e => `
       <div class="excerptCard">
         <div class="tagLbl">${esc(INTRO_TAG[e.cle])}</div>
-        <div class="intro">Voici ce que dit maintenant le texte adopté :</div>
+        <div class="intro">${parArticle ? `Voici ce que prévoit l'article ${esc(donnees.article_ref)} :` : "Voici ce que dit maintenant le texte adopté :"}</div>
         <div class="quote">${esc(e.texte)}</div>
         <div class="art">${esc(e.article || "")}</div>
       </div>`).join("")
@@ -2611,20 +2719,22 @@ function renderAccueil(){
     // inverse (vote d'abord) rendait le carré difficile à comprendre
     // sans savoir de quoi le texte parlait.
     const voteLine = e && pos
-      ? `<b>${esc(e.n)}</b> ${({pour:"a voté pour",contre:"a voté contre",abstention:"s'est abstenu·e",absent:"était absent·e"})[pos]} — comme ${voteData.tally[pos]} autres député·es sur 577.`
-      : (voteData.adopte ? "Un texte a été adopté" : "Un texte a été rejeté")
-        + ` — ${voteData.tally.pour} pour · ${voteData.tally.contre} contre · ${voteData.tally.abstention} abstentions.`;
+      ? `<b>${esc(e.n)}</b> ${({pour:"a voté pour",contre:"a voté contre",abstention:"s'est abstenu·e",absent:"était absent·e"})[pos]} — ${phraseCommeAutres(pos)}.`
+      : phraseVote(voteData)
+        + ` — ${voteData.tally.pour} pour · ${voteData.tally.contre} contre · ${voteData.tally.abstention} abstention${voteData.tally.abstention>1?"s":""}.`;
     card.innerHTML = `
       <div class="voteStamp ${voteData.adopte ? "adopte" : "rejete"}">${voteData.adopte ? "Adopté" : "Rejeté"}</div>
-      <div class="eyebrow">${voteData.isToday ? "Hier à l'Assemblée" : "Dernier scrutin connu · " + dateFR(voteData.date)}</div>
+      <div class="eyebrow">${quandVote(voteData.date) || ("Dernier scrutin connu · " + dateFR(voteData.date))}</div>
       <h2 class="d">${titreSujetGras(voteData.titre)}</h2>
       <p>${voteLine}</p>
       <div class="actions">
+        <button class="btn ghost" id="acDetail">Détail</button>
         <button class="btn primary" id="acImpact">Ce que ça change pour moi</button>
-        <button class="btn ghost" data-go="carte">Voir la carte</button>
+        <button class="btn ghost" data-go="carte">Carte des votes</button>
       </div>`;
     $("#acToday [data-go]").onclick = ()=>showScreen("carte");
     $("#acImpact").onclick = openImpactPanel;
+    $("#acDetail").onclick = ouvrirDetailVote;
   }
 
   loadActu().then(articles=>{
@@ -3681,6 +3791,105 @@ function refJourItemHTML(r){
       ${r.source ? `<a class="refJourSource" href="${esc(r.source)}" target="_blank" rel="noopener">Voir la source ↗</a>` : ""}
     </div>`;
 }
+/* ---------- Détail du vote du jour ----------
+   Les données viennent de data/detail_jour.json, construit par le pipeline à
+   partir des libellés officiels des scrutins : l'app ne range et n'interprète
+   rien, elle affiche. */
+let detailJourPromise = null;
+function chargerDetailJour(){
+  if(!detailJourPromise){
+    detailJourPromise = fetch(REPO_DATA_BASE + "detail_jour.json", {cache:"no-store"})
+      .then(r=>{ if(!r.ok) throw new Error(r.status); return r.json(); })
+      .catch(()=>{ detailJourPromise = null; return null; });
+  }
+  return detailJourPromise;
+}
+const DETAIL_NATURE = { "article":"Article", "ensemble":"Vote sur l'ensemble du texte", "motion":"Motion",
+  "amendement":"Amendement", "sous-amendement":"Sous-amendement", "autre":"Scrutin" };
+function detailNomHTML(s){
+  const n = s.n_amendement ? " n°" + s.n_amendement : "";
+  let nom = DETAIL_NATURE[s.nature] + (s.nature==="amendement"||s.nature==="sous-amendement" ? n : "");
+  if(s.nature==="article") nom += s.article ? " " + s.article : "";
+  return `<div class="dtlNom">${esc(nom)}${s.auteur ? `<small>${esc(s.auteur)}</small>` : ""}</div>`;
+}
+function detailIssueHTML(s){
+  if(!s.issue) return "";
+  return `<span class="dtlStamp ${s.issue==="adopte" ? "adopte" : "rejete"}">${s.issue==="adopte" ? "Adopté" : "Rejeté"}</span>`;
+}
+function detailChiffresHTML(s){
+  return `Scrutin n°${s.numero} · ${s.votants} votants<br>${s.pour} pour · ${s.contre} contre · ${s.abstentions} abstention${s.abstentions>1?"s":""}`;
+}
+function detailBarreHTML(s){
+  const t = s.votants || 1;
+  return `<div class="dtlBar" aria-hidden="true"><i style="width:${s.pour/t*100}%;background:${VOTE_COLORS.pour}"></i>`
+       + `<i style="width:${s.contre/t*100}%;background:${VOTE_COLORS.contre}"></i>`
+       + `<i style="width:${s.abstentions/t*100}%;background:${VOTE_COLORS.abstention}"></i></div>`;
+}
+function detailModifHTML(m){
+  return `<div class="dtlRow"><div class="dtlTop">${detailNomHTML(m)}${detailIssueHTML(m)}</div>
+      <div class="dtlMeta">${detailChiffresHTML(m)}</div>
+      ${(m.sous_amendements||[]).map(sa=>`<div class="dtlSub"><div class="dtlTop">${detailNomHTML(sa)}${detailIssueHTML(sa)}</div>
+        <div class="dtlMeta">${detailChiffresHTML(sa)}</div></div>`).join("")}</div>`;
+}
+function detailVoteVedetteHTML(s, vedette, titre){
+  return `<div class="dtlArt${vedette ? " vedette" : ""}">
+      <div class="dtlTop"><div class="dtlNom">${titre}${vedette ? `<span class="dtlBadge">affiché sur l'accueil</span>` : ""}</div>${detailIssueHTML(s)}</div>
+      <div class="dtlMeta">${detailChiffresHTML(s)}</div>${detailBarreHTML(s)}</div>`;
+}
+function nbScrutinsModifs(modifs){ return modifs.length + modifs.reduce((n,m)=>n+(m.sous_amendements||[]).length, 0); }
+function detailLoiHTML(loi, numVedette){
+  const nature = loi.nature_texte.charAt(0).toUpperCase() + loi.nature_texte.slice(1);
+  const art = loi.articles.map(a=>{
+    const modifs = a.modifications.length
+      ? `<div class="dtlSec">${a.article ? "Votés avant l'article" : "Modifications votées"} · ${nbScrutinsModifs(a.modifications)} scrutin${nbScrutinsModifs(a.modifications)>1?"s":""}</div>${a.modifications.map(detailModifHTML).join("")}`
+      : "";
+    const nomArt = a.ref==="?" ? "Autres modifications" : (a.ref==="titre" ? "Titre du texte" : "Article " + a.ref);
+    const bloc = a.article
+      ? detailVoteVedetteHTML(a.article, a.article.numero===numVedette, esc(nomArt))
+      : `<div class="dtlArt aVenir"><div class="dtlNom">${esc(nomArt)}</div><div class="dtlMeta">Les modifications ont été votées, pas encore l'article lui-même.</div></div>`;
+    return bloc + modifs;
+  }).join("");
+  const ens = loi.ensemble
+    ? detailVoteVedetteHTML(loi.ensemble, loi.ensemble.numero===numVedette, "Vote sur l'ensemble du texte")
+    : `<div class="dtlArt aVenir"><div class="dtlNom">Vote sur l'ensemble du texte</div><div class="dtlMeta">Pas encore voté.</div></div>`;
+  return `<div class="dtlLoi">
+      <div class="dtlLoiNom">${esc(nature)} ${esc(loi.intitule)}</div>
+      ${loi.lecture ? `<div class="dtlMeta">${esc(loi.lecture.replace(/^\(|\)$/g,""))}</div>` : ""}
+      ${art}${ens}</div>`;
+}
+async function ouvrirDetailVote(){
+  const d = await chargerDetailJour();
+  const sheet = $("#detailSheet");
+  if(!d || (!d.lois.length && !d.autres.length)){
+    sheet.innerHTML = `<button class="sheetClose" id="detailClose" aria-label="Fermer">✕</button>
+      <div class="eyebrow">Détail du vote</div>
+      <p class="lead">Le détail n'est pas disponible pour l'instant. Réessaie un peu plus tard.</p>`;
+  } else {
+    sheet.innerHTML = `<button class="sheetClose" id="detailClose" aria-label="Fermer">✕</button>
+      <div class="eyebrow">Détail du vote · ${esc(dateFR(d.date))}</div>
+      <details class="dtlHow"><summary>Comment une loi se vote</summary>
+        <p>Une loi se vote article par article. Pour chaque article, les députés votent d'abord les modifications proposées : sous-amendements, puis amendements. Ensuite vient l'article lui-même. Le texte entier est voté à la fin.</p>
+        <p class="dtlHowNb">L'Assemblée nationale compte <b>577 députés</b>.</p>
+        <p class="dtlHowTitre">Et après le vote à l'Assemblée ?</p>
+        <ol>
+          <li><b>Le Sénat</b> examine à son tour le texte. Les deux chambres peuvent se le renvoyer pour le modifier : c'est la « navette ».</li>
+          <li>Si elles ne s'accordent pas, une <b>commission mixte paritaire</b> (7 députés et 7 sénateurs) cherche une version commune. En dernier recours, l'Assemblée nationale a le dernier mot.</li>
+          <li>Le <b>Conseil constitutionnel</b> peut être saisi pour vérifier que la loi respecte la Constitution.</li>
+          <li>Le <b>Président de la République promulgue</b> la loi, dans les 15 jours.</li>
+          <li>La loi est <b>publiée au Journal officiel</b> : elle entre alors en vigueur.</li>
+        </ol>
+      </details>
+      ${d.lois.map(l=>detailLoiHTML(l, d.numero_vedette)).join("")}
+      ${d.autres.length ? `<div class="dtlSec">Autres scrutins du jour</div>${d.autres.map(m=>`<div class="dtlRow"><div class="dtlTop"><div class="dtlNom">${esc(m.objet)}</div>${detailIssueHTML(m)}</div><div class="dtlMeta">${detailChiffresHTML(m)}</div></div>`).join("")}` : ""}
+      <div class="dtlSrc">Source : data.assemblee-nationale.fr (Licence Ouverte)</div>`;
+  }
+  const popup = $("#detailPopup");
+  popup.classList.remove("hidden");
+  $("#detailClose").onclick = ()=>popup.classList.add("hidden");
+  popup.onclick = e=>{ if(e.target===popup) popup.classList.add("hidden"); };
+  sheet.scrollTop = 0;
+}
+
 async function ouvrirRefJour(){
   const refs = await chargerRefsJour();
   const auj = new Date();
