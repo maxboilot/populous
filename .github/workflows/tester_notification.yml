@@ -20,6 +20,11 @@ on:
       cible:
         description: "Ecran ouvert au toucher (refjour, avenir, carte, presidentielle ; vide = accueil)"
         default: "refjour"
+      plateforme:
+        description: "Appareils vises (android = emulateur/testeurs Android seulement, sans toucher les iPhone)"
+        type: choice
+        options: [android, ios, toutes]
+        default: android
       dry_run:
         description: "Dry-run (ne fait que compter les appareils abonnes, n'envoie rien)"
         type: boolean
@@ -47,10 +52,11 @@ jobs:
           TITRE: ${{ inputs.titre }}
           TEXTE: ${{ inputs.texte }}
           CIBLE: ${{ inputs.cible }}
+          PLATEFORME: ${{ inputs.plateforme }}
           DRY_RUN: ${{ inputs.dry_run }}
         run: |
           if [ "$DRY_RUN" = "true" ]; then
-            python3 notifier_push.py --titre "$TITRE" --texte "$TEXTE" ${CIBLE:+--cible "$CIBLE"} --dry-run
+            python3 notifier_push.py --titre "$TITRE" --texte "$TEXTE" ${CIBLE:+--cible "$CIBLE"} --plateforme "$PLATEFORME" --dry-run
           else
-            python3 notifier_push.py --titre "$TITRE" --texte "$TEXTE" ${CIBLE:+--cible "$CIBLE"}
+            python3 notifier_push.py --titre "$TITRE" --texte "$TEXTE" ${CIBLE:+--cible "$CIBLE"} --plateforme "$PLATEFORME"
           fi

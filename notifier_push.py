@@ -189,6 +189,8 @@ def main():
     parser.add_argument('--url', default=None, help="Deep link optionnel ouvert au tap de la notif.")
     parser.add_argument('--cible', default=None, choices=['refjour', 'avenir', 'carte', 'presidentielle'],
                         help="Ecran ouvert par l'app au toucher de la notification.")
+    parser.add_argument('--plateforme', default='toutes', choices=['toutes', 'ios', 'android'],
+                        help="Limite l'envoi a une plateforme (pour les tests) ; par defaut tout le monde.")
     parser.add_argument('--dry-run', action='store_true', help="N'envoie rien, affiche juste qui recevrait quoi.")
     args = parser.parse_args()
 
@@ -199,6 +201,13 @@ def main():
     ios = [j for j, plateforme in jetons if plateforme != 'android']
     android = [j for j, plateforme in jetons if plateforme == 'android']
     print(f'{len(jetons)} appareil(s) abonne(s) : {len(ios)} iPhone, {len(android)} Android.')
+    if args.plateforme == 'ios':
+        android = []
+    elif args.plateforme == 'android':
+        ios = []
+    jetons = ios + android
+    if args.plateforme != 'toutes':
+        print(f'Envoi limite a : {args.plateforme} ({len(jetons)} appareil(s)).')
 
     if args.dry_run:
         print(f'[dry-run] enverrait "{args.titre}" / "{args.texte}" a {len(jetons)} appareil(s).')
