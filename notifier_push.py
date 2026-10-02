@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
-"""Envoie une notification push aux telephones abonnes, via Apple
-directement (APNs) — pas de SDK Firebase cote app, cf. CLAUDE.md et
+"""Envoie une notification push aux telephones abonnes : iPhone via Apple
+directement (APNs) — pas de SDK Firebase cote app iOS, cf. CLAUDE.md et
 l'historique de conversation (le SDK Firebase bloquait la compilation
-iOS). Firestore ne sert ici que de carnet d'adresses (la liste des
-jetons APNs enregistres par index.html au lancement de l'app, cf.
-initNotificationsPush) ; l'app elle-meme n'y lit jamais rien.
+iOS) — et Android via l'API HTTP v1 de Firebase Cloud Messaging (FCM).
+Firestore ne sert ici que de carnet d'adresses (la liste des jetons
+enregistres par index.html au lancement de l'app, avec leur champ
+`plateforme`, cf. initNotificationsPush) ; l'app elle-meme n'y lit
+jamais rien.
 
 Prerequis (secrets GitHub Actions) :
   APNS_KEY_ID          identifiant de la cle .p8 (Apple Developer > Certificates,
@@ -68,15 +70,19 @@ def jeton_apns(key_id, team_id, cle_privee_pem):
     )
 
 
-def jeton_acces_google(compte_service):
+SCOPE_FIRESTORE = 'https://www.googleapis.com/auth/datastore'
+SCOPE_FCM = 'https://www.googleapis.com/auth/firebase.messaging'
+
+
+def jeton_acces_google(compte_service, scope=SCOPE_FIRESTORE):
     """Echange le compte de service Firebase contre un jeton d'acces
-    OAuth2 (scope Firestore lecture/ecriture), via le flux JWT-bearer
-    standard de Google — pas de dependance au SDK google-cloud."""
+    OAuth2 (Firestore par defaut, FCM avec SCOPE_FCM), via le flux
+    JWT-bearer standard de Google — pas de dependance au SDK google-cloud."""
     maintenant = int(time.time())
     assertion = jwt.encode(
         {
             'iss': compte_service['client_email'],
-            'scope': 'https://www.googleapis.com/auth/datastore',
+            'scope': scope,
             'aud': 'https://oauth2.googleapis.com/token',
             'iat': maintenant,
             'exp': maintenant + 3600,
@@ -93,8 +99,10 @@ def jeton_acces_google(compte_service):
 
 
 def jetons_abonnes(project_id, jeton_acces):
-    """Liste tous les jetons APNs enregistres dans Firestore (collection
-    pushTokens, ecrite par initNotificationsPush dans index.html)."""
+    """Liste tous les jetons enregistres dans Firestore (collection
+    pushTokens, ecrite par initNotificationsPush dans index.html), sous
+    forme de (jeton, plateforme). Les anciens documents sans `plateforme`
+    sont des iPhone."""
     url = f'https://firestore.googleapis.com/v1/projects/{project_id}/databases/(default)/documents/pushTokens'
     entetes = {'Authorization': f'Bearer {jeton_acces}'}
     jetons = []
@@ -106,8 +114,9 @@ def jetons_abonnes(project_id, jeton_acces):
         page = r.json()
         for doc in page.get('documents', []):
             valeur = doc.get('fields', {}).get('token', {}).get('stringValue')
+            plateforme = doc.get('fields', {}).get('plateforme', {}).get('stringValue') or 'ios'
             if valeur:
-                jetons.append(valeur)
+                jetons.append((valeur, plateforme))
         page_token = page.get('nextPageToken')
         if not page_token:
             break
@@ -115,6 +124,31 @@ def jetons_abonnes(project_id, jeton_acces):
     # ligne de plus a chaque fois) — sans ceci, un meme iPhone recevait
     # autant de bannieres identiques que de lancements.
     return list(dict.fromkeys(jetons))
+
+
+def envoyer_une_android(device_token, titre, texte, url_cible, project_id, jeton_fcm, cible=None):
+    """Une notification FCM (API HTTP v1). Message de type `notification` :
+    Android l'affiche lui-meme quand l'app est fermee ou en arriere-plan,
+    et au toucher, `data` est remise a l'app (pushNotificationActionPerformed,
+    index.html), comme `cible` cote iOS."""
+    donnees = {}
+    if url_cible:
+        donnees['url'] = url_cible
+    if cible:
+        donnees['cible'] = cible
+    message = {
+        'token': device_token,
+        'notification': {'title': titre, 'body': texte},
+        'android': {'priority': 'HIGH'},
+    }
+    if donnees:
+        message['data'] = donnees
+    return httpx.post(
+        f'https://fcm.googleapis.com/v1/projects/{project_id}/messages:send',
+        headers={'Authorization': f'Bearer {jeton_fcm}'},
+        json={'message': message},
+        timeout=20,
+    )
 
 
 def envoyer_une(device_token, titre, texte, url_cible, apns_jwt, cible=None):
@@ -162,23 +196,42 @@ def main():
     project_id = os.environ.get('FIREBASE_PROJECT_ID', 'populous-66469')
     jeton_acces = jeton_acces_google(compte_service)
     jetons = jetons_abonnes(project_id, jeton_acces)
-    print(f'{len(jetons)} appareil(s) abonne(s).')
+    ios = [j for j, plateforme in jetons if plateforme != 'android']
+    android = [j for j, plateforme in jetons if plateforme == 'android']
+    print(f'{len(jetons)} appareil(s) abonne(s) : {len(ios)} iPhone, {len(android)} Android.')
 
     if args.dry_run:
         print(f'[dry-run] enverrait "{args.titre}" / "{args.texte}" a {len(jetons)} appareil(s).')
         return
 
-    if not jetons:
-        return
-
-    apns = jeton_apns(os.environ['APNS_KEY_ID'], os.environ['APNS_TEAM_ID'], os.environ['APNS_AUTH_KEY'])
+    envoyees = 0
     echecs = 0
-    for device_token in jetons:
-        r = envoyer_une(device_token, args.titre, args.texte, args.url, apns, args.cible)
-        if r.status_code != 200:
-            echecs += 1
-            print(f'  echec pour {device_token[:12]}... : {r.status_code} {r.text}')
-    print(f'{len(jetons) - echecs}/{len(jetons)} notifications envoyees.')
+    if ios:
+        apns = jeton_apns(os.environ['APNS_KEY_ID'], os.environ['APNS_TEAM_ID'], os.environ['APNS_AUTH_KEY'])
+        for device_token in ios:
+            r = envoyer_une(device_token, args.titre, args.texte, args.url, apns, args.cible)
+            if r.status_code == 200:
+                envoyees += 1
+            else:
+                echecs += 1
+                print(f'  echec iPhone {device_token[:12]}... : {r.status_code} {r.text}')
+    if android:
+        # Un echec Android ne doit jamais empecher/annuler l'envoi iPhone
+        # (deja parti ci-dessus) : on le journalise et on continue.
+        try:
+            jeton_fcm = jeton_acces_google(compte_service, SCOPE_FCM)
+        except Exception as e:
+            echecs += len(android)
+            print(f'  echec Android : jeton FCM impossible ({e})')
+        else:
+            for device_token in android:
+                r = envoyer_une_android(device_token, args.titre, args.texte, args.url, project_id, jeton_fcm, args.cible)
+                if r.status_code == 200:
+                    envoyees += 1
+                else:
+                    echecs += 1
+                    print(f'  echec Android {device_token[:12]}... : {r.status_code} {r.text}')
+    print(f'{envoyees}/{len(jetons)} notifications envoyees.')
 
 
 if __name__ == '__main__':
