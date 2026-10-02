@@ -7,7 +7,7 @@
   "type": "scrutin public solennel",
   "solennel": true,
   "sort": "L'Assemblée nationale n'a pas adopté",
-  "adopte": true,
+  "adopte": false,
   "tally": {
     "pour": 194,
     "contre": 364,

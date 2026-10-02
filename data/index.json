@@ -234,8 +234,8 @@
     "numero": 3273,
     "date": "2025-10-30",
     "titre": "Rendre systématique l'information du consommateur sur l'origine des denrées alimentaires par le moyen de l'étiquetage",
-    "adopte": true,
-    "statut": "adopte",
+    "adopte": false,
+    "statut": "rejete",
     "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0178_texte-adopte-seance.pdf",
     "themes": [
       "economie",
@@ -295,8 +295,8 @@
     "numero": 3936,
     "date": "2025-11-18",
     "titre": "De finances de fin de gestion pour 2025",
-    "adopte": true,
-    "statut": "adopte",
+    "adopte": false,
+    "statut": "rejete",
     "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/3936",
     "themes": [
       "economie"

@@ -165,7 +165,11 @@ class Scrutin:
 
     @property
     def adopte(self) -> bool:
-        return "adopt" in (self.sort_libelle or "").lower()
+        # Libelles officiels : "l'Assemblée nationale a adopté" /
+        # "L'Assemblée nationale n'a pas adopté". Tester la seule sous-chaine
+        # "adopt" donnait True dans les deux cas.
+        sort = (self.sort_libelle or "").lower()
+        return "adopt" in sort and "pas adopt" not in sort
 
 
 def parse_scrutin(raw: dict) -> Scrutin | None:

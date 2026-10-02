@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-02T08:38:45.898527Z",
+  "generated_at": "2026-10-02T09:05:09.266646Z",
   "depuis": "2025-10-02",
   "nombre": 113,
   "lois": [
@@ -2514,8 +2514,8 @@
       "nature": "projet de loi",
       "lecture": "première lecture",
       "solennel": false,
-      "adopte": true,
-      "statut": "adopte",
+      "adopte": false,
+      "statut": "rejete",
       "themes": [
         "economie"
       ],
@@ -2537,8 +2537,8 @@
       "nature": "proposition de loi",
       "lecture": "première lecture",
       "solennel": false,
-      "adopte": true,
-      "statut": "adopte",
+      "adopte": false,
+      "statut": "rejete",
       "themes": [
         "economie",
         "agriculture"
