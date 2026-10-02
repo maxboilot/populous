@@ -1,4 +1,46 @@
 {
   "numero": 8448,
-  "statut": "non_publie"
+  "statut": "publie",
+  "portee": "article",
+  "article_ref": "premier",
+  "source_texte": "commission",
+  "source": "https://www.assemblee-nationale.fr/dyn/opendata/PIONANR5L17BTC3190.html",
+  "articles": [
+    {
+      "article": "Article 1er",
+      "texte": "Le chapitre II du titre II du livre II du code pénal est ainsi modifié :"
+    },
+    {
+      "article": "Article 1er",
+      "texte": "1° Au début de la section 1, il est ajouté un article 222‑1 A ainsi rédigé :"
+    },
+    {
+      "article": "Article 1er",
+      "texte": "« Art. 222‑1 A. – Les infractions prévues à la présente section constituent des violences intrafamiliales lorsqu’elles sont commises :"
+    },
+    {
+      "article": "Article 1er",
+      "texte": "« 1° Par le conjoint, le partenaire lié à la victime par un pacte civil de solidarité ou le concubin ;"
+    },
+    {
+      "article": "Article 1er",
+      "texte": "« 2° Par l’ancien conjoint, l’ancien partenaire lié à la victime par un pacte civil de solidarité ou l’ancien concubin ;"
+    },
+    {
+      "article": "Article 1er",
+      "texte": "« 3° Sur un ascendant légitime ou naturel ou sur les pères et mères adoptifs ;"
+    },
+    {
+      "article": "Article 1er",
+      "texte": "« 4° Sur son enfant ou l’enfant de son conjoint, du partenaire auquel elle est liée par un pacte civil de solidarité ou de son concubin, sur un descendant en ligne directe, entre alliés en ligne directe ou entre collatéraux jusqu’au quatrième degré inclus. Les infractions mentionnées à l’article 222‑33‑2‑1 constituent également des violences intrafamiliales. » ;"
+    },
+    {
+      "article": "Article 1er",
+      "texte": "2° Au début de la section 3, il est ajouté un article 222‑21‑1 ainsi rédigé :"
+    },
+    {
+      "article": "Article 1er",
+      "texte": "« Art. 222‑21‑1. – Les infractions prévues aux articles 221‑1 à 221‑5, lorsqu’elles sont commises en raison du sexe de la victime dans les conditions déterminées à l’article 132‑77, à l’article 222‑9, lorsqu’elles présentent un caractère sexuel, à la présente section et aux articles 222‑33‑1‑1, 222‑33‑2‑4, 225‑4‑11, 225‑4‑12, 225‑5 à 225‑12, 225‑12‑1, 225‑12‑2, 227‑21‑1 à 227‑28‑3 et 611‑1 du présent code ainsi qu’aux articles L. 1111‑4‑1 et L. 1111‑4‑2 du code de la santé publique constituent des violences sexuelles et sexistes. »"
+    }
+  ]
 }

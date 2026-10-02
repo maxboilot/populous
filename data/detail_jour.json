@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-02T16:43:32.997634Z",
+  "generated_at": "2026-10-02T17:06:06.781455Z",
   "date": "2026-10-02",
   "numero_vedette": 8448,
   "lois": [
@@ -148,13 +148,13 @@
           ]
         },
         {
-          "ref": "2 d",
+          "ref": "2",
           "article": null,
           "modifications": [
             {
               "numero": 8449,
               "nature": "amendement",
-              "article": "2 d",
+              "article": "2",
               "n_amendement": 346,
               "parent": null,
               "auteur": "Mme Cathala",
@@ -172,7 +172,7 @@
             {
               "numero": 8450,
               "nature": "amendement",
-              "article": "2 d",
+              "article": "2",
               "n_amendement": 354,
               "parent": null,
               "auteur": "Mme Legrain",
@@ -190,7 +190,7 @@
             {
               "numero": 8451,
               "nature": "amendement",
-              "article": "2 d",
+              "article": "2",
               "n_amendement": 289,
               "parent": null,
               "auteur": "Mme Legrain",
@@ -208,7 +208,7 @@
             {
               "numero": 8452,
               "nature": "amendement",
-              "article": "2 d",
+              "article": "2",
               "n_amendement": 345,
               "parent": null,
               "auteur": "Mme Cathala",
@@ -226,7 +226,7 @@
             {
               "numero": 8453,
               "nature": "amendement",
-              "article": "2 d",
+              "article": "2",
               "n_amendement": 337,
               "parent": null,
               "auteur": "Mme Leboucher",
@@ -244,7 +244,7 @@
             {
               "numero": 8454,
               "nature": "amendement",
-              "article": "2 d",
+              "article": "2",
               "n_amendement": 1168,
               "parent": null,
               "auteur": "Mme Coggia",
@@ -262,7 +262,7 @@
             {
               "numero": 8455,
               "nature": "amendement",
-              "article": "2 d",
+              "article": "2",
               "n_amendement": 226,
               "parent": null,
               "auteur": "M. Ménagé",
