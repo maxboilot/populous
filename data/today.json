@@ -1,9 +1,23 @@
 {
-  "generated_at": "2026-10-02T14:47:14.786266Z",
-  "featured_numero": null,
+  "generated_at": "2026-10-02T16:43:01.948484Z",
+  "featured_numero": 8448,
   "featured_is_solennel": false,
-  "autres_scrutins_du_jour": [],
-  "aucun_vote_aujourdhui": true,
-  "last_featured_numero": 8441,
-  "last_featured_date": "2026-10-01"
+  "autres_scrutins_du_jour": [
+    8442,
+    8443,
+    8444,
+    8445,
+    8446,
+    8447,
+    8449,
+    8450,
+    8451,
+    8452,
+    8453,
+    8454,
+    8455
+  ],
+  "aucun_vote_aujourdhui": false,
+  "last_featured_numero": 8448,
+  "last_featured_date": "2026-10-02"
 }
