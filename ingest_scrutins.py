@@ -254,6 +254,7 @@ def position_for_circo(sc: Scrutin, roster: dict[str, dict]) -> dict[str, str]:
 
 def write_scrutin(sc: Scrutin, roster: dict[str, dict]) -> Path:
     SCRUTINS_DIR.mkdir(parents=True, exist_ok=True)
+    par_circo = position_for_circo(sc, roster)
     payload = {
         "uid": sc.uid,
         "numero": sc.numero,
@@ -268,9 +269,15 @@ def write_scrutin(sc: Scrutin, roster: dict[str, dict]) -> Path:
             "pour": sc.nb_pour,
             "contre": sc.nb_contre,
             "abstention": sc.nb_abstentions,
-            "absent": sc.nb_non_votants,
+            # « Absent » = les circonscriptions sans vote exprime (absents ET
+            # non-votants), exactement ce que la carte colorie en fonce. Le
+            # decompte officiel `nonVotants` (1 ou 2 personnes) ne compte que
+            # ceux qui etaient presents sans voter : l'afficher comme « absents »
+            # disait « comme 1 autre depute » a quelqu'un d'absent alors que
+            # des centaines l'etaient.
+            "absent": sum(1 for p in par_circo.values() if p in ("absent", "non_votant")),
         },
-        "par_circonscription": position_for_circo(sc, roster),
+        "par_circonscription": par_circo,
         "source": f"https://www.assemblee-nationale.fr/dyn/{LEGISLATURE}/scrutins/{sc.numero}",
     }
     path = SCRUTINS_DIR / f"{sc.numero}.json"
