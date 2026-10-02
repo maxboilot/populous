@@ -31,6 +31,7 @@ from io import BytesIO
 from pathlib import Path
 
 import reseau
+import structure_scrutins as S
 
 DATA_DIR = Path('data')
 SORTIE = DATA_DIR / 'texte_loi.json'
@@ -145,8 +146,86 @@ def extraire_articles(html_brut):
     return articles
 
 
+REF_TEXTE_RE = re.compile(r'\b((?:PION|PRJL)ANR5L17(BTC|B)\d+)\b')
+
+
+def trouver_texte_examine(intitule):
+    """Pour un vote d'ARTICLE : le texte que les deputes examinent en seance.
+    C'est le texte de la commission (BTC) quand il existe, sinon le texte
+    depose. Renvoie (reference, 'commission' | 'depot') ou (None, None).
+
+    Le texte definitif n'existe qu'apres le vote sur l'ensemble : tant qu'il
+    n'est pas publie, on montre l'article tel que presente aux deputes, et
+    l'app le dit (cf. openImpactPanel)."""
+    cible = S.intitule_normalise(intitule)
+    archive = telecharger(URL_DOSSIERS)
+    with zipfile.ZipFile(BytesIO(archive)) as z:
+        for nom in z.namelist():
+            if '/dossierParlementaire/' not in nom or not nom.endswith('.json'):
+                continue
+            brut = z.read(nom).decode('utf-8')
+            try:
+                dp = json.loads(brut).get('dossierParlementaire', {})
+            except Exception:
+                continue
+            titre = ((dp.get('titreDossier') or {}).get('titre')) or ''
+            n = S.intitule_normalise(titre)
+            if len(n) < 20 or not (n == cible or n in cible or cible in n):
+                continue
+            refs = {m.group(2): m.group(1) for m in REF_TEXTE_RE.finditer(brut)}
+            if 'BTC' in refs:
+                return refs['BTC'], 'commission'
+            if 'B' in refs:
+                return refs['B'], 'depot'
+    return None, None
+
+
+def paragraphes_de_l_article(articles, ref_article):
+    """Garde les paragraphes de l'article demande (« Article 5 »), jamais
+    ceux de « Article 5 bis » ni d'un autre article."""
+    voulu = f'article {ref_article}'.lower()
+    return [a for a in articles if re.sub(r'\s+', ' ', (a['article'] or '')).strip().lower() == voulu]
+
+
 def ecrire(payload):
     SORTIE.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding='utf-8')
+
+
+def publier_article(numero, sc):
+    """Scrutin vedette = un article adopte : on publie cet article tel que
+    presente aux deputes (texte de la commission), avec sa portee, pour que
+    l'app ne le fasse jamais passer pour le texte definitif."""
+    ref_article = S.article_ref(sc['titre'])
+    loi = S.texte_de_loi(sc['titre'])
+    ref = origine = None
+    if ref_article and loi:
+        try:
+            ref, origine = trouver_texte_examine(loi[1])
+        except Exception as e:
+            print(f'  recherche du texte examine : echec ({e})')
+    if not ref:
+        ecrire({'numero': numero, 'statut': 'non_publie'})
+        print(f'texte_loi.json : scrutin {numero} (article), texte examine introuvable.')
+        return
+    try:
+        articles = paragraphes_de_l_article(extraire_articles(telecharger(URL_TEXTE.format(ref=ref)).decode('utf-8')), ref_article)
+    except Exception as e:
+        print(f'  telechargement du texte examine : echec ({e})')
+        articles = []
+    if not articles:
+        ecrire({'numero': numero, 'statut': 'non_publie'})
+        print(f"texte_loi.json : scrutin {numero}, article {ref_article} introuvable dans {ref}.")
+        return
+    ecrire({
+        'numero': numero,
+        'statut': 'publie',
+        'portee': 'article',
+        'article_ref': ref_article,
+        'source_texte': origine,
+        'source': URL_TEXTE.format(ref=ref),
+        'articles': articles,
+    })
+    print(f'texte_loi.json : scrutin {numero}, article {ref_article} ({origine}), {len(articles)} paragraphes.')
 
 
 def main():
@@ -172,6 +251,10 @@ def main():
     if not sc.get('adopte'):
         ecrire({'numero': numero, 'statut': 'rejete'})
         print(f'texte_loi.json : scrutin {numero} rejeté, rien à publier.')
+        return
+
+    if S.nature(sc['titre']) == 'article':
+        publier_article(numero, sc)
         return
 
     try:

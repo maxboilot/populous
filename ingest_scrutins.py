@@ -51,6 +51,8 @@ from pathlib import Path
 
 import requests
 
+from structure_scrutins import rang
+
 # ============================================================
 # CONFIG — à adapter à ton hébergement
 # ============================================================
@@ -334,14 +336,72 @@ def write_today_pointer(featured: Scrutin | None, all_new: list[Scrutin], state:
     )
 
 
-def pick_featured(new_scrutins: list[Scrutin]) -> Scrutin | None:
+@dataclass
+class ScrutinVedette:
+    """Ce dont pick_featured a besoin, pour un scrutin deja ecrit sur disque
+    (un run precedent du meme jour) comme pour un scrutin tout juste lu."""
+    numero: int
+    date: str
+    titre: str
+    is_solennel: bool
+    nb_pour: int
+    nb_contre: int
+    nb_abstentions: int
+
+
+def scrutins_deja_ingeres_du_jour(new_scrutins: list[Scrutin]) -> list[ScrutinVedette]:
+    """Scrutins du meme jour que les nouveaux, ecrits par un run precedent.
+
+    Pourquoi : les votes d'une seance n'arrivent pas tous dans le meme run.
+    Si l'article est vote dans un run et des amendements dans le suivant, il
+    faut que l'article reste le scrutin vedette (cf. rang_scrutin)."""
     if not new_scrutins:
+        return []
+    date = max(new_scrutins, key=lambda sc: sc.numero).date
+    nouveaux = {sc.numero for sc in new_scrutins}
+    centre = max(nouveaux)
+    out = []
+    for n in range(centre - 400, centre + 1):
+        chemin = SCRUTINS_DIR / f"{n}.json"
+        if n in nouveaux or not chemin.exists():
+            continue
+        try:
+            fiche = json.loads(chemin.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            continue
+        if fiche.get("date") != date:
+            continue
+        t = fiche.get("tally") or {}
+        out.append(ScrutinVedette(
+            numero=fiche["numero"], date=date, titre=fiche.get("titre", ""),
+            is_solennel=bool(fiche.get("solennel")), nb_pour=t.get("pour", 0),
+            nb_contre=t.get("contre", 0), nb_abstentions=t.get("abstention", 0),
+        ))
+    return out
+
+
+def pick_featured(new_scrutins: list[Scrutin], deja_du_jour: list | None = None):
+    """Le scrutin qui dit le mieux ou en est le texte ce jour-la.
+
+    Ordre de priorite (structure_scrutins.RANG) : vote solennel, ensemble du
+    texte, article, motion, autre, puis amendements et sous-amendements. Un
+    amendement n'est qu'une etape vers l'article ; l'article, lui, dit ce qui
+    est reellement adopte. Avant, le critere unique etait le nombre de votants
+    (« le plus suivi »), qui favorise les votes de debut de seance : le 1er
+    octobre 2026, un sous-amendement (167 votants) passait devant l'article 5
+    (128 votants). A rang egal : les amendements departagent au nombre de
+    votants, les autres au plus recent.
+    """
+    candidats = list(new_scrutins) + list(deja_du_jour or [])
+    if not candidats:
         return None
-    solennels = [sc for sc in new_scrutins if sc.is_solennel]
-    if solennels:
-        return max(solennels, key=lambda sc: sc.numero)
-    # à défaut, le plus suivi : proxy simple de "combien ce vote a compté"
-    return max(new_scrutins, key=lambda sc: sc.nb_pour + sc.nb_contre + sc.nb_abstentions)
+
+    def cle(sc):
+        r = rang(sc.titre, sc.is_solennel)
+        votants = sc.nb_pour + sc.nb_contre + sc.nb_abstentions
+        return (r, votants if r == 0 else 0, sc.numero)
+
+    return max(candidats, key=cle)
 
 
 # ============================================================
@@ -410,7 +470,7 @@ def main() -> int:
             sc.sort_libelle, path.name,
         )
 
-    featured = pick_featured(new_scrutins)
+    featured = pick_featured(new_scrutins, scrutins_deja_ingeres_du_jour(new_scrutins))
     write_today_pointer(featured, new_scrutins, state)
 
     try:

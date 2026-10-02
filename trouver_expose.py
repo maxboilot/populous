@@ -14,6 +14,7 @@ import zipfile
 from io import BytesIO
 
 import construire_expose_motifs as cem
+import structure_scrutins as S
 import reseau
 
 LECTURE = re.compile(r'\s*\((?:première|nouvelle|deuxième|seconde|lecture|texte)[^)]*\)', re.I)
@@ -24,12 +25,7 @@ def intitule_loi(titre_officiel):
     return LECTURE.sub('', m.group(1)).strip().rstrip('. ') if m else None
 
 
-def norm(t):
-    """Minuscules, sans ponctuation ni premier mot : le libelle du scrutin dit
-    « apportant une reponse... » quand le dossier dit « Apporter une
-    reponse... » (meme intitule, verbe different)."""
-    mots = re.sub(r'\W+', ' ', t.lower().replace('’', "'")).split()
-    return ' '.join(mots[1:])
+norm = S.intitule_normalise
 
 
 def main(numero):
