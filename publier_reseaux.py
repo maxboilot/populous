@@ -21,6 +21,13 @@ exactement ce qu'il poste plutot que de tirer au hasard :
                   genere a la demande) — planifie 1x/mois (le 15), pour
                   ne pas repeter un visuel quasi identique chaque jour
 
+  - vote        : la carte d'un scrutin (« Vote d'hier »), generee par
+                  generer_post_vote.py. JAMAIS planifie : declenche a la
+                  main avec --numero et --titre (le titre synthetique est
+                  relu et fourni par un humain), et refuse de republier
+                  le meme scrutin (data/state_publication.json) sauf
+                  --forcer.
+
 Par defaut le script tourne en mode "brouillon" : il genere le visuel
 et affiche la legende sans rien publier. Il faut explicitement passer
 --publier pour que la publication ait lieu (choix deliberer : ne
@@ -47,6 +54,7 @@ from pathlib import Path
 import requests
 
 from generer_visuel import generer, portrait_depute, pile_boussole_exemple
+import generer_post_vote
 
 DOSSIER = Path(__file__).parent
 GRAPH = 'https://graph.facebook.com/v21.0'
@@ -323,24 +331,49 @@ def publier_instagram(ig_user_id, page_token, image_url, legende):
     return r.json()
 
 
+def preparer_vote(args):
+    """Visuel + legende du post « Vote d'hier ». Lit data/ et index.html du
+    checkout (le workflow tourne sur une copie fraiche de main)."""
+    if not args.numero or not args.titre:
+        sys.exit("--type vote exige --numero et --titre (titre synthetique relu par un humain).")
+    vote = json.loads((DOSSIER / 'data' / 'scrutins' / f'{args.numero}.json').read_text(encoding='utf-8'))
+    if args.publier and not args.forcer and lire_etat_publication().get('dernier_vote_publie') == args.numero:
+        sys.exit(f"Le scrutin {args.numero} a deja ete publie (--forcer pour republier).")
+    contours = generer_post_vote.charger_contours((DOSSIER / 'index.html').read_text(encoding='utf-8'))
+    chemin = DOSSIER / 'assets_social' / f"{vote['date']}-vote-{args.numero}.png"
+    generer_post_vote.generer(vote, contours, args.titre, chemin)
+    contenu = {
+        'legende': generer_post_vote.legende(vote, args.titre, contours),
+        'cle_etat': 'dernier_vote_publie',
+        'valeur_etat': args.numero,
+    }
+    return chemin, contenu
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--type', choices=CHOIX.keys(), required=True)
+    parser.add_argument('--type', choices=[*CHOIX.keys(), 'vote'], required=True)
     parser.add_argument('--publier', action='store_true', help="Publie reellement (sinon : brouillon local seulement).")
+    parser.add_argument('--numero', type=int, help="(vote) numero du scrutin.")
+    parser.add_argument('--titre', help="(vote) titre synthetique, relu par un humain.")
+    parser.add_argument('--forcer', action='store_true', help="(vote) republie meme si deja publie.")
     args = parser.parse_args()
 
-    contenu = CHOIX[args.type]()
-    if contenu is None:
-        print(f"Rien a publier pour --type {args.type} aujourd'hui.")
-        return
+    if args.type == 'vote':
+        chemin_image, contenu = preparer_vote(args)
+    else:
+        contenu = CHOIX[args.type]()
+        if contenu is None:
+            print(f"Rien a publier pour --type {args.type} aujourd'hui.")
+            return
 
-    chemin_image = DOSSIER / 'assets_social' / f'{datetime.date.today().isoformat()}-{args.type}.png'
-    photo = portrait_depute(contenu['a_index']) if 'a_index' in contenu else None
-    generer(
-        chemin_image, eyebrow=contenu['eyebrow'], titre=contenu['titre'], texte=contenu.get('texte'), photo=photo,
-        date_badge=contenu.get('date_badge'), bloc_depute=contenu.get('bloc_depute'),
-        pile_resultats=contenu.get('pile_resultats'), pied_source=contenu.get('pied_source'),
-    )
+        chemin_image = DOSSIER / 'assets_social' / f'{datetime.date.today().isoformat()}-{args.type}.png'
+        photo = portrait_depute(contenu['a_index']) if 'a_index' in contenu else None
+        generer(
+            chemin_image, eyebrow=contenu['eyebrow'], titre=contenu['titre'], texte=contenu.get('texte'), photo=photo,
+            date_badge=contenu.get('date_badge'), bloc_depute=contenu.get('bloc_depute'),
+            pile_resultats=contenu.get('pile_resultats'), pied_source=contenu.get('pied_source'),
+        )
 
     print(f"Visuel : {chemin_image}")
     print(f"Legende :\n{contenu['legende']}\n")

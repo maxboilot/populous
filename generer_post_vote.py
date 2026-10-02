@@ -265,6 +265,44 @@ def bandeau(iso, aujourdhui=None):
     return f"VOTE DU {date_fr(iso).upper()}"
 
 
+def sujet_phrase(titre_officiel):
+    """« Le sous-amendement à l'article 5 », « L'article 5 », « Le texte »..."""
+    nature = nature_scrutin(titre_officiel)
+    if nature.startswith('Vote sur'):
+        return 'Le texte'
+    if nature.startswith('Article'):
+        return "L'" + nature[0].lower() + nature[1:]
+    if nature.startswith('Amendement'):
+        return "L'" + nature[0].lower() + nature[1:]
+    if nature.startswith('Sous-amendement'):
+        return 'Le ' + nature[0].lower() + nature[1:]
+    return 'Le scrutin'
+
+
+def _pl(n, mot):
+    return f'{n} {mot}{"s" if n > 1 else ""}'
+
+
+def legende(vote, titre, contours, aujourdhui=None):
+    """Legende du post (Facebook + Instagram), 100 % deduite des chiffres
+    officiels : aucun commentaire politique. Le titre vient de l'humain."""
+    t = vote['tally']
+    n_abs = sum(1 for k, _ in contours if position(vote, k) == 'absent')
+    adopte = sort_adopte(vote)
+    issue = {True: ' a été adopté', False: ' a été rejeté', None: ''}[adopte]
+    quand = bandeau(vote['date'], aujourdhui).capitalize().replace("D'hier", "d'hier")
+    lignes = [
+        f"{quand} à l'Assemblée nationale — {titre}.",
+        f"{sujet_phrase(vote['titre'])}{issue} : {t['contre']} voix contre, {t['pour']} pour, "
+        f"{_pl(t['abstention'], 'abstention')}.",
+        f"{_pl(n_abs, 'circonscription')} n'{'a' if n_abs == 1 else 'ont'} enregistré aucun vote exprimé : "
+        f"le député n'a pas pris part au vote.",
+        "Et le vote de ton député ? Retrouve-le sur la carte dans l'app Populous.",
+        '#Populous #AssembléeNationale #Vote',
+    ]
+    return '\n\n'.join(lignes)
+
+
 # ------------------------------------------------------------------ rendu
 def generer(vote, contours, titre, sortie):
     F = gv._police
@@ -347,6 +385,7 @@ def main():
     generer(vote, charger_contours(source_index_html(a.local)), titre, sortie)
 
     t = vote['tally']
+    contours_ = None
     print(f"Scrutin n°{numero} du {vote['date']} — sort officiel : {vote['sort']}")
     print(f"Pour {t['pour']} · Contre {t['contre']} · Abstention {t['abstention']}")
     print(f"Titre {'fourni' if a.titre else 'BROUILLON (a relire !)'} : {titre}")

@@ -7,9 +7,20 @@ on:
   workflow_dispatch:
     inputs:
       type:
-        description: "Type de contenu (fait, presidentiel, depute, avenir, boussole)"
+        description: "Type de contenu (fait, presidentiel, depute, avenir, boussole, vote)"
         required: true
         default: fait
+      # Uniquement pour type=vote (lance a la main, jamais par le planificateur) :
+      numero:
+        description: "(vote) numero du scrutin"
+        required: false
+      titre:
+        description: "(vote) titre synthetique, relu par un humain"
+        required: false
+      publier:
+        description: "(vote) true = publier ; false = brouillon (image en artefact du run)"
+        required: false
+        default: "false"
 
 permissions:
   contents: write
@@ -44,7 +55,26 @@ jobs:
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
           FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
-        run: python publier_reseaux.py --type ${{ steps.type.outputs.type }} --publier
+          TYPE: ${{ steps.type.outputs.type }}
+          # Entrees saisies par un humain : passees par variables d'environnement,
+          # jamais interpolees dans le script shell (injection de commande).
+          INPUT_NUMERO: ${{ github.event.inputs.numero }}
+          INPUT_TITRE: ${{ github.event.inputs.titre }}
+          INPUT_PUBLIER: ${{ github.event.inputs.publier }}
+        run: |
+          if [ "$TYPE" = "vote" ]; then
+            ARGS=(--type vote --numero "$INPUT_NUMERO" --titre "$INPUT_TITRE")
+            if [ "$INPUT_PUBLIER" = "true" ]; then ARGS+=(--publier); fi
+            python publier_reseaux.py "${ARGS[@]}"
+          else
+            python publier_reseaux.py --type "$TYPE" --publier
+          fi
+      - name: Joindre le visuel du vote (brouillon a relire)
+        if: steps.type.outputs.type == 'vote'
+        uses: actions/upload-artifact@v4
+        with:
+          name: visuel-vote
+          path: assets_social/*-vote-*.png
       - name: Committer l'etat de publication mis a jour
         # Necessaire depuis que contenu_presidentielle() se souvient du
         # dernier sondage poste (data/state_publication.json) pour ne pas
