@@ -25,6 +25,18 @@
   },
   {
     "date": "2026-10-05",
+    "heure": "14:00",
+    "ordre_du_jour": "Examen du texte — Projet de loi de financement de la sécurité sociale pour 2027",
+    "themes": [
+      "securite",
+      "economie"
+    ],
+    "dossier": "DLR5L17N54951",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-05",
     "heure": "16:00",
     "ordre_du_jour": "Discussion du projet de loi autorisant l’approbation de l’accord entre la France et la Moldavie dans le domaine de la sécurité sociale",
     "themes": [
@@ -108,7 +120,7 @@
   {
     "date": "2026-10-06",
     "heure": "17:30",
-    "ordre_du_jour": "Examen du texte — Proposition de loi relative à l’expérimentation d’une gouvernance territoriale unifiée pour le centre de ressources, d’expertise et de performance sportive (CREPS) de Vichy (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Proposition de loi relative à l’expérimentation d’une gouvernance territoriale unifiée pour le centre de ressources, d’expertise et de performance sportive (CREPS) de Vichy",
     "themes": [
       "culture"
     ],
