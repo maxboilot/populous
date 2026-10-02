@@ -31,7 +31,7 @@ _TEXTES = (
     r"projet de loi constitutionnelle|proposition de loi|projet de loi|proposition de résolution"
 )
 _LECTURE = r"\((?:première|nouvelle|deuxième|seconde|troisième|lecture définitive|texte de la commission mixte|[^)]*lecture)[^)]*\)"
-_ART = r"(liminaire|premier|1er|unique|\d+(?:\s?(?:bis|ter|quater|quinquies|sexies|septies|octies|nonies|decies))?(?:\s[A-Z])?)"
+_ART = r"(liminaire|unique|(?:premier|1er|\d+)(?:\s?(?:bis|ter|quater|quinquies|sexies|septies|octies|nonies|decies))?(?-i:(?:\s[A-Z](?![a-zà-ÿ]))?))"
 
 
 def _norm(t):

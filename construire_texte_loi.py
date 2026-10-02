@@ -183,8 +183,10 @@ def trouver_texte_examine(intitule):
 def paragraphes_de_l_article(articles, ref_article):
     """Garde les paragraphes de l'article demande (« Article 5 »), jamais
     ceux de « Article 5 bis » ni d'un autre article."""
-    voulu = f'article {ref_article}'.lower()
-    return [a for a in articles if re.sub(r'\s+', ' ', (a['article'] or '')).strip().lower() == voulu]
+    # « article premier » (libelle du scrutin) s'ecrit « Article 1er » dans le texte.
+    synonymes = {'premier': ('premier', '1er', '1'), '1er': ('premier', '1er', '1')}
+    voulus = {f'article {r}'.lower() for r in synonymes.get(ref_article.lower(), (ref_article,))}
+    return [a for a in articles if re.sub(r'\s+', ' ', (a['article'] or '')).strip().lower() in voulus]
 
 
 def ecrire(payload):

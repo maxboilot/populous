@@ -1390,6 +1390,31 @@ function phraseVenir(v){ /* « Un article vient d'être adopté » */
   return `${sujet} vient d'être ${v.adopte ? adopte : adopte.replace("adopt","rejet")}`;
 }
 
+/* ---------- « comme N autres député·es » et « Hier / Aujourd'hui » ----------
+   Le décompte officiel (tally) ne compte « absent » que pour les NON-votants
+   (1 ou 2 personnes) : l'utiliser tel quel disait « comme 1 autre député » à
+   quelqu'un d'absent alors que des centaines l'étaient. Les absents sont donc
+   les 577 moins ceux qui ont voté ; on retire aussi la personne elle-même. */
+function nbAutresMemePosition(pos){
+  const t = voteData.tally;
+  const total = pos==="absent" ? Math.max(0, 577 - (t.pour + t.contre + t.abstention)) : (t[pos]||0);
+  return Math.max(0, total - 1);
+}
+function phraseCommeAutres(pos){
+  const n = nbAutresMemePosition(pos);
+  return n === 0 ? "seul·e dans ce cas sur 577 député·es"
+                 : `comme ${n} autre${n>1?"s":""} député·e${n>1?"s":""} sur 577`;
+}
+/* « Aujourd'hui » / « Hier » d'après la date réelle du scrutin (fuseau de
+   Paris), jamais d'après le moment où le pipeline a tourné. */
+function quandVote(dateIso){
+  const fmt = d => new Intl.DateTimeFormat("sv-SE", {timeZone:"Europe/Paris"}).format(d);
+  const maintenant = new Date();
+  if(dateIso === fmt(maintenant)) return "Aujourd'hui à l'Assemblée";
+  if(dateIso === fmt(new Date(maintenant.getTime() - 864e5))) return "Hier à l'Assemblée";
+  return null;
+}
+
 function titreSujetGras(titreBrut){
   const p = extraireSujet(titreBrut);
   if(!p) return "";
@@ -2420,7 +2445,11 @@ function renderDailyPopupVote(profile){
     }[pos];
     const col = VOTE_COLORS[pos];
     title = `<b>${esc(e.n)}</b> ${esc(posPhrase)}`;
-    lead = `Comme <span style="color:${col};font-weight:600">${voteData.tally[pos]} autres député·es</span> sur 577 — l'Assemblée a ${voteData.adopte?"adopté":"rejeté"} <i>${esc(voteData.titre)}</i>.`;
+    const nAutres = nbAutresMemePosition(pos), pl = nAutres>1 ? "s" : "";
+    lead = (nAutres === 0
+        ? "Seul·e dans ce cas sur 577 député·es"
+        : `Comme <span style="color:${col};font-weight:600">${nAutres} autre${pl} député·e${pl}</span> sur 577`)
+      + ` — l'Assemblée a ${voteData.adopte?"adopté":"rejeté"} <i>${esc(voteData.titre)}</i>.`;
   } else {
     title = phraseVenir(voteData);
     lead = esc(voteData.titre);
@@ -2690,12 +2719,12 @@ function renderAccueil(){
     // inverse (vote d'abord) rendait le carré difficile à comprendre
     // sans savoir de quoi le texte parlait.
     const voteLine = e && pos
-      ? `<b>${esc(e.n)}</b> ${({pour:"a voté pour",contre:"a voté contre",abstention:"s'est abstenu·e",absent:"était absent·e"})[pos]} — comme ${voteData.tally[pos]} autres député·es sur 577.`
+      ? `<b>${esc(e.n)}</b> ${({pour:"a voté pour",contre:"a voté contre",abstention:"s'est abstenu·e",absent:"était absent·e"})[pos]} — ${phraseCommeAutres(pos)}.`
       : phraseVote(voteData)
         + ` — ${voteData.tally.pour} pour · ${voteData.tally.contre} contre · ${voteData.tally.abstention} abstention${voteData.tally.abstention>1?"s":""}.`;
     card.innerHTML = `
       <div class="voteStamp ${voteData.adopte ? "adopte" : "rejete"}">${voteData.adopte ? "Adopté" : "Rejeté"}</div>
-      <div class="eyebrow">${voteData.isToday ? "Hier à l'Assemblée" : "Dernier scrutin connu · " + dateFR(voteData.date)}</div>
+      <div class="eyebrow">${quandVote(voteData.date) || ("Dernier scrutin connu · " + dateFR(voteData.date))}</div>
       <h2 class="d">${titreSujetGras(voteData.titre)}</h2>
       <p>${voteLine}</p>
       <div class="actions">
