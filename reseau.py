@@ -40,8 +40,8 @@ try:
 except ImportError:
     _CAFILE = None
 
-TENTATIVES = 3
-DELAI_BASE = 4  # secondes ; doublé-ish à chaque nouvel essai (x essai)
+TENTATIVES = 4
+DELAI_BASE = 6  # secondes ; x numéro de l'essai (6, 12, 18 s) : un 504 de l'Assemblée a duré plus que 12 s le 5 octobre 2026
 
 
 def telecharger(url, *, timeout, headers, tentatives=TENTATIVES):

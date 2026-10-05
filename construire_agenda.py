@@ -37,8 +37,10 @@ Trois choses à savoir avant de toucher à ce fichier.
 Aucun résumé n'est généré : on affiche le titre officiel du dossier tel que
 l'Assemblée le publie.
 """
+import http.client
 import json
 import sys
+import urllib.error
 import zipfile
 from datetime import datetime, timezone
 from io import BytesIO
@@ -290,7 +292,18 @@ def construire(depuis):
 
 def main():
     depuis = sys.argv[1] if len(sys.argv) > 1 else datetime.now(timezone.utc).strftime('%Y-%m-%d')
-    lignes = construire(depuis)
+    try:
+        lignes = construire(depuis)
+    except (urllib.error.URLError, TimeoutError, http.client.HTTPException) as e:
+        # L'open data de l'Assemblée est parfois indisponible (504 le 5 octobre
+        # 2026, 503 le 9 septembre) : malgré les nouveaux essais de reseau.py,
+        # un échec ici faisait planter tout le run d'ingestion et perdre la mise
+        # à jour du jour (les étapes suivantes et le commit sautaient). L'agenda
+        # est une donnée dérivée : mieux vaut garder celui de la veille.
+        if SORTIE.exists():
+            print(f'ATTENTION : agenda non mis a jour ({e}) ; agenda.json precedent conserve.')
+            return 0
+        raise
     SORTIE.parent.mkdir(exist_ok=True)
     SORTIE.write_text(json.dumps(lignes, ensure_ascii=False, indent=2), encoding='utf-8')
     print(f'agenda.json : {len(lignes)} entrees a partir du {depuis}')
