@@ -25,7 +25,7 @@
   },
   {
     "date": "2026-10-06",
-    "heure": "16:30",
+    "heure": "16:40",
     "ordre_du_jour": "Examen du texte — Proposition de loi visant à assouplir la procédure d'autorisation des établissements et services médico-sociaux à caractère expérimental",
     "themes": [
       "sante",
@@ -77,6 +77,17 @@
   },
   {
     "date": "2026-10-07",
+    "heure": "14:45",
+    "ordre_du_jour": "Examen du texte — Projet de loi relatif à la résilience des infrastructures critiques et au renforcement de la cybersécurité (séance éventuelle)",
+    "themes": [
+      "numerique"
+    ],
+    "dossier": "DLR5L17N50731",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-07",
     "heure": "15:00",
     "ordre_du_jour": "Amendements art. 88 — Redéfinir le cadre d'attribution des subventions accordées par les collectivités territoriales",
     "themes": [
@@ -118,17 +129,6 @@
       "securite"
     ],
     "dossier": "DLR5L17N54777",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-10-07",
-    "heure": "21:30",
-    "ordre_du_jour": "Suite de la discussion du projet de loi, adopté par le Sénat, relatif à la résilience des infrastructures critiques et au renforcement de la cybersécurité",
-    "themes": [
-      "numerique"
-    ],
-    "dossier": "DLR5L17N50731",
     "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
   },
@@ -224,17 +224,6 @@
       "securite"
     ],
     "dossier": "DLR5L17N54777",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-10-09",
-    "heure": "21:30",
-    "ordre_du_jour": "Suite de la discussion du projet de loi, adopté par le Sénat, relatif à la résilience des infrastructures critiques et au renforcement de la cybersécurité",
-    "themes": [
-      "numerique"
-    ],
-    "dossier": "DLR5L17N50731",
     "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
   },
@@ -449,6 +438,135 @@
       "economie"
     ],
     "dossier": "DLR5L17N54629",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-29",
+    "heure": "21:30",
+    "ordre_du_jour": "Suite de la discussion de la proposition de loi d’urgence visant à rétablir l’interdiction de l’acétamipride et du flupyradifurone pour garantir la protection de la santé humaine, de la biodiversité, de l’environnement et notre souveraineté alimentaire",
+    "themes": [
+      "sante",
+      "environnement",
+      "agriculture"
+    ],
+    "dossier": "DLR5L17N54902",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-29",
+    "heure": "21:30",
+    "ordre_du_jour": "Suite de la discussion de la proposition de loi pour défiscaliser les pensions alimentaires perçues et lutter contre la précarité des familles monoparentales",
+    "themes": [
+      "travail",
+      "social",
+      "agriculture"
+    ],
+    "dossier": "DLR5L17N52970",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-29",
+    "heure": "21:30",
+    "ordre_du_jour": "Suite de la discussion de la proposition de loi pour protéger durablement les jeunes majeurs de l’aide sociale à l’enfance et de la protection judiciaire de la jeunesse",
+    "themes": [
+      "justice"
+    ],
+    "dossier": "DLR5L17N54298",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-29",
+    "heure": "21:30",
+    "ordre_du_jour": "Suite de la discussion de la proposition de loi visant l'augmentation des salaires et des pensions",
+    "themes": [
+      "travail"
+    ],
+    "dossier": "DLR5L17N54906",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-29",
+    "heure": "21:30",
+    "ordre_du_jour": "Suite de la discussion de la proposition de loi visant un contrôle réel des investissements étrangers en France",
+    "themes": [],
+    "dossier": "DLR5L17N54907",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-29",
+    "heure": "21:30",
+    "ordre_du_jour": "Suite de la discussion de la proposition de loi visant à abroger le dispositif des amendes forfaitaires délictuelles",
+    "themes": [],
+    "dossier": "DLR5L17N54903",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-29",
+    "heure": "21:30",
+    "ordre_du_jour": "Suite de la discussion de la proposition de loi visant à créer un corps de fonctionnaires de catégorie B pour les accompagnants d’élèves en situation de handicap",
+    "themes": [
+      "sante"
+    ],
+    "dossier": "DLR5L17N54901",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-29",
+    "heure": "21:30",
+    "ordre_du_jour": "Suite de la discussion de la proposition de loi visant à créer un parcours de soins intégralement pris en charge par la sécurité sociale pour toutes les victimes de violences sexuelles",
+    "themes": [
+      "sante",
+      "justice",
+      "securite"
+    ],
+    "dossier": "DLR5L17N54898",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-29",
+    "heure": "21:30",
+    "ordre_du_jour": "Suite de la discussion de la proposition de loi visant à garantir le droit de vote par l’encadrement des radiations pour perte d’attache communale",
+    "themes": [],
+    "dossier": "DLR5L17N53266",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-29",
+    "heure": "21:30",
+    "ordre_du_jour": "Suite de la discussion de la proposition de loi visant à garantir les droits des joueurs et joueuses et la pérennité des jeux vidéo",
+    "themes": [],
+    "dossier": "DLR5L17N54899",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-29",
+    "heure": "21:30",
+    "ordre_du_jour": "Suite de la discussion de la proposition de loi visant à instaurer un moratoire sur le projet du Canal Seine-Nord Europe",
+    "themes": [],
+    "dossier": "DLR5L17N54900",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-29",
+    "heure": "21:30",
+    "ordre_du_jour": "Suite de la discussion de la proposition de loi visant à rétablir le droit commun de la prescription acquisitive dans les Collectivités régies par l’article 73 de la Constitution ainsi qu’à Saint-Martin et Saint-Barthélemy",
+    "themes": [
+      "justice",
+      "institutions"
+    ],
+    "dossier": "DLR5L17N53331",
     "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
   },
