@@ -77,7 +77,7 @@
   },
   {
     "date": "2026-10-07",
-    "heure": "18:00",
+    "heure": "15:00",
     "ordre_du_jour": "Amendements art. 88 — Redéfinir le cadre d'attribution des subventions accordées par les collectivités territoriales",
     "themes": [
       "institutions"
@@ -348,9 +348,39 @@
   {
     "date": "2026-10-21",
     "heure": "09:00",
+    "ordre_du_jour": "Examen du texte — Abroger le dispositif des amendes forfaitaires délictuelles (séance éventuelle)",
+    "themes": [],
+    "dossier": "DLR5L17N54903",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-21",
+    "heure": "09:00",
     "ordre_du_jour": "Examen du texte — Contrôle réel des investissements étrangers en France (séance éventuelle)",
     "themes": [],
     "dossier": "DLR5L17N54907",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-21",
+    "heure": "09:00",
+    "ordre_du_jour": "Examen du texte — Garantir le droit de vote par l’encadrement des radiations pour perte d’attache communale (séance éventuelle)",
+    "themes": [],
+    "dossier": "DLR5L17N53266",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-21",
+    "heure": "09:00",
+    "ordre_du_jour": "Examen du texte — Rétablir le droit commun de la prescription acquisitive dans les collectivités régies par l’article 73 de la Constitution ainsi qu’à Saint-Martin et Saint-Barthélemy (séance éventuelle)",
+    "themes": [
+      "justice",
+      "institutions"
+    ],
+    "dossier": "DLR5L17N53331",
     "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
   },
