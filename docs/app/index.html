@@ -313,6 +313,7 @@ window.__VOTE_EARLY__ = (async function(){
   .privacyBox{margin-top:20px;padding:14px 16px;border-radius:16px;background:var(--accent-soft);
     font-size:12px;line-height:1.6;color:var(--ink-soft)}
   .privacyBox b{color:var(--ink)}
+  .privacyBox a{color:var(--accent); font-weight:600}
   .profRow{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;
     margin-top:10px;padding:14px 16px;background:var(--card-alt);border:none;border-radius:14px;
     color:var(--ink);cursor:pointer;text-align:left;font-family:inherit}
@@ -2001,6 +2002,21 @@ function obRender(){
       ${row("Tranche d'âge", draft.age || "Non renseignée", 2)}
       ${row("Circonscription", draft.circoLabel || "Non renseignée", 3)}
       ${row("Ta situation", situationBits.length ? situationBits.join(" · ") : "Non renseignée", 4)}
+      <div class="privacyBox" id="sourcesContact" style="margin-top:18px">
+        <b>Sources officielles</b><br>
+        Votes, scrutins, députés et agenda : <a href="https://data.assemblee-nationale.fr" target="_blank" rel="noopener">data.assemblee-nationale.fr</a><br>
+        Textes de loi et dossiers : <a href="https://www.assemblee-nationale.fr" target="_blank" rel="noopener">assemblee-nationale.fr</a><br>
+        Déclarations d'intérêts : <a href="https://www.hatvp.fr" target="_blank" rel="noopener">hatvp.fr</a><br>
+        Faits historiques et textes officiels : <a href="https://www.legifrance.gouv.fr" target="_blank" rel="noopener">legifrance.gouv.fr</a><br>
+        <span style="opacity:.8">Populous est un média indépendant : l'app n'est affiliée à aucune institution ni à l'État, et ne représente pas l'Assemblée nationale.</span>
+      </div>
+      <div class="privacyBox" id="contactBloc" style="margin-top:12px">
+        <b>Nous contacter</b><br>
+        Une question, une erreur à signaler ? Écrivez-nous : <a href="mailto:boilot.maxime@gmail.com">boilot.maxime@gmail.com</a><br>
+        Site d'actualités (version web) : <a href="https://maxboilot.github.io/populous/app/" target="_blank" rel="noopener">maxboilot.github.io/populous/app</a><br>
+        Assistance : <a href="https://maxboilot.github.io/populous/support/" target="_blank" rel="noopener">page d'assistance</a> ·
+        <a href="https://maxboilot.github.io/populous/" target="_blank" rel="noopener">Politique de confidentialité</a>
+      </div>
       <div class="actions"><button class="btn ghost" id="profClose" style="flex:none;padding:12px 22px">Fermer</button></div>`;
     wireLocalBtn("localBtn");
     el.querySelectorAll(".profRow").forEach(b=>{
