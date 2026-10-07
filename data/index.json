@@ -3919,5 +3919,16 @@
     ],
     "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0345_texte-adopte-seance.pdf",
     "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N54379",
+    "date": "2026-10-07",
+    "titre": "Projet de loi autorisant l’approbation de l’accord multilatéral entre autorités compétentes portant sur l’échange des informations GloBE",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0347_texte-adopte-seance.pdf",
+    "type": "main_levee"
   }
 ]

@@ -1,14 +1,22 @@
 {
-  "numero": 8560,
+  "numero": 8577,
   "statut": "publie",
   "portee": "article",
-  "article_ref": "21",
+  "article_ref": "32",
   "source_texte": "commission",
   "source": "https://www.assemblee-nationale.fr/dyn/opendata/PIONANR5L17BTC3190.html",
   "articles": [
     {
-      "article": "Article 21",
-      "texte": "Aux articles 222‑6‑4 et 222‑26‑1 et au premier alinéa de l’article 222‑30‑2 du code pénal, après le mot : « commette », sont insérés les mots : « ou qu’elle fasse commettre »."
+      "article": "Article 32",
+      "texte": "Après le 5° ter A de l’article L. 221‑1 du code de l’action sociale et des familles, il est inséré un 5° ter B ainsi rédigé :"
+    },
+    {
+      "article": "Article 32",
+      "texte": "« 5° ter B Veiller au repérage et à l’orientation des mineurs victimes d’exploitation sexuelle et leur garantir l’accès à un hébergement adapté, non mixte et sécurisé."
+    },
+    {
+      "article": "Article 32",
+      "texte": "« Des conventions de partenariat peuvent être établies avec les associations spécialisées dans l’accompagnement des personnes victimes de prostitution pour la mise en œuvre du présent 5° ter B ; »."
     }
   ]
 }
