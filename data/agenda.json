@@ -1,52 +1,5 @@
 [
   {
-    "date": "2026-10-06",
-    "heure": "15:00",
-    "ordre_du_jour": "Suite de la discussion de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants",
-    "themes": [
-      "securite",
-      "social"
-    ],
-    "dossier": "DLR5L17N54776",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-10-06",
-    "heure": "15:00",
-    "ordre_du_jour": "Suite de la discussion de la proposition de loi organique visant à adapter l'autorité judiciaire à la lutte contre les violences sexuelles et intrafamiliales",
-    "themes": [
-      "justice",
-      "securite"
-    ],
-    "dossier": "DLR5L17N54777",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-10-06",
-    "heure": "16:40",
-    "ordre_du_jour": "Examen du texte — Proposition de loi visant à assouplir la procédure d'autorisation des établissements et services médico-sociaux à caractère expérimental",
-    "themes": [
-      "sante",
-      "justice"
-    ],
-    "dossier": "DLR5L17N53886",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-10-06",
-    "heure": "18:05",
-    "ordre_du_jour": "Examen du texte — Proposition de loi relative à l’expérimentation d’une gouvernance territoriale unifiée pour le centre de ressources, d’expertise et de performance sportive (CREPS) de Vichy",
-    "themes": [
-      "culture"
-    ],
-    "dossier": "DLR5L17N54096",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
     "date": "2026-10-07",
     "heure": "09:30",
     "ordre_du_jour": "Examen du texte — Instaurer un moratoire sur le projet du canal Seine-nord Europe",
