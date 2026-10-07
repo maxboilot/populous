@@ -1,7 +1,7 @@
 [
   {
     "date": "2026-10-07",
-    "heure": "09:30",
+    "heure": "09:35",
     "ordre_du_jour": "Examen du texte — Projet de loi de finances pour 2027",
     "themes": [
       "economie"
@@ -16,6 +16,17 @@
     "ordre_du_jour": "Discussion du projet de loi autorisant l’approbation de l’accord multilatéral entre autorités compétentes portant sur l’échange des informations GloBE",
     "themes": [],
     "dossier": "DLR5L17N54379",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-07",
+    "heure": "14:45",
+    "ordre_du_jour": "Examen du texte — Projet de loi relatif à la résilience des infrastructures critiques et au renforcement de la cybersécurité",
+    "themes": [
+      "numerique"
+    ],
+    "dossier": "DLR5L17N50731",
     "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
   },
