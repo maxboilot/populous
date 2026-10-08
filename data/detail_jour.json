@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-10-08T17:55:29.580757Z",
+  "generated_at": "2026-10-08T19:59:42.985778Z",
   "date": "2026-10-08",
-  "numero_vedette": 8609,
+  "numero_vedette": 8611,
   "lois": [
     {
       "nature_texte": "proposition de résolution",
@@ -29,6 +29,72 @@
               "solennel": false,
               "objet": "la proposition de résolution visant à garantir un accès continu à l'eau potable dans les territoires ultramarins (article 34-1 de la Constitution).",
               "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8609",
+              "vedette": false,
+              "sous_amendements": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nature_texte": "proposition de résolution",
+      "intitule": "visant à mobiliser la commande publique au service de l'emploi, de la production et de l'innovation en France (article 34-1 de la Constitution)",
+      "lecture": null,
+      "ensemble": null,
+      "motions": [],
+      "articles": [
+        {
+          "ref": "?",
+          "article": null,
+          "modifications": [
+            {
+              "numero": 8610,
+              "nature": "autre",
+              "article": null,
+              "n_amendement": null,
+              "parent": null,
+              "auteur": null,
+              "issue": "rejete",
+              "pour": 151,
+              "contre": 187,
+              "abstentions": 0,
+              "votants": 338,
+              "solennel": false,
+              "objet": "la proposition de résolution visant à mobiliser la commande publique au service de l'emploi, de la production et de l'innovation en France (article 34-1 de la Constitution).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8610",
+              "vedette": false,
+              "sous_amendements": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nature_texte": "proposition de résolution",
+      "intitule": "visant à refonder l'espace Schengen en instaurant une double frontière nationale et européenne (article 34-1 de la Constitution)",
+      "lecture": null,
+      "ensemble": null,
+      "motions": [],
+      "articles": [
+        {
+          "ref": "?",
+          "article": null,
+          "modifications": [
+            {
+              "numero": 8611,
+              "nature": "autre",
+              "article": null,
+              "n_amendement": null,
+              "parent": null,
+              "auteur": null,
+              "issue": "rejete",
+              "pour": 144,
+              "contre": 199,
+              "abstentions": 5,
+              "votants": 348,
+              "solennel": false,
+              "objet": "la proposition de résolution visant à refonder l'espace Schengen en instaurant une double frontière nationale et européenne (article 34-1 de la Constitution).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8611",
               "vedette": true,
               "sous_amendements": []
             }
