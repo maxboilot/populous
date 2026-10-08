@@ -170,6 +170,17 @@
   },
   {
     "date": "2026-10-15",
+    "heure": "10:30",
+    "ordre_du_jour": "Examen du texte — Allocution de la Présidente de l'Assemblée nationale",
+    "themes": [
+      "institutions"
+    ],
+    "dossier": "DLR5L17N50157",
+    "scrutin_annonce": false,
+    "lecture": null
+  },
+  {
+    "date": "2026-10-15",
     "heure": "15:00",
     "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (première partie)",
     "themes": [

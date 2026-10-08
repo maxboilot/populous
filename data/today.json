@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-10-08T12:07:42.436849Z",
-  "featured_numero": 8609,
+  "generated_at": "2026-10-08T15:45:21.044084Z",
+  "featured_numero": null,
   "featured_is_solennel": false,
   "autres_scrutins_du_jour": [],
-  "aucun_vote_aujourdhui": false,
+  "aucun_vote_aujourdhui": true,
   "last_featured_numero": 8609,
   "last_featured_date": "2026-10-08"
 }
