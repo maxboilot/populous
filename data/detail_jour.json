@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-10-09T17:31:11.323198Z",
+  "generated_at": "2026-10-09T19:34:38.063030Z",
   "date": "2026-10-09",
-  "numero_vedette": 8640,
+  "numero_vedette": 8660,
   "lois": [
     {
       "nature_texte": "proposition de loi",
@@ -253,7 +253,7 @@
             "solennel": false,
             "objet": "l'article 46 (examen prioritaire) de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants (première lecture).",
             "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8640",
-            "vedette": true
+            "vedette": false
           },
           "modifications": [
             {
@@ -390,6 +390,399 @@
               "sous_amendements": []
             }
           ]
+        },
+        {
+          "ref": "63",
+          "article": null,
+          "modifications": [
+            {
+              "numero": 8642,
+              "nature": "amendement",
+              "article": "63",
+              "n_amendement": 245,
+              "parent": null,
+              "auteur": "M. Ménagé",
+              "issue": "adopte",
+              "pour": 100,
+              "contre": 50,
+              "abstentions": 0,
+              "votants": 150,
+              "solennel": false,
+              "objet": "l'amendement n° 245 de M. Ménagé et les amendements identiques suivants de suppression de l'article 63 (examen prioritaire) de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8642",
+              "vedette": false,
+              "sous_amendements": []
+            }
+          ]
+        },
+        {
+          "ref": "39",
+          "article": null,
+          "modifications": [
+            {
+              "numero": 8643,
+              "nature": "amendement",
+              "article": "39",
+              "n_amendement": 1083,
+              "parent": null,
+              "auteur": "Mme Erodi",
+              "issue": "rejete",
+              "pour": 23,
+              "contre": 37,
+              "abstentions": 45,
+              "votants": 105,
+              "solennel": false,
+              "objet": "l'amendement n° 1083 de Mme Erodi après l'article 39 (examen prioritaire) de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8643",
+              "vedette": false,
+              "sous_amendements": []
+            }
+          ]
+        },
+        {
+          "ref": "47",
+          "article": {
+            "numero": 8646,
+            "nature": "article",
+            "article": "47",
+            "n_amendement": null,
+            "parent": null,
+            "auteur": null,
+            "issue": "adopte",
+            "pour": 50,
+            "contre": 0,
+            "abstentions": 0,
+            "votants": 50,
+            "solennel": false,
+            "objet": "l'article 47 (examen prioritaire) de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants (première lecture).",
+            "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8646",
+            "vedette": false
+          },
+          "modifications": [
+            {
+              "numero": 8644,
+              "nature": "amendement",
+              "article": "47",
+              "n_amendement": 814,
+              "parent": null,
+              "auteur": "Mme Leboucher",
+              "issue": "rejete",
+              "pour": 14,
+              "contre": 28,
+              "abstentions": 11,
+              "votants": 53,
+              "solennel": false,
+              "objet": "l'amendement n° 814 de Mme Leboucher à l'article 47 (examen prioritaire) de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8644",
+              "vedette": false,
+              "sous_amendements": []
+            },
+            {
+              "numero": 8645,
+              "nature": "amendement",
+              "article": "47",
+              "n_amendement": 257,
+              "parent": null,
+              "auteur": "Mme Lingemann",
+              "issue": "rejete",
+              "pour": 11,
+              "contre": 28,
+              "abstentions": 13,
+              "votants": 52,
+              "solennel": false,
+              "objet": "l'amendement n° 257 de Mme Lingemann et l'amendement identique suivant à l'article 47 (examen prioritaire) de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8645",
+              "vedette": false,
+              "sous_amendements": []
+            }
+          ]
+        },
+        {
+          "ref": "48",
+          "article": {
+            "numero": 8647,
+            "nature": "article",
+            "article": "48",
+            "n_amendement": null,
+            "parent": null,
+            "auteur": null,
+            "issue": "adopte",
+            "pour": 50,
+            "contre": 17,
+            "abstentions": 0,
+            "votants": 67,
+            "solennel": false,
+            "objet": "l'article 48 (examen prioritaire) de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants (première lecture).",
+            "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8647",
+            "vedette": false
+          },
+          "modifications": []
+        },
+        {
+          "ref": "49",
+          "article": {
+            "numero": 8651,
+            "nature": "article",
+            "article": "49",
+            "n_amendement": null,
+            "parent": null,
+            "auteur": null,
+            "issue": "adopte",
+            "pour": 62,
+            "contre": 0,
+            "abstentions": 26,
+            "votants": 88,
+            "solennel": false,
+            "objet": "l'article 49 (examen prioritaire) de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants (première lecture).",
+            "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8651",
+            "vedette": false
+          },
+          "modifications": [
+            {
+              "numero": 8648,
+              "nature": "amendement",
+              "article": "49",
+              "n_amendement": 404,
+              "parent": null,
+              "auteur": "du Gouvernement",
+              "issue": "adopte",
+              "pour": 56,
+              "contre": 20,
+              "abstentions": 2,
+              "votants": 78,
+              "solennel": false,
+              "objet": "l'amendement n° 404 du Gouvernement à l'article 49 (examen prioritaire) de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8648",
+              "vedette": false,
+              "sous_amendements": []
+            },
+            {
+              "numero": 8649,
+              "nature": "amendement",
+              "article": "49",
+              "n_amendement": 1164,
+              "parent": null,
+              "auteur": "M. Gouffier Valente",
+              "issue": "adopte",
+              "pour": 63,
+              "contre": 21,
+              "abstentions": 2,
+              "votants": 86,
+              "solennel": false,
+              "objet": "l'amendement n° 1164 de M. Gouffier Valente à l'article 49 (examen prioritaire) de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8649",
+              "vedette": false,
+              "sous_amendements": []
+            },
+            {
+              "numero": 8650,
+              "nature": "amendement",
+              "article": "49",
+              "n_amendement": 1172,
+              "parent": null,
+              "auteur": "Mme Vidal",
+              "issue": "adopte",
+              "pour": 50,
+              "contre": 3,
+              "abstentions": 24,
+              "votants": 77,
+              "solennel": false,
+              "objet": "l'amendement n° 1172 de Mme Vidal à l'article 49 (examen prioritaire) de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8650",
+              "vedette": false,
+              "sous_amendements": []
+            }
+          ]
+        },
+        {
+          "ref": "50",
+          "article": {
+            "numero": 8652,
+            "nature": "article",
+            "article": "50",
+            "n_amendement": null,
+            "parent": null,
+            "auteur": null,
+            "issue": "adopte",
+            "pour": 92,
+            "contre": 0,
+            "abstentions": 0,
+            "votants": 92,
+            "solennel": false,
+            "objet": "l'article 50 (examen prioritaire) de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants (première lecture).",
+            "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8652",
+            "vedette": false
+          },
+          "modifications": []
+        },
+        {
+          "ref": "51",
+          "article": {
+            "numero": 8653,
+            "nature": "article",
+            "article": "51",
+            "n_amendement": null,
+            "parent": null,
+            "auteur": null,
+            "issue": "adopte",
+            "pour": 87,
+            "contre": 0,
+            "abstentions": 0,
+            "votants": 87,
+            "solennel": false,
+            "objet": "l'article 51 (examen prioritaire) de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants (première lecture).",
+            "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8653",
+            "vedette": false
+          },
+          "modifications": []
+        },
+        {
+          "ref": "52",
+          "article": null,
+          "modifications": [
+            {
+              "numero": 8654,
+              "nature": "amendement",
+              "article": "52",
+              "n_amendement": 386,
+              "parent": null,
+              "auteur": "du Gouvernement de suppression de l'article 52 (examen prioritaire) de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes",
+              "issue": "adopte",
+              "pour": 78,
+              "contre": 0,
+              "abstentions": 17,
+              "votants": 95,
+              "solennel": false,
+              "objet": "l'amendement n° 386 du Gouvernement de suppression de l'article 52 (examen prioritaire) de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8654",
+              "vedette": false,
+              "sous_amendements": []
+            }
+          ]
+        },
+        {
+          "ref": "53",
+          "article": {
+            "numero": 8655,
+            "nature": "article",
+            "article": "53",
+            "n_amendement": null,
+            "parent": null,
+            "auteur": null,
+            "issue": "adopte",
+            "pour": 90,
+            "contre": 0,
+            "abstentions": 0,
+            "votants": 90,
+            "solennel": false,
+            "objet": "l'article 53 (examen prioritaire) de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants (première lecture).",
+            "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8655",
+            "vedette": false
+          },
+          "modifications": []
+        },
+        {
+          "ref": "54",
+          "article": {
+            "numero": 8657,
+            "nature": "article",
+            "article": "54",
+            "n_amendement": null,
+            "parent": null,
+            "auteur": null,
+            "issue": "adopte",
+            "pour": 87,
+            "contre": 0,
+            "abstentions": 0,
+            "votants": 87,
+            "solennel": false,
+            "objet": "l'article 54 (examen prioritaire) de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants (première lecture).",
+            "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8657",
+            "vedette": false
+          },
+          "modifications": [
+            {
+              "numero": 8656,
+              "nature": "amendement",
+              "article": "54",
+              "n_amendement": 1266,
+              "parent": null,
+              "auteur": "M. Peytavie",
+              "issue": "adopte",
+              "pour": 80,
+              "contre": 0,
+              "abstentions": 0,
+              "votants": 80,
+              "solennel": false,
+              "objet": "l'amendement n° 1266 de M. Peytavie à l'article 54 (examen prioritaire) de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8656",
+              "vedette": false,
+              "sous_amendements": []
+            }
+          ]
+        },
+        {
+          "ref": "55",
+          "article": {
+            "numero": 8658,
+            "nature": "article",
+            "article": "55",
+            "n_amendement": null,
+            "parent": null,
+            "auteur": null,
+            "issue": "adopte",
+            "pour": 78,
+            "contre": 0,
+            "abstentions": 0,
+            "votants": 78,
+            "solennel": false,
+            "objet": "l'article 55 (examen prioritaire) de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants (première lecture).",
+            "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8658",
+            "vedette": false
+          },
+          "modifications": []
+        },
+        {
+          "ref": "56",
+          "article": {
+            "numero": 8659,
+            "nature": "article",
+            "article": "56",
+            "n_amendement": null,
+            "parent": null,
+            "auteur": null,
+            "issue": "adopte",
+            "pour": 75,
+            "contre": 0,
+            "abstentions": 0,
+            "votants": 75,
+            "solennel": false,
+            "objet": "l'article 56 (examen prioritaire) de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants (première lecture).",
+            "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8659",
+            "vedette": false
+          },
+          "modifications": []
+        },
+        {
+          "ref": "57",
+          "article": {
+            "numero": 8660,
+            "nature": "article",
+            "article": "57",
+            "n_amendement": null,
+            "parent": null,
+            "auteur": null,
+            "issue": "adopte",
+            "pour": 73,
+            "contre": 0,
+            "abstentions": 0,
+            "votants": 73,
+            "solennel": false,
+            "objet": "l'article 57 (examen prioritaire) de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants (première lecture).",
+            "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8660",
+            "vedette": true
+          },
+          "modifications": []
         }
       ]
     }

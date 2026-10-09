@@ -1,4 +1,18 @@
 {
-  "numero": 8640,
-  "statut": "rejete"
+  "numero": 8660,
+  "statut": "publie",
+  "portee": "article",
+  "article_ref": "57",
+  "source_texte": "commission",
+  "source": "https://www.assemblee-nationale.fr/dyn/opendata/PIONANR5L17BTC3190.html",
+  "articles": [
+    {
+      "article": "Article 57",
+      "texte": "Au premier alinéa de l’article L. 1142‑8 du code de la santé publique, après la seconde occurrence du mot : « dommages », sont insérés les mots : « physiques et psychiques »."
+    },
+    {
+      "article": "Article 57",
+      "texte": "Violences obstétricales et gynécologiques"
+    }
+  ]
 }
