@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-10-08T22:13:46.473506Z",
+  "generated_at": "2026-10-09T00:27:51.999779Z",
   "date": "2026-10-08",
-  "numero_vedette": 8611,
+  "numero_vedette": 8612,
   "lois": [
     {
       "nature_texte": "proposition de résolution",
@@ -95,8 +95,220 @@
               "solennel": false,
               "objet": "la proposition de résolution visant à refonder l'espace Schengen en instaurant une double frontière nationale et européenne (article 34-1 de la Constitution).",
               "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8611",
+              "vedette": false,
+              "sous_amendements": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nature_texte": "proposition de résolution",
+      "intitule": "invitant le Gouvernement à engager les démarches en vue de soutenir l'entrée au Panthéon d'Olympe de Gouges, de l'abbé Charles-Michel de l'Epée et de Zéna M'Déré (article 34-1 de la Constitution)",
+      "lecture": null,
+      "ensemble": null,
+      "motions": [],
+      "articles": [
+        {
+          "ref": "?",
+          "article": null,
+          "modifications": [
+            {
+              "numero": 8612,
+              "nature": "autre",
+              "article": null,
+              "n_amendement": null,
+              "parent": null,
+              "auteur": null,
+              "issue": "rejete",
+              "pour": 133,
+              "contre": 158,
+              "abstentions": 3,
+              "votants": 294,
+              "solennel": false,
+              "objet": "la proposition de résolution invitant le Gouvernement à engager les démarches en vue de soutenir l'entrée au Panthéon d'Olympe de Gouges, de l'abbé Charles-Michel de l'Epée et de Zéna M'Déré (article 34-1 de la Constitution).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8612",
               "vedette": true,
               "sous_amendements": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nature_texte": "proposition de loi",
+      "intitule": "visant à abroger les zones à faibles émissions-mobilités",
+      "lecture": "(première lecture)",
+      "ensemble": null,
+      "motions": [],
+      "articles": [
+        {
+          "ref": "unique",
+          "article": null,
+          "modifications": [
+            {
+              "numero": 8613,
+              "nature": "amendement",
+              "article": "unique",
+              "n_amendement": 7,
+              "parent": null,
+              "auteur": "Mme Belluco de suppression de l'article unique de la proposition de loi visant",
+              "issue": "rejete",
+              "pour": 49,
+              "contre": 164,
+              "abstentions": 0,
+              "votants": 213,
+              "solennel": false,
+              "objet": "l'amendement n° 7 de Mme Belluco de suppression de l'article unique de la proposition de loi visant à abroger les zones à faibles émissions-mobilités (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8613",
+              "vedette": false,
+              "sous_amendements": []
+            },
+            {
+              "numero": 8614,
+              "nature": "amendement",
+              "article": "unique",
+              "n_amendement": 29,
+              "parent": null,
+              "auteur": "M. Maillard",
+              "issue": "rejete",
+              "pour": 48,
+              "contre": 157,
+              "abstentions": 2,
+              "votants": 207,
+              "solennel": false,
+              "objet": "l'amendement n° 29 de M. Maillard à l'article unique de la proposition de loi visant à abroger les zones à faibles émissions-mobilités (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8614",
+              "vedette": false,
+              "sous_amendements": []
+            },
+            {
+              "numero": 8617,
+              "nature": "amendement",
+              "article": "unique",
+              "n_amendement": 10,
+              "parent": null,
+              "auteur": "Mme Nosbé",
+              "issue": "rejete",
+              "pour": 32,
+              "contre": 122,
+              "abstentions": 15,
+              "votants": 169,
+              "solennel": false,
+              "objet": "l'amendement n° 10 de Mme Nosbé à l'article unique de la proposition de loi visant à abroger les zones à faibles émissions-mobilités (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8617",
+              "vedette": false,
+              "sous_amendements": [
+                {
+                  "numero": 8615,
+                  "nature": "sous-amendement",
+                  "article": "unique",
+                  "n_amendement": 47,
+                  "parent": 10,
+                  "auteur": "M. Sitzenstuhl",
+                  "issue": "rejete",
+                  "pour": 17,
+                  "contre": 149,
+                  "abstentions": 2,
+                  "votants": 168,
+                  "solennel": false,
+                  "objet": "le sous-amendement n° 47 de M. Sitzenstuhl à l'amendement n° 10 de Mme Nosbé à l'article unique de la proposition de loi visant à abroger les zones à faibles émissions-mobilités (première lecture).",
+                  "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8615",
+                  "vedette": false,
+                  "sous_amendements": []
+                },
+                {
+                  "numero": 8616,
+                  "nature": "sous-amendement",
+                  "article": "unique",
+                  "n_amendement": 35,
+                  "parent": 10,
+                  "auteur": "Mme Belluco",
+                  "issue": "rejete",
+                  "pour": 53,
+                  "contre": 109,
+                  "abstentions": 0,
+                  "votants": 162,
+                  "solennel": false,
+                  "objet": "le sous-amendement n° 35 de Mme Belluco à l'amendement n° 10 de Mme Nosbé à l'article unique de la proposition de loi visant à abroger les zones à faibles émissions-mobilités (première lecture).",
+                  "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8616",
+                  "vedette": false,
+                  "sous_amendements": []
+                }
+              ]
+            },
+            {
+              "numero": 8618,
+              "nature": "amendement",
+              "article": "unique",
+              "n_amendement": 1,
+              "parent": null,
+              "auteur": "M. Meurin",
+              "issue": "adopte",
+              "pour": 105,
+              "contre": 79,
+              "abstentions": 0,
+              "votants": 184,
+              "solennel": false,
+              "objet": "l'amendement n° 1 de M. Meurin à l'article unique de la proposition de loi visant à abroger les zones à faibles émissions-mobilités (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8618",
+              "vedette": false,
+              "sous_amendements": []
+            },
+            {
+              "numero": 8621,
+              "nature": "amendement",
+              "article": "unique",
+              "n_amendement": 11,
+              "parent": null,
+              "auteur": "M. Carrière",
+              "issue": "rejete",
+              "pour": 27,
+              "contre": 105,
+              "abstentions": 17,
+              "votants": 149,
+              "solennel": false,
+              "objet": "l'amendement n° 11 de M. Carrière à l'article unique de la proposition de loi visant à abroger les zones à faibles émissions-mobilités (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8621",
+              "vedette": false,
+              "sous_amendements": [
+                {
+                  "numero": 8619,
+                  "nature": "sous-amendement",
+                  "article": "unique",
+                  "n_amendement": 36,
+                  "parent": 11,
+                  "auteur": "Mme Belluco",
+                  "issue": "rejete",
+                  "pour": 38,
+                  "contre": 114,
+                  "abstentions": 0,
+                  "votants": 152,
+                  "solennel": false,
+                  "objet": "le sous-amendement n° 36 de Mme Belluco à l'amendement n° 11 de M. Carrière à l'article unique de la proposition de loi visant à abroger les zones à faibles émissions-mobilités (première lecture).",
+                  "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8619",
+                  "vedette": false,
+                  "sous_amendements": []
+                },
+                {
+                  "numero": 8620,
+                  "nature": "sous-amendement",
+                  "article": "unique",
+                  "n_amendement": 48,
+                  "parent": 11,
+                  "auteur": "M. Sitzenstuhl",
+                  "issue": "rejete",
+                  "pour": 18,
+                  "contre": 132,
+                  "abstentions": 0,
+                  "votants": 150,
+                  "solennel": false,
+                  "objet": "le sous-amendement n° 48 de M. Sitzenstuhl à l'amendement n° 11 de M. Carrière à l'article unique de la proposition de loi visant à abroger les zones à faibles émissions-mobilités (première lecture).",
+                  "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8620",
+                  "vedette": false,
+                  "sous_amendements": []
+                }
+              ]
             }
           ]
         }

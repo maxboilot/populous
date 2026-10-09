@@ -1,76 +1,5 @@
 [
   {
-    "date": "2026-10-08",
-    "heure": "08:45",
-    "ordre_du_jour": "Examen du texte — Abroger les zones à faibles émissions-mobilités",
-    "themes": [
-      "transports"
-    ],
-    "dossier": "DLR5L17N54557",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-10-08",
-    "heure": "15:00",
-    "ordre_du_jour": "Suite de la discussion de la proposition de loi renforçant la responsabilité des locataires et des bailleurs dans le logement social",
-    "themes": [
-      "logement"
-    ],
-    "dossier": "DLR5L17N54817",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-10-08",
-    "heure": "15:00",
-    "ordre_du_jour": "Suite de la discussion de la proposition de loi visant à redéfinir le cadre d’attribution des subventions accordées par les collectivités territoriales",
-    "themes": [
-      "institutions"
-    ],
-    "dossier": "DLR5L17N50644",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-10-08",
-    "heure": "15:00",
-    "ordre_du_jour": "Suite de la discussion de la proposition de résolution, déposée en application de l’article 34-1 de la Constitution, invitant le Gouvernement à engager les démarches en vue de soutenir l’entrée au Panthéon d’Olympe de Gouges, de l’abbé Charles-Michel de l’Épée et de Zéna M’Déré",
-    "themes": [],
-    "dossier": "DLR5L17N54916",
-    "scrutin_annonce": false,
-    "lecture": "Lecture unique"
-  },
-  {
-    "date": "2026-10-08",
-    "heure": "15:00",
-    "ordre_du_jour": "Suite de la discussion de la proposition de résolution, déposée en application de l’article 34-1 de la Constitution, visant à garantir un accès continu à l’eau potable dans les territoires ultramarins",
-    "themes": [],
-    "dossier": "DLR5L17N54844",
-    "scrutin_annonce": false,
-    "lecture": "Lecture unique"
-  },
-  {
-    "date": "2026-10-08",
-    "heure": "15:00",
-    "ordre_du_jour": "Suite de la discussion de la proposition de résolution, déposée en application de l’article 34-1 de la Constitution, visant à mobiliser la commande publique au service de l’emploi, de la production et de l’innovation en France",
-    "themes": [],
-    "dossier": "DLR5L17N54841",
-    "scrutin_annonce": false,
-    "lecture": "Lecture unique"
-  },
-  {
-    "date": "2026-10-08",
-    "heure": "15:00",
-    "ordre_du_jour": "Suite de la discussion de la proposition de résolution, déposée en application de l’article 34-1 de la Constitution, visant à refonder l'espace Schengen en instaurant une double frontière nationale et européenne",
-    "themes": [
-      "immigration"
-    ],
-    "dossier": "DLR5L17N54847",
-    "scrutin_annonce": false,
-    "lecture": "Lecture unique"
-  },
-  {
     "date": "2026-10-09",
     "heure": "21:30",
     "ordre_du_jour": "Suite de la discussion de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants",
@@ -96,8 +25,8 @@
   },
   {
     "date": "2026-10-12",
-    "heure": "16:00",
-    "ordre_du_jour": "Discussion de la proposition de loi visant à moderniser et rééquilibrer le fonctionnement du titre-restaurant",
+    "heure": "15:45",
+    "ordre_du_jour": "Examen du texte — Moderniser et rééquilibrer le fonctionnement du titre-restaurant",
     "themes": [],
     "dossier": "DLR5L17N54445",
     "scrutin_annonce": false,
@@ -138,7 +67,7 @@
   {
     "date": "2026-10-13",
     "heure": "16:30",
-    "ordre_du_jour": "Examen du texte — Projet de loi de finances pour 2027 (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Projet de loi de finances pour 2027",
     "themes": [
       "economie"
     ],
@@ -198,6 +127,17 @@
       "economie"
     ],
     "dossier": "DLR5L17N54629",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-19",
+    "heure": "17:00",
+    "ordre_du_jour": "Examen du texte — Augmenter les salaires et des pensions (séance éventuelle)",
+    "themes": [
+      "travail"
+    ],
+    "dossier": "DLR5L17N54906",
     "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
   },
@@ -276,6 +216,19 @@
   {
     "date": "2026-10-21",
     "heure": "09:30",
+    "ordre_du_jour": "Examen du texte — Créer un parcours de soins intégralement pris en charge par la sécurité sociale pour toutes les victimes de violences sexuelles (séance éventuelle)",
+    "themes": [
+      "sante",
+      "justice",
+      "securite"
+    ],
+    "dossier": "DLR5L17N54898",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-21",
+    "heure": "09:30",
     "ordre_du_jour": "Examen du texte — Loi d’urgence visant à rétablir l’interdiction de l’acétamipride et du flupyradifurone pour garantir la protection de la santé humaine, de la biodiversité, de l’environnement et notre souveraineté alimentaire (séance éventuelle)",
     "themes": [
       "sante",
@@ -285,6 +238,28 @@
     "dossier": "DLR5L17N54902",
     "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-21",
+    "heure": "09:30",
+    "ordre_du_jour": "Examen du texte — Protéger durablement les jeunes majeurs de l’aide sociale à l’enfance et de la protection judiciaire de la jeunesse (séance éventuelle)",
+    "themes": [
+      "justice"
+    ],
+    "dossier": "DLR5L17N54298",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-21",
+    "heure": "15:00",
+    "ordre_du_jour": "Examen du texte — S’opposer à la déréglementation du cadre européen relatif aux pesticides dite Omnibus X (séance éventuelle)",
+    "themes": [
+      "environnement"
+    ],
+    "dossier": "DLR5L17N54336",
+    "scrutin_annonce": false,
+    "lecture": "Lecture unique"
   },
   {
     "date": "2026-10-22",
@@ -332,14 +307,26 @@
   },
   {
     "date": "2026-10-28",
-    "heure": "14:00",
-    "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (seconde partie)",
+    "heure": "09:30",
+    "ordre_du_jour": "Examen du texte — Projet de loi de finances pour 2027 (séance éventuelle)",
     "themes": [
       "economie"
     ],
     "dossier": "DLR5L17N54629",
     "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-28",
+    "heure": "15:00",
+    "ordre_du_jour": "Examen du texte — Faire de l’Union européenne le cadre d’une interdiction effective des mécanismes addictifs conçus et promus par les réseaux sociaux et plateformes numériques à l’égard des enfants et jeunes, mineurs (séance éventuelle)",
+    "themes": [
+      "social",
+      "numerique"
+    ],
+    "dossier": "DLR5L17N55023",
+    "scrutin_annonce": false,
+    "lecture": "Lecture unique"
   },
   {
     "date": "2026-10-29",
@@ -524,6 +511,18 @@
     "dossier": "DLR5L17N54169",
     "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-04",
+    "heure": "15:00",
+    "ordre_du_jour": "Examen du texte — Création d’un statut de réfugié climatique au sein de l’Union européenne (séance éventuelle)",
+    "themes": [
+      "environnement",
+      "immigration"
+    ],
+    "dossier": "DLR5L17N52584",
+    "scrutin_annonce": false,
+    "lecture": "Lecture unique"
   },
   {
     "date": "2026-11-04",
