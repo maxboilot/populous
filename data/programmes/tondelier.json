@@ -1,0 +1,213 @@
+{
+ "cle": "tondelier",
+ "mention": "Programme des Écologistes, parti dont Marine Tondelier est la candidate à l'élection présidentielle.",
+ "documents": [
+  {
+   "id": "programme-2027",
+   "titre": "Pour une prospérité écologique : le nouveau programme des Écologistes",
+   "description": "Programme de 557 mesures, juillet 2026",
+   "editeur": "Les Écologistes",
+   "date": "2026-07",
+   "url": "https://lesecologistes.fr/document/3N4JsAEmq6vsx42IITGNZa/vdef-programme-1.pdf",
+   "format": "pdf",
+   "sha256": "2fafd160291ff6677207c57ce1504ae6e62608cd19d8310e01a522b95beb50fc",
+   "pages": 208,
+   "telechargement_protege": true
+  }
+ ],
+ "passages": [
+  {
+   "theme": "sante",
+   "document": "programme-2027",
+   "page": 111,
+   "page_pdf": 111,
+   "paragraphes": [
+    "1. Développer massivement la prévention autour de quelques priorités comme la prévention des cancers, la lutte contre l’obésité et la protection de la santé mentale. Adopter des plans cohérents conjuguant mesures d’éducation, d’incitation économique et d’action sur l’environnement. Par exemple, instaurer des programmes éducatifs sur l’éducation à la santé et la connaissance de son corps pour les enfants, rembourser des séances de diététique, soutenir les associations et les groupes de pairs et interdire les produits nocifs pour mieux lutter contre l’obésité. Défendre et promouvoir des programmes de vaccination préventive en particulier auprès des personnes vulnérables. Intégrer les inégalités et les déterminants de santé dans la prévention. Mieux dépister les maladies rares et orphelines.",
+    "2. Généraliser la prise en charge de l’activité physique adaptée par la Sécurité Sociale. Développer le sport sur ordonnance. Pérenniser et développer des maisons Sport- Santé en particulier dans les territoires relégués. Former davantage d’éducateurs et d’éducatrices à l’activité physique adaptée."
+   ]
+  },
+  {
+   "theme": "sante",
+   "document": "programme-2027",
+   "page": 114,
+   "page_pdf": 114,
+   "paragraphes": [
+    "1. Créer 2 000 nouveaux centres de santé d’ici 2030, notamment dans les zones rurales et les quartiers prioritaires. Inclure des permanences de médecins généralistes, infirmier·es, psychologues, kinésithérapeutes et dentistes.",
+    "2. Former des professionnels en nombre suffisant – à la fois pour les médecins mais aussi les infirmier·es, aidesoignant·es et l’ensemble des métiers médicaux et para-médicaux. Rééquilibrer la carte des formations pour augmenter le nombre de personnes formées dans les régions les moins dotées. Reconnaître les sage-femmes comme personnel médical."
+   ]
+  },
+  {
+   "theme": "education",
+   "document": "programme-2027",
+   "page": 90,
+   "page_pdf": 90,
+   "paragraphes": [
+    "1. Faire de l’école primaire une priorité absolue en réduisant la taille des classes à 19 élèves en 2032 et à 12 élèves dans les établissements en réseau d’éducation prioritaire (REP et REP+). Augmenter le nombre d’enseignant·es pour que chaque enfant sache lire, écrire, compter et commence l’apprentissage d’une autre langue avant d’arriver au collège. Former tou·tes les Agent·es Territoriaux Spécialisé·es des Écoles Maternelles (ATSEM) sur deux mandats. Augmenter le temps de décharge pour les directeur·trices.",
+    "2. Réhabiliter les métiers de l’Education nationale en augmentant les salaires des enseignant·es de 15 % en 5 ans. Améliorer également les effectifs et les salaires des personnels administratifs et éducatifs (CPE, direction), des assistant·es sociaux·ales, des infirmières scolaires, des Assistant·es d’éducation (AED) et des Accompagnant·es d’élèves en situation de handicap (AESH)"
+   ]
+  },
+  {
+   "theme": "justice",
+   "document": "programme-2027",
+   "page": 167,
+   "page_pdf": 167,
+   "paragraphes": [
+    "2. Créer 9000 postes de magistrats sur dix ans ainsi que 10 000 postes de greffiers et 7000 postes attachés de justice. Revaloriser les métiers et les salaires les plus bas pour atteindre la moyenne des pays européens. Limiter les dérogations aux délais de recours. Développer les moyens numériques de la Justice afin de faciliter les recours déposés par les usager·es en ligne."
+   ]
+  },
+  {
+   "theme": "securite",
+   "document": "programme-2027",
+   "page": 165,
+   "page_pdf": 165,
+   "paragraphes": [
+    "2. Améliorer la formation et les conditions de travail des policier·es. Revoir et allonger la formation initiale et continue et les conditions de travail des policier·es en incluant des stages dans d’autres pays européens et les apports des sciences sociales (histoire, sociologie de la délinquance…). Encadrer les premières affectations pour éviter que les jeunes policiers aient à exercer systématiquement dans les territoires les plus en tension. Mettre en place un plan de prévention de la souffrance au travail et un dispositif d’écoute. Protéger les lanceur·euses d’alerte au sein des forces de l’ordre."
+   ]
+  },
+  {
+   "theme": "economie",
+   "document": "programme-2027",
+   "page": 66,
+   "page_pdf": 66,
+   "paragraphes": [
+    "1. Rétablir la fiscalité sur la grande fortune. Mettre en place une taxe Zucman de 2 % au-delà de 100 millions d’euros de patrimoine. Étendre les conditions de l’exit tax afin de maintenir une contribution fiscale des émigrés fiscaux établissant leur domicile fiscal hors de France. Rétablir l’Impôt sur la Fortune (ISF) en lui ajoutant une composante climatique pour orienter le patrimoine vers des actifs verts.",
+    "2. Simplifier et rendre progressif la fiscalité sur l’héritage. Mettre en place un barème de taxation progressif unique en ajoutant deux tranches pour les ménages faisant partie du 1 % le plus riche au-delà de 4 millions d’euros et le 0,1 % le plus riche au-delà de 13 millions d’euros. Supprimer l’abattement spécifique aux assurances-vies et la niche Copé sur la plus-value de cession des filiales. Plafonner l’abattement Dutreil à 50 % au-delà de 50 millions d’euros et en réformer l’assiette et la durée de conservation des titres."
+   ]
+  },
+  {
+   "theme": "travail",
+   "document": "programme-2027",
+   "page": 55,
+   "page_pdf": 55,
+   "paragraphes": [
+    "1. Passer le salaire minimum à 2000€ brut par mois dès 2027. Soutenir les Très Petites et les Petites et Moyennes Entreprises (TPE et PME) ainsi que les associations par des dispositifs de soutien ciblés, stables et proportionnés comme un ajustement à la baisse du taux réduit de l’impôt sur les sociétés et de la taxe sur les salaires.",
+    "2. Améliorer les traitements des fonctionnaires par l’indexation du point d’indice des fonctionnaires sur l’inflation. Augmenter de 10 % la rémunération des catégories C et B et des catégories A qui ont perdu en pouvoir d’achat ces 20 dernières années – en particulier les enseignant·es dont le salaire doit être revalorisé de 15 % dans le quinquennat et les chercheur·ses de 10 %."
+   ]
+  },
+  {
+   "theme": "travail",
+   "document": "programme-2027",
+   "page": 57,
+   "page_pdf": 57,
+   "paragraphes": [
+    "1. Franchir une nouvelle étape pour la diminution du temps de travail. Passer aux 32 heures sans perte de salaire dans les métiers pénibles ou de nuit en y conditionnant les aides aux entreprises. Créer un compte épargne temps universel pour permettre aux travailleurs·ses de conserver leurs jours de congés payés, RTT et heures supplémentaires réalisées en cas de rupture du contrat de travail.",
+    "2. Créer un congé climatique de 5 jours par an pour protéger les travailleur·ses face aux températures extrêmes ou à des situations de catastrophes climatiques (inondations, tempêtes…). Définir les critères de déclenchement liés à un événement climatique catastrophique (inondation, incendies) ou à une alerte météo empêchant de travailler. Ouvrir une négociation entre partenaires sociaux sur l’adaptation obligatoire des conditions de travail au changement climatique. Le financement serait assuré à parité par les employeurs et par la Sécurité sociale. Adapter le droit du travail pour protéger les femmes enceintes lors des épisodes de canicule ou de pollution de l’air."
+   ]
+  },
+  {
+   "theme": "social",
+   "document": "programme-2027",
+   "page": 119,
+   "page_pdf": 119,
+   "paragraphes": [
+    "1. Créer une garantie d’autonomie qui respecte la dignité et les droits des personnes allocataires en remplacement du Revenu de Solidarité Active (RSA). Augmenter son montant à 50 % du Smic net et l’indexer sur son évolution. Rendre cette garantie accessible dès 18 ans pour les personnes indépendantes fiscalement. En finir avec la logique de stigmatisation en supprimant la contrepartie de 15 heures d’activités hebdomadaires. Sanctionner les seules fraudes avérées. Revaloriser son montant.",
+    "2. Revaloriser les APL de 10 % avec un mécanisme empêchant la répercussion sur les montants des loyers. Abroger la discrimination imposée aux étudiant·es extracommunautaires. Ouvrir les aides au logement aux résidents mobiles."
+   ]
+  },
+  {
+   "theme": "social",
+   "document": "programme-2027",
+   "page": 124,
+   "page_pdf": 124,
+   "paragraphes": [
+    "2. Réformer les allocations familiales pour attribuer un même montant dès le premier enfant. Simplifier les différentes allocations afin de lutter contre le non-recours aux droits (Allocation de Rentrée Scolaire, Allocation de Soutien Familial…). Revenir à la majoration des allocations familiales dès 14 ans."
+   ]
+  },
+  {
+   "theme": "environnement",
+   "document": "programme-2027",
+   "page": 16,
+   "page_pdf": 16,
+   "paragraphes": [
+    "1. Planifier les investissements nécessaires à l’atteinte de la neutralité carbone en 2050. Adopter une loi de programmation climatique (dite « loi énergie-climat ») comprenant la sobriété, l’efficacité et les énergies renouvelables (EnR). Modifier les objectifs et les moyens financiers de la troisième Planification Pluriannuelle de l’Énergie (PPE3) pour que la part des ENR atteigne 44 % de la consommation finale brute d’électricité en 2030. Accélérer la conversion de la dernière centrale à charbon à Saint-Avold.",
+    "2. Amplifier l’électrification des usages qui n’est pas assez rapide pour atteindre la neutralité carbone. Orienter systématiquement la commande publique et les investissements vers la sobriété et l’électrification des bâtiments, des transports et de l’industrie [cf proposition 20-5]. Mieux informer la population et les entreprises du calendrier de sortie des énergies fossiles. Accélérer la décarbonation de l’industrie lourde et faire de l’électrification un levier de compétitivité."
+   ]
+  },
+  {
+   "theme": "agriculture",
+   "document": "programme-2027",
+   "page": 49,
+   "page_pdf": 49,
+   "paragraphes": [
+    "2. Atteindre l’objectif français de 21 % d’agriculture bio en 2030, 25 % en 2032 et 100 % à la fin du siècle en augmentant l’éco-régime bio et en incitant à la reprise et à la conversion des fermes à l’agriculture biologique. Garantir un revenu sur trois ans aux agriculteur·trices s’engageant dans un contrat de transition agroécologique. Supprimer les labels et certifications trompeuses. Rétablir l’aide au maintien en agriculture biologique et le soutien aux filières amont (recherche, équipements…) et aval (transformation, distribution). Renforcer les dispositifs de protection intégrée des cultures dans une logique de prévention."
+   ]
+  },
+  {
+   "theme": "logement",
+   "document": "programme-2027",
+   "page": 20,
+   "page_pdf": 20,
+   "paragraphes": [
+    "1. Assurer le droit au logement par la généralisation, l’amélioration et la pérennisation de l’encadrement des loyers. S’assurer de la couverture`de l’ensemble des villes universitaires. Augmenter significativement les amendes en cas de dépassement de loyer. Remplacer la garantie Visale qui cible les jeunes et les salariés précaires par une garantie universelle des loyers. Soutenir les associations de locataires et les élections permettant de désigner des représentant·es dans les instances dirigeantes des organismes HLM.",
+    "2. Relancer la construction et la rénovation de logements locatifs sociaux (LLS). Donner les moyens aux organismes HLM pour mener de front constructions nouvelles et rénovation ambitieuse en supprimant notamment la Réduction Loyer Solidarité (RLS) et en diminuant la TVA sur la construction pour leur permettre d’investir. Abonder le Fonds National d’Aide à la Pierre (FNAP) pour financer la production de logements très sociaux et l’adaptation du parc au changement climatique, au vieillissement et au handicap. Prioriser les projets sur des zones déjà artificialisées."
+   ]
+  },
+  {
+   "theme": "transports",
+   "document": "programme-2027",
+   "page": 23,
+   "page_pdf": 23,
+   "paragraphes": [
+    "1. Créer un parc social de voitures électriques. Créer une offre de location sociale (leasing social) d’un million de véhicules sur le quinquennat en favorisant les véhicules européens. Conditionner les aides aux constructeurs à trois critères simples : leur score environnemental, la relocalisation de la production de 75 % des équipements et composants en Europe et un prix accessible. Mettre fin aux dérogations des loueurs de véhicules sur la fiscalité des voitures thermiques. Maintenir l’objectif de 100 % de véhicules zéro émission en 2035 pour les ventes de véhicules neufs. Augmenter la réparabilité des voitures. Créer un parc social de voiture bas carbone en milieu rural et périurbain en s’appuyant sur les expériences d’autopartage et en développant le marché de l’occasion. Augmenter plus rapidement le malus de poids en adoptant une trajectoire de baisse des poids des véhicules au niveau européen/français. Développer les stations de recharge partout sur le territoire et en priorité dans les zones avec une forte concentration de HLM. Soutenir la production de batteries en France et en Europe en intégrant une obligation d’une part de composants produits localement.",
+    "2. Diminuer les émissions des transports automobiles en réduisant la vitesse maximale des véhicules thermiques à 110km/h sur autoroute. Verdir les transports domicile-travail en encourageant le télétravail pour diminuer l’empreinte des transports. Revoir le dispositif des indemnités kilométriques en créant un barème unique de remboursement des frais kilométriques tous modes confondus, avec comme référence la consommation des véhicules les plus légers et sobres en énergie. Renforcer les obligations de verdissement des plans de mobilité et l’électrification des flottes de véhicules des sociétés."
+   ]
+  },
+  {
+   "theme": "numerique",
+   "document": "programme-2027",
+   "page": 81,
+   "page_pdf": 81,
+   "paragraphes": [
+    "2. Protéger la démocratie face à certaines technologies pouvant être utilisées à des fins de propagande. Étendre le statut d’éditeur à toutes les grandes plateformes pour les rendre responsables de l’ensemble du contenu qu’elles produisent. Faire respecter des critères de neutralité aux algorithmes de réseaux sociaux dépassant un million d’utilisateurs·trices en France. Désactiver les classements personnalisés durant les périodes électorales. Soutenir les applications et les technologies de communication libres, chiffrées, décentralisées et non extractives. Imposer un marquage visible de tous les contenus générés par Intelligence Artificielle (images, vidéos, sons, textes)."
+   ]
+  },
+  {
+   "theme": "defense",
+   "document": "programme-2027",
+   "page": 193,
+   "page_pdf": 193,
+   "paragraphes": [
+    "1. Développer une stratégie de défense et de sécurité globale pour mieux protéger les intérêts vitaux de la France et de l’Europe. Préciser les mécanismes de solidarité européenne en cas d’attaque d’un des Etats-membres. Actualiser le livre blanc sur la défense et la sécurité nationale. Élaborer une nouvelle Loi de programmation militaire (LPM) prenant en compte nos moyens budgétaires, capacitaires, industriels et humains. Améliorer les savoir-faire en matière de guerre asymétrique dans un monde à +2° ou +3° C.",
+    "2. Préparer l’armée française à une guerre de haute intensité dans une logique de complémentarité avec d’autres pays européens. Soutenir l’effort de défense des frontières du flanc Est de l’Union face à la Russie Développer les moyens de l’artillerie, de la cavalerie blindée, du génie et l’équipement en drones. Garantir les moyens opérationnels d’une division professionnelle relevable au niveau terrestre et d’une division constituée de réservistes. Améliorer les moyens de la Marine pour qu’elle puisse exercer sa protection en Europe et en Indopacifique. Renforcer nos capacités aériennes, spatiales et cyber. Supprimer ou faire évoluer les opérations au regard de l’évolution des menaces (ex : Opération Sentinelle). Développer une culture de l’innovation partagée en s’inspirant notamment de l’armée ukrainienne. Préserver la doctrine de la responsabilité humaine des systèmes militaires afin de refuser l’autonomie technologique dans la guerre en particulier pour les systèmes pilotés par Intelligence Artificielle. N’autoriser les décisions opérationnelles assistées par IA que pour des personnels formés et dans le respect du droit applicable."
+   ]
+  },
+  {
+   "theme": "institutions",
+   "document": "programme-2027",
+   "page": 160,
+   "page_pdf": 160,
+   "paragraphes": [
+    "2. Inscrire dans la constitution le principe d’habitabilité comprenant le respect de toutes les limites planétaires (climat, eau douce, sols, biodiversité, azote, océans, ozone, aérosols), la protection des biens communs, le droit à un environnement de qualité et le principe de non-régression. Intégrer également le droit à une alimentation saine, durable et choisie."
+   ]
+  },
+  {
+   "theme": "institutions",
+   "document": "programme-2027",
+   "page": 163,
+   "page_pdf": 163,
+   "paragraphes": [
+    "2. Élire directement les dirigeant·es des communautés urbaines, communautés d’agglomération et des métropoles. Transformer les établissements publics de coopération intercommunale (EPCI) en collectivités avec les droits et les devoirs que cela suppose (libre administration, compensation des charges, autonomie financière, contrôle). Les communautés de communes et les syndicats intercommunaux restent un échelon où les communes échangent et mutualisent directement sur l’avenir de leur territoire mais doivent être contraintes à respecter la parité."
+   ]
+  },
+  {
+   "theme": "immigration",
+   "document": "programme-2027",
+   "page": 178,
+   "page_pdf": 178,
+   "paragraphes": [
+    "1. Garantir les droits fondamentaux des personnes exilées : scolarisation de tous les enfants, accès à l’AME et PUMA, suppression des délais de carence, interdiction des expulsions des personnes vivant avec une Affection Longue Durée, accès à des hébergements dignes. Abroger les lois asile et immigration d’Emmanuel Macron et toutes les mesures prises visant à amoindrir les droits des personnes exilées sous son mandat. Arrêter la centralisation par le Ministère de l’Intérieur pour redonner à chaque Ministère la responsabilité sur son champ (confier la tutelle de l’OFPRA aux Affaires Etrangères, la garantie aux soins au Ministère de la Santé…). Rendre effectif le droit au regroupement familial par une révision des conditions d’octroi des titres de séjour en adoptant un renouvellement automatique et pluriannuel",
+    "2. Arrêter la fabrique juridique des sans-papiers par la complexification croissante du droit des étrangers. Régulariser les travailleur·ses, les étudiant·es et les parents d’enfants scolarisés sur la base de critères objectifs (durée de résidence, effectivité du lien familial, durée ou promesse d’activité professionnelle). Supprimer les Obligations de Quitter le Territoire Français (OQTF) automatiques ou inapplicables. Adopter une présomption d’accord pour le renouvellement des cartes de séjour de longue durée et des titres étudiants pour faciliter le maintien au travail et aux études. Automatiser la délivrance des Attestations de Prolongation d’Instruction (API)."
+   ]
+  },
+  {
+   "theme": "culture",
+   "document": "programme-2027",
+   "page": 99,
+   "page_pdf": 99,
+   "paragraphes": [
+    "1. Garantir la liberté de création, de diffusion et de programmation artistique. Limiter strictement la concentration dans les industries culturelles par une loi anti-trust. Offrir une protection juridique contre les entraves à l’exercice de son métier. Créer une clause de conscience permettant de quitter un éditeur en cas de changement d’actionnaire ou de ligne éditoriale.",
+    "2. Défendre et améliorer les conditions de travail et de revenu des acteurs de la culture. Préserver la protection chômage des intermittent·es. Créer une assurance-chômage pour les artistes-auteurs afin de garantir une continuité de revenus et de droits sociaux entre deux commandes financé par une augmentation de 5 % de la cotisation des diffuseurs. Développer les programmes d’accueil d’artistes menacé·es dans leurs pays. Protéger les enfants en conditionnant l’embauche d’un enfant de moins de 7 ans à l’avis favorable d’un·e psychologue spécialisé et d’une personne chargée de la prévention. Rendre obligatoire la présence d’un·e représentant·e légal·e sur les lieux de création. Interdire que les mineurs puissent jouer un rôle d’adultes dans les photos de mode et dans les films. Rendre obligatoire la présence d’un·e coordinateur·trice d’intimité sur les tournages pour toute mise en scène d’intimité d’un mineur."
+   ]
+  }
+ ]
+}

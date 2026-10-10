@@ -1,0 +1,85 @@
+{
+ "generated_at": "2026-10-10T18:38:38Z",
+ "source_titre": "Arcom, relevés des temps de parole (open data)",
+ "source_url": "https://www.data.gouv.fr/datasets/temps-de-parole-des-partis-et-personnalites-politiques-elections-municipales-2026",
+ "debut": "2025-01",
+ "fin": "2025-12",
+ "nb_mois": 12,
+ "par_candidat": {
+  "arthaud": {
+   "secondes": 3903,
+   "secondes_gouvernement": 0,
+   "mois_avec_releve": 4
+  },
+  "asselineau": {
+   "secondes": 118,
+   "secondes_gouvernement": 0,
+   "mois_avec_releve": 2
+  },
+  "attal": {
+   "secondes": 140430,
+   "secondes_gouvernement": 0,
+   "mois_avec_releve": 12
+  },
+  "bertrand": {
+   "secondes": 60754,
+   "secondes_gouvernement": 0,
+   "mois_avec_releve": 11
+  },
+  "dupont-aignan": {
+   "secondes": 45519,
+   "secondes_gouvernement": 0,
+   "mois_avec_releve": 12
+  },
+  "le_pen": {
+   "secondes": 312202,
+   "secondes_gouvernement": 0,
+   "mois_avec_releve": 12
+  },
+  "lisnard": {
+   "secondes": 57002,
+   "secondes_gouvernement": 0,
+   "mois_avec_releve": 12
+  },
+  "melenchon": {
+   "secondes": 251666,
+   "secondes_gouvernement": 0,
+   "mois_avec_releve": 12
+  },
+  "philippe": {
+   "secondes": 62685,
+   "secondes_gouvernement": 0,
+   "mois_avec_releve": 12
+  },
+  "philippot": {
+   "secondes": 10440,
+   "secondes_gouvernement": 0,
+   "mois_avec_releve": 11
+  },
+  "retailleau": {
+   "secondes": 71390,
+   "secondes_gouvernement": 452646,
+   "mois_avec_releve": 12
+  },
+  "roussel": {
+   "secondes": 89961,
+   "secondes_gouvernement": 0,
+   "mois_avec_releve": 12
+  },
+  "tondelier": {
+   "secondes": 172425,
+   "secondes_gouvernement": 0,
+   "mois_avec_releve": 12
+  },
+  "villepin": {
+   "secondes": 30807,
+   "secondes_gouvernement": 0,
+   "mois_avec_releve": 6
+  },
+  "zemmour": {
+   "secondes": 54477,
+   "secondes_gouvernement": 0,
+   "mois_avec_releve": 12
+  }
+ }
+}

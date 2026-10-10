@@ -1,0 +1,416 @@
+{
+ "generated_at": "2026-10-10T18:08:05Z",
+ "statuts": {
+  "declare": "Candidature annoncée par la personne",
+  "designe": "Désigné(e) par son parti",
+  "annonce": "Candidature annoncée, déclaration formelle à venir"
+ },
+ "a_venir": [
+  {
+   "libelle": "Vainqueur de la primaire de la gauche",
+   "note": "À ajouter une fois le résultat connu (primaire PS / Place publique, 9 au 17 octobre 2026 selon les sources)."
+  }
+ ],
+ "candidats": [
+  {
+   "cle": "arthaud",
+   "prenom": "Nathalie",
+   "nom": "Arthaud",
+   "nom_tri": "arthaud",
+   "parti": "Lutte ouvrière",
+   "declaration": {
+    "statut": "declare",
+    "date": "2025-12",
+    "precision": "mois",
+    "libelle": "Désignée par le congrès de Lutte ouvrière",
+    "source_titre": "Slate, liste des candidats déclarés",
+    "source_url": "https://www.slate.fr/politique/election-presidentielle-2027-liste-candidats-declares-interesses-primaire-gauche-droite-extreme-lfi-rn-lr-ps-macron",
+    "note": "Date : congrès de décembre 2025 selon Slate ; d'autres sources parlent de la fête de LO de mai 2026. À confirmer auprès de lutte-ouvriere.org."
+   },
+   "photo": {
+    "fichier": "data/candidats/photos/arthaud.jpg",
+    "auteur": "Kokluts",
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Nathalie_Arthaud_(LO)_19-05-2024.jpg"
+   },
+   "programme": {
+    "statut": "disponible",
+    "fichier": "data/programmes/arthaud.json"
+   }
+  },
+  {
+   "cle": "asselineau",
+   "prenom": "François",
+   "nom": "Asselineau",
+   "nom_tri": "asselineau",
+   "parti": "Union populaire républicaine",
+   "declaration": {
+    "statut": "declare",
+    "date": null,
+    "precision": null,
+    "libelle": "Candidat déclaré",
+    "source_titre": "Sud Radio, liste des candidats déclarés",
+    "source_url": "https://www.sudradio.fr/sud-radio/presidentielle-2027-qui-sont-les-candidats-declares",
+    "note": "Aucune annonce datée trouvée. À sourcer sur upr.fr ou dans la presse nationale."
+   },
+   "photo": {
+    "fichier": "data/candidats/photos/asselineau.jpg",
+    "auteur": "Union Populaire Républicaine",
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Fran%C3%A7ois_ASSELINEAU.jpg"
+   },
+   "programme": {
+    "statut": "a_documenter"
+   }
+  },
+  {
+   "cle": "attal",
+   "prenom": "Gabriel",
+   "nom": "Attal",
+   "nom_tri": "attal",
+   "parti": "Renaissance",
+   "declaration": {
+    "statut": "declare",
+    "date": "2026-05-22",
+    "precision": "jour",
+    "libelle": "A annoncé sa candidature à Mur-de-Barrez (Aveyron)",
+    "source_titre": "LCP",
+    "source_url": "https://lcp.fr/actualites/presidentielle-2027-gabriel-attal-officialise-sa-candidature-436721",
+    "note": null
+   },
+   "photo": {
+    "fichier": "data/candidats/photos/attal.jpg",
+    "auteur": "Ismail Aissoub",
+    "licence": "CC BY 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by/4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Gabriel_Attal_2025_(close_crop).jpg"
+   },
+   "programme": {
+    "statut": "a_documenter"
+   }
+  },
+  {
+   "cle": "bertrand",
+   "prenom": "Xavier",
+   "nom": "Bertrand",
+   "nom_tri": "bertrand",
+   "parti": "Nous France",
+   "declaration": {
+    "statut": "annonce",
+    "date": "2026-08-27",
+    "precision": "jour",
+    "libelle": "A confirmé qu'il sera candidat (« Je le serai »), déclaration formelle prévue « à la fin de l'année »",
+    "source_titre": "LCP",
+    "source_url": "https://lcp.fr/actualites/2027-figure-de-la-droite-xavier-bertrand-confirme-qu-il-sera-candidat-a-l-election",
+    "note": "Pas de déclaration formelle de candidature à la date du 10 oct. 2026."
+   },
+   "photo": {
+    "fichier": "data/candidats/photos/bertrand.jpg",
+    "auteur": "Claudio Centonze / European Union, 2025 / EC - Audiovisual Service",
+    "licence": "CC BY 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by/4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Xavier_Bertrand_-_2025_(cropped).jpg"
+   },
+   "programme": {
+    "statut": "a_documenter"
+   }
+  },
+  {
+   "cle": "dupont-aignan",
+   "prenom": "Nicolas",
+   "nom": "Dupont-Aignan",
+   "nom_tri": "dupont-aignan",
+   "parti": "Debout la France",
+   "declaration": {
+    "statut": "declare",
+    "date": "2025-03-08",
+    "precision": "jour",
+    "libelle": "A annoncé sa candidature devant ses militants à Yerres",
+    "source_titre": "info.fr",
+    "source_url": "https://info.fr/yerres-dupont-aignan-candidature-presidentielle-2027-sursaut-gaulliste/",
+    "note": "Une page Wikipédia évoque une officialisation le 19 sept. 2026 : non retrouvée dans la presse."
+   },
+   "photo": {
+    "fichier": "data/candidats/photos/dupont-aignan.jpg",
+    "auteur": "Debout la France",
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Nicolas_Dupont-Aignan,_homme_politique_fran%C3%A7ais_(cropped).jpg"
+   },
+   "programme": {
+    "statut": "a_documenter"
+   }
+  },
+  {
+   "cle": "le_pen",
+   "prenom": "Marine",
+   "nom": "Le Pen",
+   "nom_tri": "le pen",
+   "parti": "Rassemblement national",
+   "declaration": {
+    "statut": "declare",
+    "date": "2026-07-07",
+    "precision": "jour",
+    "libelle": "A annoncé sa candidature au 20 h de TF1",
+    "source_titre": "LCP",
+    "source_url": "https://lcp.fr/actualites/ce-soir-je-suis-candidate-a-l-election-presidentielle-annonce-marine-le-pen-438886",
+    "note": null
+   },
+   "photo": {
+    "fichier": "data/candidats/photos/le_pen.jpg",
+    "auteur": "Vox España",
+    "licence": "CC0",
+    "licence_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "page": "https://commons.wikimedia.org/wiki/File:Marine_Le_Pen_2025_(cropped).jpg"
+   },
+   "programme": {
+    "statut": "non_publie",
+    "note": "Aucun programme 2027 n'est publié sur le site du Rassemblement national ni sur celui de la campagne à la date du 10 octobre 2026.",
+    "source_titre": "rassemblementnational.fr et marinelepen.com, consultés le 10 octobre 2026"
+   }
+  },
+  {
+   "cle": "lisnard",
+   "prenom": "David",
+   "nom": "Lisnard",
+   "nom_tri": "lisnard",
+   "parti": "Nouvelle Énergie",
+   "declaration": {
+    "statut": "declare",
+    "date": "2026-03-31",
+    "precision": "jour",
+    "libelle": "A annoncé sa candidature au 20 h de France 2 et quitté LR",
+    "source_titre": "LCP",
+    "source_url": "https://lcp.fr/actualites/je-suis-candidat-david-lisnard-quitte-lr-et-relance-le-debat-sur-une-primaire-a-droite",
+    "note": "Nom du mouvement (Nouvelle Énergie) relevé sur Wikipédia et Toute l'Europe, non confirmé dans la presse consultée."
+   },
+   "photo": {
+    "fichier": "data/candidats/photos/lisnard.jpg",
+    "auteur": "Frantogian",
+    "licence": "CC BY-SA 3.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "page": "https://commons.wikimedia.org/wiki/File:David_Lisnard_-_2013.jpg"
+   },
+   "programme": {
+    "statut": "a_documenter"
+   }
+  },
+  {
+   "cle": "melenchon",
+   "prenom": "Jean-Luc",
+   "nom": "Mélenchon",
+   "nom_tri": "melenchon",
+   "parti": "La France insoumise",
+   "declaration": {
+    "statut": "declare",
+    "date": "2026-05-03",
+    "precision": "jour",
+    "libelle": "A annoncé sa candidature au 20 h de TF1",
+    "source_titre": "La Libre",
+    "source_url": "https://www.lalibre.be/international/europe/2026/05/03/jean-luc-melenchon-officialise-sa-candidature-a-la-presidentielle-2027-62WVGQMVUREGHCOMM2PKZ2DE7M/",
+    "note": null
+   },
+   "photo": {
+    "fichier": "data/candidats/photos/melenchon.jpg",
+    "auteur": "jlm2017.fr",
+    "licence": "CC BY 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by/4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Jean_Luc_M%C3%A9lenchon_en_mai_2026-_55261894422_(cropped).jpg"
+   },
+   "programme": {
+    "statut": "non_publie",
+    "note": "Une version remaniée du programme est annoncée pour début novembre 2026 (livre « L'Avenir en commun », en librairie le 6 novembre selon le site de campagne).",
+    "source_titre": "LCP",
+    "source_url": "https://lcp.fr/actualites/presidentielle-le-programme-remanie-de-la-nouvelle-france-de-jean-luc-melenchon-sera"
+   }
+  },
+  {
+   "cle": "philippe",
+   "prenom": "Édouard",
+   "nom": "Philippe",
+   "nom_tri": "philippe",
+   "parti": "Horizons",
+   "declaration": {
+    "statut": "declare",
+    "date": "2024-09",
+    "precision": "mois",
+    "libelle": "A annoncé sa candidature dans un entretien au Point",
+    "source_titre": "The Local",
+    "source_url": "https://www.thelocal.fr/20240904/ex-french-pm-edouard-philippe-launches-2027-presidential-bid-amid-political-turmoil",
+    "note": null
+   },
+   "photo": {
+    "fichier": "data/candidats/photos/philippe.jpg",
+    "auteur": "Wasasaq8",
+    "licence": "CC0",
+    "licence_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "page": "https://commons.wikimedia.org/wiki/File:Edouard_Philippe_3x4_crop.jpg"
+   },
+   "programme": {
+    "statut": "non_publie",
+    "note": "Aucun programme 2027 n'est publié sur le site d'Horizons à la date du 10 octobre 2026 : seuls des discours, des notes pour les adhérents et un plan contre le narcotrafic y figurent.",
+    "source_titre": "horizonsleparti.fr, consulté le 10 octobre 2026"
+   }
+  },
+  {
+   "cle": "philippot",
+   "prenom": "Florian",
+   "nom": "Philippot",
+   "nom_tri": "philippot",
+   "parti": "Les Patriotes",
+   "declaration": {
+    "statut": "declare",
+    "date": "2026-05",
+    "precision": "mois",
+    "libelle": "A annoncé sa candidature sur France 2",
+    "source_titre": "Sud Radio",
+    "source_url": "https://www.sudradio.fr/politique/je-suis-candidat-florian-philippot-se-lance-pour-la-presidentielle-de-2027",
+    "note": "Candidature conditionnelle : il dit se retirer si Philippe de Villiers se présente. Date exacte (9 mai 2026 ?) à confirmer."
+   },
+   "photo": {
+    "fichier": "data/candidats/photos/philippot.jpg",
+    "auteur": "Thomas Bresson",
+    "licence": "CC BY 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by/4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:2022-04-16_16-49-26_MAM-Paris_02.jpg"
+   },
+   "programme": {
+    "statut": "a_documenter"
+   }
+  },
+  {
+   "cle": "retailleau",
+   "prenom": "Bruno",
+   "nom": "Retailleau",
+   "nom_tri": "retailleau",
+   "parti": "Les Républicains",
+   "declaration": {
+    "statut": "designe",
+    "date": "2026-04-19",
+    "precision": "jour",
+    "libelle": "Désigné candidat par les adhérents des Républicains (73,8 %)",
+    "source_titre": "LCP",
+    "source_url": "https://lcp.fr/actualites/presidentielle-bruno-retailleau-choisi-comme-candidat-officiel-des-republicains-435440",
+    "note": null
+   },
+   "photo": {
+    "fichier": "data/candidats/photos/retailleau.jpg",
+    "auteur": "Anthonymontardyfr",
+    "licence": "CC BY 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by/4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Bruno_Retailleau_-_Ministre_de_l%27Int%C3%A9rieur_fran%C3%A7ais_(cropped).jpg"
+   },
+   "programme": {
+    "statut": "disponible",
+    "fichier": "data/programmes/retailleau.json"
+   }
+  },
+  {
+   "cle": "roussel",
+   "prenom": "Fabien",
+   "nom": "Roussel",
+   "nom_tri": "roussel",
+   "parti": "Parti communiste français",
+   "declaration": {
+    "statut": "designe",
+    "date": "2026-09-06",
+    "precision": "jour",
+    "libelle": "Candidature validée par les militants du PCF (72 %)",
+    "source_titre": "LCP",
+    "source_url": "https://lcp.fr/actualites/fabien-roussel-officiellement-candidat-du-pcf-a-l-election-presidentielle-de-2027-441389",
+    "note": null
+   },
+   "photo": {
+    "fichier": "data/candidats/photos/roussel.jpg",
+    "auteur": "Zouhair NAKARA",
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Roussel_Fabien_1.jpg"
+   },
+   "programme": {
+    "statut": "a_documenter"
+   }
+  },
+  {
+   "cle": "tondelier",
+   "prenom": "Marine",
+   "nom": "Tondelier",
+   "nom_tri": "tondelier",
+   "parti": "Les Écologistes",
+   "declaration": {
+    "statut": "declare",
+    "date": "2025-10-22",
+    "precision": "jour",
+    "libelle": "A annoncé sa candidature dans L'Obs",
+    "source_titre": "Brut",
+    "source_url": "https://www.brut.media/fr/articles/france/politique/marine-tondelier-la-patronne-des-ecologistes-officiellement-candidate-a-la-presidentielle-de-2027",
+    "note": "Son éventuelle participation à une primaire de gauche n'est pas établie dans les sources consultées."
+   },
+   "photo": {
+    "fichier": "data/candidats/photos/tondelier.jpg",
+    "auteur": "Greenbox",
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:20210819_tondelier.m-cr3.jpg"
+   },
+   "programme": {
+    "statut": "disponible",
+    "fichier": "data/programmes/tondelier.json"
+   }
+  },
+  {
+   "cle": "villepin",
+   "prenom": "Dominique",
+   "nom": "de Villepin",
+   "nom_tri": "villepin",
+   "parti": "La France humaniste",
+   "declaration": {
+    "statut": "annonce",
+    "date": "2026-08-30",
+    "precision": "jour",
+    "libelle": "Se dit présent en 2027 ; confirmera sa candidature une fois la campagne commencée",
+    "source_titre": "Euronews",
+    "source_url": "https://fr.euronews.com/my-europe/2026/08/30/presidentielle-2027-dominique-de-villepin-presque-candidat-olivier-faure-a-la-primaire-soc",
+    "note": "Pas de déclaration formelle de candidature à la date du 10 oct. 2026."
+   },
+   "photo": {
+    "fichier": "data/candidats/photos/villepin.jpg",
+    "auteur": "Georges Seguin (Okki)",
+    "licence": "CC BY-SA 3.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Dominique_de_Villepin_20100330_Salon_du_livre_de_Paris_2_cropped.jpg"
+   },
+   "programme": {
+    "statut": "a_documenter"
+   }
+  },
+  {
+   "cle": "zemmour",
+   "prenom": "Éric",
+   "nom": "Zemmour",
+   "nom_tri": "zemmour",
+   "parti": "Reconquête",
+   "declaration": {
+    "statut": "declare",
+    "date": "2026-09-17",
+    "precision": "jour",
+    "libelle": "A annoncé sa candidature sur BFM TV",
+    "source_titre": "LCP",
+    "source_url": "https://lcp.fr/actualites/presidentielle-2027-eric-zemmour-officialise-sa-candidature-441871",
+    "note": null
+   },
+   "photo": {
+    "fichier": "data/candidats/photos/zemmour.jpg",
+    "auteur": "Anh De France",
+    "licence": "CC0",
+    "licence_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "page": "https://commons.wikimedia.org/wiki/File:Portrait_%C3%89ric_Zemmour,_avril_2022_cropped.jpg"
+   },
+   "programme": {
+    "statut": "a_documenter"
+   }
+  }
+ ]
+}

@@ -1,0 +1,87 @@
+{
+ "cle": "arthaud",
+ "passages": [
+  {
+   "theme": "travail",
+   "page": 9,
+   "page_pdf": 11,
+   "paragraphes": [
+    "Face aux prix qui flambent, face aux fins de mois de plus en plus difficiles, nous devons formuler nos besoins et nos revendications. Quand nous discutons entre nous de ce qu’il faut pour vivre, tout le monde convient qu’il faudrait 300, 400, 500 euros d’augmentation. Aujourd’hui il faut gagner au moins 2 200 euros net par mois pour s’en sortir. Eh bien voilà ce que nous devons exiger ! Les salaires doivent suivre la hausse des prix. Pas ceux de l’inflation officielle qui sous-estime toujours la réalité, mais la hausse réelle que nous constatons nous-mêmes au supermarché ou à la pompe à essence. Nous devons imposer une augmentation massive des salaires, des allocations et des pensions et leur indexation sur la hausse des prix : quand les prix montent, notre salaire doit suivre !"
+   ],
+   "document": "brochure-2027"
+  },
+  {
+   "theme": "travail",
+   "page": 10,
+   "page_pdf": 12,
+   "paragraphes": [
+    "Aucun travailleur ne peut vivre sans salaire. Alors, pour que personne ne soit condamné au chômage, il faut recenser les besoins et imposer que le travail soit réparti entre tous. Combien d’embauches faut-il dans tel ou tel atelier ? Quel temps de travail pour ne pas finir sur les rotules ? Si nous demandions au personnel des hôpitaux, des Ehpad, de l’éducation, des transports publics, d’établir une liste d’embauches dont ils auraient besoin, on arriverait à des centaines de milliers d’emplois à créer tout de suite ! Il faut baisser le temps et la charge de travail sans perte de salaire pour permettre à tous de vivre."
+   ],
+   "document": "brochure-2027"
+  },
+  {
+   "theme": "economie",
+   "page": 11,
+   "page_pdf": 13,
+   "paragraphes": [
+    "Pour démasquer les mensonges des grands groupes qui accumulent des profits mais les dissimulent et refusent de payer des impôts, les travailleurs doivent réaliser ce qu’aucun gouvernement ne veut faire : imposer que l’intégralité des comptes des grandes entreprises soit rendue publique."
+   ],
+   "document": "brochure-2027"
+  },
+  {
+   "theme": "economie",
+   "page": 12,
+   "page_pdf": 14,
+   "paragraphes": [
+    "Il est vital de connaître les comptes de ces groupes, de leurs filiales et de leurs maisons-mères. Pour qu’ils ne nous enfument pas, en disant par exemple qu’ils ne font pas de profits en France, il faut imposer la transparence complète de leurs circuits financiers.",
+    "Levée du secret commercial et du secret des affaires pour rendre publics les comptes de ces grandes entreprises, y compris ceux qui sont cachés !",
+    "Confiscation des bénéfices de ces profiteurs de guerre : les milliards pour les hôpitaux, les écoles, pas pour la guerre !",
+    "Expropriation sans indemnité ni rachat de leurs actionnaires en commençant par ceux de l’industrie pétrolière et des industries de guerre !"
+   ],
+   "document": "brochure-2027"
+  },
+  {
+   "theme": "economie",
+   "page": 16,
+   "page_pdf": 18,
+   "paragraphes": [
+    "Le protectionnisme ne protège ni l’emploi ni les salaires, il est une arme des capitalistes dans leur guerre contre d’autres capitalistes. Dans cette guerre, les travailleurs servent déjà de chair à canon au patronat."
+   ],
+   "document": "brochure-2027"
+  },
+  {
+   "theme": "immigration",
+   "page": 14,
+   "page_pdf": 16,
+   "paragraphes": [
+    "Ne tombons pas dans ce piège ! Ne laissons pas le patronat utiliser nos différences de couleur de peau, de culture, de religion ou d’idées pour opprimer davantage tel ou tel, c’est-à-dire pour nous diviser et dresser des frontières entre nous.",
+    "Refusons de nous barricader contre des travailleurs plus pauvres que nous. Refusons de nous recroqueviller chacun dans une communauté où l'on voudrait nous ranger. À bas les barbelés, les traques, les expulsions ! À bas l’Europe-forteresse ! Régularisation de tous les sans-papiers, liberté de circulation et d’installation pour chaque être humain de cette planète ! Union de tous les travailleurs !"
+   ],
+   "document": "brochure-2027"
+  },
+  {
+   "theme": "defense",
+   "page": 23,
+   "page_pdf": 25,
+   "paragraphes": [
+    "Ministres et députés imposent l’austérité budgétaire mais votent 36 milliards de rallonge pour l’armée quasiment sans discussion. Les 10 milliards destinés au nouveau porte-avions manqueront pour les hôpitaux ou pour adapter les écoles au réchauffement climatique.",
+    "Refusons l’unité nationale derrière les dirigeants irresponsables qui emmènent la société vers la barbarie et derrière les généraux dévoués aux industriels et aux banquiers !",
+    "La seule guerre que les travailleurs doivent se préparer à mener, c’est celle contre le capitalisme, pour renverser ce système de plus en barbare et destructeur !"
+   ],
+   "document": "brochure-2027"
+  }
+ ],
+ "documents": [
+  {
+   "titre": "Nathalie Arthaud, Présidentielle 2027",
+   "description": "Brochure présentée à la fête annuelle de Lutte ouvrière (mai 2026), supplément à Lutte ouvrière n° 3021 du 26 juin 2026",
+   "editeur": "Lutte ouvrière",
+   "date": "2026-06-26",
+   "url": "https://www.lutte-ouvriere.org/medias/document/fichiers/2026/06/brochure-ete-2026.pdf",
+   "format": "pdf",
+   "sha256": "c5d720a8cd9e06d7ba7a1229edd6f93294c41ae61c28b70e4f9b52c55052a190",
+   "pages": 37,
+   "id": "brochure-2027"
+  }
+ ]
+}

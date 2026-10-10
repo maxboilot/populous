@@ -1,0 +1,77 @@
+{
+ "generated_at": "2026-10-10T18:29:36Z",
+ "elections": {
+  "2017": {
+   "libelle": "Présidentielle 2017, premier tour (23 avril)",
+   "exprimes": 36054394,
+   "source_titre": "Conseil constitutionnel, décision 2017-169 PDR",
+   "source_url": "https://www.conseil-constitutionnel.fr/decision/2017/2017169PDR.htm"
+  },
+  "2022": {
+   "libelle": "Présidentielle 2022, premier tour (10 avril)",
+   "exprimes": 35132947,
+   "source_titre": "Ministère de l'Intérieur, résultats définitifs (data.gouv.fr)",
+   "source_url": "https://www.data.gouv.fr/datasets/election-presidentielle-des-10-et-24-avril-2022-resultats-definitifs-du-1er-tour/"
+  }
+ },
+ "par_candidat": {
+  "arthaud": {
+   "2017": {
+    "voix": 232384,
+    "pct": 0.64
+   },
+   "2022": {
+    "voix": 197094,
+    "pct": 0.56
+   }
+  },
+  "asselineau": {
+   "2017": {
+    "voix": 332547,
+    "pct": 0.92
+   }
+  },
+  "dupont-aignan": {
+   "2017": {
+    "voix": 1695000,
+    "pct": 4.7
+   },
+   "2022": {
+    "voix": 725176,
+    "pct": 2.06
+   }
+  },
+  "le_pen": {
+   "2017": {
+    "voix": 7678491,
+    "pct": 21.3
+   },
+   "2022": {
+    "voix": 8133828,
+    "pct": 23.15
+   }
+  },
+  "melenchon": {
+   "2017": {
+    "voix": 7059951,
+    "pct": 19.58
+   },
+   "2022": {
+    "voix": 7712520,
+    "pct": 21.95
+   }
+  },
+  "zemmour": {
+   "2022": {
+    "voix": 2485226,
+    "pct": 7.07
+   }
+  },
+  "roussel": {
+   "2022": {
+    "voix": 802422,
+    "pct": 2.28
+   }
+  }
+ }
+}

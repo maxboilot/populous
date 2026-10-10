@@ -1,0 +1,23 @@
+name: Vérifier les programmes (mot pour mot)
+
+on:
+  push:
+    paths:
+      - 'data/programmes/**'
+      - 'verifier_programmes.py'
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  verifier:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pypdf
+      - name: Chaque passage est-il repris mot pour mot du document cité ?
+        run: python verifier_programmes.py

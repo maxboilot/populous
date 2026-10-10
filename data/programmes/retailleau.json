@@ -1,0 +1,296 @@
+{
+ "cle": "retailleau",
+ "mention": "Propositions des Républicains, parti dont Bruno Retailleau est le candidat désigné à l'élection présidentielle.",
+ "documents": [
+  {
+   "id": "ecole",
+   "titre": "Éducation : pour une école de la transmission, de l’égalité des chances, de l’autorité et de la liberté",
+   "description": "Les Républicains, « Nos propositions pour la France »",
+   "editeur": "Les Républicains",
+   "date": "2026-09",
+   "url": "https://republicains.fr/wp-content/uploads/2026/09/LR_Ecole_vF.pdf",
+   "format": "pdf",
+   "sha256": "b764647449b7777d549d38e68741f84370d3f082f61ee6d92f7624cb4d0f4bba",
+   "pages": 36
+  },
+  {
+   "id": "logement",
+   "titre": "Loger les Français, mieux et moins cher",
+   "description": "Les Républicains, « Nos propositions pour la France »",
+   "editeur": "Les Républicains",
+   "date": "2026-05",
+   "url": "https://republicains.fr/wp-content/uploads/2026/05/LR_Logement.pdf",
+   "format": "pdf",
+   "sha256": "cbfb15f26ec221635d3197c151c20209d49c014411a5c61c98574c2d4d35d607",
+   "pages": 48
+  },
+  {
+   "id": "agriculture",
+   "titre": "Réarmer notre agriculture",
+   "description": "Les Républicains, « Nos propositions pour la France »",
+   "editeur": "Les Républicains",
+   "date": "2026-03",
+   "url": "https://republicains.fr/wp-content/uploads/2026/03/LR_Agriculture.pdf",
+   "format": "pdf",
+   "sha256": "1598aaa5c0a2bf15a17cd60f5019822cd9fb1a19d42d51fd4a0a2d5fd41ad737",
+   "pages": 40
+  },
+  {
+   "id": "famille",
+   "titre": "Une politique pour toutes les familles de France",
+   "description": "Les Républicains, « Nos propositions pour la France »",
+   "editeur": "Les Républicains",
+   "date": "2026-05",
+   "url": "https://republicains.fr/wp-content/uploads/2026/05/LR_Famille_vFinale.pdf",
+   "format": "pdf",
+   "sha256": "2a9634a96dcbd06498a3e15cb758cb1a22c54f7ef88a530a8a0b3691ef46d2db",
+   "pages": 24
+  },
+  {
+   "id": "electricite",
+   "titre": "Notre électricité décarbonée, bon marché, pour tous les Français",
+   "description": "Les Républicains, « Nos propositions pour la France »",
+   "editeur": "Les Républicains",
+   "date": "2026-05",
+   "url": "https://republicains.fr/wp-content/uploads/2026/05/LR_Electricite_vFF070626.pdf",
+   "format": "pdf",
+   "sha256": "72ed473f01aee192f999b50e054884013e09e80c978bdb233eaf5219f13b4f4c",
+   "pages": 40
+  },
+  {
+   "id": "ia",
+   "titre": "L’IA au service des Français",
+   "description": "Les Républicains, « Nos propositions pour la France »",
+   "editeur": "Les Républicains",
+   "date": "2026-07",
+   "url": "https://republicains.fr/wp-content/uploads/2026/07/LR_IA.pdf",
+   "format": "pdf",
+   "sha256": "6c96e249cd3b988e80cef214c16a264265e14604b902fdc4a93ab4926bda0375",
+   "pages": 56
+  },
+  {
+   "id": "produire-plus",
+   "titre": "Produire plus pour vivre mieux",
+   "description": "Les Républicains, « Nos propositions pour la France »",
+   "editeur": "Les Républicains",
+   "date": "2026-02",
+   "url": "https://republicains.fr/wp-content/uploads/2026/02/LR_Produire_Plus_LIVRET.pdf",
+   "format": "pdf",
+   "sha256": "13e7e84e24bfd9b136825fbdb4510d711982f0a6933fb1c04301988a869c9000",
+   "pages": 40
+  },
+  {
+   "id": "travail-gagnant",
+   "titre": "Le travail gagnant : compétitivité et pouvoir d’achat",
+   "description": "Les Républicains, « Nos propositions pour la France »",
+   "editeur": "Les Républicains",
+   "date": "2026-01",
+   "url": "https://republicains.fr/wp-content/uploads/2026/01/51705_LesRepublicains_Brochures_A5-40P_DEF.pdf",
+   "format": "pdf",
+   "sha256": "91ee32bf0982d4f4823560a8ad3fb68e0c25d49cf96df732b59ce6a54557f38a",
+   "pages": 40
+  }
+ ],
+ "passages": [
+  {
+   "theme": "education",
+   "document": "ecole",
+   "page": 10,
+   "page_pdf": 10,
+   "paragraphes": [
+    "Nous revaloriserons substantiellement le salaire de nos professeurs et mettrons fin à une paupérisation devenue scandaleuse",
+    "Aucune gestion, si habile soit-elle, ne remplacera un salaire juste. Considérer les professeurs à leur juste valeur, c’est leur assurer une rémunération digne du rôle essentiel qu’ils remplissent. Leur rémunération accuse un retard de 15 à 20 % sur la moyenne européenne, et les revalorisations récentes ont porté sur des primes conditionnées, jamais sur le traitement lui-même.",
+    "Nous concentrerons l’effort là où il est le plus décisif, sur le début et sur le cœur de la carrière, là où le décrochage est le plus criant. Nous alignerons ainsi intégralement le début de carrière sur la moyenne européenne, soit 135 euros nets de plus chaque mois, et nous comblerons au moins la moitié de l’écart au cœur de la carrière, soit environ 300 euros nets supplémentaires par mois. Une revalorisation nette et lisible sur la fiche de paie, pas un énième « Pacte » de primes conditionnées. Elle s’accompagnera d’une présence accrue dans l’établissement, pour mieux accompagner les élèves tout au long de leur scolarité.",
+    "La décrue démographique permettra de financer cette politique. Notre pays comptera en effet 1,7 million d’élèves de moins dans dix ans. Ce recul, qui n’a rien d’une bonne nouvelle pour la Nation, permettra néanmoins à taux d’encadrement constant de libérer plus de 3 milliards d’euros par an en fin de quinquennat, pour financer intégralement cette revalorisation sans un euro d’impôt nouveau. La gauche y verra l’occasion de recruter toujours plus. Nous posons une autre question. Être toujours plus nombreux et toujours aussi mal payés, est-ce vraiment cela, la solution ? Non. Nous en prenons l’engagement devant les professeurs de France : jusqu’au dernier euro, ces moyens iront à leurs rémunérations et leur condition de travail, pas un centime d’économie sur l’école."
+   ]
+  },
+  {
+   "theme": "education",
+   "document": "ecole",
+   "page": 11,
+   "page_pdf": 11,
+   "paragraphes": [
+    "Le concours sera régionalisé et nous reconstruirons la formation initiale autour d’une École Normale du Professorat par académie.",
+    "Les concours resteront la principale voie d’accès au métier, parce qu’ils demeurent la voie la plus équitable et la plus efficace de recrutement de professeurs qualifiés, maîtres d’un savoir approfondi. Mais nous les régionaliserons. À l’exception de l’agrégation, qui restera nationale, ils seront désormais organisés après la licence, dans le cadre de chaque académie. Ainsi nous formerons les maîtres là où ils enseigneront, au plus près des besoins de chaque territoire, et le jeune professeur ne sera plus arraché à sa région dès sa première affectation, dans la continuité entre son académie de formation et ses premières années devant les élèves. Car dans chaque académie renaîtra une École Normale du Professorat. Placée sous la tutelle du ministère et l’autorité du recteur, elle aura le statut d’université des métiers de l’enseignement, délivrera ses propres licences et masters et pourra conventionner avec les universités. Nous l’assumons : la formation des maîtres sortira du giron de l’université, qui a failli dans cette mission, pour être rendue à l’Éducation nationale.",
+    "La formation s’y déploiera sur cinq ans, deux années pour les élèves-professeurs, puis trois années de formation continuée pour les néo-titulaires, car ce métier ne s’apprend pas hors-sol, mais sur le terrain, où chaque débutant sera guidé par un professeur plus expérimenté."
+   ]
+  },
+  {
+   "theme": "education",
+   "document": "ecole",
+   "page": 14,
+   "page_pdf": 14,
+   "paragraphes": [
+    "L’apprentissage des savoirs redeviendra la vocation première de l’école primaire, car ce qui n’est pas acquis à sept ans se paie à quinze, et souvent toute une vie. Nous l’assumons, l’école du XXI e siècle doit renouer avec le savoir, avec le calcul et avec la morale, non par nostalgie, mais pour armer chaque enfant à une vie libre.",
+    "Les programmes du primaire seront recentrés sur le lire, écrire, compter, et sur l’histoire et la géographie de la France. Nous mettrons fin, dans le temps scolaire, à la dispersion des « éducations à » ceci ou cela qui ont peu à peu grignoté les heures d’apprentissage : ce temps sera rendu au français, au calcul et à l’anglais. La plus grande part des temps de classe leur sera consacrée et les méthodes d’enseignement dont l’efficacité est explicitement prouvée seront retenues.",
+    "Au collège, le temps réservé aux disciplines fondamentales sera augmenté. Le savoir, et lui seul, redeviendra la colonne vertébrale de l’école, des fondamentaux jusqu’aux sciences et aux humanités."
+   ]
+  },
+  {
+   "theme": "education",
+   "document": "ecole",
+   "page": 22,
+   "page_pdf": 22,
+   "paragraphes": [
+    "Un grand vent de liberté soufflera sur les établissements. L’essentiel des décisions se prendra au plus près des professeurs, des élèves et des familles. Fini la prolifération des circulaires, l’administration centrale sera recentrée sur ses missions stratégiques. Les programmes ne fixeront plus que de grandes orientations, que chaque établissement pourra adapter à ses élèves et à son territoire, et le Conseil supérieur des programmes sera supprimé.",
+    "Sous la direction des chefs d’établissement, les équipes pédagogiques décideront elles-mêmes, dans le cadre de leur projet d’école, de l’organisation des cycles, des groupes, du soutien et des ateliers, en lien avec leur collectivité. Car la liberté et la responsabilité ont réussi partout où on les a essayées, et l’uniformité bureaucratique, jamais. Là où tout était dicté d’en haut, ce sont désormais ceux qui connaissent les élèves qui choisiront le mieux pour eux.",
+    "Pour accéder à cette autonomie, les écoles primaires seront progressivement érigées en établissements de plein exercice, et nous créerons enfin un statut de directeur d’école, à l’image des chefs d’établissement, doté d’une autorité réelle sur son équipe et de l’évaluation de ses professeurs."
+   ]
+  },
+  {
+   "theme": "education",
+   "document": "ecole",
+   "page": 31,
+   "page_pdf": 31,
+   "paragraphes": [
+    "L’autorité des professeurs et des chefs d’établissement sera pleinement restaurée. Celle du professeur, qui tient sa légitimité du savoir et de la maîtrise de sa discipline, sera placée au cœur du projet d’établissement, sa liberté pédagogique réaffirmée, son dernier mot rétabli en conseil de classe, et le soutien de sa hiérarchie garanti en cas de conflit. Pour qu’il vive davantage dans l’établissement, des salles de professeurs y seront organisées par discipline.",
+    "Les chefs d’établissement, eux, verront leurs pouvoirs d’autorité et de sanction renforcés. Ils présideront des conseils de discipline aux prérogatives restaurées, dotés d’une échelle de sanctions claire, connue de tous et appliquée sans délai, jusqu’à l’exclusion définitive. Les élèves exclus à répétition seront pris en charge dans des établissements disciplinaires, car aucun enfant n’est perdu, mais aucune classe ne doit être prise en otage. Et contre le harcèlement, nous appliquerons une règle simple, trop longtemps inversée : c’est le harceleur qui part, jamais le harcelé."
+   ]
+  },
+  {
+   "theme": "logement",
+   "document": "logement",
+   "page": 11,
+   "page_pdf": 11,
+   "paragraphes": [
+    "Le maire doit redevenir le centre de la décision. Nous passerons d’un contrôle préalable systématique à un cadre clair, une décision assumée et un contrôle a posteriori renforcé. Concrètement, cela suppose de simplifier les règles, puis de transformer la manière dont les permis sont délivrés et contrôlés. En levant les blocages administratifs et en redonnant de la capacité de décision aux maires, nous permettrons de débloquer des projets aujourd’hui à l’arrêt et de construire davantage.",
+    "Le cadre sera clarifié en amont. Les obligations de compatibilité avec les documents supérieurs (SRADET, PCAET, SCoT) seront supprimées ou fortement allégées. Le projet d’aménagement et de développement durables (PADD) fixera les priorités et les objectifs de construction. Le règlement sera fortement allégé. Ainsi, le plan local d’urbanisme sera transformé en PLU dit urbanisme harmonieux, concentré sur l’essentiel : hauteur des bâtiments, position du bâti sur la parcelle (alignement, recul, continuité), relation à la rue et place des espaces verts. C’est une rupture avec vingt ans d’inflation normative."
+   ]
+  },
+  {
+   "theme": "logement",
+   "document": "logement",
+   "page": 22,
+   "page_pdf": 22,
+   "paragraphes": [
+    "La chute de l’accession à la propriété est l’un des moteurs de la crise actuelle. Depuis 2019, elle explique près de 84 % du recul des achats immobiliers et de la construction, et touche d’abord les primo-accédants. Ce sont d’abord les Français qui travaillent, élèvent leurs enfants et veulent simplement acheter leur premier logement qui en subissent les conséquences. Nous voulons redonner au plus grand nombre la possibilité de devenir propriétaire et faire du logement social un tremplin vers la propriété plutôt qu’une impasse résidentielle.",
+    "Le PTZ reste un outil central de solvabilisation, mais son efficacité a été affaiblie par l’instabilité des paramètres depuis 1995 et par la complexité croissante des règles, notamment de zonage et d’éligibilité. Les études disponibles indiquent par ailleurs un effet déclencheur limité, avec une part d’effets d’aubaine (environ 15 %), ce qui impose de le refonder pour le rendre plus lisible et mieux ciblé.",
+    "Il sera réservé aux primo-accédants, ouvert sans distinction au neuf et à l’ancien, pour les appartements comme pour les maisons. Le zonage actuel sera supprimé afin de mettre fin aux incohérences territoriales. Son financement sera réorganisé afin que la Caisse des dépôts et consigations prenne en charge les intérêts, plutôt que par un crédit d’impôt budgétaire pour l’État. Dans un contexte de remontée des taux et d’exigence accrue d’apport personnel, un PTZ lisible est souvent l’outil qui permet de décrocher le crédit en réduisant la mensualité."
+   ]
+  },
+  {
+   "theme": "agriculture",
+   "document": "agriculture",
+   "page": 11,
+   "page_pdf": 11,
+   "paragraphes": [
+    "Nous engagerons une réforme constitutionnelle afin de rétablir la capacité de l’État à décider lorsque l’intérêt agricole et alimentaire est en jeu. Nous y inscrirons la notion d’intérêts fondamentaux de la Nation, et une loi organique précisera que l’agriculture en fait pleinement partie. Le juge devra alors en tenir compte dans son contrôle, aux côtés d’autres exigences constitutionnelles, notamment environnementales, sans que celles-ci puissent être érigées en principe supérieur ou exclusif. L’objectif est de rétablir un véritable équilibre entre souveraineté alimentaire, capacité de production et protection de l’environnement, en redonnant au politique la responsabilité explicite de ses choix.",
+    "Au fond, cette évolution constitutionnelle visera à consacrer un principe simple : aucune décision publique ne devra conduire à affaiblir durablement le potentiel productif agricole de la Nation sans que cet arbitrage soit explicitement assumé. Il s’agit d’instaurer, en filigrane, une forme de non-régression du potentiel agricole, au même titre que d’autres exigences déjà reconnues par notre droit. Nous devons en finir avec l’impossibilisme. Avec cette disposition, des textes comme la loi Duplomb ne pourraient plus être censurés au nom d’une lecture déséquilibrée des principes environnementaux : c’est bien notre objectif assumé."
+   ]
+  },
+  {
+   "theme": "agriculture",
+   "document": "agriculture",
+   "page": 19,
+   "page_pdf": 19,
+   "paragraphes": [
+    "Nous reconnaîtrons explicitement les projets de stockage d’eau à usage agricole comme relevant de l’intérêt général majeur afin de sécuriser leur instruction et de limiter les contentieux. Nous veillerons à ce que cette classification emporte pleinement les effets juridiques prévus par la loi. Les retenues d’eau, dispositifs de substitution ou de stockage hivernal sont aujourd’hui confrontés à des délais excessifs et à une forte insécurité juridique, souvent déconnectée des réalités agronomiques locales.",
+    "Les Projets de Territoire pour la Gestion de l’Eau (PTGE) seront supprimés et remplacés par une planification stratégique de l’eau, décisionnelle et opposable, issue d’une simplification du Schéma directeur d’aménagement et de gestion des eaux (SDAGE), organisée bassin par bassin et intégrant explicitement les besoins agricoles.",
+    "Nous réformerons également la gouvernance des agences de l’eau afin de rééquilibrer la représentation des usagers et mieux intégrer les réalités économiques et agricoles des territoires. Le poids des acteurs de la production, des filières et des collectivités sera renforcé pour favoriser des décisions plus opérationnelles."
+   ]
+  },
+  {
+   "theme": "social",
+   "document": "famille",
+   "page": 11,
+   "page_pdf": 11,
+   "paragraphes": [
+    "La politique familiale doit être claire, accessible et équitable. Il est essentiel que toutes les familles soient traitées de façon identique. Pour garantir un transfert automatique et simple, sans distinctions particulières, le recours à l’impôt sur le revenu, désormais prélevé à la source, s’avère le moyen le plus efficace.",
+    "Notre proposition : • Fusionner 12 dispositifs pour les remplacer par un Revenu familial (RF) de 240 euros versé chaque mois à tous, dès le premier enfant, de la naissance jusqu’à 18 ans ; • Conditionner le Revenu familial à une résidence régulière en France et à l’exercice d’une activité professionnelle depuis au moins cinq ans et en permettre la suspension temporaire par décision de justice en cas de défaillance éducative ; • Conserver les aides spécifiques pour les enfants de 0 à 3 ans (PAJE), les parents seuls (ASF), le logement (APL) ou le handicap (AEEH)."
+   ]
+  },
+  {
+   "theme": "social",
+   "document": "famille",
+   "page": 13,
+   "page_pdf": 13,
+   "paragraphes": [
+    "Notre proposition consiste à rendre explicite et compréhensible le soutien financier aux familles nombreuses par le doublement automatique du Revenu familial (cf. proposition 1) accordé pour le troisième enfant mineur à charge.",
+    "Ce nouveau dispositif vise à supprimer les incohérences des systèmes actuels et à garantir qu’aucune famille de la classe moyenne ne soit pénalisée. Les parents de trois enfants mineurs percevraient ainsi 240 euros par enfant pour les deux premiers et 480 euros pour le troisième, soit 960 euros au total. Les parents de quatre enfants percevraient 240 euros par enfants pour les deux premiers, 480 euros pour le troisième et 240 euros pour le quatrième soit 1 200 euros au total."
+   ]
+  },
+  {
+   "theme": "environnement",
+   "document": "electricite",
+   "page": 11,
+   "page_pdf": 11,
+   "paragraphes": [
+    "EDF a déjà commencé à réviser ce cadre : en 2016, la durée d’amortissement des réacteurs de 900 MW a été portée à 50 ans, et les nouveaux réacteurs EPR2 sont déjà conçus dans une logique de 60 ans. C’est un progrès, mais le système actuel présente un défaut majeur : les autorisations de fonctionnement sont renouvelées par tranches de 10 ans seulement. Résultat, les exploitants investissent sans visibilité à long terme - frein considérable pour planifier et financer les travaux nécessaires.",
+    "Aux États-Unis, l’autorité de sûreté nucléaire accorde des licences allant jusqu’à 80 ans de fonctionnement, sous réserve que les réacteurs respectent en permanence leurs exigences de sécurité d’origine. Cette approche donne aux opérateurs une perspective industrielle bien plus stable.",
+    "Ce que nous proposons : un horizon de 80 ans Plutôt que de renouveler l’autorisation d’une centrale tous les 10 ans en se demandant à chaque fois si elle va continuer à exister, nous proposons de fixer d’emblée un horizon de 80 ans. La plupart des équipements d’une centrale peuvent être remplacés au fil du temps - à l’exception de la cuve du réacteur, pièce centrale qui ne peut pas être changée. Les contrôles décennaux ne disparaissent pas, mais leur rôle change : au lieu de décider si la centrale peut survivre 10 ans de plus, ils servent à vérifier qu’elle reste bien sur la trajectoire prévue. En résumé : aujourd’hui, on investit pour 10 ans en espérant pouvoir continuer. Demain, on investira pour viser les 80 ans, en vérifiant l’état du réacteur tous les 10 ans."
+   ]
+  },
+  {
+   "theme": "environnement",
+   "document": "electricite",
+   "page": 19,
+   "page_pdf": 19,
+   "paragraphes": [
+    "Le parc nucléaire français ne peut pas descendre en dessous d’un plancher technique d’environ 20 GW : chaque réacteur ne peut individuellement réduire sa production en dessous de 20 à 25 % de sa puissance nominale sans compromettre sa capacité à fonctionner pleinement le soir et la nuit suivants. Or la consommation française à son minimum - nuits d’été, week-ends, mois d’août - peut descendre à 30 à 35 GW seulement, laissant une marge parfois inférieure à 15 GW pour absorber toute la production solaire et éolienne, qui ne peut être ni stockée ni interrompue à volonté.",
+    "La PPE 3 - le plan de programmation énergétique du gouvernement - prévoit pour 2035 de multiplier par trois le photovoltaïque (de 55 à 80 GW), par 1,7 l’éolien terrestre (35 à 40 GW) et par 18 l’éolien en mer (15 GW). Ces objectifs sont physiquement incompatibles avec la réalité du réseau électrique français. Les cibles 2030 posent les mêmes problèmes. Cette situation n’est pas sans précédent : en 1990, les autorités et EDF avaient elles-mêmes décidé de cesser toute nouvelle construction nucléaire après une décennie de construction intensive - jusqu’à six réacteurs par an au plus fort du programme."
+   ]
+  },
+  {
+   "theme": "numerique",
+   "document": "ia",
+   "page": 12,
+   "page_pdf": 12,
+   "paragraphes": [
+    "Pour les entreprises qui forment leurs salariés à l’IA, l’outil naturel est le plan de développement des compétences, piloté par l’employeur et financé via les OPCO. Pour les salariés qui en prennent l’initiative, un compte personnel de formation rénové - en co-construction avec l’employeur, assorti d’un cofinancement de 20 % de ce dernier - constitue une voie complémentaire utile. Pour les publics qui n’ont pas d’employeur en mesure de cofinancer - demandeurs d’emploi en reconversion, salariés de TPE -, un abondement ciblé du CPF se justifie pleinement, financé par les économies de la réforme de la formation professionnelle, de l’ordre du milliard d’euros.",
+    "L’objectif est de former, en deux années, plusieurs millions d’actifs avec un socle minimum de vingt heures utilement structurées. Cette formation ne se réduira pas à une sensibilisation superficielle : elle portera sur les usages professionnels, la vérification de l’information, la sécurité, la coopération homme-machine, l’automatisation des tâches répétitives et la montée en valeur ajoutée des métiers.",
+    "Nous doublerons le nombre d’ingénieurs spécialisés en IA, informatique, robotique, mathématiques appliquées et infrastructures numériques, notamment avec l’appui des Universités de Technologie. Nous mettrons en place des bourses d’excellence, des cursus renforcés et des programmes d’élite de niveau international, afin de former la génération capable de concevoir les modèles, les couches logicielles, les outils de sécurité, les systèmes embarqués et les applications industrielles dont le pays a besoin. Une grande politique IA suppose une grande politique des talents."
+   ]
+  },
+  {
+   "theme": "numerique",
+   "document": "ia",
+   "page": 26,
+   "page_pdf": 26,
+   "paragraphes": [
+    "Nous fixerons un objectif chiffré, exigeant mais tenable : gagner, grâce à l’IA, l’équivalent de 250 000 emplois publics à l’horizon 2032. Nous le partagerons à parts égales : d’un côté, 125 000 agents remis sur le terrain, redéployés du back‑office vers le contact, le soin, l’enquête et le contrôle. Un service public plus efficace, à effectif constant et sans baisse de dépense. De l’autre, 125 000 départs à la retraite ne seront pas remplacés - moins d’un départ en retraite sur cinq, sans aucun licenciement. À quoi s’ajoutent, par les achats publics et la lutte contre la fraude, des économies nettes de l’ordre de 15 milliards d’euros par an à terme, intégralement affectées à la réduction du déficit.",
+    "Ce chiffre est volontairement prudent. Fin 2024, la fonction publique emploie près de 5,9 millions d’agents. En juin 2025, l’Alan Turing Institute a établi, tâche par tâche, que 41 % du temps de travail public peut être assisté par l’IA générative - de 49 % dans l’éducation à 33 % dans la santé."
+   ]
+  },
+  {
+   "theme": "economie",
+   "document": "produire-plus",
+   "page": 10,
+   "page_pdf": 10,
+   "paragraphes": [
+    "Depuis le début des années 2000, l’inflation normative est devenue hors de contrôle. Le volume des lois et règlements a doublé, avec près de 33 000 mots supplémentaires chaque mois. Le stock de règles atteint désormais plus de 48 millions de mots. Règles et procédures s’immiscent partout dans la vie des entreprises et des chefs d’entreprise. Cette situation, symbole d’une impuissance publique organisée, n’est plus acceptable.",
+    "Elle constitue un handicap économique majeur, évalué entre 3 et 4 points de PIB, sans gain démontré ni en efficacité ni en niveau de protection. C’est un impôt caché qui pèse lourdement sur l’activité sans bénéfice pour les finances publiques.",
+    "Nous mettrons fin à cette fuite en avant dès le début du quinquennat."
+   ]
+  },
+  {
+   "theme": "economie",
+   "document": "produire-plus",
+   "page": 20,
+   "page_pdf": 20,
+   "paragraphes": [
+    "Pour corriger ce handicap, nous agirons sans attendre. Plus de 25 milliards d’euros d’allègements porteront sur le coût du travail, en combinant la mise en place du seuil « zéro cotisation », tel que présenté dans Travail gagnant, et une baisse directe des cotisations patronales non contributives.",
+    "Cet effort sera complété par un allègement ciblé de près de 15 milliards d’euros de la fiscalité de production, concentré sur les impôts les plus pénalisants pour l’industrie.",
+    "Quatre impôts seront ainsi prioritairement supprimés ou recentrés : • Contribution sociale de solidarité des sociétés (C3S, 5,3 milliards d’euros) : suppression intégrale d’un impôt particulièrement nocif ; • Cotisation sur la valeur ajoutée des entreprises (CVAE, 4,3 milliards d’euros) : suppression définitive d’un impôt pénalisant l’investissement et les entreprises à forte intensité capitalistique ; • Forfait social (2,8 milliards d’euros) : maintien à 20 % sur la participation légale obligatoire et exonération de l’intéressement, de la part supra-légale de la participation et de l’épargne retraite individuelle ; • Cotisation foncière des entreprises (CFE) - composante industrielle (1,9 milliard d’euros) : exonération de la part industrielle afin de mettre fin à la taxation de l’outil productif fondée sur les immobilisations."
+   ]
+  },
+  {
+   "theme": "travail",
+   "document": "travail-gagnant",
+   "page": 20,
+   "page_pdf": 20,
+   "paragraphes": [
+    "Le principal frein au travail supplémentaire en France tient moins à la volonté des salariés qu’à son coût pour les entreprises. Les heures supplémentaires existent, mais leur volume reste limité. Avec une durée légale de 1 607 heures par an, la durée effectivement travaillée, heures supplémentaires comprises, atteint en moyenne 1 664 heures pour les salariés à temps complet, bien en-deçà de la moyenne européenne, et l’équivalent de trois semaines de moins par an qu’en Allemagne. Même lorsque l’activité le permet, beaucoup d’entreprises hésitent à proposer des heures en plus, car leur coût marginal demeure trop élevé. Or, produire davantage est indispensable si nous voulons créer plus de richesse et cesser de financer notre modèle social par la dette. Cela suppose de lever ce frein économique et de garantir que ceux qui travaillent plus y gagnent réellement, et que ceux qui font déjà des heures supplémentaires n’y perdent pas.",
+    "La solution : instaurer un seuil « zéro cotisation » Nous proposons d’instaurer un seuil « zéro cotisation », simple et lisible : • Le seuil est fixé à 1 623 heures par an, au lieu de 1 607 heures aujourd’hui, soit deux jours de travail supplémentaires rémunérés."
+   ]
+  },
+  {
+   "theme": "travail",
+   "document": "travail-gagnant",
+   "page": 21,
+   "page_pdf": 21,
+   "paragraphes": [
+    "Au-delà, la rémunération des heures travaillées est majorée selon les termes de l’accord d’entreprise et exonérées de toutes les cotisations sociales, salariales et patronales. L’employeur ne paye que le salaire brut. Le salaire n’acquitte que la CSG et la CRDS. Le dispositif actuel d’exonération d’impôt sur le revenu existant des heures supplémentaires est intégralement maintenu. • La mesure s’accompagne d’une annualisation du temps de travail, offrant davantage de souplesse aux entreprises."
+   ]
+  }
+ ]
+}

@@ -1,0 +1,10 @@
+{
+  "ios": {
+    "build": 5,
+    "url": "https://apps.apple.com/fr/app/populous/id6814861955"
+  },
+  "android": {
+    "build": 5,
+    "url": "https://play.google.com/store/apps/details?id=com.populous.app"
+  }
+}
