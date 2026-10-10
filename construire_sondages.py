@@ -268,17 +268,42 @@ def main():
 
     entete = '==== Second semestre 2026 ===='
     debut = wikitext.index(entete)
-    fin = wikitext.index('====', debut + len(entete))
-    section = wikitext[debut:fin]
-    tbl_debut = section.index('{|')
-    tbl_fin = section.index('|}', tbl_debut)
-    table = section[tbl_debut:tbl_fin]
+    # La section se termine au prochain titre de niveau 2 a 4. Wikipedia y a
+    # ajoute des sous-titres de niveau 5 (« Octobre-novembre 2026 », « Juillet-
+    # septembre 2026 ») : s'arreter au premier « ==== » comme avant coupait la
+    # section avant le tableau (ValueError « substring not found », oct. 2026).
+    suite = wikitext[debut + len(entete):]
+    m_fin = re.search(r'^={2,4}[^=\n].*$', suite, re.M)
+    section = wikitext[debut:debut + len(entete) + (m_fin.start() if m_fin else len(suite))]
 
-    rows = parse_rows(table)
-    candidats = parse_candidats(rows)
-    print(f'{len(candidats)} candidats identifies.')
+    # Un tableau par periode (sous-titre) : on les lit tous, les plus recents
+    # d'abord, et on fusionne candidats et sondages.
+    tables, pos = [], 0
+    while True:
+        i = section.find('{|', pos)
+        if i < 0:
+            break
+        j = section.find('\n|}', i)
+        j = len(section) if j < 0 else j
+        tables.append(section[i:j])
+        pos = j + 3
+    if not tables:
+        raise SystemExit('Aucun tableau de sondages trouve dans la section « Second semestre 2026 » — la page Wikipedia a peut-etre change.')
 
-    bruts = parse_sondages(rows, annee=2026, n_cols=len(candidats) + 4)
+    candidats, vus, bruts = [], set(), []
+    for table in tables:
+        rows = parse_rows(table)
+        cands = parse_candidats(rows)
+        if not cands:
+            continue
+        for s_ in parse_sondages(rows, annee=2026, n_cols=len(cands) + 4):
+            s_['_cands'] = cands            # candidats propres a CE tableau
+            bruts.append(s_)
+        for c in cands:
+            if c['cle'] not in vus:
+                vus.add(c['cle'])
+                candidats.append(c)
+    print(f'{len(tables)} tableau(x), {len(candidats)} candidats identifies.')
     print(f'{len(bruts)} sondages identifies (premiere hypothese de chacun).')
 
     fichiers = [c['fichier'] for c in candidats]
@@ -286,13 +311,15 @@ def main():
     for c in candidats:
         c['photo'] = images.get(c['fichier'])
         c['couleur'] = COULEURS_PARTI.get(c['parti'], '#8891B0')
+    for c in candidats:
         del c['fichier']
 
     sondages = []
     for s in bruts:
         cellules = s.pop('cellules')
+        cands = s.pop('_cands')
         scores = {}
-        for idx, cand in enumerate(candidats):
+        for idx, cand in enumerate(cands):
             if idx >= len(cellules):
                 break
             val, substitue = valeur_candidat(cellules[idx])
