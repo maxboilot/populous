@@ -1,29 +1,5 @@
 [
   {
-    "date": "2026-10-09",
-    "heure": "21:30",
-    "ordre_du_jour": "Suite de la discussion de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants",
-    "themes": [
-      "securite",
-      "social"
-    ],
-    "dossier": "DLR5L17N54776",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-10-09",
-    "heure": "21:30",
-    "ordre_du_jour": "Suite de la discussion de la proposition de loi organique visant à adapter l'autorité judiciaire à la lutte contre les violences sexuelles et intrafamiliales",
-    "themes": [
-      "justice",
-      "securite"
-    ],
-    "dossier": "DLR5L17N54777",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
     "date": "2026-10-12",
     "heure": "15:45",
     "ordre_du_jour": "Examen du texte — Moderniser et rééquilibrer le fonctionnement du titre-restaurant",
@@ -62,6 +38,30 @@
     "themes": [],
     "dossier": "DLR5L17N53095",
     "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-13",
+    "heure": "15:00",
+    "ordre_du_jour": "Suite de la discussion de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants",
+    "themes": [
+      "securite",
+      "social"
+    ],
+    "dossier": "DLR5L17N54776",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-13",
+    "heure": "15:00",
+    "ordre_du_jour": "Vote solennel sur la proposition de loi organique visant à adapter l'autorité judiciaire à la lutte contre les violences sexuelles et intrafamiliales",
+    "themes": [
+      "justice",
+      "securite"
+    ],
+    "dossier": "DLR5L17N54777",
+    "scrutin_annonce": true,
     "lecture": "1ʳᵉ lecture"
   },
   {
@@ -319,7 +319,7 @@
   {
     "date": "2026-10-28",
     "heure": "15:00",
-    "ordre_du_jour": "Examen du texte — Faire de l’Union européenne le cadre d’une interdiction effective des mécanismes addictifs conçus et promus par les réseaux sociaux et plateformes numériques à l’égard des enfants et jeunes, mineurs (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Faire de l’Union européenne le cadre d’une interdiction effective des mécanismes addictifs conçus et promus par les réseaux sociaux et plateformes numériques à l’égard des enfants et jeunes mineurs (séance éventuelle)",
     "themes": [
       "social",
       "numerique"
