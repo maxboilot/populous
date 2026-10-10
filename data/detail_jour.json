@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-10-10T02:28:29.213609Z",
+  "generated_at": "2026-10-10T08:38:41.326320Z",
   "date": "2026-10-09",
-  "numero_vedette": 8660,
+  "numero_vedette": 8672,
   "lois": [
     {
       "nature_texte": "proposition de loi",
@@ -780,6 +780,266 @@
             "solennel": false,
             "objet": "l'article 57 (examen prioritaire) de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants (première lecture).",
             "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8660",
+            "vedette": false
+          },
+          "modifications": []
+        },
+        {
+          "ref": "58",
+          "article": {
+            "numero": 8661,
+            "nature": "article",
+            "article": "58",
+            "n_amendement": null,
+            "parent": null,
+            "auteur": null,
+            "issue": "adopte",
+            "pour": 77,
+            "contre": 0,
+            "abstentions": 0,
+            "votants": 77,
+            "solennel": false,
+            "objet": "l'article 58 (examen prioritaire) de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants (première lecture).",
+            "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8661",
+            "vedette": false
+          },
+          "modifications": []
+        },
+        {
+          "ref": "59",
+          "article": {
+            "numero": 8662,
+            "nature": "article",
+            "article": "59",
+            "n_amendement": null,
+            "parent": null,
+            "auteur": null,
+            "issue": "adopte",
+            "pour": 70,
+            "contre": 0,
+            "abstentions": 0,
+            "votants": 70,
+            "solennel": false,
+            "objet": "l'article 59 (examen prioritaire) de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants (première lecture).",
+            "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8662",
+            "vedette": false
+          },
+          "modifications": []
+        },
+        {
+          "ref": "60",
+          "article": {
+            "numero": 8663,
+            "nature": "article",
+            "article": "60",
+            "n_amendement": null,
+            "parent": null,
+            "auteur": null,
+            "issue": "adopte",
+            "pour": 69,
+            "contre": 2,
+            "abstentions": 0,
+            "votants": 71,
+            "solennel": false,
+            "objet": "l'article 60 (examen prioritaire) de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants (première lecture).",
+            "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8663",
+            "vedette": false
+          },
+          "modifications": []
+        },
+        {
+          "ref": "45",
+          "article": null,
+          "modifications": [
+            {
+              "numero": 8664,
+              "nature": "amendement",
+              "article": "45",
+              "n_amendement": 240,
+              "parent": null,
+              "auteur": "M. Ménagé",
+              "issue": "rejete",
+              "pour": 29,
+              "contre": 42,
+              "abstentions": 3,
+              "votants": 74,
+              "solennel": false,
+              "objet": "l'amendement n° 240 de M. Ménagé après l'article 45 de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8664",
+              "vedette": false,
+              "sous_amendements": []
+            }
+          ]
+        },
+        {
+          "ref": "61",
+          "article": {
+            "numero": 8666,
+            "nature": "article",
+            "article": "61",
+            "n_amendement": null,
+            "parent": null,
+            "auteur": null,
+            "issue": "adopte",
+            "pour": 64,
+            "contre": 0,
+            "abstentions": 9,
+            "votants": 73,
+            "solennel": false,
+            "objet": "l'article 61 de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants (première lecture).",
+            "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8666",
+            "vedette": false
+          },
+          "modifications": [
+            {
+              "numero": 8665,
+              "nature": "amendement",
+              "article": "61",
+              "n_amendement": 1156,
+              "parent": null,
+              "auteur": "Mme Spillebout",
+              "issue": "adopte",
+              "pour": 55,
+              "contre": 10,
+              "abstentions": 7,
+              "votants": 72,
+              "solennel": false,
+              "objet": "l'amendement n° 1156 de Mme Spillebout à l'article 61 de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8665",
+              "vedette": false,
+              "sous_amendements": []
+            }
+          ]
+        },
+        {
+          "ref": "68",
+          "article": {
+            "numero": 8668,
+            "nature": "article",
+            "article": "68",
+            "n_amendement": null,
+            "parent": null,
+            "auteur": null,
+            "issue": "adopte",
+            "pour": 44,
+            "contre": 2,
+            "abstentions": 29,
+            "votants": 75,
+            "solennel": false,
+            "objet": "l'article 68 de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants (première lecture).",
+            "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8668",
+            "vedette": false
+          },
+          "modifications": [
+            {
+              "numero": 8667,
+              "nature": "amendement",
+              "article": "68",
+              "n_amendement": 684,
+              "parent": null,
+              "auteur": "Mme Legrain",
+              "issue": "rejete",
+              "pour": 20,
+              "contre": 29,
+              "abstentions": 24,
+              "votants": 73,
+              "solennel": false,
+              "objet": "l'amendement n° 684 de Mme Legrain à l'article 68 de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8667",
+              "vedette": false,
+              "sous_amendements": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nature_texte": "proposition de loi organique",
+      "intitule": "visant à adapter l'autorité judiciaire à la lutte contre les violences sexistes et intrafamiliales",
+      "lecture": "(première lecture)",
+      "ensemble": null,
+      "motions": [],
+      "articles": [
+        {
+          "ref": "premier",
+          "article": {
+            "numero": 8669,
+            "nature": "article",
+            "article": "premier",
+            "n_amendement": null,
+            "parent": null,
+            "auteur": null,
+            "issue": "adopte",
+            "pour": 44,
+            "contre": 2,
+            "abstentions": 22,
+            "votants": 68,
+            "solennel": false,
+            "objet": "l'article premier de la proposition de loi organique visant à adapter l'autorité judiciaire à la lutte contre les violences sexistes et intrafamiliales (première lecture).",
+            "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8669",
+            "vedette": false
+          },
+          "modifications": []
+        },
+        {
+          "ref": "2",
+          "article": {
+            "numero": 8670,
+            "nature": "article",
+            "article": "2",
+            "n_amendement": null,
+            "parent": null,
+            "auteur": null,
+            "issue": "adopte",
+            "pour": 50,
+            "contre": 0,
+            "abstentions": 21,
+            "votants": 71,
+            "solennel": false,
+            "objet": "l'article 2 de la proposition de loi organique visant à adapter l'autorité judiciaire à la lutte contre les violences sexistes et intrafamiliales (première lecture).",
+            "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8670",
+            "vedette": false
+          },
+          "modifications": []
+        },
+        {
+          "ref": "2 bis",
+          "article": {
+            "numero": 8671,
+            "nature": "article",
+            "article": "2 bis",
+            "n_amendement": null,
+            "parent": null,
+            "auteur": null,
+            "issue": "adopte",
+            "pour": 48,
+            "contre": 0,
+            "abstentions": 21,
+            "votants": 69,
+            "solennel": false,
+            "objet": "l'article 2 bis de la proposition de loi organique visant à adapter l'autorité judiciaire à la lutte contre les violences sexistes et intrafamiliales (première lecture).",
+            "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8671",
+            "vedette": false
+          },
+          "modifications": []
+        },
+        {
+          "ref": "3",
+          "article": {
+            "numero": 8672,
+            "nature": "article",
+            "article": "3",
+            "n_amendement": null,
+            "parent": null,
+            "auteur": null,
+            "issue": "adopte",
+            "pour": 47,
+            "contre": 0,
+            "abstentions": 22,
+            "votants": 69,
+            "solennel": false,
+            "objet": "l'article 3 de la proposition de loi organique visant à adapter l'autorité judiciaire à la lutte contre les violences sexistes et intrafamiliales (première lecture).",
+            "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8672",
             "vedette": true
           },
           "modifications": []
