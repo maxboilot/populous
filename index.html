@@ -678,6 +678,63 @@ window.__VOTE_EARLY__ = (async function(){
     box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;gap:2px}
   .presiTab.on{background:var(--accent);color:#fff}
 
+  /* Bandeau « Nouvelle version disponible » : discret, fermable, sous l'encoche. */
+  .majBanner{position:fixed;left:12px;right:12px;top:calc(8px + env(safe-area-inset-top,0px));z-index:850;max-width:var(--colW);margin:0 auto;
+    display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--card);border-radius:14px;box-shadow:var(--shadow-lg);
+    border:1px solid var(--line);font-size:12.5px;color:var(--ink)}
+  .majTxt{flex:1;line-height:1.35;font-weight:600}
+  .majBtn{flex:none;background:var(--accent);color:#fff;text-decoration:none;font-weight:800;font-size:12px;padding:8px 12px;border-radius:var(--r-pill)}
+  .majX{flex:none;width:26px;height:26px;border:none;border-radius:50%;background:var(--card-alt);color:var(--ink-soft);cursor:pointer;font-size:12px;padding:0;font-family:inherit}
+  /* Onglet Candidats : une carte par personne, ordre alphabétique, mêmes
+     règles d'affichage pour tous (aucun classement, aucune couleur de parti). */
+  .candSec{max-width:var(--colW);margin:0 auto 12px}
+  .candSec .t{font-family:var(--font-d);font-weight:800;font-size:16px;letter-spacing:-.01em;color:var(--ink)}
+  .candSec .s{font-size:11px;color:var(--ink-soft);margin-top:3px;line-height:1.4}
+  .candCard{padding:14px}
+  .candTop{display:flex;align-items:center;gap:12px}
+  .candPhoto{width:56px;height:56px;border-radius:50%;object-fit:cover;background:var(--accent-soft);flex:none;
+    border:1px solid var(--line)}
+  .candPhoto.ini{display:flex;align-items:center;justify-content:center;font-weight:800;font-size:17px;color:var(--accent)}
+  .candNom{font-family:var(--font-d);font-weight:800;font-size:15px;line-height:1.2;color:var(--ink)}
+  .candNom small{display:block;font-weight:500;font-size:13px;color:var(--ink-soft);margin-bottom:1px}
+  .candParti{font-size:11px;font-weight:600;color:var(--ink-soft);margin-top:4px}
+  .candStatut{font-size:11px;line-height:1.45;color:var(--ink-soft);margin-top:12px}
+  .candStatut b{font-weight:700;color:var(--ink)}
+  .candStats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-top:12px}
+  .candStat{background:var(--card-alt);border-radius:10px;padding:8px 8px 9px}
+  .candStat .l{font-size:11px;color:var(--ink-soft);line-height:1.2}
+  .candStat .v{font-size:15px;font-weight:800;margin-top:3px;color:var(--ink)}
+  .candStat .v small{font-size:11px;font-weight:500;color:var(--dim)}
+  .candStat .n{font-size:10.5px;color:var(--dim);margin-top:2px;line-height:1.3}
+  .candNote{font-size:10.5px;color:var(--dim);margin-top:6px;line-height:1.3}
+  .candBtn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:12px;padding:13px 12px;
+    border:none;border-radius:12px;background:var(--accent);color:#fff;font-family:inherit;font-size:14px;font-weight:800;
+    cursor:pointer;box-shadow:0 4px 12px rgba(27,59,219,.28);transition:transform .12s}
+  .candBtn:active{transform:scale(.98)}
+  .candCredits{max-width:var(--colW);margin:6px auto 0;font-size:11px;color:var(--dim);line-height:1.5}
+  .candCredits summary{cursor:pointer;font-weight:600}
+  .candCredits ul{margin:6px 0 0;padding-left:16px}
+  .progDoc{font-size:12px;line-height:1.5;color:var(--ink-soft);margin-top:16px}
+  .progDoc b{color:var(--ink);font-weight:700}
+  .progDocs{font-size:11px;color:var(--ink-soft);margin:6px 0 0}
+  .progDocs summary{cursor:pointer;font-weight:600;color:var(--accent)}
+  .progDocs ul{margin:6px 0 0;padding-left:16px;line-height:1.5}
+  .progRegle{font-size:11px;line-height:1.5;color:var(--ink-soft);background:var(--accent-soft);border-radius:10px;padding:9px 11px;margin:12px 0}
+  .progTh{border-top:1px solid var(--line)}
+  .progTh summary{display:flex;align-items:center;gap:8px;padding:13px 2px;font-size:14px;font-weight:700;color:var(--ink);cursor:pointer;list-style:none}
+  .progTh summary::-webkit-details-marker{display:none}
+  .progTh summary span{margin-left:auto;font-size:11px;font-weight:500;color:var(--dim)}
+  .progTh summary::after{content:"▾";color:var(--dim);font-size:12px;margin-left:6px}
+  .progTh[open] summary::after{content:"▴"}
+  .progQ{background:var(--card-alt);border-radius:10px;padding:10px 12px;font-size:13px;line-height:1.55;color:var(--ink)}
+  .progQ p{margin:0}
+  .progQ p + p{margin-top:8px}
+  .progSrc{font-size:11px;color:var(--ink-soft);margin:6px 2px 14px;line-height:1.4}
+  .progSrc a{color:var(--accent);font-weight:600;text-decoration:none}
+  .progAbsents{font-size:11px;line-height:1.5;color:var(--dim);border-top:1px solid var(--line);padding-top:12px}
+  .progHead{display:flex;align-items:center;gap:12px;padding-right:34px}
+  .progHead .candPhoto{width:48px;height:48px}
+
   .actuRow{display:block;text-decoration:none;color:inherit}
   .actuRow .k{font-size:10px;font-weight:700;color:var(--dim);display:flex;gap:6px;align-items:center;flex-wrap:wrap}
   .actuRow .t{font-size:13.5px;font-weight:700;line-height:1.4;margin-top:5px;color:var(--ink)}
@@ -841,6 +898,11 @@ window.__VOTE_EARLY__ = (async function(){
   <div class="sheet" id="detailSheet"></div>
 </div>
 
+<!-- ============ Programme d'un candidat (bouton « Voir le programme », onglet Candidats) ============ -->
+<div id="programmePopup" class="veil hidden">
+  <div class="sheet" id="programmeSheet"></div>
+</div>
+
 <!-- ============ La Ref du jour, accessible uniquement depuis l'accueil ============ -->
 <div id="refJourPopup" class="veil hidden">
   <div class="sheet" id="refJourSheet"></div>
@@ -983,7 +1045,8 @@ window.__VOTE_EARLY__ = (async function(){
   <div class="presiWatermark" aria-hidden="true">Populous</div>
   <div class="dashHead zTop"><div class="eyebrow">2027</div><h1 class="d">Présidentielle</h1></div>
   <div class="presiTabs zTop" id="presiTabs">
-    <button class="presiTab on" data-ptab="actu">Actu</button>
+    <button class="presiTab on" data-ptab="candidats">Candidats</button>
+    <button class="presiTab" data-ptab="actu">Actu</button>
     <button class="presiTab" data-ptab="sondage">Sondages</button>
     <button class="presiTab" data-ptab="calendrier">Calendrier</button>
   </div>
@@ -3320,7 +3383,212 @@ function actuHeure(iso){
   return String(d.getHours()).padStart(2,"0") + "h" + String(d.getMinutes()).padStart(2,"0");
 }
 
-let presiTab = "actu";
+/* ============================================================
+   PRÉSIDENTIELLE 2027 — onglet Candidats.
+   Liste tenue à la main dans data/candidats.json : chaque personne y
+   figure avec la source de son annonce (ou de sa désignation par son
+   parti). Ordre alphabétique, mêmes champs pour tous. Les compteurs
+   (parrainages, temps de parole, résultats passés) affichent « Pas
+   encore publié » tant que leur source officielle n'alimente rien.
+   ?data=local lit les fichiers du dossier courant au lieu du dépôt en
+   ligne : sert uniquement à tester avant publication.
+   ============================================================ */
+const CANDIDATS_BASE = new URLSearchParams(location.search).get("data")==="local" ? "data/" : REPO_DATA_BASE;
+let candidatsData = null, candidatsPromise = null;
+function loadCandidats(){
+  if(candidatsData) return Promise.resolve(candidatsData);
+  if(!candidatsPromise){
+    candidatsPromise = fetch(CANDIDATS_BASE + "candidats.json", {cache:"no-store"})
+      .then(r=>r.json())
+      .then(d=>{ candidatsData = d; return d; })
+      .catch(()=>{ candidatsPromise = null; return null; });
+  }
+  return candidatsPromise;
+}
+let resultatsPassesData = null, resultatsPassesPromise = null;
+function loadResultatsPasses(){
+  if(resultatsPassesData) return Promise.resolve(resultatsPassesData);
+  if(!resultatsPassesPromise){
+    resultatsPassesPromise = fetch(CANDIDATS_BASE + "resultats_passes.json", {cache:"no-store"})
+      .then(r=>r.json())
+      .then(d=>{ resultatsPassesData = d; return d; })
+      .catch(()=>{ resultatsPassesPromise = null; return null; });
+  }
+  return resultatsPassesPromise;
+}
+const pctFR = v => Number(v).toLocaleString("fr-FR",{minimumFractionDigits:2, maximumFractionDigits:2}) + " %";
+// Résultat le plus récent en grand, l'autre élection en petit ; « — » si la
+// personne n'était pas sur le bulletin (on n'écrit rien d'autre à sa place).
+function candResultatsHTML(rp, cle){
+  const e = rp && rp.par_candidat && rp.par_candidat[cle];
+  if(!rp) return `<div class="candStat"><div class="l">Résultats passés</div><div class="v">—</div><div class="n">Indisponible</div></div>`;
+  if(!e) return `<div class="candStat"><div class="l">Résultats passés</div><div class="v">—</div><div class="n">Pas sur le bulletin en 2017 ni en 2022</div></div>`;
+  const annees = Object.keys(e).sort().reverse();
+  const reste = annees.slice(1).map(a=>`${pctFR(e[a].pct)} en ${a}`).join(" · ");
+  return `<div class="candStat"><div class="l">Résultats passés</div><div class="v">${esc(pctFR(e[annees[0]].pct))}</div><div class="n">${annees[0]} · 1er tour${reste ? "<br>" + esc(reste) : ""}</div></div>`;
+}
+let tempsParoleData = null, tempsParolePromise = null;
+function loadTempsParole(){
+  if(tempsParoleData) return Promise.resolve(tempsParoleData);
+  if(!tempsParolePromise){
+    tempsParolePromise = fetch(CANDIDATS_BASE + "temps_parole.json", {cache:"no-store"})
+      .then(r=>r.json())
+      .then(d=>{ tempsParoleData = d; return d; })
+      .catch(()=>{ tempsParolePromise = null; return null; });
+  }
+  return tempsParolePromise;
+}
+const dureeHM = sec => Math.floor(sec/3600) + " h " + String(Math.floor(sec%3600/60)).padStart(2,"0");
+function periodeTexte(tp){
+  const mois = ["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc."];
+  const [a1,m1] = tp.debut.split("-").map(Number), [a2,m2] = tp.fin.split("-").map(Number);
+  return a1===a2 ? `${mois[m1-1]}–${mois[m2-1]} ${a2}` : `${mois[m1-1]} ${a1}–${mois[m2-1]} ${a2}`;
+}
+// Temps de parole relevé par l'Arcom (TV + radio), hors fonction de membre du
+// gouvernement que l'Arcom compte à part : on l'affiche en dessous, sans le
+// mélanger, pour que deux personnes restent comparables.
+function candTempsHTML(tp, cle){
+  const l = `<div class="l">Temps de parole</div>`;
+  if(!tp) return `<div class="candStat">${l}<div class="v">—</div><div class="n">Indisponible</div></div>`;
+  const e = tp.par_candidat && tp.par_candidat[cle];
+  if(!e) return `<div class="candStat">${l}<div class="v">—</div><div class="n">Aucun relevé · ${esc(periodeTexte(tp))}</div></div>`;
+  const gouv = e.secondes_gouvernement > 0 ? `<br>+ ${esc(dureeHM(e.secondes_gouvernement))} comme membre du gouvernement` : "";
+  return `<div class="candStat">${l}<div class="v">${esc(dureeHM(e.secondes))}</div><div class="n">${esc(periodeTexte(tp))}${gouv}</div></div>`;
+}
+const MOIS_FR = ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"];
+function candDateTexte(decl){
+  const m = String(decl.date||"").match(/^(\d{4})-(\d{2})(?:-(\d{2}))?/);
+  if(!m) return "";
+  const mois = MOIS_FR[parseInt(m[2],10)-1] || "";
+  if(decl.precision==="jour" && m[3]) return parseInt(m[3],10) + (m[3]==="01" ? "er " : " ") + mois + " " + m[1];
+  return mois + " " + m[1];
+}
+function candPhotoURL(c){ return CANDIDATS_BASE + String(c.photo.fichier).replace(/^data\//,""); }
+function candInitiales(c){ return ((c.prenom||"")[0]||"") + ((c.nom||"").replace(/^(de|d')\s*/i,"")[0]||""); }
+function candCarteHTML(c, rp, tp){
+  const dt = candDateTexte(c.declaration);
+  return `<div class="card candCard">
+    <div class="candTop">
+      <img class="candPhoto" src="${esc(candPhotoURL(c))}" alt="Photo de ${esc(c.prenom)} ${esc(c.nom)}" loading="lazy" data-ini="${esc(candInitiales(c).toUpperCase())}">
+      <div>
+        <div class="candNom"><small>${esc(c.prenom)}</small>${esc(c.nom.toLocaleUpperCase("fr"))}</div>
+        <div class="candParti">${esc(c.parti)}</div>
+      </div>
+    </div>
+    <div class="candStatut">${esc(c.declaration.libelle)}${dt ? ` · <b>${esc(dt)}</b>` : ""}<br>Source : ${esc(c.declaration.source_titre)}</div>
+    <div class="candStats">
+      <div class="candStat"><div class="l">Parrainages</div><div class="v">— <small>/ 500</small></div></div>
+      ${candTempsHTML(tp, c.cle)}
+      ${candResultatsHTML(rp, c.cle)}
+    </div>
+    <div class="candNote">Parrainages : pas encore publiés par le Conseil constitutionnel.</div>
+    <button class="candBtn" type="button" data-cle="${esc(c.cle)}">Voir le programme <span aria-hidden="true">→</span></button>
+  </div>`;
+}
+async function renderCandidats(){
+  const el = $("#presiBody");
+  el.innerHTML = `<div style="color:var(--dim);font-size:12px;text-align:center;margin-top:40px">Chargement…</div>`;
+  const [d, rp, tp] = await Promise.all([loadCandidats(), loadResultatsPasses(), loadTempsParole()]);
+  if(presiTab !== "candidats") return; // l'utilisateur a changé d'onglet entre-temps
+  if(!d || !Array.isArray(d.candidats)){
+    el.innerHTML = `<div class="emptyState"><div class="ic">${ICONS.flag}</div>
+      <h3>Candidats indisponibles</h3>
+      <p>Impossible de joindre les données pour l'instant — réessaie un peu plus tard.</p></div>`;
+    return;
+  }
+  const tri = d.candidats.slice().sort((a,b)=>String(a.nom_tri).localeCompare(String(b.nom_tri),"fr"));
+  const officiels = tri.filter(c=>c.declaration.statut !== "annonce");
+  const annonces = tri.filter(c=>c.declaration.statut === "annonce");
+  const section = (titre, sous, liste)=> liste.length ? `
+    <div class="candSec"><div class="t">${titre}</div><div class="s">${sous}</div></div>
+    ${liste.map(c=>candCarteHTML(c, rp, tp)).join("")}` : "";
+  el.innerHTML =
+    section("Candidat(e)s officiellement déclaré(e)s", `${officiels.length} · ordre alphabétique · chaque annonce est sourcée`, officiels) +
+    (annonces.length ? `<div style="height:6px"></div>` : "") +
+    section("Candidature annoncée, pas encore officielle", `${annonces.length} · l'intéressé(e) a dit qu'il ou elle sera candidat(e), sans déclaration formelle`, annonces) +
+    (tp ? `<div class="candCredits" style="margin-top:12px">Temps de parole : ${esc(tp.source_titre)}, télévision et radio, cumul des relevés publiés (${esc(periodeTexte(tp))}). L'Arcom publie chaque mois avec plusieurs mois de retard et compte à part le temps de parole des membres du gouvernement.</div>` : "") +
+    (rp ? `<div class="candCredits" style="margin-top:8px">Résultats passés : ${esc(rp.elections["2017"].source_titre)} (2017) ; ${esc(rp.elections["2022"].source_titre)} (2022).</div>` : "") +
+    `<details class="candCredits"><summary>Crédits photos</summary><ul>${
+      tri.map(c=>`<li>${esc(c.prenom)} ${esc(c.nom)} : ${esc(c.photo.auteur)}, ${esc(c.photo.licence)}, Wikimedia Commons</li>`).join("")
+    }</ul></details>`;
+  el.querySelectorAll(".candPhoto").forEach(img=>{
+    img.onerror = ()=>{ const f = document.createElement("div"); f.className = "candPhoto ini"; f.textContent = img.dataset.ini || ""; img.replaceWith(f); };
+  });
+  el.querySelectorAll(".candBtn").forEach(b=>{ b.onclick = ()=>ouvrirProgramme(b.dataset.cle); });
+}
+let themesData = null;
+async function loadThemesProg(){
+  if(themesData) return themesData;
+  try{ themesData = await (await fetch(CANDIDATS_BASE + "themes.json", {cache:"no-store"})).json(); }catch(e){ themesData = []; }
+  return themesData;
+}
+async function loadProgramme(c){
+  try{ return await (await fetch(CANDIDATS_BASE + String(c.programme.fichier).replace(/^data\//,""), {cache:"no-store"})).json(); }
+  catch(e){ return null; }
+}
+const dateLongue = iso => { const m = String(iso||"").match(/^(\d{4})-(\d{2})(?:-(\d{2}))?/); return !m ? "" : (m[3] ? parseInt(m[3],10) + (m[3]==="01" ? "er " : " ") : "") + MOIS_FR[parseInt(m[2],10)-1] + " " + m[1]; };
+function progSignalerHref(c, p){
+  const obj = "Programme " + c.prenom + " " + c.nom + (p ? " (page " + p.page + ")" : "");
+  return "mailto:boilot.maxime@gmail.com?subject=" + encodeURIComponent("Erreur signalée : " + obj);
+}
+function progPassageHTML(c, doc, p){
+  return `<div class="progQ">${p.paragraphes.map(t=>`<p>« ${esc(t)} »</p>`).join("")}</div>
+    <div class="progSrc">Source : ${esc(doc.titre)}, ${esc(doc.editeur)}, p. ${esc(p.page)} · <a href="${esc(progSignalerHref(c, p))}">Signaler une erreur</a></div>`;
+}
+async function ouvrirProgramme(cle){
+  const d = await loadCandidats();
+  const c = d && (d.candidats||[]).find(x=>x.cle===cle);
+  if(!c) return;
+  const sheet = $("#programmeSheet");
+  const prog = c.programme || {};
+  const entete = `<button class="sheetClose" id="programmeClose" aria-label="Fermer">✕</button>
+    <div class="progHead">
+      <img class="candPhoto" src="${esc(candPhotoURL(c))}" alt="" data-ini="${esc(candInitiales(c).toUpperCase())}">
+      <div><div class="eyebrow">Programme</div>
+        <div class="candNom"><small>${esc(c.prenom)}</small>${esc(c.nom.toLocaleUpperCase("fr"))}</div></div>
+    </div>`;
+  let corps;
+  if(prog.statut === "disponible"){
+    const [pg, themes] = await Promise.all([loadProgramme(c), loadThemesProg()]);
+    if(!pg || !pg.passages || !pg.passages.length){
+      corps = `<p class="lead">Impossible de charger le programme pour l'instant — réessaie un peu plus tard.</p>`;
+    } else {
+      const docs = pg.documents || [];
+      const docParId = Object.fromEntries(docs.map(x=>[x.id, x]));
+      const libelle = Object.fromEntries(themes.map(t=>[t.code, t.libelle]));
+      const ordre = themes.map(t=>t.code);
+      const presents = ordre.filter(code=>pg.passages.some(p=>p.theme===code));
+      const absents = ordre.filter(code=>!presents.includes(code)).map(code=>libelle[code]);
+      const entete1 = pg.mention ? esc(pg.mention) : `<b>${esc(docs[0].titre)}</b><br>${esc(docs[0].description)}<br>Publié par ${esc(docs[0].editeur)} · ${esc(dateLongue(docs[0].date))}`;
+      corps = `<div class="progDoc">${entete1}</div>
+        <details class="progDocs"><summary>${docs.length > 1 ? "Documents sources (" + docs.length + ")" : "Document source"}</summary>
+          <ul>${docs.map(x=>`<li><b>${esc(x.titre)}</b><br>${esc(x.editeur)} · ${esc(dateLongue(x.date))}</li>`).join("")}</ul></details>
+        <p class="progRegle">Passages repris mot pour mot du document, sans résumé ni commentaire. Une vérification automatique contrôle que chaque passage figure bien dans la page citée.</p>
+        ${presents.map((code, i)=>{
+          const ps = pg.passages.filter(p=>p.theme===code);
+          return `<details class="progTh"${i===0 ? " open" : ""}><summary>${esc(libelle[code])}<span>${ps.length} passage${ps.length>1?"s":""}</span></summary>
+            ${ps.map(p=>progPassageHTML(c, docParId[p.document], p)).join("")}</details>`;
+        }).join("")}
+        <div class="progAbsents">Pas de passage dans ce document sur : ${esc(absents.join(", "))}.</div>
+        <div class="progSrc" style="margin-top:12px"><a href="${esc(progSignalerHref(c, null))}">Signaler une erreur</a></div>`;
+    }
+  } else if(prog.statut === "non_publie"){
+    corps = `<p class="lead">Programme pas encore publié.</p>
+      ${prog.note ? `<p class="progRegle">${esc(prog.note)}${prog.source_titre ? ` Source : ${esc(prog.source_titre)}.` : ""}</p>` : ""}`;
+  } else {
+    corps = `<p class="lead">Les passages du programme officiel, repris mot pour mot et classés par thème, arrivent bientôt.</p>`;
+  }
+  sheet.innerHTML = entete + corps;
+  const img = sheet.querySelector(".candPhoto");
+  img.onerror = ()=>{ const f = document.createElement("div"); f.className = "candPhoto ini"; f.textContent = img.dataset.ini || ""; img.replaceWith(f); };
+  const popup = $("#programmePopup");
+  popup.classList.remove("hidden");
+  $("#programmeClose").onclick = ()=>popup.classList.add("hidden");
+  popup.onclick = e=>{ if(e.target===popup) popup.classList.add("hidden"); };
+  sheet.scrollTop = 0;
+}
+
+let presiTab = "candidats";
 function renderPresidentielle(){
   $("#presiTabs").querySelectorAll(".presiTab").forEach(b=>{
     b.classList.toggle("on", b.dataset.ptab===presiTab);
@@ -3328,7 +3596,8 @@ function renderPresidentielle(){
   });
   if(presiTab !== "sondage") $("#sondFiltre").innerHTML = "";
   if(presiTab !== "calendrier") clearInterval(calendrierMinuteur);
-  if(presiTab === "actu") renderActu();
+  if(presiTab === "candidats") renderCandidats();
+  else if(presiTab === "actu") renderActu();
   else if(presiTab === "sondage") renderSondages();
   else if(presiTab === "calendrier") renderCalendrier();
 }
@@ -3337,8 +3606,8 @@ function renderPresidentielle(){
    Calendrier 2027 — trois échéances officielles seulement (dates
    arrêtées en Conseil des ministres du 1er juillet 2026, source
    gouvernementale). Décompte réel en jours + heures, recalculé chaque
-   minute. Volontairement rien d'autre ici (pas de liste de candidats)
-   tant qu'une candidature n'est pas officiellement déclarée.
+   minute. La liste des candidats vit dans l'onglet Candidats, où chaque
+   personne figure avec la source de son annonce de candidature.
    ------------------------------------------------------------ */
 const CALENDRIER_ECHEANCES = [
   { ic:"🖋️", lbl:"Dépôt des parrainages", date:"Vendredi 12 mars 2027, 18h", cible:"2027-03-12T18:00:00+01:00" },
@@ -4191,6 +4460,42 @@ async function initNotificationsPush(){
   });
 }
 initNotificationsPush();
+
+/* ---------- bandeau « Nouvelle version disponible » (app native uniquement) ----------
+   APP_BUILD est le numéro de version de CETTE copie de la page, embarquée
+   dans l'app (à incrémenter à chaque version envoyée aux boutiques).
+   data/version.json donne, par plateforme, le numéro de la dernière version
+   DISPONIBLE dans la boutique : on ne le monte qu'une fois la version
+   approuvée et en ligne, sinon le bandeau enverrait vers une mise à jour
+   qui n'existe pas encore. Aucune donnée personnelle n'est transmise : on
+   ne fait que lire ce petit fichier public. Ne fait rien sur le web. Les
+   versions déjà installées avant ce bandeau ne l'ont pas : il servira pour
+   les prochaines mises à jour. ?data=local&plateforme=ios&build=4 permet
+   de le voir en test. */
+const APP_BUILD = 5;
+async function verifierMiseAJour(){
+  const q = new URLSearchParams(location.search);
+  const essai = q.get("data") === "local";
+  const cap = window.Capacitor;
+  const natif = !!(cap && cap.isNativePlatform && cap.isNativePlatform());
+  if(!natif && !essai) return;
+  const plateforme = essai && q.get("plateforme") ? q.get("plateforme") : (cap && cap.getPlatform ? cap.getPlatform() : "");
+  const monBuild = essai && q.get("build") ? Number(q.get("build")) : APP_BUILD;
+  let d;
+  try{ d = await (await fetch(CANDIDATS_BASE + "version.json", {cache:"no-store"})).json(); }catch(e){ return; }
+  const v = d && d[plateforme];
+  if(!v || !(Number(v.build) > monBuild)) return;
+  try{ if(localStorage.getItem("majIgnoree") === String(v.build)) return; }catch(e){}
+  const b = document.createElement("div");
+  b.className = "majBanner";
+  b.setAttribute("role", "status");
+  b.innerHTML = `<span class="majTxt">Une nouvelle version de Populous est disponible.</span>
+    <a class="majBtn" href="${esc(v.url)}" target="_blank" rel="noopener">Mettre à jour</a>
+    <button class="majX" type="button" aria-label="Plus tard">✕</button>`;
+  b.querySelector(".majX").onclick = ()=>{ try{ localStorage.setItem("majIgnoree", String(v.build)); }catch(e){} b.remove(); };
+  document.body.appendChild(b);
+}
+verifierMiseAJour();
 
 /* ---------- invite native "Donnez votre avis" (app native uniquement) ----------
    SKStoreReviewController décide elle-même si le popup s'affiche vraiment
