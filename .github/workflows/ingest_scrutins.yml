@@ -55,7 +55,34 @@ jobs:
         run: python construire_expose_motifs.py
       - name: Construire le detail des scrutins du jour (fenetre Detail de l'app)
         run: python construire_detail_jour.py
+      - name: Committer les données mises à jour
+        run: |
+          git config user.name bot-ingestion
+          git config user.email bot@example.invalid
+          git add data/
+          if git diff --cached --quiet; then
+            echo 'Aucune donnee modifiee.'
+            exit 0
+          fi
+          if python3 verif_changement_utile.py; then
+            echo 'Seul l horodatage a change : pas de commit.'
+            exit 0
+          fi
+          git commit -m 'Donnees du '$(date -u +%F)
+          # Plusieurs workflows commitent sur main independamment : on
+          # retente en cas de collision plutot que d'echouer d'un coup.
+          for i in 1 2 3 4 5; do
+            git pull --rebase --autostash && git push && exit 0
+            echo "Push echoue (tentative $i/5), nouvel essai..."
+            sleep $((RANDOM % 10 + 5))
+          done
+          echo "Echec apres 5 tentatives."
+          exit 1
       - name: Notifier si un nouveau scrutin vient de sortir
+        # APRES le commit (et plus avant, comme jusqu'au 12 oct. 2026) : sinon
+        # la notification arrivait avant que les donnees soient publiees et
+        # l'app n'affichait encore rien au toucher. On attend en plus 4 min
+        # que le cache de raw.githubusercontent.com (5 min) se rafraichisse.
         # featured_numero n'est non-null que si CE run vient de trouver un
         # nouveau scrutin (cf. write_today_pointer dans ingest_scrutins.py) —
         # jamais declenche par un simple re-passage sans nouveaute.
@@ -83,6 +110,8 @@ jobs:
           if numero is None:
               print('Pas de nouveau scrutin vedette sur ce run, rien a notifier.')
               sys.exit(0)
+          import time
+          time.sleep(240)  # laisse le cache de raw.githubusercontent.com se rafraichir avant de prevenir
           scrutin = json.load(open(f'data/scrutins/{numero}.json'))
           sort = 'adopté' if scrutin.get('adopte') else 'rejeté'
           texte = f"{scrutin['titre'][:120]} — {sort}"
@@ -91,26 +120,3 @@ jobs:
               check=True,
           )
           PYEOF
-      - name: Committer les données mises à jour
-        run: |
-          git config user.name bot-ingestion
-          git config user.email bot@example.invalid
-          git add data/
-          if git diff --cached --quiet; then
-            echo 'Aucune donnee modifiee.'
-            exit 0
-          fi
-          if python3 verif_changement_utile.py; then
-            echo 'Seul l horodatage a change : pas de commit.'
-            exit 0
-          fi
-          git commit -m 'Donnees du '$(date -u +%F)
-          # Plusieurs workflows commitent sur main independamment : on
-          # retente en cas de collision plutot que d'echouer d'un coup.
-          for i in 1 2 3 4 5; do
-            git pull --rebase --autostash && git push && exit 0
-            echo "Push echoue (tentative $i/5), nouvel essai..."
-            sleep $((RANDOM % 10 + 5))
-          done
-          echo "Echec apres 5 tentatives."
-          exit 1
