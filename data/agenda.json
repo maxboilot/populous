@@ -77,6 +77,18 @@
   },
   {
     "date": "2026-10-14",
+    "heure": "09:00",
+    "ordre_du_jour": "Examen de l'avis — Projet de loi de financement de la sécurité sociale pour 2027",
+    "themes": [
+      "securite",
+      "economie"
+    ],
+    "dossier": "DLR5L17N54951",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-14",
     "heure": "14:45",
     "ordre_du_jour": "Examen du texte — Projet de loi relatif à la résilience des infrastructures critiques et au renforcement de la cybersécurité",
     "themes": [
@@ -302,6 +314,15 @@
       "economie"
     ],
     "dossier": "DLR5L17N54629",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-28",
+    "heure": "09:00",
+    "ordre_du_jour": "Examen des amendements (art. 88) — Contrôle réel des investissements étrangers en France (séance éventuelle)",
+    "themes": [],
+    "dossier": "DLR5L17N54907",
     "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
   },
