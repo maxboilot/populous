@@ -1,16 +1,11 @@
 {
- "generated_at": "2026-10-10T18:08:05Z",
+ "generated_at": "2026-10-12T09:32:39Z",
  "statuts": {
   "declare": "Candidature annoncée par la personne",
   "designe": "Désigné(e) par son parti",
   "annonce": "Candidature annoncée, déclaration formelle à venir"
  },
- "a_venir": [
-  {
-   "libelle": "Vainqueur de la primaire de la gauche",
-   "note": "À ajouter une fois le résultat connu (primaire PS / Place publique, 9 au 17 octobre 2026 selon les sources)."
-  }
- ],
+ "a_venir": [],
  "candidats": [
   {
    "cle": "arthaud",
@@ -138,6 +133,32 @@
     "licence": "CC BY-SA 4.0",
     "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
     "page": "https://commons.wikimedia.org/wiki/File:Nicolas_Dupont-Aignan,_homme_politique_fran%C3%A7ais_(cropped).jpg"
+   },
+   "programme": {
+    "statut": "a_documenter"
+   }
+  },
+  {
+   "cle": "glucksmann",
+   "prenom": "Raphaël",
+   "nom": "Glucksmann",
+   "nom_tri": "glucksmann",
+   "parti": "Place publique",
+   "declaration": {
+    "statut": "designe",
+    "date": "2026-10-11",
+    "precision": "jour",
+    "libelle": "Vainqueur de la primaire organisée par le PS, dès le premier tour (candidat de la gauche sociale-démocrate, soutenu par le PS et Place publique)",
+    "source_titre": "LCP",
+    "source_url": "https://lcp.fr/actualites/primaire-socialiste-vainqueur-des-le-1er-tour-raphael-glucksmann-sera-le-candidat-de-la",
+    "note": null
+   },
+   "photo": {
+    "fichier": "data/candidats/photos/glucksmann.jpg",
+    "auteur": "© Union européenne 2024 – Source : Parlement européen",
+    "licence": "Réutilisation autorisée avec mention de la source (Parlement européen)",
+    "licence_url": "https://www.europarl.europa.eu/legal-notice/",
+    "page": "https://commons.wikimedia.org/wiki/File:1720448398743_20240708_GLUCKSMANN_Raphael_FR_006.jpg"
    },
    "programme": {
     "statut": "a_documenter"
