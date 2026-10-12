@@ -11,17 +11,6 @@
   {
     "date": "2026-10-12",
     "heure": "16:00",
-    "ordre_du_jour": "Discussion de la proposition de loi, adoptée par le Sénat, relative à l’expérimentation d’une gouvernance territoriale unifiée pour le centre de ressources, d’expertise et de performance sportive (CREPS) de Vichy",
-    "themes": [
-      "culture"
-    ],
-    "dossier": "DLR5L17N54096",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-10-12",
-    "heure": "16:00",
     "ordre_du_jour": "Discussion de la proposition de loi, adoptée par le Sénat, visant à assouplir la procédure d’autorisation des établissements et services sociaux et médico-sociaux à caractère expérimental",
     "themes": [
       "sante",
@@ -33,8 +22,19 @@
   },
   {
     "date": "2026-10-12",
-    "heure": "16:00",
-    "ordre_du_jour": "Discussion du projet de loi autorisant l’approbation de la convention d’extradition entre le Gouvernement de la République française et le Gouvernement de la République de Colombie",
+    "heure": "21:30",
+    "ordre_du_jour": "Suite de la discussion de la proposition de loi, adoptée par le Sénat, relative à l’expérimentation d’une gouvernance territoriale unifiée pour le centre de ressources, d’expertise et de performance sportive (CREPS) de Vichy",
+    "themes": [
+      "culture"
+    ],
+    "dossier": "DLR5L17N54096",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-12",
+    "heure": "21:30",
+    "ordre_du_jour": "Suite de la discussion du projet de loi autorisant l’approbation de la convention d’extradition entre le Gouvernement de la République française et le Gouvernement de la République de Colombie",
     "themes": [],
     "dossier": "DLR5L17N53095",
     "scrutin_annonce": false,
