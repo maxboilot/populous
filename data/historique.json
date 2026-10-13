@@ -1,8 +1,76 @@
 {
-  "generated_at": "2026-10-12T23:40:05.279926Z",
-  "depuis": "2025-10-12",
-  "nombre": 113,
+  "generated_at": "2026-10-13T02:05:53.888009Z",
+  "depuis": "2025-10-13",
+  "nombre": 116,
   "lois": [
+    {
+      "numero": 8695,
+      "date": "2026-10-12",
+      "titre": "L'expérimentation d'une gouvernance territoriale unifiée pour le centre de ressources, d'expertise et de performance sportive (CREPS) de Vichy",
+      "titre_officiel": "l'ensemble de la proposition de loi relative à l'expérimentation d'une gouvernance territoriale unifiée pour le centre de ressources, d'expertise et de performance sportive (CREPS) de Vichy (première lecture).",
+      "nature": "proposition de loi",
+      "lecture": "première lecture",
+      "solennel": false,
+      "adopte": true,
+      "statut": "adopte",
+      "themes": [
+        "culture"
+      ],
+      "sort": "l'Assemblée nationale a adopté",
+      "tally": {
+        "pour": 44,
+        "contre": 0,
+        "abstention": 6,
+        "absent": 528
+      },
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0354_texte-adopte-seance.pdf",
+      "type": "scrutin"
+    },
+    {
+      "numero": 8694,
+      "date": "2026-10-12",
+      "titre": "Assouplir la procédure d'autorisation des établissements et services sociaux et médico-sociaux à caractère expérimental",
+      "titre_officiel": "l'ensemble de la proposition de loi visant à assouplir la procédure d'autorisation des établissements et services sociaux et médico-sociaux à caractère expérimental (première lecture).",
+      "nature": "proposition de loi",
+      "lecture": "première lecture",
+      "solennel": false,
+      "adopte": true,
+      "statut": "adopte",
+      "themes": [
+        "sante",
+        "justice"
+      ],
+      "sort": "l'Assemblée nationale a adopté",
+      "tally": {
+        "pour": 53,
+        "contre": 0,
+        "abstention": 0,
+        "absent": 526
+      },
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0353_texte-adopte-seance.pdf",
+      "type": "scrutin"
+    },
+    {
+      "numero": 8693,
+      "date": "2026-10-12",
+      "titre": "Moderniser et rééquilibrer le fonctionnement du titre-restaurant",
+      "titre_officiel": "l'ensemble de la proposition de loi visant à moderniser et rééquilibrer le fonctionnement du titre-restaurant (première lecture).",
+      "nature": "proposition de loi",
+      "lecture": "première lecture",
+      "solennel": false,
+      "adopte": true,
+      "statut": "adopte",
+      "themes": [],
+      "sort": "l'Assemblée nationale a adopté",
+      "tally": {
+        "pour": 87,
+        "contre": 0,
+        "abstention": 15,
+        "absent": 477
+      },
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0352_texte-adopte-seance.pdf",
+      "type": "scrutin"
+    },
     {
       "numero": 8434,
       "date": "2026-07-21",

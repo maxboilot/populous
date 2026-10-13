@@ -3941,5 +3941,40 @@
     "themes": [],
     "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0351_texte-adopte-seance.pdf",
     "type": "main_levee"
+  },
+  {
+    "numero": 8695,
+    "date": "2026-10-12",
+    "titre": "L'expérimentation d'une gouvernance territoriale unifiée pour le centre de ressources, d'expertise et de performance sportive (CREPS) de Vichy",
+    "adopte": true,
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0354_texte-adopte-seance.pdf",
+    "themes": [
+      "culture"
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": 8694,
+    "date": "2026-10-12",
+    "titre": "Assouplir la procédure d'autorisation des établissements et services sociaux et médico-sociaux à caractère expérimental",
+    "adopte": true,
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0353_texte-adopte-seance.pdf",
+    "themes": [
+      "sante",
+      "justice"
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": 8693,
+    "date": "2026-10-12",
+    "titre": "Moderniser et rééquilibrer le fonctionnement du titre-restaurant",
+    "adopte": true,
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0352_texte-adopte-seance.pdf",
+    "themes": [],
+    "type": "scrutin"
   }
 ]
