@@ -235,7 +235,18 @@
   {
     "date": "2026-10-22",
     "heure": "09:00",
-    "ordre_du_jour": "Examen du texte — Projet de loi de finances pour 2027 (séance éventuelle)",
+    "ordre_du_jour": "Suite de l'examen du texte — Projet de loi de finances pour 2027 (séance éventuelle)",
+    "themes": [
+      "economie"
+    ],
+    "dossier": "DLR5L17N54629",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-23",
+    "heure": "09:00",
+    "ordre_du_jour": "Suite de l'examen du texte — Projet de loi de finances pour 2027 (séance éventuelle)",
     "themes": [
       "economie"
     ],
