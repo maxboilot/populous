@@ -3976,5 +3976,72 @@
     "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0352_texte-adopte-seance.pdf",
     "themes": [],
     "type": "scrutin"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N54776",
+    "date": "2026-10-13",
+    "titre": "Apporter une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "securite",
+      "social"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0356_texte-adopte-seance.pdf",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N54152",
+    "date": "2026-10-13",
+    "titre": "Proposition de loi visant à accélérer le développement de la médecine nucléaire thérapeutique en oncologie",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "sante",
+      "environnement"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N54152",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N54321",
+    "date": "2026-10-13",
+    "titre": "Proposition de loi révisant le dispositif des stocks de sécurité des médicaments",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "sante",
+      "securite"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N54321",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N54777",
+    "date": "2026-10-13",
+    "titre": "Adapter l'autorité judiciaire à la lutte contre les violences sexuelles et intrafamiliales",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "justice",
+      "securite"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0357_texte-adopte-seance.pdf",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N54525",
+    "date": "2026-10-13",
+    "titre": "Proposition de loi relative à la modernisation de la radio",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N54525",
+    "type": "main_levee"
   }
 ]
