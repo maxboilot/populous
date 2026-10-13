@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-10-13T21:55:53.039561Z",
+  "generated_at": "2026-10-13T23:45:58.804408Z",
   "date": "2026-10-13",
-  "numero_vedette": 8701,
+  "numero_vedette": 8706,
   "lois": [
     {
       "nature_texte": "proposition de loi",
@@ -99,7 +99,7 @@
             "solennel": false,
             "objet": "l'article 32 bis de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants (seconde délibération) (première lecture).",
             "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8701",
-            "vedette": true
+            "vedette": false
           },
           "modifications": [
             {
@@ -185,10 +185,87 @@
               "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8704",
               "vedette": false,
               "sous_amendements": []
+            },
+            {
+              "numero": 8705,
+              "nature": "autre",
+              "article": null,
+              "n_amendement": null,
+              "parent": null,
+              "auteur": null,
+              "issue": "adopte",
+              "pour": 503,
+              "contre": 0,
+              "abstentions": 67,
+              "votants": 570,
+              "solennel": true,
+              "objet": "la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8705",
+              "vedette": false,
+              "sous_amendements": []
             }
           ]
         }
       ]
+    },
+    {
+      "nature_texte": "proposition de loi organique",
+      "intitule": "visant à adapter l'autorité judiciaire à la lutte contre les violences sexuelles et intrafamiliales",
+      "lecture": "(première lecture)",
+      "ensemble": null,
+      "motions": [],
+      "articles": [
+        {
+          "ref": "?",
+          "article": null,
+          "modifications": [
+            {
+              "numero": 8706,
+              "nature": "autre",
+              "article": null,
+              "n_amendement": null,
+              "parent": null,
+              "auteur": null,
+              "issue": "adopte",
+              "pour": 503,
+              "contre": 0,
+              "abstentions": 67,
+              "votants": 570,
+              "solennel": true,
+              "objet": "la proposition de loi organique visant à adapter l'autorité judiciaire à la lutte contre les violences sexuelles et intrafamiliales (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8706",
+              "vedette": true,
+              "sous_amendements": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nature_texte": "projet de loi",
+      "intitule": "de finances pour 2027",
+      "lecture": "(première lecture)",
+      "ensemble": null,
+      "motions": [
+        {
+          "numero": 8707,
+          "nature": "motion",
+          "article": null,
+          "n_amendement": null,
+          "parent": null,
+          "auteur": null,
+          "issue": "rejete",
+          "pour": 149,
+          "contre": 236,
+          "abstentions": 0,
+          "votants": 385,
+          "solennel": false,
+          "objet": "la motion de rejet préalable, déposée par M. Boris Vallaud, du projet de loi de finances pour 2027 (première lecture).",
+          "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8707",
+          "vedette": false
+        }
+      ],
+      "articles": []
     }
   ],
   "autres": []
