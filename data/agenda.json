@@ -135,9 +135,21 @@
     "lecture": "1ʳᵉ lecture"
   },
   {
+    "date": "2026-10-20",
+    "heure": "21:30",
+    "ordre_du_jour": "Discussion du projet de loi de financement de la sécurité sociale pour 2027",
+    "themes": [
+      "securite",
+      "economie"
+    ],
+    "dossier": "DLR5L17N54951",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
     "date": "2026-10-21",
     "heure": "09:00",
-    "ordre_du_jour": "Examen du texte — Abroger le dispositif des amendes forfaitaires délictuelles (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Abroger le dispositif des amendes forfaitaires délictuelles",
     "themes": [],
     "dossier": "DLR5L17N54903",
     "scrutin_annonce": false,
@@ -155,7 +167,7 @@
   {
     "date": "2026-10-21",
     "heure": "09:00",
-    "ordre_du_jour": "Examen du texte — Garantir le droit de vote par l’encadrement des radiations pour perte d’attache communale (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Garantir le droit de vote par l’encadrement des radiations pour perte d’attache communale",
     "themes": [],
     "dossier": "DLR5L17N53266",
     "scrutin_annonce": false,
@@ -164,7 +176,7 @@
   {
     "date": "2026-10-21",
     "heure": "09:00",
-    "ordre_du_jour": "Examen du texte — Rétablir le droit commun de la prescription acquisitive dans les collectivités régies par l’article 73 de la Constitution ainsi qu’à Saint-Martin et Saint-Barthélemy (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Rétablir le droit commun de la prescription acquisitive dans les collectivités régies par l’article 73 de la Constitution ainsi qu’à Saint-Martin et Saint-Barthélemy",
     "themes": [
       "justice",
       "institutions"
@@ -233,7 +245,42 @@
     "lecture": "Lecture unique"
   },
   {
+    "date": "2026-10-21",
+    "heure": "21:30",
+    "ordre_du_jour": "Suite de la discussion du projet de loi de financement de la sécurité sociale pour 2027",
+    "themes": [
+      "securite",
+      "economie"
+    ],
+    "dossier": "DLR5L17N54951",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
     "date": "2026-10-22",
+    "heure": "09:00",
+    "ordre_du_jour": "Suite de l'examen du texte — Projet de loi de finances pour 2027 (séance éventuelle)",
+    "themes": [
+      "economie"
+    ],
+    "dossier": "DLR5L17N54629",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-22",
+    "heure": "15:00",
+    "ordre_du_jour": "Suite de la discussion du projet de loi de financement de la sécurité sociale pour 2027",
+    "themes": [
+      "securite",
+      "economie"
+    ],
+    "dossier": "DLR5L17N54951",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-23",
     "heure": "09:00",
     "ordre_du_jour": "Suite de l'examen du texte — Projet de loi de finances pour 2027 (séance éventuelle)",
     "themes": [
@@ -246,11 +293,12 @@
   {
     "date": "2026-10-23",
     "heure": "09:00",
-    "ordre_du_jour": "Suite de l'examen du texte — Projet de loi de finances pour 2027 (séance éventuelle)",
+    "ordre_du_jour": "Suite de la discussion du projet de loi de financement de la sécurité sociale pour 2027",
     "themes": [
+      "securite",
       "economie"
     ],
-    "dossier": "DLR5L17N54629",
+    "dossier": "DLR5L17N54951",
     "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
   },
@@ -273,6 +321,18 @@
       "economie"
     ],
     "dossier": "DLR5L17N54629",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-26",
+    "heure": "16:00",
+    "ordre_du_jour": "Suite de la discussion du projet de loi de financement de la sécurité sociale pour 2027",
+    "themes": [
+      "securite",
+      "economie"
+    ],
+    "dossier": "DLR5L17N54951",
     "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
   },
