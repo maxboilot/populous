@@ -1,271 +1,40 @@
 {
-  "generated_at": "2026-10-14T15:52:52.525890Z",
-  "date": "2026-10-13",
-  "numero_vedette": 8706,
+  "generated_at": "2026-10-14T18:43:36.952231Z",
+  "date": "2026-10-14",
+  "numero_vedette": 8708,
   "lois": [
     {
-      "nature_texte": "proposition de loi",
-      "intitule": "apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants",
-      "lecture": "(seconde délibération) (première lecture)",
-      "ensemble": null,
-      "motions": [],
-      "articles": [
-        {
-          "ref": "3",
-          "article": null,
-          "modifications": [
-            {
-              "numero": 8697,
-              "nature": "amendement",
-              "article": "3",
-              "n_amendement": 1,
-              "parent": null,
-              "auteur": "Mme Thiébault-Martinez",
-              "issue": "adopte",
-              "pour": 146,
-              "contre": 101,
-              "abstentions": 3,
-              "votants": 250,
-              "solennel": false,
-              "objet": "l'amendement n° 1 de Mme Thiébault-Martinez à l'article 3 de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants (seconde délibération) (première lecture).",
-              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8697",
-              "vedette": false,
-              "sous_amendements": []
-            }
-          ]
-        },
-        {
-          "ref": "28",
-          "article": null,
-          "modifications": [
-            {
-              "numero": 8698,
-              "nature": "amendement",
-              "article": "28",
-              "n_amendement": 2,
-              "parent": null,
-              "auteur": "Mme Thiébault-Martinez",
-              "issue": "adopte",
-              "pour": 287,
-              "contre": 0,
-              "abstentions": 3,
-              "votants": 290,
-              "solennel": false,
-              "objet": "l'amendement n° 2 de Mme Thiébault-Martinez à l'article 28 de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants (seconde délibération) (première lecture).",
-              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8698",
-              "vedette": false,
-              "sous_amendements": []
-            }
-          ]
-        },
-        {
-          "ref": "31",
-          "article": null,
-          "modifications": [
-            {
-              "numero": 8699,
-              "nature": "amendement",
-              "article": "31",
-              "n_amendement": 6,
-              "parent": null,
-              "auteur": "Mme Thiébault-Martinez",
-              "issue": "adopte",
-              "pour": 324,
-              "contre": 1,
-              "abstentions": 4,
-              "votants": 329,
-              "solennel": false,
-              "objet": "l'amendement n° 6 de Mme Thiébault-Martinez à l'article 31 de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants (seconde délibération) (première lecture).",
-              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8699",
-              "vedette": false,
-              "sous_amendements": []
-            }
-          ]
-        },
-        {
-          "ref": "32 bis",
-          "article": {
-            "numero": 8701,
-            "nature": "article",
-            "article": "32 bis",
-            "n_amendement": null,
-            "parent": null,
-            "auteur": null,
-            "issue": "adopte",
-            "pour": 236,
-            "contre": 3,
-            "abstentions": 83,
-            "votants": 322,
-            "solennel": false,
-            "objet": "l'article 32 bis de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants (seconde délibération) (première lecture).",
-            "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8701",
-            "vedette": false
-          },
-          "modifications": [
-            {
-              "numero": 8700,
-              "nature": "amendement",
-              "article": "32 bis",
-              "n_amendement": 3,
-              "parent": null,
-              "auteur": "Mme Thiébault-Martinez",
-              "issue": "adopte",
-              "pour": 304,
-              "contre": 24,
-              "abstentions": 8,
-              "votants": 336,
-              "solennel": false,
-              "objet": "l'amendement n° 3 de Mme Thiébault-Martinez à l'article 32 bis de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants (seconde délibération) (première lecture).",
-              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8700",
-              "vedette": false,
-              "sous_amendements": []
-            }
-          ]
-        },
-        {
-          "ref": "44",
-          "article": null,
-          "modifications": [
-            {
-              "numero": 8702,
-              "nature": "amendement",
-              "article": "44",
-              "n_amendement": 4,
-              "parent": null,
-              "auteur": "Mme Thiébault-Martinez",
-              "issue": "rejete",
-              "pour": 167,
-              "contre": 177,
-              "abstentions": 8,
-              "votants": 352,
-              "solennel": false,
-              "objet": "l'amendement n° 4 de Mme Thiébault-Martinez à l'article 44 de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants (seconde délibération) (première lecture).",
-              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8702",
-              "vedette": false,
-              "sous_amendements": []
-            }
-          ]
-        },
-        {
-          "ref": "?",
-          "article": null,
-          "modifications": [
-            {
-              "numero": 8703,
-              "nature": "amendement",
-              "article": null,
-              "n_amendement": 7,
-              "parent": null,
-              "auteur": "M. Ménagé de rétablissement de l'article 46 (supprimé) de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes",
-              "issue": "rejete",
-              "pour": 98,
-              "contre": 257,
-              "abstentions": 18,
-              "votants": 373,
-              "solennel": false,
-              "objet": "l'amendement n° 7 de M. Ménagé de rétablissement de l'article 46 (supprimé) de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants (seconde délibération) (première lecture).",
-              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8703",
-              "vedette": false,
-              "sous_amendements": []
-            },
-            {
-              "numero": 8704,
-              "nature": "amendement",
-              "article": null,
-              "n_amendement": 5,
-              "parent": null,
-              "auteur": "Mme Thiébault-Martinez de rétablissement de l'article 46 (supprimé) de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes",
-              "issue": "adopte",
-              "pour": 213,
-              "contre": 111,
-              "abstentions": 50,
-              "votants": 374,
-              "solennel": false,
-              "objet": "l'amendement n° 5 de Mme Thiébault-Martinez de rétablissement de l'article 46 (supprimé) de la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants (seconde délibération) (première lecture).",
-              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8704",
-              "vedette": false,
-              "sous_amendements": []
-            },
-            {
-              "numero": 8705,
-              "nature": "autre",
-              "article": null,
-              "n_amendement": null,
-              "parent": null,
-              "auteur": null,
-              "issue": "adopte",
-              "pour": 503,
-              "contre": 0,
-              "abstentions": 67,
-              "votants": 570,
-              "solennel": true,
-              "objet": "la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants (première lecture).",
-              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8705",
-              "vedette": false,
-              "sous_amendements": []
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "nature_texte": "proposition de loi organique",
-      "intitule": "visant à adapter l'autorité judiciaire à la lutte contre les violences sexuelles et intrafamiliales",
+      "nature_texte": "projet de loi",
+      "intitule": "de finances pour 2027",
       "lecture": "(première lecture)",
       "ensemble": null,
       "motions": [],
       "articles": [
         {
-          "ref": "?",
+          "ref": "liminaire",
           "article": null,
           "modifications": [
             {
-              "numero": 8706,
-              "nature": "autre",
-              "article": null,
-              "n_amendement": null,
+              "numero": 8708,
+              "nature": "amendement",
+              "article": "liminaire",
+              "n_amendement": 312,
               "parent": null,
-              "auteur": null,
+              "auteur": "M. Le Coq",
               "issue": "adopte",
-              "pour": 503,
-              "contre": 0,
-              "abstentions": 67,
-              "votants": 570,
-              "solennel": true,
-              "objet": "la proposition de loi organique visant à adapter l'autorité judiciaire à la lutte contre les violences sexuelles et intrafamiliales (première lecture).",
-              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8706",
+              "pour": 135,
+              "contre": 53,
+              "abstentions": 5,
+              "votants": 193,
+              "solennel": false,
+              "objet": "l'amendement n° 312 de M. Le Coq et les amendements identiques suivants de suppression de l'article liminaire du projet de loi de finances pour 2027 (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8708",
               "vedette": true,
               "sous_amendements": []
             }
           ]
         }
       ]
-    },
-    {
-      "nature_texte": "projet de loi",
-      "intitule": "de finances pour 2027",
-      "lecture": "(première lecture)",
-      "ensemble": null,
-      "motions": [
-        {
-          "numero": 8707,
-          "nature": "motion",
-          "article": null,
-          "n_amendement": null,
-          "parent": null,
-          "auteur": null,
-          "issue": "rejete",
-          "pour": 149,
-          "contre": 236,
-          "abstentions": 0,
-          "votants": 385,
-          "solennel": false,
-          "objet": "la motion de rejet préalable, déposée par M. Boris Vallaud, du projet de loi de finances pour 2027 (première lecture).",
-          "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8707",
-          "vedette": false
-        }
-      ],
-      "articles": []
     }
   ],
   "autres": []
