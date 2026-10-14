@@ -4043,5 +4043,19 @@
     "themes": [],
     "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N54525",
     "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L16N48701",
+    "date": "2026-10-14",
+    "titre": "Proposition de loi créant une dérogation à la participation minimale pour la maîtrise d'ouvrage pour les communes rurales",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [
+      "agriculture",
+      "institutions"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L16N48701",
+    "type": "main_levee"
   }
 ]
