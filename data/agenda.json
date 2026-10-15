@@ -1,39 +1,5 @@
 [
   {
-    "date": "2026-10-14",
-    "heure": "09:05",
-    "ordre_du_jour": "Examen de l'avis — Projet de loi de financement de la sécurité sociale pour 2027",
-    "themes": [
-      "securite",
-      "economie"
-    ],
-    "dossier": "DLR5L17N54951",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-10-14",
-    "heure": "14:45",
-    "ordre_du_jour": "Examen du texte — Projet de loi relatif à la résilience des infrastructures critiques et au renforcement de la cybersécurité",
-    "themes": [
-      "numerique"
-    ],
-    "dossier": "DLR5L17N50731",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-10-14",
-    "heure": "21:30",
-    "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (première partie)",
-    "themes": [
-      "economie"
-    ],
-    "dossier": "DLR5L17N54629",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
     "date": "2026-10-15",
     "heure": "10:30",
     "ordre_du_jour": "Examen du texte — Allocution de la Présidente de l'Assemblée nationale",

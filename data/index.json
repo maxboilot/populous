@@ -4057,5 +4057,29 @@
     ],
     "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L16N48701",
     "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53786",
+    "date": "2026-10-14",
+    "titre": "Proposition de loi réformant la prescription de l'action publique en matière criminelle et actualisant la notion d'obstacle insurmontable",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "justice"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53786",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N54606",
+    "date": "2026-10-14",
+    "titre": "Proposition de loi visant à dématérialiser l'état civil des bénéficiaires de la protection internationale",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N54606",
+    "type": "main_levee"
   }
 ]
