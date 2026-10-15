@@ -57,7 +57,7 @@
   {
     "date": "2026-10-20",
     "heure": "16:30",
-    "ordre_du_jour": "Examen du texte — Projet de loi de finances pour 2027 (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Projet de loi de finances pour 2027",
     "themes": [
       "economie"
     ],
@@ -167,7 +167,7 @@
   {
     "date": "2026-10-21",
     "heure": "15:00",
-    "ordre_du_jour": "Examen du texte — S’opposer à la déréglementation du cadre européen relatif aux pesticides dite Omnibus X (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — S’opposer à la déréglementation du cadre européen relatif aux pesticides dite Omnibus X",
     "themes": [
       "environnement"
     ],
@@ -284,6 +284,26 @@
     "ordre_du_jour": "Examen des amendements (art. 88) — Contrôle réel des investissements étrangers en France (séance éventuelle)",
     "themes": [],
     "dossier": "DLR5L17N54907",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-28",
+    "heure": "09:30",
+    "ordre_du_jour": "Examen du texte — Créer un corps de fonctionnaires de catégorie B pour les accompagnants d’élèves en situation de handicap (séance éventuelle)",
+    "themes": [
+      "sante"
+    ],
+    "dossier": "DLR5L17N54901",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-28",
+    "heure": "09:30",
+    "ordre_du_jour": "Examen du texte — Garantir les droits des joueurs et joueuses et la pérennité des jeux vidéo (séance éventuelle)",
+    "themes": [],
+    "dossier": "DLR5L17N54899",
     "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
   },
@@ -496,6 +516,17 @@
   },
   {
     "date": "2026-11-04",
+    "heure": "11:00",
+    "ordre_du_jour": "Examen du texte — Projet de loi de finances pour 2027 (séance éventuelle)",
+    "themes": [
+      "economie"
+    ],
+    "dossier": "DLR5L17N54629",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-04",
     "heure": "15:00",
     "ordre_du_jour": "Examen du texte — Création d’un statut de réfugié climatique au sein de l’Union européenne (séance éventuelle)",
     "themes": [
@@ -505,17 +536,6 @@
     "dossier": "DLR5L17N52584",
     "scrutin_annonce": false,
     "lecture": "Lecture unique"
-  },
-  {
-    "date": "2026-11-04",
-    "heure": "21:30",
-    "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027",
-    "themes": [
-      "economie"
-    ],
-    "dossier": "DLR5L17N54629",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
   },
   {
     "date": "2026-11-05",
