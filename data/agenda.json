@@ -1,27 +1,5 @@
 [
   {
-    "date": "2026-10-15",
-    "heure": "10:30",
-    "ordre_du_jour": "Examen du texte — Allocution de la Présidente de l'Assemblée nationale",
-    "themes": [
-      "institutions"
-    ],
-    "dossier": "DLR5L17N50157",
-    "scrutin_annonce": false,
-    "lecture": null
-  },
-  {
-    "date": "2026-10-15",
-    "heure": "15:00",
-    "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (première partie)",
-    "themes": [
-      "economie"
-    ],
-    "dossier": "DLR5L17N54629",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
     "date": "2026-10-16",
     "heure": "15:00",
     "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (première partie)",
@@ -35,7 +13,7 @@
   {
     "date": "2026-10-19",
     "heure": "17:00",
-    "ordre_du_jour": "Examen du texte — Augmenter les salaires et des pensions (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Augmenter les salaires et des pensions",
     "themes": [
       "travail"
     ],
@@ -130,7 +108,7 @@
   {
     "date": "2026-10-21",
     "heure": "09:30",
-    "ordre_du_jour": "Examen du texte — Créer un parcours de soins intégralement pris en charge par la sécurité sociale pour toutes les victimes de violences sexuelles (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Créer un parcours de soins intégralement pris en charge par la sécurité sociale pour toutes les victimes de violences sexuelles",
     "themes": [
       "sante",
       "justice",
@@ -143,7 +121,16 @@
   {
     "date": "2026-10-21",
     "heure": "09:30",
-    "ordre_du_jour": "Examen du texte — Loi d’urgence visant à rétablir l’interdiction de l’acétamipride et du flupyradifurone pour garantir la protection de la santé humaine, de la biodiversité, de l’environnement et notre souveraineté alimentaire (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Instaurer un moratoire sur le projet du canal Seine-nord Europe",
+    "themes": [],
+    "dossier": "DLR5L17N54900",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-21",
+    "heure": "09:30",
+    "ordre_du_jour": "Examen du texte — Loi d’urgence visant à rétablir l’interdiction de l’acétamipride et du flupyradifurone pour garantir la protection de la santé humaine, de la biodiversité, de l’environnement et notre souveraineté alimentaire",
     "themes": [
       "sante",
       "environnement",
@@ -156,7 +143,7 @@
   {
     "date": "2026-10-21",
     "heure": "09:30",
-    "ordre_du_jour": "Examen du texte — Protéger durablement les jeunes majeurs de l’aide sociale à l’enfance et de la protection judiciaire de la jeunesse (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Protéger durablement les jeunes majeurs de l’aide sociale à l’enfance et de la protection judiciaire de la jeunesse",
     "themes": [
       "justice"
     ],
@@ -320,6 +307,15 @@
   },
   {
     "date": "2026-10-28",
+    "heure": "10:30",
+    "ordre_du_jour": "Examen du texte — Instaurer un moratoire sur le projet du canal Seine-nord Europe (séance éventuelle)",
+    "themes": [],
+    "dossier": "DLR5L17N54900",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-28",
     "heure": "15:00",
     "ordre_du_jour": "Examen du texte — Faire de l’Union européenne le cadre d’une interdiction effective des mécanismes addictifs conçus et promus par les réseaux sociaux et plateformes numériques à l’égard des enfants et jeunes mineurs (séance éventuelle)",
     "themes": [
@@ -329,6 +325,19 @@
     "dossier": "DLR5L17N55023",
     "scrutin_annonce": false,
     "lecture": "Lecture unique"
+  },
+  {
+    "date": "2026-10-28",
+    "heure": "15:30",
+    "ordre_du_jour": "Examen du texte — Loi d’urgence visant à rétablir l’interdiction de l’acétamipride et du flupyradifurone pour garantir la protection de la santé humaine, de la biodiversité, de l’environnement et notre souveraineté alimentaire (séance éventuelle)",
+    "themes": [
+      "sante",
+      "environnement",
+      "agriculture"
+    ],
+    "dossier": "DLR5L17N54902",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
   },
   {
     "date": "2026-10-29",

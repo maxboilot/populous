@@ -1,42 +1,5 @@
 [
   {
-    "numero": 3056,
-    "date": "2025-10-15",
-    "titre": "De simplification du droit de l'urbanisme et du logement",
-    "adopte": true,
-    "statut": "adopte",
-    "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0172_texte-adopte-seance.pdf",
-    "themes": [
-      "logement"
-    ],
-    "type": "scrutin"
-  },
-  {
-    "numero": 3055,
-    "date": "2025-10-15",
-    "titre": "Transposition des accords nationaux interprofessionnels en faveur de l'emploi des salariés expérimentés et relatif à l'évolution du dialogue social",
-    "adopte": true,
-    "statut": "adopte",
-    "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0171_texte-adopte-seance.pdf",
-    "themes": [
-      "travail"
-    ],
-    "type": "scrutin"
-  },
-  {
-    "numero": null,
-    "dossier": "DLR5L17N52655",
-    "date": "2025-10-15",
-    "titre": "Proposition de loi organique visant à reporter le renouvellement général des membres du congrès et des assemblées de province de la Nouvelle-Calédonie pour permettre la mise en oeuvre de l'accord du 12 juillet 2025",
-    "adopte": true,
-    "statut": "adopte",
-    "themes": [
-      "institutions"
-    ],
-    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N52655",
-    "type": "main_levee"
-  },
-  {
     "numero": null,
     "dossier": "DLR5L17N51477",
     "date": "2025-10-20",

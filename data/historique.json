@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-10-15T23:06:17.322319Z",
-  "depuis": "2025-10-15",
-  "nombre": 116,
+  "generated_at": "2026-10-16T01:31:27.278333Z",
+  "depuis": "2025-10-16",
+  "nombre": 114,
   "lois": [
     {
       "numero": 8695,
@@ -2666,52 +2666,6 @@
         "absent": 15
       },
       "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0175_texte-adopte-seance.pdf",
-      "type": "scrutin"
-    },
-    {
-      "numero": 3056,
-      "date": "2025-10-15",
-      "titre": "De simplification du droit de l'urbanisme et du logement",
-      "titre_officiel": "l'ensemble de la proposition de loi de simplification du droit de l'urbanisme et du logement (texte de la commission mixte paritaire).",
-      "nature": "proposition de loi",
-      "lecture": "texte de la commission mixte paritaire",
-      "solennel": false,
-      "adopte": true,
-      "statut": "adopte",
-      "themes": [
-        "logement"
-      ],
-      "sort": "l'Assemblée nationale a adopté",
-      "tally": {
-        "pour": 65,
-        "contre": 41,
-        "abstention": 52,
-        "absent": 14
-      },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0172_texte-adopte-seance.pdf",
-      "type": "scrutin"
-    },
-    {
-      "numero": 3055,
-      "date": "2025-10-15",
-      "titre": "Transposition des accords nationaux interprofessionnels en faveur de l'emploi des salariés expérimentés et relatif à l'évolution du dialogue social",
-      "titre_officiel": "l'ensemble du projet de loi portant transposition des accords nationaux interprofessionnels en faveur de l'emploi des salariés expérimentés et relatif à l'évolution du dialogue social (texte de la commission mixte paritaire).",
-      "nature": "projet de loi",
-      "lecture": "texte de la commission mixte paritaire",
-      "solennel": false,
-      "adopte": true,
-      "statut": "adopte",
-      "themes": [
-        "travail"
-      ],
-      "sort": "l'Assemblée nationale a adopté",
-      "tally": {
-        "pour": 143,
-        "contre": 25,
-        "abstention": 8,
-        "absent": 14
-      },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0171_texte-adopte-seance.pdf",
       "type": "scrutin"
     }
   ]
