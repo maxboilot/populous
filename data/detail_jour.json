@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-10-19T21:37:09.374127Z",
+  "generated_at": "2026-10-19T23:47:37.086716Z",
   "date": "2026-10-19",
-  "numero_vedette": 8881,
+  "numero_vedette": 8892,
   "lois": [
     {
       "nature_texte": "projet de loi",
@@ -83,7 +83,7 @@
               "solennel": false,
               "objet": "l'amendement n° 11 de M. Descoeur et les amendements identiques suivants à l'article 34 (examen prioritaire) à l'article 5 du projet de loi de finances pour 2027 (première lecture).",
               "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8881",
-              "vedette": true,
+              "vedette": false,
               "sous_amendements": []
             },
             {
@@ -101,6 +101,259 @@
               "solennel": false,
               "objet": "l'amendement n° 1202 de M. Jean-René Cazeneuve et l'amendement identique suivant à l'article 34 (examen prioritaire) à l'article 5 du projet de loi de finances pour 2027 (première lecture).",
               "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8882",
+              "vedette": false,
+              "sous_amendements": []
+            }
+          ]
+        },
+        {
+          "ref": "35",
+          "article": null,
+          "modifications": [
+            {
+              "numero": 8883,
+              "nature": "amendement",
+              "article": "35",
+              "n_amendement": 19,
+              "parent": null,
+              "auteur": "M. Delautrette",
+              "issue": "adopte",
+              "pour": 125,
+              "contre": 16,
+              "abstentions": 4,
+              "votants": 145,
+              "solennel": false,
+              "objet": "l'amendement n° 19 de M. Delautrette et les amendements identiques suivants de suppression de l'article 35 (examen prioritaire) du projet de loi de finances pour 2027 (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8883",
+              "vedette": false,
+              "sous_amendements": []
+            },
+            {
+              "numero": 8884,
+              "nature": "amendement",
+              "article": "35",
+              "n_amendement": 3371,
+              "parent": null,
+              "auteur": "Mme Pantel",
+              "issue": "adopte",
+              "pour": 45,
+              "contre": 40,
+              "abstentions": 44,
+              "votants": 129,
+              "solennel": false,
+              "objet": "l'amendement n° 3371 de Mme Pantel après l'article 35 (examen prioritaire) du projet de loi de finances pour 2027 (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8884",
+              "vedette": false,
+              "sous_amendements": []
+            }
+          ]
+        },
+        {
+          "ref": "36",
+          "article": null,
+          "modifications": [
+            {
+              "numero": 8885,
+              "nature": "amendement",
+              "article": "36",
+              "n_amendement": 20,
+              "parent": null,
+              "auteur": "M. Delautrette",
+              "issue": "rejete",
+              "pour": 51,
+              "contre": 69,
+              "abstentions": 5,
+              "votants": 125,
+              "solennel": false,
+              "objet": "l'amendement n° 20 de M. Delautrette et les amendements identiques suivants de suppression de l'article 36 (examen prioritaire) du projet de loi de finances pour 2027 (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8885",
+              "vedette": false,
+              "sous_amendements": []
+            },
+            {
+              "numero": 8886,
+              "nature": "amendement",
+              "article": "36",
+              "n_amendement": 2420,
+              "parent": null,
+              "auteur": "M. Le Coq",
+              "issue": "rejete",
+              "pour": 33,
+              "contre": 76,
+              "abstentions": 2,
+              "votants": 111,
+              "solennel": false,
+              "objet": "l'amendement n° 2420 (rect.) de M. Le Coq à l'article 36 (examen prioritaire) du projet de loi de finances pour 2027 (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8886",
+              "vedette": false,
+              "sous_amendements": []
+            }
+          ]
+        },
+        {
+          "ref": "37",
+          "article": null,
+          "modifications": [
+            {
+              "numero": 8887,
+              "nature": "amendement",
+              "article": "37",
+              "n_amendement": 21,
+              "parent": null,
+              "auteur": "M. Delautrette",
+              "issue": "adopte",
+              "pour": 125,
+              "contre": 33,
+              "abstentions": 5,
+              "votants": 163,
+              "solennel": false,
+              "objet": "l'amendement n° 21 de M. Delautrette et les amendements identiques suivants de suppression de l'article 37 (examen prioritaire) du projet de loi de finances pour 2027 (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8887",
+              "vedette": false,
+              "sous_amendements": []
+            }
+          ]
+        },
+        {
+          "ref": "38",
+          "article": {
+            "numero": 8888,
+            "nature": "article",
+            "article": "38",
+            "n_amendement": null,
+            "parent": null,
+            "auteur": null,
+            "issue": "adopte",
+            "pour": 97,
+            "contre": 56,
+            "abstentions": 13,
+            "votants": 166,
+            "solennel": false,
+            "objet": "l'article 38 (examen prioritaire) du projet de loi de finances pour 2027 (première lecture).",
+            "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8888",
+            "vedette": false
+          },
+          "modifications": []
+        },
+        {
+          "ref": "39",
+          "article": null,
+          "modifications": [
+            {
+              "numero": 8889,
+              "nature": "amendement",
+              "article": "39",
+              "n_amendement": 22,
+              "parent": null,
+              "auteur": "M. Delautrette",
+              "issue": "adopte",
+              "pour": 73,
+              "contre": 32,
+              "abstentions": 36,
+              "votants": 141,
+              "solennel": false,
+              "objet": "l'amendement n° 22 de M. Delautrette et les amendements identiques suivants de suppression de l'article 39 (examen prioritaire) du projet de loi de finances pour 2027 (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8889",
+              "vedette": false,
+              "sous_amendements": []
+            },
+            {
+              "numero": 8890,
+              "nature": "amendement",
+              "article": "39",
+              "n_amendement": 2263,
+              "parent": null,
+              "auteur": "M. Mickaël Bouloux",
+              "issue": "rejete",
+              "pour": 64,
+              "contre": 81,
+              "abstentions": 7,
+              "votants": 152,
+              "solennel": false,
+              "objet": "l'amendement n° 2263 de M. Mickaël Bouloux après l'article 39 (examen prioritaire) du projet de loi de finances pour 2027 (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8890",
+              "vedette": false,
+              "sous_amendements": []
+            }
+          ]
+        },
+        {
+          "ref": "40",
+          "article": {
+            "numero": 8892,
+            "nature": "article",
+            "article": "40",
+            "n_amendement": null,
+            "parent": null,
+            "auteur": null,
+            "issue": "rejete",
+            "pour": 61,
+            "contre": 79,
+            "abstentions": 5,
+            "votants": 145,
+            "solennel": false,
+            "objet": "l'article 40 (examen prioritaire) du projet de loi de finances pour 2027 (première lecture).",
+            "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8892",
+            "vedette": true
+          },
+          "modifications": [
+            {
+              "numero": 8891,
+              "nature": "amendement",
+              "article": "40",
+              "n_amendement": 654,
+              "parent": null,
+              "auteur": "M. Jean-Philippe Tanguy",
+              "issue": "rejete",
+              "pour": 58,
+              "contre": 60,
+              "abstentions": 12,
+              "votants": 130,
+              "solennel": false,
+              "objet": "l'amendement n° 654 de M. Jean-Philippe Tanguy et l'amendement identique suivant de suppression de l'article 40 (examen prioritaire) du projet de loi de finances pour 2027 (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8891",
+              "vedette": false,
+              "sous_amendements": []
+            }
+          ]
+        },
+        {
+          "ref": "41",
+          "article": null,
+          "modifications": [
+            {
+              "numero": 8893,
+              "nature": "amendement",
+              "article": "41",
+              "n_amendement": 1142,
+              "parent": null,
+              "auteur": "Mme Bentorki",
+              "issue": "rejete",
+              "pour": 20,
+              "contre": 83,
+              "abstentions": 9,
+              "votants": 112,
+              "solennel": false,
+              "objet": "l'amendement n° 1142 de Mme Bentorki à l'article 41 (examen prioritaire) du projet de loi de finances pour 2027 (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8893",
+              "vedette": false,
+              "sous_amendements": []
+            },
+            {
+              "numero": 8894,
+              "nature": "amendement",
+              "article": "41",
+              "n_amendement": 2577,
+              "parent": null,
+              "auteur": "Mme Bentorki",
+              "issue": "rejete",
+              "pour": 19,
+              "contre": 78,
+              "abstentions": 6,
+              "votants": 103,
+              "solennel": false,
+              "objet": "l'amendement n° 2577 de Mme Bentorki à l'article 41 (examen prioritaire) du projet de loi de finances pour 2027 (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/8894",
               "vedette": false,
               "sous_amendements": []
             }

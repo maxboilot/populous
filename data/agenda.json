@@ -1,6 +1,41 @@
 [
   {
     "date": "2026-10-19",
+    "heure": "09:00",
+    "ordre_du_jour": "Discussion — Pour l’égalité d’accès aux soins des ressortissants ultramarins en hexagone",
+    "themes": [
+      "sante"
+    ],
+    "dossier": "DLR5L17N53401",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture (Sénat)"
+  },
+  {
+    "date": "2026-10-19",
+    "heure": "09:00",
+    "ordre_du_jour": "Discussion — Projet de loi autorisant la ratification de l’accord de passation conjointe de marché en vue de l’acquisition d’une plateforme centrale commune pour le mécanisme d’ajustement carbone aux frontières",
+    "themes": [
+      "environnement",
+      "institutions",
+      "immigration"
+    ],
+    "dossier": "DLR5L17N54567",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture (Sénat)"
+  },
+  {
+    "date": "2026-10-19",
+    "heure": "09:00",
+    "ordre_du_jour": "Discussion — Reconnaissance de la Nation envers les rapatriés d’Indochine et réparation des préjudices subis par ceux-ci et leurs familles du fait de l'indignité de leurs conditions d'accueil et de vie dans certaines structures sur le territoire français",
+    "themes": [
+      "social"
+    ],
+    "dossier": "DLR5L17N51499",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture (Sénat)"
+  },
+  {
+    "date": "2026-10-19",
     "heure": "17:00",
     "ordre_du_jour": "Examen du texte — Augmenter les salaires et des pensions",
     "themes": [
@@ -233,7 +268,7 @@
   },
   {
     "date": "2026-10-26",
-    "heure": "16:00",
+    "heure": "15:00",
     "ordre_du_jour": "Suite de la discussion du projet de loi de financement de la sécurité sociale pour 2027",
     "themes": [
       "securite",
