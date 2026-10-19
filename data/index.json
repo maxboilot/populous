@@ -4033,5 +4033,18 @@
     "themes": [],
     "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N54606",
     "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53401",
+    "date": "2026-10-19",
+    "titre": "Pour l’égalité d’accès aux soins des ressortissants ultramarins en hexagone",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [
+      "sante"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/pour_egalite_acces_soins_ressortissants_ultramarins_hexagone_17e",
+    "type": "main_levee"
   }
 ]
