@@ -4036,6 +4036,34 @@
   },
   {
     "numero": null,
+    "dossier": "DLR5L17N54567",
+    "date": "2026-10-19",
+    "titre": "Projet de loi autorisant la ratification de l’accord de passation conjointe de marché en vue de l’acquisition d’une plateforme centrale commune pour le mécanisme d’ajustement carbone aux frontières",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "environnement",
+      "institutions",
+      "immigration"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N54567",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N51499",
+    "date": "2026-10-19",
+    "titre": "Reconnaissance de la Nation envers les rapatriés d’Indochine et réparation des préjudices subis par ceux-ci et leurs familles du fait de l'indignité de leurs conditions d'accueil et de vie dans certaines structures sur le territoire français",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [
+      "social"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/reconnaissance_nation_rapatries_indochine_17",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
     "dossier": "DLR5L17N53401",
     "date": "2026-10-19",
     "titre": "Pour l’égalité d’accès aux soins des ressortissants ultramarins en hexagone",
