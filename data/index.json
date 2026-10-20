@@ -4090,6 +4090,17 @@
   },
   {
     "numero": null,
+    "dossier": "DLR5L17N54703",
+    "date": "2026-10-20",
+    "titre": "Projet de loi relatif à la lutte contre les ingérences étrangères dans la vie démocratique",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N54703",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
     "dossier": "DLR5L17N52767",
     "date": "2026-10-20",
     "titre": "Abrogation du Code noir",
