@@ -4074,5 +4074,18 @@
     ],
     "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/pour_egalite_acces_soins_ressortissants_ultramarins_hexagone_17e",
     "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53067",
+    "date": "2026-10-19",
+    "titre": "Reconnaître une politique nationale d’adaptation au changement climatique et à adapter les mécanismes d’assurance",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [
+      "environnement"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/reconnaitre_politique_nationale_adaptation_changement_climatique_adapter_mecanismes_assurance_17e",
+    "type": "main_levee"
   }
 ]
