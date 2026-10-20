@@ -314,6 +314,10 @@ window.__VOTE_EARLY__ = (async function(){
     font-size:12px;line-height:1.6;color:var(--ink-soft)}
   .privacyBox b{color:var(--ink)}
   .privacyBox a{color:var(--accent); font-weight:600}
+  .indepNote{max-width:var(--colW);margin:-8px auto 16px;padding:10px 14px;border-radius:14px;background:var(--accent-soft);
+    font-size:12px;line-height:1.55;color:var(--ink-soft)}
+  .indepNote b{color:var(--ink)}
+  .indepNote a{color:var(--accent);font-weight:600}
   .profRow{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;
     margin-top:10px;padding:14px 16px;background:var(--card-alt);border:none;border-radius:14px;
     color:var(--ink);cursor:pointer;text-align:left;font-family:inherit}
@@ -979,6 +983,11 @@ window.__VOTE_EARLY__ = (async function(){
     <div class="eyebrow">Bonjour<span id="acHello"></span></div>
     <h1 class="d">Populous</h1>
   </div>
+  <div class="indepNote zTop" id="indepNote">
+    <b>Application indépendante.</b> Populous ne représente ni l'État, ni l'Assemblée nationale, ni aucun parti.
+    Sources : <a href="https://data.assemblee-nationale.fr" target="_blank" rel="noopener">data.assemblee-nationale.fr</a> ·
+    <a href="https://www.assemblee-nationale.fr" target="_blank" rel="noopener">assemblee-nationale.fr</a>
+  </div>
   <button class="presiHeroCard zTop" data-go="presidentielle">
     <div class="phTop"><span class="phFlag"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21V4"/><path d="M5 4.5c1.8-1.2 3.6-1.2 5.4 0s3.6 1.2 5.4 0c1.2-.8 2.2-.5 3.2 0v9c-1.8 1.2-3.6 1.2-5.4 0s-3.6-1.2-5.4 0c-1.2.8-2.2.5-3.2 0Z"/></svg></span><span class="phEyebrow">Présidentielle 2027</span></div>
     <div class="phTitle" id="acPresiSub">Le fil de la campagne</div>
@@ -1549,6 +1558,7 @@ function renderFiche(i){
       <div class="meta">Identité, mandat et portrait : open data Assemblée nationale</div></li></ul></div>`:""}
 
     <div style="margin-top:20px;padding:12px 14px;border-radius:14px;background:var(--card-alt);font-size:11px;line-height:1.6;color:var(--dim)">
+      Source : <a href="https://data.assemblee-nationale.fr" target="_blank" rel="noopener" style="color:var(--brass)">data.assemblee-nationale.fr</a>.
       Aucune donnée n'est inventée. Les indices d'exposition médiatique et d'activité parlementaire ne sont pas encore connectés.
     </div>`;
 }
