@@ -4087,5 +4087,16 @@
     ],
     "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/reconnaitre_politique_nationale_adaptation_changement_climatique_adapter_mecanismes_assurance_17e",
     "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52767",
+    "date": "2026-10-20",
+    "titre": "Abrogation du Code noir",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/abrogation_code_noir",
+    "type": "main_levee"
   }
 ]

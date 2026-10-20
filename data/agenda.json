@@ -188,17 +188,6 @@
     "lecture": "1ʳᵉ lecture"
   },
   {
-    "date": "2026-10-24",
-    "heure": "15:00",
-    "ordre_du_jour": "Examen du texte — Projet de loi de finances pour 2027",
-    "themes": [
-      "economie"
-    ],
-    "dossier": "DLR5L17N54629",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
     "date": "2026-10-26",
     "heure": "15:00",
     "ordre_du_jour": "Examen du texte — Projet de loi de finances pour 2027 (séance éventuelle)",
@@ -211,7 +200,7 @@
   },
   {
     "date": "2026-10-26",
-    "heure": "15:00",
+    "heure": "16:00",
     "ordre_du_jour": "Suite de la discussion du projet de loi de financement de la sécurité sociale pour 2027",
     "themes": [
       "securite",
@@ -224,7 +213,7 @@
   {
     "date": "2026-10-27",
     "heure": "21:30",
-    "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (seconde partie)",
+    "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (première partie)",
     "themes": [
       "economie"
     ],
@@ -303,6 +292,17 @@
       "agriculture"
     ],
     "dossier": "DLR5L17N54902",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-29",
+    "heure": "15:00",
+    "ordre_du_jour": "Examen du texte — Projet de loi de finances pour 2027 (séance éventuelle)",
+    "themes": [
+      "economie"
+    ],
+    "dossier": "DLR5L17N54629",
     "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
   },
@@ -438,7 +438,18 @@
   {
     "date": "2026-10-30",
     "heure": "21:30",
-    "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (seconde partie)",
+    "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (première partie)",
+    "themes": [
+      "economie"
+    ],
+    "dossier": "DLR5L17N54629",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-31",
+    "heure": "15:00",
+    "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (première partie)",
     "themes": [
       "economie"
     ],
@@ -449,7 +460,7 @@
   {
     "date": "2026-11-02",
     "heure": "09:00",
-    "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (seconde partie)",
+    "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (première partie)",
     "themes": [
       "economie"
     ],
@@ -460,7 +471,7 @@
   {
     "date": "2026-11-03",
     "heure": "21:30",
-    "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (seconde partie)",
+    "ordre_du_jour": "Suite de la discussion de la seconde partie du projet de loi de finances pour 2027",
     "themes": [
       "economie"
     ],
@@ -516,7 +527,7 @@
   {
     "date": "2026-11-05",
     "heure": "15:00",
-    "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (seconde partie)",
+    "ordre_du_jour": "Suite de la discussion de la seconde partie du projet de loi de finances pour 2027",
     "themes": [
       "economie"
     ],
@@ -527,7 +538,7 @@
   {
     "date": "2026-11-06",
     "heure": "09:00",
-    "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (seconde partie)",
+    "ordre_du_jour": "Suite de la discussion de la seconde partie du projet de loi de finances pour 2027",
     "themes": [
       "economie"
     ],
@@ -538,7 +549,7 @@
   {
     "date": "2026-11-09",
     "heure": "09:00",
-    "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (seconde partie)",
+    "ordre_du_jour": "Suite de la discussion de la seconde partie du projet de loi de finances pour 2027",
     "themes": [
       "economie"
     ],
@@ -549,7 +560,7 @@
   {
     "date": "2026-11-10",
     "heure": "21:30",
-    "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (seconde partie)",
+    "ordre_du_jour": "Suite de la discussion de la seconde partie du projet de loi de finances pour 2027",
     "themes": [
       "economie"
     ],
@@ -560,7 +571,7 @@
   {
     "date": "2026-11-12",
     "heure": "21:30",
-    "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (seconde partie)",
+    "ordre_du_jour": "Suite de la discussion de la seconde partie du projet de loi de finances pour 2027",
     "themes": [
       "economie"
     ],
@@ -571,7 +582,7 @@
   {
     "date": "2026-11-13",
     "heure": "21:30",
-    "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (seconde partie)",
+    "ordre_du_jour": "Suite de la discussion de la seconde partie du projet de loi de finances pour 2027",
     "themes": [
       "economie"
     ],
@@ -582,7 +593,7 @@
   {
     "date": "2026-11-14",
     "heure": "21:30",
-    "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (seconde partie)",
+    "ordre_du_jour": "Suite de la discussion de la seconde partie du projet de loi de finances pour 2027",
     "themes": [
       "economie"
     ],
@@ -593,12 +604,23 @@
   {
     "date": "2026-11-16",
     "heure": "09:00",
-    "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (seconde partie)",
+    "ordre_du_jour": "Suite de la discussion de la seconde partie du projet de loi de finances pour 2027",
     "themes": [
       "economie"
     ],
     "dossier": "DLR5L17N54629",
     "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-17",
+    "heure": "15:00",
+    "ordre_du_jour": "Vote solennel sur le projet de loi de finances pour 2027",
+    "themes": [
+      "economie"
+    ],
+    "dossier": "DLR5L17N54629",
+    "scrutin_annonce": true,
     "lecture": "1ʳᵉ lecture"
   }
 ]
