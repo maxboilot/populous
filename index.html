@@ -418,6 +418,13 @@ window.__VOTE_EARLY__ = (async function(){
   .vListeN small{font-size:11px;color:var(--ink-soft)}
   .vLock.wide{grid-column:1/-1;margin:0 0 12px}
   .vDate{font-size:11px;color:var(--ink-soft);width:84px;flex:none}
+  .vSeanceBar{display:flex;height:10px;border-radius:5px;overflow:hidden;background:rgba(255,255,255,.18);margin:10px 0 8px}
+  .vPoint{padding:9px 0;border-top:1px solid var(--line)}
+  .vPoint:first-of-type{border-top:none}
+  .vPointT{font-size:13px;font-weight:600;line-height:1.35;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .vPointM{display:flex;gap:8px;align-items:baseline;margin-top:5px;font-size:11.5px;color:var(--ink-soft);line-height:1.4}
+  .vBadge{flex:none;font-size:10.5px;font-weight:700;border-radius:999px;padding:2px 8px;background:var(--card-alt);color:var(--ink-soft)}
+  .vBadge.ok{background:#E3F5EC;color:#14613F}.vBadge.ko{background:#FCE8E6;color:#8A1C14}
 
   #dailyPopup .sheet{text-align:left}
   #dailyPopup .actions{flex-direction:column}
@@ -2025,6 +2032,7 @@ $("#modeToggle").querySelectorAll(".modeOpt").forEach(b=>{
 const VILLES_BASE = new URLSearchParams(location.search).get("data")==="local" ? "data/villes/" : REPO_DATA_BASE + "villes/";
 const CONSEILS_BASE = new URLSearchParams(location.search).get("data")==="local" ? "data/conseils/" : REPO_DATA_BASE + "conseils/";
 const VILLE_KEY = "populous_ville_v1", ACCES_KEY = "populous_ville_acces_v1", MODE_KEY = "populous_mode_v1";
+const VOTES_BASE = new URLSearchParams(location.search).get("data")==="local" ? "data/votes/" : REPO_DATA_BASE + "votes/";
 const VOTE_VU_KEY = "populous_ville_vote_vu_";
 const CODE_SEL = "populous-ville-v1|";
 const CODE_HASH = "2acbcfddd4550eeb267d9b21d9fbbd4e9a7703ec4f261d85e5b7db1562b56613";
@@ -2073,7 +2081,7 @@ function accorderAccesVille(via){
 }
 
 /* ---------- chargement des données ---------- */
-let villesIdx = null, villesIdxP = null; const villesFiches = {}, villesConseils = {};
+let villesIdx = null, villesIdxP = null; const villesFiches = {}, villesConseils = {}, villesVotes = {};
 function chargerVillesIndex(){
   if(villesIdx) return Promise.resolve(villesIdx);
   if(!villesIdxP) villesIdxP = fetch(VILLES_BASE + "index.json", {cache:"no-store"})
@@ -2089,6 +2097,12 @@ async function chargerConseil(insee){
   if(insee in villesConseils) return villesConseils[insee];
   try{ const c = await (await fetch(CONSEILS_BASE + insee + ".json", {cache:"no-store"})).json(); villesConseils[insee] = c; return c; }
   catch(e){ villesConseils[insee] = null; return null; }
+}
+async function chargerVotes(insee){
+  if(insee in villesVotes) return villesVotes[insee];
+  try{ const r = await fetch(VOTES_BASE + insee + ".json", {cache:"no-store"}); villesVotes[insee] = r.ok ? await r.json() : null; }
+  catch(e){ villesVotes[insee] = null; }
+  return villesVotes[insee];
 }
 function villesUtilisables(idx){ return idx.villes.filter(c=>c.v && c.v.dep!=null); }
 function nomVille(c, idx){
@@ -2346,21 +2360,38 @@ function vValeurRef(f, cle){
   if(cle==="tf"){ const i = f.tf.annees.indexOf(f.annee_ref); return i<0 ? null : f.tf.taux[i]; }
   return f.serie[cle][vIdxRef(f)];
 }
-function vBlocVotes(ville, conseil){
-  const v = conseil && conseil.votes;
+function vBlocVotes(ville, conseil, v){
   const attente = (titre, texte)=>`<div class="vLock wide"><b>${titre}</b><span>${texte}</span></div>`;
-  const absent = `Pas encore disponible pour ${esc(ville.nom)}. Les votes des conseils municipaux n'existent pas dans une base nationale : ils seront ajoutés ville par ville.`;
+  const s = v && v.derniere_seance;
   let dernier;
-  if(v && v.dernier){
-    const d = v.dernier, adopte = d.resultat==="adopte";
-    dernier = `<div class="voteCard"><div class="voteStamp ${adopte?"adopte":"rejete"}">${adopte?"Adopté":"Rejeté"}</div>
-      <div class="eyebrow">Conseil du ${esc(vDate(d.date))}</div><h2 class="d">${esc(d.titre)}</h2>
-      <p>${vNum(d.pour)} pour · ${vNum(d.contre)} contre · ${vNum(d.abstention)} abstention${d.abstention>1?"s":""}.</p></div>`;
-  } else dernier = attente("Dernier vote du conseil", absent);
+  if(s){
+    const pct = n=>s.total ? (n||0)/s.total*100 : 0;
+    const segs = [["unanimite","rgba(255,255,255,.95)"],["majorite","rgba(255,255,255,.5)"],["rejetees","#FFB4A8"]];
+    const fin = [`${vNum(s.unanimite)} à l'unanimité`, `${vNum(s.majorite)} adoptée${s.majorite>1?"s":""} à la majorité`];
+    if(s.rejetees) fin.push(`${vNum(s.rejetees)} rejetée${s.rejetees>1?"s":""}`);
+    dernier = `<div class="voteCard"><div class="eyebrow">Dernier conseil · ${esc(vDate(s.date))}</div>
+      <h2 class="d">${vNum(s.total)} délibérations</h2>
+      <div class="vSeanceBar">${segs.map(([k,c])=>`<i style="width:${pct(s[k])}%;background:${c}"></i>`).join("")}</div>
+      <p>${fin.join(" · ")}.</p>
+      ${v.ancien_conseil ? `<p>Dernières données publiées par la ville : avant les municipales de mars 2026.</p>` : ""}</div>`;
+    if(s.points && s.points.length){
+      const badge = r=>r==="rejete" ? `<span class="vBadge ko">Rejeté</span>` : (r==="egalite" ? `<span class="vBadge">Égalité</span>` : `<span class="vBadge ok">Adopté</span>`);
+      const detail = p=>{
+        if(p.pour!=null) return `${vNum(p.pour)} pour · ${vNum(p.contre)} contre · ${vNum(p.abstention)} abst.`;
+        const pos = p.positions||{}, parts = [];
+        if(pos.contre) parts.push("Contre : " + pos.contre.map(esc).join(", "));
+        if(pos.abstention) parts.push("Abstention : " + pos.abstention.map(esc).join(", "));
+        return parts.join(" — ");
+      };
+      dernier += `<div class="vCard"><div class="vCap" style="margin-bottom:4px">Points marquants · ${vNum(s.contestees)} vote${s.contestees>1?"s":""} non unanime${s.contestees>1?"s":""}</div>${
+        s.points.map(p=>`<div class="vPoint"><div class="vPointT">${esc(p.titre)}</div><div class="vPointM">${badge(p.resultat)}<span>${detail(p)}</span></div></div>`).join("")}
+        <p class="vCap" style="margin:8px 0 0">Source : <a href="${esc(v.source.url)}" target="_blank" rel="noopener">${esc(v.source.nom)}</a></p></div>`;
+    }
+  } else dernier = attente("Dernier conseil", `Pas encore disponible pour ${esc(ville.nom)} : aucune source ouverte exploitable n'a été trouvée pour les résultats de ses votes.`);
   let avenir;
   if(v && v.a_venir && v.a_venir.length){
     avenir = `<div class="vCard"><div class="vCap" style="margin-bottom:6px">Votes à venir</div>${v.a_venir.map(x=>`<div class="vRow" style="cursor:default"><span class="vDate">${esc(vDate(x.date))}</span><span>${esc(x.titre)}</span></div>`).join("")}</div>`;
-  } else avenir = attente("Votes à venir", `L'ordre du jour du conseil de ${esc(ville.nom)} n'est pas encore disponible.`);
+  } else avenir = attente("Votes à venir", `L'ordre du jour du prochain conseil de ${esc(ville.nom)} n'est pas encore disponible.`);
   return dernier + avenir;
 }
 function vBlocConseil(ville, c){
@@ -2386,11 +2417,14 @@ function vBlocConseil(ville, c){
       <div class="vMini">${c.participation!=null?vRing(c.participation,"#0E9F8E"):""}<b>${c.participation!=null?vNum(c.participation)+" %":"—"}</b><span>de participation</span></div>
     </div>`;
 }
+let vRenderJeton = 0;   // un rendu plus ancien qui finit en retard ne doit pas écraser le plus récent
 async function renderVille(){
   const box = $("#acVille"), ville = villeChoisie();
   if(!box || !ville) return;
+  const jeton = ++vRenderJeton;
   box.innerHTML = `<p class="vCap" style="padding:20px 4px">Chargement des données de ${esc(ville.nom)}…</p>`;
-  const [idx, f, conseil] = await Promise.all([chargerVillesIndex(), chargerFicheVille(ville.insee), chargerConseil(ville.insee)]);
+  const [idx, f, conseil, votes] = await Promise.all([chargerVillesIndex(), chargerFicheVille(ville.insee), chargerConseil(ville.insee), chargerVotes(ville.insee)]);
+  if(jeton !== vRenderJeton) return;
   if(!idx || !f){ box.innerHTML = `<div class="vCard"><p class="vCap">Les données de ta ville sont indisponibles pour l'instant. Réessaie un peu plus tard.</p></div>`; return; }
   const i = vIdxRef(f), S = f.serie, dep = S.dep[i], rec = S.rec[i];
   const pDep = vParts(V_DEP.map(x=>({v:S[x[0]][i]})), dep||0), pRec = vParts(V_REC.map(x=>({v:S[x[0]][i]})), rec||0);
@@ -2410,7 +2444,7 @@ async function renderVille(){
 
     <div class="vSec">Conseil municipal</div>
     ${vBlocConseil(ville, conseil)}
-    ${vBlocVotes(ville, conseil)}
+    ${vBlocVotes(ville, conseil, votes)}
 
     <div class="vSec">Finances</div>
     <div class="vCard"><div class="vBig">${vEuro(dep)}</div>
@@ -2426,12 +2460,12 @@ async function renderVille(){
     ${bientot("Sécurité","Les faits constatés dans la commune.")}
     ${bientot("Logement","Logements sociaux, permis de construire.")}
 
-    <p class="vSrc">Conseil : ministère de l'Intérieur, résultats des municipales 2026 et répertoire national des élus. Finances : OFGL, à partir des comptes des communes publiés par la DGFiP, dernière année définitive ${f.annee_ref}${f.annee_provisoire?` (les comptes ${f.annee_provisoire} sont provisoires)`:""}. Nuances politiques telles qu'attribuées par le ministère.${vNoteVille(ville)}
+    <p class="vSrc">Conseil : ministère de l'Intérieur, résultats des municipales 2026 et répertoire national des élus. Finances : OFGL, à partir des comptes des communes publiés par la DGFiP, dernière année définitive ${f.annee_ref}${f.annee_provisoire?` (les comptes ${f.annee_provisoire} sont provisoires)`:""}. Nuances politiques telles qu'attribuées par le ministère.${votes?` Votes : ${esc(votes.source.nom)}.`:""}${vNoteVille(ville)}
       <a href="https://data.ofgl.fr" target="_blank" rel="noopener">data.ofgl.fr</a></p>`;
   box.querySelectorAll("[data-detail]").forEach(b=>{ b.onclick = ()=>ouvrirVilleDetail(b.dataset.detail); });
   box.querySelectorAll("[data-liste]").forEach(b=>{ b.onclick = ()=>ouvrirListeConseil(ville, conseil, +b.dataset.liste); });
   $("#vCompare").onclick = ()=>ouvrirVilleDetail("dep");
-  annoncerNouveauVote(ville, conseil);
+  annoncerNouveauVote(ville, votes);
 }
 
 /* ---------- fenêtre « liste du conseil » ---------- */
@@ -2453,17 +2487,17 @@ function ouvrirListeConseil(ville, c, i){
 }
 
 /* ---------- alerte « nouveau vote » (quand des votes seront publiés) ---------- */
-function annoncerNouveauVote(ville, conseil){
-  const d = conseil && conseil.votes && conseil.votes.dernier;
-  if(!d || !d.id) return;
+function annoncerNouveauVote(ville, v){
+  const s = v && v.derniere_seance;
+  if(!s || !s.date) return;
   const cle = VOTE_VU_KEY + ville.insee;
   let vu = null; try{ vu = localStorage.getItem(cle); }catch(e){}
-  try{ localStorage.setItem(cle, String(d.id)); }catch(e){}
-  if(vu===null || vu===String(d.id)) return;      // première visite ou rien de nouveau
+  try{ localStorage.setItem(cle, String(s.date)); }catch(e){}
+  if(vu===null || vu===String(s.date)) return;     // première visite ou rien de nouveau
   const popup = $("#villePopup"), sheet = $("#villeSheet");
   sheet.innerHTML = `<button class="sheetClose" id="vcClose" aria-label="Fermer">✕</button>
-    <div class="eyebrow">Nouveau vote · ${esc(ville.nom)}</div><h2 class="d" style="font-size:22px">${esc(d.titre)}</h2>
-    <p class="lead">${d.resultat==="adopte"?"Adopté":"Rejeté"} : ${vNum(d.pour)} pour, ${vNum(d.contre)} contre, ${vNum(d.abstention)} abstention${d.abstention>1?"s":""}.</p>
+    <div class="eyebrow">Nouveau conseil · ${esc(ville.nom)}</div><h2 class="d" style="font-size:22px">Séance du ${esc(vDate(s.date))}</h2>
+    <p class="lead">${vNum(s.total)} délibérations : ${vNum(s.unanimite)} à l'unanimité, ${vNum(s.majorite)} à la majorité${s.rejetees?`, ${vNum(s.rejetees)} rejetée${s.rejetees>1?"s":""}`:""}.</p>
     <div class="actions"><button class="btn primary" id="vcOk" type="button">Voir</button></div>`;
   popup.classList.remove("hidden");
   const fermer = ()=>popup.classList.add("hidden");
