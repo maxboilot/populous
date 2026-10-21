@@ -11,15 +11,6 @@
   {
     "date": "2026-10-21",
     "heure": "09:00",
-    "ordre_du_jour": "Examen du texte — Contrôle réel des investissements étrangers en France",
-    "themes": [],
-    "dossier": "DLR5L17N54907",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-10-21",
-    "heure": "09:00",
     "ordre_du_jour": "Examen du texte — Garantir le droit de vote par l’encadrement des radiations pour perte d’attache communale",
     "themes": [],
     "dossier": "DLR5L17N53266",
@@ -40,7 +31,16 @@
   },
   {
     "date": "2026-10-21",
-    "heure": "09:00",
+    "heure": "09:05",
+    "ordre_du_jour": "Examen du texte — Contrôle réel des investissements étrangers en France",
+    "themes": [],
+    "dossier": "DLR5L17N54907",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-21",
+    "heure": "09:05",
     "ordre_du_jour": "Suite de l'examen du texte — Projet de loi de finances pour 2027",
     "themes": [
       "economie"
