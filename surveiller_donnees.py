@@ -51,12 +51,14 @@ LABEL = "alerte-donnees"
 #   sondages           4,0 h / 92,8 h (un trou de presque 4 jours a deja eu lieu)
 #   refs_jour          24,0 h / 24,9 h
 #   temps_parole       hebdomadaire (lundi)
+#   villes             mensuel (le 2) : limite de 45 jours
 PIPELINES = {
     "ingest_scrutins.yml": ("Ingestion des scrutins", 10),
     "actu_presidentielle.yml": ("Actualité présidentielle", 16),
     "sondages.yml": ("Sondages", 48),
     "refs_jour.yml": ("Référence du jour", 36),
     "temps_parole.yml": ("Temps de parole (hebdomadaire)", 204),   # 8,5 jours
+    "villes.yml": ("Données des villes (mensuel)", 1080),           # 45 jours : mensuel + marge
 }
 
 # Nombre d'heures sans nouveau scrutin ingere, alors que le site de
