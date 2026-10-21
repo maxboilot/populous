@@ -40,14 +40,23 @@ TITRE_ISSUE = "[Alerte données] Les données de l'app ne sont plus à jour"
 LABEL = "alerte-donnees"
 
 # Workflow -> (libelle, heures maximum depuis le dernier run reussi).
-# Les limites laissent passer un raté isolé (GitHub retarde ou saute parfois
-# une exécution) mais pas deux de suite.
+# Limites calees sur les ecarts REELS entre runs planifies reussis, mesures
+# le 21 octobre 2026 sur les 60 derniers runs de chaque workflow : GitHub
+# espace beaucoup plus les crons que ce que le fichier demande (le cron
+# "toutes les heures" de l'actu tourne en pratique toutes les 5 h environ ;
+# premiere version de ce script : fausse alerte avec une limite de 4 h).
+#   workflow           ecart median / pire ecart observe
+#   ingest_scrutins    2,6 h / 6,5 h
+#   actu_presidentielle 4,9 h / 10,6 h
+#   sondages           4,0 h / 92,8 h (un trou de presque 4 jours a deja eu lieu)
+#   refs_jour          24,0 h / 24,9 h
+#   temps_parole       hebdomadaire (lundi)
 PIPELINES = {
-    "ingest_scrutins.yml": ("Ingestion des scrutins", 8),         # 8 crons/jour, 3 h d'ecart
-    "actu_presidentielle.yml": ("Actualité présidentielle", 4),   # toutes les heures
-    "sondages.yml": ("Sondages", 30),                              # 2 crons/jour
-    "refs_jour.yml": ("Référence du jour", 30),                    # 1 cron/jour
-    "temps_parole.yml": ("Temps de parole (hebdomadaire)", 204),   # lundi, 8,5 jours
+    "ingest_scrutins.yml": ("Ingestion des scrutins", 10),
+    "actu_presidentielle.yml": ("Actualité présidentielle", 16),
+    "sondages.yml": ("Sondages", 48),
+    "refs_jour.yml": ("Référence du jour", 36),
+    "temps_parole.yml": ("Temps de parole (hebdomadaire)", 204),   # 8,5 jours
 }
 
 # Nombre d'heures sans nouveau scrutin ingere, alors que le site de
