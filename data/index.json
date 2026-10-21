@@ -4062,6 +4062,20 @@
   },
   {
     "numero": null,
+    "dossier": "DLR5L17N52743",
+    "date": "2026-10-20",
+    "titre": "Garantir l’information et la protection effective des victimes de violences sexuelles lors de la libération de leur agresseur",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [
+      "justice",
+      "securite"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/information_protection_victimes_violences_sexuelles_17e",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
     "dossier": "DLR5L17N52767",
     "date": "2026-10-20",
     "titre": "Abrogation du Code noir",
