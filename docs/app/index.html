@@ -988,7 +988,7 @@ window.__VOTE_EARLY__ = (async function(){
     Sources : <a href="https://data.assemblee-nationale.fr" target="_blank" rel="noopener">data.assemblee-nationale.fr</a> ·
     <a href="https://www.assemblee-nationale.fr" target="_blank" rel="noopener">assemblee-nationale.fr</a>
   </div>
-  <button class="presiHeroCard zTop" data-go="presidentielle">
+  <button class="presiHeroCard zTop" id="acPresiCard">
     <div class="phTop"><span class="phFlag"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21V4"/><path d="M5 4.5c1.8-1.2 3.6-1.2 5.4 0s3.6 1.2 5.4 0c1.2-.8 2.2-.5 3.2 0v9c-1.8 1.2-3.6 1.2-5.4 0s-3.6-1.2-5.4 0c-1.2.8-2.2.5-3.2 0Z"/></svg></span><span class="phEyebrow">Présidentielle 2027</span></div>
     <div class="phTitle" id="acPresiSub">Le fil de la campagne</div>
     <div class="phCta">Suivre la campagne →</div>
@@ -2780,6 +2780,16 @@ function showScreen(name){
 }
 document.querySelectorAll("[data-go]").forEach(b=>{
   b.addEventListener("click", ()=>showScreen(b.dataset.go));
+});
+// La carte « Présidentielle 2027 » de l'accueil affiche un titre d'actu : elle
+// ouvre donc l'onglet Actu, pas Candidats (l'onglet par défaut de l'écran).
+// showScreen ne rend l'écran qu'au premier passage ; on re-rend soi-même s'il
+// était déjà chargé, sinon l'ancien onglet resterait affiché.
+$("#acPresiCard").addEventListener("click", ()=>{
+  const dejaCharge = loadedOnce.presidentielle;
+  presiTab = "actu";
+  showScreen("presidentielle");
+  if(dejaCharge) renderPresidentielle();
 });
 
 /* ---------- Accueil ---------- */
