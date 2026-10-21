@@ -406,6 +406,18 @@ window.__VOTE_EARLY__ = (async function(){
   .vSegB.on{background:var(--accent);color:#fff}
   .vProfActs{display:flex;gap:16px;margin-top:8px}
   .vLien{border:none;background:none;padding:4px 0;font:inherit;font-size:12px;font-weight:700;color:var(--accent);cursor:pointer}
+  .vGrid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0 0 12px}
+  .vMini{display:flex;flex-direction:column;align-items:center;gap:4px;background:var(--card);border-radius:16px;padding:12px 6px;box-shadow:var(--shadow);text-align:center}
+  .vMini b{font-family:var(--font-d);font-weight:800;font-size:16px}
+  .vMini .vMiniBig{margin:12px 0 10px;font-size:20px}
+  .vMini span{font-size:10.5px;color:var(--ink-soft)}
+  .vMaire{display:flex;flex-direction:column;margin-bottom:6px}
+  .vMaire b{font-family:var(--font-d);font-weight:800;font-size:20px;letter-spacing:-.01em}
+  .vListeN{display:flex;flex-direction:column;min-width:0;flex:1}
+  .vListeN b{font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .vListeN small{font-size:11px;color:var(--ink-soft)}
+  .vLock.wide{grid-column:1/-1;margin:0 0 12px}
+  .vDate{font-size:11px;color:var(--ink-soft);width:84px;flex:none}
 
   #dailyPopup .sheet{text-align:left}
   #dailyPopup .actions{flex-direction:column}
@@ -1974,10 +1986,11 @@ function majModeToggle(){
   });
 }
 $("#modeToggle").querySelectorAll(".modeOpt").forEach(b=>{
-  b.onclick = ()=>{
+  b.onclick = async ()=>{
     if(b.dataset.mode === "communal"){
       if(!aAccesVille()){ ouvrirPaywallVille(); return; }
-      if(!villeChoisie()){ ouvrirChoixVille(()=>{ modeGeo = "communal"; appliquerModeAccueil(); }); return; }
+      await resoudreVille();
+      if(!villeChoisie()){ ouvrirChoixVille(()=>{ modeGeo = "communal"; appliquerModeAccueil(); }, true); return; }
       modeGeo = "communal";
     } else {
       modeGeo = "national";
@@ -1987,11 +2000,21 @@ $("#modeToggle").querySelectorAll(".modeOpt").forEach(b=>{
 });
 
 /* ============================================================
-   MA VILLE (Populous Local) — finances des 100 plus grandes villes.
+   MA VILLE (Populous Local) — conseil municipal et finances des 100 plus
+   grandes villes de France.
 
-   Données : data/villes/ (index.json + une fiche par ville), construites par
-   construire_villes.py à partir de l'OFGL / DGFiP. Aucune valeur inventée :
-   une donnée absente s'affiche « — ».
+   Données (toutes ouvertes, aucune valeur inventée : une donnée absente
+   s'affiche « — ») :
+     data/villes/    finances et fiscalité (OFGL / DGFiP), construit par
+                     construire_villes.py
+     data/conseils/  composition du conseil, maire, parité, âge (ministère de
+                     l'Intérieur, municipales 2026), construit par
+                     construire_conseils.py
+
+   La ville étudiée est TOUJOURS celle du profil (commune enregistrée à la
+   création du profil, ou déduite de la circonscription pour les profils plus
+   anciens). Si cette commune n'est pas parmi les 100 plus grandes villes, on
+   propose un choix de repli, mémorisé à part.
 
    Accès : abonnement (à venir, achats intégrés App Store / Google Play) ou
    code. Le code n'est jamais écrit en clair dans l'app : on ne garde que son
@@ -2000,12 +2023,15 @@ $("#modeToggle").querySelectorAll(".modeOpt").forEach(b=>{
    ne peut pas être révoqué sans publier une nouvelle version.
    ============================================================ */
 const VILLES_BASE = new URLSearchParams(location.search).get("data")==="local" ? "data/villes/" : REPO_DATA_BASE + "villes/";
+const CONSEILS_BASE = new URLSearchParams(location.search).get("data")==="local" ? "data/conseils/" : REPO_DATA_BASE + "conseils/";
 const VILLE_KEY = "populous_ville_v1", ACCES_KEY = "populous_ville_acces_v1", MODE_KEY = "populous_mode_v1";
+const VOTE_VU_KEY = "populous_ville_vote_vu_";
 const CODE_SEL = "populous-ville-v1|";
 const CODE_HASH = "2acbcfddd4550eeb267d9b21d9fbbd4e9a7703ec4f261d85e5b7db1562b56613";
 
 function aAccesVille(){ try{ return !!localStorage.getItem(ACCES_KEY); }catch(e){ return false; } }
-function villeChoisie(){ try{ return JSON.parse(localStorage.getItem(VILLE_KEY)||"null"); }catch(e){ return null; } }
+let villeCourante = null;           // ville étudiée : celle du profil, sinon le choix de repli
+function villeChoisie(){ return villeCourante; }
 function sauverVille(c){ try{ localStorage.setItem(VILLE_KEY, JSON.stringify(c)); }catch(e){} }
 
 /* ---------- empreinte SHA-256 (SubtleCrypto, sinon version JS) ---------- */
@@ -2047,7 +2073,7 @@ function accorderAccesVille(via){
 }
 
 /* ---------- chargement des données ---------- */
-let villesIdx = null, villesIdxP = null; const villesFiches = {};
+let villesIdx = null, villesIdxP = null; const villesFiches = {}, villesConseils = {};
 function chargerVillesIndex(){
   if(villesIdx) return Promise.resolve(villesIdx);
   if(!villesIdxP) villesIdxP = fetch(VILLES_BASE + "index.json", {cache:"no-store"})
@@ -2059,19 +2085,54 @@ async function chargerFicheVille(insee){
   try{ const f = await (await fetch(VILLES_BASE + insee + ".json", {cache:"no-store"})).json(); villesFiches[insee] = f; return f; }
   catch(e){ return null; }
 }
+async function chargerConseil(insee){
+  if(insee in villesConseils) return villesConseils[insee];
+  try{ const c = await (await fetch(CONSEILS_BASE + insee + ".json", {cache:"no-store"})).json(); villesConseils[insee] = c; return c; }
+  catch(e){ villesConseils[insee] = null; return null; }
+}
 function villesUtilisables(idx){ return idx.villes.filter(c=>c.v && c.v.dep!=null); }
 function nomVille(c, idx){
   const doublon = idx.villes.filter(x=>x.nom===c.nom).length > 1;
   return doublon ? `${c.nom} (${c.dep})` : c.nom;
 }
 
+/* ---------- la ville étudiée = la ville du profil ---------- */
+async function trouverVilleDuProfil(p, idx){
+  const liste = villesUtilisables(idx);
+  const depCirco = p.circoKey ? String(p.circoKey).split("|")[0] : null;
+  const parNom = cle=>{
+    const m = liste.filter(c=>normCommune(c.nom)===cle);
+    return m.find(c=>depCirco && c.dep===depCirco) || m[0] || null; // liste triée par population
+  };
+  if(p.communeCle) return parNom(p.communeCle);       // commune connue : hors des 100 → null
+  if(p.circoKey){                                       // profil ancien : on remonte à la commune
+    const cs = await loadCommunes();
+    if(cs){
+      const cand = cs.filter(c=>c[3].includes(p.circoKey)).sort((a,b)=>b[4]-a[4]);
+      for(const c of cand){ const r = parNom(c[1]); if(r) return r; }
+    }
+  }
+  return null;
+}
+async function resoudreVille(){
+  villeCourante = null;
+  const idx = await chargerVillesIndex();
+  if(!idx) return null;
+  const p = loadProfile();
+  const c = p ? await trouverVilleDuProfil(p, idx) : null;
+  if(c){ villeCourante = {insee:c.insee, nom:nomVille(c,idx), dep:c.dep, source:"profil"}; return villeCourante; }
+  try{
+    const m = JSON.parse(localStorage.getItem(VILLE_KEY)||"null");
+    if(m && villesUtilisables(idx).some(x=>x.insee===m.insee)) villeCourante = {...m, source:"choix"};
+  }catch(e){}
+  return villeCourante;
+}
+
 /* ---------- mise en forme ---------- */
-// Intl insère une espace fine insécable (U+202F) que la police de l'app ne
-// dessine pas : « 519127 » au lieu de « 519 127 ». On la remplace par une
-// espace insécable ordinaire (U+00A0).
-const V_NF = { format: n => new Intl.NumberFormat("fr-FR").format(n).replace(/[\u202f\u00a0]/g, "\u00a0") };
+const V_NF = { format: n => new Intl.NumberFormat("fr-FR").format(n).replace(/[  ]/g, " ") };
 function vNum(v, dec){ return v==null ? "—" : (dec ? v.toFixed(dec).replace(".",",") : V_NF.format(Math.round(v))); }
 function vEuro(v, dec){ return v==null ? "—" : vNum(v, dec) + " €"; }
+function vDate(iso){ try{ return new Date(iso+"T12:00:00").toLocaleDateString("fr-FR",{day:"numeric",month:"long",year:"numeric"}); }catch(e){ return iso||""; } }
 const V_METRIQUES = {
   dep:    {t:"Dépenses par habitant", court:"Dépenses", u:"€", ex:"Tout ce que la ville dépense en un an (fonctionnement et investissement), divisé par son nombre d'habitants."},
   rec:    {t:"Recettes par habitant", court:"Recettes", u:"€", ex:"Impôts, dotations de l'État, services facturés et emprunts perçus en un an, par habitant."},
@@ -2100,17 +2161,16 @@ function vParts(items, total){
   brut.map((x,i)=>[x-Math.floor(x),i]).sort((a,b)=>b[0]-a[0]).forEach(([,i])=>{ if(manque>0){ ent[i]++; manque--; } });
   return ent;
 }
-function vWaffle(parts, couleurs){
-  const cells=[]; parts.forEach((n,k)=>{ for(let i=0;i<n;i++) cells.push(couleurs[k]); });
-  return `<svg viewBox="0 0 240 240" width="100%" style="max-width:260px;display:block;margin:0 auto" role="img" aria-label="Pour 100 euros dépensés">${
-    cells.map((c,i)=>`<circle cx="${10+(i%10)*24}" cy="${10+Math.floor(i/10)*24}" r="9" fill="${c}"/>`).join("")}</svg>`;
-}
 function vSpark(vals, couleur){
   const pts = vals.map((v,i)=>[i,v]).filter(p=>p[1]!=null);
   if(pts.length<2) return "";
   const w=74, h=26, mn=Math.min(...pts.map(p=>p[1])), mx=Math.max(...pts.map(p=>p[1]));
   const d = pts.map(p=>Math.round(p[0]*w/(vals.length-1))+","+Math.round(h-3-(p[1]-mn)/((mx-mn)||1)*(h-6))).join(" ");
   return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" aria-hidden="true"><polyline points="${d}" fill="none" stroke="${couleur}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+}
+function vRing(p, couleur, s){
+  s = s||46; const r = s/2-5, c = 2*Math.PI*r;
+  return `<svg width="${s}" height="${s}" viewBox="0 0 ${s} ${s}" aria-hidden="true"><circle cx="${s/2}" cy="${s/2}" r="${r}" fill="none" stroke="var(--accent-soft)" stroke-width="6"/><circle cx="${s/2}" cy="${s/2}" r="${r}" fill="none" stroke="${couleur}" stroke-width="6" stroke-linecap="round" stroke-dasharray="${Math.round(c*p/100)} ${Math.round(c)}" transform="rotate(-90 ${s/2} ${s/2})"/></svg>`;
 }
 function vLine(vals, labs, o){
   o = o || {};
@@ -2155,6 +2215,37 @@ function vStrip(items, moi, cmp, dec){
   return {svg, dessous, n, med};
 }
 
+/* ---------- conseil municipal : couleurs par famille de nuance ---------- */
+// Familles issues des nuances attribuées par le ministère de l'Intérieur
+// (construire_conseils.py). Plusieurs listes d'une même famille sont
+// distinguées par des teintes plus claires.
+const V_FAM = {xg:{c:"#8E1B2E",o:0}, g:{c:"#E5484D",o:1}, eco:{c:"#2FA66A",o:2}, c:{c:"#F2A81D",o:3}, div:{c:"#8891B0",o:4}, d:{c:"#2B67D1",o:5}, xd:{c:"#1E2A5E",o:6}};
+function vMelange(hex, t){
+  const n = parseInt(hex.slice(1),16), r=n>>16, g=(n>>8)&255, b=n&255, m=v=>Math.round(v+(255-v)*t);
+  return "#" + [m(r),m(g),m(b)].map(x=>x.toString(16).padStart(2,"0")).join("");
+}
+function vCouleursListes(listes){
+  const rang = {};
+  return listes.map(l=>{
+    const f = V_FAM[l.famille] || V_FAM.div, k = (rang[l.famille] = (rang[l.famille]==null ? 0 : rang[l.famille]+1));
+    return vMelange(f.c, [0,.3,.5,.65][Math.min(k,3)]);
+  });
+}
+function vHemi(cols){
+  const N = cols.length; if(!N) return "";
+  const R = Math.max(2, Math.round(Math.sqrt(N/3.2))), r0 = .4, rad = [];
+  for(let i=0;i<R;i++) rad.push(r0 + (1-r0)*(i/(R-1)));
+  const somme = rad.reduce((a,b)=>a+b,0), cnt = rad.map(r=>Math.round(N*r/somme));
+  cnt[R-1] += N - cnt.reduce((a,b)=>a+b,0);
+  const S=140, cx=150, cy=150, pts=[];
+  cnt.forEach((n,ri)=>{ for(let k=0;k<n;k++){ const a = Math.PI*(1-(n===1?.5:k/(n-1))); pts.push({a, ri, x:cx+S*rad[ri]*Math.cos(a), y:cy-S*rad[ri]*Math.sin(a)}); } });
+  pts.sort((p,q)=> q.a-p.a || p.ri-q.ri);              // de gauche à droite
+  const ecartRang = S*(1-r0)/(R-1), ecartArc = Math.PI*S*rad[R-1]/Math.max(1,cnt[R-1]-1);
+  const r = Math.max(2.2, Math.min(7, .42*Math.min(ecartRang, ecartArc)));
+  return `<svg viewBox="0 0 300 158" width="100%" role="img" aria-label="Sièges du conseil municipal">${
+    pts.map((p,i)=>`<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${r.toFixed(1)}" fill="${cols[i]}"/>`).join("")}</svg>`;
+}
+
 /* ---------- accès : fenêtre « Populous Local » (abonnement ou code) ---------- */
 function fermerPaywallVille(){ $("#localPopup").classList.add("hidden"); }
 function ouvrirPaywallVille(){
@@ -2163,7 +2254,7 @@ function ouvrirPaywallVille(){
     <button class="sheetClose" id="pwClose" aria-label="Fermer">✕</button>
     <div class="eyebrow">Populous Local</div>
     <h2 class="d">Ta ville, en clair</h2>
-    <p class="lead">Budget, impôts, dette : ce que ta ville dépense et finance, comparé aux 100 plus grandes villes de France.</p>
+    <p class="lead">Le conseil municipal, le budget, les impôts, la dette : ce que ta ville décide et finance, comparé aux 100 plus grandes villes de France.</p>
     <div class="vPlans">
       <div class="vPlan"><div class="vPlanN">1,99 €</div><div class="vPlanU">par mois</div></div>
       <div class="vPlan pop"><div class="vPlanBadge">Le plus populaire</div><div class="vPlanN">19,90 €</div><div class="vPlanU">par an · soit 1,66 € par mois</div></div>
@@ -2184,7 +2275,8 @@ function ouvrirPaywallVille(){
     if(!ok){ $("#pwErr").classList.remove("hidden"); return; }
     accorderAccesVille("code");
     fermerPaywallVille();
-    if(!villeChoisie()) ouvrirChoixVille(()=>{ modeGeo="communal"; appliquerModeAccueil(); });
+    await resoudreVille();
+    if(!villeChoisie()) ouvrirChoixVille(()=>{ modeGeo="communal"; appliquerModeAccueil(); }, true);
     else { modeGeo="communal"; appliquerModeAccueil(); }
     rafraichirProfilVille();
   };
@@ -2192,12 +2284,13 @@ function ouvrirPaywallVille(){
   $("#pwCode").onkeydown = e=>{ if(e.key==="Enter") valider(); else $("#pwErr").classList.add("hidden"); };
 }
 
-/* ---------- choix de la ville ---------- */
-async function ouvrirChoixVille(apres){
+/* ---------- choix de repli : uniquement si la commune du profil n'est pas
+   parmi les 100 plus grandes villes ---------- */
+async function ouvrirChoixVille(apres, horsListe){
   const popup = $("#villePopup"), sheet = $("#villeSheet");
   sheet.innerHTML = `<button class="sheetClose" id="vcClose" aria-label="Fermer">✕</button>
-    <div class="eyebrow">Ma ville</div><h2 class="d">Choisis ta ville</h2>
-    <p class="lead">Les 100 plus grandes villes de France.</p>
+    <div class="eyebrow">Ma ville</div><h2 class="d">Choisis une ville</h2>
+    <p class="lead">${horsListe ? "La commune de ton profil n'est pas parmi les 100 plus grandes villes de France. Choisis-en une pour explorer." : "Les 100 plus grandes villes de France."}</p>
     <input type="search" id="vcQ" class="vSearch" placeholder="Rechercher une ville" autocomplete="off">
     <div id="vcListe" class="vListe"><p class="vCap" style="padding:14px 4px">Chargement…</p></div>`;
   popup.classList.remove("hidden");
@@ -2212,10 +2305,11 @@ async function ouvrirChoixVille(apres){
     $("#vcListe").innerHTML = sel.length ? sel.map(c=>`<button class="vVille" data-i="${c.insee}"><span>${esc(nomVille(c,idx))}</span><span class="vCap">${V_NF.format(c.pop)} hab.</span></button>`).join("")
       : `<p class="vCap" style="padding:14px 4px">Aucune ville ne correspond.</p>`;
     $("#vcListe").querySelectorAll(".vVille").forEach(b=>{
-      b.onclick = ()=>{
+      b.onclick = async ()=>{
         const c = liste.find(x=>x.insee===b.dataset.i);
         sauverVille({insee:c.insee, nom:nomVille(c,idx), dep:c.dep});
         fermer();
+        await resoudreVille();
         if(apres) apres(); else if(modeGeo==="communal") appliquerModeAccueil();
         rafraichirProfilVille();
       };
@@ -2226,8 +2320,9 @@ async function ouvrirChoixVille(apres){
 }
 
 /* ---------- mode Ma ville sur l'accueil ---------- */
-function appliquerModeAccueil(){
-  const actif = modeGeo==="communal" && aAccesVille() && !!villeChoisie();
+async function appliquerModeAccueil(){
+  if(aAccesVille()) await resoudreVille(); else villeCourante = null;
+  const actif = modeGeo==="communal" && aAccesVille() && !!villeCourante;
   if(modeGeo==="communal" && !actif) modeGeo = "national";
   $("#screen-accueil").classList.toggle("modeVille", actif);
   majModeToggle();
@@ -2235,7 +2330,7 @@ function appliquerModeAccueil(){
   if(actif) renderVille();
 }
 function restaurerModeVille(){
-  try{ if(localStorage.getItem(MODE_KEY)==="communal" && aAccesVille() && villeChoisie()) modeGeo = "communal"; }catch(e){}
+  try{ if(localStorage.getItem(MODE_KEY)==="communal" && aAccesVille()) modeGeo = "communal"; }catch(e){}
   appliquerModeAccueil();
 }
 
@@ -2243,51 +2338,136 @@ function restaurerModeVille(){
 const V_DEP = [["pers","Personnel","#1B3BDB"],["achats","Achats et services","#5B7BFF"],["interv","Aides et subventions","#0E9F8E"],["equip","Équipement","#E5A23B"],["annuite","Dette (annuité)","#D9534F"]];
 const V_REC = [["imp","Impôts locaux","#1B3BDB"],["autimp","Autres impôts et taxes","#5B7BFF"],["etat","Concours de l'État","#0E9F8E"],["ventes","Services facturés","#E5A23B"],["subrec","Subventions reçues","#D9534F"],["emprunts","Emprunts","#8891B0"]];
 const V_TUILES = ["tf","dette","epargne","imp","equip","etat"];
+// Paris est à la fois une commune et un département : son budget cumule les deux
+// niveaux, donc ses chiffres par habitant ne se comparent pas tels quels aux autres villes.
+function vNoteVille(v){ return v && v.insee==="75056" ? " Paris est à la fois une commune et un département : ses chiffres incluent des compétences départementales et se comparent difficilement aux autres villes." : ""; }
 function vIdxRef(f){ return f.annees.indexOf(f.annee_ref); }
 function vValeurRef(f, cle){
   if(cle==="tf"){ const i = f.tf.annees.indexOf(f.annee_ref); return i<0 ? null : f.tf.taux[i]; }
   return f.serie[cle][vIdxRef(f)];
 }
+function vBlocVotes(ville, conseil){
+  const v = conseil && conseil.votes;
+  const attente = (titre, texte)=>`<div class="vLock wide"><b>${titre}</b><span>${texte}</span></div>`;
+  const absent = `Pas encore disponible pour ${esc(ville.nom)}. Les votes des conseils municipaux n'existent pas dans une base nationale : ils seront ajoutés ville par ville.`;
+  let dernier;
+  if(v && v.dernier){
+    const d = v.dernier, adopte = d.resultat==="adopte";
+    dernier = `<div class="voteCard"><div class="voteStamp ${adopte?"adopte":"rejete"}">${adopte?"Adopté":"Rejeté"}</div>
+      <div class="eyebrow">Conseil du ${esc(vDate(d.date))}</div><h2 class="d">${esc(d.titre)}</h2>
+      <p>${vNum(d.pour)} pour · ${vNum(d.contre)} contre · ${vNum(d.abstention)} abstention${d.abstention>1?"s":""}.</p></div>`;
+  } else dernier = attente("Dernier vote du conseil", absent);
+  let avenir;
+  if(v && v.a_venir && v.a_venir.length){
+    avenir = `<div class="vCard"><div class="vCap" style="margin-bottom:6px">Votes à venir</div>${v.a_venir.map(x=>`<div class="vRow" style="cursor:default"><span class="vDate">${esc(vDate(x.date))}</span><span>${esc(x.titre)}</span></div>`).join("")}</div>`;
+  } else avenir = attente("Votes à venir", `L'ordre du jour du conseil de ${esc(ville.nom)} n'est pas encore disponible.`);
+  return dernier + avenir;
+}
+function vBlocConseil(ville, c){
+  if(!c) return `<div class="vLock wide"><b>Composition du conseil</b><span>Indisponible pour l'instant.</span></div>`;
+  const cols = vCouleursListes(c.listes);
+  const ordre = c.listes.map((l,i)=>i).sort((a,b)=>{
+    const fa=(V_FAM[c.listes[a].famille]||V_FAM.div).o, fb=(V_FAM[c.listes[b].famille]||V_FAM.div).o;
+    return fa-fb || c.listes[b].sieges-c.listes[a].sieges;
+  });
+  const sieges = []; ordre.forEach(i=>{ for(let k=0;k<c.listes[i].sieges;k++) sieges.push(cols[i]); });
+  const lignes = c.listes.map((l,i)=>`<button class="vRow" data-liste="${i}"><i class="vDot" style="background:${cols[i]}"></i>
+      <span class="vListeN"><b>${esc(l.tete || l.libelle)}</b><small>${esc(l.libelle_nuance)}</small></span>
+      <span class="vVal">${l.sieges}</span><span class="vChev">›</span></button>`).join("");
+  const m = c.maire;
+  return `<div class="vCard">
+      ${m ? `<div class="vMaire"><span class="vCap">Maire</span><b>${esc(m.nom)}</b></div>` : ""}
+      ${vHemi(sieges)}
+      <div class="vCap" style="text-align:center;margin:-2px 0 6px">${c.sieges} sièges · scrutin du ${esc(vDate(c.date))}</div>
+      <div>${lignes}</div></div>
+    <div class="vGrid3">
+      <div class="vMini">${c.femmes_pct!=null?vRing(c.femmes_pct,"var(--accent)"):""}<b>${c.femmes_pct!=null?vNum(c.femmes_pct)+" %":"—"}</b><span>de femmes</span></div>
+      <div class="vMini"><b class="vMiniBig">${c.age_moyen!=null?vNum(c.age_moyen)+" ans":"—"}</b><span>âge moyen</span></div>
+      <div class="vMini">${c.participation!=null?vRing(c.participation,"#0E9F8E"):""}<b>${c.participation!=null?vNum(c.participation)+" %":"—"}</b><span>de participation</span></div>
+    </div>`;
+}
 async function renderVille(){
   const box = $("#acVille"), ville = villeChoisie();
   if(!box || !ville) return;
   box.innerHTML = `<p class="vCap" style="padding:20px 4px">Chargement des données de ${esc(ville.nom)}…</p>`;
-  const [idx, f] = await Promise.all([chargerVillesIndex(), chargerFicheVille(ville.insee)]);
+  const [idx, f, conseil] = await Promise.all([chargerVillesIndex(), chargerFicheVille(ville.insee), chargerConseil(ville.insee)]);
   if(!idx || !f){ box.innerHTML = `<div class="vCard"><p class="vCap">Les données de ta ville sont indisponibles pour l'instant. Réessaie un peu plus tard.</p></div>`; return; }
   const i = vIdxRef(f), S = f.serie, dep = S.dep[i], rec = S.rec[i];
   const pDep = vParts(V_DEP.map(x=>({v:S[x[0]][i]})), dep||0), pRec = vParts(V_REC.map(x=>({v:S[x[0]][i]})), rec||0);
   const dLeg = V_DEP.map((x,k)=>({cle:x[0],nom:x[1],c:x[2],n:pDep[k]})).concat([{cle:null,nom:"Autres",c:"#8891B0",n:pDep[V_DEP.length]}]);
   const rLeg = V_REC.map((x,k)=>({cle:x[0],nom:x[1],c:x[2],n:pRec[k]})).concat([{cle:null,nom:"Autres",c:"#C9CFEA",n:pRec[V_REC.length]}]);
-  const ligne = l=>`<button class="vRow" ${l.cle?`data-detail="${l.cle}"`:"disabled"}><i class="vDot" style="background:${l.c}"></i>${esc(l.nom)}<span class="vVal">${l.n} %</span>${l.cle?`<span class="vChev">›</span>`:""}</button>`;
+  const ligne = (l,unite)=>`<button class="vRow" ${l.cle?`data-detail="${l.cle}"`:"disabled"}><i class="vDot" style="background:${l.c}"></i>${esc(l.nom)}<span class="vVal">${l.n} ${unite}</span>${l.cle?`<span class="vChev">›</span>`:""}</button>`;
+  const barre = leg=>`<div class="vBar">${leg.map(x=>`<i style="width:${x.n}%;background:${x.c}"></i>`).join("")}</div>`;
   const total = f.serie.dep_total[i];
   const tuiles = V_TUILES.map(cle=>{
     const m=V_METRIQUES[cle], v=vValeurRef(f,cle), serie = cle==="tf" ? f.tf.taux : f.serie[cle];
     return `<button class="vTile" data-detail="${cle}"><span class="vTileL">${m.court}</span><span class="vTileV">${m.u==="%"?vNum(v,1)+" %":vEuro(v)}</span>${vSpark(serie,"var(--accent)")}</button>`;
   }).join("");
+  const bientot = (titre, texte)=>`<div class="vSec">${titre}</div><div class="vLock wide"><b>Bientôt</b><span>${texte}</span></div>`;
   box.innerHTML = `
     <div class="vHead"><div class="eyebrow">Ma ville</div><h2 class="d">${esc(ville.nom)}</h2>
-      <div class="vSub">${V_NF.format(f.pop)} habitants · comptes ${f.annee_ref}</div></div>
-    <div class="vSec">Ce qui se finance</div>
+      <div class="vSub">${V_NF.format(f.pop)} habitants</div></div>
+
+    <div class="vSec">Conseil municipal</div>
+    ${vBlocConseil(ville, conseil)}
+    ${vBlocVotes(ville, conseil)}
+
+    <div class="vSec">Finances</div>
     <div class="vCard"><div class="vBig">${vEuro(dep)}</div>
       <div class="vCap">dépensés par habitant en ${f.annee_ref}${total?` · environ ${vNum(total/1e6)} M€ au total`:""}</div></div>
-    <div class="vCard"><div class="vCap" style="margin-bottom:6px">Pour 100 € dépensés</div>${vWaffle(pDep, dLeg.map(x=>x.c))}
-      <div style="margin-top:8px">${dLeg.map(ligne).join("")}</div></div>
-    <div class="vCard"><div class="vCap" style="margin-bottom:8px">D'où vient l'argent · ${vEuro(rec)} par habitant</div>
-      <div class="vBar">${rLeg.map(x=>`<i style="width:${x.n}%;background:${x.c}"></i>`).join("")}</div>
-      <div style="margin-top:8px">${rLeg.map(ligne).join("")}</div></div>
+    <div class="vCard"><div class="vCap" style="margin-bottom:8px">Pour 100 € dépensés</div>${barre(dLeg)}
+      <div style="margin-top:8px">${dLeg.map(l=>ligne(l,"€")).join("")}</div></div>
+    <div class="vCard"><div class="vCap" style="margin-bottom:8px">D'où vient l'argent · ${vEuro(rec)} par habitant</div>${barre(rLeg)}
+      <div style="margin-top:8px">${rLeg.map(l=>ligne(l,"%")).join("")}</div></div>
     <div class="vGrid">${tuiles}</div>
-    <button class="btn primary" id="vCompare" type="button" style="width:100%;flex:none;margin-bottom:12px">Comparer avec les autres villes</button>
-    <div class="vSec">Bientôt</div>
-    <div class="vLockGrid">
-      <div class="vLock"><b>Votes du conseil</b><span>Qui vote quoi</span></div>
-      <div class="vLock"><b>Marchés publics</b><span>Ce que la ville achète</span></div>
-      <div class="vLock"><b>Sécurité</b><span>Faits constatés</span></div>
-      <div class="vLock"><b>Logement</b><span>Social, permis</span></div>
-    </div>
-    <p class="vSrc">Source : OFGL, à partir des comptes des communes publiés par la DGFiP, et fiscalité directe locale. Dernière année définitive : ${f.annee_ref}.${f.annee_provisoire?` Les comptes ${f.annee_provisoire} sont provisoires.`:""}
+    <button class="btn primary" id="vCompare" type="button" style="width:100%;flex:none;margin-bottom:6px">Comparer avec les autres villes</button>
+
+    ${bientot("Marchés publics","Ce que la ville achète et à qui.")}
+    ${bientot("Sécurité","Les faits constatés dans la commune.")}
+    ${bientot("Logement","Logements sociaux, permis de construire.")}
+
+    <p class="vSrc">Conseil : ministère de l'Intérieur, résultats des municipales 2026 et répertoire national des élus. Finances : OFGL, à partir des comptes des communes publiés par la DGFiP, dernière année définitive ${f.annee_ref}${f.annee_provisoire?` (les comptes ${f.annee_provisoire} sont provisoires)`:""}. Nuances politiques telles qu'attribuées par le ministère.${vNoteVille(ville)}
       <a href="https://data.ofgl.fr" target="_blank" rel="noopener">data.ofgl.fr</a></p>`;
   box.querySelectorAll("[data-detail]").forEach(b=>{ b.onclick = ()=>ouvrirVilleDetail(b.dataset.detail); });
+  box.querySelectorAll("[data-liste]").forEach(b=>{ b.onclick = ()=>ouvrirListeConseil(ville, conseil, +b.dataset.liste); });
   $("#vCompare").onclick = ()=>ouvrirVilleDetail("dep");
+  annoncerNouveauVote(ville, conseil);
+}
+
+/* ---------- fenêtre « liste du conseil » ---------- */
+function ouvrirListeConseil(ville, c, i){
+  const l = c.listes[i], cols = vCouleursListes(c.listes), popup = $("#villeDetailPopup"), sheet = $("#villeDetailSheet");
+  sheet.innerHTML = `<button class="sheetClose" id="vdClose" aria-label="Fermer">✕</button>
+    <div class="eyebrow">Conseil municipal · ${esc(ville.nom)}</div>
+    <h2 class="d" style="font-size:22px">${esc(l.tete || l.libelle)}</h2>
+    <div class="vChips"><span class="vChip on" style="background:${cols[i]}">${esc(l.libelle_nuance)}</span></div>
+    <div class="vBig">${l.sieges} sièges</div>
+    <p class="vCap" style="margin:4px 0 10px">${vNum(l.sieges/c.sieges*100)} % des ${c.sieges} sièges du conseil${l.voix_pct!=null?`, avec ${vNum(l.voix_pct,1)} % des voix exprimées au scrutin du ${esc(vDate(c.date))}`:""}.</p>
+    ${l.tete ? `<div class="vCard"><div class="vCap">Liste</div><div style="font-size:13px;margin-top:4px">${esc(l.libelle)}</div></div>` : ""}
+    <p class="vSrc">Source : ministère de l'Intérieur, résultats des municipales 2026. Code de nuance du ministère : ${esc(l.nuance)}.
+      <a href="${c.sources.resultats}" target="_blank" rel="noopener">Voir la source</a></p>`;
+  popup.classList.remove("hidden");
+  const fermer = ()=>popup.classList.add("hidden");
+  $("#vdClose").onclick = fermer; popup.onclick = e=>{ if(e.target===popup) fermer(); };
+  sheet.scrollTop = 0;
+}
+
+/* ---------- alerte « nouveau vote » (quand des votes seront publiés) ---------- */
+function annoncerNouveauVote(ville, conseil){
+  const d = conseil && conseil.votes && conseil.votes.dernier;
+  if(!d || !d.id) return;
+  const cle = VOTE_VU_KEY + ville.insee;
+  let vu = null; try{ vu = localStorage.getItem(cle); }catch(e){}
+  try{ localStorage.setItem(cle, String(d.id)); }catch(e){}
+  if(vu===null || vu===String(d.id)) return;      // première visite ou rien de nouveau
+  const popup = $("#villePopup"), sheet = $("#villeSheet");
+  sheet.innerHTML = `<button class="sheetClose" id="vcClose" aria-label="Fermer">✕</button>
+    <div class="eyebrow">Nouveau vote · ${esc(ville.nom)}</div><h2 class="d" style="font-size:22px">${esc(d.titre)}</h2>
+    <p class="lead">${d.resultat==="adopte"?"Adopté":"Rejeté"} : ${vNum(d.pour)} pour, ${vNum(d.contre)} contre, ${vNum(d.abstention)} abstention${d.abstention>1?"s":""}.</p>
+    <div class="actions"><button class="btn primary" id="vcOk" type="button">Voir</button></div>`;
+  popup.classList.remove("hidden");
+  const fermer = ()=>popup.classList.add("hidden");
+  $("#vcClose").onclick = $("#vcOk").onclick = fermer; popup.onclick = e=>{ if(e.target===popup) fermer(); };
 }
 
 /* ---------- fenêtre de détail + comparaison ---------- */
@@ -2331,7 +2511,7 @@ async function ouvrirVilleDetail(cle){
     ${st ? `<div class="vCard" style="margin-top:12px"><div class="vCap" style="margin-bottom:2px">Parmi les ${st.n+1} plus grandes villes, ${f.annee_ref}</div>${st.svg}
       <p class="vCap" style="text-align:center">Plus élevé que <b>${st.dessous} villes sur ${st.n}</b> · médiane ${vNum(st.med,dec)}${m.u==="%"?" %":" €"} (tirets)</p></div>` : ""}
     <select id="vdCmp" class="vSelect">${opts}</select>${duel}
-    <p class="vSrc">Source : OFGL (comptes des communes, DGFiP${cle==="tf"?" ; fiscalité directe locale":""}), exercice ${f.annee_ref}. Les villes n'ont pas les mêmes compétences : une différence n'est pas un jugement.
+    <p class="vSrc">Source : OFGL (comptes des communes, DGFiP${cle==="tf"?" ; fiscalité directe locale":""}), exercice ${f.annee_ref}. Les villes n'ont pas les mêmes compétences : une différence n'est pas un jugement.${vNoteVille(ville)}
       <a href="${cle==="tf"?f.sources.fiscalite:f.sources.finances}" target="_blank" rel="noopener">Voir la source</a></p>`;
   popup.classList.remove("hidden");
   const fermer = ()=>popup.classList.add("hidden");
@@ -2345,24 +2525,29 @@ async function ouvrirVilleDetail(cle){
 function villeProfilHTML(){
   if(!aAccesVille()) return localCardHTML("localBtn");
   const v = villeChoisie();
+  const note = !v ? "La commune de ton profil n'est pas parmi les 100 plus grandes villes."
+    : (v.source==="profil" ? "Ville de ton profil" : "Ville choisie : la commune de ton profil n'est pas parmi les 100 plus grandes villes.");
   return `<div class="privacyBox" id="villeProf" style="margin-top:18px"><b>Ma ville</b><br>
-    <span id="vpNom">${v ? esc(v.nom) : "Aucune ville choisie"}</span>
+    <span id="vpNom">${v ? esc(v.nom) : "Aucune ville"}</span> <span class="vCap">· ${note}</span>
     <div class="vSeg" role="group" aria-label="Mon pays ou ma ville">
       <button class="vSegB ${modeGeo==="national"?"on":""}" data-m="national" type="button">Mon pays</button>
       <button class="vSegB ${modeGeo==="communal"?"on":""}" data-m="communal" type="button">Ma ville</button>
     </div>
-    <div class="vProfActs"><button class="vLien" id="vpChange" type="button">${v?"Changer de ville":"Choisir ma ville"}</button>
+    <div class="vProfActs">${!v || v.source!=="profil" ? `<button class="vLien" id="vpChange" type="button">Choisir une ville</button>` : ""}
       <button class="vLien" id="vpRetirer" type="button">Retirer mon accès</button></div></div>`;
 }
 function wireVilleProfil(){
   const bloc = $("#villeProf"); if(!bloc) return;
   bloc.querySelectorAll(".vSegB").forEach(b=>{
-    b.onclick = ()=>{
-      if(b.dataset.m==="communal" && !villeChoisie()){ ouvrirChoixVille(()=>{ modeGeo="communal"; appliquerModeAccueil(); fermerProfilVersAccueil(); }); return; }
+    b.onclick = async ()=>{
+      if(b.dataset.m==="communal"){
+        await resoudreVille();
+        if(!villeChoisie()){ ouvrirChoixVille(()=>{ modeGeo="communal"; appliquerModeAccueil(); fermerProfilVersAccueil(); }, true); return; }
+      }
       modeGeo = b.dataset.m; appliquerModeAccueil(); fermerProfilVersAccueil();
     };
   });
-  $("#vpChange").onclick = ()=>ouvrirChoixVille(null);
+  const ch = $("#vpChange"); if(ch) ch.onclick = ()=>ouvrirChoixVille(null, true);
   $("#vpRetirer").onclick = ()=>{
     try{ localStorage.removeItem(ACCES_KEY); localStorage.removeItem(MODE_KEY); }catch(e){}
     modeGeo = "national"; appliquerModeAccueil(); rafraichirProfilVille();
@@ -2476,7 +2661,7 @@ function renderTopAvatar(){
 }
 $("#navProfil").onclick = openProfile;
 
-let draft = { pseudo:"", age:null, circoKey:null, circoLabel:"", logement:null, pro:null, enfants:null, zone:null, transport:null, sante:null, avatar:{type:"none"} };
+let draft = { pseudo:"", age:null, circoKey:null, circoLabel:"", communeNom:"", communeCle:"", logement:null, pro:null, enfants:null, zone:null, transport:null, sante:null, avatar:{type:"none"} };
 let obStep = 0;
 let viewMode = false; // true = édition d'un seul champ depuis la vue profil, pas d'enchaînement d'étapes
 
@@ -2710,23 +2895,25 @@ function obRender(){
           const label = e
             ? `${esc(e.n)} — ${esc(depName)}, ${e.ci}ᵉ circ.`
             : `${esc(depName)}, ${num}ᵉ circ. — député·e non recensé·e`;
-          rows.push({ k, txt: `${esc(nom)}${postaux[0]?" ("+postaux[0]+")":""} — ${label}` });
+          rows.push({ k, nom, cle: c[1], txt: `${esc(nom)}${postaux[0]?" ("+postaux[0]+")":""} — ${label}` });
         });
       });
       r.innerHTML = rows.length
-        ? rows.map(row=>`<button data-k="${row.k}">${row.txt}</button>`).join("")
+        ? rows.map(row=>`<button data-k="${row.k}" data-n="${esc(row.nom)}" data-c="${esc(row.cle)}">${row.txt}</button>`).join("")
         : `<div style="padding:8px 10px;font-size:11px;color:var(--dim)">Aucun résultat</div>`;
       r.querySelectorAll("button").forEach(b=>{
         b.onclick = ()=>{
           const k = b.dataset.k, e = byKey.get(k);
           const [dep, num] = k.split("|");
           draft.circoKey = k;
+          // On retient aussi la COMMUNE choisie : « Ma ville » étudie toujours la ville du profil.
+          draft.communeNom = b.dataset.n || ""; draft.communeCle = b.dataset.c || "";
           draft.circoLabel = e ? `${DEP_NAMES[e.dep]||e.dep} — ${e.ci}ᵉ circ.` : `${DEP_NAMES[dep]||dep} — ${num}ᵉ circ.`;
           obRender();
         };
       });
     };
-    if($("#obCircoClear")) $("#obCircoClear").onclick = ()=>{ draft.circoKey=null; draft.circoLabel=""; obRender(); };
+    if($("#obCircoClear")) $("#obCircoClear").onclick = ()=>{ draft.circoKey=null; draft.circoLabel=""; draft.communeNom=""; draft.communeCle=""; obRender(); };
     $("#obBack").onclick = ()=>{
       if(viewMode){ draft = {...loadProfile()}; obStep="view"; } else { obStep=2; }
       obRender();
@@ -3276,6 +3463,9 @@ function renderAccueil(){
     const sub = $("#acPresiSub");
     if(sub && articles && articles.length) sub.textContent = articles[0].titre;
   });
+  // Mode Ma ville : re-résoudre la ville (le profil a pu changer) et redessiner.
+  // try/catch : au tout premier rendu, le module Ma ville n'est pas encore initialisé.
+  try{ if(modeGeo==="communal") appliquerModeAccueil(); }catch(e){}
 }
 
 /* ---------- Historique ---------- */
