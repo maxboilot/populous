@@ -1,0 +1,36 @@
+name: Surveillance des données
+
+on:
+  schedule:
+    # Toutes les 2 heures, hors de l'heure pile (GitHub la retarde le plus
+    # a ce moment-la). Ce contrôle ne peut pas se surveiller lui-même : si
+    # GitHub le saute, l'alerte tarde, mais les pipelines surveillés, eux,
+    # ont des limites de plusieurs heures.
+    - cron: '47 */2 * * *'
+  workflow_dispatch: {}
+
+# Lit l'historique des runs (actions), ouvre / ferme l'issue d'alerte (issues).
+# Ne modifie aucun fichier du depot.
+permissions:
+  contents: read
+  actions: read
+  issues: write
+
+concurrency:
+  group: surveillance-donnees
+  cancel-in-progress: false
+
+jobs:
+  surveiller:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests
+      - name: Contrôler les pipelines et le retard de l'open data
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: python surveiller_donnees.py
