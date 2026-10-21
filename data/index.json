@@ -1,45 +1,6 @@
 [
   {
     "numero": null,
-    "dossier": "DLR5L17N51477",
-    "date": "2025-10-20",
-    "titre": "Proposition de loi constitutionnelle visant à garantir la prééminence des lois de la République",
-    "adopte": true,
-    "statut": "adopte",
-    "themes": [
-      "institutions"
-    ],
-    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N51477",
-    "type": "main_levee"
-  },
-  {
-    "numero": null,
-    "dossier": "DLR5L17N52601",
-    "date": "2025-10-20",
-    "titre": "Proposition de loi relative aux formations en santé",
-    "adopte": true,
-    "statut": "adopte",
-    "themes": [
-      "sante"
-    ],
-    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N52601",
-    "type": "main_levee"
-  },
-  {
-    "numero": null,
-    "dossier": "DLR5L17N52379",
-    "date": "2025-10-20",
-    "titre": "Proposition de loi visant à permettre à une commune d’être intégrée, pour une partie de son territoire, à un parc national et, pour une autre partie, à un parc naturel régional (PNR)",
-    "adopte": true,
-    "statut": "adopte",
-    "themes": [
-      "institutions"
-    ],
-    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N52379",
-    "type": "main_levee"
-  },
-  {
-    "numero": null,
     "dossier": "DLR5L16N49280",
     "date": "2025-10-22",
     "titre": "Proposition de loi portant création d'un statut de l'élu local",

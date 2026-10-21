@@ -1,28 +1,5 @@
 [
   {
-    "date": "2026-10-20",
-    "heure": "16:40",
-    "ordre_du_jour": "Examen du texte — Projet de loi de finances pour 2027",
-    "themes": [
-      "economie"
-    ],
-    "dossier": "DLR5L17N54629",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-10-20",
-    "heure": "21:30",
-    "ordre_du_jour": "Discussion du projet de loi de financement de la sécurité sociale pour 2027",
-    "themes": [
-      "securite",
-      "economie"
-    ],
-    "dossier": "DLR5L17N54951",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
     "date": "2026-10-21",
     "heure": "09:00",
     "ordre_du_jour": "Examen du texte — Abroger le dispositif des amendes forfaitaires délictuelles",
