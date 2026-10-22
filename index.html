@@ -2678,7 +2678,7 @@ function ouvrirPaywallVille(){
       z.classList.remove("hidden");
     }
   });
-  let plan = "annuel", paquets = null;
+  let plan = "annuel", paquets = null, prixSur = true;
   const majBouton = ()=>{
     const btn = $("#pwPay");
     document.querySelectorAll("#pwPlans .vPlan").forEach(b=>{ const on = b.dataset.plan===plan; b.classList.toggle("on", on); b.setAttribute("aria-checked", on); });
@@ -2686,19 +2686,29 @@ function ouvrirPaywallVille(){
     if(!paquets){ btn.textContent = paquets===null ? "Chargement…" : "Abonnement momentanément indisponible"; return; }
     const x = paquets[plan];
     btn.disabled = !x;
-    btn.textContent = x ? `S'abonner · ${x.product.priceString} ${plan==="annuel" ? "par an" : "par mois"}` : "Formule indisponible";
+    btn.textContent = x ? (prixSur ? `S'abonner · ${x.product.priceString} ${plan==="annuel" ? "par an" : "par mois"}` : "S'abonner") : "Formule indisponible";
   };
   document.querySelectorAll("#pwPlans .vPlan").forEach(b=>{ b.onclick = ()=>{ plan = b.dataset.plan; majBouton(); }; });
-  if(possible) Billing.offres().then(o=>{
+  if(possible) Billing.offres().then(async o=>{
     paquets = o || false;
     if(o){
-      if(o.mensuel) $("#pwPrixM").textContent = o.mensuel.product.priceString;
-      if(o.annuel){
-        $("#pwPrixA").textContent = o.annuel.product.priceString;
-        // L'équivalent mensuel est calculé dans la devise de la boutique : jamais un montant en euros figé à côté d'un prix en dollars.
-        let eq = null;
-        try{ const pr = o.annuel.product; if(typeof pr.price==="number" && pr.currencyCode) eq = new Intl.NumberFormat("fr-FR",{style:"currency",currency:pr.currencyCode}).format(pr.price/12); }catch(e){}
-        $("#pwEquiv").textContent = eq ? "par an · soit " + eq + " par mois" : "par an";
+      // Garde-fou : si le pays de la boutique ne correspond pas à la région de l'appareil (cas vu en test : boutique USA, appareil en France),
+      // les montants renvoyés peuvent être ceux d'un autre pays. On ne les affiche pas : le prix exact, dans la devise du pays, est montré par la fenêtre d'Apple à l'achat.
+      let region = null; try{ region = new Intl.Locale(navigator.language || "").region || null; }catch(e){}
+      const b = await Billing.boutique();
+      prixSur = !(b && b.pays && region && String(b.pays).toUpperCase() !== String(region).toUpperCase());
+      if(!prixSur){
+        $("#pwPrixM").textContent = "Prix à l'achat"; $("#pwPrixA").textContent = "Prix à l'achat"; $("#pwEquiv").textContent = "par an";
+        $("#pwPlans").insertAdjacentHTML("afterend", `<p class="vCap" id="pwPrixNote" style="margin:-4px 2px 10px">Le prix, dans la devise de ton pays, s'affiche à l'étape suivante, dans la fenêtre d'Apple.</p>`);
+      } else {
+        if(o.mensuel) $("#pwPrixM").textContent = o.mensuel.product.priceString;
+        if(o.annuel){
+          $("#pwPrixA").textContent = o.annuel.product.priceString;
+          // L'équivalent mensuel est calculé dans la devise de la boutique : jamais un montant en euros figé à côté d'un prix en dollars.
+          let eq = null;
+          try{ const pr = o.annuel.product; if(typeof pr.price==="number" && pr.currencyCode) eq = new Intl.NumberFormat("fr-FR",{style:"currency",currency:pr.currencyCode}).format(pr.price/12); }catch(e){}
+          $("#pwEquiv").textContent = eq ? "par an · soit " + eq + " par mois" : "par an";
+        }
       }
     }
     majBouton();
@@ -3337,7 +3347,8 @@ async function majIdAssistance(){
   const z = $("#idAssist"); if(!z || !Billing.possible()) return;
   const id = await Billing.idUtilisateur(); if(!id || !$("#idAssist")) return;
   z.innerHTML = `Identifiant d'assistance : <code style="user-select:all">${esc(id)}</code> <button class="vLien" id="idCopier" type="button">Copier</button><br><span id="idBoutique">Boutique : …</span>`;
-  Billing.boutique().then(b=>{ const e = $("#idBoutique"); if(e) e.textContent = "Boutique : " + ((b && b.pays) || "inconnue") + " · devise des prix : " + ((b && b.devise) || "inconnue"); });
+  Billing.boutique().then(b=>{ const e = $("#idBoutique"); if(!e) return; let reg = null; try{ reg = new Intl.Locale(navigator.language || "").region || null; }catch(err){}
+    e.textContent = "Boutique : " + ((b && b.pays) || "inconnue") + " · devise des prix : " + ((b && b.devise) || "inconnue") + " · région de l'appareil : " + (reg || "inconnue"); });
   $("#idCopier").onclick = async ()=>{
     try{ await navigator.clipboard.writeText(id); toast("Identifiant copié"); }
     catch(e){ toast("Copie impossible : touche l'identifiant pour le sélectionner"); }
@@ -5896,7 +5907,7 @@ initNotificationsPush();
    versions déjà installées avant ce bandeau ne l'ont pas : il servira pour
    les prochaines mises à jour. ?data=local&plateforme=ios&build=4 permet
    de le voir en test. */
-const APP_BUILD = 8;
+const APP_BUILD = 9;
 async function verifierMiseAJour(){
   const q = new URLSearchParams(location.search);
   const essai = q.get("data") === "local";
