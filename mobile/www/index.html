@@ -66,6 +66,9 @@ window.__VOTE_EARLY__ = (async function(){
   html,body{margin:0;height:100%;overflow:visible;background:var(--bg);
     font-family:var(--font-s);color:var(--ink)}
   #map{position:absolute;inset:0;background:var(--land);outline:none}
+  #hemi{position:absolute;inset:0;width:100%;height:100%;background:#fff;display:none;touch-action:none;cursor:grab}
+  body.hemi #map{visibility:hidden}
+  body.hemi #hemi{display:block}
   .leaflet-container{background:var(--land);font-family:inherit}
   .leaflet-control-attribution{background:var(--card)!important;color:var(--dim)!important;
     font-size:9px!important;border-radius:8px 0 0 0!important}
@@ -1050,6 +1053,7 @@ window.__VOTE_EARLY__ = (async function(){
 <div id="screen-carte" class="screen hidden">
 <div id="carteScreenTitre">Cartographie du dernier scrutin par député(e)s</div>
 <div id="map" tabindex="0" aria-label="Carte des 577 circonscriptions législatives"></div>
+<canvas id="hemi" aria-label="Hémicycle de l'Assemblée nationale : un point par député·e"></canvas>
 <div class="presiWatermark" aria-hidden="true">Populous</div>
 
 <div id="carteTitre"></div>
@@ -1380,13 +1384,13 @@ function colorOf(i){
     return VOTE_COLORS[normPos(voteData.par_circonscription[key])];
   }
   if(!e) return UNKNOWN;
-  if(mode==="groupe") return groupColor[e.g] || UNKNOWN;
+  if(mode==="groupe") return groupColor[codeGroupeCanonique(e.g)] || UNKNOWN;
   if(mode==="age") return ageColor(e.age);
   return (PARCOURS[e.parK] || PARCOURS.inconnu).c;
 }
 function fillOf(i){
   const e = elus[i];
-  const dim = filterGroup!==null && (!e || e.g!==filterGroup);
+  const dim = filterGroup!==null && (!e || codeGroupeCanonique(e.g)!==filterGroup);
   return dim ? mix(LAND, colorOf(i), 0.10) : mix(LAND, colorOf(i), 0.88);
 }
 const styleOf = i => ({ color:INK, weight:0.4, opacity:0.32, fillColor:fillOf(i), fillOpacity:1 });
@@ -1429,7 +1433,143 @@ geo.circos.forEach((c,i)=>{
   poly.addTo(group);
   layers.push(poly);
 });
+/* ---------- hémicycle (vue depuis le perchoir) : remplace la carte (sauf ?hemi=0) ---------- */
+const HEMI = new URLSearchParams(location.search).get("hemi")!=="0";   // l'hémicycle remplace la carte ; ?hemi=0 ramène la carte (diagnostic)
+if(HEMI) document.body.classList.add("hemi");
+let hemiSieges = [], hemiYaw = 0, hemiVit = 0;   // sièges du monde (angle, rangée, hauteur) ; cap de la caméra ; vitesse d'inertie
+const HEMI_FOV = 96*Math.PI/180, HEMI_YAW_MAX = 50*Math.PI/180, HEMI_RECUL = 0.35, HEMI_HCAM = 1.25, HEMI_RW = 3.3;
+const HEMI_MONTEE = 0.17;
+function hemiOrdre(){
+  const o = {}; GROUPES.forEach((g,k)=>o[g.s]=k);
+  return geo.circos.map((c,i)=>i).sort((a,b)=>{
+    const ga = elus[a] ? o[codeGroupeCanonique(elus[a].g)] : 99, gb = elus[b] ? o[codeGroupeCanonique(elus[b].g)] : 99;
+    return ga-gb || (geo.circos[a].key<geo.circos[b].key?-1:1);
+  });
+}
+function hemiMonde(){
+  // L'hémicycle vu du perchoir : la caméra est au centre, les bancs montent en gradins autour d'elle sur 180°.
+  // Les groupes occupent des tranches, de la gauche vers la droite, sur toutes les rangées.
+  const N = geo.circos.length, R = 12, r0 = 1, r1 = 2.4, montee = HEMI_MONTEE, phiM = Math.PI/2;
+  const rows = [];
+  let somme = 0;
+  for(let k=0;k<R;k++){ const r = r0 + k*(r1-r0)/(R-1); rows.push({k, r, h:k*montee}); somme += r; }
+  const pas = Math.PI*somme/N;                                  // écart monde entre deux sièges voisins
+  let reste = N;
+  rows.forEach((row,k)=>{ row.n = k===R-1 ? reste : Math.round(N*row.r/somme); reste -= row.n; });
+  const pts = [];
+  rows.forEach(row=>{ for(let j=0;j<row.n;j++) pts.push({phi:-phiM + (j+0.5)/row.n*2*phiM, row:row.k, r:row.r, h:row.h}); });
+  pts.sort((a,b)=>a.phi-b.phi || a.row-b.row);
+  const ordre = hemiOrdre();
+  pts.forEach((p,k)=>{ p.i = ordre[k]; });
+  pts.pas = pas;
+  return pts;
+}
+function hemiGeom(W, H){
+  const f = W/2/Math.tan(HEMI_FOV/2), haut = 150, bas = Math.max(170, H*0.24), zone = H - haut - bas;
+  return {f, haut, bas, zone, yh: haut + zone*0.5 - f*0.18, hCam: HEMI_HCAM};
+}
+function hemiProjeter(W, H){
+  const g = hemiGeom(W, H), vus = [];
+  hemiSieges.forEach(st=>{
+    const a = st.phi - hemiYaw, c = Math.cos(a);
+    if(c < 0.25) return;                                                  // hors du champ
+    const z = st.r*c + HEMI_RECUL;
+    st.x = W/2 + g.f*st.r*Math.sin(a)/z; st.y = g.yh + g.f*(g.hCam - st.h)/z; st.z = z;
+    st.rad = Math.max(1.5, g.f*hemiSieges.pas*0.42/z);
+    if(st.x > -20 && st.x < W+20) vus.push(st);
+  });
+  vus.sort((a,b)=>b.z-a.z);                                               // du fond vers l'avant
+  return vus;
+}
+// Le décor, en gris très clair : mur du fond avec ses pilastres et sa galerie, sol et gradins.
+function hemiDecor(ctx, W, H, g){
+  const P = (r, phi, h) => { const a = phi - hemiYaw, z = r*Math.cos(a) + HEMI_RECUL; return [W/2 + g.f*r*Math.sin(a)/z, g.yh + g.f*(g.hCam - h)/z]; };
+  const amin = Math.max(-1.35, hemiYaw-HEMI_FOV/2-0.25), amax = Math.min(1.35, hemiYaw+HEMI_FOV/2+0.25), pas = 0.02, RW = HEMI_RW, hBase = 1.9;
+  const mur = "#F3F4F7", trait = "#E4E6EC", banc = "#ECEEF3", sol = "#F7F8FA";
+  const ligne = (r, h, c, lw) => { ctx.beginPath(); for(let a=amin; a<=amax; a+=pas){ const [x,y] = P(r,a,h); a===amin ? ctx.moveTo(x,y) : ctx.lineTo(x,y); } ctx.strokeStyle = c; ctx.lineWidth = lw; ctx.stroke(); };
+  ctx.beginPath(); for(let a=amin; a<=amax; a+=pas){ const [x,y] = P(RW,a,hBase); a===amin ? ctx.moveTo(x,y) : ctx.lineTo(x,y); }
+  ctx.lineTo(P(RW,amax,hBase)[0], -60); ctx.lineTo(P(RW,amin,hBase)[0], -60); ctx.closePath(); ctx.fillStyle = mur; ctx.fill();
+  ctx.strokeStyle = trait; ctx.lineWidth = 1.5;
+  for(let a=Math.ceil(amin/0.131)*0.131; a<=amax; a+=0.131){ const [x1,y1] = P(RW,a,hBase); ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x1,-60); ctx.stroke(); }
+  ligne(RW, 2.9, trait, 2); ligne(RW, 3.15, trait, 1.5); ligne(RW, hBase, trait, 2);
+  ctx.beginPath(); for(let a=amin; a<=amax; a+=pas){ const [x,y] = P(RW,a,hBase); a===amin ? ctx.moveTo(x,y) : ctx.lineTo(x,y); }
+  ctx.lineTo(W+20, H); ctx.lineTo(-20, H); ctx.closePath(); ctx.fillStyle = sol; ctx.fill();
+  const r0 = 1, r1 = 2.4, R = 12;
+  for(let k=0;k<R;k++){ const r = r0 + k*(r1-r0)/(R-1), h = k*HEMI_MONTEE, y0 = P(r,0,h)[1], y1 = P(r+0.1,0,h+HEMI_MONTEE)[1]; ligne(r, h, banc, Math.max(3, Math.abs(y1-y0)*0.9)); }
+}
+// Sélection d'un siège : l'anneau est redessiné ; si la sélection vient de la recherche, la tête se tourne vers lui.
+function hemiVers(i, aller){
+  const st = i!==null && hemiSieges.find(x=>x.i===i);
+  if(st && aller){
+    const but = Math.max(-HEMI_YAW_MAX, Math.min(HEMI_YAW_MAX, st.phi)), dep = hemiYaw, t0 = performance.now();
+    const pas = t=>{ const k = Math.min(1, (t-t0)/450); hemiYaw = dep + (but-dep)*(1-Math.pow(1-k,3)); dessinerHemicycle(); if(k<1) requestAnimationFrame(pas); };
+    requestAnimationFrame(pas);
+  } else dessinerHemicycle();
+}
+function dessinerHemicycle(){
+  if(!HEMI) return;
+  const cv = $("#hemi"), W = cv.clientWidth, H = cv.clientHeight; if(!W || !H) return;
+  const dpr = window.devicePixelRatio || 1;
+  if(cv.width!==Math.round(W*dpr) || cv.height!==Math.round(H*dpr)){ cv.width = Math.round(W*dpr); cv.height = Math.round(H*dpr); }
+  if(!hemiSieges.length) hemiSieges = hemiMonde();
+  const ctx = cv.getContext("2d"); ctx.setTransform(dpr,0,0,dpr,0,0); ctx.fillStyle = "#fff"; ctx.fillRect(0,0,W,H); ctx.lineCap = "round"; ctx.lineJoin = "round";
+  hemiDecor(ctx, W, H, hemiGeom(W, H));
+  const vus = hemiProjeter(W, H), encre = getComputedStyle(document.body).getPropertyValue("--ink").trim() || "#10193F";
+  vus.forEach(st=>{
+    const e = elus[st.i], flou = filterGroup!==null && (!e || codeGroupeCanonique(e.g)!==filterGroup);
+    ctx.globalAlpha = flou ? 0.16 : 1;
+    ctx.fillStyle = colorOf(st.i);
+    ctx.beginPath(); ctx.arc(st.x, st.y, st.rad, 0, 6.2832); ctx.fill();
+  });
+  ctx.globalAlpha = 1;
+  const sel = selected!==null && vus.find(x=>x.i===selected);
+  if(sel){ ctx.lineWidth = 2; ctx.strokeStyle = encre; ctx.beginPath(); ctx.arc(sel.x, sel.y, sel.rad+2.5, 0, 6.2832); ctx.stroke(); }
+  // Repère : une frise des 577 sièges, de gauche à droite, avec la fenêtre actuellement visible.
+  const g = hemiGeom(W, H), sx = 24, sw = W-48, sy = H-g.bas+6, N = hemiSieges.length;
+  hemiSieges.forEach((st,k)=>{ ctx.fillStyle = colorOf(st.i); ctx.globalAlpha = filterGroup!==null && !(elus[st.i] && codeGroupeCanonique(elus[st.i].g)===filterGroup) ? 0.16 : 1; ctx.fillRect(sx + k/N*sw, sy, sw/N+0.6, 8); });
+  ctx.globalAlpha = 1;
+  const w0 = sx + (hemiYaw-HEMI_FOV/2+Math.PI/2)/Math.PI*sw, w1 = sx + (hemiYaw+HEMI_FOV/2+Math.PI/2)/Math.PI*sw;
+  ctx.lineWidth = 2; ctx.strokeStyle = encre; ctx.beginPath(); ctx.roundRect(Math.max(sx-3,w0), sy-3, Math.min(sx+sw+3,w1)-Math.max(sx-3,w0), 14, 5); ctx.stroke();
+}
+if(HEMI){
+  const cv = document.getElementById("hemi");
+  let prise = null, deplace = false, dernier = 0;
+  const regler = y => { hemiYaw = Math.max(-HEMI_YAW_MAX, Math.min(HEMI_YAW_MAX, y)); dessinerHemicycle(); };
+  const surFrise = (y, H) => y > H - hemiGeom(1, H).bas - 6 && y < H - hemiGeom(1, H).bas + 24;
+  window.addEventListener("resize", dessinerHemicycle);
+  cv.addEventListener("pointerdown", ev=>{
+    const rc = cv.getBoundingClientRect(), x = ev.clientX-rc.left, y = ev.clientY-rc.top;
+    hemiVit = 0; deplace = false;
+    prise = {x, y0:y, frise: surFrise(y, rc.height), t:performance.now()};
+    cv.setPointerCapture(ev.pointerId);
+    if(prise.frise){ regler(((x-24)/(rc.width-48))*Math.PI - Math.PI/2); }
+  });
+  cv.addEventListener("pointermove", ev=>{
+    if(!prise) return;
+    const rc = cv.getBoundingClientRect(), x = ev.clientX-rc.left, f = hemiGeom(rc.width, rc.height).f;
+    if(prise.frise){ regler(((x-24)/(rc.width-48))*Math.PI - Math.PI/2); deplace = true; return; }
+    const dx = x - prise.x; if(Math.abs(dx) > 0) deplace = deplace || Math.abs(x-prise.x) > 0;
+    const dt = Math.max(1, performance.now()-dernier); dernier = performance.now();
+    hemiVit = -dx/f/dt*16; prise.x = x; prise.bouge = (prise.bouge||0) + Math.abs(dx);
+    regler(hemiYaw - dx/f);
+  });
+  const lacher = ev=>{
+    if(!prise) return;
+    const rc = cv.getBoundingClientRect(), x = ev.clientX-rc.left, y = ev.clientY-rc.top, tap = !prise.frise && (prise.bouge||0) < 6;
+    prise = null;
+    if(tap){
+      let best = null, bd = 1e9;
+      hemiProjeter(rc.width, rc.height).forEach(st=>{ const d = Math.hypot(st.x-x, st.y-y); if(d<bd){ bd = d; best = st; } });
+      if(best && bd < Math.max(12, best.rad*2)) select(best.i, false); else select(null);
+    } else if(Math.abs(hemiVit) > 0.0004){
+      const tick = ()=>{ hemiVit *= 0.93; if(prise || Math.abs(hemiVit) < 0.0003) return; regler(hemiYaw + hemiVit); requestAnimationFrame(tick); };
+      requestAnimationFrame(tick);
+    }
+  };
+  cv.addEventListener("pointerup", lacher); cv.addEventListener("pointercancel", ()=>{ prise = null; });
+}
 function restyle(){
+  dessinerHemicycle();
   layers.forEach(p=>{ if(p) p.setStyle(styleOf(p._i)); });
   if(selected!==null && layers[selected]) layers[selected].setStyle({color:INK,weight:2.4,opacity:1});
 }
@@ -1446,7 +1586,7 @@ function refreshAvatars(){
     let n=0;
     for(let i=0;i<elus.length && n<70;i++){
       const e = elus[i]; if(!e) continue;
-      if(filterGroup!==null && e.g!==filterGroup) continue;
+      if(filterGroup!==null && codeGroupeCanonique(e.g)!==filterGroup) continue;
       const c = centroids[i]; if(!c || !view.contains(c)) continue;
       keep.add(i); putMarker(i, size); n++;
     }
@@ -1482,6 +1622,7 @@ function select(i, zoom){
   const precedent = selected;
   if(selected!==null && layers[selected]) layers[selected].setStyle(styleOf(selected));
   selected = i;
+  if(HEMI) hemiVers(i, zoom);
   if(i===null){
     $("#fiche").classList.remove("on"); placeTab(); refreshAvatars();
     // On revient à la vue d'ensemble en douceur en quittant une fiche, pour
@@ -4056,6 +4197,7 @@ function showScreen(name){
     // pendant qu'on était sur un autre écran, offsetHeight valait 0 tant
     // que la carte était masquée — on la recalcule à chaque affichage.
     placeCarteTitre();
+    if(HEMI) setTimeout(dessinerHemicycle, 60);
   }
   if(name==="accueil" && !loadedOnce.accueil){ loadedOnce.accueil=true; renderAccueil(); }
   if(name==="historique" && !loadedOnce.historique){ loadedOnce.historique=true; loadHistorique(); }
@@ -5780,7 +5922,7 @@ initNotificationsPush();
    versions déjà installées avant ce bandeau ne l'ont pas : il servira pour
    les prochaines mises à jour. ?data=local&plateforme=ios&build=4 permet
    de le voir en test. */
-const APP_BUILD = 6;
+const APP_BUILD = 7;
 async function verifierMiseAJour(){
   const q = new URLSearchParams(location.search);
   const essai = q.get("data") === "local";
