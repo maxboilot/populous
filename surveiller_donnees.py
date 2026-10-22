@@ -54,6 +54,7 @@ LABEL = "alerte-donnees"
 #   villes             mensuel (le 2) : limite de 45 jours
 #   votes_conseils     hebdomadaire (mercredi) : limite de 14 jours
 #   elus               hebdomadaire (lundi) : limite de 14 jours
+#   securite, logement mensuels (8 et 12 du mois) : limite de 45 jours
 PIPELINES = {
     "ingest_scrutins.yml": ("Ingestion des scrutins", 10),
     "actu_presidentielle.yml": ("Actualité présidentielle", 16),
@@ -63,6 +64,8 @@ PIPELINES = {
     "villes.yml": ("Données des villes (mensuel)", 1080),           # 45 jours : mensuel + marge
     "votes_conseils.yml": ("Votes des conseils (hebdomadaire)", 336), # 14 jours
     "elus.yml": ("Élus des conseils (hebdomadaire)", 336),            # 14 jours
+    "securite.yml": ("Sécurité des villes (mensuel)", 1080),          # 45 jours
+    "logement.yml": ("Logement des villes (mensuel)", 1080),          # 45 jours
 }
 
 # Nombre d'heures sans nouveau scrutin ingere, alors que le site de

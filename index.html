@@ -414,6 +414,7 @@ window.__VOTE_EARLY__ = (async function(){
   .vMaire{display:flex;flex-direction:column;margin-bottom:6px}
   .vMaire b{font-family:var(--font-d);font-weight:800;font-size:20px;letter-spacing:-.01em}
   .vListeN{display:flex;flex-direction:column;min-width:0;flex:1}
+  .vTileU{font-size:10.5px;color:var(--ink-soft);margin-top:-4px}
   .vElu{display:flex;align-items:center;gap:10px;padding:9px 0;border-top:1px solid var(--line);font-size:13px}
   .vElu:first-child{border-top:none}
   .vEluN{display:flex;flex-direction:column;min-width:0;flex:1}
@@ -2039,6 +2040,14 @@ $("#modeToggle").querySelectorAll(".modeOpt").forEach(b=>{
      data/elus/      les élus de chaque conseil (répertoire national des élus +
                      candidats élus, ministère de l'Intérieur), construit par
                      construire_elus.py
+     data/securite/  délinquance enregistrée (SSMSI, ministère de l'Intérieur),
+                     construit par construire_securite.py
+     data/logement/  permis de construire (Sit@del2) et prix des ventes (DVF),
+                     construit par construire_logement.py
+   Les rubriques « marchés publics », « sécurité » et « logement » ne s'affichent
+   que si leurs données existent : marchés publics reste masqué (V_BIENTOT) car la
+   collecte n'est pas fiable pour les 100 villes (acheteurs absents, montants
+   indicatifs).
 
    La ville étudiée est TOUJOURS celle du profil (commune enregistrée à la
    création du profil, ou déduite de la circonscription pour les profils plus
@@ -2061,6 +2070,9 @@ const ELUS_VU_KEY = "populous_ville_elus_vu_";
 // Votes du conseil : bloc masqué au lancement de Ma ville. Il n'existe pas de source ouverte
 // fiable pour les 100 villes (3 seulement sont à jour) ; le code et les données restent prêts.
 const V_VOTES = false;
+// Rubriques annoncées « Bientôt » (marchés publics, sécurité, logement) : masquées tant que la
+// collecte des données des 100 villes n'est pas vérifiée. Une rubrique n'apparaît que si ses données existent.
+const V_BIENTOT = false;
 const CODE_SEL = "populous-ville-v1|";
 const CODE_HASH = "2acbcfddd4550eeb267d9b21d9fbbd4e9a7703ec4f261d85e5b7db1562b56613";
 
@@ -2570,13 +2582,156 @@ function annoncerChangementConseil(ville, e){
   $("#vcClose").onclick = fermer; popup.onclick = ev=>{ if(ev.target===popup) fermer(); };
   $("#vcOk").onclick = ()=>{ fermer(); ouvrirChangementsConseil(ville, e); };
 }
+/* ---------- sécurité et logement : données publiques annuelles (SSMSI, Sit@del2, DVF) ---------- */
+const V_RUB_BASE = {
+  securite: new URLSearchParams(location.search).get("data")==="local" ? "data/securite/" : REPO_DATA_BASE + "securite/",
+  logement: new URLSearchParams(location.search).get("data")==="local" ? "data/logement/" : REPO_DATA_BASE + "logement/"
+};
+const rubIdx = {}, rubFiches = {securite:{}, logement:{}};
+async function chargerRubIndex(rub){
+  if(rub in rubIdx) return rubIdx[rub];
+  try{ const r = await fetch(V_RUB_BASE[rub] + "index.json", {cache:"no-store"}); rubIdx[rub] = r.ok ? await r.json() : null; }
+  catch(e){ rubIdx[rub] = null; }
+  return rubIdx[rub];
+}
+async function chargerRub(rub, insee){
+  const c = rubFiches[rub];
+  if(insee in c) return c[insee];
+  try{ const r = await fetch(V_RUB_BASE[rub] + insee + ".json", {cache:"no-store"}); c[insee] = r.ok ? await r.json() : null; }
+  catch(e){ c[insee] = null; }
+  return c[insee];
+}
+const V_SEC_NOTE = "Ces chiffres sont les faits enregistrés par la police et la gendarmerie, au lieu où ils ont été commis : un chiffre élevé peut refléter plus de plaintes déposées ou plus de contrôles, pas forcément plus d'infractions.";
+const V_SEC = {
+  cambriolage:  {t:"Cambriolages de logements", court:"Cambriolages", u:"logements", nu:"infractions enregistrées", ex:"Cambriolages de résidences principales et secondaires, pour 1 000 logements de la commune."},
+  vol_vehicule: {t:"Vols de véhicules", court:"Vols de véhicules", u:"habitants", nu:"véhicules volés", ex:"Vols de véhicules à moteur, pour 1 000 habitants."},
+  vol_dans:     {t:"Vols dans les véhicules", court:"Vols dans véhicules", u:"habitants", nu:"véhicules concernés", ex:"Vols d'objets laissés dans des véhicules, pour 1 000 habitants."},
+  vol_access:   {t:"Vols d'accessoires sur véhicules", court:"Vols d'accessoires", u:"habitants", nu:"véhicules concernés", ex:"Vols de pièces et d'accessoires fixés sur des véhicules, pour 1 000 habitants."},
+  vol_violent:  {t:"Vols violents sans arme", court:"Vols violents", u:"habitants", nu:"infractions enregistrées", ex:"Vols commis avec violence mais sans arme, pour 1 000 habitants."},
+  vol_arme:     {t:"Vols avec arme", court:"Vols avec arme", u:"habitants", nu:"infractions enregistrées", ex:"Vols commis avec une arme, pour 1 000 habitants."},
+  vol_simple:   {t:"Vols sans violence contre des personnes", court:"Vols sans violence", u:"habitants", nu:"victimes", ex:"Vols sans violence visant des personnes (pickpockets, vols à la tire), pour 1 000 habitants."},
+  viol_hors:    {t:"Violences physiques hors famille", court:"Violences hors famille", u:"habitants", nu:"victimes", ex:"Victimes de violences physiques hors du cadre familial, pour 1 000 habitants."},
+  viol_fam:     {t:"Violences physiques intrafamiliales", court:"Violences familiales", u:"habitants", nu:"victimes", ex:"Victimes de violences physiques dans le cadre familial ou conjugal, pour 1 000 habitants."},
+  viol_sex:     {t:"Violences sexuelles", court:"Violences sexuelles", u:"habitants", nu:"victimes", ex:"Victimes de violences sexuelles enregistrées, pour 1 000 habitants. Les dépôts de plainte ont augmenté partout ces dernières années."},
+  degrad:       {t:"Destructions et dégradations", court:"Dégradations", u:"habitants", nu:"infractions enregistrées", ex:"Destructions et dégradations volontaires de biens, pour 1 000 habitants."},
+  trafic:       {t:"Trafic de stupéfiants", court:"Trafic de stupéfiants", u:"habitants", nu:"personnes mises en cause", ex:"Personnes mises en cause pour trafic de stupéfiants, pour 1 000 habitants. Ce chiffre dépend beaucoup de l'activité des forces de l'ordre."},
+  usage:        {t:"Usage de stupéfiants", court:"Usage de stupéfiants", u:"habitants", nu:"personnes mises en cause", ex:"Personnes mises en cause pour usage de stupéfiants, pour 1 000 habitants. Ce chiffre dépend beaucoup de l'activité des forces de l'ordre."},
+  escroquerie:  {t:"Escroqueries et fraudes", court:"Escroqueries", u:"habitants", nu:"victimes", ex:"Victimes d'escroqueries et de fraudes aux moyens de paiement, pour 1 000 habitants."}
+};
+const V_SEC_ORDRE = ["cambriolage","vol_vehicule","vol_dans","vol_access","vol_violent","vol_arme","vol_simple","viol_hors","viol_fam","viol_sex","degrad","trafic","usage","escroquerie"];
+const V_SEC_TUILES = ["cambriolage","vol_vehicule","vol_violent","viol_hors","viol_sex","trafic"];
+const V_LOG = {
+  autorise:    {t:"Logements autorisés", court:"Autorisés", u:"habitants", dec:1, ex:"Logements dont la construction a été autorisée par un permis, pour 1 000 habitants. Un permis n'est pas un logement construit."},
+  commence:    {t:"Logements mis en chantier", court:"Mis en chantier", u:"habitants", dec:1, ex:"Logements dont les travaux ont commencé, pour 1 000 habitants."},
+  prix_appart: {t:"Prix des appartements", court:"Appartements", u:"€/m²", dec:0, ex:"Prix médian au m² des appartements vendus : la moitié des ventes est au-dessus, la moitié en dessous."},
+  prix_maison: {t:"Prix des maisons", court:"Maisons", u:"€/m²", dec:0, ex:"Prix médian au m² des maisons vendues, terrain compris : la moitié des ventes est au-dessus, la moitié en dessous."}
+};
+const V_LOG_ORDRE = ["autorise","commence","prix_appart","prix_maison"];
+function vDecAuto(v){ return v!=null && v<1 ? 2 : 1; }
+function vFmtTaux(v){ return v==null ? "—" : vNum(v, vDecAuto(v)); }
+function vUniteSec(k, court){ return V_SEC[k].u==="logements" ? (court ? "pour 1 000 log." : "pour 1 000 logements") : (court ? "pour 1 000 hab." : "pour 1 000 habitants"); }
+function vTuileRub(rub, k, valeur, serie, unite, fmt){
+  const m = (rub==="securite" ? V_SEC : V_LOG)[k];
+  return `<button class="vTile" data-rub="${rub}" data-k="${k}"><span class="vTileL">${m.court}</span><span class="vTileV">${valeur==null?"—":fmt(valeur)}</span>${unite?`<span class="vTileU">${unite}</span>`:""}${vSpark(serie,"var(--accent)")}</button>`;
+}
+function vBlocSecurite(ville, f){
+  if(!f) return "";
+  const i = f.annees.length-1;
+  return `<div class="vSec">Sécurité</div>
+    <div class="vGrid">${V_SEC_TUILES.map(k=>vTuileRub("securite", k, f.taux[k][i], f.taux[k], vUniteSec(k,true), vFmtTaux)).join("")}</div>
+    <button class="btn primary" id="vSecTous" type="button" style="width:100%;flex:none;margin-bottom:6px">Tous les faits constatés</button>
+    <p class="vSrc" style="margin-top:0">Faits enregistrés en ${f.annee_ref} par la police et la gendarmerie : SSMSI, ministère de l'Intérieur. Mise à jour une fois par an.</p>`;
+}
+function vBlocLogement(ville, f){
+  if(!f) return "";
+  const tuiles = [];
+  if(f.permis){
+    const i = f.permis.annees.length-1;
+    tuiles.push(vTuileRub("logement","autorise", f.permis.taux_autorises[i], f.permis.taux_autorises, "pour 1 000 hab.", vFmtTaux));
+    tuiles.push(vTuileRub("logement","commence", f.permis.taux_commences[i], f.permis.taux_commences, "pour 1 000 hab.", vFmtTaux));
+  }
+  let manque = "";
+  if(f.prix){
+    const i = f.prix.annees.length-1;
+    tuiles.push(vTuileRub("logement","prix_appart", f.prix.appartement[i], f.prix.appartement, "au m²", v=>vNum(v)+" €"));
+    tuiles.push(vTuileRub("logement","prix_maison", f.prix.maison[i], f.prix.maison, "au m²", v=>vNum(v)+" €"));
+  } else {
+    const alsace = ["57","67","68"].includes(String(ville.dep));
+    manque = `<p class="vCap" style="margin:0 2px 8px">Prix de l'immobilier : ${alsace ? "non disponibles en Alsace-Moselle, hors des données de ventes de l'État." : "non disponibles pour cette ville dans les données de ventes de l'État."}</p>`;
+  }
+  return `<div class="vSec">Logement</div>
+    <div class="vGrid">${tuiles.join("")}</div>${manque}
+    <button class="btn primary" id="vLogTous" type="button" style="width:100%;flex:none;margin-bottom:6px">Voir l'évolution et comparer</button>
+    <p class="vSrc" style="margin-top:0">Permis : Sit@del2, ministère de la Transition écologique${f.permis ? ` (${f.permis.annees[f.permis.annees.length-1]})` : ""}.${f.prix ? ` Prix : demandes de valeurs foncières (DVF), DGFiP${f.prix.jusqu_a ? `, ventes jusqu'au ${esc(vDate(f.prix.jusqu_a))}` : ""}.` : ""}</p>`;
+}
+// Fenêtre de détail d'une rubrique (série, position parmi les villes, duel).
+async function ouvrirDetailRub(rub, k){
+  const ville = villeChoisie(); if(!ville) return;
+  const popup = $("#villeDetailPopup"), sheet = $("#villeDetailSheet");
+  const [idx, f] = await Promise.all([chargerRubIndex(rub), chargerRub(rub, ville.insee)]);
+  if(!idx || !f) return;
+  const sec = rub==="securite";
+  const m = (sec ? V_SEC : V_LOG)[k], ordre = (sec ? V_SEC_ORDRE : V_LOG_ORDRE).filter(x=>sec || (x.startsWith("prix") ? !!f.prix : !!f.permis));
+  let serie, annees, fmt, dec, extra = "", unite, refAn;
+  if(sec){
+    serie = f.taux[k]; annees = f.annees; refAn = f.annee_ref;
+    fmt = v=>vFmtTaux(v); dec = 1; unite = vUniteSec(k);
+    const n = f.nombre[k][f.nombre[k].length-1];
+    extra = n!=null ? `<div class="vCap">Soit ${vNum(n)} ${m.nu} en ${refAn}.</div>` : `<div class="vCap">Valeur non diffusée pour ${refAn} (secret statistique).</div>`;
+  } else if(k==="autorise" || k==="commence"){
+    const c = k==="autorise" ? "autorises" : "commences";
+    serie = f.permis["taux_"+c]; annees = f.permis.annees; refAn = annees[annees.length-1];
+    fmt = v=>vFmtTaux(v); dec = 1; unite = "pour 1 000 habitants";
+    const n = f.permis[c][f.permis[c].length-1];
+    extra = `<div class="vCap">Soit ${vNum(n)} logements en ${refAn}.</div>`;
+  } else {
+    const t = k==="prix_appart" ? "appartement" : "maison";
+    serie = f.prix[t]; annees = f.prix.annees; refAn = annees[annees.length-1];
+    fmt = v=>vNum(v)+" €"; dec = 0; unite = "le m²";
+    const nv = f.prix["ventes_"+t][annees.length-1];
+    extra = `<div class="vCap">Médiane de ${vNum(nv)} ventes en ${refAn}${f.prix.jusqu_a && f.prix.jusqu_a.slice(0,4)==String(refAn) && f.prix.jusqu_a<refAn+"-12-15" ? `, ventes jusqu'au ${esc(vDate(f.prix.jusqu_a))}` : ""}.</div>`;
+  }
+  const items = idx.villes.map(c=>({insee:c.insee, nom:nomVille(c, idx), v:c.v[k]})).filter(x=>x.v!=null);
+  const moi = items.find(x=>x.insee===ville.insee) || {insee:ville.insee, nom:ville.nom, v:serie[serie.length-1]};
+  const cmp = vCmpInsee && vCmpInsee!==ville.insee ? items.find(x=>x.insee===vCmpInsee) : null;
+  const st = moi.v!=null && items.length>2 ? vStrip(items.some(x=>x.insee===moi.insee)?items:items.concat([moi]), moi, cmp, dec) : null;
+  const chips = ordre.map(x=>`<button class="vChip${x===k?" on":""}" data-k="${x}">${(sec?V_SEC:V_LOG)[x].court}</button>`).join("");
+  const opts = `<option value="">Comparer avec…</option>` + items.filter(x=>x.insee!==ville.insee).sort((a,b)=>a.nom.localeCompare(b.nom,"fr")).map(x=>`<option value="${x.insee}"${cmp&&cmp.insee===x.insee?" selected":""}>${esc(x.nom)}</option>`).join("");
+  const duel = cmp && moi.v!=null ? (()=>{ const mx=Math.max(moi.v,cmp.v)||1; return `<div class="vCard" style="margin-top:10px"><div class="vDuel"><b style="color:var(--accent)">${esc(moi.nom)} · ${fmt(moi.v)}</b><b style="color:var(--ink-soft)">${esc(cmp.nom)} · ${fmt(cmp.v)}</b></div>
+      <div class="vTrack"><i style="width:${Math.round(moi.v/mx*100)}%;background:var(--accent)"></i></div>
+      <div class="vTrack"><i style="width:${Math.round(cmp.v/mx*100)}%;background:#8891B0"></i></div></div>`; })() : "";
+  const src = sec
+    ? `Source : SSMSI, ministère de l'Intérieur (délinquance enregistrée par la police et la gendarmerie), ${refAn}. ${V_SEC_NOTE} Les valeurs couvertes par le secret statistique ne sont pas publiées. <a href="${esc(idx.source.url)}" target="_blank" rel="noopener">Voir la source</a>`
+    : (k.startsWith("prix")
+      ? `Source : demandes de valeurs foncières (DVF), DGFiP. Ventes d'un seul logement, prix médian au m² ; une ville n'a un prix que si elle compte au moins 30 ventes de ce type dans l'année. <a href="${esc(idx.sources.dvf.url)}" target="_blank" rel="noopener">Voir la source</a>`
+      : `Source : Sit@del2, service des données et études statistiques du ministère de la Transition écologique. Années civiles complètes. <a href="${esc(idx.sources.permis.url)}" target="_blank" rel="noopener">Voir la source</a>`);
+  sheet.innerHTML = `<button class="sheetClose" id="vdClose" aria-label="Fermer">✕</button>
+    <div class="eyebrow">${esc(ville.nom)} · ${refAn}</div>
+    <h2 class="d" style="font-size:22px">${m.t}</h2>
+    <div class="vChips" id="vdChips">${chips}</div>
+    <div class="vBig" style="margin-top:2px">${moi.v==null?"—":fmt(moi.v)}</div>
+    <div class="vCap" style="margin-top:2px">${unite}</div>
+    <p class="vCap" style="margin:4px 0 8px">${m.ex}</p>
+    ${vLine(serie, annees.map(String), {f:fmt})}
+    ${extra}
+    ${st ? `<div class="vCard" style="margin-top:12px"><div class="vCap" style="margin-bottom:2px">Parmi les ${st.n+1} plus grandes villes, ${refAn}</div>${st.svg}
+      <p class="vCap" style="text-align:center">Plus élevé que <b>${st.dessous} villes sur ${st.n}</b> · médiane ${vNum(st.med,dec)} (tirets)</p></div>` : `<p class="vCap" style="margin-top:12px">Pas de valeur à comparer pour cette ville.</p>`}
+    <select id="vdCmp" class="vSelect">${opts}</select>${duel}
+    <p class="vSrc">${src}</p>`;
+  popup.classList.remove("hidden");
+  const fermer = ()=>popup.classList.add("hidden");
+  $("#vdClose").onclick = fermer; popup.onclick = e=>{ if(e.target===popup) fermer(); };
+  $("#vdChips").querySelectorAll(".vChip").forEach(b=>{ b.onclick = ()=>ouvrirDetailRub(rub, b.dataset.k); });
+  $("#vdCmp").onchange = e=>{ vCmpInsee = e.target.value; ouvrirDetailRub(rub, k); };
+  const actif = $("#vdChips .on"); if(actif && actif.scrollIntoView) actif.scrollIntoView({inline:"center", block:"nearest"});
+}
 let vRenderJeton = 0;   // un rendu plus ancien qui finit en retard ne doit pas écraser le plus récent
 async function renderVille(){
   const box = $("#acVille"), ville = villeChoisie();
   if(!box || !ville) return;
   const jeton = ++vRenderJeton;
   box.innerHTML = `<p class="vCap" style="padding:20px 4px">Chargement des données de ${esc(ville.nom)}…</p>`;
-  const [idx, f, conseil, votes, elus] = await Promise.all([chargerVillesIndex(), chargerFicheVille(ville.insee), chargerConseil(ville.insee), V_VOTES ? chargerVotes(ville.insee) : null, chargerElus(ville.insee)]);
+  const [idx, f, conseil, votes, elus, secu, logt] = await Promise.all([chargerVillesIndex(), chargerFicheVille(ville.insee), chargerConseil(ville.insee), V_VOTES ? chargerVotes(ville.insee) : null, chargerElus(ville.insee), chargerRub("securite", ville.insee), chargerRub("logement", ville.insee)]);
   if(jeton !== vRenderJeton) return;
   if(!idx || !f){ box.innerHTML = `<div class="vCard"><p class="vCap">Les données de ta ville sont indisponibles pour l'instant. Réessaie un peu plus tard.</p></div>`; return; }
   const i = vIdxRef(f), S = f.serie, dep = S.dep[i], rec = S.rec[i];
@@ -2610,9 +2765,10 @@ async function renderVille(){
     <div class="vGrid">${tuiles}</div>
     <button class="btn primary" id="vCompare" type="button" style="width:100%;flex:none;margin-bottom:6px">Comparer avec les autres villes</button>
 
-    ${bientot("Marchés publics","Ce que la ville achète et à qui.")}
-    ${bientot("Sécurité","Les faits constatés dans la commune.")}
-    ${bientot("Logement","Logements sociaux, permis de construire.")}
+    ${vBlocSecurite(ville, secu)}
+    ${vBlocLogement(ville, logt)}
+
+    ${V_BIENTOT ? bientot("Marchés publics","Ce que la ville achète et à qui.") + bientot("Sécurité","Les faits constatés dans la commune.") + bientot("Logement","Logements sociaux, permis de construire.") : ""}
 
     <p class="vSrc">Conseil : ministère de l'Intérieur, résultats des municipales 2026 et répertoire national des élus. Finances : OFGL, à partir des comptes des communes publiés par la DGFiP, dernière année définitive ${f.annee_ref}${f.annee_provisoire?` (les comptes ${f.annee_provisoire} sont provisoires)`:""}. Nuances politiques telles qu'attribuées par le ministère.${votes?` Votes : ${esc(votes.source.nom)}.`:""}${vNoteVille(ville)}
       <a href="https://data.ofgl.fr" target="_blank" rel="noopener">data.ofgl.fr</a></p>`;
@@ -2623,6 +2779,9 @@ async function renderVille(){
   bt("#vEluTous", ()=>ouvrirElus(ville, conseil, elus, "tous"));
   bt("#vEluExec", ()=>ouvrirElus(ville, conseil, elus, "exec"));
   bt("#vEluChg", ()=>ouvrirChangementsConseil(ville, elus));
+  box.querySelectorAll("[data-rub]").forEach(b=>{ b.onclick = ()=>ouvrirDetailRub(b.dataset.rub, b.dataset.k); });
+  bt("#vSecTous", ()=>ouvrirDetailRub("securite", "cambriolage"));
+  bt("#vLogTous", ()=>ouvrirDetailRub("logement", logt && logt.permis ? "autorise" : "prix_appart"));
   if(V_VOTES) annoncerNouveauVote(ville, votes);
   annoncerChangementConseil(ville, elus);
 }
