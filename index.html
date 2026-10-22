@@ -414,6 +414,25 @@ window.__VOTE_EARLY__ = (async function(){
   .vMaire{display:flex;flex-direction:column;margin-bottom:6px}
   .vMaire b{font-family:var(--font-d);font-weight:800;font-size:20px;letter-spacing:-.01em}
   .vListeN{display:flex;flex-direction:column;min-width:0;flex:1}
+  .vElu{display:flex;align-items:center;gap:10px;padding:9px 0;border-top:1px solid var(--line);font-size:13px}
+  .vElu:first-child{border-top:none}
+  .vEluN{display:flex;flex-direction:column;min-width:0;flex:1}
+  .vEluN b{font-weight:700;overflow-wrap:anywhere}
+  .vEluN small{font-size:11px;color:var(--ink-soft)}
+  .vRang{flex:none;font-size:10.5px;font-weight:700;border-radius:999px;padding:3px 9px;background:var(--accent-soft);color:var(--accent);white-space:nowrap}
+  .vProf{margin-top:9px}.vProf:first-of-type{margin-top:4px}
+  .vProfL{display:flex;justify-content:space-between;gap:10px;font-size:12px;line-height:1.35}
+  .vProfL b{flex:none;font-weight:700}
+  .vAges{display:flex;align-items:flex-end;gap:8px;height:96px;margin-top:8px}
+  .vAge{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:4px;height:100%;font-size:10.5px;color:var(--ink-soft)}
+  .vAge b{font-size:11.5px;color:var(--ink)}
+  .vAge i{display:block;width:100%;border-radius:6px 6px 2px 2px;background:var(--accent)}
+  .vAlerte{display:flex;align-items:center;gap:10px;width:100%;border:none;text-align:left;font:inherit;color:var(--ink);cursor:pointer;background:var(--accent-soft)}
+  .vAlerte span{flex:1;font-size:12.5px;line-height:1.45}
+  .vAlerte b{display:block;font-size:13.5px}
+  .vChg{display:flex;gap:10px;padding:9px 0;border-top:1px solid var(--line);font-size:13px}
+  .vChg:first-child{border-top:none}
+  .vChg time{flex:none;width:92px;color:var(--ink-soft);font-size:11.5px}
   .vListeN b{font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .vListeN small{font-size:11px;color:var(--ink-soft)}
   .vLock.wide{grid-column:1/-1;margin:0 0 12px}
@@ -2017,6 +2036,9 @@ $("#modeToggle").querySelectorAll(".modeOpt").forEach(b=>{
      data/conseils/  composition du conseil, maire, parité, âge (ministère de
                      l'Intérieur, municipales 2026), construit par
                      construire_conseils.py
+     data/elus/      les élus de chaque conseil (répertoire national des élus +
+                     candidats élus, ministère de l'Intérieur), construit par
+                     construire_elus.py
 
    La ville étudiée est TOUJOURS celle du profil (commune enregistrée à la
    création du profil, ou déduite de la circonscription pour les profils plus
@@ -2034,6 +2056,11 @@ const CONSEILS_BASE = new URLSearchParams(location.search).get("data")==="local"
 const VILLE_KEY = "populous_ville_v1", ACCES_KEY = "populous_ville_acces_v1", MODE_KEY = "populous_mode_v1";
 const VOTES_BASE = new URLSearchParams(location.search).get("data")==="local" ? "data/votes/" : REPO_DATA_BASE + "votes/";
 const VOTE_VU_KEY = "populous_ville_vote_vu_";
+const ELUS_BASE = new URLSearchParams(location.search).get("data")==="local" ? "data/elus/" : REPO_DATA_BASE + "elus/";
+const ELUS_VU_KEY = "populous_ville_elus_vu_";
+// Votes du conseil : bloc masqué au lancement de Ma ville. Il n'existe pas de source ouverte
+// fiable pour les 100 villes (3 seulement sont à jour) ; le code et les données restent prêts.
+const V_VOTES = false;
 const CODE_SEL = "populous-ville-v1|";
 const CODE_HASH = "2acbcfddd4550eeb267d9b21d9fbbd4e9a7703ec4f261d85e5b7db1562b56613";
 
@@ -2081,7 +2108,7 @@ function accorderAccesVille(via){
 }
 
 /* ---------- chargement des données ---------- */
-let villesIdx = null, villesIdxP = null; const villesFiches = {}, villesConseils = {}, villesVotes = {};
+let villesIdx = null, villesIdxP = null; const villesFiches = {}, villesConseils = {}, villesVotes = {}, villesElus = {};
 function chargerVillesIndex(){
   if(villesIdx) return Promise.resolve(villesIdx);
   if(!villesIdxP) villesIdxP = fetch(VILLES_BASE + "index.json", {cache:"no-store"})
@@ -2103,6 +2130,12 @@ async function chargerVotes(insee){
   try{ const r = await fetch(VOTES_BASE + insee + ".json", {cache:"no-store"}); villesVotes[insee] = r.ok ? await r.json() : null; }
   catch(e){ villesVotes[insee] = null; }
   return villesVotes[insee];
+}
+async function chargerElus(insee){
+  if(insee in villesElus) return villesElus[insee];
+  try{ const r = await fetch(ELUS_BASE + insee + ".json", {cache:"no-store"}); villesElus[insee] = r.ok ? await r.json() : null; }
+  catch(e){ villesElus[insee] = null; }
+  return villesElus[insee];
 }
 function villesUtilisables(idx){ return idx.villes.filter(c=>c.v && c.v.dep!=null); }
 function nomVille(c, idx){
@@ -2417,13 +2450,133 @@ function vBlocConseil(ville, c){
       <div class="vMini">${c.participation!=null?vRing(c.participation,"#0E9F8E"):""}<b>${c.participation!=null?vNum(c.participation)+" %":"—"}</b><span>de participation</span></div>
     </div>`;
 }
+/* ---------- les élus du conseil (répertoire national des élus + candidats élus, ministère de l'Intérieur) ---------- */
+const V_TRANCHES = [["< 40",0,39],["40-49",40,49],["50-59",50,59],["60-69",60,69],["70 +",70,200]];
+const V_PROF_COURT = {"Personne diverse sans activité professionnelle de moins de 60 ans (sauf retraité)":"Sans activité professionnelle (moins de 60 ans)"};
+function vAgeDe(an){ return an ? new Date().getFullYear() - an : null; }
+function vEstExecutif(el){ return el.f==="Maire" || /adjoint/.test(el.f); }
+// Groupes d'élus : une liste, ou — quand deux listes ont la même nuance et qu'on ne peut pas
+// les distinguer — l'ensemble des listes de cette nuance. Jamais de rattachement deviné.
+function vGroupesElus(conseil, e){
+  const cols = vCouleursListes(conseil.listes), g = [];
+  conseil.listes.forEach((l,i)=>{
+    const meme = conseil.listes.filter(x=>x.nuance===l.nuance).length > 1;
+    if(!meme) g.push({cle:"l"+i, label:l.tete || l.libelle, couleur:cols[i], test:x=>x.l===i});
+  });
+  [...new Set(conseil.listes.filter(l=>conseil.listes.filter(x=>x.nuance===l.nuance).length>1).map(l=>l.nuance))].forEach(n=>{
+    const ls = conseil.listes.filter(l=>l.nuance===n), l0 = ls[0];
+    g.push({cle:"u"+n, label:`${l0.libelle_nuance} · ${ls.length} listes`, couleur:(V_FAM[l0.famille]||V_FAM.div).c, test:x=>x.l==null && x.u===n});
+  });
+  g.push({cle:"?", label:"Non rattachés", couleur:"#C9CFEA", test:x=>x.l==null && !(x.u && conseil.listes.some(l=>l.nuance===x.u && conseil.listes.filter(y=>y.nuance===l.nuance).length>1))});
+  g.forEach(x=>{ x.elus = e.elus.filter(x.test); });
+  return g.filter(x=>x.elus.length);
+}
+// Clé du groupe d'élus d'une liste : la liste elle-même, ou toutes les listes de même nuance.
+function vCleGroupeListe(conseil, i){
+  const l = conseil.listes[i], meme = conseil.listes.filter(x=>x.nuance===l.nuance).length > 1;
+  return meme ? "u"+l.nuance : "l"+i;
+}
+function vCouleurElu(groupes, el){ const g = groupes.find(x=>x.elus.includes(el)); return g ? g.couleur : "#C9CFEA"; }
+function vLigneElu(el, groupes){
+  const a = vAgeDe(el.an), sous = [el.p, a!=null ? a+" ans" : null].filter(Boolean).join(" · ");
+  return `<div class="vElu"><i class="vDot" style="background:${vCouleurElu(groupes, el)}"></i>
+    <span class="vEluN"><b>${esc(el.n)}</b>${sous ? `<small>${esc(sous)}</small>` : ""}</span>${el.f ? `<span class="vRang">${esc(el.f)}</span>` : ""}</div>`;
+}
+function vBlocElus(ville, conseil, e){
+  if(!conseil || !e || !e.elus || !e.elus.length) return "";
+  const groupes = vGroupesElus(conseil, e), n = e.elus.length, exec = e.elus.filter(vEstExecutif);
+  const chg = e.changements || [];
+  const nArr = chg.filter(c=>c.t==="arrivee").length, nFct = chg.filter(c=>c.t==="fonction").length;
+  const alerte = chg.length ? `<button class="vCard vAlerte" id="vEluChg" type="button"><span><b>Le conseil a changé depuis l'installation</b>${
+      [nArr ? `${nArr} nouveau${nArr>1?"x":""} conseiller${nArr>1?"s":""}` : "", nFct ? `${nFct} changement${nFct>1?"s":""} de fonction` : ""].filter(Boolean).join(" · ")}</span><span class="vChev">›</span></button>` : "";
+  const profs = {}; e.elus.forEach(x=>{ if(x.p) profs[x.p] = (profs[x.p]||0)+1; });
+  const top = Object.entries(profs).sort((a,b)=>b[1]-a[1]).slice(0,5), nProf = Object.values(profs).reduce((a,b)=>a+b,0);
+  const profsHtml = top.map(([l,k])=>`<div class="vProf"><div class="vProfL"><span>${esc(V_PROF_COURT[l] || l)}</span><b>${vNum(k/nProf*100)} %</b></div><div class="vTrack"><i style="width:${(k/top[0][1]*100).toFixed(0)}%;background:var(--accent)"></i></div></div>`).join("");
+  const tr = V_TRANCHES.map(([t,a,b])=>({t, k:e.elus.filter(x=>{ const ag=vAgeDe(x.an); return ag!=null && ag>=a && ag<=b; }).length}));
+  const maxK = Math.max(1, ...tr.map(x=>x.k));
+  const ages = `<div class="vAges">${tr.map(x=>`<div class="vAge"><b>${x.k}</b><i style="height:${Math.max(3, x.k/maxK*62).toFixed(0)}px"></i>${x.t}</div>`).join("")}</div>`;
+  return `<div class="vCard"><div class="vCap" style="margin-bottom:2px">Maire et adjoints · ${vNum(exec.length)}</div>
+      ${exec.slice(0,5).map(x=>vLigneElu(x, groupes)).join("")}
+      ${exec.length>5 ? `<button class="vRow" id="vEluExec" type="button"><b>Voir les ${vNum(exec.length)}</b><span class="vChev" style="margin-left:auto">›</span></button>` : ""}</div>
+    ${alerte}
+    <div class="vCard"><div class="vCap">Métiers des élus</div>${profsHtml}</div>
+    <div class="vCard"><div class="vCap">Âge des élus</div>${ages}</div>
+    <button class="btn primary" id="vEluTous" type="button" style="width:100%;flex:none;margin-bottom:6px">Voir les ${vNum(n)} élus</button>
+    <p class="vSrc" style="margin-top:0">Élus : ministère de l'Intérieur, répertoire national des élus, mis à jour tous les trois mois${e.repertoire_maj ? ` (dernière mise à jour : ${esc(vDate(e.repertoire_maj))})` : ""}. Le rattachement à une liste vient des résultats des municipales 2026.</p>`;
+}
+function ouvrirElus(ville, conseil, e, filtre){
+  const popup = $("#villeDetailPopup"), sheet = $("#villeDetailSheet"), groupes = vGroupesElus(conseil, e);
+  const exec = e.elus.filter(vEstExecutif);
+  const chips = [["tous",`Tous · ${e.elus.length}`], ["exec",`Exécutif · ${exec.length}`]].concat(groupes.map(g=>[g.cle,`${g.label} · ${g.elus.length}`]));
+  let courant = filtre || "tous", requete = "";
+  sheet.innerHTML = `<button class="sheetClose" id="vdClose" aria-label="Fermer">✕</button>
+    <div class="eyebrow">Conseil municipal · ${esc(ville.nom)}</div><h2 class="d" style="font-size:22px">Les élus</h2>
+    <div class="vChips" id="vdChips">${chips.map(([k,t])=>`<button class="vChip${k===courant?" on":""}" data-k="${esc(k)}">${esc(t)}</button>`).join("")}</div>
+    <input type="search" id="vEluQ" class="vSearch" style="margin-top:0" placeholder="Chercher un élu" autocomplete="off" aria-label="Chercher un élu">
+    <div id="vEluListe" class="vListe" style="max-height:none"></div>
+    <p class="vSrc">Source : ministère de l'Intérieur, répertoire national des élus${e.repertoire_maj ? `, mis à jour le ${esc(vDate(e.repertoire_maj))}` : ""}. ${groupes.some(g=>g.cle[0]==="u") ? ` Quand deux listes ont la même nuance, le fichier ne dit pas de laquelle vient chaque élu : elles sont regroupées.` : ""}${e.ecart ? ` Le répertoire compte ${Math.abs(e.ecart)} élu${Math.abs(e.ecart)>1?"s":""} de ${e.ecart>0?"plus":"moins"} que les ${e.sieges} sièges du conseil.` : ""}</p>`;
+  const norm = t=>(t||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");
+  const dessiner = ()=>{
+    let liste = e.elus;
+    if(courant==="exec") liste = exec; else if(courant!=="tous"){ const g = groupes.find(x=>x.cle===courant); liste = g ? g.elus : []; }
+    if(requete) liste = liste.filter(x=>norm(x.n).includes(requete));
+    $("#vEluListe").innerHTML = liste.length ? liste.map(x=>vLigneElu(x, groupes)).join("") : `<p class="vCap" style="padding:14px 2px">Aucun élu ne correspond.</p>`;
+  };
+  dessiner();
+  sheet.querySelectorAll("#vdChips .vChip").forEach(b=>{ b.onclick = ()=>{
+    courant = b.dataset.k; sheet.querySelectorAll("#vdChips .vChip").forEach(x=>x.classList.toggle("on", x===b)); dessiner(); }; });
+  $("#vEluQ").oninput = ev=>{ requete = norm(ev.target.value.trim()); dessiner(); };
+  popup.classList.remove("hidden");
+  const fermer = ()=>popup.classList.add("hidden");
+  $("#vdClose").onclick = fermer; popup.onclick = ev=>{ if(ev.target===popup) fermer(); };
+  sheet.scrollTop = 0;
+}
+function ouvrirChangementsConseil(ville, e){
+  const popup = $("#villeDetailPopup"), sheet = $("#villeDetailSheet");
+  const texte = c=> c.t==="arrivee" ? `<b>${esc(c.n)}</b> rejoint le conseil${c.f ? ` · ${esc(c.f)}` : ""}` : `<b>${esc(c.n)}</b> devient ${esc(c.f)}`;
+  sheet.innerHTML = `<button class="sheetClose" id="vdClose" aria-label="Fermer">✕</button>
+    <div class="eyebrow">Conseil municipal · ${esc(ville.nom)}</div><h2 class="d" style="font-size:22px">Ce qui a changé</h2>
+    <p class="vCap" style="margin:2px 0 8px">Depuis l'installation du conseil${e.installation ? `, le ${esc(vDate(e.installation))}` : ""}.</p>
+    <div class="vCard">${e.changements.map(c=>`<div class="vChg"><time datetime="${esc(c.d)}">${esc(vDate(c.d))}</time><span>${texte(c)}</span></div>`).join("")}</div>
+    <p class="vSrc">Source : ministère de l'Intérieur, répertoire national des élus, mis à jour tous les trois mois : un changement récent peut ne pas y figurer encore.</p>`;
+  popup.classList.remove("hidden");
+  const fermer = ()=>popup.classList.add("hidden");
+  $("#vdClose").onclick = fermer; popup.onclick = ev=>{ if(ev.target===popup) fermer(); };
+  sheet.scrollTop = 0;
+}
+function vPhraseChangements(chg){
+  const liste = a=>a.length>1 ? a.slice(0,-1).join(", ")+" et "+a[a.length-1] : (a[0]||"");
+  const arr = chg.filter(c=>c.t==="arrivee").map(c=>esc(c.n)), fct = chg.filter(c=>c.t==="fonction");
+  const p = [];
+  if(arr.length) p.push(arr.length>3 ? `${arr.length} nouveaux conseillers rejoignent le conseil` : `${liste(arr)} ${arr.length>1?"rejoignent":"rejoint"} le conseil`);
+  fct.slice(0,3).forEach(c=>p.push(`${esc(c.n)} devient ${esc(c.f)}`));
+  if(fct.length>3) p.push(`${fct.length-3} autre${fct.length-3>1?"s":""} changement${fct.length-3>1?"s":""} de fonction`);
+  return p.join(". ")+".";
+}
+// Alerte « le conseil a changé » : au premier passage on mémorise l'état sans rien afficher.
+function annoncerChangementConseil(ville, e){
+  if(!e) return;
+  const cle = ELUS_VU_KEY + ville.insee, maj = e.maj || "";
+  let vu = null; try{ vu = localStorage.getItem(cle); }catch(err){}
+  try{ localStorage.setItem(cle, maj); }catch(err){}
+  if(vu===null || !maj || maj<=vu) return;
+  const nouveaux = e.changements.filter(c=>c.d>vu), popup = $("#villePopup"), sheet = $("#villeSheet");
+  sheet.innerHTML = `<button class="sheetClose" id="vcClose" aria-label="Fermer">✕</button>
+    <div class="eyebrow">Conseil municipal · ${esc(ville.nom)}</div><h2 class="d" style="font-size:22px">Le conseil a changé</h2>
+    <p class="lead">${vPhraseChangements(nouveaux)}</p>
+    <div class="actions"><button class="btn primary" id="vcOk" type="button">Voir</button></div>`;
+  popup.classList.remove("hidden");
+  const fermer = ()=>popup.classList.add("hidden");
+  $("#vcClose").onclick = fermer; popup.onclick = ev=>{ if(ev.target===popup) fermer(); };
+  $("#vcOk").onclick = ()=>{ fermer(); ouvrirChangementsConseil(ville, e); };
+}
 let vRenderJeton = 0;   // un rendu plus ancien qui finit en retard ne doit pas écraser le plus récent
 async function renderVille(){
   const box = $("#acVille"), ville = villeChoisie();
   if(!box || !ville) return;
   const jeton = ++vRenderJeton;
   box.innerHTML = `<p class="vCap" style="padding:20px 4px">Chargement des données de ${esc(ville.nom)}…</p>`;
-  const [idx, f, conseil, votes] = await Promise.all([chargerVillesIndex(), chargerFicheVille(ville.insee), chargerConseil(ville.insee), chargerVotes(ville.insee)]);
+  const [idx, f, conseil, votes, elus] = await Promise.all([chargerVillesIndex(), chargerFicheVille(ville.insee), chargerConseil(ville.insee), V_VOTES ? chargerVotes(ville.insee) : null, chargerElus(ville.insee)]);
   if(jeton !== vRenderJeton) return;
   if(!idx || !f){ box.innerHTML = `<div class="vCard"><p class="vCap">Les données de ta ville sont indisponibles pour l'instant. Réessaie un peu plus tard.</p></div>`; return; }
   const i = vIdxRef(f), S = f.serie, dep = S.dep[i], rec = S.rec[i];
@@ -2444,7 +2597,8 @@ async function renderVille(){
 
     <div class="vSec">Conseil municipal</div>
     ${vBlocConseil(ville, conseil)}
-    ${vBlocVotes(ville, conseil, votes)}
+    ${vBlocElus(ville, conseil, elus)}
+    ${V_VOTES ? vBlocVotes(ville, conseil, votes) : ""}
 
     <div class="vSec">Finances</div>
     <div class="vCard"><div class="vBig">${vEuro(dep)}</div>
@@ -2465,7 +2619,12 @@ async function renderVille(){
   box.querySelectorAll("[data-detail]").forEach(b=>{ b.onclick = ()=>ouvrirVilleDetail(b.dataset.detail); });
   box.querySelectorAll("[data-liste]").forEach(b=>{ b.onclick = ()=>ouvrirListeConseil(ville, conseil, +b.dataset.liste); });
   $("#vCompare").onclick = ()=>ouvrirVilleDetail("dep");
-  annoncerNouveauVote(ville, votes);
+  const bt = (id, f)=>{ const b = box.querySelector(id); if(b) b.onclick = f; };
+  bt("#vEluTous", ()=>ouvrirElus(ville, conseil, elus, "tous"));
+  bt("#vEluExec", ()=>ouvrirElus(ville, conseil, elus, "exec"));
+  bt("#vEluChg", ()=>ouvrirChangementsConseil(ville, elus));
+  if(V_VOTES) annoncerNouveauVote(ville, votes);
+  annoncerChangementConseil(ville, elus);
 }
 
 /* ---------- fenêtre « liste du conseil » ---------- */
@@ -2478,11 +2637,13 @@ function ouvrirListeConseil(ville, c, i){
     <div class="vBig">${l.sieges} sièges</div>
     <p class="vCap" style="margin:4px 0 10px">${vNum(l.sieges/c.sieges*100)} % des ${c.sieges} sièges du conseil${l.voix_pct!=null?`, avec ${vNum(l.voix_pct,1)} % des voix exprimées au scrutin du ${esc(vDate(c.date))}`:""}.</p>
     ${l.tete ? `<div class="vCard"><div class="vCap">Liste</div><div style="font-size:13px;margin-top:4px">${esc(l.libelle)}</div></div>` : ""}
+    ${vCleGroupeListe(c, i) && villesElus[ville.insee] ? `<button class="btn primary" id="vdElus" type="button" style="width:100%;flex:none;margin:10px 0 0">Voir les élus de cette liste</button>` : ""}
     <p class="vSrc">Source : ministère de l'Intérieur, résultats des municipales 2026. Code de nuance du ministère : ${esc(l.nuance)}.
       <a href="${c.sources.resultats}" target="_blank" rel="noopener">Voir la source</a></p>`;
   popup.classList.remove("hidden");
   const fermer = ()=>popup.classList.add("hidden");
   $("#vdClose").onclick = fermer; popup.onclick = e=>{ if(e.target===popup) fermer(); };
+  const bE = $("#vdElus"); if(bE) bE.onclick = ()=>ouvrirElus(ville, c, villesElus[ville.insee], vCleGroupeListe(c, i));
   sheet.scrollTop = 0;
 }
 

@@ -1,0 +1,47 @@
+name: Élus des conseils municipaux (Ma ville)
+
+on:
+  schedule:
+    # Une fois par semaine : le répertoire national des élus est publié tous les
+    # trois mois environ, mais sans date fixe. Le script ne réécrit un fichier que
+    # si son contenu a changé, donc une semaine sans nouveauté ne produit aucun commit.
+    - cron: '23 5 * * 1'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: donnees-elus
+  cancel-in-progress: false
+
+jobs:
+  elus:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests
+      - name: Construire la liste des élus des 100 plus grandes villes
+        run: python construire_elus.py
+      - name: Committer les données mises à jour
+        run: |
+          git config user.name bot-ingestion
+          git config user.email bot@example.invalid
+          git add data/elus/
+          if git diff --cached --quiet; then
+            echo 'Aucune donnee modifiee.'
+            exit 0
+          fi
+          git commit -m 'Elus des conseils du '$(date -u +%F)
+          # Plusieurs workflows commitent sur main independamment : on
+          # retente en cas de collision plutot que d'echouer d'un coup.
+          for i in 1 2 3 4 5; do
+            git pull --rebase --autostash && git push && exit 0
+            echo "Push echoue (tentative $i/5), nouvel essai..."
+            sleep $((RANDOM % 10 + 5))
+          done
+          echo "Echec apres 5 tentatives."
+          exit 1

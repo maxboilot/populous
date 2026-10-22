@@ -53,6 +53,7 @@ LABEL = "alerte-donnees"
 #   temps_parole       hebdomadaire (lundi)
 #   villes             mensuel (le 2) : limite de 45 jours
 #   votes_conseils     hebdomadaire (mercredi) : limite de 14 jours
+#   elus               hebdomadaire (lundi) : limite de 14 jours
 PIPELINES = {
     "ingest_scrutins.yml": ("Ingestion des scrutins", 10),
     "actu_presidentielle.yml": ("Actualité présidentielle", 16),
@@ -61,6 +62,7 @@ PIPELINES = {
     "temps_parole.yml": ("Temps de parole (hebdomadaire)", 204),   # 8,5 jours
     "villes.yml": ("Données des villes (mensuel)", 1080),           # 45 jours : mensuel + marge
     "votes_conseils.yml": ("Votes des conseils (hebdomadaire)", 336), # 14 jours
+    "elus.yml": ("Élus des conseils (hebdomadaire)", 336),            # 14 jours
 }
 
 # Nombre d'heures sans nouveau scrutin ingere, alors que le site de
