@@ -48,33 +48,39 @@
 <div class="wrap">
   <p class="eyebrow">Populous</p>
   <h1>Politique de confidentialité</h1>
-  <p class="maj">Dernière mise à jour : 22 septembre 2026</p>
+  <p class="maj">Dernière mise à jour : 22 octobre 2026</p>
 
   <div class="card">
 
     <h2>Qui édite cette app</h2>
-    <p>Populous est éditée par Maxime Boilot, développeur indépendant. Cette politique décrit quelles données l'app Populous (iOS) collecte, pourquoi, et comment les faire supprimer.</p>
+    <p>Populous est éditée par Maxime Boilot, développeur indépendant. Cette politique décrit quelles données l'app Populous (iOS et Android) collecte, pourquoi, et comment les faire supprimer.</p>
 
     <h2>Aucun compte, aucune inscription</h2>
     <p>Populous ne demande ni création de compte, ni identifiant, ni mot de passe, ni adresse e-mail pour être utilisée. L'app est utilisable en intégralité sans rien renseigner sur vous.</p>
 
     <h2>Notifications push</h2>
-    <p>Si vous autorisez les notifications, votre appareil reçoit un jeton anonyme (fourni par Apple) que l'app enregistre pour pouvoir vous notifier des nouveaux votes à l'Assemblée nationale. Ce jeton est stocké avec la plateforme (« ios ») et la date d'enregistrement — <strong>aucune autre information</strong> (nom, e-mail, localisation, identifiant publicitaire) n'y est associée.</p>
-    <p>Ce jeton est conservé tant que vous gardez les notifications activées, dans une base de données (Firestore, hébergée par Google Cloud) en écriture seule : l'app ne peut jamais relire, modifier ou consulter les jetons enregistrés, y compris les vôtres. Il est transmis à Apple (service APNs) uniquement pour acheminer la notification jusqu'à votre appareil.</p>
-    <p>Vous pouvez désactiver les notifications à tout moment dans Réglages → Notifications → Populous. Pour demander la suppression du jeton associé à votre appareil, contactez-nous (coordonnées ci-dessous).</p>
+    <p>Si vous autorisez les notifications, votre appareil reçoit un jeton anonyme (fourni par Apple ou Google) que l'app enregistre pour pouvoir vous notifier des nouveaux votes à l'Assemblée nationale. Ce jeton est stocké avec la plateforme (« ios » ou « android ») et la date d'enregistrement — <strong>aucune autre information</strong> (nom, e-mail, localisation, identifiant publicitaire) n'y est associée.</p>
+    <p>Ce jeton est conservé tant que vous gardez les notifications activées, dans une base de données (Firestore, hébergée par Google Cloud) en écriture seule : l'app ne peut jamais relire, modifier ou consulter les jetons enregistrés, y compris les vôtres. Il est transmis à Apple (service APNs) ou à Google (Firebase Cloud Messaging) uniquement pour acheminer la notification jusqu'à votre appareil.</p>
+    <p>Vous pouvez désactiver les notifications à tout moment dans les réglages de votre téléphone (Notifications → Populous). Pour demander la suppression du jeton associé à votre appareil, contactez-nous (coordonnées ci-dessous).</p>
 
     <h2>Boussole politique</h2>
     <p>Vos réponses à la boussole politique (comparaison de vos opinions aux votes des élus) restent <strong>uniquement stockées sur votre appareil</strong> (mémoire locale du téléphone). Elles ne sont jamais envoyées à un serveur, ni à nous, ni à un tiers.</p>
 
+    <h2>Abonnement « Populous Local »</h2>
+    <p>La rubrique « Ma ville » est proposée par abonnement (mensuel ou annuel). L'achat se fait exclusivement auprès d'Apple (App Store) ou de Google (Google Play) : <strong>Populous ne voit, ne reçoit et ne conserve jamais vos moyens de paiement</strong>, ni votre nom ou votre adresse e-mail.</p>
+    <p>Pour savoir si votre abonnement est actif, l'app s'appuie sur un service de gestion d'abonnements, <strong>RevenueCat</strong> (RevenueCat, Inc.), qui agit comme sous-traitant. Il reçoit un identifiant anonyme généré par l'app et les informations techniques de l'achat transmises par la boutique (produit acheté, dates de début et de fin, état du renouvellement). Aucune donnée d'identité n'y est associée par Populous. Les engagements de ce prestataire en matière de protection des données sont décrits sur <a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener">revenuecat.com/privacy</a>.</p>
+    <p>Les conditions de l'abonnement sont décrites dans les <a href="conditions/">conditions d'utilisation</a>.</p>
+
     <h2>Pas de traceurs, pas de publicité</h2>
-    <p>Populous n'intègre aucun outil de mesure d'audience, aucun traceur publicitaire, aucun SDK tiers de profilage, et n'affiche aucune publicité.</p>
+    <p>Populous n'intègre aucun outil de mesure d'audience, aucun traceur publicitaire, aucun SDK de profilage, et n'affiche aucune publicité. La seule brique tierce qui s'exécute dans l'app est le service de gestion d'abonnements décrit ci-dessus.</p>
 
     <h2>Données publiques affichées dans l'app</h2>
     <p>Populous affiche des informations publiques sur les député·es et les scrutins de l'Assemblée nationale (identité, mandat, votes, groupe politique), ainsi que des sondages d'intention de vote. Ces données proviennent de sources ouvertes et vérifiables :</p>
     <ul>
       <li>Open data de l'Assemblée nationale (<a href="https://data.assemblee-nationale.fr" target="_blank" rel="noopener">data.assemblee-nationale.fr</a>), sous Licence Ouverte / Open Licence Etalab ;</li>
       <li>Wikidata et Wikipédia, via le jeu de données ouvert « quinousrepresente » (licence MIT) ;</li>
-      <li>Instituts de sondage, cités individuellement dans chaque publication.</li>
+      <li>Instituts de sondage, cités individuellement dans chaque publication ;</li>
+      <li>Pour la rubrique « Ma ville » : ministère de l'Intérieur (résultats des élections municipales 2026, répertoire national des élus, statistiques de la délinquance enregistrée du SSMSI), OFGL et DGFiP (comptes des communes), service statistique du ministère de la Transition écologique (permis de construire, Sit@del2) et DGFiP (demandes de valeurs foncières), tous publiés en données ouvertes.</li>
     </ul>
     <p><strong>Populous est une application indépendante : elle ne représente aucune entité gouvernementale, aucune institution ni aucun parti, et n'est affiliée ni à l'État ni à l'Assemblée nationale.</strong> Les sources d'origine sont liées ci-dessus et dans l'onglet Profil de l'app.</p>
     <p>Aucune donnée n'est inventée ou déduite : un champ non documenté par la source est affiché comme tel plutôt que complété. Si vous êtes un·e élu·e concerné·e et souhaitez signaler une inexactitude, contactez-nous.</p>
@@ -94,7 +100,7 @@
     <p><strong>Contact :</strong> <a href="mailto:boilot.maxime@gmail.com">boilot.maxime@gmail.com</a></p>
   </div>
 
-  <footer>Populous — Assemblée nationale, votes et actualité politique</footer>
+  <footer>Populous — Assemblée nationale, votes et actualité politique<br><a href="conditions/">Conditions d'utilisation</a> · <a href="support/">Assistance</a></footer>
 </div>
 </body>
 </html>

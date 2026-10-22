@@ -389,7 +389,18 @@ window.__VOTE_EARLY__ = (async function(){
   .vTrack i{display:block;height:100%}
   .vPlans{display:grid;gap:10px;margin:16px 0 12px}
   .vPlan{position:relative;border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;background:var(--card)}
-  .vPlan.pop{border-color:var(--accent)}
+  button.vPlan{font:inherit;text-align:left;color:var(--ink);cursor:pointer;width:100%}
+  .vPlan.on{border-color:var(--accent);background:var(--accent-soft)}
+  .pwBtn{display:block;width:100%;flex:none;text-align:center;text-decoration:none;box-sizing:border-box}
+  .pwLegal{margin:10px 2px 6px;font-size:10.5px;line-height:1.5}
+  .pwLiens{margin:6px 2px 0}.pwLiens a{color:var(--accent);font-weight:600}
+  .soutienBan{display:flex;align-items:center;gap:10px;width:100%;margin-top:12px;padding:12px 14px;border:none;border-radius:14px;background:var(--accent-soft);color:var(--ink);font:inherit;text-align:left;cursor:pointer}
+  .soutienBan span{flex:1;font-size:11.5px;line-height:1.45;color:var(--ink-soft)}
+  .soutienBan b{display:block;font-size:13px;color:var(--ink)}
+  .soutienBan.on{cursor:default}
+  .soutienBan .chev{color:var(--dim);font-size:16px;font-style:normal}
+  .soutienLien{display:block;margin:4px auto 2px;padding:8px 14px;border:none;background:none;font:inherit;font-size:12px;font-weight:700;color:var(--ink-soft);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+  .soutienLien.hidden{display:none}
   .vPlanBadge{position:absolute;top:-10px;right:14px;background:var(--accent);color:#fff;font-size:10.5px;font-weight:700;border-radius:999px;padding:3px 10px}
   .vPlanN{font-family:var(--font-d);font-weight:800;font-size:24px}
   .vPlanU{font-size:12px;color:var(--ink-soft)}
@@ -1111,6 +1122,7 @@ window.__VOTE_EARLY__ = (async function(){
     </button>
   </div>
   <div id="acVille" class="zTop"></div>
+  <button class="soutienLien zTop" id="acSoutien" type="button">Soutenir Populous</button>
 </div>
 
 <!-- ============ La Boussole ============ -->
@@ -2076,7 +2088,17 @@ const V_BIENTOT = false;
 const CODE_SEL = "populous-ville-v1|";
 const CODE_HASH = "2acbcfddd4550eeb267d9b21d9fbbd4e9a7703ec4f261d85e5b7db1562b56613";
 
-function aAccesVille(){ try{ return !!localStorage.getItem(ACCES_KEY); }catch(e){ return false; } }
+function estNatif(){ try{ return !!(window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform()); }catch(e){ return false; } }
+function lireAcces(){ try{ return JSON.parse(localStorage.getItem(ACCES_KEY) || "null"); }catch(e){ return null; } }
+// Accès à Ma ville : un abonnement actif (App Store / Google Play), ou, hors de l'app (version de test),
+// le code d'accès. Dans l'app, le code maison ne vaut rien : les codes promo passent par les boutiques.
+function aAccesVille(){
+  const a = lireAcces();
+  if(!a) return false;
+  if(a.via==="code") return !estNatif();
+  if(a.expire && new Date(a.expire) < new Date()) return false;
+  return true;
+}
 let villeCourante = null;           // ville étudiée : celle du profil, sinon le choix de repli
 function villeChoisie(){ return villeCourante; }
 function sauverVille(c){ try{ localStorage.setItem(VILLE_KEY, JSON.stringify(c)); }catch(e){} }
@@ -2115,8 +2137,8 @@ async function codeVilleValide(saisie){
   if(!n) return false;
   return (await sha256hex(CODE_SEL + n)) === CODE_HASH;
 }
-function accorderAccesVille(via){
-  try{ localStorage.setItem(ACCES_KEY, JSON.stringify({via, le:new Date().toISOString()})); }catch(e){}
+function accorderAccesVille(via, extra){
+  try{ localStorage.setItem(ACCES_KEY, JSON.stringify(Object.assign({via, le:new Date().toISOString()}, extra||{}))); }catch(e){}
 }
 
 /* ---------- chargement des données ---------- */
@@ -2305,42 +2327,231 @@ function vHemi(cols){
     pts.map((p,i)=>`<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${r.toFixed(1)}" fill="${cols[i]}"/>`).join("")}</svg>`;
 }
 
-/* ---------- accès : fenêtre « Populous Local » (abonnement ou code) ---------- */
+/* ---------- abonnement « Populous Local » : achats intégrés App Store / Google Play (RevenueCat) ----------
+   Les clés ci-dessous sont les clés PUBLIQUES du SDK RevenueCat, faites pour être embarquées dans l'app
+   (ce ne sont pas des secrets). À renseigner une fois le projet RevenueCat créé (voir PAIEMENT_checklist.md) :
+   tant qu'elles valent « A_RENSEIGNER », le paiement reste désactivé et l'écran le dit. */
+const RC_CLE_IOS = "A_RENSEIGNER", RC_CLE_ANDROID = "A_RENSEIGNER";
+const RC_DROIT = "ma_ville";                      // identifiant du droit (entitlement) dans RevenueCat
+const SITE_POPULOUS = "https://maxboilot.github.io/populous/";
+const URL_CONDITIONS = SITE_POPULOUS + "conditions/", URL_CONFIDENTIALITE = SITE_POPULOUS;
+const URL_GESTION = {ios:"https://apps.apple.com/account/subscriptions", android:"https://play.google.com/store/account/subscriptions?package=com.populous.app"};
+const PRIX_SECOURS = {mensuel:"1,99 €", annuel:"19,99 €"};   // affichés tant que la boutique n'a pas répondu
+
+// Simulation des achats pour tester l'écran hors de l'app : ouvrir la page avec ?billing=mock.
+// Jamais active dans l'app native.
+function pluginAchatsSimule(){
+  const lire = ()=>{ try{ return JSON.parse(localStorage.getItem("populous_mock_rc")||"null"); }catch(e){ return null; } };
+  const info = ()=>{ const d = lire(), actif = d && new Date(d.expire) > new Date();
+    return {customerInfo:{entitlements:{active: actif ? {[RC_DROIT]:{isActive:true, expirationDate:d.expire, willRenew:true, productIdentifier:d.produit}} : {}}}}; };
+  const pause = ms=>new Promise(r=>setTimeout(r, ms));
+  return {
+    configure: async()=>{},
+    getOfferings: async()=>({current:{availablePackages:[
+      {identifier:"$rc_monthly", packageType:"MONTHLY", product:{priceString:"1,99 €", identifier:"populous_local_mensuel"}},
+      {identifier:"$rc_annual", packageType:"ANNUAL", product:{priceString:"19,99 €", identifier:"populous_local_annuel"}}]}}),
+    purchasePackage: async({aPackage})=>{
+      await pause(500);
+      const r = window.__mockAchat || "ok";
+      if(r==="annule"){ const e = new Error("annulé"); e.userCancelled = true; throw e; }
+      if(r==="erreur") throw new Error("échec simulé");
+      localStorage.setItem("populous_mock_rc", JSON.stringify({expire:new Date(Date.now() + (aPackage.packageType==="ANNUAL"?365:31)*864e5).toISOString(), produit:aPackage.product.identifier}));
+      return Object.assign({productIdentifier:aPackage.product.identifier}, info());
+    },
+    restorePurchases: async()=>{ await pause(300); return info(); },
+    getCustomerInfo: async()=>info(),
+    presentCodeRedemptionSheet: async()=>{ await pause(200); }
+  };
+}
+const Billing = (function(){
+  let plugin = null, pret = false, offres = null;
+  const simule = ()=>!estNatif() && new URLSearchParams(location.search).get("billing")==="mock";
+  const plateforme = ()=>{ try{ return window.Capacitor.getPlatform(); }catch(e){ return "web"; } };
+  const cle = ()=> plateforme()==="ios" ? RC_CLE_IOS : (plateforme()==="android" ? RC_CLE_ANDROID : "");
+  const possible = ()=> simule() || (estNatif() && !!(window.Capacitor.Plugins && window.Capacitor.Plugins.Purchases) && !!cle() && cle()!=="A_RENSEIGNER");
+  async function init(){
+    if(pret) return true;
+    if(!possible()) return false;
+    plugin = simule() ? pluginAchatsSimule() : window.Capacitor.Plugins.Purchases;
+    try{ await plugin.configure({apiKey: simule() ? "mock" : cle()}); pret = true; return true; }
+    catch(e){ plugin = null; return false; }
+  }
+  const droit = res=>{ const ci = res && (res.customerInfo || res); return (ci && ci.entitlements && ci.entitlements.active && ci.entitlements.active[RC_DROIT]) || null; };
+  function appliquer(e){
+    if(e){ accorderAccesVille("abonnement", {expire:e.expirationDate||null, renouvelle:e.willRenew!==false, produit:e.productIdentifier||null}); return; }
+    const a = lireAcces(); if(a && a.via==="abonnement"){ try{ localStorage.removeItem(ACCES_KEY); }catch(err){} }
+  }
+  return {
+    plateforme, possible, simule,
+    async offres(){
+      if(offres) return offres;
+      if(!await init()) return null;
+      try{
+        const o = await plugin.getOfferings(), cur = o && o.current, pk = {};
+        ((cur && cur.availablePackages) || []).forEach(x=>{ if(x.packageType==="MONTHLY") pk.mensuel = x; if(x.packageType==="ANNUAL") pk.annuel = x; });
+        offres = (pk.mensuel || pk.annuel) ? pk : null; return offres;
+      }catch(e){ return null; }
+    },
+    async acheter(pkg){
+      if(!await init()) return {etat:"indispo"};
+      try{
+        const e = droit(await plugin.purchasePackage({aPackage:pkg}));
+        if(e){ appliquer(e); return {etat:"ok"}; }
+        return {etat:"attente"};
+      }catch(err){
+        if(err && (err.userCancelled || err.code==="1" || err.code==="PURCHASE_CANCELLED_ERROR")) return {etat:"annule"};
+        if(err && (err.code==="20" || err.code==="PAYMENT_PENDING_ERROR")) return {etat:"attente"};
+        return {etat:"erreur"};
+      }
+    },
+    async restaurer(){
+      if(!await init()) return {etat:"indispo"};
+      try{ const e = droit(await plugin.restorePurchases()); appliquer(e); return {etat: e ? "ok" : "aucun"}; }
+      catch(err){ return {etat:"erreur"}; }
+    },
+    async codeApple(){
+      if(!await init()) return false;
+      try{ await plugin.presentCodeRedemptionSheet(); return true; }catch(e){ return false; }
+    },
+    // Relit l'abonnement auprès de la boutique : à l'ouverture de l'app et quand elle revient au premier plan.
+    async rafraichir(){
+      if(!await init()) return;
+      try{ appliquer(droit(await plugin.getCustomerInfo())); majInterfaceAcces(); }catch(e){ /* hors ligne : on garde l'état mémorisé, borné par sa date de fin */ }
+    }
+  };
+})();
+function majInterfaceAcces(){
+  try{ appliquerModeAccueil(); }catch(e){}
+  try{ rafraichirProfilVille(); }catch(e){}
+  majSoutien();
+}
+window.addEventListener("load", ()=>{ Billing.rafraichir(); });
+document.addEventListener("visibilitychange", ()=>{ if(!document.hidden) Billing.rafraichir(); });
+
+/* ---------- « Soutenez Populous » : mène à l'abonnement, jamais vers un site de dons ---------- */
+function soutienActif(){ const a = lireAcces(); return !!(a && a.via==="abonnement" && aAccesVille()); }
+function soutienProfilHTML(){
+  return soutienActif()
+    ? `<div class="soutienBan on" id="soutienProf"><span><b>Merci de soutenir Populous</b>Indépendante, sans publicité ni parti, grâce à toi.</span></div>`
+    : `<button class="soutienBan" id="soutienProf" type="button"><span><b>Soutenez Populous</b>Indépendante, sans publicité ni parti.</span><i class="chev">›</i></button>`;
+}
+function majSoutien(){
+  const h = $("#acSoutien"); if(h){ h.classList.toggle("hidden", soutienActif()); h.onclick = ouvrirPaywallVille; }
+  const b = $("#soutienProf");
+  if(b){ const tmp = document.createElement("div"); tmp.innerHTML = soutienProfilHTML(); b.replaceWith(tmp.firstElementChild); }
+  const n = $("#soutienProf"); if(n && n.tagName==="BUTTON") n.onclick = ouvrirPaywallVille;
+}
+
+/* ---------- fenêtre « Populous Local » (abonnement, restauration, code promo) ---------- */
 function fermerPaywallVille(){ $("#localPopup").classList.add("hidden"); }
+function dateAbo(iso){ try{ return new Date(iso).toLocaleDateString("fr-FR",{day:"numeric",month:"long",year:"numeric"}); }catch(e){ return ""; } }
+async function apresAcces(){
+  fermerPaywallVille();
+  await resoudreVille();
+  if(!villeChoisie()) ouvrirChoixVille(()=>{ modeGeo="communal"; appliquerModeAccueil(); }, true);
+  else { modeGeo="communal"; appliquerModeAccueil(); }
+  majInterfaceAcces();
+}
 function ouvrirPaywallVille(){
-  const sheet = $("#localPopupSheet");
+  const sheet = $("#localPopupSheet"), popup = $("#localPopup"), acces = lireAcces();
+  const plateforme = Billing.plateforme();
+  const compte = plateforme==="ios" ? "Apple" : (plateforme==="android" ? "Google Play" : "Apple ou Google Play");
+  const fermer = ()=>fermerPaywallVille();
+  const lienGestion = URL_GESTION[plateforme] || URL_GESTION.ios;
+  const abonne = aAccesVille() && acces && acces.via==="abonnement";
+  const liens = `<p class="vCap pwLiens"><a href="${URL_CONDITIONS}" target="_blank" rel="noopener">Conditions d'utilisation</a> · <a href="${URL_CONFIDENTIALITE}" target="_blank" rel="noopener">Politique de confidentialité</a></p>`;
+  if(abonne){
+    sheet.innerHTML = `
+      <button class="sheetClose" id="pwClose" aria-label="Fermer">✕</button>
+      <div class="eyebrow">Populous Local</div>
+      <h2 class="d">Merci de soutenir Populous</h2>
+      <p class="lead">Ton abonnement est actif${acces.expire ? (acces.renouvelle ? ` et se renouvelle le ${esc(dateAbo(acces.expire))}.` : `, jusqu'au ${esc(dateAbo(acces.expire))}.`) : "."}</p>
+      <a class="btn primary pwBtn" href="${lienGestion}" target="_blank" rel="noopener">Gérer mon abonnement</a>
+      <p class="vCap" style="margin:8px 0 0">La gestion et la résiliation se font dans les réglages de ton compte ${compte}.</p>
+      <button class="vLien" id="pwRestore" type="button" style="margin-top:10px">Restaurer mes achats</button>
+      <p class="vErr hidden" id="pwMsg"></p>${liens}`;
+    popup.classList.remove("hidden");
+    $("#pwClose").onclick = fermer; popup.onclick = e=>{ if(e.target===popup) fermer(); };
+    $("#pwRestore").onclick = restaurerDepuisPaywall;
+    return;
+  }
+  const possible = Billing.possible();
   sheet.innerHTML = `
     <button class="sheetClose" id="pwClose" aria-label="Fermer">✕</button>
     <div class="eyebrow">Populous Local</div>
     <h2 class="d">Ta ville, en clair</h2>
-    <p class="lead">Le conseil municipal, le budget, les impôts, la dette : ce que ta ville décide et finance, comparé aux 100 plus grandes villes de France.</p>
-    <div class="vPlans">
-      <div class="vPlan"><div class="vPlanN">1,99 €</div><div class="vPlanU">par mois</div></div>
-      <div class="vPlan pop"><div class="vPlanBadge">Le plus populaire</div><div class="vPlanN">19,90 €</div><div class="vPlanU">par an · soit 1,66 € par mois</div></div>
+    <p class="lead">Le conseil municipal, le budget, les impôts, la dette, la sécurité, le logement : ce que ta ville décide et finance, comparé aux 100 plus grandes villes de France.</p>
+    <div class="vPlans" id="pwPlans" role="radiogroup" aria-label="Formule d'abonnement">
+      <button class="vPlan" type="button" role="radio" data-plan="mensuel" aria-checked="false"><div class="vPlanN" id="pwPrixM">${PRIX_SECOURS.mensuel}</div><div class="vPlanU">par mois</div></button>
+      <button class="vPlan pop on" type="button" role="radio" data-plan="annuel" aria-checked="true"><div class="vPlanBadge">Le plus populaire</div><div class="vPlanN" id="pwPrixA">${PRIX_SECOURS.annuel}</div><div class="vPlanU">par an · soit 1,67 € par mois</div></button>
     </div>
-    <button class="btn primary" id="pwPay" type="button" disabled style="width:100%;flex:none">Paiement bientôt disponible</button>
+    <button class="btn primary pwBtn" id="pwPay" type="button" disabled>${possible ? "Chargement…" : (estNatif() ? "Paiement bientôt disponible" : "Abonnement disponible dans l'app Populous")}</button>
+    <p class="vErr hidden" id="pwMsg"></p>
+    <p class="vCap pwLegal">Abonnement à renouvellement automatique. Le paiement est débité sur ton compte ${compte} à la confirmation de l'achat. L'abonnement se renouvelle automatiquement, au même prix, sauf résiliation au moins 24 heures avant la fin de la période en cours. Tu le gères ou le résilies à tout moment dans les réglages de ton compte ${compte}.</p>
+    <button class="vLien" id="pwRestore" type="button">Restaurer mes achats</button>${liens}
     <details class="vCode" id="pwDetails">
       <summary>J'ai un code</summary>
-      <div class="vCodeRow"><input type="text" id="pwCode" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Saisis ton code">
-      <button class="btn primary" id="pwOk" type="button" style="flex:none;padding:12px 18px">Valider</button></div>
-      <p class="vErr hidden" id="pwErr">Ce code n'est pas valide.</p>
+      <div id="pwCodeZone"></div>
     </details>`;
-  const popup = $("#localPopup");
   popup.classList.remove("hidden");
-  $("#pwClose").onclick = fermerPaywallVille;
-  popup.onclick = e=>{ if(e.target===popup) fermerPaywallVille(); };
-  const valider = async ()=>{
-    const ok = await codeVilleValide($("#pwCode").value);
-    if(!ok){ $("#pwErr").classList.remove("hidden"); return; }
-    accorderAccesVille("code");
-    fermerPaywallVille();
-    await resoudreVille();
-    if(!villeChoisie()) ouvrirChoixVille(()=>{ modeGeo="communal"; appliquerModeAccueil(); }, true);
-    else { modeGeo="communal"; appliquerModeAccueil(); }
-    rafraichirProfilVille();
+  $("#pwClose").onclick = fermer; popup.onclick = e=>{ if(e.target===popup) fermer(); };
+  let plan = "annuel", paquets = null;
+  const majBouton = ()=>{
+    const btn = $("#pwPay");
+    document.querySelectorAll("#pwPlans .vPlan").forEach(b=>{ const on = b.dataset.plan===plan; b.classList.toggle("on", on); b.setAttribute("aria-checked", on); });
+    if(!possible) return;
+    if(!paquets){ btn.textContent = paquets===null ? "Chargement…" : "Abonnement momentanément indisponible"; return; }
+    const x = paquets[plan];
+    btn.disabled = !x;
+    btn.textContent = x ? `S'abonner · ${x.product.priceString} ${plan==="annuel" ? "par an" : "par mois"}` : "Formule indisponible";
   };
-  $("#pwOk").onclick = valider;
-  $("#pwCode").onkeydown = e=>{ if(e.key==="Enter") valider(); else $("#pwErr").classList.add("hidden"); };
+  document.querySelectorAll("#pwPlans .vPlan").forEach(b=>{ b.onclick = ()=>{ plan = b.dataset.plan; majBouton(); }; });
+  if(possible) Billing.offres().then(o=>{
+    paquets = o || false;
+    if(o){ if(o.mensuel) $("#pwPrixM").textContent = o.mensuel.product.priceString; if(o.annuel) $("#pwPrixA").textContent = o.annuel.product.priceString; }
+    majBouton();
+  });
+  $("#pwPay").onclick = async ()=>{
+    if(!paquets || !paquets[plan]) return;
+    const btn = $("#pwPay"), msg = $("#pwMsg"); msg.classList.add("hidden"); btn.disabled = true; btn.textContent = "Achat en cours…";
+    const r = await Billing.acheter(paquets[plan]);
+    if(r.etat==="ok"){ toast("Merci de soutenir Populous"); apresAcces(); return; }
+    majBouton();
+    if(r.etat==="attente"){ msg.textContent = "Ton achat est en attente de validation. Ton accès s'activera dès qu'il sera confirmé."; msg.classList.remove("hidden"); }
+    else if(r.etat==="erreur"){ msg.textContent = "L'achat n'a pas abouti. Réessaie, ou écris-nous si le problème continue."; msg.classList.remove("hidden"); }
+  };
+  $("#pwRestore").onclick = restaurerDepuisPaywall;
+  // Code promo : Apple propose sa propre fenêtre de saisie ; Google Play réclame le code sur sa page de
+  // retrait ; hors de l'app (version de test), le code d'accès maison, qui ne vaut que là.
+  const zone = $("#pwCodeZone");
+  if(estNatif() && plateforme==="ios"){
+    zone.innerHTML = `<p class="vCap" style="margin:10px 0 8px">Apple ouvre sa fenêtre pour saisir ton code.</p><button class="btn primary" id="pwCodeGo" type="button" style="width:100%;flex:none">Saisir mon code</button>`;
+    $("#pwCodeGo").onclick = async ()=>{ await Billing.codeApple(); await Billing.rafraichir(); if(aAccesVille()) apresAcces(); };
+  } else {
+    zone.innerHTML = `<div class="vCodeRow"><input type="text" id="pwCode" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Saisis ton code"><button class="btn primary" id="pwOk" type="button" style="flex:none;padding:12px 18px">Valider</button></div><p class="vErr hidden" id="pwErr">Ce code n'est pas valide.</p>`;
+    const valider = async ()=>{
+      const saisie = $("#pwCode").value.trim();
+      if(estNatif() && plateforme==="android"){
+        if(!saisie){ $("#pwErr").classList.remove("hidden"); return; }
+        window.open("https://play.google.com/redeem?code=" + encodeURIComponent(saisie), "_blank");   // Google Play valide le code, l'accès s'active au retour
+        return;
+      }
+      if(!(await codeVilleValide(saisie))){ $("#pwErr").classList.remove("hidden"); return; }
+      accorderAccesVille("code"); apresAcces();
+    };
+    $("#pwOk").onclick = valider;
+    $("#pwCode").onkeydown = e=>{ if(e.key==="Enter") valider(); else $("#pwErr").classList.add("hidden"); };
+  }
+  majBouton();
+}
+async function restaurerDepuisPaywall(){
+  const msg = $("#pwMsg"), btn = $("#pwRestore"); if(!btn) return;
+  btn.disabled = true; msg.classList.add("hidden");
+  const r = await Billing.restaurer();
+  btn.disabled = false;
+  if(r.etat==="ok"){ toast("Abonnement retrouvé"); apresAcces(); return; }
+  msg.textContent = r.etat==="aucun" ? "Aucun abonnement actif trouvé sur ce compte." : (r.etat==="indispo" ? "La restauration n'est pas disponible pour l'instant." : "La restauration n'a pas abouti. Réessaie dans un moment.");
+  msg.classList.remove("hidden");
 }
 
 /* ---------- choix de repli : uniquement si la commune du profil n'est pas
@@ -2888,7 +3099,7 @@ function villeProfilHTML(){
       <button class="vSegB ${modeGeo==="communal"?"on":""}" data-m="communal" type="button">Ma ville</button>
     </div>
     <div class="vProfActs">${!v || v.source!=="profil" ? `<button class="vLien" id="vpChange" type="button">Choisir une ville</button>` : ""}
-      <button class="vLien" id="vpRetirer" type="button">Retirer mon accès</button></div></div>`;
+      ${(lireAcces()||{}).via==="abonnement" ? `<button class="vLien" id="vpGerer" type="button">Mon abonnement</button>` : `<button class="vLien" id="vpRetirer" type="button">Retirer mon accès</button>`}</div></div>`;
 }
 function wireVilleProfil(){
   const bloc = $("#villeProf"); if(!bloc) return;
@@ -2902,10 +3113,12 @@ function wireVilleProfil(){
     };
   });
   const ch = $("#vpChange"); if(ch) ch.onclick = ()=>ouvrirChoixVille(null, true);
-  $("#vpRetirer").onclick = ()=>{
+  const rt = $("#vpRetirer");
+  if(rt) rt.onclick = ()=>{
     try{ localStorage.removeItem(ACCES_KEY); localStorage.removeItem(MODE_KEY); }catch(e){}
-    modeGeo = "national"; appliquerModeAccueil(); rafraichirProfilVille();
+    modeGeo = "national"; appliquerModeAccueil(); rafraichirProfilVille(); majSoutien();
   };
+  const gr = $("#vpGerer"); if(gr) gr.onclick = ouvrirPaywallVille;
 }
 function fermerProfilVersAccueil(){ $("#onboarding").classList.add("hidden"); showScreen("accueil"); }
 function rafraichirProfilVille(){
@@ -3045,6 +3258,7 @@ function obRender(){
       <div class="eyebrow">Mon profil</div>
       <h2 class="d">Tes informations</h2>
       <p class="lead">Tout reste stocké sur cet appareil. Touche un champ pour le modifier.</p>
+      ${soutienProfilHTML()}
       ${villeProfilHTML()}
       ${row("Identité", draft.pseudo || "—", 1, avatarHTML(draft.avatar))}
       ${row("Tranche d'âge", draft.age || "Non renseignée", 2)}
@@ -3061,12 +3275,13 @@ function obRender(){
       <div class="privacyBox" id="contactBloc" style="margin-top:12px">
         <b>Nous contacter</b><br>
         Une question, une erreur à signaler ? Écrivez-nous : <a href="mailto:boilot.maxime@gmail.com">boilot.maxime@gmail.com</a><br>
-        Site d'actualités (version web) : <a href="https://maxboilot.github.io/populous/app/" target="_blank" rel="noopener">maxboilot.github.io/populous/app</a><br>
+        Site de Populous : <a href="https://maxboilot.github.io/populous/" target="_blank" rel="noopener">maxboilot.github.io/populous</a><br>
         Assistance : <a href="https://maxboilot.github.io/populous/support/" target="_blank" rel="noopener">page d'assistance</a> ·
-        <a href="https://maxboilot.github.io/populous/" target="_blank" rel="noopener">Politique de confidentialité</a>
+        <a href="https://maxboilot.github.io/populous/" target="_blank" rel="noopener">Politique de confidentialité</a> ·
+        <a href="https://maxboilot.github.io/populous/conditions/" target="_blank" rel="noopener">Conditions d'utilisation</a>
       </div>
       <div class="actions"><button class="btn ghost" id="profClose" style="flex:none;padding:12px 22px">Fermer</button></div>`;
-    wireLocalBtn("localBtn"); wireVilleProfil();
+    wireLocalBtn("localBtn"); wireVilleProfil(); majSoutien();
     el.querySelectorAll(".profRow").forEach(b=>{
       b.onclick = ()=>{ viewMode = true; obStep = +b.dataset.step; obRender(); };
     });
@@ -5526,6 +5741,7 @@ function demanderAvis(){
 }
 demanderAvis();
 restaurerModeVille();
+majSoutien();
 </script>
 </body>
 </html>
