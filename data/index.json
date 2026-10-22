@@ -4111,5 +4111,18 @@
     ],
     "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N54778",
     "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N51453",
+    "date": "2026-10-22",
+    "titre": "Simplifier l'ouverture des débits de boisson en zone rurale",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [
+      "agriculture"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/simplifier_ouverture_debits_boissons_zones_rurales_17e",
+    "type": "main_levee"
   }
 ]
