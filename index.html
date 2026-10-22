@@ -2458,6 +2458,7 @@ function ouvrirPaywallVille(){
     <div class="eyebrow">Populous Local</div>
     <h2 class="d">Ta ville, en clair</h2>
     <p class="lead">Le conseil municipal, le budget, les impôts, la dette, la sécurité, le logement : ce que ta ville décide et finance, comparé aux 100 plus grandes villes de France.</p>
+    <p class="vCap hidden" id="pwCouv" style="margin:-4px 2px 10px"></p>
     <div class="vPlans" id="pwPlans" role="radiogroup" aria-label="Formule d'abonnement">
       <button class="vPlan" type="button" role="radio" data-plan="mensuel" aria-checked="false"><div class="vPlanN" id="pwPrixM">${PRIX_SECOURS.mensuel}</div><div class="vPlanU">par mois</div></button>
       <button class="vPlan pop on" type="button" role="radio" data-plan="annuel" aria-checked="true"><div class="vPlanBadge">Le plus populaire</div><div class="vPlanN" id="pwPrixA">${PRIX_SECOURS.annuel}</div><div class="vPlanU">par an · soit 1,67 € par mois</div></button>
@@ -2472,6 +2473,16 @@ function ouvrirPaywallVille(){
     </details>`;
   popup.classList.remove("hidden");
   $("#pwClose").onclick = fermer; popup.onclick = e=>{ if(e.target===popup) fermer(); };
+  // Ma ville ne couvre que les 100 plus grandes villes : on le dit avant l'achat si la commune du profil n'en fait pas partie.
+  chargerVillesIndex().then(async idx=>{
+    const p = idx && loadProfile();
+    if(!p || !(p.communeCle || p.circoKey)) return;
+    if(!(await trouverVilleDuProfil(p, idx))){
+      const z = $("#pwCouv"); if(!z) return;
+      z.textContent = "Ma ville couvre les 100 plus grandes villes de France. La commune de ton profil n'en fait pas partie : tu pourras explorer la ville de ton choix parmi elles.";
+      z.classList.remove("hidden");
+    }
+  });
   let plan = "annuel", paquets = null;
   const majBouton = ()=>{
     const btn = $("#pwPay");
@@ -2534,6 +2545,8 @@ async function restaurerDepuisPaywall(){
 /* ---------- choix de repli : uniquement si la commune du profil n'est pas
    parmi les 100 plus grandes villes ---------- */
 async function ouvrirChoixVille(apres, horsListe){
+  // Données des villes injoignables (hors ligne…) : ne pas faire croire que la commune du profil est hors liste.
+  if(!(await chargerVillesIndex())){ toast("Les données des villes sont indisponibles pour l'instant. Réessaie dans un moment.", 4200); return; }
   const popup = $("#villePopup"), sheet = $("#villeSheet");
   sheet.innerHTML = `<button class="sheetClose" id="vcClose" aria-label="Fermer">✕</button>
     <div class="eyebrow">Ma ville</div><h2 class="d">Choisis une ville</h2>
@@ -3250,7 +3263,7 @@ function obRender(){
       </div>
       <div class="privacyBox" id="contactBloc" style="margin-top:12px">
         <b>Nous contacter</b><br>
-        Une question, une erreur à signaler ? Écrivez-nous : <a href="mailto:boilot.maxime@gmail.com">boilot.maxime@gmail.com</a><br>
+        Une question, une erreur à signaler ? <a href="mailto:boilot.maxime@gmail.com?subject=Populous">Écrivez-nous</a><br>
         Site de Populous : <a href="https://maxboilot.github.io/populous/" target="_blank" rel="noopener">maxboilot.github.io/populous</a><br>
         Assistance : <a href="https://maxboilot.github.io/populous/support/" target="_blank" rel="noopener">page d'assistance</a> ·
         <a href="https://maxboilot.github.io/populous/" target="_blank" rel="noopener">Politique de confidentialité</a> ·
