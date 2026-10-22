@@ -4097,5 +4097,19 @@
     ],
     "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/retrouver_confiance_equilibre_rapports_locatifs_17e",
     "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N54778",
+    "date": "2026-10-22",
+    "titre": "Proposition de loi relative aux modalités de recouvrement de la contribution aux frais de garderie et de la contribution additionnelle versées à l’Office national des forêts (ONF) par les collectivités territoriales et personnes morales propriétaires de bois et forêts relevant du régime forestier et à la composition du conseil d’administration de l’ONF",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "environnement",
+      "institutions"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N54778",
+    "type": "main_levee"
   }
 ]

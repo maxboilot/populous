@@ -131,7 +131,7 @@
   {
     "date": "2026-10-28",
     "heure": "15:00",
-    "ordre_du_jour": "Examen du texte — Faire de l’Union européenne le cadre d’une interdiction effective des mécanismes addictifs conçus et promus par les réseaux sociaux et plateformes numériques à l’égard des enfants et jeunes mineurs (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Faire de l’Union européenne le cadre d’une interdiction effective des mécanismes addictifs conçus et promus par les réseaux sociaux et plateformes numériques à l’égard des enfants et jeunes mineurs",
     "themes": [
       "social",
       "numerique"
@@ -152,6 +152,15 @@
     "dossier": "DLR5L17N54902",
     "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-29",
+    "heure": "10:00",
+    "ordre_du_jour": "Examen du texte — Allocution du Président d'âge",
+    "themes": [],
+    "dossier": "DLR5L17N50155",
+    "scrutin_annonce": false,
+    "lecture": null
   },
   {
     "date": "2026-10-29",
@@ -480,5 +489,30 @@
     "dossier": "DLR5L17N54629",
     "scrutin_annonce": true,
     "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-25",
+    "heure": "16:00",
+    "ordre_du_jour": "Examen du texte — Condamner l’instrumentalisation politique des mobilisations lycéennes et la légitimation des violences aux abords des établissements scolaires (séance éventuelle)",
+    "themes": [
+      "education",
+      "justice",
+      "securite"
+    ],
+    "dossier": "DLR5L17N55054",
+    "scrutin_annonce": false,
+    "lecture": "Lecture unique"
+  },
+  {
+    "date": "2026-11-25",
+    "heure": "16:00",
+    "ordre_du_jour": "Examen du texte — Faire de l’Union européenne le cadre d’une interdiction effective des mécanismes addictifs conçus et promus par les réseaux sociaux et plateformes numériques à l’égard des enfants et jeunes mineurs (séance éventuelle)",
+    "themes": [
+      "social",
+      "numerique"
+    ],
+    "dossier": "DLR5L17N55023",
+    "scrutin_annonce": false,
+    "lecture": "Lecture unique"
   }
 ]
