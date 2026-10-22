@@ -66,7 +66,7 @@ window.__VOTE_EARLY__ = (async function(){
   html,body{margin:0;height:100%;overflow:visible;background:var(--bg);
     font-family:var(--font-s);color:var(--ink)}
   #map{position:absolute;inset:0;background:var(--land);outline:none}
-  #hemi{position:absolute;inset:0;width:100%;height:100%;background:var(--land);display:none;touch-action:none;cursor:grab}
+  #hemi{position:absolute;inset:0;width:100%;height:100%;background:#fff;display:none;touch-action:none;cursor:grab}
   body.hemi #map{visibility:hidden}
   body.hemi #hemi{display:block}
   .leaflet-container{background:var(--land);font-family:inherit}
@@ -1437,7 +1437,8 @@ geo.circos.forEach((c,i)=>{
 const HEMI = new URLSearchParams(location.search).get("hemi")==="1";
 if(HEMI) document.body.classList.add("hemi");
 let hemiSieges = [], hemiYaw = 0, hemiVit = 0;   // sièges du monde (angle, rangée, hauteur) ; cap de la caméra ; vitesse d'inertie
-const HEMI_FOV = 74*Math.PI/180, HEMI_YAW_MAX = 56*Math.PI/180;
+const HEMI_FOV = 96*Math.PI/180, HEMI_YAW_MAX = 50*Math.PI/180, HEMI_RECUL = 0.35, HEMI_HCAM = 1.25, HEMI_RW = 3.3;
+const HEMI_MONTEE = 0.17;
 function hemiOrdre(){
   const o = {}; GROUPES.forEach((g,k)=>o[g.s]=k);
   return geo.circos.map((c,i)=>i).sort((a,b)=>{
@@ -1448,7 +1449,7 @@ function hemiOrdre(){
 function hemiMonde(){
   // L'hémicycle vu du perchoir : la caméra est au centre, les bancs montent en gradins autour d'elle sur 180°.
   // Les groupes occupent des tranches, de la gauche vers la droite, sur toutes les rangées.
-  const N = geo.circos.length, R = 12, r0 = 1, r1 = 2.4, montee = 0.15, phiM = Math.PI/2;
+  const N = geo.circos.length, R = 12, r0 = 1, r1 = 2.4, montee = HEMI_MONTEE, phiM = Math.PI/2;
   const rows = [];
   let somme = 0;
   for(let k=0;k<R;k++){ const r = r0 + k*(r1-r0)/(R-1); rows.push({k, r, h:k*montee}); somme += r; }
@@ -1465,20 +1466,36 @@ function hemiMonde(){
 }
 function hemiGeom(W, H){
   const f = W/2/Math.tan(HEMI_FOV/2), haut = 150, bas = Math.max(170, H*0.24), zone = H - haut - bas;
-  return {f, haut, bas, zone, yh: haut + zone/2 - f*0.33, hCam: 0.9};
+  return {f, haut, bas, zone, yh: haut + zone*0.5 - f*0.18, hCam: HEMI_HCAM};
 }
 function hemiProjeter(W, H){
   const g = hemiGeom(W, H), vus = [];
   hemiSieges.forEach(st=>{
     const a = st.phi - hemiYaw, c = Math.cos(a);
-    if(c < 0.3) return;                                                   // hors du champ
-    const z = st.r*c;
-    st.x = W/2 + g.f*Math.tan(a); st.y = g.yh + g.f*(g.hCam - st.h)/z; st.z = z;
-    st.rad = Math.max(1.5, g.f*hemiSieges.pas*0.44/z);
+    if(c < 0.25) return;                                                  // hors du champ
+    const z = st.r*c + HEMI_RECUL;
+    st.x = W/2 + g.f*st.r*Math.sin(a)/z; st.y = g.yh + g.f*(g.hCam - st.h)/z; st.z = z;
+    st.rad = Math.max(1.5, g.f*hemiSieges.pas*0.42/z);
     if(st.x > -20 && st.x < W+20) vus.push(st);
   });
   vus.sort((a,b)=>b.z-a.z);                                               // du fond vers l'avant
   return vus;
+}
+// Le décor, en gris très clair : mur du fond avec ses pilastres et sa galerie, sol et gradins.
+function hemiDecor(ctx, W, H, g){
+  const P = (r, phi, h) => { const a = phi - hemiYaw, z = r*Math.cos(a) + HEMI_RECUL; return [W/2 + g.f*r*Math.sin(a)/z, g.yh + g.f*(g.hCam - h)/z]; };
+  const amin = Math.max(-1.35, hemiYaw-HEMI_FOV/2-0.25), amax = Math.min(1.35, hemiYaw+HEMI_FOV/2+0.25), pas = 0.02, RW = HEMI_RW, hBase = 1.9;
+  const mur = "#F3F4F7", trait = "#E4E6EC", banc = "#ECEEF3", sol = "#F7F8FA";
+  const ligne = (r, h, c, lw) => { ctx.beginPath(); for(let a=amin; a<=amax; a+=pas){ const [x,y] = P(r,a,h); a===amin ? ctx.moveTo(x,y) : ctx.lineTo(x,y); } ctx.strokeStyle = c; ctx.lineWidth = lw; ctx.stroke(); };
+  ctx.beginPath(); for(let a=amin; a<=amax; a+=pas){ const [x,y] = P(RW,a,hBase); a===amin ? ctx.moveTo(x,y) : ctx.lineTo(x,y); }
+  ctx.lineTo(P(RW,amax,hBase)[0], -60); ctx.lineTo(P(RW,amin,hBase)[0], -60); ctx.closePath(); ctx.fillStyle = mur; ctx.fill();
+  ctx.strokeStyle = trait; ctx.lineWidth = 1.5;
+  for(let a=Math.ceil(amin/0.131)*0.131; a<=amax; a+=0.131){ const [x1,y1] = P(RW,a,hBase); ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x1,-60); ctx.stroke(); }
+  ligne(RW, 2.9, trait, 2); ligne(RW, 3.15, trait, 1.5); ligne(RW, hBase, trait, 2);
+  ctx.beginPath(); for(let a=amin; a<=amax; a+=pas){ const [x,y] = P(RW,a,hBase); a===amin ? ctx.moveTo(x,y) : ctx.lineTo(x,y); }
+  ctx.lineTo(W+20, H); ctx.lineTo(-20, H); ctx.closePath(); ctx.fillStyle = sol; ctx.fill();
+  const r0 = 1, r1 = 2.4, R = 12;
+  for(let k=0;k<R;k++){ const r = r0 + k*(r1-r0)/(R-1), h = k*HEMI_MONTEE, y0 = P(r,0,h)[1], y1 = P(r+0.1,0,h+HEMI_MONTEE)[1]; ligne(r, h, banc, Math.max(3, Math.abs(y1-y0)*0.9)); }
 }
 function dessinerHemicycle(){
   if(!HEMI) return;
@@ -1486,7 +1503,8 @@ function dessinerHemicycle(){
   const dpr = window.devicePixelRatio || 1;
   if(cv.width!==Math.round(W*dpr) || cv.height!==Math.round(H*dpr)){ cv.width = Math.round(W*dpr); cv.height = Math.round(H*dpr); }
   if(!hemiSieges.length) hemiSieges = hemiMonde();
-  const ctx = cv.getContext("2d"); ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,W,H);
+  const ctx = cv.getContext("2d"); ctx.setTransform(dpr,0,0,dpr,0,0); ctx.fillStyle = "#fff"; ctx.fillRect(0,0,W,H); ctx.lineCap = "round"; ctx.lineJoin = "round";
+  hemiDecor(ctx, W, H, hemiGeom(W, H));
   const vus = hemiProjeter(W, H), encre = getComputedStyle(document.body).getPropertyValue("--ink").trim() || "#10193F";
   vus.forEach(st=>{
     const e = elus[st.i], flou = filterGroup!==null && (!e || codeGroupeCanonique(e.g)!==filterGroup);
