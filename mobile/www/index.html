@@ -2005,6 +2005,56 @@ function fermerLocalForm(){
 }
 
 /* ------------------------------------------------------------
+   Contact : un formulaire plutôt qu'une adresse affichée. Le message part vers
+   l'éditeur par le relais formsubmit.co (même mécanisme que l'ancien formulaire
+   « Me tenir informé »), et seulement à l'envoi ; l'e-mail est facultatif et ne
+   sert qu'à répondre. Première utilisation : formsubmit envoie un e-mail
+   d'activation à l'adresse de réception, à valider une fois.
+   ------------------------------------------------------------ */
+function ouvrirContact(objet){
+  $("#localPopup").classList.add("hidden");
+  $("#localFormSheet").innerHTML = `
+    <button class="sheetClose" id="localFormClose" aria-label="Fermer">✕</button>
+    <div class="eyebrow">Populous</div>
+    <h2 class="d" style="font-size:22px">Nous écrire</h2>
+    <p class="lead">${objet ? esc(objet) : "Une question, une erreur à signaler, une idée ? Écris-nous."}</p>
+    <form id="contactForm">
+      <div class="field"><label for="ctMsg">Ton message</label><textarea id="ctMsg" rows="5" maxlength="2000" required style="width:100%;box-sizing:border-box;padding:12px 14px;border:1px solid var(--line);border-radius:12px;font:inherit;font-size:14px;background:var(--card);color:var(--ink);resize:vertical"></textarea></div>
+      <div class="field"><label for="ctMail">Ton e-mail <span class="vCap">(facultatif, seulement pour te répondre)</span></label><input type="email" id="ctMail" autocomplete="email"></div>
+      <input type="text" id="ctPiege" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+      <div class="actions"><button class="btn primary" type="submit" id="ctEnvoi" style="flex:1">Envoyer</button></div>
+      <p class="vCap" style="margin-top:12px">Ton message part vers l'éditeur de Populous par un service de formulaire (formsubmit.co). Rien d'autre n'est envoyé : ni identifiant, ni données de l'app.</p>
+      <p class="hidden vErr" id="ctErreur" style="text-align:center">L'envoi n'a pas abouti. Vérifie ta connexion et réessaie.</p>
+    </form>`;
+  $("#localFormClose").onclick = fermerLocalForm;
+  $("#contactForm").onsubmit = e=>envoyerContact(e, objet || "");
+  $("#localFormPopup").classList.remove("hidden");
+}
+async function envoyerContact(e, objet){
+  e.preventDefault();
+  if($("#ctPiege").value) return;                       // champ-piège : un robot l'a rempli
+  const msg = $("#ctMsg").value.trim(); if(msg.length < 3) return;
+  const btn = $("#ctEnvoi"); btn.disabled = true; btn.textContent = "Envoi…"; $("#ctErreur").classList.add("hidden");
+  try{
+    const corps = {_subject: "Populous — message depuis l'app", _captcha: "false", Message: msg, Plateforme: Billing.plateforme()};
+    if(objet) corps.Objet = objet;
+    const mail = $("#ctMail").value.trim(); if(mail) corps.email = mail;
+    const r = await fetch(LOCAL_FORM_ENDPOINT, {method:"POST", headers:{"Content-Type":"application/json", "Accept":"application/json"}, body:JSON.stringify(corps)});
+    if(!r.ok) throw new Error("HTTP " + r.status);
+    $("#localFormSheet").innerHTML = `
+      <button class="sheetClose" id="localFormClose2" aria-label="Fermer">✕</button>
+      <div style="text-align:center;padding:14px 0"><div style="font-size:40px">✓</div>
+        <h2 class="d" style="font-size:20px;margin-top:10px">Message envoyé</h2>
+        <p class="lead">Merci ! On te répond dès que possible${mail ? "" : " si tu as laissé un e-mail"}.</p></div>`;
+    $("#localFormClose2").onclick = fermerLocalForm;
+  }catch(err){ btn.disabled = false; btn.textContent = "Envoyer"; $("#ctErreur").classList.remove("hidden"); }
+}
+document.addEventListener("click", e=>{
+  const a = e.target.closest && e.target.closest(".lienContact");
+  if(a){ e.preventDefault(); ouvrirContact(a.dataset.objet || ""); }
+});
+
+/* ------------------------------------------------------------
    Bascule National / Communal — à l'ancienne place du badge profil.
    "Communal" = Ma ville (Populous Local) : réservé aux abonnés ou aux
    détenteurs d'un code ; sans accès ou sans ville choisie, la bascule ouvre
@@ -2479,7 +2529,7 @@ function ouvrirPaywallVille(){
     if(!p || !(p.communeCle || p.circoKey)) return;
     if(!(await trouverVilleDuProfil(p, idx))){
       const z = $("#pwCouv"); if(!z) return;
-      z.textContent = "Ma ville couvre les 100 plus grandes villes de France. La commune de ton profil n'en fait pas partie : tu pourras explorer la ville de ton choix parmi elles.";
+      z.textContent = "Le détail de ta ville arrive bientôt. En attendant, tu pourras suivre une grande ville proche de chez toi, parmi les 100 déjà disponibles.";
       z.classList.remove("hidden");
     }
   });
@@ -2546,37 +2596,32 @@ async function restaurerDepuisPaywall(){
    parmi les 100 plus grandes villes ---------- */
 async function ouvrirChoixVille(apres, horsListe){
   // Données des villes injoignables (hors ligne…) : ne pas faire croire que la commune du profil est hors liste.
-  if(!(await chargerVillesIndex())){ toast("Les données des villes sont indisponibles pour l'instant. Réessaie dans un moment.", 4200); return; }
+  const idx = await chargerVillesIndex();
+  if(!idx){ toast("Les données des villes sont indisponibles pour l'instant. Réessaie dans un moment.", 4200); return; }
   const popup = $("#villePopup"), sheet = $("#villeSheet");
+  const liste = villesUtilisables(idx), p = loadProfile();
+  const depProfil = p && p.circoKey ? String(p.circoKey).split("|")[0] : null;
+  const proches = depProfil ? liste.filter(c=>c.dep===depProfil) : [];
+  const parNom = (a, b)=>nomVille(a, idx).localeCompare(nomVille(b, idx), "fr");
+  const opt = c=>`<option value="${c.insee}">${esc(nomVille(c, idx))}</option>`;
   sheet.innerHTML = `<button class="sheetClose" id="vcClose" aria-label="Fermer">✕</button>
-    <div class="eyebrow">Ma ville</div><h2 class="d">Choisis une ville</h2>
-    <p class="lead">${horsListe ? "La commune de ton profil n'est pas parmi les 100 plus grandes villes de France. Choisis-en une pour explorer." : "Les 100 plus grandes villes de France."}</p>
-    <input type="search" id="vcQ" class="vSearch" placeholder="Rechercher une ville" autocomplete="off">
-    <div id="vcListe" class="vListe"><p class="vCap" style="padding:14px 4px">Chargement…</p></div>`;
+    <div class="eyebrow">Ma ville</div><h2 class="d">${horsListe ? "Le détail de ta ville arrive bientôt" : "Choisis une ville"}</h2>
+    <p class="lead">${horsListe ? "En attendant, tu peux suivre une grande ville proche de chez toi, parmi celles que nous avons déjà." : "Les 100 plus grandes villes de France."}</p>
+    <select id="vcSel" class="vSelect" aria-label="Ville à suivre"><option value="">Choisis une ville…</option>${
+      proches.length ? `<optgroup label="Dans ton département">${proches.slice().sort(parNom).map(opt).join("")}</optgroup>` : ""}<optgroup label="Villes disponibles">${liste.slice().sort(parNom).map(opt).join("")}</optgroup></select>
+    <div class="actions" style="margin-top:14px"><button class="btn primary" id="vcOk" type="button" disabled>Suivre cette ville</button></div>`;
   popup.classList.remove("hidden");
   const fermer = ()=>popup.classList.add("hidden");
   $("#vcClose").onclick = fermer; popup.onclick = e=>{ if(e.target===popup) fermer(); };
-  const idx = await chargerVillesIndex();
-  if(!idx){ $("#vcListe").innerHTML = `<p class="vCap" style="padding:14px 4px">Liste indisponible pour l'instant. Réessaie plus tard.</p>`; return; }
-  const liste = villesUtilisables(idx);
-  const dessiner = q=>{
-    const n = normCommune(q||"");
-    const sel = liste.filter(c=>!n || normCommune(c.nom).includes(n));
-    $("#vcListe").innerHTML = sel.length ? sel.map(c=>`<button class="vVille" data-i="${c.insee}"><span>${esc(nomVille(c,idx))}</span><span class="vCap">${V_NF.format(c.pop)} hab.</span></button>`).join("")
-      : `<p class="vCap" style="padding:14px 4px">Aucune ville ne correspond.</p>`;
-    $("#vcListe").querySelectorAll(".vVille").forEach(b=>{
-      b.onclick = async ()=>{
-        const c = liste.find(x=>x.insee===b.dataset.i);
-        sauverVille({insee:c.insee, nom:nomVille(c,idx), dep:c.dep});
-        fermer();
-        await resoudreVille();
-        if(apres) apres(); else if(modeGeo==="communal") appliquerModeAccueil();
-        rafraichirProfilVille();
-      };
-    });
+  $("#vcSel").onchange = e=>{ $("#vcOk").disabled = !e.target.value; };
+  $("#vcOk").onclick = async ()=>{
+    const c = liste.find(x=>x.insee===$("#vcSel").value); if(!c) return;
+    sauverVille({insee:c.insee, nom:nomVille(c, idx), dep:c.dep});
+    fermer();
+    await resoudreVille();
+    if(apres) apres(); else if(modeGeo==="communal") appliquerModeAccueil();
+    rafraichirProfilVille();
   };
-  dessiner("");
-  $("#vcQ").oninput = e=>dessiner(e.target.value);
 }
 
 /* ---------- mode Ma ville sur l'accueil ---------- */
@@ -3080,15 +3125,15 @@ async function ouvrirVilleDetail(cle){
 function villeProfilHTML(){
   if(!aAccesVille()) return localCardHTML("localBtn");
   const v = villeChoisie();
-  const note = !v ? "La commune de ton profil n'est pas parmi les 100 plus grandes villes."
-    : (v.source==="profil" ? "Ville de ton profil" : "Ville choisie : la commune de ton profil n'est pas parmi les 100 plus grandes villes.");
+  const note = !v ? "Le détail de ta commune arrive bientôt : choisis une grande ville à suivre."
+    : (v.source==="profil" ? "Ville de ton profil" : "Ville suivie en attendant le détail de ta commune.");
   return `<div class="privacyBox" id="villeProf" style="margin-top:18px"><b>Ma ville</b><br>
     <span id="vpNom">${v ? esc(v.nom) : "Aucune ville"}</span> <span class="vCap">· ${note}</span>
     <div class="vSeg" role="group" aria-label="Mon pays ou ma ville">
       <button class="vSegB ${modeGeo==="national"?"on":""}" data-m="national" type="button">Mon pays</button>
       <button class="vSegB ${modeGeo==="communal"?"on":""}" data-m="communal" type="button">Ma ville</button>
     </div>
-    <div class="vProfActs">${!v || v.source!=="profil" ? `<button class="vLien" id="vpChange" type="button">Choisir une ville</button>` : ""}
+    <div class="vProfActs">${!v || v.source!=="profil" ? `<button class="vLien" id="vpChange" type="button">${v ? "Changer de ville" : "Choisir une ville"}</button>` : ""}
       ${(lireAcces()||{}).via==="abonnement" ? `<button class="vLien" id="vpGerer" type="button">Mon abonnement</button>` : `<button class="vLien" id="vpRetirer" type="button">Retirer mon accès</button>`}</div></div>`;
 }
 function wireVilleProfil(){
@@ -3263,7 +3308,7 @@ function obRender(){
       </div>
       <div class="privacyBox" id="contactBloc" style="margin-top:12px">
         <b>Nous contacter</b><br>
-        Une question, une erreur à signaler ? <a href="mailto:boilot.maxime@gmail.com?subject=Populous">Écrivez-nous</a><br>
+        Une question, une erreur à signaler ? <button class="vLien lienContact" type="button" data-objet="">Nous écrire</button><br>
         Site de Populous : <a href="https://maxboilot.github.io/populous/" target="_blank" rel="noopener">maxboilot.github.io/populous</a><br>
         Assistance : <a href="https://maxboilot.github.io/populous/support/" target="_blank" rel="noopener">page d'assistance</a> ·
         <a href="https://maxboilot.github.io/populous/" target="_blank" rel="noopener">Politique de confidentialité</a> ·
@@ -4731,13 +4776,12 @@ async function loadProgramme(c){
   catch(e){ return null; }
 }
 const dateLongue = iso => { const m = String(iso||"").match(/^(\d{4})-(\d{2})(?:-(\d{2}))?/); return !m ? "" : (m[3] ? parseInt(m[3],10) + (m[3]==="01" ? "er " : " ") : "") + MOIS_FR[parseInt(m[2],10)-1] + " " + m[1]; };
-function progSignalerHref(c, p){
-  const obj = "Programme " + c.prenom + " " + c.nom + (p ? " (page " + p.page + ")" : "");
-  return "mailto:boilot.maxime@gmail.com?subject=" + encodeURIComponent("Erreur signalée : " + obj);
+function progSignalerObjet(c, p){
+  return "Erreur signalée : programme " + c.prenom + " " + c.nom + (p ? " (page " + p.page + ")" : "");
 }
 function progPassageHTML(c, doc, p){
   return `<div class="progQ">${p.paragraphes.map(t=>`<p>« ${esc(t)} »</p>`).join("")}</div>
-    <div class="progSrc">Source : ${esc(doc.titre)}, ${esc(doc.editeur)}, p. ${esc(p.page)} · <a href="${esc(progSignalerHref(c, p))}">Signaler une erreur</a></div>`;
+    <div class="progSrc">Source : ${esc(doc.titre)}, ${esc(doc.editeur)}, p. ${esc(p.page)} · <a href="#" class="lienContact" data-objet="${esc(progSignalerObjet(c, p))}">Signaler une erreur</a></div>`;
 }
 async function ouvrirProgramme(cle){
   const d = await loadCandidats();
@@ -4774,7 +4818,7 @@ async function ouvrirProgramme(cle){
             ${ps.map(p=>progPassageHTML(c, docParId[p.document], p)).join("")}</details>`;
         }).join("")}
         <div class="progAbsents">Pas de passage dans ce document sur : ${esc(absents.join(", "))}.</div>
-        <div class="progSrc" style="margin-top:12px"><a href="${esc(progSignalerHref(c, null))}">Signaler une erreur</a></div>`;
+        <div class="progSrc" style="margin-top:12px"><a href="#" class="lienContact" data-objet="${esc(progSignalerObjet(c, null))}">Signaler une erreur</a></div>`;
     }
   } else if(prog.statut === "non_publie"){
     corps = `<p class="lead">Programme pas encore publié.</p>

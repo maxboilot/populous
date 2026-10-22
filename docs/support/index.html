@@ -47,7 +47,7 @@
   <div class="card">
 
     <h2>Une question, un bug, une suggestion ?</h2>
-    <p>Écris-nous directement à l'adresse ci-dessous — on te répond personnellement, il n'y a pas d'équipe support automatisée derrière Populous.</p>
+    <p>Écris-nous avec le formulaire ci-dessous — on te répond personnellement, il n'y a pas d'équipe support automatisée derrière Populous.</p>
 
     <h2>Un député ou un score de vote vous semble incorrect ?</h2>
     <p>Les données affichées viennent de l'open data de l'Assemblée nationale et de sources ouvertes équivalentes (voir notre <a href="../">politique de confidentialité</a>). Si vous repérez une erreur ou une donnée à corriger, contactez-nous avec le plus de détails possible (numéro de scrutin, nom du député concerné) et on vérifie.</p>
@@ -61,10 +61,24 @@
   </div>
 
   <div class="contact">
-    <p><strong>Contact :</strong> <a href="mailto:boilot.maxime@gmail.com">boilot.maxime@gmail.com</a></p>
+    <p id="merci" style="display:none;margin:0 0 12px"><strong>Message envoyé, merci !</strong> On te répond dès que possible.</p>
+    <form action="https://formsubmit.co/mboilot.invest@gmail.com" method="POST" id="contact">
+      <p><strong>Nous écrire</strong></p>
+      <input type="hidden" name="_subject" value="Populous — message depuis le site">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://maxboilot.github.io/populous/support/?envoye=1">
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+      <p style="margin:12px 0 4px"><label for="msg">Ton message</label></p>
+      <textarea id="msg" name="Message" rows="5" maxlength="2000" required style="width:100%;box-sizing:border-box;padding:12px;border:1px solid #c9cfea;border-radius:12px;font:inherit"></textarea>
+      <p style="margin:12px 0 4px"><label for="mail">Ton e-mail (facultatif, seulement pour te répondre)</label></p>
+      <input id="mail" type="email" name="email" style="width:100%;box-sizing:border-box;padding:12px;border:1px solid #c9cfea;border-radius:12px;font:inherit">
+      <p style="margin:12px 0 0"><button type="submit" style="padding:12px 22px;border:none;border-radius:999px;background:#1B3BDB;color:#fff;font:inherit;font-weight:700;cursor:pointer">Envoyer</button></p>
+      <p style="margin:12px 0 0;font-size:13px;color:#4A5578">Le message est transmis à l'éditeur par le service formsubmit.co. Voir la <a href="../">politique de confidentialité</a>.</p>
+    </form>
   </div>
 
   <footer>Populous — Assemblée nationale, votes et actualité politique<br><a href="../">Confidentialité</a> · <a href="../conditions/">Conditions d'utilisation</a></footer>
 </div>
+<script>if(location.search.indexOf("envoye=1")>-1){document.getElementById("merci").style.display="block";}</script>
 </body>
 </html>
