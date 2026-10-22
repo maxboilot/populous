@@ -2237,18 +2237,38 @@ async function trouverVilleDuProfil(p, idx){
   }
   return null;
 }
+// Ma ville mène par défaut à la ville du profil. Si l'utilisateur en regarde une autre (« Changer de ville »),
+// son choix la remplace jusqu'à « Revenir à ma ville ». Si la commune du profil n'est pas parmi les villes
+// disponibles, il n'y a pas de ville du profil : le choix tient lieu de ville suivie.
+let villeProfilTrouvee = null;
 async function resoudreVille(){
-  villeCourante = null;
+  villeCourante = null; villeProfilTrouvee = null;
   const idx = await chargerVillesIndex();
   if(!idx) return null;
   const p = loadProfile();
   const c = p ? await trouverVilleDuProfil(p, idx) : null;
-  if(c){ villeCourante = {insee:c.insee, nom:nomVille(c,idx), dep:c.dep, source:"profil"}; return villeCourante; }
+  if(c) villeProfilTrouvee = {insee:c.insee, nom:nomVille(c,idx), dep:c.dep, source:"profil"};
   try{
     const m = JSON.parse(localStorage.getItem(VILLE_KEY)||"null");
-    if(m && villesUtilisables(idx).some(x=>x.insee===m.insee)) villeCourante = {...m, source:"choix"};
+    if(m && (!villeProfilTrouvee || m.insee!==villeProfilTrouvee.insee) && villesUtilisables(idx).some(x=>x.insee===m.insee)) villeCourante = {...m, source:"choix"};
   }catch(e){}
+  if(!villeCourante) villeCourante = villeProfilTrouvee;
   return villeCourante;
+}
+async function revenirAMaVille(){
+  try{ localStorage.removeItem(VILLE_KEY); }catch(e){}
+  await resoudreVille();
+  appliquerModeAccueil(); rafraichirProfilVille();
+}
+// Libellé et action du bouton de ville, partagés par l'accueil Ma ville et le Profil.
+function boutonVilleHTML(id){
+  const v = villeChoisie();
+  const retour = !!(v && v.source==="choix" && villeProfilTrouvee);
+  return `<button class="vLien" id="${id}" type="button" data-retour="${retour?1:0}">${retour ? "Revenir à ma ville" : (v ? "Changer de ville" : "Choisir une ville")}</button>`;
+}
+function actionBoutonVille(b){
+  if(b.dataset.retour==="1") revenirAMaVille();
+  else ouvrirChoixVille(()=>{ if(modeGeo!=="communal") modeGeo = "communal"; appliquerModeAccueil(); }, !villeProfilTrouvee);
 }
 
 /* ---------- mise en forme ---------- */
@@ -2616,7 +2636,8 @@ async function ouvrirChoixVille(apres, horsListe){
   $("#vcSel").onchange = e=>{ $("#vcOk").disabled = !e.target.value; };
   $("#vcOk").onclick = async ()=>{
     const c = liste.find(x=>x.insee===$("#vcSel").value); if(!c) return;
-    sauverVille({insee:c.insee, nom:nomVille(c, idx), dep:c.dep});
+    if(villeProfilTrouvee && villeProfilTrouvee.insee===c.insee){ try{ localStorage.removeItem(VILLE_KEY); }catch(e){} }
+    else sauverVille({insee:c.insee, nom:nomVille(c, idx), dep:c.dep});
     fermer();
     await resoudreVille();
     if(apres) apres(); else if(modeGeo==="communal") appliquerModeAccueil();
@@ -2994,7 +3015,7 @@ async function renderVille(){
   const bientot = (titre, texte)=>`<div class="vSec">${titre}</div><div class="vLock wide"><b>Bientôt</b><span>${texte}</span></div>`;
   box.innerHTML = `
     <div class="vHead"><div class="eyebrow">Ma ville</div><h2 class="d">${esc(ville.nom)}</h2>
-      <div class="vSub">${V_NF.format(f.pop)} habitants</div></div>
+      <div class="vSub">${V_NF.format(f.pop)} habitants</div>${boutonVilleHTML("vVilleBtn")}</div>
 
     <div class="vSec">Conseil municipal</div>
     ${vBlocConseil(ville, conseil)}
@@ -3022,6 +3043,7 @@ async function renderVille(){
   box.querySelectorAll("[data-liste]").forEach(b=>{ b.onclick = ()=>ouvrirListeConseil(ville, conseil, +b.dataset.liste); });
   $("#vCompare").onclick = ()=>ouvrirVilleDetail("dep");
   const bt = (id, f)=>{ const b = box.querySelector(id); if(b) b.onclick = f; };
+  bt("#vVilleBtn", ()=>actionBoutonVille(box.querySelector("#vVilleBtn")));
   bt("#vEluTous", ()=>ouvrirElus(ville, conseil, elus, "tous"));
   bt("#vEluExec", ()=>ouvrirElus(ville, conseil, elus, "exec"));
   bt("#vEluChg", ()=>ouvrirChangementsConseil(ville, elus));
@@ -3126,14 +3148,14 @@ function villeProfilHTML(){
   if(!aAccesVille()) return localCardHTML("localBtn");
   const v = villeChoisie();
   const note = !v ? "Le détail de ta commune arrive bientôt : choisis une grande ville à suivre."
-    : (v.source==="profil" ? "Ville de ton profil" : "Ville suivie en attendant le détail de ta commune.");
+    : (v.source==="profil" ? "Ville de ton profil" : (villeProfilTrouvee ? "Tu regardes une autre ville que celle de ton profil." : "Ville suivie en attendant le détail de ta commune."));
   return `<div class="privacyBox" id="villeProf" style="margin-top:18px"><b>Ma ville</b><br>
     <span id="vpNom">${v ? esc(v.nom) : "Aucune ville"}</span> <span class="vCap">· ${note}</span>
     <div class="vSeg" role="group" aria-label="Mon pays ou ma ville">
       <button class="vSegB ${modeGeo==="national"?"on":""}" data-m="national" type="button">Mon pays</button>
       <button class="vSegB ${modeGeo==="communal"?"on":""}" data-m="communal" type="button">Ma ville</button>
     </div>
-    <div class="vProfActs">${!v || v.source!=="profil" ? `<button class="vLien" id="vpChange" type="button">${v ? "Changer de ville" : "Choisir une ville"}</button>` : ""}
+    <div class="vProfActs">${boutonVilleHTML("vpChange")}
       ${(lireAcces()||{}).via==="abonnement" ? `<button class="vLien" id="vpGerer" type="button">Mon abonnement</button>` : `<button class="vLien" id="vpRetirer" type="button">Retirer mon accès</button>`}</div></div>`;
 }
 function wireVilleProfil(){
@@ -3147,7 +3169,7 @@ function wireVilleProfil(){
       modeGeo = b.dataset.m; appliquerModeAccueil(); fermerProfilVersAccueil();
     };
   });
-  const ch = $("#vpChange"); if(ch) ch.onclick = ()=>ouvrirChoixVille(null, true);
+  const ch = $("#vpChange"); if(ch) ch.onclick = ()=>actionBoutonVille(ch);
   const rt = $("#vpRetirer");
   if(rt) rt.onclick = ()=>{
     try{ localStorage.removeItem(ACCES_KEY); localStorage.removeItem(MODE_KEY); }catch(e){}
@@ -3193,6 +3215,7 @@ function loadProfile(){
   catch(e){ return null; }
 }
 function saveProfile(p){
+  try{ const a = loadProfile(); if(a && (a.communeCle!==p.communeCle || a.circoKey!==p.circoKey)) localStorage.removeItem(VILLE_KEY); }catch(e){}
   localStorage.setItem(PROFILE_KEY, JSON.stringify(p));
 }
 
