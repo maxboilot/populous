@@ -1,5 +1,5 @@
 #!/bin/bash
-# Publie une nouvelle version de Populous.
+# (Retiré) Publiait la version web de Populous dans docs/app/.
 #
 # Usage : place le nouveau fichier téléchargé dans ce même dossier sous
 # le nom index.html (écrase l'ancien), puis lance :
@@ -11,18 +11,7 @@
 # Store Connect, à ne jamais déplacer). L'app de test, elle, vit dans
 # docs/app/ : ce script y recopie index.html à chaque publication, donc
 # les deux restent identiques sans jamais se marcher dessus.
-set -e
-if [ ! -f index.html ]; then
-  echo "Erreur : aucun fichier index.html trouvé dans ce dossier."
-  echo "Renomme le fichier téléchargé en index.html avant de relancer."
-  exit 1
-fi
-mkdir -p docs/app
-cp index.html docs/app/index.html
-git add index.html docs/app/index.html
-git commit -m "Mise à jour de l'app — $(date '+%Y-%m-%d %H:%M')"
-git push
-echo ""
-echo "Publié sur https://maxboilot.github.io/populous/app/ — compte 30 à 90 secondes."
-echo "Si l'app affiche encore l'ancienne version après ce délai, force un rechargement"
-echo "dans le navigateur (Cmd+Maj+R) — c'est le cache, pas la publication, qui traîne."
+echo "Populous n'existe plus en version web : il n'y a plus rien à publier avec ce script."
+echo "L'app se met à jour par les boutiques (App Store / Google Play) ; les pages légales"
+echo "(docs/index.html, docs/conditions/, docs/support/) se publient par un simple git push."
+exit 0
