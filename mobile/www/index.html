@@ -2584,6 +2584,14 @@ const Billing = (function(){
       try{ const e = droit(await plugin.restorePurchases()); appliquer(e); return {etat: e ? "ok" : "aucun"}; }
       catch(err){ return {etat:"erreur"}; }
     },
+    // Pays de la boutique et devise des prix renvoyés : sert à l'assistance (un prix affiché dans une autre devise que celle du pays se voit tout de suite).
+    async boutique(){
+      if(!await init()) return null;
+      let pays = null, devise = null;
+      try{ const r = await plugin.getStorefront(); pays = (r && r.countryCode) || null; }catch(e){}
+      try{ const o = await Billing.offres(); const pr = o && (o.annuel || o.mensuel) && (o.annuel || o.mensuel).product; devise = (pr && pr.currencyCode) || null; }catch(e){}
+      return {pays, devise};
+    },
     async idUtilisateur(){
       if(!await init()) return null;
       try{ const r = await plugin.getAppUserID(); return (r && r.appUserID) || null; }catch(e){ return null; }
@@ -3328,7 +3336,8 @@ function wireVilleProfil(){
 async function majIdAssistance(){
   const z = $("#idAssist"); if(!z || !Billing.possible()) return;
   const id = await Billing.idUtilisateur(); if(!id || !$("#idAssist")) return;
-  z.innerHTML = `Identifiant d'assistance : <code style="user-select:all">${esc(id)}</code> <button class="vLien" id="idCopier" type="button">Copier</button>`;
+  z.innerHTML = `Identifiant d'assistance : <code style="user-select:all">${esc(id)}</code> <button class="vLien" id="idCopier" type="button">Copier</button><br><span id="idBoutique">Boutique : …</span>`;
+  Billing.boutique().then(b=>{ const e = $("#idBoutique"); if(e) e.textContent = "Boutique : " + ((b && b.pays) || "inconnue") + " · devise des prix : " + ((b && b.devise) || "inconnue"); });
   $("#idCopier").onclick = async ()=>{
     try{ await navigator.clipboard.writeText(id); toast("Identifiant copié"); }
     catch(e){ toast("Copie impossible : touche l'identifiant pour le sélectionner"); }
