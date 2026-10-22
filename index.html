@@ -1433,8 +1433,8 @@ geo.circos.forEach((c,i)=>{
   poly.addTo(group);
   layers.push(poly);
 });
-/* ---------- hémicycle (vue depuis le perchoir) : remplace la carte quand ?hemi=1 ---------- */
-const HEMI = new URLSearchParams(location.search).get("hemi")==="1";
+/* ---------- hémicycle (vue depuis le perchoir) : remplace la carte (sauf ?hemi=0) ---------- */
+const HEMI = new URLSearchParams(location.search).get("hemi")!=="0";   // l'hémicycle remplace la carte ; ?hemi=0 ramène la carte (diagnostic)
 if(HEMI) document.body.classList.add("hemi");
 let hemiSieges = [], hemiYaw = 0, hemiVit = 0;   // sièges du monde (angle, rangée, hauteur) ; cap de la caméra ; vitesse d'inertie
 const HEMI_FOV = 96*Math.PI/180, HEMI_YAW_MAX = 50*Math.PI/180, HEMI_RECUL = 0.35, HEMI_HCAM = 1.25, HEMI_RW = 3.3;
