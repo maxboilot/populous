@@ -2422,6 +2422,7 @@ function pluginAchatsSimule(){
     },
     restorePurchases: async()=>{ await pause(300); return info(); },
     getCustomerInfo: async()=>info(),
+    getAppUserID: async()=>({appUserID:"$RCAnonymousID:identifiant-de-test"}),
     presentCodeRedemptionSheet: async()=>{ await pause(200); }
   };
 }
@@ -2470,6 +2471,10 @@ const Billing = (function(){
       if(!await init()) return {etat:"indispo"};
       try{ const e = droit(await plugin.restorePurchases()); appliquer(e); return {etat: e ? "ok" : "aucun"}; }
       catch(err){ return {etat:"erreur"}; }
+    },
+    async idUtilisateur(){
+      if(!await init()) return null;
+      try{ const r = await plugin.getAppUserID(); return (r && r.appUserID) || null; }catch(e){ return null; }
     },
     async codeApple(){
       if(!await init()) return false;
@@ -3198,6 +3203,16 @@ function wireVilleProfil(){
   };
   const gr = $("#vpGerer"); if(gr) gr.onclick = ouvrirPaywallVille;
 }
+// Identifiant technique de l'abonnement (anonyme) : sert au support, par exemple pour offrir un accès depuis RevenueCat.
+async function majIdAssistance(){
+  const z = $("#idAssist"); if(!z || !Billing.possible()) return;
+  const id = await Billing.idUtilisateur(); if(!id || !$("#idAssist")) return;
+  z.innerHTML = `Identifiant d'assistance : <code style="user-select:all">${esc(id)}</code> <button class="vLien" id="idCopier" type="button">Copier</button>`;
+  $("#idCopier").onclick = async ()=>{
+    try{ await navigator.clipboard.writeText(id); toast("Identifiant copié"); }
+    catch(e){ toast("Copie impossible : touche l'identifiant pour le sélectionner"); }
+  };
+}
 function fermerProfilVersAccueil(){ $("#onboarding").classList.add("hidden"); showScreen("accueil"); }
 function rafraichirProfilVille(){
   const bloc = $("#villeProf"), carte = document.querySelector("#onboarding .localCard");
@@ -3358,8 +3373,9 @@ function obRender(){
         <a href="https://maxboilot.github.io/populous/" target="_blank" rel="noopener">Politique de confidentialité</a> ·
         <a href="https://maxboilot.github.io/populous/conditions/" target="_blank" rel="noopener">Conditions d'utilisation</a>
       </div>
+      <p class="vCap" id="idAssist" style="margin:12px 2px 0;word-break:break-all"></p>
       <div class="actions"><button class="btn ghost" id="profClose" style="flex:none;padding:12px 22px">Fermer</button></div>`;
-    wireLocalBtn("localBtn"); wireVilleProfil();
+    wireLocalBtn("localBtn"); wireVilleProfil(); majIdAssistance();
     el.querySelectorAll(".profRow").forEach(b=>{
       b.onclick = ()=>{ viewMode = true; obStep = +b.dataset.step; obRender(); };
     });
