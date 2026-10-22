@@ -66,6 +66,9 @@ window.__VOTE_EARLY__ = (async function(){
   html,body{margin:0;height:100%;overflow:visible;background:var(--bg);
     font-family:var(--font-s);color:var(--ink)}
   #map{position:absolute;inset:0;background:var(--land);outline:none}
+  #hemi{position:absolute;inset:0;width:100%;height:100%;background:var(--land);display:none;touch-action:manipulation}
+  body.hemi #map{visibility:hidden}
+  body.hemi #hemi{display:block}
   .leaflet-container{background:var(--land);font-family:inherit}
   .leaflet-control-attribution{background:var(--card)!important;color:var(--dim)!important;
     font-size:9px!important;border-radius:8px 0 0 0!important}
@@ -1050,6 +1053,7 @@ window.__VOTE_EARLY__ = (async function(){
 <div id="screen-carte" class="screen hidden">
 <div id="carteScreenTitre">Cartographie du dernier scrutin par député(e)s</div>
 <div id="map" tabindex="0" aria-label="Carte des 577 circonscriptions législatives"></div>
+<canvas id="hemi" aria-label="Hémicycle de l'Assemblée nationale : un point par député·e"></canvas>
 <div class="presiWatermark" aria-hidden="true">Populous</div>
 
 <div id="carteTitre"></div>
@@ -1429,7 +1433,80 @@ geo.circos.forEach((c,i)=>{
   poly.addTo(group);
   layers.push(poly);
 });
+/* ---------- hémicycle (vue depuis le perchoir) : remplace la carte quand ?hemi=1 ---------- */
+const HEMI = new URLSearchParams(location.search).get("hemi")==="1";
+if(HEMI) document.body.classList.add("hemi");
+let hemiSieges = [];   // [{i (index circo), x, y, r}]
+function hemiOrdre(){
+  const o = {}; GROUPES.forEach((g,k)=>o[g.s]=k);
+  return geo.circos.map((c,i)=>i).sort((a,b)=>{
+    const ga = elus[a] ? o[elus[a].g] : 99, gb = elus[b] ? o[elus[b].g] : 99;
+    return ga-gb || (geo.circos[a].key<geo.circos[b].key?-1:1);
+  });
+}
+function hemiCalcul(W, H){
+  const N = geo.circos.length, R = 12, thM = 84*Math.PI/180;
+  const haut = 118, bas = Math.max(190, H*0.27);              // zone libre entre le titre et les boutons de mode
+  const zoneH = H - haut - bas, demi = W/2 - 10;
+  const f = demi / (2*Math.tan(thM/2));
+  const rows = [], hEye = 0.95;
+  let somme = 0;
+  for(let k=0;k<R;k++){ const r = 1 + k*(1.5/(R-1)); rows.push({k, r, h:k*0.17}); somme += r; }
+  let reste = N;
+  rows.forEach((row,k)=>{ row.n = k===R-1 ? reste : Math.round(N*row.r/somme); reste -= row.n; });
+  const v = row=>(hEye-row.h)/row.r;
+  const vmin = v(rows[R-1]), vmax = v(rows[0]);
+  const sieges = [];
+  rows.forEach(row=>{
+    for(let j=0;j<row.n;j++){
+      const th = -thM + (j+0.5)/row.n*2*thM;
+      const ech = 2/(1+Math.cos(th));                          // projection stéréographique : les ailes se rapprochent
+      const x = W/2 + 2*f*Math.tan(th/2);
+      const yn = 0.55*(v(row)-vmin)/(vmax-vmin) + 0.45*(1-row.k/(R-1));   // perspective adoucie : les tribunes lointaines restent lisibles
+      const y = haut + yn*zoneH*0.92 + (ech-1)*zoneH*0.16;               // les ailes redescendent vers le spectateur
+      const dx = f*(2*thM/row.n)*ech, dy = zoneH/(R-1)*(1.05 - 0.45*row.k/(R-1))*ech*0.85;
+      sieges.push({th, row:row.k, x, y, rad: Math.max(1.5, Math.min(dx*0.44, dy*0.42))});
+    }
+  });
+  sieges.sort((a,b)=>a.th-b.th || a.row-b.row);                // les groupes occupent des tranches, de la gauche vers la droite
+  const ordre = hemiOrdre();
+  sieges.forEach((st,k)=>{ st.i = ordre[k]; });
+  return sieges;
+}
+function dessinerHemicycle(){
+  if(!HEMI) return;
+  const cv = $("#hemi"), W = cv.clientWidth, H = cv.clientHeight; if(!W || !H) return;
+  const dpr = window.devicePixelRatio || 1;
+  if(cv.width!==Math.round(W*dpr) || cv.height!==Math.round(H*dpr)){ cv.width = Math.round(W*dpr); cv.height = Math.round(H*dpr); hemiSieges = []; }
+  if(!hemiSieges.length) hemiSieges = hemiCalcul(W, H);
+  const ctx = cv.getContext("2d"); ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,W,H);
+  // en arrière-plan : une bande par rangée de bancs, pour donner la profondeur
+  const rangs = {};
+  hemiSieges.forEach(st=>{ (rangs[st.row] = rangs[st.row] || []).push(st); });
+  const bande = getComputedStyle(document.body).getPropertyValue("--line").trim() || "#DDE1F0";
+  ctx.lineCap = "round"; ctx.lineJoin = "round"; ctx.strokeStyle = bande; ctx.globalAlpha = 0.55;
+  Object.values(rangs).forEach(r=>{ r.sort((a,b)=>a.th-b.th); ctx.lineWidth = r[Math.floor(r.length/2)].rad*2.7; ctx.beginPath(); r.forEach((st,k)=>k?ctx.lineTo(st.x,st.y):ctx.moveTo(st.x,st.y)); ctx.stroke(); });
+  ctx.globalAlpha = 1;
+  hemiSieges.forEach(st=>{
+    const e = elus[st.i], flou = filterGroup!==null && (!e || e.g!==filterGroup);
+    ctx.globalAlpha = flou ? 0.16 : 1;
+    ctx.fillStyle = colorOf(st.i);
+    ctx.beginPath(); ctx.arc(st.x, st.y, st.rad, 0, 6.2832); ctx.fill();
+  });
+  ctx.globalAlpha = 1;
+  if(selected!==null){ const st = hemiSieges.find(x=>x.i===selected); if(st){ ctx.lineWidth = 2; ctx.strokeStyle = getComputedStyle(document.body).getPropertyValue("--ink").trim() || "#10193F"; ctx.beginPath(); ctx.arc(st.x, st.y, st.rad+2.5, 0, 6.2832); ctx.stroke(); } }
+}
+if(HEMI){
+  window.addEventListener("resize", ()=>{ hemiSieges = []; dessinerHemicycle(); });
+  document.getElementById("hemi").addEventListener("click", ev=>{
+    const rc = ev.target.getBoundingClientRect(), x = ev.clientX-rc.left, y = ev.clientY-rc.top;
+    let best = null, bd = 1e9;
+    hemiSieges.forEach(st=>{ const d = Math.hypot(st.x-x, st.y-y); if(d<bd){ bd = d; best = st; } });
+    if(best && bd < Math.max(10, best.rad*2.2)) select(best.i, false); else select(null);
+  });
+}
 function restyle(){
+  dessinerHemicycle();
   layers.forEach(p=>{ if(p) p.setStyle(styleOf(p._i)); });
   if(selected!==null && layers[selected]) layers[selected].setStyle({color:INK,weight:2.4,opacity:1});
 }
@@ -4056,6 +4133,7 @@ function showScreen(name){
     // pendant qu'on était sur un autre écran, offsetHeight valait 0 tant
     // que la carte était masquée — on la recalcule à chaque affichage.
     placeCarteTitre();
+    if(HEMI) setTimeout(()=>{ hemiSieges = []; dessinerHemicycle(); }, 60);
   }
   if(name==="accueil" && !loadedOnce.accueil){ loadedOnce.accueil=true; renderAccueil(); }
   if(name==="historique" && !loadedOnce.historique){ loadedOnce.historique=true; loadHistorique(); }
