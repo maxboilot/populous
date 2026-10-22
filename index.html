@@ -394,13 +394,6 @@ window.__VOTE_EARLY__ = (async function(){
   .pwBtn{display:block;width:100%;flex:none;text-align:center;text-decoration:none;box-sizing:border-box}
   .pwLegal{margin:10px 2px 6px;font-size:10.5px;line-height:1.5}
   .pwLiens{margin:6px 2px 0}.pwLiens a{color:var(--accent);font-weight:600}
-  .soutienBan{display:flex;align-items:center;gap:10px;width:100%;margin-top:12px;padding:12px 14px;border:none;border-radius:14px;background:var(--accent-soft);color:var(--ink);font:inherit;text-align:left;cursor:pointer}
-  .soutienBan span{flex:1;font-size:11.5px;line-height:1.45;color:var(--ink-soft)}
-  .soutienBan b{display:block;font-size:13px;color:var(--ink)}
-  .soutienBan.on{cursor:default}
-  .soutienBan .chev{color:var(--dim);font-size:16px;font-style:normal}
-  .soutienLien{display:block;margin:4px auto 2px;padding:8px 14px;border:none;background:none;font:inherit;font-size:12px;font-weight:700;color:var(--ink-soft);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
-  .soutienLien.hidden{display:none}
   .vPlanBadge{position:absolute;top:-10px;right:14px;background:var(--accent);color:#fff;font-size:10.5px;font-weight:700;border-radius:999px;padding:3px 10px}
   .vPlanN{font-family:var(--font-d);font-weight:800;font-size:24px}
   .vPlanU{font-size:12px;color:var(--ink-soft)}
@@ -1122,7 +1115,6 @@ window.__VOTE_EARLY__ = (async function(){
     </button>
   </div>
   <div id="acVille" class="zTop"></div>
-  <button class="soutienLien zTop" id="acSoutien" type="button">Soutenir Populous</button>
 </div>
 
 <!-- ============ La Boussole ============ -->
@@ -2423,24 +2415,9 @@ const Billing = (function(){
 function majInterfaceAcces(){
   try{ appliquerModeAccueil(); }catch(e){}
   try{ rafraichirProfilVille(); }catch(e){}
-  majSoutien();
 }
 window.addEventListener("load", ()=>{ Billing.rafraichir(); });
 document.addEventListener("visibilitychange", ()=>{ if(!document.hidden) Billing.rafraichir(); });
-
-/* ---------- « Soutenez Populous » : mène à l'abonnement, jamais vers un site de dons ---------- */
-function soutienActif(){ const a = lireAcces(); return !!(a && a.via==="abonnement" && aAccesVille()); }
-function soutienProfilHTML(){
-  return soutienActif()
-    ? `<div class="soutienBan on" id="soutienProf"><span><b>Merci de soutenir Populous</b>Indépendante, sans publicité ni parti, grâce à toi.</span></div>`
-    : `<button class="soutienBan" id="soutienProf" type="button"><span><b>Soutenez Populous</b>Indépendante, sans publicité ni parti.</span><i class="chev">›</i></button>`;
-}
-function majSoutien(){
-  const h = $("#acSoutien"); if(h){ h.classList.toggle("hidden", soutienActif()); h.onclick = ouvrirPaywallVille; }
-  const b = $("#soutienProf");
-  if(b){ const tmp = document.createElement("div"); tmp.innerHTML = soutienProfilHTML(); b.replaceWith(tmp.firstElementChild); }
-  const n = $("#soutienProf"); if(n && n.tagName==="BUTTON") n.onclick = ouvrirPaywallVille;
-}
 
 /* ---------- fenêtre « Populous Local » (abonnement, restauration, code promo) ---------- */
 function fermerPaywallVille(){ $("#localPopup").classList.add("hidden"); }
@@ -3116,7 +3093,7 @@ function wireVilleProfil(){
   const rt = $("#vpRetirer");
   if(rt) rt.onclick = ()=>{
     try{ localStorage.removeItem(ACCES_KEY); localStorage.removeItem(MODE_KEY); }catch(e){}
-    modeGeo = "national"; appliquerModeAccueil(); rafraichirProfilVille(); majSoutien();
+    modeGeo = "national"; appliquerModeAccueil(); rafraichirProfilVille();
   };
   const gr = $("#vpGerer"); if(gr) gr.onclick = ouvrirPaywallVille;
 }
@@ -3258,7 +3235,6 @@ function obRender(){
       <div class="eyebrow">Mon profil</div>
       <h2 class="d">Tes informations</h2>
       <p class="lead">Tout reste stocké sur cet appareil. Touche un champ pour le modifier.</p>
-      ${soutienProfilHTML()}
       ${villeProfilHTML()}
       ${row("Identité", draft.pseudo || "—", 1, avatarHTML(draft.avatar))}
       ${row("Tranche d'âge", draft.age || "Non renseignée", 2)}
@@ -3281,7 +3257,7 @@ function obRender(){
         <a href="https://maxboilot.github.io/populous/conditions/" target="_blank" rel="noopener">Conditions d'utilisation</a>
       </div>
       <div class="actions"><button class="btn ghost" id="profClose" style="flex:none;padding:12px 22px">Fermer</button></div>`;
-    wireLocalBtn("localBtn"); wireVilleProfil(); majSoutien();
+    wireLocalBtn("localBtn"); wireVilleProfil();
     el.querySelectorAll(".profRow").forEach(b=>{
       b.onclick = ()=>{ viewMode = true; obStep = +b.dataset.step; obRender(); };
     });
@@ -5741,7 +5717,6 @@ function demanderAvis(){
 }
 demanderAvis();
 restaurerModeVille();
-majSoutien();
 </script>
 </body>
 </html>
