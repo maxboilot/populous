@@ -1384,13 +1384,13 @@ function colorOf(i){
     return VOTE_COLORS[normPos(voteData.par_circonscription[key])];
   }
   if(!e) return UNKNOWN;
-  if(mode==="groupe") return groupColor[e.g] || UNKNOWN;
+  if(mode==="groupe") return groupColor[codeGroupeCanonique(e.g)] || UNKNOWN;
   if(mode==="age") return ageColor(e.age);
   return (PARCOURS[e.parK] || PARCOURS.inconnu).c;
 }
 function fillOf(i){
   const e = elus[i];
-  const dim = filterGroup!==null && (!e || e.g!==filterGroup);
+  const dim = filterGroup!==null && (!e || codeGroupeCanonique(e.g)!==filterGroup);
   return dim ? mix(LAND, colorOf(i), 0.10) : mix(LAND, colorOf(i), 0.88);
 }
 const styleOf = i => ({ color:INK, weight:0.4, opacity:0.32, fillColor:fillOf(i), fillOpacity:1 });
@@ -1440,38 +1440,39 @@ let hemiSieges = [];   // [{i (index circo), x, y, r}]
 function hemiOrdre(){
   const o = {}; GROUPES.forEach((g,k)=>o[g.s]=k);
   return geo.circos.map((c,i)=>i).sort((a,b)=>{
-    const ga = elus[a] ? o[elus[a].g] : 99, gb = elus[b] ? o[elus[b].g] : 99;
+    const ga = elus[a] ? o[codeGroupeCanonique(elus[a].g)] : 99, gb = elus[b] ? o[codeGroupeCanonique(elus[b].g)] : 99;
     return ga-gb || (geo.circos[a].key<geo.circos[b].key?-1:1);
   });
 }
 function hemiCalcul(W, H){
-  const N = geo.circos.length, R = 12, thM = 84*Math.PI/180;
-  const haut = 118, bas = Math.max(190, H*0.27);              // zone libre entre le titre et les boutons de mode
-  const zoneH = H - haut - bas, demi = W/2 - 10;
-  const f = demi / (2*Math.tan(thM/2));
-  const rows = [], hEye = 0.95;
+  // Hémicycle en un seul bloc : demi-couronne de rangées concentriques autour du perchoir (en bas, au centre).
+  // Les groupes occupent des tranches, de la gauche vers la droite, sur toutes les rangées.
+  const N = geo.circos.length, R = 12, rho0 = 0.36;
+  const haut = 150, bas = Math.max(170, H*0.24), marge = 12;
+  const rx = W/2 - marge, zone = H - haut - bas;
+  const ry = Math.min(zone - 40, rx*1.2);                      // un peu étiré vers le haut : on regarde l'hémicycle depuis le perchoir
+  const cx = W/2, cy = haut + (zone + ry)/2 - 14;
+  const rows = [];
   let somme = 0;
-  for(let k=0;k<R;k++){ const r = 1 + k*(1.5/(R-1)); rows.push({k, r, h:k*0.17}); somme += r; }
+  for(let k=0;k<R;k++){ const rho = rho0 + k*(1-rho0)/(R-1); rows.push({k, rho}); somme += rho; }
   let reste = N;
-  rows.forEach((row,k)=>{ row.n = k===R-1 ? reste : Math.round(N*row.r/somme); reste -= row.n; });
-  const v = row=>(hEye-row.h)/row.r;
-  const vmin = v(rows[R-1]), vmax = v(rows[0]);
-  const sieges = [];
+  rows.forEach((row,k)=>{ row.n = k===R-1 ? reste : Math.round(N*row.rho/somme); reste -= row.n; });
+  const pts = [];
   rows.forEach(row=>{
+    const dth = Math.PI/row.n;
+    const arc = Math.hypot(rx*row.rho*(1-Math.cos(dth)), ry*row.rho*Math.sin(dth));   // écart entre deux sièges voisins (au milieu de l'arc, le plus serré)
+    const ecart = Math.min(rx, ry)*(1-rho0)/(R-1);                                    // écart entre deux rangées
+    row.rad = Math.max(1.4, Math.min(Math.hypot(rx*row.rho*(Math.cos(0)-Math.cos(dth)), ry*row.rho*Math.sin(dth)), ecart)*0.46);
     for(let j=0;j<row.n;j++){
-      const th = -thM + (j+0.5)/row.n*2*thM;
-      const ech = 2/(1+Math.cos(th));                          // projection stéréographique : les ailes se rapprochent
-      const x = W/2 + 2*f*Math.tan(th/2);
-      const yn = 0.55*(v(row)-vmin)/(vmax-vmin) + 0.45*(1-row.k/(R-1));   // perspective adoucie : les tribunes lointaines restent lisibles
-      const y = haut + yn*zoneH*0.92 + (ech-1)*zoneH*0.16;               // les ailes redescendent vers le spectateur
-      const dx = f*(2*thM/row.n)*ech, dy = zoneH/(R-1)*(1.05 - 0.45*row.k/(R-1))*ech*0.85;
-      sieges.push({th, row:row.k, x, y, rad: Math.max(1.5, Math.min(dx*0.44, dy*0.42))});
+      const th = Math.PI - (j+0.5)*dth;
+      pts.push({th, row:row.k, x:cx + rx*row.rho*Math.cos(th), y:cy - ry*row.rho*Math.sin(th), rad:row.rad});
     }
   });
-  sieges.sort((a,b)=>a.th-b.th || a.row-b.row);                // les groupes occupent des tranches, de la gauche vers la droite
+  pts.sort((a,b)=>b.th-a.th || a.row-b.row);
   const ordre = hemiOrdre();
-  sieges.forEach((st,k)=>{ st.i = ordre[k]; });
-  return sieges;
+  pts.forEach((p,k)=>{ p.i = ordre[k]; });
+  pts.pc = {x:cx, y:cy-ry*rho0*0.55, w:rx*rho0*0.9, h:ry*rho0*0.55};   // le perchoir, au centre
+  return pts;
 }
 function dessinerHemicycle(){
   if(!HEMI) return;
@@ -1480,15 +1481,10 @@ function dessinerHemicycle(){
   if(cv.width!==Math.round(W*dpr) || cv.height!==Math.round(H*dpr)){ cv.width = Math.round(W*dpr); cv.height = Math.round(H*dpr); hemiSieges = []; }
   if(!hemiSieges.length) hemiSieges = hemiCalcul(W, H);
   const ctx = cv.getContext("2d"); ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,W,H);
-  // en arrière-plan : une bande par rangée de bancs, pour donner la profondeur
-  const rangs = {};
-  hemiSieges.forEach(st=>{ (rangs[st.row] = rangs[st.row] || []).push(st); });
-  const bande = getComputedStyle(document.body).getPropertyValue("--line").trim() || "#DDE1F0";
-  ctx.lineCap = "round"; ctx.lineJoin = "round"; ctx.strokeStyle = bande; ctx.globalAlpha = 0.55;
-  Object.values(rangs).forEach(r=>{ r.sort((a,b)=>a.th-b.th); ctx.lineWidth = r[Math.floor(r.length/2)].rad*2.7; ctx.beginPath(); r.forEach((st,k)=>k?ctx.lineTo(st.x,st.y):ctx.moveTo(st.x,st.y)); ctx.stroke(); });
-  ctx.globalAlpha = 1;
+  const pc = hemiSieges.pc;
+  if(pc){ ctx.fillStyle = getComputedStyle(document.body).getPropertyValue("--line").trim() || "#DDE1F0"; ctx.beginPath(); ctx.roundRect(pc.x-pc.w/2, pc.y, pc.w, pc.h, 6); ctx.fill(); }
   hemiSieges.forEach(st=>{
-    const e = elus[st.i], flou = filterGroup!==null && (!e || e.g!==filterGroup);
+    const e = elus[st.i], flou = filterGroup!==null && (!e || codeGroupeCanonique(e.g)!==filterGroup);
     ctx.globalAlpha = flou ? 0.16 : 1;
     ctx.fillStyle = colorOf(st.i);
     ctx.beginPath(); ctx.arc(st.x, st.y, st.rad, 0, 6.2832); ctx.fill();
@@ -1523,7 +1519,7 @@ function refreshAvatars(){
     let n=0;
     for(let i=0;i<elus.length && n<70;i++){
       const e = elus[i]; if(!e) continue;
-      if(filterGroup!==null && e.g!==filterGroup) continue;
+      if(filterGroup!==null && codeGroupeCanonique(e.g)!==filterGroup) continue;
       const c = centroids[i]; if(!c || !view.contains(c)) continue;
       keep.add(i); putMarker(i, size); n++;
     }
