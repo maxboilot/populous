@@ -1497,6 +1497,15 @@ function hemiDecor(ctx, W, H, g){
   const r0 = 1, r1 = 2.4, R = 12;
   for(let k=0;k<R;k++){ const r = r0 + k*(r1-r0)/(R-1), h = k*HEMI_MONTEE, y0 = P(r,0,h)[1], y1 = P(r+0.1,0,h+HEMI_MONTEE)[1]; ligne(r, h, banc, Math.max(3, Math.abs(y1-y0)*0.9)); }
 }
+// Sélection d'un siège : l'anneau est redessiné ; si la sélection vient de la recherche, la tête se tourne vers lui.
+function hemiVers(i, aller){
+  const st = i!==null && hemiSieges.find(x=>x.i===i);
+  if(st && aller){
+    const but = Math.max(-HEMI_YAW_MAX, Math.min(HEMI_YAW_MAX, st.phi)), dep = hemiYaw, t0 = performance.now();
+    const pas = t=>{ const k = Math.min(1, (t-t0)/450); hemiYaw = dep + (but-dep)*(1-Math.pow(1-k,3)); dessinerHemicycle(); if(k<1) requestAnimationFrame(pas); };
+    requestAnimationFrame(pas);
+  } else dessinerHemicycle();
+}
 function dessinerHemicycle(){
   if(!HEMI) return;
   const cv = $("#hemi"), W = cv.clientWidth, H = cv.clientHeight; if(!W || !H) return;
@@ -1613,6 +1622,7 @@ function select(i, zoom){
   const precedent = selected;
   if(selected!==null && layers[selected]) layers[selected].setStyle(styleOf(selected));
   selected = i;
+  if(HEMI) hemiVers(i, zoom);
   if(i===null){
     $("#fiche").classList.remove("on"); placeTab(); refreshAvatars();
     // On revient à la vue d'ensemble en douceur en quittant une fiche, pour
