@@ -2522,8 +2522,8 @@ function pluginAchatsSimule(){
   return {
     configure: async()=>{},
     getOfferings: async()=>({current:{availablePackages:[
-      {identifier:"$rc_monthly", packageType:"MONTHLY", product:{priceString:"1,99 €", identifier:"populous_local_mensuel"}},
-      {identifier:"$rc_annual", packageType:"ANNUAL", product:{priceString:"19,99 €", identifier:"populous_local_annuel"}}]}}),
+      {identifier:"$rc_monthly", packageType:"MONTHLY", product:{priceString:"1,99 €", price:1.99, currencyCode:"EUR", identifier:"populous_local_mensuel"}},
+      {identifier:"$rc_annual", packageType:"ANNUAL", product:{priceString:"19,99 €", price:19.99, currencyCode:"EUR", identifier:"populous_local_annuel"}}]}}),
     purchasePackage: async({aPackage})=>{
       await pause(500);
       const r = window.__mockAchat || "ok";
@@ -2648,7 +2648,7 @@ function ouvrirPaywallVille(){
     <p class="vCap hidden" id="pwCouv" style="margin:-4px 2px 10px"></p>
     <div class="vPlans" id="pwPlans" role="radiogroup" aria-label="Formule d'abonnement">
       <button class="vPlan" type="button" role="radio" data-plan="mensuel" aria-checked="false"><div class="vPlanN" id="pwPrixM">${PRIX_SECOURS.mensuel}</div><div class="vPlanU">par mois</div></button>
-      <button class="vPlan pop on" type="button" role="radio" data-plan="annuel" aria-checked="true"><div class="vPlanBadge">Le plus populaire</div><div class="vPlanN" id="pwPrixA">${PRIX_SECOURS.annuel}</div><div class="vPlanU">par an · soit 1,67 € par mois</div></button>
+      <button class="vPlan pop on" type="button" role="radio" data-plan="annuel" aria-checked="true"><div class="vPlanBadge">Le plus populaire</div><div class="vPlanN" id="pwPrixA">${PRIX_SECOURS.annuel}</div><div class="vPlanU" id="pwEquiv">par an · soit 1,67 € par mois</div></button>
     </div>
     <button class="btn primary pwBtn" id="pwPay" type="button" disabled>${possible ? "Chargement…" : (estNatif() ? "Paiement bientôt disponible" : "Abonnement disponible dans l'app Populous")}</button>
     <p class="vErr hidden" id="pwMsg"></p>
@@ -2683,7 +2683,16 @@ function ouvrirPaywallVille(){
   document.querySelectorAll("#pwPlans .vPlan").forEach(b=>{ b.onclick = ()=>{ plan = b.dataset.plan; majBouton(); }; });
   if(possible) Billing.offres().then(o=>{
     paquets = o || false;
-    if(o){ if(o.mensuel) $("#pwPrixM").textContent = o.mensuel.product.priceString; if(o.annuel) $("#pwPrixA").textContent = o.annuel.product.priceString; }
+    if(o){
+      if(o.mensuel) $("#pwPrixM").textContent = o.mensuel.product.priceString;
+      if(o.annuel){
+        $("#pwPrixA").textContent = o.annuel.product.priceString;
+        // L'équivalent mensuel est calculé dans la devise de la boutique : jamais un montant en euros figé à côté d'un prix en dollars.
+        let eq = null;
+        try{ const pr = o.annuel.product; if(typeof pr.price==="number" && pr.currencyCode) eq = new Intl.NumberFormat("fr-FR",{style:"currency",currency:pr.currencyCode}).format(pr.price/12); }catch(e){}
+        $("#pwEquiv").textContent = eq ? "par an · soit " + eq + " par mois" : "par an";
+      }
+    }
     majBouton();
   });
   $("#pwPay").onclick = async ()=>{
