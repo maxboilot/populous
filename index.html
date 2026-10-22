@@ -2890,10 +2890,13 @@ const V_SEC_TUILES = ["cambriolage","vol_vehicule","vol_violent","viol_hors","vi
 const V_LOG = {
   autorise:    {t:"Logements autorisés", court:"Autorisés", u:"habitants", dec:1, ex:"Logements dont la construction a été autorisée par un permis, pour 1 000 habitants. Un permis n'est pas un logement construit."},
   commence:    {t:"Logements mis en chantier", court:"Mis en chantier", u:"habitants", dec:1, ex:"Logements dont les travaux ont commencé, pour 1 000 habitants."},
-  prix_appart: {t:"Prix des appartements", court:"Appartements", u:"€/m²", dec:0, ex:"Prix médian au m² des appartements vendus : la moitié des ventes est au-dessus, la moitié en dessous."},
-  prix_maison: {t:"Prix des maisons", court:"Maisons", u:"€/m²", dec:0, ex:"Prix médian au m² des maisons vendues, terrain compris : la moitié des ventes est au-dessus, la moitié en dessous."}
+  prix_appart: {t:"Prix des appartements", court:"Prix appart.", u:"€/m²", dec:0, ex:"Prix médian au m² des appartements vendus : la moitié des ventes est au-dessus, la moitié en dessous."},
+  prix_maison: {t:"Prix des maisons", court:"Prix maisons", u:"€/m²", dec:0, ex:"Prix médian au m² des maisons vendues, terrain compris : la moitié des ventes est au-dessus, la moitié en dessous."},
+  loyer_appart:{t:"Loyers des appartements", court:"Loyer appart.", u:"€/m²", dec:1, ex:"Loyer d'annonce estimé au m² et par mois, charges comprises, pour un appartement type de 52 m² mis en location vide. C'est une estimation par modèle, pas le loyer réellement payé."},
+  loyer_maison:{t:"Loyers des maisons", court:"Loyer maison", u:"€/m²", dec:1, ex:"Loyer d'annonce estimé au m² et par mois, charges comprises, pour une maison type de 92 m² mise en location vide. C'est une estimation par modèle, pas le loyer réellement payé."}
 };
-const V_LOG_ORDRE = ["autorise","commence","prix_appart","prix_maison"];
+const V_LOG_ORDRE = ["autorise","commence","prix_appart","prix_maison","loyer_appart","loyer_maison"];
+const V_SURF_TYPE = {loyer_appart:52, loyer_maison:92};
 function vDecAuto(v){ return v!=null && v<1 ? 2 : 1; }
 function vFmtTaux(v){ return v==null ? "—" : vNum(v, vDecAuto(v)); }
 function vUniteSec(k, court){ return V_SEC[k].u==="logements" ? (court ? "pour 1 000 log." : "pour 1 000 logements") : (court ? "pour 1 000 hab." : "pour 1 000 habitants"); }
@@ -2926,10 +2929,19 @@ function vBlocLogement(ville, f){
     const alsace = ["57","67","68"].includes(String(ville.dep));
     manque = `<p class="vCap" style="margin:0 2px 8px">Prix de l'immobilier : ${alsace ? "non disponibles en Alsace-Moselle, hors des données de ventes de l'État." : "non disponibles pour cette ville dans les données de ventes de l'État."}</p>`;
   }
+  if(f.loyers){
+    const eur1 = v=>vNum(v,1)+" €";
+    if(f.loyers.appartement) tuiles.push(vTuileRub("logement","loyer_appart", f.loyers.appartement.serie[f.loyers.annees.length-1], f.loyers.appartement.serie, "par m² et par mois", eur1));
+    if(f.loyers.maison) tuiles.push(vTuileRub("logement","loyer_maison", f.loyers.maison.serie[f.loyers.annees.length-1], f.loyers.maison.serie, "par m² et par mois", eur1));
+  } else if(["75056","69123","13055"].includes(String(ville.insee))){
+    manque += `<p class="vCap" style="margin:0 2px 8px">Loyers : la source ne les donne que par arrondissement pour ${esc(ville.nom)}.</p>`;
+  } else {
+    manque += `<p class="vCap" style="margin:0 2px 8px">Loyers : non disponibles pour cette ville dans les estimations de l'ANIL.</p>`;
+  }
   return `<div class="vSec">Logement</div>
     <div class="vGrid">${tuiles.join("")}</div>${manque}
     <button class="btn primary" id="vLogTous" type="button" style="width:100%;flex:none;margin-bottom:6px">Voir l'évolution et comparer</button>
-    <p class="vSrc" style="margin-top:0">Permis : Sit@del2, ministère de la Transition écologique${f.permis ? ` (${f.permis.annees[f.permis.annees.length-1]})` : ""}.${f.prix ? ` Prix : demandes de valeurs foncières (DVF), DGFiP${f.prix.jusqu_a ? `, ventes jusqu'au ${esc(vDate(f.prix.jusqu_a))}` : ""}.` : ""}</p>`;
+    <p class="vSrc" style="margin-top:0">Permis : Sit@del2, ministère de la Transition écologique${f.permis ? ` (${f.permis.annees[f.permis.annees.length-1]})` : ""}.${f.prix ? ` Prix : demandes de valeurs foncières (DVF), DGFiP${f.prix.jusqu_a ? `, ventes jusqu'au ${esc(vDate(f.prix.jusqu_a))}` : ""}.` : ""}${f.loyers ? " Loyers : estimations ANIL, à partir des données du Groupe SeLoger et de leboncoin." : ""}</p>`;
 }
 // Fenêtre de détail d'une rubrique (série, position parmi les villes, duel).
 async function ouvrirDetailRub(rub, k){
@@ -2938,7 +2950,7 @@ async function ouvrirDetailRub(rub, k){
   const [idx, f] = await Promise.all([chargerRubIndex(rub), chargerRub(rub, ville.insee)]);
   if(!idx || !f) return;
   const sec = rub==="securite";
-  const m = (sec ? V_SEC : V_LOG)[k], ordre = (sec ? V_SEC_ORDRE : V_LOG_ORDRE).filter(x=>sec || (x.startsWith("prix") ? !!f.prix : !!f.permis));
+  const m = (sec ? V_SEC : V_LOG)[k], ordre = (sec ? V_SEC_ORDRE : V_LOG_ORDRE).filter(x=>sec || (x.startsWith("prix") ? !!f.prix : (x.startsWith("loyer") ? !!(f.loyers && f.loyers[x==="loyer_appart" ? "appartement" : "maison"]) : !!f.permis)));
   let serie, annees, fmt, dec, extra = "", unite, refAn;
   if(sec){
     serie = f.taux[k]; annees = f.annees; refAn = f.annee_ref;
@@ -2951,6 +2963,13 @@ async function ouvrirDetailRub(rub, k){
     fmt = v=>vFmtTaux(v); dec = 1; unite = "pour 1 000 habitants";
     const n = f.permis[c][f.permis[c].length-1];
     extra = `<div class="vCap">Soit ${vNum(n)} logements en ${refAn}.</div>`;
+  } else if(k.startsWith("loyer")){
+    const L = f.loyers[k==="loyer_appart" ? "appartement" : "maison"], surf = V_SURF_TYPE[k];
+    serie = L.serie; annees = f.loyers.annees; refAn = f.loyers.annee_ref;
+    fmt = v=>vNum(v,1)+" €"; dec = 1; unite = "par m² et par mois, charges comprises";
+    const v = serie[serie.length-1];
+    extra = `<div class="vCap">Pour ${k==="loyer_appart" ? "un appartement" : "une maison"} type de ${surf} m² : environ ${vNum(v*surf)} € par mois, charges comprises${L.bas!=null && L.haut!=null ? ` (fourchette de l'estimation : ${vNum(L.bas,1)} à ${vNum(L.haut,1)} € le m²)` : ""}.</div>${
+      L.fragile ? `<div class="vCap" style="margin-top:4px"><b>À prendre avec prudence :</b> estimation fragile pour cette ville (${L.obs!=null && L.obs<30 ? "moins de 30 annonces" : "modèle peu fiable"}).</div>` : ""}`;
   } else {
     const t = k==="prix_appart" ? "appartement" : "maison";
     serie = f.prix[t]; annees = f.prix.annees; refAn = annees[annees.length-1];
@@ -2969,7 +2988,9 @@ async function ouvrirDetailRub(rub, k){
       <div class="vTrack"><i style="width:${Math.round(cmp.v/mx*100)}%;background:#8891B0"></i></div></div>`; })() : "";
   const src = sec
     ? `Source : SSMSI, ministère de l'Intérieur (délinquance enregistrée par la police et la gendarmerie), ${refAn}. ${V_SEC_NOTE} Les valeurs couvertes par le secret statistique ne sont pas publiées. <a href="${esc(idx.source.url)}" target="_blank" rel="noopener">Voir la source</a>`
-    : (k.startsWith("prix")
+    : (k.startsWith("loyer")
+      ? `Source : ${esc(idx.sources.loyers.nom)}. Ce sont des loyers d'annonces estimés par un modèle expérimental, pour un bien type, charges comprises : pas les loyers réellement pratiqués. Les années ne se comparent que lorsque la commune est estimée au niveau communal à chaque édition. <a href="${esc(idx.sources.loyers.url)}" target="_blank" rel="noopener">Voir la source</a>`
+      : k.startsWith("prix")
       ? `Source : demandes de valeurs foncières (DVF), DGFiP. Ventes d'un seul logement, prix médian au m² ; une ville n'a un prix que si elle compte au moins 30 ventes de ce type dans l'année. <a href="${esc(idx.sources.dvf.url)}" target="_blank" rel="noopener">Voir la source</a>`
       : `Source : Sit@del2, service des données et études statistiques du ministère de la Transition écologique. Années civiles complètes. <a href="${esc(idx.sources.permis.url)}" target="_blank" rel="noopener">Voir la source</a>`);
   sheet.innerHTML = `<button class="sheetClose" id="vdClose" aria-label="Fermer">✕</button>
