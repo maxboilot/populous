@@ -4084,5 +4084,18 @@
     "themes": [],
     "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/abrogation_code_noir",
     "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53069",
+    "date": "2026-10-21",
+    "titre": "Retrouver la confiance et l’équilibre dans les rapports locatifs",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [
+      "logement"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/retrouver_confiance_equilibre_rapports_locatifs_17e",
+    "type": "main_levee"
   }
 ]
