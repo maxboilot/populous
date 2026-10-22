@@ -5887,7 +5887,7 @@ initNotificationsPush();
    versions déjà installées avant ce bandeau ne l'ont pas : il servira pour
    les prochaines mises à jour. ?data=local&plateforme=ios&build=4 permet
    de le voir en test. */
-const APP_BUILD = 7;
+const APP_BUILD = 8;
 async function verifierMiseAJour(){
   const q = new URLSearchParams(location.search);
   const essai = q.get("data") === "local";
