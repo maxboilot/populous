@@ -1,6 +1,18 @@
 [
   {
-    "date": "2026-10-22",
+    "date": "2026-10-23",
+    "heure": "09:00",
+    "ordre_du_jour": "Suite de la discussion du projet de loi de financement de la sécurité sociale pour 2027",
+    "themes": [
+      "securite",
+      "economie"
+    ],
+    "dossier": "DLR5L17N54951",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-23",
     "heure": "09:30",
     "ordre_du_jour": "Suite de l'examen du texte — Projet de loi de finances pour 2027",
     "themes": [
@@ -11,43 +23,8 @@
     "lecture": "1ʳᵉ lecture"
   },
   {
-    "date": "2026-10-22",
-    "heure": "15:00",
-    "ordre_du_jour": "Suite de la discussion du projet de loi de financement de la sécurité sociale pour 2027",
-    "themes": [
-      "securite",
-      "economie"
-    ],
-    "dossier": "DLR5L17N54951",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-10-23",
-    "heure": "09:00",
-    "ordre_du_jour": "Suite de l'examen du texte — Projet de loi de finances pour 2027",
-    "themes": [
-      "economie"
-    ],
-    "dossier": "DLR5L17N54629",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-10-23",
-    "heure": "09:00",
-    "ordre_du_jour": "Suite de la discussion du projet de loi de financement de la sécurité sociale pour 2027",
-    "themes": [
-      "securite",
-      "economie"
-    ],
-    "dossier": "DLR5L17N54951",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
     "date": "2026-10-26",
-    "heure": "15:00",
+    "heure": "14:30",
     "ordre_du_jour": "Examen du texte — Projet de loi de finances pour 2027 (séance éventuelle)",
     "themes": [
       "economie"
@@ -65,6 +42,38 @@
       "economie"
     ],
     "dossier": "DLR5L17N54951",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-27",
+    "heure": "16:30",
+    "ordre_du_jour": "Examen du texte — Baisser les prix du carburant à la pompe par l'encadrement des marges des raffineurs",
+    "themes": [],
+    "dossier": "DLR5L17N55014",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-27",
+    "heure": "16:30",
+    "ordre_du_jour": "Examen du texte — L’interdiction de relations commerciales contribuant, par aide ou assistance, à la politique de colonisation dans le Territoire palestinien occupé et dans le Territoire syrien occupé des hauteurs du Golan",
+    "themes": [
+      "economie"
+    ],
+    "dossier": "DLR5L17N54718",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-27",
+    "heure": "16:30",
+    "ordre_du_jour": "Examen du texte — Proposition de loi visant à lutter contre la vie chère en renforçant le droit de la concurrence et de la régulation économique outre-mer",
+    "themes": [
+      "economie",
+      "institutions"
+    ],
+    "dossier": "DLR5L17N51095",
     "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
   },
@@ -91,7 +100,7 @@
   {
     "date": "2026-10-28",
     "heure": "09:30",
-    "ordre_du_jour": "Examen du texte — Créer un corps de fonctionnaires de catégorie B pour les accompagnants d’élèves en situation de handicap (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Créer un corps de fonctionnaires de catégorie B pour les accompagnants d’élèves en situation de handicap",
     "themes": [
       "sante"
     ],
@@ -102,7 +111,7 @@
   {
     "date": "2026-10-28",
     "heure": "09:30",
-    "ordre_du_jour": "Examen du texte — Garantir les droits des joueurs et joueuses et la pérennité des jeux vidéo (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Garantir les droits des joueurs et joueuses et la pérennité des jeux vidéo",
     "themes": [],
     "dossier": "DLR5L17N54899",
     "scrutin_annonce": false,
@@ -111,7 +120,7 @@
   {
     "date": "2026-10-28",
     "heure": "09:30",
-    "ordre_du_jour": "Examen du texte — Projet de loi de finances pour 2027 (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Projet de loi de finances pour 2027",
     "themes": [
       "economie"
     ],
@@ -122,7 +131,7 @@
   {
     "date": "2026-10-28",
     "heure": "10:30",
-    "ordre_du_jour": "Examen du texte — Instaurer un moratoire sur le projet du canal Seine-nord Europe (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Instaurer un moratoire sur le projet du canal Seine-nord Europe",
     "themes": [],
     "dossier": "DLR5L17N54900",
     "scrutin_annonce": false,
@@ -143,7 +152,7 @@
   {
     "date": "2026-10-28",
     "heure": "15:30",
-    "ordre_du_jour": "Examen du texte — Loi d’urgence visant à rétablir l’interdiction de l’acétamipride et du flupyradifurone pour garantir la protection de la santé humaine, de la biodiversité, de l’environnement et notre souveraineté alimentaire (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Loi d’urgence visant à rétablir l’interdiction de l’acétamipride et du flupyradifurone pour garantir la protection de la santé humaine, de la biodiversité, de l’environnement et notre souveraineté alimentaire",
     "themes": [
       "sante",
       "environnement",
@@ -164,7 +173,7 @@
   },
   {
     "date": "2026-10-29",
-    "heure": "15:00",
+    "heure": "14:30",
     "ordre_du_jour": "Examen du texte — Projet de loi de finances pour 2027 (séance éventuelle)",
     "themes": [
       "economie"
@@ -337,6 +346,17 @@
   },
   {
     "date": "2026-11-03",
+    "heure": "18:00",
+    "ordre_du_jour": "Examen du texte — Retrouver la confiance et l’équilibre dans les rapports locatifs (séance éventuelle)",
+    "themes": [
+      "logement"
+    ],
+    "dossier": "DLR5L17N53069",
+    "scrutin_annonce": false,
+    "lecture": "2ᵉ lecture"
+  },
+  {
+    "date": "2026-11-03",
     "heure": "21:30",
     "ordre_du_jour": "Suite de la discussion de la seconde partie du projet de loi de finances pour 2027",
     "themes": [
@@ -421,6 +441,38 @@
       "economie"
     ],
     "dossier": "DLR5L17N54629",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-09",
+    "heure": "16:00",
+    "ordre_du_jour": "Examen du texte — Proposition de loi visant à lutter contre la vie chère en renforçant le droit de la concurrence et de la régulation économique outre-mer (séance éventuelle)",
+    "themes": [
+      "economie",
+      "institutions"
+    ],
+    "dossier": "DLR5L17N51095",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-09",
+    "heure": "21:30",
+    "ordre_du_jour": "Examen du texte — L’interdiction de relations commerciales contribuant, par aide ou assistance, à la politique de colonisation dans le Territoire palestinien occupé et dans le Territoire syrien occupé des hauteurs du Golan (séance éventuelle)",
+    "themes": [
+      "economie"
+    ],
+    "dossier": "DLR5L17N54718",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-10",
+    "heure": "16:30",
+    "ordre_du_jour": "Examen du texte — Baisser les prix du carburant à la pompe par l'encadrement des marges des raffineurs (séance éventuelle)",
+    "themes": [],
+    "dossier": "DLR5L17N55014",
     "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
   },

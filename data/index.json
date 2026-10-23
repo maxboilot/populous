@@ -1,31 +1,5 @@
 [
   {
-    "numero": null,
-    "dossier": "DLR5L16N49280",
-    "date": "2025-10-22",
-    "titre": "Proposition de loi portant création d'un statut de l'élu local",
-    "adopte": true,
-    "statut": "adopte_modifie",
-    "themes": [
-      "institutions"
-    ],
-    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L16N49280",
-    "type": "main_levee"
-  },
-  {
-    "numero": null,
-    "dossier": "DLR5L17N52655",
-    "date": "2025-10-22",
-    "titre": "Proposition de loi organique visant à reporter le renouvellement général des membres du congrès et des assemblées de province de la Nouvelle-Calédonie pour permettre la mise en oeuvre de l'accord du 12 juillet 2025",
-    "adopte": false,
-    "statut": "rejete",
-    "themes": [
-      "institutions"
-    ],
-    "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0174_texte-adopte-seance.pdf",
-    "type": "main_levee"
-  },
-  {
     "numero": 3061,
     "date": "2025-10-23",
     "titre": "La définition pénale du viol et des agressions sexuelles",
