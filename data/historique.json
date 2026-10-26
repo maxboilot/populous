@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-10-23T15:46:55.212718Z",
-  "depuis": "2025-10-23",
-  "nombre": 114,
+  "generated_at": "2026-10-26T06:36:22.464485Z",
+  "depuis": "2025-10-26",
+  "nombre": 113,
   "lois": [
     {
       "numero": 8695,
@@ -2642,30 +2642,6 @@
         "absent": 13
       },
       "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0176_texte-adopte-seance.pdf",
-      "type": "scrutin"
-    },
-    {
-      "numero": 3061,
-      "date": "2025-10-23",
-      "titre": "La définition pénale du viol et des agressions sexuelles",
-      "titre_officiel": "l'ensemble de la proposition de loi modifiant la définition pénale du viol et des agressions sexuelles (texte de la commission mixte paritaire).",
-      "nature": "proposition de loi",
-      "lecture": "texte de la commission mixte paritaire",
-      "solennel": false,
-      "adopte": true,
-      "statut": "adopte",
-      "themes": [
-        "justice",
-        "securite"
-      ],
-      "sort": "l'Assemblée nationale a adopté",
-      "tally": {
-        "pour": 155,
-        "contre": 31,
-        "abstention": 5,
-        "absent": 15
-      },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0175_texte-adopte-seance.pdf",
       "type": "scrutin"
     }
   ]

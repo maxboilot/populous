@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-10-23T15:47:20.061137Z",
+  "generated_at": "2026-10-26T06:36:31.249434Z",
   "date": "2026-10-23",
-  "numero_vedette": 9084,
+  "numero_vedette": 9093,
   "lois": [
     {
       "nature_texte": "projet de loi",
@@ -331,7 +331,7 @@
             "solennel": false,
             "objet": "l'article 15 du projet de loi de financement de la sécurité sociale pour 2027 (première lecture).",
             "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9084",
-            "vedette": true
+            "vedette": false
           },
           "modifications": [
             {
@@ -349,6 +349,268 @@
               "solennel": false,
               "objet": "l'amendement n° 719 de Mme Hamdane et l'amendement identique suivant de suppression de l'article 15 du projet de loi de financement de la sécurité sociale pour 2027 (première lecture).",
               "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9083",
+              "vedette": false,
+              "sous_amendements": []
+            },
+            {
+              "numero": 9085,
+              "nature": "amendement",
+              "article": "15",
+              "n_amendement": 869,
+              "parent": null,
+              "auteur": "Mme Ranc",
+              "issue": "adopte",
+              "pour": 56,
+              "contre": 44,
+              "abstentions": 0,
+              "votants": 100,
+              "solennel": false,
+              "objet": "l'amendement n° 869 de Mme Ranc après l'article 15 du projet de loi de financement de la sécurité sociale pour 2027 (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9085",
+              "vedette": false,
+              "sous_amendements": []
+            },
+            {
+              "numero": 9086,
+              "nature": "amendement",
+              "article": "15",
+              "n_amendement": 508,
+              "parent": null,
+              "auteur": "Mme Corneloup",
+              "issue": "rejete",
+              "pour": 10,
+              "contre": 29,
+              "abstentions": 66,
+              "votants": 105,
+              "solennel": false,
+              "objet": "l'amendement n° 508 de Mme Corneloup et les amendements identiques suivants après l'article 15 du projet de loi de financement de la sécurité sociale pour 2027 (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9086",
+              "vedette": false,
+              "sous_amendements": []
+            },
+            {
+              "numero": 9087,
+              "nature": "amendement",
+              "article": "15",
+              "n_amendement": 3081,
+              "parent": null,
+              "auteur": "M. Bazin",
+              "issue": "rejete",
+              "pour": 13,
+              "contre": 31,
+              "abstentions": 60,
+              "votants": 104,
+              "solennel": false,
+              "objet": "l'amendement n° 3081 de M. Bazin après l'article 15 du projet de loi de financement de la sécurité sociale pour 2027 (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9087",
+              "vedette": false,
+              "sous_amendements": []
+            },
+            {
+              "numero": 9088,
+              "nature": "amendement",
+              "article": "15",
+              "n_amendement": 1461,
+              "parent": null,
+              "auteur": "Mme Erodi",
+              "issue": "rejete",
+              "pour": 25,
+              "contre": 78,
+              "abstentions": 0,
+              "votants": 103,
+              "solennel": false,
+              "objet": "l'amendement n° 1461 de Mme Erodi après l'article 15 du projet de loi de financement de la sécurité sociale pour 2027 (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9088",
+              "vedette": false,
+              "sous_amendements": []
+            }
+          ]
+        },
+        {
+          "ref": "16",
+          "article": null,
+          "modifications": [
+            {
+              "numero": 9089,
+              "nature": "amendement",
+              "article": "16",
+              "n_amendement": 104,
+              "parent": null,
+              "auteur": "Mme Runel",
+              "issue": "adopte",
+              "pour": 84,
+              "contre": 23,
+              "abstentions": 0,
+              "votants": 107,
+              "solennel": false,
+              "objet": "l'amendement n° 104 de Mme Runel et les amendements identiques suivants de suppression de l'article 16 du projet de loi de financement de la sécurité sociale pour 2027 (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9089",
+              "vedette": false,
+              "sous_amendements": []
+            }
+          ]
+        },
+        {
+          "ref": "17",
+          "article": null,
+          "modifications": [
+            {
+              "numero": 9090,
+              "nature": "amendement",
+              "article": "17",
+              "n_amendement": 661,
+              "parent": null,
+              "auteur": "M. Bénard",
+              "issue": "adopte",
+              "pour": 15,
+              "contre": 14,
+              "abstentions": 57,
+              "votants": 86,
+              "solennel": false,
+              "objet": "l'amendement n° 661 de M. Bénard et les amendements identiques suivants de suppression de l'article 17 du projet de loi de financement de la sécurité sociale pour 2027 (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9090",
+              "vedette": false,
+              "sous_amendements": []
+            },
+            {
+              "numero": 9091,
+              "nature": "amendement",
+              "article": "17",
+              "n_amendement": 1471,
+              "parent": null,
+              "auteur": "Mme Hamdane",
+              "issue": "rejete",
+              "pour": 20,
+              "contre": 76,
+              "abstentions": 1,
+              "votants": 97,
+              "solennel": false,
+              "objet": "l'amendement n° 1471 de Mme Hamdane et l'amendement identique suivant après l'article 17 du projet de loi de financement de la sécurité sociale pour 2027 (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9091",
+              "vedette": false,
+              "sous_amendements": []
+            }
+          ]
+        },
+        {
+          "ref": "18",
+          "article": {
+            "numero": 9093,
+            "nature": "article",
+            "article": "18",
+            "n_amendement": null,
+            "parent": null,
+            "auteur": null,
+            "issue": "rejete",
+            "pour": 22,
+            "contre": 22,
+            "abstentions": 67,
+            "votants": 111,
+            "solennel": false,
+            "objet": "l'article 18 du projet de loi de financement de la sécurité sociale pour 2027 (première lecture).",
+            "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9093",
+            "vedette": true
+          },
+          "modifications": [
+            {
+              "numero": 9092,
+              "nature": "amendement",
+              "article": "18",
+              "n_amendement": 1644,
+              "parent": null,
+              "auteur": "Mme Hamdane",
+              "issue": "rejete",
+              "pour": 21,
+              "contre": 22,
+              "abstentions": 68,
+              "votants": 111,
+              "solennel": false,
+              "objet": "l'amendement n° 1644 de Mme Hamdane et l'amendements identique suivant à l'article 18 du projet de loi de financement de la sécurité sociale pour 2027 (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9092",
+              "vedette": false,
+              "sous_amendements": []
+            },
+            {
+              "numero": 9094,
+              "nature": "amendement",
+              "article": "18",
+              "n_amendement": 1474,
+              "parent": null,
+              "auteur": "Mme Hamdane",
+              "issue": "rejete",
+              "pour": 22,
+              "contre": 79,
+              "abstentions": 2,
+              "votants": 103,
+              "solennel": false,
+              "objet": "l'amendement n° 1474 de Mme Hamdane après l'article 18 du projet de loi de financement de la sécurité sociale pour 2027 (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9094",
+              "vedette": false,
+              "sous_amendements": []
+            },
+            {
+              "numero": 9095,
+              "nature": "amendement",
+              "article": "18",
+              "n_amendement": 2787,
+              "parent": null,
+              "auteur": "Mme Mélin",
+              "issue": "adopte",
+              "pour": 60,
+              "contre": 51,
+              "abstentions": 0,
+              "votants": 111,
+              "solennel": false,
+              "objet": "l'amendement n° 2787 de Mme Mélin après l'article 18 du projet de loi de financement de la sécurité sociale pour 2027 (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9095",
+              "vedette": false,
+              "sous_amendements": []
+            }
+          ]
+        },
+        {
+          "ref": "19",
+          "article": null,
+          "modifications": [
+            {
+              "numero": 9096,
+              "nature": "amendement",
+              "article": "19",
+              "n_amendement": 105,
+              "parent": null,
+              "auteur": "Mme Runel",
+              "issue": "adopte",
+              "pour": 92,
+              "contre": 22,
+              "abstentions": 1,
+              "votants": 115,
+              "solennel": false,
+              "objet": "l'amendement n° 105 de Mme Runel et les amendements identiques suivants de suppression de l'article 19 et annexe du projet de loi de financement de la sécurité sociale pour 2027 (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9096",
+              "vedette": false,
+              "sous_amendements": []
+            }
+          ]
+        },
+        {
+          "ref": "?",
+          "article": null,
+          "modifications": [
+            {
+              "numero": 9097,
+              "nature": "autre",
+              "article": null,
+              "n_amendement": null,
+              "parent": null,
+              "auteur": null,
+              "issue": "rejete",
+              "pour": 1,
+              "contre": 115,
+              "abstentions": 22,
+              "votants": 138,
+              "solennel": false,
+              "objet": "la deuxième partie du projet de loi de financement de la sécurité sociale pour 2027 (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9097",
               "vedette": false,
               "sous_amendements": []
             }

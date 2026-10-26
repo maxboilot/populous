@@ -1,22 +1,4 @@
 {
-  "numero": 9084,
-  "statut": "publie",
-  "portee": "article",
-  "article_ref": "15",
-  "source_texte": "depot",
-  "source": "https://www.assemblee-nationale.fr/dyn/opendata/PRJLANR5L17B3211.html",
-  "articles": [
-    {
-      "article": "Article 15",
-      "texte": "Approbation du montant de la compensation des exonérations ciblées"
-    },
-    {
-      "article": "Article 15",
-      "texte": "Est approuvé le montant de 8,9 milliards d’euros correspondant à la compensation des exonérations, réductions ou abattements d’assiette de cotisations ou contributions de sécurité sociale, mentionné à l’annexe 4 jointe au projet de loi de financement de la sécurité sociale pour 2027."
-    },
-    {
-      "article": "Article 15",
-      "texte": "Les crédits ouverts sur le budget de l’État en compensation d’exonérations s’élèvent à 8,87 milliards d’euros en 2027. Ce montant est en baisse de 28 millions d’euros par rapport aux crédits ouverts en loi de finances initiale pour 2026, qui s’élevaient à 8,90 milliards d’euros, pour tenir compte des mesures contenues dans le présent projet de loi en vue de réaliser des économies sur le champ de ces dispositifs. Il tient compte de la compensation par l’État, en application des textes financiers pour 2026, de 2,6 milliards d’euros d’exonérations antérieurement non‑compensées (heures supplémentaires, stagiaires en milieu professionnel, contrats uniques d’insertion et contrats d’accompagnement dans l’emploi, contrats de sécurisation professionnelle) ainsi que de l’évolution du coût des dispositifs compensés."
-    }
-  ]
+  "numero": 9093,
+  "statut": "rejete"
 }
