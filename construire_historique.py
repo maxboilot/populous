@@ -209,7 +209,10 @@ def construire_index_bta():
                 vr = (dec.get('voteRefs') or {}).get('voteRef')
                 ref = _ref_texte_bta(dec)
                 if vr and ref:
-                    index[vr] = ref
+                    # voteRef est une liste quand une decision regroupe
+                    # plusieurs scrutins : on lie chacun au meme texte.
+                    for v in (vr if isinstance(vr, list) else [vr]):
+                        index[v] = ref
     return index
 
 
