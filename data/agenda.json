@@ -12,38 +12,6 @@
   },
   {
     "date": "2026-10-27",
-    "heure": "16:30",
-    "ordre_du_jour": "Examen du texte — Baisser les prix du carburant à la pompe par l'encadrement des marges des raffineurs",
-    "themes": [],
-    "dossier": "DLR5L17N55014",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-10-27",
-    "heure": "16:30",
-    "ordre_du_jour": "Examen du texte — L’interdiction de relations commerciales contribuant, par aide ou assistance, à la politique de colonisation dans le Territoire palestinien occupé et dans le Territoire syrien occupé des hauteurs du Golan",
-    "themes": [
-      "economie"
-    ],
-    "dossier": "DLR5L17N54718",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-10-27",
-    "heure": "16:30",
-    "ordre_du_jour": "Examen du texte — Proposition de loi visant à lutter contre la vie chère en renforçant le droit de la concurrence et de la régulation économique outre-mer",
-    "themes": [
-      "economie",
-      "institutions"
-    ],
-    "dossier": "DLR5L17N51095",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-10-27",
     "heure": "21:30",
     "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (première partie)",
     "themes": [
@@ -523,6 +491,18 @@
       "economie"
     ],
     "dossier": "DLR5L17N54629",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-17",
+    "heure": "15:00",
+    "ordre_du_jour": "Discussion du projet de loi, adopté par le Sénat, visant la relance et la décentralisation du logement",
+    "themes": [
+      "logement",
+      "institutions"
+    ],
+    "dossier": "DLR5L17N54608",
     "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
   },
