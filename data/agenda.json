@@ -262,17 +262,6 @@
     "lecture": "1ʳᵉ lecture"
   },
   {
-    "date": "2026-10-31",
-    "heure": "15:00",
-    "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (première partie)",
-    "themes": [
-      "economie"
-    ],
-    "dossier": "DLR5L17N54629",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
     "date": "2026-11-02",
     "heure": "09:00",
     "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (première partie)",
@@ -491,6 +480,135 @@
     ],
     "dossier": "DLR5L17N54629",
     "scrutin_annonce": true,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-18",
+    "heure": "14:00",
+    "ordre_du_jour": "Suite de la discussion du projet de loi, adopté par le Sénat, visant la relance et la décentralisation du logement",
+    "themes": [
+      "logement",
+      "institutions"
+    ],
+    "dossier": "DLR5L17N54608",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-18",
+    "heure": "21:30",
+    "ordre_du_jour": "Discussion, en 2e lecture, de la proposition de loi, adoptée par le Sénat, pour retrouver la confiance et l'équilibre dans les rapports locatifs",
+    "themes": [
+      "logement"
+    ],
+    "dossier": "DLR5L17N53069",
+    "scrutin_annonce": false,
+    "lecture": "2ᵉ lecture"
+  },
+  {
+    "date": "2026-11-19",
+    "heure": "09:00",
+    "ordre_du_jour": "Discussion de la proposition de loi visant à améliorer le dispositif du temps partiel thérapeutique pour les fonctionnaires",
+    "themes": [],
+    "dossier": "DLR5L17N54989",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-19",
+    "heure": "09:00",
+    "ordre_du_jour": "Discussion de la proposition de loi visant à baisser les prix du carburant à la pompe par l'encadrement des marges des raffineurs",
+    "themes": [],
+    "dossier": "DLR5L17N55014",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-19",
+    "heure": "09:00",
+    "ordre_du_jour": "Discussion de la proposition de loi visant à l’interdiction de relations commerciales contribuant, par aide ou assistance, à la politique de colonisation dans le Territoire palestinien occupé et dans le Territoire syrien occupé des hauteurs du Golan",
+    "themes": [
+      "economie"
+    ],
+    "dossier": "DLR5L17N54718",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-19",
+    "heure": "09:00",
+    "ordre_du_jour": "Discussion de la proposition de loi visant à mieux reconnaître et à valoriser les aidants actifs",
+    "themes": [
+      "social"
+    ],
+    "dossier": "DLR5L17N54994",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-19",
+    "heure": "09:00",
+    "ordre_du_jour": "Discussion de la proposition de loi visant à régulariser les travailleurs sans-papiers",
+    "themes": [
+      "travail"
+    ],
+    "dossier": "DLR5L17N54998",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-19",
+    "heure": "09:00",
+    "ordre_du_jour": "Discussion de la proposition de loi, adoptée par le Sénat, relative à l’instauration d’une présomption d’utilisation des contenus culturels par les fournisseurs d’intelligence artificielle",
+    "themes": [
+      "culture"
+    ],
+    "dossier": "DLR5L17N53359",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-19",
+    "heure": "09:00",
+    "ordre_du_jour": "Discussion de la proposition de loi, adoptée par le Sénat, visant à lutter contre la vie chère en renforçant le droit de la concurrence et de la régulation économique outre-mer",
+    "themes": [
+      "economie",
+      "institutions"
+    ],
+    "dossier": "DLR5L17N51095",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-19",
+    "heure": "09:00",
+    "ordre_du_jour": "Discussion, en 2e lecture, de la proposition de loi, modifiée par le Sénat, visant à exercer l’accès à l’emploi, à pérenniser et à étendre progressivement l’expérimentation « territoires zéro chômeur de longue durée » comme solution de retour à l’emploi pour les personnes privées durablement d’emploi",
+    "themes": [],
+    "dossier": "DLR5L17N51962",
+    "scrutin_annonce": false,
+    "lecture": "2ᵉ lecture"
+  },
+  {
+    "date": "2026-11-19",
+    "heure": "09:00",
+    "ordre_du_jour": "Suite de la discussion, en 2e lecture, de la proposition de loi, adoptée par le Sénat, pour retrouver la confiance et l'équilibre dans les rapports locatifs",
+    "themes": [
+      "logement"
+    ],
+    "dossier": "DLR5L17N53069",
+    "scrutin_annonce": false,
+    "lecture": "2ᵉ lecture"
+  },
+  {
+    "date": "2026-11-20",
+    "heure": "09:00",
+    "ordre_du_jour": "Suite de la discussion du projet de loi, adopté par le Sénat, visant la relance et la décentralisation du logement",
+    "themes": [
+      "logement",
+      "institutions"
+    ],
+    "dossier": "DLR5L17N54608",
+    "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
   },
   {
