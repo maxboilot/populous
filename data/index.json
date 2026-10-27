@@ -4072,5 +4072,18 @@
     ],
     "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/simplifier_ouverture_debits_boissons_zones_rurales_17e",
     "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N54218",
+    "date": "2026-10-26",
+    "titre": "Projet de loi constitutionnelle pour une Corse autonome au sein de la République",
+    "adopte": false,
+    "statut": "rejete",
+    "themes": [
+      "institutions"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/projet_loi_constitutionnelle_pour_Corse_autonome_au_sein_Republique",
+    "type": "main_levee"
   }
 ]
