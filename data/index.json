@@ -4088,6 +4088,19 @@
   },
   {
     "numero": null,
+    "dossier": "DLR5L17N54925",
+    "date": "2026-10-27",
+    "titre": "Projet de loi relatif à la réparation des dommages résultant de violences ou de dégradations commises dans l’espace public et au recouvrement des dommages et intérêts",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "securite"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N54925",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
     "dossier": "DLR5L17N54762",
     "date": "2026-10-27",
     "titre": "Projet de loi autorisant l'approbation de l'accord multilatéral entre autorités compétentes concernant l'échange automatique de renseignements relatifs au cadre de déclaration applicable aux crypto-actifs, et l'approbation de  l'addendum à  l'accord multilatéral entre autorités compétentes concernant l'échange automatique de renseignements relatifs aux comptes financiers",
