@@ -1,7 +1,7 @@
 [
   {
     "date": "2026-10-28",
-    "heure": "09:00",
+    "heure": "09:05",
     "ordre_du_jour": "Examen des amendements (art. 88) — Contrôle réel des investissements étrangers en France",
     "themes": [],
     "dossier": "DLR5L17N54907",
@@ -52,9 +52,29 @@
   {
     "date": "2026-10-28",
     "heure": "09:30",
+    "ordre_du_jour": "Examen du texte — Exercer l’accès à l’emploi, pérenniser et étendre progressivement l’expérimentation Territoires zéro chômeur longue durée comme solution de retour à l’emploi pour les personnes privées durablement d’emploi",
+    "themes": [],
+    "dossier": "DLR5L17N51962",
+    "scrutin_annonce": false,
+    "lecture": "2ᵉ lecture"
+  },
+  {
+    "date": "2026-10-28",
+    "heure": "09:30",
     "ordre_du_jour": "Examen du texte — Garantir les droits des joueurs et joueuses et la pérennité des jeux vidéo",
     "themes": [],
     "dossier": "DLR5L17N54899",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-28",
+    "heure": "09:30",
+    "ordre_du_jour": "Examen du texte — Mieux reconnaître et à valoriser les aidants actifs",
+    "themes": [
+      "social"
+    ],
+    "dossier": "DLR5L17N54994",
     "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
   },
@@ -71,7 +91,18 @@
   },
   {
     "date": "2026-10-28",
-    "heure": "10:30",
+    "heure": "09:30",
+    "ordre_du_jour": "Examen du texte — Proposition de loi relative à l’instauration d’une présomption d’utilisation des contenus culturels par les fournisseurs d’intelligence artificielle",
+    "themes": [
+      "culture"
+    ],
+    "dossier": "DLR5L17N53359",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-10-28",
+    "heure": "10:40",
     "ordre_du_jour": "Examen du texte — Instaurer un moratoire sur le projet du canal Seine-nord Europe",
     "themes": [],
     "dossier": "DLR5L17N54900",
@@ -80,7 +111,7 @@
   },
   {
     "date": "2026-10-28",
-    "heure": "15:00",
+    "heure": "15:10",
     "ordre_du_jour": "Examen du texte — Faire de l’Union européenne le cadre d’une interdiction effective des mécanismes addictifs conçus et promus par les réseaux sociaux et plateformes numériques à l’égard des enfants et jeunes mineurs",
     "themes": [
       "social",
@@ -473,6 +504,17 @@
   },
   {
     "date": "2026-11-18",
+    "heure": "11:00",
+    "ordre_du_jour": "Examen de texte — Projet de loi autorisant l'approbation de l'accord multilatéral entre autorités compétentes concernant l'échange automatique de renseignements relatifs au cadre de déclaration applicable aux crypto-actifs, et l'approbation de  l'addendum à  l'accord multilatéral entre autorités compétentes concernant l'échange automatique de renseignements relatifs aux comptes financiers (séance éventuelle)",
+    "themes": [
+      "economie"
+    ],
+    "dossier": "DLR5L17N54762",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture (Sénat)"
+  },
+  {
+    "date": "2026-11-18",
     "heure": "14:00",
     "ordre_du_jour": "Suite de la discussion du projet de loi, adopté par le Sénat, visant la relance et la décentralisation du logement",
     "themes": [
@@ -580,7 +622,7 @@
   {
     "date": "2026-11-19",
     "heure": "09:00",
-    "ordre_du_jour": "Suite de la discussion, en 2e lecture, de la proposition de loi, adoptée par le Sénat, pour retrouver la confiance et l'équilibre dans les rapports locatifs",
+    "ordre_du_jour": "Suite de la discussion, en 2e lecture, de la proposition de loi, modifiée par le Sénat, pour retrouver la confiance et l'équilibre dans les rapports locatifs",
     "themes": [
       "logement"
     ],
