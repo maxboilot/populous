@@ -4107,7 +4107,7 @@
     "titre": "Créer un parcours de soins intégralement pris en charge par la sécurité sociale pour toutes les victimes de violences sexuelles",
     "adopte": true,
     "statut": "adopte",
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9241",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0361_texte-adopte-seance.pdf",
     "themes": [
       "sante",
       "justice",
@@ -4121,7 +4121,7 @@
     "titre": "Créer un corps de fonctionnaires de catégorie B pour les accompagnants d’élèves en situation de handicap",
     "adopte": true,
     "statut": "adopte",
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9203",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0360_texte-adopte-seance.pdf",
     "themes": [
       "sante"
     ],
@@ -4139,34 +4139,6 @@
       "institutions"
     ],
     "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0359_texte-adopte-seance.pdf",
-    "type": "main_levee"
-  },
-  {
-    "numero": null,
-    "dossier": "DLR5L17N54898",
-    "date": "2026-10-29",
-    "titre": "Créer un parcours de soins intégralement pris en charge par la sécurité sociale pour toutes les victimes de violences sexuelles",
-    "adopte": true,
-    "statut": "adopte",
-    "themes": [
-      "sante",
-      "justice",
-      "securite"
-    ],
-    "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0361_texte-adopte-seance.pdf",
-    "type": "main_levee"
-  },
-  {
-    "numero": null,
-    "dossier": "DLR5L17N54901",
-    "date": "2026-10-29",
-    "titre": "Créer un corps de fonctionnaires de catégorie B pour les accompagnants d’élèves en situation de handicap",
-    "adopte": true,
-    "statut": "adopte",
-    "themes": [
-      "sante"
-    ],
-    "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0360_texte-adopte-seance.pdf",
     "type": "main_levee"
   },
   {

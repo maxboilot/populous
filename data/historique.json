@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-29T21:52:47.481345Z",
+  "generated_at": "2026-10-29T23:58:48.399135Z",
   "depuis": "2025-10-29",
   "nombre": 114,
   "lois": [
@@ -25,7 +25,7 @@
         "abstention": 110,
         "absent": 315
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9241",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0361_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
@@ -48,7 +48,7 @@
         "abstention": 123,
         "absent": 278
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9203",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0360_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
