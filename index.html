@@ -2706,7 +2706,10 @@ function ouvrirPaywallVille(){
         $("#pwEquiv").textContent = eq ? "par an · soit " + eq + " par mois" : "par an";
       }
       if(!prixSur){
-        $("#pwPlans").insertAdjacentHTML("afterend", `<p class="vCap" id="pwPrixNote" style="margin:-4px 2px 10px">Prix affichés par l'App Store de ton compte. La fenêtre d'Apple confirme le montant exact, dans la devise de ton pays.</p>`);
+        const noteBoutique = plateforme==="android"
+          ? "Prix affichés par Google Play pour ton compte. La fenêtre de Google Play confirme le montant exact, dans la devise de ton pays."
+          : "Prix affichés par l'App Store de ton compte. La fenêtre d'Apple confirme le montant exact, dans la devise de ton pays.";
+        $("#pwPlans").insertAdjacentHTML("afterend", `<p class="vCap" id="pwPrixNote" style="margin:-4px 2px 10px">${noteBoutique}</p>`);
       }
     }
     majBouton();
