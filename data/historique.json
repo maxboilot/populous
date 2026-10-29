@@ -1,8 +1,56 @@
 {
-  "generated_at": "2026-10-29T19:41:01.973794Z",
+  "generated_at": "2026-10-29T21:52:47.481345Z",
   "depuis": "2025-10-29",
-  "nombre": 112,
+  "nombre": 114,
   "lois": [
+    {
+      "numero": 9241,
+      "date": "2026-10-29",
+      "titre": "Créer un parcours de soins intégralement pris en charge par la sécurité sociale pour toutes les victimes de violences sexuelles",
+      "titre_officiel": "l'ensemble de la proposition de loi visant à créer un parcours de soins intégralement pris en charge par la sécurité sociale pour toutes les victimes de violences sexuelles (première lecture).",
+      "nature": "proposition de loi",
+      "lecture": "première lecture",
+      "solennel": false,
+      "adopte": true,
+      "statut": "adopte",
+      "themes": [
+        "sante",
+        "justice",
+        "securite"
+      ],
+      "sort": "l'Assemblée nationale a adopté",
+      "tally": {
+        "pour": 152,
+        "contre": 5,
+        "abstention": 110,
+        "absent": 315
+      },
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9241",
+      "type": "scrutin"
+    },
+    {
+      "numero": 9203,
+      "date": "2026-10-29",
+      "titre": "Créer un corps de fonctionnaires de catégorie B pour les accompagnants d’élèves en situation de handicap",
+      "titre_officiel": "l'ensemble de la proposition de loi visant à créer un corps de fonctionnaires de catégorie B pour les accompagnants d’élèves en situation de handicap (première lecture).",
+      "nature": "proposition de loi",
+      "lecture": "première lecture",
+      "solennel": false,
+      "adopte": true,
+      "statut": "adopte",
+      "themes": [
+        "sante"
+      ],
+      "sort": "l'Assemblée nationale a adopté",
+      "tally": {
+        "pour": 166,
+        "contre": 16,
+        "abstention": 123,
+        "absent": 278
+      },
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9203",
+      "type": "scrutin"
+    },
     {
       "numero": 8695,
       "date": "2026-10-12",
