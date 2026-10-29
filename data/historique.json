@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-10-28T21:45:31.105914Z",
-  "depuis": "2025-10-28",
-  "nombre": 113,
+  "generated_at": "2026-10-29T00:03:29.163782Z",
+  "depuis": "2025-10-29",
+  "nombre": 112,
   "lois": [
     {
       "numero": 8695,
@@ -2619,29 +2619,6 @@
         "absent": 15
       },
       "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0178_texte-adopte-seance.pdf",
-      "type": "scrutin"
-    },
-    {
-      "numero": 3182,
-      "date": "2025-10-28",
-      "titre": "Reporter le renouvellement général des membres du congrès et des assemblées de province de la Nouvelle-Calédonie afin de permettre la poursuite de la discussion en vue d'un accord consensuel sur l'avenir institutionnel de la Nouvelle-Calédonie",
-      "titre_officiel": "l'ensemble de la proposition de loi organique visant à reporter le renouvellement général des membres du congrès et des assemblées de province de la Nouvelle-Calédonie afin de permettre la poursuite de la discussion en vue d'un accord consensuel sur l'avenir institutionnel de la Nouvelle-Calédonie (texte de la commission mixte paritaire).",
-      "nature": "proposition de loi organique",
-      "lecture": "texte de la commission mixte paritaire",
-      "solennel": true,
-      "adopte": true,
-      "statut": "adopte",
-      "themes": [
-        "institutions"
-      ],
-      "sort": "l'Assemblée nationale a adopté",
-      "tally": {
-        "pour": 279,
-        "contre": 247,
-        "abstention": 9,
-        "absent": 13
-      },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0176_texte-adopte-seance.pdf",
       "type": "scrutin"
     }
   ]
