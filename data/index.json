@@ -4100,5 +4100,45 @@
     ],
     "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N54923",
     "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53331",
+    "date": "2026-10-29",
+    "titre": "Rétablir le droit commun de la prescription acquisitive dans les collectivités régies par l’article 73 de la Constitution ainsi qu’à Saint-Martin et Saint-Barthélemy",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "justice",
+      "institutions"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0359_texte-adopte-seance.pdf",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N54901",
+    "date": "2026-10-29",
+    "titre": "Créer un corps de fonctionnaires de catégorie B pour les accompagnants d’élèves en situation de handicap",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "sante"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0360_texte-adopte-seance.pdf",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N54767",
+    "date": "2026-10-29",
+    "titre": "Projet de loi autorisant la ratification de l'accord de protection des investissements entre l'Union européenne et ses États membres, d'une part, et la République socialiste du Vietnam, d'autre part",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "defense"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N54767",
+    "type": "main_levee"
   }
 ]
