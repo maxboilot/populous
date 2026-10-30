@@ -1,9 +1,31 @@
 {
-  "generated_at": "2026-10-30T15:06:03.488220Z",
-  "featured_numero": null,
+  "generated_at": "2026-10-30T17:06:32.135925Z",
+  "featured_numero": 9347,
   "featured_is_solennel": false,
-  "autres_scrutins_du_jour": [],
-  "aucun_vote_aujourdhui": true,
-  "last_featured_numero": 9241,
-  "last_featured_date": "2026-10-29"
+  "autres_scrutins_du_jour": [
+    9336,
+    9337,
+    9338,
+    9339,
+    9340,
+    9341,
+    9342,
+    9343,
+    9344,
+    9345,
+    9346,
+    9348,
+    9349,
+    9350,
+    9351,
+    9352,
+    9353,
+    9354,
+    9355,
+    9356,
+    9357
+  ],
+  "aucun_vote_aujourdhui": false,
+  "last_featured_numero": 9347,
+  "last_featured_date": "2026-10-30"
 }
