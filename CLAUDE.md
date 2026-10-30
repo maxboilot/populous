@@ -11,7 +11,7 @@ Le succès se mesure à la portée organique, à la qualité des partages, et à
 réputation éditoriale irréprochable.
 
 - Dépôt : `maxboilot/populous`
-- En ligne : https://maxboilot.github.io/populous/ (GitHub Pages)
+- En ligne : https://maxboilot.github.io/populous/ (GitHub Pages) — pages légales uniquement (confidentialité, conditions, assistance) ; la version web de l'app a été retirée : Populous n'existe qu'en application (iOS, Android)
 - Dossier local : `~/populous-app`
 
 ## Règles de collaboration — non négociables
