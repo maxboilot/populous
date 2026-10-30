@@ -2505,7 +2505,7 @@ function vHemi(cols){
    Les clés ci-dessous sont les clés PUBLIQUES du SDK RevenueCat, faites pour être embarquées dans l'app
    (ce ne sont pas des secrets). À renseigner une fois le projet RevenueCat créé (voir PAIEMENT_checklist.md) :
    tant qu'elles valent « A_RENSEIGNER », le paiement reste désactivé et l'écran le dit. */
-const RC_CLE_IOS = "appl_yaRdzOgKgTaMYvgPYvICkevfyXZ", RC_CLE_ANDROID = "A_RENSEIGNER";
+const RC_CLE_IOS = "appl_yaRdzOgKgTaMYvgPYvICkevfyXZ", RC_CLE_ANDROID = "goog_aIPFZqKiPInCIGhQdpwdFpWPGWF";
 const RC_DROIT = "ma_ville";                      // identifiant du droit (entitlement) dans RevenueCat
 const SITE_POPULOUS = "https://maxboilot.github.io/populous/";
 const URL_CONDITIONS = SITE_POPULOUS + "conditions/", URL_CONFIDENTIALITE = SITE_POPULOUS;
@@ -2584,6 +2584,14 @@ const Billing = (function(){
       try{ const e = droit(await plugin.restorePurchases()); appliquer(e); return {etat: e ? "ok" : "aucun"}; }
       catch(err){ return {etat:"erreur"}; }
     },
+    // Pays de la boutique et devise des prix renvoyés : sert à l'assistance (un prix affiché dans une autre devise que celle du pays se voit tout de suite).
+    async boutique(){
+      if(!await init()) return null;
+      let pays = null, devise = null;
+      try{ const r = await plugin.getStorefront(); pays = (r && r.countryCode) || null; }catch(e){}
+      try{ const o = await Billing.offres(); const pr = o && (o.annuel || o.mensuel) && (o.annuel || o.mensuel).product; devise = (pr && pr.currencyCode) || null; }catch(e){}
+      return {pays, devise};
+    },
     async idUtilisateur(){
       if(!await init()) return null;
       try{ const r = await plugin.getAppUserID(); return (r && r.appUserID) || null; }catch(e){ return null; }
@@ -2647,8 +2655,8 @@ function ouvrirPaywallVille(){
     <p class="lead">Le conseil municipal, le budget, les impôts, la dette, la sécurité, le logement : ce que ta ville décide et finance, comparé aux 100 plus grandes villes de France.</p>
     <p class="vCap hidden" id="pwCouv" style="margin:-4px 2px 10px"></p>
     <div class="vPlans" id="pwPlans" role="radiogroup" aria-label="Formule d'abonnement">
-      <button class="vPlan" type="button" role="radio" data-plan="mensuel" aria-checked="false"><div class="vPlanN" id="pwPrixM">${PRIX_SECOURS.mensuel}</div><div class="vPlanU">par mois</div></button>
-      <button class="vPlan pop on" type="button" role="radio" data-plan="annuel" aria-checked="true"><div class="vPlanBadge">Le plus populaire</div><div class="vPlanN" id="pwPrixA">${PRIX_SECOURS.annuel}</div><div class="vPlanU" id="pwEquiv">par an · soit 1,67 € par mois</div></button>
+      <button class="vPlan" type="button" role="radio" data-plan="mensuel" aria-checked="false"><div class="vPlanU">Populous Local · abonnement d'un mois</div><div class="vPlanN" id="pwPrixM">${PRIX_SECOURS.mensuel}</div><div class="vPlanU">par mois</div></button>
+      <button class="vPlan pop on" type="button" role="radio" data-plan="annuel" aria-checked="true"><div class="vPlanBadge">Le plus populaire</div><div class="vPlanU">Populous Local · abonnement d'un an</div><div class="vPlanN" id="pwPrixA">${PRIX_SECOURS.annuel}</div><div class="vPlanU" id="pwEquiv">par an · soit 1,67 € par mois</div></button>
     </div>
     <button class="btn primary pwBtn" id="pwPay" type="button" disabled>${possible ? "Chargement…" : (estNatif() ? "Paiement bientôt disponible" : "Abonnement disponible dans l'app Populous")}</button>
     <p class="vErr hidden" id="pwMsg"></p>
@@ -2670,7 +2678,7 @@ function ouvrirPaywallVille(){
       z.classList.remove("hidden");
     }
   });
-  let plan = "annuel", paquets = null;
+  let plan = "annuel", paquets = null, prixSur = true;
   const majBouton = ()=>{
     const btn = $("#pwPay");
     document.querySelectorAll("#pwPlans .vPlan").forEach(b=>{ const on = b.dataset.plan===plan; b.classList.toggle("on", on); b.setAttribute("aria-checked", on); });
@@ -2681,9 +2689,14 @@ function ouvrirPaywallVille(){
     btn.textContent = x ? `S'abonner · ${x.product.priceString} ${plan==="annuel" ? "par an" : "par mois"}` : "Formule indisponible";
   };
   document.querySelectorAll("#pwPlans .vPlan").forEach(b=>{ b.onclick = ()=>{ plan = b.dataset.plan; majBouton(); }; });
-  if(possible) Billing.offres().then(o=>{
+  if(possible) Billing.offres().then(async o=>{
     paquets = o || false;
     if(o){
+      // Le prix de la boutique est TOUJOURS affiché (exigence Apple 3.1.2). Si le pays de la boutique diffère de la région de l'appareil
+      // (vu en test : boutique USA, appareil en France), on ajoute seulement une note : la fenêtre d'Apple confirme le montant exact.
+      let region = null; try{ region = new Intl.Locale(navigator.language || "").region || null; }catch(e){}
+      const b = await Billing.boutique();
+      prixSur = !(b && b.pays && region && String(b.pays).toUpperCase() !== String(region).toUpperCase());
       if(o.mensuel) $("#pwPrixM").textContent = o.mensuel.product.priceString;
       if(o.annuel){
         $("#pwPrixA").textContent = o.annuel.product.priceString;
@@ -2691,6 +2704,12 @@ function ouvrirPaywallVille(){
         let eq = null;
         try{ const pr = o.annuel.product; if(typeof pr.price==="number" && pr.currencyCode) eq = new Intl.NumberFormat("fr-FR",{style:"currency",currency:pr.currencyCode}).format(pr.price/12); }catch(e){}
         $("#pwEquiv").textContent = eq ? "par an · soit " + eq + " par mois" : "par an";
+      }
+      if(!prixSur){
+        const noteBoutique = plateforme==="android"
+          ? "Prix affichés par Google Play pour ton compte. La fenêtre de Google Play confirme le montant exact, dans la devise de ton pays."
+          : "Prix affichés par l'App Store de ton compte. La fenêtre d'Apple confirme le montant exact, dans la devise de ton pays.";
+        $("#pwPlans").insertAdjacentHTML("afterend", `<p class="vCap" id="pwPrixNote" style="margin:-4px 2px 10px">${noteBoutique}</p>`);
       }
     }
     majBouton();
@@ -3328,7 +3347,9 @@ function wireVilleProfil(){
 async function majIdAssistance(){
   const z = $("#idAssist"); if(!z || !Billing.possible()) return;
   const id = await Billing.idUtilisateur(); if(!id || !$("#idAssist")) return;
-  z.innerHTML = `Identifiant d'assistance : <code style="user-select:all">${esc(id)}</code> <button class="vLien" id="idCopier" type="button">Copier</button>`;
+  z.innerHTML = `Identifiant d'assistance : <code style="user-select:all">${esc(id)}</code> <button class="vLien" id="idCopier" type="button">Copier</button><br><span id="idBoutique">Boutique : …</span>`;
+  Billing.boutique().then(b=>{ const e = $("#idBoutique"); if(!e) return; let reg = null; try{ reg = new Intl.Locale(navigator.language || "").region || null; }catch(err){}
+    e.textContent = "Boutique : " + ((b && b.pays) || "inconnue") + " · devise des prix : " + ((b && b.devise) || "inconnue") + " · région de l'appareil : " + (reg || "inconnue"); });
   $("#idCopier").onclick = async ()=>{
     try{ await navigator.clipboard.writeText(id); toast("Identifiant copié"); }
     catch(e){ toast("Copie impossible : touche l'identifiant pour le sélectionner"); }
@@ -5886,7 +5907,7 @@ initNotificationsPush();
    versions déjà installées avant ce bandeau ne l'ont pas : il servira pour
    les prochaines mises à jour. ?data=local&plateforme=ios&build=4 permet
    de le voir en test. */
-const APP_BUILD = 5;
+const APP_BUILD = 10;
 async function verifierMiseAJour(){
   const q = new URLSearchParams(location.search);
   const essai = q.get("data") === "local";
