@@ -1,141 +1,5 @@
 [
   {
-    "date": "2026-10-29",
-    "heure": "09:00",
-    "ordre_du_jour": "Discussion de la proposition de loi visant à créer un corps de fonctionnaires de catégorie B pour les accompagnants d’élèves en situation de handicap",
-    "themes": [
-      "sante"
-    ],
-    "dossier": "DLR5L17N54901",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-10-29",
-    "heure": "09:00",
-    "ordre_du_jour": "Discussion de la proposition de loi visant à rétablir le droit commun de la prescription acquisitive dans les Collectivités régies par l’article 73 de la Constitution ainsi qu’à Saint-Martin et Saint-Barthélemy",
-    "themes": [
-      "justice",
-      "institutions"
-    ],
-    "dossier": "DLR5L17N53331",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-10-29",
-    "heure": "10:00",
-    "ordre_du_jour": "Examen du texte — Allocution du Président d'âge",
-    "themes": [],
-    "dossier": "DLR5L17N50155",
-    "scrutin_annonce": false,
-    "lecture": null
-  },
-  {
-    "date": "2026-10-29",
-    "heure": "14:45",
-    "ordre_du_jour": "Examen du texte — Projet de loi de finances pour 2027",
-    "themes": [
-      "economie"
-    ],
-    "dossier": "DLR5L17N54629",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-10-29",
-    "heure": "21:30",
-    "ordre_du_jour": "Suite de la discussion de la proposition de loi d’urgence visant à rétablir l’interdiction de l’acétamipride et du flupyradifurone pour garantir la protection de la santé humaine, de la biodiversité, de l’environnement et notre souveraineté alimentaire",
-    "themes": [
-      "sante",
-      "environnement",
-      "agriculture"
-    ],
-    "dossier": "DLR5L17N54902",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-10-29",
-    "heure": "21:30",
-    "ordre_du_jour": "Suite de la discussion de la proposition de loi pour protéger durablement les jeunes majeurs de l’aide sociale à l’enfance et de la protection judiciaire de la jeunesse",
-    "themes": [
-      "justice"
-    ],
-    "dossier": "DLR5L17N54298",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-10-29",
-    "heure": "21:30",
-    "ordre_du_jour": "Suite de la discussion de la proposition de loi visant l'augmentation des salaires et des pensions",
-    "themes": [
-      "travail"
-    ],
-    "dossier": "DLR5L17N54906",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-10-29",
-    "heure": "21:30",
-    "ordre_du_jour": "Suite de la discussion de la proposition de loi visant un contrôle réel des investissements étrangers en France",
-    "themes": [],
-    "dossier": "DLR5L17N54907",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-10-29",
-    "heure": "21:30",
-    "ordre_du_jour": "Suite de la discussion de la proposition de loi visant à abroger le dispositif des amendes forfaitaires délictuelles",
-    "themes": [],
-    "dossier": "DLR5L17N54903",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-10-29",
-    "heure": "21:30",
-    "ordre_du_jour": "Suite de la discussion de la proposition de loi visant à créer un parcours de soins intégralement pris en charge par la sécurité sociale pour toutes les victimes de violences sexuelles",
-    "themes": [
-      "sante",
-      "justice",
-      "securite"
-    ],
-    "dossier": "DLR5L17N54898",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-10-29",
-    "heure": "21:30",
-    "ordre_du_jour": "Suite de la discussion de la proposition de loi visant à garantir le droit de vote par l’encadrement des radiations pour perte d’attache communale",
-    "themes": [],
-    "dossier": "DLR5L17N53266",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-10-29",
-    "heure": "21:30",
-    "ordre_du_jour": "Suite de la discussion de la proposition de loi visant à garantir les droits des joueurs et joueuses et la pérennité des jeux vidéo",
-    "themes": [],
-    "dossier": "DLR5L17N54899",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-10-29",
-    "heure": "21:30",
-    "ordre_du_jour": "Suite de la discussion de la proposition de loi visant à instaurer un moratoire sur le projet du Canal Seine-Nord Europe",
-    "themes": [],
-    "dossier": "DLR5L17N54900",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
     "date": "2026-10-30",
     "heure": "21:30",
     "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (première partie)",
@@ -159,8 +23,17 @@
   },
   {
     "date": "2026-11-03",
+    "heure": "16:30",
+    "ordre_du_jour": "Examen du texte — Instances représentatives des Français établis hors de France",
+    "themes": [],
+    "dossier": "DLR5L15N37121",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-03",
     "heure": "18:00",
-    "ordre_du_jour": "Examen du texte — Retrouver la confiance et l’équilibre dans les rapports locatifs (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Retrouver la confiance et l’équilibre dans les rapports locatifs",
     "themes": [
       "logement"
     ],
@@ -260,12 +133,32 @@
   {
     "date": "2026-11-09",
     "heure": "16:00",
+    "ordre_du_jour": "Examen du texte — Améliorer le dispositif du temps partiel thérapeutique pour les fonctionnaires (séance éventuelle)",
+    "themes": [],
+    "dossier": "DLR5L17N54989",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-09",
+    "heure": "16:00",
     "ordre_du_jour": "Examen du texte — Proposition de loi visant à lutter contre la vie chère en renforçant le droit de la concurrence et de la régulation économique outre-mer (séance éventuelle)",
     "themes": [
       "economie",
       "institutions"
     ],
     "dossier": "DLR5L17N51095",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-09",
+    "heure": "16:00",
+    "ordre_du_jour": "Examen du texte — Régulariser les travailleurs sans-papiers (séance éventuelle)",
+    "themes": [
+      "travail"
+    ],
+    "dossier": "DLR5L17N54998",
     "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
   },
@@ -291,12 +184,44 @@
   },
   {
     "date": "2026-11-10",
+    "heure": "16:30",
+    "ordre_du_jour": "Examen du texte — Exercer l’accès à l’emploi, pérenniser et étendre progressivement l’expérimentation Territoires zéro chômeur longue durée comme solution de retour à l’emploi pour les personnes privées durablement d’emploi (séance éventuelle)",
+    "themes": [],
+    "dossier": "DLR5L17N51962",
+    "scrutin_annonce": false,
+    "lecture": "2ᵉ lecture"
+  },
+  {
+    "date": "2026-11-10",
+    "heure": "16:30",
+    "ordre_du_jour": "Examen du texte — Mieux reconnaître et à valoriser les aidants actifs (séance éventuelle)",
+    "themes": [
+      "social"
+    ],
+    "dossier": "DLR5L17N54994",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-10",
     "heure": "21:30",
     "ordre_du_jour": "Suite de la discussion de la seconde partie du projet de loi de finances pour 2027",
     "themes": [
       "economie"
     ],
     "dossier": "DLR5L17N54629",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-12",
+    "heure": "16:00",
+    "ordre_du_jour": "Examen du texte — Protéger la santé mentale des agricultrices et des agriculteurs",
+    "themes": [
+      "sante",
+      "agriculture"
+    ],
+    "dossier": "DLR5L17N53053",
     "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
   },
