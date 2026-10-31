@@ -10,8 +10,8 @@ import publier_reseaux as pr
 
 class FausseApi:
     """Mémorise les appels et répond comme le Graph API ; peut simuler un échec de la voie vidéo."""
-    def __init__(self, echec_video=None):
-        self.appels, self.echec_video, self.n = [], echec_video, 0
+    def __init__(self, echec_video=None, publish_pas_pret=0):
+        self.appels, self.echec_video, self.n, self.publish_pas_pret = [], echec_video, 0, publish_pas_pret
 
     def _rep(self, json_=None, statut=200):
         r = mock.Mock(); r.status_code = statut; r.json.return_value = json_ or {}; r.text = str(json_); r.raise_for_status.return_value = None
@@ -23,6 +23,9 @@ class FausseApi:
     def post(self, url, data=None, files=None, timeout=None):
         self.appels.append(('POST', url.split('v21.0/')[1], dict(data or {})))
         self.n += 1
+        if url.endswith('/media_publish') and self.publish_pas_pret > 0:
+            self.publish_pas_pret -= 1
+            return self._rep({'error': {'code': 9007, 'error_subcode': 2207027, 'message': 'Media ID is not available'}}, 400)
         if url.endswith('/videos') and self.echec_video == 'televersement':
             return self._rep({'error': 'boom'}, 500)
         if url.endswith('/media') and (data or {}).get('media_type') == 'VIDEO' and self.echec_video == 'conteneur':
@@ -54,7 +57,7 @@ class TestPublication(unittest.TestCase):
              mock.patch.object(pr, 'time', mock.Mock(sleep=lambda s: None, time=__import__('time').time)), \
              mock.patch.object(pr, 'ecrire_etat_publication', lambda e: None), mock.patch.object(sys, 'argv', ['publier_reseaux.py', *argv]):
             pr.main()
-        publics = [a for a in api.appels if a[0] == 'POST' and a[1].endswith('media_publish')]
+        publics = [a for a in api.appels if a[0] == 'POST' and a[1].endswith('media_publish') and not a[2].get('_refuse')]
         fb_feed = [a for a in api.appels if a[0] == 'POST' and a[1] == 'PAGE/feed']
         return publics, fb_feed
 
@@ -76,6 +79,26 @@ class TestPublication(unittest.TestCase):
         self.assertEqual(len(publics), 1)
         derniers = [a for a in api.appels if a[0] == 'POST' and a[1] == 'IG/media' and a[2].get('image_url')]
         self.assertEqual(len(derniers), 5)
+
+    def test_nouvel_essai_si_contenu_pas_pret(self):
+        api = FausseApi(publish_pas_pret=2)                     # 2 refus 2207027 puis succes
+        publics, fb = self.lancer(api, '--type', 'avenir', '--publier')
+        tentatives = [a for a in api.appels if a[0] == 'POST' and a[1].endswith('media_publish')]
+        self.assertEqual(len(tentatives), 3)                    # 2 refus + 1 succes, meme conteneur
+        self.assertEqual(len({a[2]['creation_id'] for a in tentatives}), 1)
+
+    def test_pas_de_nouvel_essai_pour_une_autre_erreur(self):
+        api = FausseApi()
+        orig = api.post
+        def post(url, data=None, files=None, timeout=None):
+            if url.endswith('/media_publish'):
+                api.appels.append(('POST', url.split('v21.0/')[1], dict(data or {})))
+                return api._rep({'error': 'autre'}, 400)
+            return orig(url, data=data, files=files, timeout=timeout)
+        api.post = post
+        with self.assertRaises(Exception):
+            self.lancer(api, '--type', 'avenir', '--publier')
+        self.assertEqual(len([a for a in api.appels if a[1].endswith('media_publish')]), 1)
 
     def test_brouillon_ne_publie_rien(self):
         api = FausseApi(); publics, fb = self.lancer(api, '--type', 'avenir')

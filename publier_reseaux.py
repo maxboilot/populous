@@ -461,11 +461,19 @@ def preparer_carrousel_instagram(ig_user_id, page_token, elements, legende):
     return parent
 
 
-def publier_conteneur_instagram(ig_user_id, page_token, creation_id):
-    """Seule etape publique cote Instagram."""
-    r = requests.post(f'{GRAPH}/{ig_user_id}/media_publish', data={'creation_id': creation_id, 'access_token': page_token}, timeout=60)
-    _lever_avec_detail(r)
-    return r.json()
+def publier_conteneur_instagram(ig_user_id, page_token, creation_id, essais=6, pause=10):
+    """Seule etape publique cote Instagram. Instagram annonce parfois FINISHED trop tot : media_publish repond alors
+    400 « Media ID is not available » (code 9007, sous-code 2207027 : « patientez un peu ») — constate le 31 oct. 2026
+    (run #150 : Facebook publie, Instagram refuse). On reessaie plusieurs fois, uniquement pour cette erreur-la
+    (une autre erreur est definitive) ; tant que ce n'est pas un succes rien n'est public, donc pas de risque de doublon."""
+    for essai in range(1, essais + 1):
+        r = requests.post(f'{GRAPH}/{ig_user_id}/media_publish', data={'creation_id': creation_id, 'access_token': page_token}, timeout=60)
+        if r.status_code == 400 and '2207027' in r.text and essai < essais:
+            print(f"  Instagram : contenu pas encore pret (essai {essai}/{essais}), nouvel essai dans {pause}s")
+            time.sleep(pause)
+            continue
+        _lever_avec_detail(r)
+        return r.json()
 
 
 def main():
