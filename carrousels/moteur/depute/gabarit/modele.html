@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=%%RW%%, height=1350" />
+    <script src="assets/gsap.min.js"></script>
+    <style>
+      /*%%CSS_COMMUN%%*/
+      /*%%CSS_CARROUSEL%%*/
+      .port { position:absolute; border-radius:50%; background-image:url("assets/atlas_portraits.webp"); background-repeat:no-repeat; }
+      #mur { position:absolute; left:0; top:0; width:6912px; height:2400px; background:rgb(235,235,235); transform-origin:0 0; }
+      #mur .tl { position:absolute; width:92px; height:92px; background-image:url("assets/atlas_portraits.webp"); background-size:2208px 2300px; }
+      #mur .tl i { position:absolute; left:0; top:0; width:92px; height:92px; opacity:.2; }
+      #pf { position:absolute; left:840px; top:320px; width:480px; height:480px; box-shadow:0 0 0 14px %%GRPCOL%%, 0 30px 60px rgba(16,25,63,.28); }
+      #s2t { position:absolute; left:330px; top:250px; width:680px; }
+      .sc2 { position:absolute; white-space:nowrap; line-height:1; }
+      #titreV { position:absolute; left:90px; top:185px; width:900px; text-align:center; font-size:38px; line-height:50px; font-weight:700; color:#fff; }
+      #pill { position:absolute; left:170px; top:1090px; width:740px; height:130px; border-radius:65px; text-align:center; color:#fff; font-size:58px; line-height:130px; }
+      .tab { position:absolute; top:1100px; height:112px; border-radius:56px; text-align:center; }
+      .tab b { position:absolute; left:0; width:100%; top:22px; font-size:40px; line-height:1; font-weight:800; }
+      .tab small { position:absolute; left:0; width:100%; top:72px; font-size:22px; line-height:1; font-weight:500; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="%%DUR%%" data-width="%%RW%%" data-height="1350">
+      <div id="cam">
+        <div class="abs" style="left:0;top:0;width:5400px;height:1350px;background:linear-gradient(to right,#F3F3F2 0px,#F3F3F2 1750px,#0B1238 2570px,#0B1238 2950px,#1C34C6 3520px,#1C34C6 4080px,#F3F3F2 4720px,#F3F3F2 5400px)"></div>
+        <div class="abs" style="left:1080px;top:0;width:1080px;height:1350px;background:radial-gradient(ellipse 45% 50% at 50% 42%,rgba(255,255,255,.45),rgba(255,255,255,0) 100%)"></div>
+        <div class="abs" style="left:2160px;top:0;width:1080px;height:1350px;background:radial-gradient(ellipse 45% 50% at 50% 40%,rgba(70,104,255,.30),rgba(70,104,255,0) 100%)"></div>
+        <div class="abs" style="left:3240px;top:0;width:1080px;height:1350px;background:radial-gradient(ellipse 45% 50% at 50% 38%,rgba(120,150,255,.40),rgba(120,150,255,0) 100%)"></div>
+        <div class="abs" style="left:4320px;top:0;width:1080px;height:1350px;background:radial-gradient(ellipse 45% 50% at 50% 42%,rgba(255,255,255,.55),rgba(255,255,255,0) 100%)"></div>
+
+        <!-- ===== SLIDE 1 : le mur de portraits se dissout vers la slide 2 ===== -->
+        <div class="sl" style="left:0;overflow:hidden">
+          <div id="mur"></div>
+          <div class="abs" style="left:0;top:0;width:1080px;height:1350px;background:linear-gradient(to right,rgba(243,243,242,0) 0px,rgba(243,243,242,0) 680px,rgba(243,243,242,.9) 960px,#F3F3F2 1080px)"></div>
+          <div class="abs" style="left:0;top:0;width:1080px;height:1350px;background:linear-gradient(to top,rgba(16,25,63,.82) 0px,rgba(16,25,63,.55) 230px,rgba(16,25,63,0) 440px),linear-gradient(to bottom,rgba(16,25,63,.82) 0px,rgba(16,25,63,.5) 200px,rgba(16,25,63,0) 380px)"></div>
+          %%PROGRES1%%
+          <div id="s1a" class="t" style="left:70px;top:130px;font-size:112px;color:#fff;text-shadow:0 4px 30px rgba(16,25,63,.7)">577 députés.</div>
+          <div id="s1b" class="t" style="left:72px;top:1030px;font-size:70px;color:#fff;text-shadow:0 4px 30px rgba(16,25,63,.8)">Aujourd’hui,</div>
+          <div id="s1c" class="t" style="left:72px;top:1112px;font-size:70px;color:#fff;text-shadow:0 4px 30px rgba(16,25,63,.8)">un seul.</div>
+          <div id="s1k" class="chip light" style="left:70px;top:1236px;background:rgba(255,255,255,.88)">Glisse <i id="s1i">→</i></div>
+        </div>
+
+        <!-- pont : le portrait du député chevauche la couture 1|2 -->
+        <div id="pf" class="port" style="%%PORT_BG480%%"></div>
+
+        <!-- ===== SLIDE 2 : la carte du député ===== -->
+        <div class="sl" style="left:1080px">
+          %%PROGRES2%%
+          <div id="s2e" class="eb" style="left:330px;top:215px">Député du jour</div>
+          <div id="s2n1" class="sc2" style="left:330px;top:270px;font-size:104px;color:var(--ink)">%%PRENOM%%</div>
+          <div id="s2n2" class="sc2" style="left:330px;top:384px;font-size:104px;color:var(--ink)">%%NOM%%</div>
+          <div id="s2g" class="abs" style="left:330px;top:560px"><div class="abs" style="left:0;top:8px;width:26px;height:26px;border-radius:50%;background:%%GRPCOL%%"></div><div class="sc2" style="left:44px;top:0;font-size:46px;color:var(--ink)">%%GSIGLE%%</div><div class="sc2" style="left:0;top:66px;font-size:34px;font-weight:500;color:var(--corps)">%%GNOM%%</div></div>
+          <div id="s2l" class="abs" style="left:330px;top:720px;width:680px;font-size:34px;line-height:46px;font-weight:500;color:var(--corps)">%%LIEU%%</div>
+          <div id="s2p1" class="sc2" style="left:330px;top:850px;font-size:26px;font-weight:500;color:var(--gris)">Profession</div>
+          <div id="s2p2" class="abs" style="left:330px;top:890px;width:680px;font-size:42px;line-height:52px;font-weight:700;color:var(--ink)">%%PRO%%</div>
+          <div id="s2k" class="chip light" style="left:330px;top:1180px">Glisse <i id="s2i">→</i></div>
+        </div>
+
+        <!-- ===== SLIDE 3 : le dernier vote ===== -->
+        <div class="sl" style="left:2160px">
+          %%PROGRES3%%
+          <canvas id="cvC" width="1080" height="1350" class="abs" style="left:0;top:0"></canvas>
+          <div id="s3a" class="gh" style="top:110px;font-size:54px;color:#BECAFF">Dernier vote connu</div>
+          <div id="titreV">%%TITREV%%</div>
+          <div id="pill" style="background:%%POSCOL%%">%%POSLAB%%</div>
+        </div>
+
+        <!-- ===== SLIDE 4 : sous tous les angles ===== -->
+        <div class="sl" style="left:3240px">
+          %%PROGRES4%%
+          <canvas id="cvD" width="1080" height="1350" class="abs" style="left:0;top:0"></canvas>
+          <div id="s4a" class="gh" style="top:118px;font-size:96px;color:#fff">Chaque député,</div>
+          <div id="s4b" class="gh" style="top:232px;font-size:80px;color:#CDD7FF">sous tous les angles.</div>
+          %%ONGLETS%%
+        </div>
+
+        <!-- ===== SLIDE 5 : dans l'app ===== -->
+        <div class="sl" style="left:4320px">
+          %%PROGRES5%%
+          <div id="s5c" class="card" style="left:70px;top:170px;width:940px;height:800px"></div>
+          <div id="s5q1" class="q" style="left:5px;top:-25px">“</div>
+          <div id="s5q2" class="q" style="left:775px;top:775px">”</div>
+          <div id="s5e" class="eb" style="left:130px;top:250px">Député du jour</div>
+          <div id="s5p" class="port" style="left:130px;top:310px;width:220px;height:220px;box-shadow:0 0 0 12px %%GRPCOL%%;%%PORT_BG220%%"></div>
+          <div id="s5n1" class="sc2" style="left:390px;top:350px;font-size:84px;color:var(--ink)">%%PRENOM%%</div>
+          <div id="s5n2" class="sc2" style="left:390px;top:442px;font-size:84px;color:var(--ink)">%%NOM%%</div>
+          <div id="s5t1" class="gh" style="top:600px;font-size:44px;font-weight:700;color:var(--corps)">Retrouve l’activité complète</div>
+          <div id="s5t2" class="gh" style="top:660px;font-size:44px;color:var(--accent)">de chaque député sur Populous.</div>
+          <div id="s5w" class="gh" style="top:770px;font-size:120px;letter-spacing:-.02em;color:var(--ink)">%%LETTRES%%</div>
+          <div id="s5b1" class="bdg" style="left:70px;top:1030px"><small>Télécharger dans</small><b>l’App Store</b></div>
+          <div id="s5b2" class="bdg" style="left:560px;top:1030px"><small>DISPONIBLE SUR</small><b>Google Play</b></div>
+          <div id="s5s" class="gh" style="top:1215px;font-size:24px;font-weight:500;color:var(--gris)">Source : Assemblée nationale (data.assemblee-nationale.fr)</div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      /*%%LIB_JS%%*/
+      /*%%JS_CARROUSEL%%*/
+      const SE = %%SIEGES_JSON%%, NS = SE.A.length;
+      const V = { pour: [69, 150, 109], contre: [177, 89, 53], abstention: [128, 139, 195], absent: [84, 98, 166] };
+      const VOTE = SE.POS.map(p => V[p]), AN = SE.A.map(a => (a + Math.PI / 2) / Math.PI);
+      const ELUS = %%ELUS_JSON%%, TILE = 96, TA = %%ATLAS_IDX%%, TC = TA % 24, TR = Math.floor(TA / 24), TX = (TC + 24.5) * TILE, TY = (TR + 0.5) * TILE;
+      const SEAT = SE.NOM.indexOf("%%NOM_COMPLET%%");
+
+      const mur = document.getElementById("mur");
+      [0, 1, 2].forEach(k => ELUS.forEach(([a, col]) => {
+        const c = a % 24, r = Math.floor(a / 24), d = document.createElement("div");
+        d.className = "tl"; d.style.left = ((c + 24 * k) * TILE + 2) + "px"; d.style.top = (r * TILE + 2) + "px"; d.style.backgroundPosition = `${-c * 92}px ${-r * 92}px`;
+        const i = document.createElement("i"); i.style.background = col; d.appendChild(i); mur.appendChild(d);
+      }));
+      const tints = [...mur.querySelectorAll("i")];
+      /* slide 1 : le mur zoome jusqu'à ce que la tuile du député soit exactement à la couture (x = 1080, y = 560) */
+      function tickMur(lt) {
+        const p = prog(lt, 0.2, 2.2), e = inOut(p), pulse = Math.exp(-(lt % 0.5) * 8);
+        const z = lerp(0.62, 3.2, Math.pow(e, 1.4)) * (1 + 0.03 * pulse * (1 - p));
+        const cx = lerp(1100 + 2304, TX, e) + 30 * Math.sin(lt * 8) * (1 - p), cy = lerp(1250, TY, e);
+        // la tuile (TX,TY) doit finir en (1080, 560) ; avant, la caméra est centrée sur le mur
+        const ox = lerp(540, 1080, e), oy = lerp(675, 560, e);
+        gsap.set(mur, { x: ox - cx * z, y: oy - cy * z, scale: z });
+        const ti = 0.55 * lerp(0.65, 0, clamp(prog(lt, 0, 1.4))); tints.forEach(i => { i.style.opacity = ti; });
+      }
+      if (on(0)) {
+        const t0 = st(0);
+        tl.fromTo("#s1a", { y: -50, opacity: 0, scale: 1.3, filter: "blur(10px)" }, { y: 0, opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "power3.out", transformOrigin: "0% 50%" }, t0 + 0.5);
+        tl.fromTo(["#s1b", "#s1c"], { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out", stagger: 0.15 }, t0 + 2.3);
+        tl.fromTo("#pf", { scale: 0.3, opacity: 0, transformOrigin: "50% 50%" }, { scale: 1, opacity: 1, duration: 0.7, ease: "back.out(1.5)" }, t0 + 2.0);
+        rise("#s1k", t0 + 3.0, 20, 0.4); chipArrow("#s1i", t0 + 3.4);
+      }
+      /* slide 2 */
+      if (on(1)) {
+        const t0 = st(1);
+        rise("#s2e", t0, 16, 0.4);
+        blurIn(["#s2n1", "#s2n2"], t0 + 0.15, 120, 0.5, 0.12);
+        tl.fromTo("#s2g", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, t0 + 0.7);
+        rise("#s2l", t0 + 1.0, 20, 0.4); rise(["#s2p1", "#s2p2"], t0 + 1.25, 20, 0.4, 0.1);
+        rise("#s2k", t0 + 2.2, 20, 0.5); chipArrow("#s2i", t0 + 2.7);
+      }
+      /* slide 3 : hémicycle plat, vague de couleur, zoom sur son siège */
+      const POSF = hemiPlat(SE, 540, 900, 236), cvC = document.getElementById("cvC").getContext("2d");
+      function drawC(lt) {
+        cvC.setTransform(1, 0, 0, 1, 0, 0); cvC.clearRect(0, 0, 1080, 1350); if (lt < 0) return;
+        const wave = lerp(-0.3, 1.3, inOut(prog(lt, 0.35, 0.9))), zin = inOut(prog(lt, 1.6, 1.0)), z = 1 + 5.0 * zin, [sx, sy] = POSF[SEAT];
+        cvC.setTransform(z, 0, 0, z, 540 - sx * z, 600 - sy * z);
+        for (let k = 0; k < NS; k++) {
+          let m = clamp((wave - AN[k]) / 0.2); m = m * m * (3 - 2 * m);
+          const p = (lt > 0.35 && wave < 1.25) ? Math.exp(-Math.abs(wave - AN[k]) * 12) : 0;
+          dot(cvC, POSF[k][0], POSF[k][1], 9.0 * (1 + 0.5 * p), mixc(SE.GRP[k], VOTE[k], m));
+        }
+        cvC.setTransform(1, 0, 0, 1, 0, 0);
+        if (zin > 0.6) {
+          const pr = prog(lt, 2.7, 0.6), c = VOTE[SEAT];
+          cvC.strokeStyle = "rgba(255,255,255,.9)"; cvC.lineWidth = 8; cvC.beginPath(); cvC.arc(540, 600, 40 + 40 * Math.sin(lt * 9), 0, 6.2832); cvC.stroke();
+          cvC.strokeStyle = `rgba(${c[0]},${c[1]},${c[2]},${0.8 * (1 - pr)})`; cvC.lineWidth = 5 * (1 - pr) + 1; cvC.beginPath(); cvC.arc(540, 600, 30 + 120 * pr, 0, 6.2832); cvC.stroke();
+        }
+      }
+      if (on(2)) {
+        const t0 = st(2);
+        rise("#s3a", t0, 16, 0.4); tl.fromTo("#titreV", { opacity: 0 }, { opacity: 1, duration: 0.4 }, t0 + 0.15);
+        tl.fromTo("#pill", { scaleY: 0, scaleX: 0.7, opacity: 0, transformOrigin: "50% 50%" }, { scaleY: 1, scaleX: 1, opacity: 1, duration: 0.4, ease: "back.out(1.6)" }, t0 + 2.9);
+      }
+      /* slide 4 : hémicycle recoloré selon l'onglet */
+      const POSD = hemiPlat(SE, 540, 880, 232), cvD = document.getElementById("cvD").getContext("2d");
+      const COLAGE = SE.AGE.map(a => { const u = clamp((a - 25) / 55); return [lerp(170, 16, u), lerp(190, 25, u), lerp(255, 120, u)]; });
+      const COLPAR = SE.PRIVE.map(p => p ? [255, 214, 150] : [255, 255, 255]);
+      const TABCOLS = [VOTE, SE.GRP, COLAGE, COLPAR], tabs = q(".tab");
+      function drawD(lt) {
+        cvD.clearRect(0, 0, 1080, 1350); if (lt < 0) return;
+        const k = Math.min(3, Math.floor(Math.max(0, lt - 0.9) / 0.9)), cols = TABCOLS[k];
+        for (let i = 0; i < NS; i++) dot(cvD, POSD[i][0], POSD[i][1], 8.6, cols[i]);
+        tabs.forEach((el, i) => { const o = i === k; el.style.background = o ? "#fff" : "rgb(60,96,230)"; el.querySelector("b").style.color = o ? "#1B3BDB" : "#fff"; el.querySelector("small").style.color = o ? "#4A5578" : "#EEF1FF"; });
+      }
+      if (on(3)) {
+        const t0 = st(3);
+        blurIn(["#s4a", "#s4b"], t0, 0, 0.55, 0.2);
+        tl.fromTo(".tab", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power3.out", stagger: 0.07 }, t0 + 0.5);
+      }
+      /* slide 5 */
+      if (on(4)) {
+        const t0 = st(4);
+        tl.fromTo("#s5c", { y: 90, scale: 0.92, opacity: 0, transformOrigin: "50% 50%" }, { y: 0, scale: 1, opacity: 1, duration: 0.8, ease: "expo.out" }, t0);
+        pop(["#s5q1", "#s5q2"], t0 + 0.15, 0.7); rise("#s5e", t0 + 0.4, 10, 0.4);
+        tl.fromTo("#s5p", { scale: 0, opacity: 0, transformOrigin: "50% 50%" }, { scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.5)" }, t0 + 0.5);
+        blurIn(["#s5n1", "#s5n2"], t0 + 0.7, 60, 0.45, 0.12); rise(["#s5t1", "#s5t2"], t0 + 1.2, 22, 0.45, 0.12);
+        tl.fromTo("#s5w .l", { y: 90, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "back.out(2.4)", stagger: 0.04 }, t0 + 1.6);
+        tl.fromTo(["#s5b1", "#s5b2"], { scale: 1.6, opacity: 0, transformOrigin: "50% 50%" }, { scale: 1, opacity: 1, duration: 0.45, ease: "power3.out", stagger: 0.2 }, t0 + 2.1);
+        tl.fromTo("#s5s", { opacity: 0 }, { opacity: 0.9, duration: 0.4 }, t0 + 2.8);
+      }
+      fin(() => {
+        if (on(0)) tickMur(S.t - st(0));
+        if (on(2)) drawC(S.t - st(2));
+        if (on(3)) drawD(S.t - st(3));
+      });
+    </script>
+  </body>
+</html>

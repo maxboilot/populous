@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=%%RW%%, height=1350" />
+    <script src="assets/gsap.min.js"></script>
+    <style>
+      /*%%CSS_COMMUN%%*/
+      /*%%CSS_CARROUSEL%%*/
+      #pbar { position:absolute; left:100px; top:1290px; width:%%BARW%%px; height:26px; border-radius:13px; overflow:hidden; transform-origin:0 50%; }
+      #pbar div { position:absolute; top:0; height:26px; }
+      .pl { position:absolute; top:1246px; font-size:26px; line-height:1; white-space:nowrap; color:#fff; text-shadow:0 0 6px rgba(11,18,56,.5); }
+      .rk { position:absolute; left:110px; width:860px; height:80px; }
+      .rk .nm { position:absolute; left:0; top:4px; width:240px; font-size:36px; line-height:1; color:var(--ink); white-space:nowrap; }
+      .rk .tr { position:absolute; left:250px; top:16px; width:480px; height:36px; border-radius:18px; background:#E8EAF4; }
+      .rk .fl { position:absolute; left:250px; top:16px; height:36px; border-radius:18px; transform-origin:0 50%; }
+      .rk .pt { position:absolute; left:700px; top:4px; width:160px; white-space:nowrap; text-align:right; font-size:38px; line-height:1; color:var(--ink); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="%%DUR%%" data-width="%%RW%%" data-height="1350">
+      <div id="cam">
+        <div class="abs" style="left:0;top:0;width:5400px;height:1350px;background:linear-gradient(to right,#0B1238 0px,#0B1238 700px,#F3F3F2 1450px,#F3F3F2 1800px,#1C34C6 2500px,#1C34C6 2950px,#0B1238 3550px,#0B1238 3950px,#F3F3F2 4700px,#F3F3F2 5400px)"></div>
+        <div class="abs" style="left:0;top:0;width:1080px;height:1350px;background:radial-gradient(ellipse 45% 50% at 50% 40%,rgba(70,104,255,.30),rgba(70,104,255,0) 100%)"></div>
+        <div class="abs" style="left:1080px;top:0;width:1080px;height:1350px;background:radial-gradient(ellipse 45% 50% at 50% 42%,rgba(255,255,255,.5),rgba(255,255,255,0) 100%)"></div>
+        <div class="abs" style="left:2160px;top:0;width:1080px;height:1350px;background:radial-gradient(ellipse 45% 50% at 50% 38%,rgba(120,150,255,.40),rgba(120,150,255,0) 100%)"></div>
+        <div class="abs" style="left:3240px;top:0;width:1080px;height:1350px;background:radial-gradient(ellipse 45% 50% at 50% 40%,rgba(70,104,255,.30),rgba(70,104,255,0) 100%)"></div>
+        <div class="abs" style="left:4320px;top:0;width:1080px;height:1350px;background:radial-gradient(ellipse 45% 50% at 50% 42%,rgba(255,255,255,.55),rgba(255,255,255,0) 100%)"></div>
+
+        <!-- pont : la barre des scores du sondage traverse les slides (un segment par candidat, couleur du parti) -->
+        <div id="pbar">%%BARRE%%</div>
+        %%ETIQ_BARRE%%
+
+        <div class="sl" style="left:0">
+          %%PROGRES1%%
+          <div id="s1e" class="eb" style="left:90px;top:118px;color:#96ACFF">Actu présidentielle 2027</div>
+          <div id="s1n" class="t" style="left:90px;top:210px;font-size:128px;color:#fff;letter-spacing:-.02em">%%TETE_NOM%%</div>
+          <div id="s1t" class="t" style="left:94px;top:360px;font-size:54px;color:#A0B0F0">en tête à</div>
+          <div id="s1s" class="t" style="left:80px;top:450px;font-size:290px;color:#fff;letter-spacing:-.03em">0 %</div>
+          <div id="s1u" class="abs" style="left:94px;top:890px;width:10px;height:0;border-radius:5px;background:%%TETE_COUL%%"></div>
+          <div id="s1i" class="t" style="left:130px;top:905px;font-size:40px;font-weight:700;color:#CDD7FF">%%LIGNE_SONDAGE%%</div>
+          <div id="s1k" class="chip dark" style="left:90px;top:1060px">Glisse <i id="s1a">→</i></div>
+        </div>
+
+        <div class="sl" style="left:1080px">
+          %%PROGRES2%%
+          <div id="s2c" class="card" style="left:60px;top:150px;width:960px;height:1030px"></div>
+          <div id="s2q1" class="q" style="left:-15px;top:-45px">“</div>
+          <div id="s2q2" class="q" style="left:730px;top:985px">”</div>
+          <div id="s2e" class="eb" style="left:110px;top:218px">Le classement</div>
+          <div id="s2t" class="t" style="left:110px;top:272px;font-size:62px;color:var(--ink)">Qui est où ?</div>
+          %%CLASSEMENT%%
+        </div>
+
+        <div class="sl" style="left:2160px">
+          %%PROGRES3%%
+          <div id="s3n" class="gh" style="top:230px;font-size:300px;color:#fff;letter-spacing:-.03em">0</div>
+          <div id="s3a" class="gh" style="top:600px;font-size:60px;color:#CDD7FF">personnes interrogées.</div>
+          <div id="s3b" class="gh" style="top:740px;font-size:46px;font-weight:700;color:#fff">%%ECART_1%%</div>
+          <div id="s3c" class="gh" style="top:810px;font-size:46px;font-weight:700;color:#BECAFF">%%ECART_2%%</div>
+          <div id="s3k" class="chip dark" style="left:90px;top:1150px">Glisse <i id="s3i">→</i></div>
+        </div>
+
+        <div class="sl" style="left:3240px">
+          %%PROGRES4%%
+          <div id="s4e" class="eb" style="left:90px;top:150px;color:#96ACFF">La source</div>
+          <div id="s4a" class="t" style="left:90px;top:230px;font-size:96px;color:#fff">%%SOURCE_1%%</div>
+          <div id="s4b" class="t" style="left:90px;top:340px;font-size:96px;color:#96ACFF">%%SOURCE_2%%</div>
+          <div id="s4c" class="abs" style="left:90px;top:520px;width:900px;font-size:48px;line-height:62px;font-weight:700;color:#fff">%%SOURCE_TXT%%</div>
+          <div id="s4d" class="abs" style="left:90px;top:760px;width:900px;font-size:40px;line-height:54px;font-weight:500;color:#CDD7FF">Un sondage photographie une opinion à un instant donné : ce n’est pas une prévision.</div>
+          <div id="s4k" class="chip dark" style="left:90px;top:1150px">Glisse <i id="s4i">→</i></div>
+        </div>
+
+        <div class="sl" style="left:4320px">
+          %%PROGRES5%%
+          <div id="s5c" class="card" style="left:70px;top:170px;width:940px;height:800px"></div>
+          <div id="s5q1" class="q" style="left:5px;top:-25px">“</div>
+          <div id="s5q2" class="q" style="left:775px;top:775px">”</div>
+          <div id="s5e" class="eb" style="left:130px;top:250px">Actu présidentielle 2027</div>
+          <div id="s5a" class="t" style="left:130px;top:310px;font-size:62px;color:var(--ink)">Suis la course</div>
+          <div id="s5b" class="t" style="left:130px;top:392px;font-size:62px;color:var(--accent)">à l’Élysée.</div>
+          <div id="s5w" class="gh" style="top:580px;font-size:150px;letter-spacing:-.02em;color:var(--ink)">%%LETTRES%%</div>
+          <div id="s5t" class="gh" style="top:780px;font-size:42px;font-weight:700;color:var(--corps)">Sondages et actualité, sur Populous.</div>
+          <div id="s5b1" class="bdg" style="left:70px;top:1030px"><small>Télécharger dans</small><b>l’App Store</b></div>
+          <div id="s5b2" class="bdg" style="left:560px;top:1030px"><small>DISPONIBLE SUR</small><b>Google Play</b></div>
+          <div id="s5s" class="gh" style="top:1205px;font-size:24px;font-weight:500;color:var(--gris)">%%SOURCE_PIED%%</div>
+        </div>
+      </div>
+    </div>
+    <script>
+      /*%%JS_CARROUSEL%%*/
+      const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+      const SCORE_TETE = %%TETE_SCORE%%, ECH = %%ECHANTILLON%%;
+      if (on(0)) {
+        const t0 = st(0), n = { v: 0 };
+        rise("#s1e", t0, 12, 0.4); blurIn("#s1n", t0 + 0.15, -60, 0.5); rise("#s1t", t0 + 0.4, 16, 0.4);
+        tl.fromTo(n, { v: 0 }, { v: SCORE_TETE, duration: 1.1, ease: "expo.out", onUpdate: () => { document.getElementById("s1s").textContent = (Math.round(n.v * 10) / 10).toString().replace(".", ",") + " %"; } }, t0 + 0.5);
+        tl.fromTo("#s1s", { scale: 1.08, transformOrigin: "0% 50%" }, { scale: 1, duration: 0.4, ease: "power3.out" }, t0 + 1.5);
+        tl.fromTo("#s1u", { height: 0 }, { height: 50, duration: 0.4, ease: "power3.out" }, t0 + 1.6); rise("#s1i", t0 + 1.7, 14, 0.4);
+        tl.fromTo("#pbar", { scaleX: 0 }, { scaleX: 1, duration: 1.4, ease: "power3.inOut" }, t0 + 0.5);
+        tl.fromTo(".pl", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4, stagger: 0.1 }, t0 + 1.6);
+        rise("#s1k", t0 + 2.3, 20, 0.5); chipArrow("#s1a", t0 + 2.8);
+      }
+      if (on(1)) {
+        const t0 = st(1);
+        tl.fromTo("#s2c", { y: 80, scale: 0.94, opacity: 0, transformOrigin: "50% 50%" }, { y: 0, scale: 1, opacity: 1, duration: 0.8, ease: "expo.out" }, t0);
+        pop(["#s2q1", "#s2q2"], t0 + 0.15, 0.7); rise("#s2e", t0 + 0.3, 12, 0.4); blurIn("#s2t", t0 + 0.35, 0, 0.5);
+        q(".rk").forEach((g, i) => { const a = t0 + 0.7 + 0.1 * i;
+          tl.fromTo(g.querySelector(".nm"), { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, a);
+          tl.fromTo(g.querySelector(".fl"), { scaleX: 0 }, { scaleX: 1, duration: 0.7, ease: "power3.out" }, a);
+          tl.fromTo(g.querySelector(".pt"), { opacity: 0 }, { opacity: 1, duration: 0.3 }, a + 0.3); });
+      }
+      if (on(2)) {
+        const t0 = st(2), n = { v: 0 };
+        tl.fromTo(n, { v: 0 }, { v: ECH, duration: 1.2, ease: "expo.out", onUpdate: () => { document.getElementById("s3n").textContent = Math.round(n.v).toLocaleString("fr-FR"); } }, t0 + 0.1);
+        tl.fromTo("#s3n", { scale: 1.08, transformOrigin: "50% 50%" }, { scale: 1, duration: 0.4, ease: "power3.out" }, t0 + 1.2);
+        rise("#s3a", t0 + 0.9, 20, 0.45); rise(["#s3b", "#s3c"], t0 + 1.4, 16, 0.45, 0.15); rise("#s3k", t0 + 2.3, 20, 0.5); chipArrow("#s3i", t0 + 2.8);
+      }
+      if (on(3)) {
+        const t0 = st(3);
+        rise("#s4e", t0, 12, 0.4); blurIn(["#s4a", "#s4b"], t0 + 0.15, 80, 0.5, 0.15); rise("#s4c", t0 + 0.8, 20, 0.5); rise("#s4d", t0 + 1.3, 20, 0.5);
+        rise("#s4k", t0 + 2.3, 20, 0.5); chipArrow("#s4i", t0 + 2.8);
+      }
+      if (on(4)) {
+        const t0 = st(4);
+        tl.fromTo("#s5c", { y: 90, scale: 0.92, opacity: 0, transformOrigin: "50% 50%" }, { y: 0, scale: 1, opacity: 1, duration: 0.8, ease: "expo.out" }, t0);
+        pop(["#s5q1", "#s5q2"], t0 + 0.15, 0.7); rise("#s5e", t0 + 0.4, 10, 0.4); blurIn(["#s5a", "#s5b"], t0 + 0.5, 60, 0.5, 0.15);
+        tl.fromTo("#s5w .l", { y: 110, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "back.out(2.4)", stagger: 0.04 }, t0 + 1.0);
+        rise("#s5t", t0 + 1.6, 20, 0.45);
+        tl.fromTo(["#s5b1", "#s5b2"], { scale: 1.6, opacity: 0, transformOrigin: "50% 50%" }, { scale: 1, opacity: 1, duration: 0.45, ease: "power3.out", stagger: 0.2 }, t0 + 2.0);
+        tl.fromTo("#s5s", { opacity: 0 }, { opacity: 0.9, duration: 0.4 }, t0 + 2.7);
+      }
+      fin();
+    </script>
+  </body>
+</html>

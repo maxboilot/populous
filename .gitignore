@@ -20,3 +20,6 @@ carte-vote-en-direct.html
 # fichiers video volumineux, jamais destines a etre verses au depot.
 assets_social/reels_bruts/*
 !assets_social/reels_bruts/.gitkeep
+
+# Carrousels generes a chaque run de publier_reseaux.py (videos + images) : ephemeres.
+assets_social/carrousels/

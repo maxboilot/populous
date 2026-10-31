@@ -1,0 +1,27 @@
+@font-face { font-family: "Jakarta"; font-weight: 800; src: url("assets/fonts/PlusJakartaSans-ExtraBold.ttf"); }
+@font-face { font-family: "Jakarta"; font-weight: 700; src: url("assets/fonts/PlusJakartaSans-Bold.ttf"); }
+@font-face { font-family: "Jakarta"; font-weight: 500; src: url("assets/fonts/PlusJakartaSans-Medium.ttf"); }
+:root { --grey:#F3F3F2; --ink:#10193F; --accent:#1B3BDB; --accent-hi:#3E5EF5; --soft:#E7EAFF; --corps:#4A5578; --red:#C41A1A; --gris:#7C829B; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { width:1080px; height:1920px; overflow:hidden; background:var(--grey); }
+#root { position:relative; width:1080px; height:1920px; font-family:"Jakarta", sans-serif; font-weight:800; color:var(--ink); }
+.sc { position:absolute; left:0; top:0; width:1080px; height:1920px; overflow:hidden; }
+.fill { position:absolute; left:0; top:0; width:1080px; height:1920px; }
+.abs { position:absolute; }
+.c { position:absolute; left:0; width:1080px; text-align:center; white-space:nowrap; line-height:1; }
+.w { display:inline-block; }
+.bg-grey { background:radial-gradient(ellipse 60% 55% at 50% 45%, #FBFBFA 0%, #F3F3F2 100%); }
+.bg-deep { background:radial-gradient(ellipse 60% 55% at 50% 45%, #141E56 0%, #060A1E 100%); }
+.bg-cob { background:radial-gradient(ellipse 60% 55% at 50% 45%, #4668FF 0%, #1026B0 100%); }
+.bg-amber { background:radial-gradient(ellipse 60% 55% at 50% 40%, #E28420 0%, #783E0A 100%); }
+.wm { position:absolute; top:0; height:1920px; display:flex; align-items:center; }
+.wm span { writing-mode:vertical-rl; font-size:420px; line-height:1; font-weight:800; color:var(--ink); opacity:.075; white-space:nowrap; }
+.card { position:absolute; background:#fff; border-radius:58px; box-shadow:0 28px 68px rgba(16,25,63,.17); }
+.q { position:absolute; width:330px; height:330px; line-height:330px; font-size:330px; text-align:center; font-weight:800; color:var(--accent); }
+.eb { position:absolute; font-size:34px; line-height:1; letter-spacing:.07em; text-transform:uppercase; color:var(--accent); white-space:nowrap; }
+.badge { position:absolute; width:450px; height:148px; border-radius:30px; background:#161616; border:3px solid #000; color:#fff; text-align:center; }
+.badge small { position:absolute; left:0; width:100%; top:24px; font-size:29px; font-weight:500; color:#D6D6D6; line-height:1; }
+.badge b { position:absolute; left:0; width:100%; top:68px; font-size:58px; font-weight:800; line-height:1; }
+.ring { position:absolute; border:3px solid #fff; border-radius:50%; opacity:0; }
+canvas { position:absolute; left:0; top:0; }
+.off { display:none; }

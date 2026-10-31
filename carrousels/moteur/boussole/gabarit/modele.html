@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=%%RW%%, height=1350" />
+    <script src="assets/gsap.min.js"></script>
+    <style>
+      /*%%CSS_COMMUN%%*/
+      /*%%CSS_CARROUSEL%%*/
+      .btn2 { position:absolute; height:104px; border-radius:52px; text-align:center; font-size:46px; line-height:104px; color:#fff; white-space:nowrap; }
+      .cd { position:absolute; left:160px; top:500px; width:760px; height:760px; border-radius:56px; background:#fff; filter:drop-shadow(0 40px 34px rgba(60,28,0,.32)); }
+      .cd .num { position:absolute; left:50px; top:44px; font-size:28px; line-height:1; letter-spacing:.04em; color:var(--accent); white-space:nowrap; }
+      .cd .pg2 { position:absolute; top:96px; width:52px; height:7px; border-radius:4px; }
+      .cd .ti { position:absolute; left:50px; top:140px; width:660px; font-size:40px; line-height:56px; color:var(--ink); display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical; overflow:hidden; }
+      .cd .dt { position:absolute; left:50px; top:400px; font-size:28px; line-height:1; font-weight:500; color:var(--corps); white-space:nowrap; }
+      .cd .bt { position:absolute; left:50px; width:660px; text-align:center; color:#fff; }
+      .cd .st { position:absolute; left:0; width:760px; top:270px; text-align:center; font-size:130px; line-height:110px; opacity:0; white-space:nowrap; }
+      .rb { position:absolute; left:90px; height:28px; border-radius:12px; background:rgb(72,88,156); transform-origin:0 50%; }
+      .rt { position:absolute; left:90px; width:900px; height:14px; border-radius:7px; background:rgb(34,46,100); }
+      .rf { position:absolute; left:90px; height:14px; border-radius:7px; transform-origin:0 50%; }
+      .rp { position:absolute; left:90px; width:900px; text-align:right; font-size:38px; line-height:1; color:#fff; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="%%DUR%%" data-width="%%RW%%" data-height="1350">
+      <div id="cam">
+        <div class="abs" style="left:0;top:0;width:5400px;height:1350px;background:linear-gradient(to right,#A85B0E 0px,#A85B0E 1700px,#0B1238 2570px,#0B1238 2950px,#1C34C6 3520px,#1C34C6 4080px,#F3F3F2 4720px,#F3F3F2 5400px)"></div>
+        <div class="abs" style="left:0;top:0;width:2160px;height:1350px;background:radial-gradient(ellipse 20% 55% at 25% 38%,rgba(255,170,60,.55),rgba(255,170,60,0) 100%),radial-gradient(ellipse 20% 55% at 75% 45%,rgba(255,170,60,.45),rgba(255,170,60,0) 100%)"></div>
+        <div class="abs" style="left:2160px;top:0;width:1080px;height:1350px;background:radial-gradient(ellipse 45% 50% at 50% 40%,rgba(70,104,255,.30),rgba(70,104,255,0) 100%)"></div>
+        <div class="abs" style="left:3240px;top:0;width:1080px;height:1350px;background:radial-gradient(ellipse 45% 50% at 50% 38%,rgba(120,150,255,.40),rgba(120,150,255,0) 100%)"></div>
+        <div class="abs" style="left:4320px;top:0;width:1080px;height:1350px;background:radial-gradient(ellipse 45% 50% at 50% 42%,rgba(255,255,255,.55),rgba(255,255,255,0) 100%)"></div>
+
+        <!-- pont : la boussole est à cheval sur la couture 1|2, aiguille au nord (exactement sur la couture) -->
+        <svg id="boussole" class="abs" style="left:720px;top:-30px" width="720" height="720" viewBox="-360 -360 720 720">
+          <circle cx="0" cy="0" r="330" fill="none" stroke="#FFE2B0" stroke-width="14" opacity=".6"/>
+          %%TICKS%%
+          <g id="needle"><polygon points="0,-257 34,0 0,165 -34,0" fill="#fff"/><polygon points="0,-257 34,0 -34,0" fill="#FF5A3C"/></g>
+          <circle cx="0" cy="0" r="26" fill="#FFE2B0"/>
+        </svg>
+
+        <!-- ===== SLIDE 1 ===== -->
+        <div class="sl" style="left:0">
+          %%PROGRES1%%
+          <div id="s1e" class="eb" style="left:90px;top:130px;color:#FFE2B0">Boussole politique</div>
+          <div id="s1a" class="t" style="left:90px;top:210px;font-size:98px;color:#fff">La Boussole</div>
+          <div id="s1b" class="t" style="left:90px;top:324px;font-size:98px;color:#FFE8BE">politique.</div>
+          <div id="s1c" class="abs" style="left:90px;top:520px;width:560px;font-size:42px;line-height:56px;font-weight:700;color:#FFF3DC">Compare tes opinions aux votes réels de tes élus.</div>
+          <div id="s1d" class="btn2" style="left:90px;top:900px;width:420px;background:rgb(196,80,28)">← Contre</div>
+          <div id="s1f" class="btn2" style="left:570px;top:900px;width:420px;background:rgb(27,138,107)">Pour →</div>
+          <div id="s1k" class="chip dark" style="left:90px;top:1100px">Glisse <i id="s1i">→</i></div>
+        </div>
+
+        <!-- ===== SLIDE 2 : dix vrais scrutins ===== -->
+        <div class="sl" style="left:1080px">
+          %%PROGRES2%%
+          <div id="s2a" class="t" style="left:390px;top:150px;font-size:66px;color:#fff">Dix vrais scrutins.</div>
+          <div id="s2b" class="t" style="left:390px;top:232px;font-size:66px;color:#FFE8BE">Tu tranches.</div>
+          %%CARTES%%
+        </div>
+
+        <!-- ===== SLIDE 3 : ton résultat (illustration) ===== -->
+        <div class="sl" style="left:2160px">
+          %%PROGRES3%%
+          <div id="s3a" class="gh" style="top:120px;font-size:56px;color:#96ACFF">Ton résultat</div>
+          <div id="s3x" class="gh" style="top:200px;font-size:30px;font-weight:700;letter-spacing:.08em;color:#FFB070">EXEMPLE · ILLUSTRATION DE L’ÉCRAN</div>
+          <div id="s3n" class="gh" style="top:260px;font-size:380px;color:rgb(255,160,60);letter-spacing:-.02em">0%</div>
+          <div id="s3d" class="t" style="left:90px;top:660px;font-size:52px;font-weight:500;color:#fff">d’accord avec</div>
+          <div id="s3m" class="abs" style="left:480px;top:660px;width:380px;height:56px;border-radius:28px;background:rgb(88,104,180)"></div>
+          <div id="s3s" class="gh" style="top:760px;font-size:32px;font-weight:500;color:#AAB8F0">Sur 10 textes réels tranchés à l’Assemblée nationale.</div>
+          %%RESULTATS%%
+        </div>
+
+        <!-- ===== SLIDE 4 : groupe par groupe ===== -->
+        <div class="sl" style="left:3240px">
+          %%PROGRES4%%
+          <canvas id="cvG" width="1080" height="1350" class="abs" style="left:0;top:0"></canvas>
+          <div id="s4a" class="gh" style="top:120px;font-size:58px;color:#fff">Comparé à la façon dont</div>
+          <div id="s4b" class="gh" style="top:200px;font-size:54px;color:#CDD7FF">chaque groupe a vraiment voté.</div>
+          <div id="s4c" class="abs" style="left:120px;top:1070px;width:840px;height:140px;border-radius:70px;background:#fff;text-align:center;font-size:54px;line-height:140px;color:var(--accent)">Aucune thèse inventée.</div>
+        </div>
+
+        <!-- ===== SLIDE 5 ===== -->
+        <div class="sl" style="left:4320px">
+          %%PROGRES5%%
+          <div id="s5c" class="card" style="left:70px;top:170px;width:940px;height:800px"></div>
+          <div id="s5q1" class="q" style="left:5px;top:-25px">“</div>
+          <div id="s5q2" class="q" style="left:775px;top:775px">”</div>
+          <div id="s5e" class="eb" style="left:130px;top:250px">Boussole politique</div>
+          <div id="s5a" class="t" style="left:130px;top:310px;font-size:66px;color:var(--ink)">Compare tes opinions</div>
+          <div id="s5b" class="t" style="left:130px;top:392px;font-size:66px;color:var(--ink)">aux votes réels</div>
+          <div id="s5f" class="t" style="left:130px;top:474px;font-size:66px;color:var(--accent)">de tes élus.</div>
+          <div id="s5w" class="gh" style="top:640px;font-size:140px;letter-spacing:-.02em;color:var(--ink)">%%LETTRES%%</div>
+          <div id="s5t" class="gh" style="top:820px;font-size:34px;font-weight:500;color:var(--corps)">Sans jugement ni étiquette imposée.</div>
+          <div id="s5b1" class="bdg" style="left:70px;top:1030px"><small>Télécharger dans</small><b>l’App Store</b></div>
+          <div id="s5b2" class="bdg" style="left:560px;top:1030px"><small>DISPONIBLE SUR</small><b>Google Play</b></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      /*%%LIB_JS%%*/
+      /*%%JS_CARROUSEL%%*/
+      const SE = %%SIEGES_JSON%%, NS = SE.A.length, GI = %%GI_JSON%%;
+      /* ---------- slide 1 : l'aiguille tourne comme une folle, puis claque au nord (sur la couture) ---------- */
+      if (on(0)) {
+        const t0 = st(0);
+        rise("#s1e", t0, 12, 0.4); blurIn(["#s1a", "#s1b"], t0 + 0.15, -80, 0.5, 0.14); rise("#s1c", t0 + 0.7, 20, 0.5);
+        tl.fromTo("#needle", { rotation: -802, svgOrigin: "0 0" }, { rotation: 0, svgOrigin: "0 0", duration: 1.6, ease: "expo.out" }, t0 + 0.2);
+        tl.fromTo("#s1d", { x: -200, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "back.out(1.6)" }, t0 + 1.2);
+        tl.fromTo("#s1f", { x: 200, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "back.out(1.6)" }, t0 + 1.4);
+        rise("#s1k", t0 + 2.3, 20, 0.4); chipArrow("#s1i", t0 + 2.8);
+      }
+      /* ---------- slide 2 : les cartes sont tranchées une à une ---------- */
+      if (on(1)) {
+        const t0 = st(1), cs = q(".cd");        // cs[0] = carte du fond ... cs[2] = carte de devant (n°1)
+        gsap.set(cs[0], { rotation: 4, scale: 0.94 }); gsap.set(cs[1], { rotation: -3, scale: 0.97 });
+        blurIn(["#s2a", "#s2b"], t0, 0, 0.5, 0.15);
+        cs.forEach((c, i) => tl.fromTo(c, { y: 420, opacity: 0 }, { y: [24, 12, 0][i], opacity: 1, duration: 0.8, ease: "expo.out" }, t0 + 0.1 + 0.1 * i));
+        const f = cs[2], g = cs[1], h = cs[0];
+        tl.to(f.querySelector(".st"), { opacity: 1, duration: 0.15 }, t0 + 1.9);
+        tl.to(f, { x: 1300, rotation: 18, duration: 0.7, ease: "power3.in" }, t0 + 2.2);
+        tl.to(g, { rotation: 0, scale: 1, y: 0, duration: 0.5, ease: "power3.out" }, t0 + 2.35);
+        tl.to(g.querySelector(".st"), { opacity: 1, duration: 0.15 }, t0 + 3.3);
+        tl.to(g, { x: -1300, rotation: -18, duration: 0.7, ease: "power3.in" }, t0 + 3.6);
+        tl.to(h, { rotation: 0, scale: 1, y: 0, duration: 0.5, ease: "power3.out" }, t0 + 3.75);
+      }
+      /* ---------- slide 3 : résultat illustré ---------- */
+      if (on(2)) {
+        const t0 = st(2), n = { v: 0 };
+        rise("#s3a", t0, 12, 0.4); rise("#s3x", t0 + 0.2, 10, 0.4);
+        tl.fromTo(n, { v: 0 }, { v: 80, duration: 1.0, ease: "power3.out", onUpdate: () => { document.getElementById("s3n").textContent = Math.floor(n.v) + "%"; } }, t0 + 0.3);
+        tl.fromTo("#s3n", { scale: 1.1, transformOrigin: "50% 50%" }, { scale: 1, duration: 0.35, ease: "power3.out" }, t0 + 1.3);
+        tl.fromTo(["#s3d", "#s3m"], { opacity: 0 }, { opacity: 1, duration: 0.3 }, t0 + 1.2); tl.fromTo("#s3s", { opacity: 0 }, { opacity: 1, duration: 0.3 }, t0 + 1.4);
+        q("#scR .rrow, .rrow").forEach((g, i) => { const a = t0 + 1.5 + 0.08 * i;
+          tl.fromTo(g.querySelector(".rb"), { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, a);
+          tl.fromTo(g.querySelector(".rf"), { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, a);
+          tl.fromTo(g.querySelector(".rp"), { opacity: 0 }, { opacity: 1, duration: 0.25 }, a); });
+      }
+      /* ---------- slide 4 : un groupe s'illumine à chaque demi-temps ---------- */
+      const POSG = hemiPlat(SE, 540, 830, 236), cvG = document.getElementById("cvG").getContext("2d");
+      function drawG(lt) {
+        cvG.clearRect(0, 0, 1080, 1350); if (lt < 0) return;
+        const kOn = lt < 0.5 + 12 * 0.28 ? Math.floor(Math.max(0, lt - 0.5) / 0.28) : 99;
+        for (let k = 0; k < NS; k++) dot(cvG, POSG[k][0], POSG[k][1], 9.0 * (GI[k] === kOn ? 1.5 : 1.0), GI[k] <= kOn ? SE.GRP[k] : [150, 170, 255]);
+      }
+      if (on(3)) {
+        const t0 = st(3);
+        blurIn(["#s4a", "#s4b"], t0, 0, 0.5, 0.15);
+        tl.fromTo("#s4c", { scaleY: 0, opacity: 0, transformOrigin: "50% 50%" }, { scaleY: 1, opacity: 1, duration: 0.45, ease: "back.out(1.6)" }, t0 + 4.0);
+      }
+      /* ---------- slide 5 ---------- */
+      if (on(4)) {
+        const t0 = st(4);
+        tl.fromTo("#s5c", { y: 90, scale: 0.92, opacity: 0, transformOrigin: "50% 50%" }, { y: 0, scale: 1, opacity: 1, duration: 0.8, ease: "expo.out" }, t0);
+        pop(["#s5q1", "#s5q2"], t0 + 0.15, 0.7); rise("#s5e", t0 + 0.4, 10, 0.4); blurIn(["#s5a", "#s5b", "#s5f"], t0 + 0.5, 70, 0.5, 0.14);
+        tl.fromTo("#s5w .l", { y: 110, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "back.out(2.4)", stagger: 0.04 }, t0 + 1.2);
+        rise("#s5t", t0 + 1.8, 18, 0.45);
+        tl.fromTo(["#s5b1", "#s5b2"], { scale: 1.6, opacity: 0, transformOrigin: "50% 50%" }, { scale: 1, opacity: 1, duration: 0.45, ease: "power3.out", stagger: 0.2 }, t0 + 2.1);
+      }
+      fin(() => { if (on(3)) drawG(S.t - st(3)); });
+    </script>
+  </body>
+</html>
