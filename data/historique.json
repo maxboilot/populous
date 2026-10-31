@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-10-30T23:53:35.781876Z",
-  "depuis": "2025-10-30",
-  "nombre": 114,
+  "generated_at": "2026-10-31T02:32:50.394252Z",
+  "depuis": "2025-10-31",
+  "nombre": 113,
   "lois": [
     {
       "numero": 9241,
@@ -2643,30 +2643,6 @@
         "absent": 1
       },
       "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/3936",
-      "type": "scrutin"
-    },
-    {
-      "numero": 3273,
-      "date": "2025-10-30",
-      "titre": "Rendre systématique l'information du consommateur sur l'origine des denrées alimentaires par le moyen de l'étiquetage",
-      "titre_officiel": "l'ensemble de la proposition de loi visant à rendre systématique l'information du consommateur sur l'origine des denrées alimentaires par le moyen de l'étiquetage (première lecture).",
-      "nature": "proposition de loi",
-      "lecture": "première lecture",
-      "solennel": false,
-      "adopte": false,
-      "statut": "rejete",
-      "themes": [
-        "economie",
-        "agriculture"
-      ],
-      "sort": "L'Assemblée nationale n'a pas adopté",
-      "tally": {
-        "pour": 149,
-        "contre": 174,
-        "abstention": 8,
-        "absent": 15
-      },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0178_texte-adopte-seance.pdf",
       "type": "scrutin"
     }
   ]
