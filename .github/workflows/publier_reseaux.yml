@@ -38,13 +38,24 @@ concurrency:
 jobs:
   publier:
     runs-on: ubuntu-24.04
+    # Le rendu des 5 slides + de l'apercu prend quelques minutes (HyperFrames, Chrome sans GPU) ; au-dela, c'est un blocage.
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
       - name: Installer les dependances
-        run: pip install requests Pillow
+        run: |
+          pip install requests Pillow
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+      - name: Verifier l'environnement de rendu (HyperFrames)
+        # Informatif : la ligne montre ce que HyperFrames voit (Chrome, FFmpeg). Ne bloque jamais.
+        run: npx --yes hyperframes@0.8.222 doctor || true
       - name: Determiner le type de contenu pour ce declenchement
         id: type
         run: |
@@ -78,12 +89,14 @@ jobs:
           else
             python publier_reseaux.py --type "$TYPE" --publier
           fi
-      - name: Joindre les visuels du vote (brouillon a relire)
-        if: steps.type.outputs.type == 'vote'
+      - name: Joindre le carrousel genere (brouillon a relire / aide au diagnostic)
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: visuels-vote
-          path: assets_social/*-vote-*.png
+          name: carrousel-${{ steps.type.outputs.type }}
+          path: assets_social/carrousels/**
+          retention-days: 7
+          if-no-files-found: ignore
       - name: Committer l'etat de publication mis a jour
         # Necessaire depuis que contenu_presidentielle() se souvient du
         # dernier sondage poste (data/state_publication.json) pour ne pas

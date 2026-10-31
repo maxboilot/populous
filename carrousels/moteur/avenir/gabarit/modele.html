@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=%%RW%%, height=1350" />
+    <script src="assets/gsap.min.js"></script>
+    <style>
+      /*%%CSS_COMMUN%%*/
+      /*%%CSS_CARROUSEL%%*/
+      .pillD { position:absolute; left:110px; height:52px; padding:0 22px; border-radius:26px; background:var(--accent); color:#fff; font-size:32px; line-height:52px; white-space:nowrap; }
+      .txtD { position:absolute; left:110px; width:700px; font-size:34px; line-height:44px; font-weight:700; color:var(--ink); display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+      .sepD { position:absolute; left:110px; height:3px; width:840px; border-radius:2px; background:#E2E4F0; transform-origin:0 50%; }
+      #nbig { position:absolute; left:0; top:200px; width:1080px; height:470px; display:flex; justify-content:center; font-size:470px; color:#fff; }
+      #nbig .col { width:290px; height:470px; overflow:hidden; text-align:center; }
+      #nbig .strip i { display:block; font-style:normal; height:470px; line-height:470px; }
+      .rk { position:absolute; top:1296px; width:2px; background:rgba(143,166,255,.95); box-shadow:0 0 6px rgba(11,18,56,.45); }
+      .rl { position:absolute; top:1312px; width:60px; margin-left:-30px; text-align:center; font-size:24px; line-height:1; font-weight:700; color:rgba(143,166,255,.98); text-shadow:0 0 6px rgba(11,18,56,.55); }
+      .rd { position:absolute; border-radius:50%; background:#FFB84A; box-shadow:0 0 18px 3px rgba(255,184,74,.55); }
+      #rline { position:absolute; left:100px; top:1296px; height:3px; width:5200px; border-radius:2px; background:rgba(143,166,255,.95); box-shadow:0 0 6px rgba(11,18,56,.45); transform-origin:0 50%; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="%%DUR%%" data-width="%%RW%%" data-height="1350">
+      <div id="cam">
+        <div class="abs" style="left:0;top:0;width:5400px;height:1350px;background:linear-gradient(to right,#0B1238 0px,#0B1238 700px,#F3F3F2 1450px,#F3F3F2 1800px,#1C34C6 2500px,#1C34C6 2950px,#0B1238 3550px,#0B1238 3950px,#F3F3F2 4700px,#F3F3F2 5400px)"></div>
+        <div class="abs" style="left:0;top:0;width:1080px;height:1350px;background:radial-gradient(ellipse 45% 50% at 50% 40%,rgba(70,104,255,.30),rgba(70,104,255,0) 100%)"></div>
+        <div class="abs" style="left:1080px;top:0;width:1080px;height:1350px;background:radial-gradient(ellipse 45% 50% at 50% 42%,rgba(255,255,255,.5),rgba(255,255,255,0) 100%)"></div>
+        <div class="abs" style="left:2160px;top:0;width:1080px;height:1350px;background:radial-gradient(ellipse 45% 50% at 50% 38%,rgba(120,150,255,.40),rgba(120,150,255,0) 100%)"></div>
+        <div class="abs" style="left:3240px;top:0;width:1080px;height:1350px;background:radial-gradient(ellipse 45% 50% at 50% 40%,rgba(70,104,255,.30),rgba(70,104,255,0) 100%)"></div>
+        <div class="abs" style="left:4320px;top:0;width:1080px;height:1350px;background:radial-gradient(ellipse 45% 50% at 50% 42%,rgba(255,255,255,.55),rgba(255,255,255,0) 100%)"></div>
+
+        <!-- pont : la règle du calendrier (28 jours) traverse toutes les slides ; un point = des points à l'ordre du jour ce jour-là -->
+        <div id="rline"></div>
+        %%REGLE%%
+
+        <!-- ===== SLIDE 1 : le tableau à palettes ===== -->
+        <div class="sl" style="left:0">
+          %%PROGRES1%%
+          <div id="s1a" class="gh" style="top:110px;font-size:150px;color:#fff">À venir.</div>
+          <div id="s1b" class="gh" style="top:290px;font-size:46px;font-weight:700;color:#A0B0F0">Cette semaine à l’Assemblée</div>
+          <div id="pan" class="abs" style="left:30px;top:370px;width:1020px;height:%%PANH%%px;border-radius:40px;background:rgb(14,20,48)"></div>
+          <canvas id="cvA" width="1080" height="1350" class="abs" style="left:0;top:0"></canvas>
+          <div id="s1k" class="chip dark" style="left:90px;top:1150px;display:none">Glisse <i id="s1i">→</i></div>
+        </div>
+
+        <!-- ===== SLIDE 2 : la carte ===== -->
+        <div class="sl" style="left:1080px">
+          %%PROGRES2%%
+          <div id="s2c" class="card" style="left:60px;top:150px;width:960px;height:1070px"></div>
+          <div id="s2q1" class="q" style="left:-15px;top:-45px">“</div>
+          <div id="s2q2" class="q" style="left:730px;top:1020px">”</div>
+          <div id="s2e" class="eb" style="left:110px;top:218px">À venir</div>
+          <div id="s2t1" class="t" style="left:110px;top:272px;font-size:80px;color:var(--ink)">Cette semaine</div>
+          <div id="s2t2" class="t" style="left:110px;top:360px;font-size:80px;color:var(--ink)">à l’Assemblée</div>
+          %%ITEMS%%
+        </div>
+
+        <!-- ===== SLIDE 3 : le compteur ===== -->
+        <div class="sl" style="left:2160px">
+          %%PROGRES3%%
+          <div id="nbig">%%COLONNES%%</div>
+          <div id="s3a" class="gh" style="top:690px;font-size:64px;color:#CDD7FF">points à l’ordre du jour.</div>
+          <div id="s3b" class="gh" style="top:790px;font-size:42px;font-weight:500;color:#BECAFF">%%JOURS_TXT%%</div>
+          <div id="s3k" class="chip dark" style="left:90px;top:1150px">Glisse <i id="s3i">→</i></div>
+        </div>
+
+        <!-- ===== SLIDE 4 : le prochain rendez-vous ===== -->
+        <div class="sl" style="left:3240px">
+          %%PROGRES4%%
+          <div id="s4e" class="eb" style="left:90px;top:130px;color:#96ACFF">Prochain rendez-vous</div>
+          <div id="s4d" class="t" style="left:90px;top:200px;font-size:132px;color:#fff;letter-spacing:-.02em">%%PROCHAIN_DATE%%</div>
+          <div id="s4h" class="t" style="left:90px;top:350px;font-size:112px;color:#96ACFF;letter-spacing:-.02em">%%PROCHAIN_HEURE%%</div>
+          <div id="s4t" class="abs" style="left:90px;top:540px;width:900px;font-size:58px;line-height:72px;font-weight:700;color:#fff">%%PROCHAIN_TXT%%</div>
+          <div id="s4k" class="chip dark" style="left:90px;top:1150px">Glisse <i id="s4i">→</i></div>
+        </div>
+
+        <!-- ===== SLIDE 5 : dans l'app ===== -->
+        <div class="sl" style="left:4320px">
+          %%PROGRES5%%
+          <div id="s5c" class="card" style="left:70px;top:170px;width:940px;height:800px"></div>
+          <div id="s5q1" class="q" style="left:5px;top:-25px">“</div>
+          <div id="s5q2" class="q" style="left:775px;top:775px">”</div>
+          <div id="s5e" class="eb" style="left:130px;top:250px">À venir</div>
+          <div id="s5a" class="t" style="left:130px;top:310px;font-size:62px;color:var(--ink)">Sache ce qui arrive</div>
+          <div id="s5b" class="t" style="left:130px;top:390px;font-size:62px;color:var(--accent)">à l’Assemblée.</div>
+          <div id="s5w" class="gh" style="top:560px;font-size:150px;letter-spacing:-.02em;color:var(--ink)">%%LETTRES%%</div>
+          <div id="s5t" class="gh" style="top:760px;font-size:44px;font-weight:700;color:var(--corps)">Suis chaque vote sur Populous.</div>
+          <div id="s5b1" class="bdg" style="left:70px;top:1030px"><small>Télécharger dans</small><b>l’App Store</b></div>
+          <div id="s5b2" class="bdg" style="left:560px;top:1030px"><small>DISPONIBLE SUR</small><b>Google Play</b></div>
+          <div id="s5s" class="gh" style="top:1205px;font-size:26px;font-weight:500;color:var(--gris)">Source : Assemblée nationale</div>
+        </div>
+      </div>
+      <div id="police" style="position:absolute;left:-999px;top:0"><span style="font-weight:800">Aa</span><span style="font-weight:500">Aa</span></div>
+    </div>
+
+    <script>
+      /*%%LIB_JS%%*/
+      /*%%JS_CARROUSEL%%*/
+      const LIGNES = %%LIGNES_JSON%%;
+      /* ---------- slide 1 : tableau à palettes (canvas) ---------- */
+      const COLS = 20, TW = 46, TH = 74, GAP = 4, Y0 = 400, T0 = 0.3, T1 = 1.9;
+      const ALPHA = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/·".split("");
+      const rr = rng(5), STOP = LIGNES.map(() => Array.from({ length: COLS }, () => rr()));
+      const cvA = document.getElementById("cvA").getContext("2d");
+      function rrect(ctx, x, y, w, h, r) { ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r); ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath(); }
+      function drawA(t) {
+        cvA.clearRect(0, 0, 1080, 1350); if (t < 0) return;
+        const x0 = (1080 - COLS * (TW + GAP)) / 2 + GAP / 2; cvA.textAlign = "center"; cvA.textBaseline = "middle";
+        LIGNES.forEach(([txt, head], r) => { for (let c = 0; c < COLS; c++) {
+          const ch = c < txt.length ? txt[c] : " ", ts = T0 + (T1 - T0) * (0.55 * r / LIGNES.length + 0.45 * STOP[r][c]);
+          const x = x0 + c * (TW + GAP) + TW / 2, y = Y0 + r * (TH + GAP) + TH / 2;
+          cvA.fillStyle = "rgb(30,38,80)"; rrect(cvA, x - TW / 2, y - TH / 2, TW, TH, 9); cvA.fill();
+          cvA.font = "800 52px Jakarta"; cvA.fillStyle = head ? "rgb(150,172,255)" : "#fff";
+          if (t < ts) { const k = Math.floor(t * 17 + c * 5 + r * 7) % ALPHA.length, ph = (t * 17 + c * 5 + r * 7) % 1, sy = Math.abs(Math.cos(Math.PI * ph)) * 0.9 + 0.1; cvA.save(); cvA.globalAlpha = 0.9; cvA.translate(x, y); cvA.scale(1, sy); cvA.fillText(ALPHA[k], 0, 4); cvA.restore(); }
+          else if (ch !== " ") { const e = prog(t, ts, 0.12), sy = e < 1 ? 1 - 0.25 * Math.sin(Math.PI * e) : 1; cvA.save(); cvA.translate(x, y); cvA.scale(1, sy); cvA.fillText(ch, 0, 4); cvA.restore(); }
+          cvA.fillStyle = "rgb(10,14,34)"; cvA.fillRect(x - TW / 2, y - 1.5, TW, 3);
+        } });
+      }
+      if (on(0)) {
+        const t0 = st(0);
+        blurIn("#s1a", t0, 0, 0.5); rise("#s1b", t0 + 0.2, 20, 0.4); tl.fromTo("#pan", { opacity: 0 }, { opacity: 1, duration: 0.3 }, t0 + 0.1);
+        tl.fromTo("#rline", { scaleX: 0 }, { scaleX: 1, duration: 1.6, ease: "power3.inOut" }, t0 + 0.2);
+        tl.fromTo(".rk, .rl", { opacity: 0 }, { opacity: 1, duration: 0.3, stagger: 0.02 }, t0 + 0.6);
+        tl.fromTo(".rd", { scale: 0 }, { scale: 1, duration: 0.5, ease: "back.out(2)", stagger: 0.04, transformOrigin: "50% 50%" }, t0 + 1.2);
+        tl.set("#s1k", { display: "flex" }, t0 + 2.4); rise("#s1k", t0 + 2.4, 20, 0.4); chipArrow("#s1i", t0 + 2.9);
+      }
+      /* ---------- slide 2 ---------- */
+      if (on(1)) {
+        const t0 = st(1);
+        tl.fromTo("#s2c", { y: 80, scale: 0.94, opacity: 0, transformOrigin: "50% 50%" }, { y: 0, scale: 1, opacity: 1, duration: 0.8, ease: "expo.out" }, t0);
+        pop(["#s2q1", "#s2q2"], t0 + 0.15, 0.7); rise("#s2e", t0 + 0.3, 12, 0.4);
+        blurIn(["#s2t1", "#s2t2"], t0 + 0.35, 0, 0.5, 0.12);
+        q(".it").forEach((g, i) => {
+          const a = t0 + 0.9 + i * 0.7;
+          tl.fromTo(g.querySelector(".pillD"), { x: 260, opacity: 0 }, { x: 0, opacity: 1, duration: 0.45, ease: "expo.out" }, a);
+          tl.fromTo(g.querySelector(".txtD"), { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power3.out" }, a + 0.12);
+          const s = g.querySelector(".sepD"); if (s) tl.fromTo(s, { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, a + 0.4);
+        });
+      }
+      /* ---------- slide 3 ---------- */
+      if (on(2)) {
+        const t0 = st(2);
+        q("#nbig .strip").forEach((s, i) => { const d = +s.dataset.d, fin = 0.7 + 0.18 * i + 0.4;
+          tl.fromTo(s, { y: 0 }, { y: -(20 + d) * 470, duration: fin, ease: "power3.out" }, t0);
+          tl.fromTo(s.parentNode, { filter: "blur(18px)" }, { filter: "blur(0px)", duration: 0.3, ease: "power2.out" }, t0 + fin - 0.3); });
+        rise("#s3a", t0 + 0.9, 20, 0.45); rise("#s3b", t0 + 1.2, 16, 0.45); rise("#s3k", t0 + 2.2, 20, 0.5); chipArrow("#s3i", t0 + 2.7);
+      }
+      /* ---------- slide 4 ---------- */
+      if (on(3)) {
+        const t0 = st(3);
+        rise("#s4e", t0, 12, 0.4); blurIn("#s4d", t0 + 0.15, 100, 0.55); blurIn("#s4h", t0 + 0.4, 100, 0.55);
+        words("#s4t .w", t0 + 0.9, 0.05); rise("#s4k", t0 + 2.4, 20, 0.5); chipArrow("#s4i", t0 + 2.9);
+      }
+      /* ---------- slide 5 ---------- */
+      if (on(4)) {
+        const t0 = st(4);
+        tl.fromTo("#s5c", { y: 90, scale: 0.92, opacity: 0, transformOrigin: "50% 50%" }, { y: 0, scale: 1, opacity: 1, duration: 0.8, ease: "expo.out" }, t0);
+        pop(["#s5q1", "#s5q2"], t0 + 0.15, 0.7); rise("#s5e", t0 + 0.4, 10, 0.4); blurIn(["#s5a", "#s5b"], t0 + 0.5, 60, 0.5, 0.15);
+        tl.fromTo("#s5w .l", { y: 110, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "back.out(2.4)", stagger: 0.04 }, t0 + 1.0);
+        rise("#s5t", t0 + 1.6, 20, 0.45);
+        tl.fromTo(["#s5b1", "#s5b2"], { scale: 1.6, opacity: 0, transformOrigin: "50% 50%" }, { scale: 1, opacity: 1, duration: 0.45, ease: "power3.out", stagger: 0.2 }, t0 + 2.0);
+        tl.fromTo("#s5s", { opacity: 0 }, { opacity: 0.9, duration: 0.4 }, t0 + 2.7);
+      }
+      fin(() => { if (on(0)) drawA(S.t - st(0)); });
+    </script>
+  </body>
+</html>

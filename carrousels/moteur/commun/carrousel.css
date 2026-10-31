@@ -1,0 +1,15 @@
+html, body { width:%%RW%%px; height:1350px; overflow:hidden; background:#F3F3F2; }
+#root { position:relative; width:%%RW%%px; height:1350px; overflow:hidden; font-family:"Jakarta", sans-serif; font-weight:800; color:var(--ink); }
+#cam { position:absolute; left:0; top:0; width:5400px; height:1350px; }
+.sl { position:absolute; top:0; width:1080px; height:1350px; }
+.t { position:absolute; white-space:nowrap; line-height:1; }
+.gh { position:absolute; left:0; width:1080px; text-align:center; white-space:nowrap; line-height:1; }
+.pg { position:absolute; top:52px; width:130px; height:8px; border-radius:4px; }
+.chip { position:absolute; top:1180px; height:76px; padding:0 30px; border-radius:38px; font-size:32px; line-height:76px; white-space:nowrap; display:flex; gap:14px; align-items:center; }
+.chip i { display:inline-block; font-style:normal; font-size:38px; }
+.light { background:rgba(16,25,63,.08); color:var(--ink); }
+.dark { background:rgba(255,255,255,.16); color:#fff; }
+.bdg { position:absolute; width:450px; height:148px; border-radius:30px; background:#161616; border:3px solid #000; color:#fff; text-align:center; }
+.bdg small { position:absolute; left:0; width:100%; top:24px; font-size:29px; font-weight:500; color:#D6D6D6; line-height:1; }
+.bdg b { position:absolute; left:0; width:100%; top:68px; font-size:58px; font-weight:800; line-height:1; }
+.hl { background-image:linear-gradient(#CDD6FF,#CDD6FF); background-repeat:no-repeat; background-position:0 62%; background-size:0% 78%; padding:0 .14em; margin:0 -.14em; }

@@ -1,6 +1,14 @@
 #!/usr/bin/env python3
 """Publie un post sur la Page Facebook « Media Populous » et sur le
-compte Instagram @populous_officiel, avec un visuel genere a la volee.
+compte Instagram @populous_officiel, sous forme de CARROUSEL de 5 slides
+(HyperFrames, cf. carrousels/generer_carrousel.py) genere a la volee.
+
+Format (depuis le 31 octobre 2026) : chaque post est un carrousel de 5 slides
+qui forment une bande continue. Facebook recoit un diaporama des 5 images ;
+Instagram un carrousel de 5 VIDEOS (chaque slide s'anime quand on arrive
+dessus), avec repli automatique sur les 5 images si la voie video echoue
+avant la publication. L'ancien visuel unique (generer_visuel.py) n'est plus
+utilise par ce script.
 
 Contenu (jamais invente, cf. CLAUDE.md) : cinq types, choisis avec
 --type sur la ligne de commande pour que chaque creneau cron sache
@@ -60,6 +68,8 @@ from generer_visuel import generer, portrait_depute, pile_boussole_exemple
 import generer_post_vote
 
 DOSSIER = Path(__file__).parent
+sys.path.insert(0, str(DOSSIER / 'carrousels'))
+import generer_carrousel
 GRAPH = 'https://graph.facebook.com/v21.0'
 
 MOIS_FR = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin',
@@ -219,6 +229,8 @@ def contenu_depute():
             f"Retrouve son activité complète à l'Assemblée sur Populous.\n\n#Populous #AssembleeNationale #{elu['g']}"
         ),
         'a_index': elu['a'],
+        'nom_depute': elu['n'],
+        'numero_scrutin': numero,
         # Portrait + donnees de vote viennent de l'Assemblee (Licence
         # Ouverte Etalab, mention de source obligatoire) — remplace le
         # pied de page "Populous - iOS" habituel (cf. docstring
@@ -335,9 +347,8 @@ def publier_instagram(ig_user_id, page_token, image_url, legende):
 
 
 def preparer_vote(args):
-    """Visuels + legende du post « Vote d'hier ». Lit data/ et index.html du
-    checkout (le workflow tourne sur une copie fraiche de main). Renvoie
-    ([images], contenu) : 1 image (la carte) ou 2 (carte + resume de la loi)."""
+    """Parametres du carrousel + legende du post « Vote d'hier ». Lit data/ et index.html du
+    checkout (le workflow tourne sur une copie fraiche de main). Renvoie (parametres, contenu)."""
     if not args.numero or not args.titre:
         sys.exit("--type vote exige --numero et --titre (titre synthetique relu par un humain).")
     if args.resume and not args.source_resume:
@@ -346,28 +357,26 @@ def preparer_vote(args):
     if args.publier and not args.forcer and lire_etat_publication().get('dernier_vote_publie') == args.numero:
         sys.exit(f"Le scrutin {args.numero} a deja ete publie (--forcer pour republier).")
     contours = generer_post_vote.charger_contours((DOSSIER / 'index.html').read_text(encoding='utf-8'))
-    chemin = DOSSIER / 'assets_social' / f"{vote['date']}-vote-{args.numero}.png"
-    generer_post_vote.generer(vote, contours, args.titre, chemin)
-    images = [chemin]
-    if args.resume:
-        chemin_loi = DOSSIER / 'assets_social' / f"{vote['date']}-vote-{args.numero}-loi.png"
-        try:
-            generer_post_vote.generer_slide_resume(args.titre, args.resume, args.source_resume, chemin_loi)
-        except ValueError as e:
-            sys.exit(str(e))
-        images.append(chemin_loi)
-    contenu = {
-        'legende': generer_post_vote.legende(vote, args.titre, contours),
-        'cle_etat': 'dernier_vote_publie',
-        'valeur_etat': args.numero,
-    }
-    return images, contenu
+    legende = generer_post_vote.legende(vote, args.titre, contours)
+    if args.resume:        # l'ancien 2e visuel « De quoi parle cette loi ? » passe dans la legende (texte relu par un humain)
+        legende = legende.replace('\n\n#', f"\n\nDe quoi parle cette loi ? {args.resume} (source : {args.source_resume})\n\n#", 1)
+    contenu = {'legende': legende, 'cle_etat': 'dernier_vote_publie', 'valeur_etat': args.numero}
+    return {'scrutin': args.numero, 'titre_vote': args.titre}, contenu
 
 
-def _attendre_conteneur_instagram(creation_id, page_token):
+def parametres_carrousel(type_, contenu):
+    """Ce dont le generateur de carrousel a besoin pour un type donne (memes donnees que la legende)."""
+    if type_ == 'fait':
+        return {'mmjj': datetime.date.today().strftime('%m-%d')}
+    if type_ == 'depute':
+        return {'depute': contenu['nom_depute'], 'scrutin': contenu.get('numero_scrutin')}
+    return {}
+
+
+def _attendre_conteneur_instagram(creation_id, page_token, essais=10, pause=3):
     """Sonde le statut d'un container Instagram jusqu'a FINISHED (cf.
     publier_instagram : publier a l'aveugle echoue parfois en 400)."""
-    for _ in range(10):
+    for _ in range(essais):
         r = requests.get(f'{GRAPH}/{creation_id}', params={'fields': 'status_code', 'access_token': page_token}, timeout=20)
         _lever_avec_detail(r)
         statut = r.json().get('status_code')
@@ -375,8 +384,8 @@ def _attendre_conteneur_instagram(creation_id, page_token):
             return
         if statut == 'ERROR':
             raise RuntimeError(f"Le container Instagram {creation_id} a echoue (status_code=ERROR).")
-        time.sleep(3)
-    raise RuntimeError(f"Le container Instagram {creation_id} n'etait toujours pas pret apres 30s d'attente.")
+        time.sleep(pause)
+    raise RuntimeError(f"Le container Instagram {creation_id} n'etait toujours pas pret apres {essais * pause}s d'attente.")
 
 
 def publier_diaporama_facebook(page_id, page_token, chemins_images, legende):
@@ -390,7 +399,7 @@ def publier_diaporama_facebook(page_id, page_token, chemins_images, legende):
                 f'{GRAPH}/{page_id}/photos',
                 data={'published': 'false', 'access_token': page_token},
                 files={'source': f},
-                timeout=30,
+                timeout=60,
             )
         _lever_avec_detail(r)
         ids.append(r.json()['id'])
@@ -402,21 +411,45 @@ def publier_diaporama_facebook(page_id, page_token, chemins_images, legende):
     return r.json(), ids
 
 
-def publier_diaporama_instagram(ig_user_id, page_token, urls_images, legende):
-    """Carrousel Instagram : un container enfant par image
-    (is_carousel_item=true), puis un container CAROUSEL qui les reference,
-    puis media_publish. La legende ne se met que sur le container parent."""
-    enfants = []
-    for url in urls_images:
-        r = requests.post(
-            f'{GRAPH}/{ig_user_id}/media',
-            data={'image_url': url, 'is_carousel_item': 'true', 'access_token': page_token},
-            timeout=30,
-        )
+def televerser_video_facebook_non_publiee(page_id, page_token, chemin):
+    """Envoie une slide en video sur la Page SANS la publier (published=false) : sert uniquement a obtenir une URL
+    publique pour Instagram (qui exige une URL, pas un fichier). Renvoie l'id de la video."""
+    with open(chemin, 'rb') as f:
+        r = requests.post(f'{GRAPH}/{page_id}/videos', data={'published': 'false', 'access_token': page_token}, files={'source': f}, timeout=240)
+    _lever_avec_detail(r)
+    return r.json()['id']
+
+
+def url_publique_video(video_id, page_token, attente=120):
+    """Attend que la video non publiee soit prete cote Facebook, puis renvoie son URL publique (champ source)."""
+    debut = time.time()
+    while time.time() - debut < attente:
+        r = requests.get(f'{GRAPH}/{video_id}', params={'fields': 'source,status', 'access_token': page_token}, timeout=20)
+        _lever_avec_detail(r)
+        infos = r.json()
+        etat = (infos.get('status') or {}).get('video_status')
+        if infos.get('source') and etat in (None, 'ready'):
+            return infos['source']
+        time.sleep(4)
+    raise RuntimeError(f"La video {video_id} n'etait pas prete apres {attente}s.")
+
+
+def preparer_carrousel_instagram(ig_user_id, page_token, elements, legende):
+    """Cree (SANS publier) le carrousel Instagram : un container enfant par element ('IMAGE'|'VIDEO', url), puis
+    un container CAROUSEL qui les reference. La legende ne se met que sur le parent. Renvoie l'id du parent, pret a publier.
+    Aucun effet public tant que publier_conteneur_instagram n'est pas appele : une erreur ici autorise un repli sans risque de doublon."""
+    enfants, video = [], False
+    for genre, url in elements:
+        donnees = {'is_carousel_item': 'true', 'access_token': page_token}
+        if genre == 'VIDEO':
+            donnees.update({'media_type': 'VIDEO', 'video_url': url}); video = True
+        else:
+            donnees['image_url'] = url
+        r = requests.post(f'{GRAPH}/{ig_user_id}/media', data=donnees, timeout=60)
         _lever_avec_detail(r)
         enfants.append(r.json()['id'])
     for enfant in enfants:
-        _attendre_conteneur_instagram(enfant, page_token)
+        _attendre_conteneur_instagram(enfant, page_token, essais=(40 if video else 10), pause=(5 if video else 3))
     r = requests.post(
         f'{GRAPH}/{ig_user_id}/media',
         data={'media_type': 'CAROUSEL', 'children': ','.join(enfants), 'caption': legende, 'access_token': page_token},
@@ -424,12 +457,13 @@ def publier_diaporama_instagram(ig_user_id, page_token, urls_images, legende):
     )
     _lever_avec_detail(r)
     parent = r.json()['id']
-    _attendre_conteneur_instagram(parent, page_token)
-    r = requests.post(
-        f'{GRAPH}/{ig_user_id}/media_publish',
-        data={'creation_id': parent, 'access_token': page_token},
-        timeout=30,
-    )
+    _attendre_conteneur_instagram(parent, page_token, essais=(20 if video else 10), pause=(5 if video else 3))
+    return parent
+
+
+def publier_conteneur_instagram(ig_user_id, page_token, creation_id):
+    """Seule etape publique cote Instagram."""
+    r = requests.post(f'{GRAPH}/{ig_user_id}/media_publish', data={'creation_id': creation_id, 'access_token': page_token}, timeout=60)
     _lever_avec_detail(r)
     return r.json()
 
@@ -441,29 +475,24 @@ def main():
     parser.add_argument('--numero', type=int, help="(vote) numero du scrutin.")
     parser.add_argument('--titre', help="(vote) titre synthetique, relu par un humain.")
     parser.add_argument('--forcer', action='store_true', help="(vote) republie meme si deja publie.")
-    parser.add_argument('--resume', help="(vote) extrait de l'expose des motifs, relu par un humain : ajoute une 2e image.")
+    parser.add_argument('--resume', help="(vote) extrait de l'expose des motifs, relu par un humain : ajoute un paragraphe a la legende.")
     parser.add_argument('--source-resume', dest='source_resume', help="(vote) source du resume, ex. « exposé des motifs de la proposition de loi n°3106 ».")
+    parser.add_argument('--sans-video-instagram', action='store_true', help="Instagram : carrousel d'images au lieu de videos.")
     args = parser.parse_args()
 
-    images = None
     if args.type == 'vote':
-        images, contenu = preparer_vote(args)
-        chemin_image = images[0]
+        params, contenu = preparer_vote(args)
     else:
         contenu = CHOIX[args.type]()
         if contenu is None:
             print(f"Rien a publier pour --type {args.type} aujourd'hui.")
             return
+        params = parametres_carrousel(args.type, contenu)
 
-        chemin_image = DOSSIER / 'assets_social' / f'{datetime.date.today().isoformat()}-{args.type}.png'
-        photo = portrait_depute(contenu['a_index']) if 'a_index' in contenu else None
-        generer(
-            chemin_image, eyebrow=contenu['eyebrow'], titre=contenu['titre'], texte=contenu.get('texte'), photo=photo,
-            date_badge=contenu.get('date_badge'), bloc_depute=contenu.get('bloc_depute'),
-            pile_resultats=contenu.get('pile_resultats'), pied_source=contenu.get('pied_source'),
-        )
-
-    print(f"Visuel : {' + '.join(str(i) for i in images) if images else chemin_image}")
+    dossier_sortie = DOSSIER / 'assets_social' / 'carrousels' / f'{datetime.date.today().isoformat()}-{args.type}'
+    print(f"Generation du carrousel « {args.type} » (HyperFrames) -> {dossier_sortie}")
+    carrousel = generer_carrousel.generer(args.type, dossier_sortie, **params)    # leve RuntimeError au moindre echec : jamais de demi-carrousel publie
+    print(f"Carrousel : {len(carrousel['slides_png'])} slides, apercu {carrousel['apercu']}")
     print(f"Legende :\n{contenu['legende']}\n")
 
     if not args.publier:
@@ -473,17 +502,23 @@ def main():
     env = lire_env()
     page_id, page_token, ig_user_id = env['FB_PAGE_ID'], env['FB_PAGE_TOKEN'], env['IG_USER_ID']
 
-    if images and len(images) > 1:
-        reponse_fb, ids_photos = publier_diaporama_facebook(page_id, page_token, images, contenu['legende'])
-        print(f"Facebook publie (diaporama) : {reponse_fb}")
-        urls = [url_publique_photo(pid, page_token) for pid in ids_photos]
-        reponse_ig = publier_diaporama_instagram(ig_user_id, page_token, urls, contenu['legende'])
-    else:
-        reponse_fb = publier_photo_facebook(page_id, page_token, chemin_image, contenu['legende'])
-        print(f"Facebook publie : {reponse_fb}")
+    reponse_fb, ids_photos = publier_diaporama_facebook(page_id, page_token, carrousel['slides_png'], contenu['legende'])
+    print(f"Facebook publie (diaporama de {len(ids_photos)} images) : {reponse_fb}")
+    urls_images = [url_publique_photo(pid, page_token) for pid in ids_photos]
 
-        url_image = url_publique_photo(reponse_fb['id'], page_token)
-        reponse_ig = publier_instagram(ig_user_id, page_token, url_image, contenu['legende'])
+    parent = None
+    if not args.sans_video_instagram:
+        try:
+            ids_videos = [televerser_video_facebook_non_publiee(page_id, page_token, chemin) for chemin in carrousel['slides_mp4']]
+            urls_videos = [url_publique_video(vid, page_token) for vid in ids_videos]
+            parent = preparer_carrousel_instagram(ig_user_id, page_token, [('VIDEO', u) for u in urls_videos], contenu['legende'])
+            print("Instagram : carrousel de 5 videos pret.")
+        except Exception as e:      # rien n'est public a ce stade : repli sur les images, sans risque de doublon
+            print(f"::warning::Voie video Instagram impossible ({e}) : repli sur le carrousel d'images.")
+    if parent is None:
+        parent = preparer_carrousel_instagram(ig_user_id, page_token, [('IMAGE', u) for u in urls_images], contenu['legende'])
+        print("Instagram : carrousel de 5 images pret.")
+    reponse_ig = publier_conteneur_instagram(ig_user_id, page_token, parent)
     print(f"Instagram publie : {reponse_ig}")
 
     if 'cle_etat' in contenu:
