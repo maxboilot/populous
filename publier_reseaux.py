@@ -375,17 +375,41 @@ def parametres_carrousel(type_, contenu):
 
 def _attendre_conteneur_instagram(creation_id, page_token, essais=10, pause=3):
     """Sonde le statut d'un container Instagram jusqu'a FINISHED (cf.
-    publier_instagram : publier a l'aveugle echoue parfois en 400)."""
+    publier_instagram : publier a l'aveugle echoue parfois en 400). En cas d'ERROR, le texte d'Instagram
+    (ex. « Media upload has failed with error code 2207076 ») est inclus dans l'erreur."""
     for _ in range(essais):
-        r = requests.get(f'{GRAPH}/{creation_id}', params={'fields': 'status_code', 'access_token': page_token}, timeout=20)
+        r = requests.get(f'{GRAPH}/{creation_id}', params={'fields': 'status_code,status', 'access_token': page_token}, timeout=20)
         _lever_avec_detail(r)
-        statut = r.json().get('status_code')
+        infos = r.json()
+        statut = infos.get('status_code')
         if statut == 'FINISHED':
             return
         if statut == 'ERROR':
-            raise RuntimeError(f"Le container Instagram {creation_id} a echoue (status_code=ERROR).")
+            raise RuntimeError(f"Le container Instagram {creation_id} a echoue : {infos.get('status')}")
         time.sleep(pause)
     raise RuntimeError(f"Le container Instagram {creation_id} n'etait toujours pas pret apres {essais * pause}s d'attente.")
+
+
+def _poster_avec_reessais(url, essais=3, pause=6, **kw):
+    """requests.post avec nouvel essai sur les erreurs serveur ponctuelles de Meta (HTTP 5xx, ex. 500 « An unknown
+    error occurred » code 1 / sous-code 99 constate le 1er nov. 2026). Une erreur 4xx est definitive : pas de nouvel essai."""
+    for essai in range(1, essais + 1):
+        r = requests.post(url, **kw)
+        if r.status_code < 500 or essai == essais:
+            return r
+        print(f"  {url.split('/')[-1]} : HTTP {r.status_code} (essai {essai}/{essais}), nouvel essai dans {pause}s")
+        time.sleep(pause)
+
+
+def televerser_photos_facebook_non_publiees(page_id, page_token, chemins_images):
+    """Envoie les images sur la Page SANS les publier (published=false) : sert uniquement a obtenir leurs URL publiques pour Instagram."""
+    ids = []
+    for chemin in chemins_images:
+        with open(chemin, 'rb') as f:
+            r = requests.post(f'{GRAPH}/{page_id}/photos', data={'published': 'false', 'access_token': page_token}, files={'source': f}, timeout=60)
+        _lever_avec_detail(r)
+        ids.append(r.json()['id'])
+    return ids
 
 
 def publier_diaporama_facebook(page_id, page_token, chemins_images, legende):
@@ -411,46 +435,37 @@ def publier_diaporama_facebook(page_id, page_token, chemins_images, legende):
     return r.json(), ids
 
 
-def televerser_video_facebook_non_publiee(page_id, page_token, chemin):
-    """Envoie une slide en video sur la Page SANS la publier (published=false) : sert uniquement a obtenir une URL
-    publique pour Instagram (qui exige une URL, pas un fichier). Renvoie l'id de la video."""
-    with open(chemin, 'rb') as f:
-        r = requests.post(f'{GRAPH}/{page_id}/videos', data={'published': 'false', 'access_token': page_token}, files={'source': f}, timeout=240)
+def _creer_enfant_video_instagram(ig_user_id, page_token, chemin):
+    """Enfant VIDEO du carrousel par ENVOI DIRECT (resumable upload) : Instagram donne une adresse d'envoi
+    (rupload.facebook.com) et on y poste les octets du fichier. Aucune URL publique n'est necessaire. L'ancienne voie
+    (URL d'une video Facebook non publiee) etait refusee par Instagram : erreur 2207076, constate le 1er nov. 2026."""
+    r = _poster_avec_reessais(f'{GRAPH}/{ig_user_id}/media', data={'media_type': 'VIDEO', 'is_carousel_item': 'true',
+                              'upload_type': 'resumable', 'access_token': page_token}, timeout=60)
     _lever_avec_detail(r)
-    return r.json()['id']
-
-
-def url_publique_video(video_id, page_token, attente=120):
-    """Attend que la video non publiee soit prete cote Facebook, puis renvoie son URL publique (champ source)."""
-    debut = time.time()
-    while time.time() - debut < attente:
-        r = requests.get(f'{GRAPH}/{video_id}', params={'fields': 'source,status', 'access_token': page_token}, timeout=20)
-        _lever_avec_detail(r)
-        infos = r.json()
-        etat = (infos.get('status') or {}).get('video_status')
-        if infos.get('source') and etat in (None, 'ready'):
-            return infos['source']
-        time.sleep(4)
-    raise RuntimeError(f"La video {video_id} n'etait pas prete apres {attente}s.")
+    infos = r.json()
+    octets = Path(chemin).read_bytes()
+    r = _poster_avec_reessais(infos['uri'], headers={'Authorization': f'OAuth {page_token}', 'offset': '0', 'file_size': str(len(octets))},
+                              data=octets, timeout=240)
+    _lever_avec_detail(r)
+    return infos['id']
 
 
 def preparer_carrousel_instagram(ig_user_id, page_token, elements, legende):
-    """Cree (SANS publier) le carrousel Instagram : un container enfant par element ('IMAGE'|'VIDEO', url), puis
-    un container CAROUSEL qui les reference. La legende ne se met que sur le parent. Renvoie l'id du parent, pret a publier.
-    Aucun effet public tant que publier_conteneur_instagram n'est pas appele : une erreur ici autorise un repli sans risque de doublon."""
+    """Cree (SANS publier) le carrousel Instagram : un container enfant par element, puis un container CAROUSEL qui
+    les reference. elements = [('IMAGE', url_publique) | ('VIDEO', chemin_du_fichier)]. La legende ne se met que sur le
+    parent. Renvoie l'id du parent, pret a publier. Aucun effet public tant que publier_conteneur_instagram n'est pas
+    appele : une erreur ici autorise un repli sans risque de doublon."""
     enfants, video = [], False
-    for genre, url in elements:
-        donnees = {'is_carousel_item': 'true', 'access_token': page_token}
+    for genre, valeur in elements:
         if genre == 'VIDEO':
-            donnees.update({'media_type': 'VIDEO', 'video_url': url}); video = True
-        else:
-            donnees['image_url'] = url
-        r = requests.post(f'{GRAPH}/{ig_user_id}/media', data=donnees, timeout=60)
+            enfants.append(_creer_enfant_video_instagram(ig_user_id, page_token, valeur)); video = True
+            continue
+        r = _poster_avec_reessais(f'{GRAPH}/{ig_user_id}/media', data={'is_carousel_item': 'true', 'image_url': valeur, 'access_token': page_token}, timeout=60)
         _lever_avec_detail(r)
         enfants.append(r.json()['id'])
     for enfant in enfants:
         _attendre_conteneur_instagram(enfant, page_token, essais=(40 if video else 10), pause=(5 if video else 3))
-    r = requests.post(
+    r = _poster_avec_reessais(
         f'{GRAPH}/{ig_user_id}/media',
         data={'media_type': 'CAROUSEL', 'children': ','.join(enfants), 'caption': legende, 'access_token': page_token},
         timeout=30,
@@ -468,7 +483,7 @@ def publier_conteneur_instagram(ig_user_id, page_token, creation_id, essais=6, p
     (une autre erreur est definitive) ; tant que ce n'est pas un succes rien n'est public, donc pas de risque de doublon."""
     for essai in range(1, essais + 1):
         r = requests.post(f'{GRAPH}/{ig_user_id}/media_publish', data={'creation_id': creation_id, 'access_token': page_token}, timeout=60)
-        if r.status_code == 400 and '2207027' in r.text and essai < essais:
+        if ((r.status_code == 400 and '2207027' in r.text) or r.status_code >= 500) and essai < essais:
             print(f"  Instagram : contenu pas encore pret (essai {essai}/{essais}), nouvel essai dans {pause}s")
             time.sleep(pause)
             continue
@@ -485,6 +500,7 @@ def main():
     parser.add_argument('--forcer', action='store_true', help="(vote) republie meme si deja publie.")
     parser.add_argument('--resume', help="(vote) extrait de l'expose des motifs, relu par un humain : ajoute un paragraphe a la legende.")
     parser.add_argument('--source-resume', dest='source_resume', help="(vote) source du resume, ex. « exposé des motifs de la proposition de loi n°3106 ».")
+    parser.add_argument('--plateformes', default='facebook,instagram', help="Ou publier : « facebook,instagram » (defaut), « instagram » ou « facebook » (rattrapage sans doublon).")
     parser.add_argument('--sans-video-instagram', action='store_true', help="Instagram : carrousel d'images au lieu de videos.")
     args = parser.parse_args()
 
@@ -509,25 +525,32 @@ def main():
 
     env = lire_env()
     page_id, page_token, ig_user_id = env['FB_PAGE_ID'], env['FB_PAGE_TOKEN'], env['IG_USER_ID']
+    plateformes = {x.strip() for x in args.plateformes.split(',') if x.strip()}
+    inconnues = plateformes - {'facebook', 'instagram'}
+    if inconnues or not plateformes:
+        sys.exit(f"--plateformes : valeurs possibles « facebook », « instagram » (recu : {args.plateformes}).")
 
-    reponse_fb, ids_photos = publier_diaporama_facebook(page_id, page_token, carrousel['slides_png'], contenu['legende'])
-    print(f"Facebook publie (diaporama de {len(ids_photos)} images) : {reponse_fb}")
-    urls_images = [url_publique_photo(pid, page_token) for pid in ids_photos]
+    ids_photos = None
+    if 'facebook' in plateformes:
+        reponse_fb, ids_photos = publier_diaporama_facebook(page_id, page_token, carrousel['slides_png'], contenu['legende'])
+        print(f"Facebook publie (diaporama de {len(ids_photos)} images) : {reponse_fb}")
 
-    parent = None
-    if not args.sans_video_instagram:
-        try:
-            ids_videos = [televerser_video_facebook_non_publiee(page_id, page_token, chemin) for chemin in carrousel['slides_mp4']]
-            urls_videos = [url_publique_video(vid, page_token) for vid in ids_videos]
-            parent = preparer_carrousel_instagram(ig_user_id, page_token, [('VIDEO', u) for u in urls_videos], contenu['legende'])
-            print("Instagram : carrousel de 5 videos pret.")
-        except Exception as e:      # rien n'est public a ce stade : repli sur les images, sans risque de doublon
-            print(f"::warning::Voie video Instagram impossible ({e}) : repli sur le carrousel d'images.")
-    if parent is None:
-        parent = preparer_carrousel_instagram(ig_user_id, page_token, [('IMAGE', u) for u in urls_images], contenu['legende'])
-        print("Instagram : carrousel de 5 images pret.")
-    reponse_ig = publier_conteneur_instagram(ig_user_id, page_token, parent)
-    print(f"Instagram publie : {reponse_ig}")
+    if 'instagram' in plateformes:
+        parent = None
+        if not args.sans_video_instagram:
+            try:
+                parent = preparer_carrousel_instagram(ig_user_id, page_token, [('VIDEO', c) for c in carrousel['slides_mp4']], contenu['legende'])
+                print("Instagram : carrousel de 5 videos pret.")
+            except Exception as e:      # rien n'est public a ce stade : repli sur les images, sans risque de doublon
+                print(f"::warning::Voie video Instagram impossible ({e}) : repli sur le carrousel d'images.")
+        if parent is None:
+            if ids_photos is None:      # Facebook non publie : on envoie quand meme les images (non publiees) pour obtenir leurs URL publiques
+                ids_photos = televerser_photos_facebook_non_publiees(page_id, page_token, carrousel['slides_png'])
+            urls_images = [url_publique_photo(pid, page_token) for pid in ids_photos]
+            parent = preparer_carrousel_instagram(ig_user_id, page_token, [('IMAGE', u) for u in urls_images], contenu['legende'])
+            print("Instagram : carrousel de 5 images pret.")
+        reponse_ig = publier_conteneur_instagram(ig_user_id, page_token, parent)
+        print(f"Instagram publie : {reponse_ig}")
 
     if 'cle_etat' in contenu:
         etat = lire_etat_publication()

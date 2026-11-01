@@ -9,9 +9,10 @@ import publier_reseaux as pr
 
 
 class FausseApi:
-    """Mémorise les appels et répond comme le Graph API ; peut simuler un échec de la voie vidéo."""
-    def __init__(self, echec_video=None, publish_pas_pret=0):
-        self.appels, self.echec_video, self.n, self.publish_pas_pret = [], echec_video, 0, publish_pas_pret
+    """Memorise les appels et repond comme le Graph API ; peut simuler divers echecs."""
+    def __init__(self, echec_video=None, publish_pas_pret=0, erreur500=0):
+        self.appels, self.echec_video, self.n, self.publish_pas_pret, self.erreur500 = [], echec_video, 0, publish_pas_pret, erreur500
+        self.ids_video = set()
 
     def _rep(self, json_=None, statut=200):
         r = mock.Mock(); r.status_code = statut; r.json.return_value = json_ or {}; r.text = str(json_); r.raise_for_status.return_value = None
@@ -20,16 +21,23 @@ class FausseApi:
             r.raise_for_status.side_effect = requests.exceptions.HTTPError(f'{statut}')
         return r
 
-    def post(self, url, data=None, files=None, timeout=None):
-        self.appels.append(('POST', url.split('v21.0/')[1], dict(data or {})))
+    def post(self, url, data=None, files=None, timeout=None, headers=None):
+        nom = url.split('v21.0/')[1] if 'v21.0/' in url else url
+        self.appels.append(('POST', nom, dict(data) if isinstance(data, dict) else {'octets': len(data or b'')}))
         self.n += 1
+        if 'rupload' in url:
+            return self._rep({'error': 'boom'}, 500) if self.echec_video == 'envoi' else self._rep({'success': True})
         if url.endswith('/media_publish') and self.publish_pas_pret > 0:
             self.publish_pas_pret -= 1
             return self._rep({'error': {'code': 9007, 'error_subcode': 2207027, 'message': 'Media ID is not available'}}, 400)
-        if url.endswith('/videos') and self.echec_video == 'televersement':
-            return self._rep({'error': 'boom'}, 500)
+        if url.endswith('/media') and (data or {}).get('is_carousel_item') and self.erreur500 > 0 and (data or {}).get('image_url'):
+            self.erreur500 -= 1
+            return self._rep({'error': {'code': 1, 'message': 'An unknown error occurred'}}, 500)
         if url.endswith('/media') and (data or {}).get('media_type') == 'VIDEO' and self.echec_video == 'conteneur':
             return self._rep({'error': 'video refusee'}, 400)
+        if url.endswith('/media') and (data or {}).get('upload_type') == 'resumable':
+            self.ids_video.add(f'id{self.n}')
+            return self._rep({'id': f'id{self.n}', 'uri': f'https://rupload.facebook.com/ig-api-upload/v26.0/id{self.n}'})
         return self._rep({'id': f'id{self.n}', 'post_id': f'p{self.n}'})
 
     def get(self, url, params=None, timeout=None):
@@ -37,8 +45,8 @@ class FausseApi:
         champs = (params or {}).get('fields', '')
         if champs == 'images':
             return self._rep({'images': [{'source': 'https://cdn.exemple/photo.jpg'}]})
-        if champs == 'source,status':
-            return self._rep({'source': 'https://cdn.exemple/video.mp4', 'status': {'video_status': 'ready'}})
+        if self.echec_video == 'statut_erreur' and url.split('/')[-1] in self.ids_video:
+            return self._rep({'status_code': 'ERROR', 'status': 'Error: Media upload has failed with error code 2207076'})
         return self._rep({'status_code': 'FINISHED'})
 
 
@@ -57,48 +65,70 @@ class TestPublication(unittest.TestCase):
              mock.patch.object(pr, 'time', mock.Mock(sleep=lambda s: None, time=__import__('time').time)), \
              mock.patch.object(pr, 'ecrire_etat_publication', lambda e: None), mock.patch.object(sys, 'argv', ['publier_reseaux.py', *argv]):
             pr.main()
-        publics = [a for a in api.appels if a[0] == 'POST' and a[1].endswith('media_publish') and not a[2].get('_refuse')]
+        publics = [a for a in api.appels if a[0] == 'POST' and a[1].endswith('media_publish')]
         fb_feed = [a for a in api.appels if a[0] == 'POST' and a[1] == 'PAGE/feed']
         return publics, fb_feed
 
-    def test_voie_video_nominale(self):
+    def enfants(self, api):
+        return [a for a in api.appels if a[0] == 'POST' and a[1] == 'IG/media' and a[2].get('is_carousel_item')]
+
+    def test_voie_video_directe_nominale(self):
         api = FausseApi(); publics, fb = self.lancer(api, '--type', 'avenir', '--publier')
         self.assertEqual(len(fb), 1); self.assertEqual(len(publics), 1)
-        enfants = [a for a in api.appels if a[0] == 'POST' and a[1] == 'IG/media' and a[2].get('is_carousel_item')]
-        self.assertEqual(len(enfants), 5); self.assertTrue(all(e[2]['media_type'] == 'VIDEO' for e in enfants))
-        self.assertEqual(sum(1 for a in fb[0][2] if a.startswith('attached_media')), 5)
+        enf = self.enfants(api); self.assertEqual(len(enf), 5)
+        self.assertTrue(all(e[2]['media_type'] == 'VIDEO' and e[2]['upload_type'] == 'resumable' for e in enf))
+        self.assertEqual(len([a for a in api.appels if 'rupload' in a[1]]), 5)              # 5 envois d'octets directs
+        self.assertFalse(any(a[1].endswith('/videos') for a in api.appels))                 # plus de video Facebook intermediaire
+        self.assertEqual(sum(1 for k in fb[0][2] if k.startswith('attached_media')), 5)
 
-    def test_repli_images_si_televersement_video_echoue(self):
-        api = FausseApi('televersement'); publics, fb = self.lancer(api, '--type', 'avenir', '--publier')
+    def test_repli_images_si_envoi_video_echoue(self):
+        api = FausseApi('envoi'); publics, fb = self.lancer(api, '--type', 'avenir', '--publier')
         self.assertEqual(len(publics), 1)                       # une seule publication Instagram, pas de doublon
-        enfants = [a for a in api.appels if a[0] == 'POST' and a[1] == 'IG/media' and a[2].get('is_carousel_item')]
-        self.assertEqual(len(enfants), 5); self.assertTrue(all('image_url' in e[2] for e in enfants))
+        self.assertEqual(len([e for e in self.enfants(api) if 'image_url' in e[2]]), 5)
 
     def test_repli_images_si_conteneur_video_refuse(self):
         api = FausseApi('conteneur'); publics, fb = self.lancer(api, '--type', 'avenir', '--publier')
-        self.assertEqual(len(publics), 1)
-        derniers = [a for a in api.appels if a[0] == 'POST' and a[1] == 'IG/media' and a[2].get('image_url')]
-        self.assertEqual(len(derniers), 5)
+        self.assertEqual(len(publics), 1); self.assertEqual(len([e for e in self.enfants(api) if 'image_url' in e[2]]), 5)
+
+    def test_repli_images_si_instagram_rejette_la_video(self):      # cas reel du 1er nov. 2026 : statut ERROR 2207076
+        api = FausseApi('statut_erreur'); publics, fb = self.lancer(api, '--type', 'avenir', '--publier')
+        self.assertEqual(len(publics), 1); self.assertEqual(len([e for e in self.enfants(api) if 'image_url' in e[2]]), 5)
+
+    def test_nouvel_essai_sur_erreur_500(self):
+        api = FausseApi('conteneur', erreur500=2)               # video refusee -> images ; 2 erreurs 500 puis succes
+        publics, fb = self.lancer(api, '--type', 'avenir', '--publier')
+        self.assertEqual(len(publics), 1); self.assertGreaterEqual(len([e for e in self.enfants(api) if 'image_url' in e[2]]), 7)
 
     def test_nouvel_essai_si_contenu_pas_pret(self):
-        api = FausseApi(publish_pas_pret=2)                     # 2 refus 2207027 puis succes
+        api = FausseApi(publish_pas_pret=2)
         publics, fb = self.lancer(api, '--type', 'avenir', '--publier')
         tentatives = [a for a in api.appels if a[0] == 'POST' and a[1].endswith('media_publish')]
-        self.assertEqual(len(tentatives), 3)                    # 2 refus + 1 succes, meme conteneur
-        self.assertEqual(len({a[2]['creation_id'] for a in tentatives}), 1)
+        self.assertEqual(len(tentatives), 3); self.assertEqual(len({a[2]['creation_id'] for a in tentatives}), 1)
 
     def test_pas_de_nouvel_essai_pour_une_autre_erreur(self):
-        api = FausseApi()
-        orig = api.post
-        def post(url, data=None, files=None, timeout=None):
+        api = FausseApi(); orig = api.post
+        def post(url, data=None, files=None, timeout=None, headers=None):
             if url.endswith('/media_publish'):
-                api.appels.append(('POST', url.split('v21.0/')[1], dict(data or {})))
+                api.appels.append(('POST', 'IG/media_publish', dict(data or {})))
                 return api._rep({'error': 'autre'}, 400)
-            return orig(url, data=data, files=files, timeout=timeout)
+            return orig(url, data=data, files=files, timeout=timeout, headers=headers)
         api.post = post
         with self.assertRaises(Exception):
             self.lancer(api, '--type', 'avenir', '--publier')
         self.assertEqual(len([a for a in api.appels if a[1].endswith('media_publish')]), 1)
+
+    def test_rattrapage_instagram_seul_ne_publie_pas_sur_facebook(self):
+        api = FausseApi(); publics, fb = self.lancer(api, '--type', 'avenir', '--publier', '--plateformes', 'instagram')
+        self.assertEqual(len(fb), 0); self.assertEqual(len(publics), 1)
+
+    def test_rattrapage_instagram_seul_avec_repli_images_televerse_sans_publier(self):
+        api = FausseApi('conteneur'); publics, fb = self.lancer(api, '--type', 'avenir', '--publier', '--plateformes', 'instagram')
+        self.assertEqual(len(fb), 0); self.assertEqual(len(publics), 1)
+        self.assertEqual(len([a for a in api.appels if a[0] == 'POST' and a[1] == 'PAGE/photos' and a[2].get('published') == 'false']), 5)
+
+    def test_plateforme_inconnue_refusee(self):
+        with self.assertRaises(SystemExit):
+            self.lancer(FausseApi(), '--type', 'avenir', '--publier', '--plateformes', 'tiktok')
 
     def test_brouillon_ne_publie_rien(self):
         api = FausseApi(); publics, fb = self.lancer(api, '--type', 'avenir')
@@ -106,7 +136,7 @@ class TestPublication(unittest.TestCase):
 
     def test_option_sans_video(self):
         api = FausseApi(); publics, fb = self.lancer(api, '--type', 'avenir', '--publier', '--sans-video-instagram')
-        self.assertFalse(any(a[1].endswith('/videos') for a in api.appels)); self.assertEqual(len(publics), 1)
+        self.assertFalse(any('rupload' in a[1] for a in api.appels)); self.assertEqual(len(publics), 1)
 
 
 if __name__ == '__main__':

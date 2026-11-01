@@ -27,6 +27,10 @@ on:
         description: "(vote) true = publier ; false = brouillon (images en artefact du run)"
         required: false
         default: "false"
+      plateformes:
+        description: "Ou publier : facebook,instagram (defaut) | instagram | facebook. Sert a rattraper une plateforme sans doubler l'autre."
+        required: false
+        default: "facebook,instagram"
 
 permissions:
   contents: write
@@ -80,14 +84,15 @@ jobs:
           INPUT_RESUME: ${{ github.event.inputs.resume }}
           INPUT_SOURCE_RESUME: ${{ github.event.inputs.source_resume }}
           INPUT_PUBLIER: ${{ github.event.inputs.publier }}
+          INPUT_PLATEFORMES: ${{ github.event.inputs.plateformes }}
         run: |
           if [ "$TYPE" = "vote" ]; then
             ARGS=(--type vote --numero "$INPUT_NUMERO" --titre "$INPUT_TITRE")
             if [ -n "$INPUT_RESUME" ]; then ARGS+=(--resume "$INPUT_RESUME" --source-resume "$INPUT_SOURCE_RESUME"); fi
-            if [ "$INPUT_PUBLIER" = "true" ]; then ARGS+=(--publier); fi
+            if [ "$INPUT_PUBLIER" = "true" ]; then ARGS+=(--publier --plateformes "${INPUT_PLATEFORMES:-facebook,instagram}"); fi
             python publier_reseaux.py "${ARGS[@]}"
           else
-            python publier_reseaux.py --type "$TYPE" --publier
+            python publier_reseaux.py --type "$TYPE" --publier --plateformes "${INPUT_PLATEFORMES:-facebook,instagram}"
           fi
       - name: Joindre le carrousel genere (brouillon a relire / aide au diagnostic)
         if: always()
