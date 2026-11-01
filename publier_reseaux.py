@@ -539,8 +539,13 @@ def main():
         parent = None
         if not args.sans_video_instagram:
             try:
-                parent = preparer_carrousel_instagram(ig_user_id, page_token, [('VIDEO', c) for c in carrousel['slides_mp4']], contenu['legende'])
-                print("Instagram : carrousel de 5 videos pret.")
+                # Slide 1 en image fixe (etat final) : Instagram ignore thumb_offset sur les enfants d'un carrousel et prendrait le 1er cadre flou (« 0000 ») pour la grille.
+                if ids_photos is None:      # Facebook non publie : images envoyees non publiees (reutilisees par le repli)
+                    ids_photos = televerser_photos_facebook_non_publiees(page_id, page_token, carrousel['slides_png'])
+                couverture = url_publique_photo(ids_photos[0], page_token)
+                elements = [('IMAGE', couverture)] + [('VIDEO', c) for c in carrousel['slides_mp4'][1:]]
+                parent = preparer_carrousel_instagram(ig_user_id, page_token, elements, contenu['legende'])
+                print("Instagram : carrousel image de couverture + 4 videos pret.")
             except Exception as e:      # rien n'est public a ce stade : repli sur les images, sans risque de doublon
                 print(f"::warning::Voie video Instagram impossible ({e}) : repli sur le carrousel d'images.")
         if parent is None:

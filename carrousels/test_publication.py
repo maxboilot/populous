@@ -76,23 +76,24 @@ class TestPublication(unittest.TestCase):
         api = FausseApi(); publics, fb = self.lancer(api, '--type', 'avenir', '--publier')
         self.assertEqual(len(fb), 1); self.assertEqual(len(publics), 1)
         enf = self.enfants(api); self.assertEqual(len(enf), 5)
-        self.assertTrue(all(e[2]['media_type'] == 'VIDEO' and e[2]['upload_type'] == 'resumable' for e in enf))
-        self.assertEqual(len([a for a in api.appels if 'rupload' in a[1]]), 5)              # 5 envois d'octets directs
+        self.assertIn('image_url', enf[0][2])                                               # slide 1 = image fixe (couverture de la grille)
+        self.assertTrue(all(e[2]['media_type'] == 'VIDEO' and e[2]['upload_type'] == 'resumable' for e in enf[1:]))
+        self.assertEqual(len([a for a in api.appels if 'rupload' in a[1]]), 4)              # 4 envois d'octets directs
         self.assertFalse(any(a[1].endswith('/videos') for a in api.appels))                 # plus de video Facebook intermediaire
         self.assertEqual(sum(1 for k in fb[0][2] if k.startswith('attached_media')), 5)
 
     def test_repli_images_si_envoi_video_echoue(self):
         api = FausseApi('envoi'); publics, fb = self.lancer(api, '--type', 'avenir', '--publier')
         self.assertEqual(len(publics), 1)                       # une seule publication Instagram, pas de doublon
-        self.assertEqual(len([e for e in self.enfants(api) if 'image_url' in e[2]]), 5)
+        self.assertEqual(len([e for e in self.enfants(api) if 'image_url' in e[2]]), 6)    # 5 du repli + la couverture du carrousel video abandonne (jamais public)
 
     def test_repli_images_si_conteneur_video_refuse(self):
         api = FausseApi('conteneur'); publics, fb = self.lancer(api, '--type', 'avenir', '--publier')
-        self.assertEqual(len(publics), 1); self.assertEqual(len([e for e in self.enfants(api) if 'image_url' in e[2]]), 5)
+        self.assertEqual(len(publics), 1); self.assertEqual(len([e for e in self.enfants(api) if 'image_url' in e[2]]), 6)    # 5 du repli + la couverture du carrousel video abandonne (jamais public)
 
     def test_repli_images_si_instagram_rejette_la_video(self):      # cas reel du 1er nov. 2026 : statut ERROR 2207076
         api = FausseApi('statut_erreur'); publics, fb = self.lancer(api, '--type', 'avenir', '--publier')
-        self.assertEqual(len(publics), 1); self.assertEqual(len([e for e in self.enfants(api) if 'image_url' in e[2]]), 5)
+        self.assertEqual(len(publics), 1); self.assertEqual(len([e for e in self.enfants(api) if 'image_url' in e[2]]), 6)    # 5 du repli + la couverture du carrousel video abandonne (jamais public)
 
     def test_nouvel_essai_sur_erreur_500(self):
         api = FausseApi('conteneur', erreur500=2)               # video refusee -> images ; 2 erreurs 500 puis succes
