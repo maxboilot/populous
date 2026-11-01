@@ -440,7 +440,7 @@ def _creer_enfant_video_instagram(ig_user_id, page_token, chemin):
     (rupload.facebook.com) et on y poste les octets du fichier. Aucune URL publique n'est necessaire. L'ancienne voie
     (URL d'une video Facebook non publiee) etait refusee par Instagram : erreur 2207076, constate le 1er nov. 2026."""
     r = _poster_avec_reessais(f'{GRAPH}/{ig_user_id}/media', data={'media_type': 'VIDEO', 'is_carousel_item': 'true',
-                              'upload_type': 'resumable', 'access_token': page_token}, timeout=60)
+                              'upload_type': 'resumable', 'thumb_offset': '5500', 'access_token': page_token}, timeout=60)  # couverture = etat final de la slide, pas le 1er cadre (« 0000 » flou)
     _lever_avec_detail(r)
     infos = r.json()
     octets = Path(chemin).read_bytes()
