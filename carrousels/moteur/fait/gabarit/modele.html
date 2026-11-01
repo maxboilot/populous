@@ -180,7 +180,7 @@
         const t0 = st(3);
         q("#s4r1, #s4r2").forEach((r, k) => tl.fromTo(r, { width: 200, height: 200, xPercent: -50, yPercent: -50, opacity: 0.22 }, { width: 1800, height: 1800, opacity: 0, duration: 1.6, ease: "power3.out" }, t0 + k * 0.5));
         tl.fromTo("#disc", { scale: 0, opacity: 0, transformOrigin: "50% 50%" }, { scale: 1, opacity: 1, duration: 0.7, ease: "back.out(1.6)" }, t0 + 0.05);
-        tl.fromTo("#circTxt", { rotation: -90, transformOrigin: "300px 300px" }, { rotation: 130, duration: 4.5, ease: "none", transformOrigin: "300px 300px" }, t0);
+        tl.fromTo("#circTxt", { rotation: -90, svgOrigin: "300 300" }, { rotation: 130, svgOrigin: "300 300", duration: 4.5, ease: "none" }, t0);   // svgOrigin = centre du cercle (repère du viewBox) : le texte tourne sur place, sans dériver
         [["#s4a", 160, 0.55], ["#s4b", -160, 0.9], ["#s4c", 160, 1.25]].forEach(([id, dx, d]) => tl.fromTo(id, { x: dx, opacity: 0, filter: "blur(12px)" }, { x: 0, opacity: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, t0 + d));
         tl.fromTo("#s4d", { opacity: 0 }, { opacity: 0.9, duration: 0.4 }, t0 + 1.8);
         tl.fromTo("#fil", { width: 3240 - FX0 }, { width: FX1 - FX0, duration: 2.2, ease: "power2.inOut", immediateRender: false }, t0 + 0.5);
