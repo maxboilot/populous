@@ -76,6 +76,15 @@
   },
   {
     "date": "2026-11-04",
+    "heure": "14:45",
+    "ordre_du_jour": "Examen du texte — Instances représentatives des Français établis hors de France",
+    "themes": [],
+    "dossier": "DLR5L15N37121",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-04",
     "heure": "15:00",
     "ordre_du_jour": "Examen du texte — Création d’un statut de réfugié climatique au sein de l’Union européenne",
     "themes": [
