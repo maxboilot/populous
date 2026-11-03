@@ -1,16 +1,5 @@
 [
   {
-    "date": "2026-11-02",
-    "heure": "09:00",
-    "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (première partie)",
-    "themes": [
-      "economie"
-    ],
-    "dossier": "DLR5L17N54629",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
     "date": "2026-11-03",
     "heure": "16:30",
     "ordre_du_jour": "Examen du texte — Instances représentatives des Français établis hors de France",
@@ -33,7 +22,7 @@
   {
     "date": "2026-11-03",
     "heure": "21:30",
-    "ordre_du_jour": "Suite de la discussion de la seconde partie du projet de loi de finances pour 2027",
+    "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (première partie)",
     "themes": [
       "economie"
     ],
@@ -98,7 +87,7 @@
   {
     "date": "2026-11-05",
     "heure": "15:00",
-    "ordre_du_jour": "Suite de la discussion de la seconde partie du projet de loi de finances pour 2027",
+    "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (première partie)",
     "themes": [
       "economie"
     ],
@@ -109,7 +98,7 @@
   {
     "date": "2026-11-06",
     "heure": "09:00",
-    "ordre_du_jour": "Suite de la discussion de la seconde partie du projet de loi de finances pour 2027",
+    "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (première partie)",
     "themes": [
       "economie"
     ],
