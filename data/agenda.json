@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-11-03",
-    "heure": "16:30",
-    "ordre_du_jour": "Examen du texte — Instances représentatives des Français établis hors de France",
-    "themes": [],
-    "dossier": "DLR5L15N37121",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-11-03",
-    "heure": "18:00",
-    "ordre_du_jour": "Examen du texte — Retrouver la confiance et l’équilibre dans les rapports locatifs",
-    "themes": [
-      "logement"
-    ],
-    "dossier": "DLR5L17N53069",
-    "scrutin_annonce": false,
-    "lecture": "2ᵉ lecture"
-  },
-  {
-    "date": "2026-11-03",
-    "heure": "21:30",
-    "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (première partie)",
-    "themes": [
-      "economie"
-    ],
-    "dossier": "DLR5L17N54629",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
     "date": "2026-11-04",
     "heure": "10:30",
     "ordre_du_jour": "Examen du texte — Projet de loi de finances pour 2027",
