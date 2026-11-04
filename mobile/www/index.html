@@ -88,23 +88,19 @@ window.__VOTE_EARLY__ = (async function(){
      ligne sous la carte dans certains rendus. Hauteur naturelle du coup,
      d'où le repositionnement de #recherche calculé en JS plutôt qu'un
      décalage fixe. */
-  #carteTitre{position:absolute;top:calc(40px + env(safe-area-inset-top,0px));left:16px;z-index:600;max-width:230px;
+  #carteTitre{position:absolute;top:calc(52px + env(safe-area-inset-top,0px));left:16px;z-index:600;max-width:230px;
     font-size:13px;font-weight:400;line-height:1.35;color:var(--ink);
     text-shadow:0 1px 2px var(--bg), 0 0 6px var(--bg), 0 0 6px var(--bg)}
   #carteTitre:empty{display:none}
 
-  /* Titre permanent de l'écran, au-dessus de tout (y compris la fiche
-     député qui glisse par-dessus) : pas de cadre, même halo que
-     #carteTitre, pour rester lisible sur la carte quel que soit le
-     contexte. Les repères habituels (titre de loi, recherche, mini
-     légende) sont décalés de 16px à 40px pour ne pas passer dessous. */
-  #carteScreenTitre{position:absolute;top:calc(10px + env(safe-area-inset-top,0px));left:8px;right:8px;z-index:900;
-    text-align:center;font-weight:800;font-style:italic;font-size:13px;line-height:1.2;
-    color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-    text-shadow:0 1px 2px var(--bg), 0 0 6px var(--bg), 0 0 6px var(--bg);
-    pointer-events:none}
+  /* Bascule Hémicycle / Carte, en haut à droite de l'écran carte : même forme que la
+     bascule Mon Pays / Ma ville de l'accueil. La recherche et le titre du vote restent
+     à 52px, avec un petit espace sous la bascule. */
+  #vueToggle{position:absolute;top:calc(8px + env(safe-area-inset-top,0px));right:14px;z-index:900;
+    display:flex;background:var(--card);border-radius:999px;padding:3px;box-shadow:var(--shadow-lg);gap:2px}
+  #vueToggle .modeOpt{font-size:11px;padding:7px 13px}
 
-  #recherche{position:absolute;top:calc(40px + env(safe-area-inset-top,0px));left:16px;z-index:600;width:270px;transition:top .2s}
+  #recherche{position:absolute;top:calc(52px + env(safe-area-inset-top,0px));left:16px;z-index:600;width:270px;transition:top .2s}
   #recherche input{width:100%;padding:12px 16px;font-size:13px;color:var(--ink);
     background:var(--card);border:none;border-radius:var(--r-pill);outline:none;box-shadow:var(--shadow)}
   #recherche input::placeholder{color:var(--dim)}
@@ -180,7 +176,7 @@ window.__VOTE_EARLY__ = (async function(){
      mesure d'un écran tactile de 10 à 13 pouces. */
   @media (min-width:761px) and (max-width:1366px){
     #carteTitre{max-width:360px;font-size:15px}
-    #carteScreenTitre{font-size:15px}
+    #vueToggle .modeOpt{font-size:13px;padding:9px 18px}
     #recherche{width:420px}
     #recherche input{padding:14px 20px;font-size:15px}
     #resultats button{padding:12px 14px;font-size:14px}
@@ -488,7 +484,7 @@ window.__VOTE_EARLY__ = (async function(){
     #legende,#languette{display:none}
     #miniLegende:not(:empty){
       display:flex; flex-direction:column; align-items:flex-end; gap:4px;
-      position:absolute; top:calc(40px + env(safe-area-inset-top,0px)); right:16px; z-index:600; pointer-events:none;
+      position:absolute; top:calc(52px + env(safe-area-inset-top,0px)); right:16px; z-index:600; pointer-events:none;
     }
     #miniLegende .lg{padding:0; background:none; box-shadow:none; gap:6px; cursor:default}
     #miniLegende .lg span:not(.sw){
@@ -1022,9 +1018,12 @@ window.__VOTE_EARLY__ = (async function(){
 </div>
 
 <div id="screen-carte" class="screen hidden">
-<div id="carteScreenTitre">Cartographie du dernier scrutin par député(e)s</div>
 <div id="map" tabindex="0" aria-label="Carte des 577 circonscriptions législatives"></div>
 <canvas id="hemi" aria-label="Hémicycle de l'Assemblée nationale : un point par député·e"></canvas>
+<div id="vueToggle" role="group" aria-label="Affichage : hémicycle ou carte">
+  <button class="modeOpt on" data-vue="hemi" type="button">Hémicycle</button>
+  <button class="modeOpt" data-vue="carte" type="button">Carte</button>
+</div>
 <div class="presiWatermark" aria-hidden="true">Populous</div>
 
 <div id="carteTitre"></div>
@@ -1405,9 +1404,14 @@ geo.circos.forEach((c,i)=>{
   layers.push(poly);
 });
 /* ---------- hémicycle (vue depuis le perchoir) : remplace la carte (sauf ?hemi=0) ---------- */
-const HEMI = new URLSearchParams(location.search).get("hemi")!=="0";   // l'hémicycle remplace la carte ; ?hemi=0 ramène la carte (diagnostic)
-if(HEMI) document.body.classList.add("hemi");
+// Hémicycle ou carte : choix mémorisé (bascule en haut à droite) ; ?hemi=0 / ?hemi=1 l'impose (diagnostic).
+const VUE_CLE = "populous_vue_carte";
+const _hemiParam = new URLSearchParams(location.search).get("hemi");
+let HEMI = _hemiParam!==null ? _hemiParam!=="0" : (()=>{ try{ return localStorage.getItem(VUE_CLE)!=="carte"; }catch(e){ return true; } })();
+document.body.classList.toggle("hemi", HEMI);
 let hemiSieges = [], hemiYaw = 0, hemiVit = 0;   // sièges du monde (angle, rangée, hauteur) ; cap de la caméra ; vitesse d'inertie
+let hemiZoom = 1, hemiPan = 0;   // zoom (pincer, 1 à HEMI_ZMAX) et décalage vertical en pixels quand on est zoomé
+const HEMI_ZMAX = 3;
 const HEMI_FOV = 96*Math.PI/180, HEMI_YAW_MAX = 50*Math.PI/180, HEMI_RECUL = 0.35, HEMI_HCAM = 1.25, HEMI_RW = 3.3;
 const HEMI_MONTEE = 0.17;
 function hemiOrdre(){
@@ -1472,11 +1476,14 @@ function hemiDecor(ctx, W, H, g){
 function hemiVers(i, aller){
   const st = i!==null && hemiSieges.find(x=>x.i===i);
   if(st && aller){
+    hemiZoom = 1; hemiPan = 0;                                   // recherche d'un·e député·e : on revient à la vue d'ensemble
     const but = Math.max(-HEMI_YAW_MAX, Math.min(HEMI_YAW_MAX, st.phi)), dep = hemiYaw, t0 = performance.now();
     const pas = t=>{ const k = Math.min(1, (t-t0)/450); hemiYaw = dep + (but-dep)*(1-Math.pow(1-k,3)); dessinerHemicycle(); if(k<1) requestAnimationFrame(pas); };
     requestAnimationFrame(pas);
   } else dessinerHemicycle();
 }
+// Plus on zoome, plus on peut tourner loin : il faut pouvoir amener les sièges des extrémités au centre.
+function hemiYawMax(){ return HEMI_YAW_MAX + (Math.PI/2 - HEMI_YAW_MAX)*Math.min(1, (hemiZoom-1)/1.5); }
 function dessinerHemicycle(){
   if(!HEMI) return;
   const cv = $("#hemi"), W = cv.clientWidth, H = cv.clientHeight; if(!W || !H) return;
@@ -1484,6 +1491,10 @@ function dessinerHemicycle(){
   if(cv.width!==Math.round(W*dpr) || cv.height!==Math.round(H*dpr)){ cv.width = Math.round(W*dpr); cv.height = Math.round(H*dpr); }
   if(!hemiSieges.length) hemiSieges = hemiMonde();
   const ctx = cv.getContext("2d"); ctx.setTransform(dpr,0,0,dpr,0,0); ctx.fillStyle = "#fff"; ctx.fillRect(0,0,W,H); ctx.lineCap = "round"; ctx.lineJoin = "round";
+  const gz = hemiGeom(W, H), cy = gz.haut + gz.zone*0.5, Z = hemiZoom;
+  hemiYaw = Math.max(-hemiYawMax(), Math.min(hemiYawMax(), hemiYaw));
+  hemiPan = Z>1.001 ? Math.max(-(Z-1)*gz.zone*0.55, Math.min((Z-1)*gz.zone*0.55, hemiPan)) : 0;
+  ctx.setTransform(dpr*Z,0,0,dpr*Z, dpr*(W/2*(1-Z)), dpr*(cy*(1-Z)+hemiPan));   // zoom autour du centre de la scène, puis décalage
   hemiDecor(ctx, W, H, hemiGeom(W, H));
   const vus = hemiProjeter(W, H), encre = getComputedStyle(document.body).getPropertyValue("--ink").trim() || "#10193F";
   vus.forEach(st=>{
@@ -1494,51 +1505,109 @@ function dessinerHemicycle(){
   });
   ctx.globalAlpha = 1;
   const sel = selected!==null && vus.find(x=>x.i===selected);
-  if(sel){ ctx.lineWidth = 2; ctx.strokeStyle = encre; ctx.beginPath(); ctx.arc(sel.x, sel.y, sel.rad+2.5, 0, 6.2832); ctx.stroke(); }
+  if(sel){ ctx.lineWidth = 2/Z; ctx.strokeStyle = encre; ctx.beginPath(); ctx.arc(sel.x, sel.y, sel.rad+2.5/Z, 0, 6.2832); ctx.stroke(); }
+  ctx.setTransform(dpr,0,0,dpr,0,0);
   // Repère : une frise des 577 sièges, de gauche à droite, avec la fenêtre actuellement visible.
   const g = hemiGeom(W, H), sx = 24, sw = W-48, sy = H-g.bas+6, N = hemiSieges.length;
+  ctx.fillStyle = "#F7F8FA"; ctx.fillRect(0, sy-10, W, H-sy+10);                  // fond de la frise : masque les sièges zoomés qui descendent jusque-là
   hemiSieges.forEach((st,k)=>{ ctx.fillStyle = colorOf(st.i); ctx.globalAlpha = filterGroup!==null && !(elus[st.i] && codeGroupeCanonique(elus[st.i].g)===filterGroup) ? 0.16 : 1; ctx.fillRect(sx + k/N*sw, sy, sw/N+0.6, 8); });
   ctx.globalAlpha = 1;
-  const w0 = sx + (hemiYaw-HEMI_FOV/2+Math.PI/2)/Math.PI*sw, w1 = sx + (hemiYaw+HEMI_FOV/2+Math.PI/2)/Math.PI*sw;
+  const demi = Math.atan(Math.tan(HEMI_FOV/2)/Z);                                  // largeur visible : se resserre quand on zoome
+  const w0 = sx + (hemiYaw-demi+Math.PI/2)/Math.PI*sw, w1 = sx + (hemiYaw+demi+Math.PI/2)/Math.PI*sw;
   ctx.lineWidth = 2; ctx.strokeStyle = encre; ctx.beginPath(); ctx.roundRect(Math.max(sx-3,w0), sy-3, Math.min(sx+sw+3,w1)-Math.max(sx-3,w0), 14, 5); ctx.stroke();
 }
-if(HEMI){
+{
   const cv = document.getElementById("hemi");
-  let prise = null, deplace = false, dernier = 0;
-  const regler = y => { hemiYaw = Math.max(-HEMI_YAW_MAX, Math.min(HEMI_YAW_MAX, y)); dessinerHemicycle(); };
+  let prise = null, pince = null, dernier = 0;
+  const doigts = new Map();                                       // pointeurs actifs : deux doigts = on pince
+  const dim = () => { const rc = cv.getBoundingClientRect(); return {rc, W:rc.width, H:rc.height}; };
+  const regler = y => { hemiYaw = Math.max(-hemiYawMax(), Math.min(hemiYawMax(), y)); dessinerHemicycle(); };
   const surFrise = (y, H) => y > H - hemiGeom(1, H).bas - 6 && y < H - hemiGeom(1, H).bas + 24;
+  // Zoom autour du point (px, py) de l'écran : ce qui est sous les doigts reste sous les doigts.
+  const zoomer = (Zn, px, py, W, H) => {
+    const g = hemiGeom(W, H), cy = g.haut + g.zone*0.5, Z0 = hemiZoom;
+    Zn = Math.max(1, Math.min(HEMI_ZMAX, Zn));
+    const ux = W/2 + (px-W/2)/Z0, uy = cy + (py-cy-hemiPan)/Z0;   // le point de la scène (hors zoom) sous le doigt
+    hemiZoom = Zn;
+    hemiPan = py - cy - Zn*(uy-cy);
+    hemiYaw += (ux - (W/2 + (px-W/2)/Zn))/g.f;
+    dessinerHemicycle();
+  };
   window.addEventListener("resize", dessinerHemicycle);
   cv.addEventListener("pointerdown", ev=>{
-    const rc = cv.getBoundingClientRect(), x = ev.clientX-rc.left, y = ev.clientY-rc.top;
-    hemiVit = 0; deplace = false;
-    prise = {x, y0:y, frise: surFrise(y, rc.height), t:performance.now()};
-    cv.setPointerCapture(ev.pointerId);
-    if(prise.frise){ regler(((x-24)/(rc.width-48))*Math.PI - Math.PI/2); }
+    const {rc, W, H} = dim(), x = ev.clientX-rc.left, y = ev.clientY-rc.top;
+    doigts.set(ev.pointerId, {x, y});
+    try{ cv.setPointerCapture(ev.pointerId); }catch(e){}
+    hemiVit = 0;
+    if(doigts.size === 2){                                        // deux doigts : pincement, plus de glissement ni de tap
+      const [a, b] = [...doigts.values()];
+      pince = {d: Math.hypot(a.x-b.x, a.y-b.y) || 1, Z: hemiZoom};
+      prise = null; return;
+    }
+    if(doigts.size > 2) return;
+    prise = {x, y, frise: surFrise(y, H), bouge: 0};
+    if(prise.frise){ regler(((x-24)/(W-48))*Math.PI - Math.PI/2); }
   });
   cv.addEventListener("pointermove", ev=>{
+    const d = doigts.get(ev.pointerId); if(!d) return;
+    const {rc, W, H} = dim(), x = ev.clientX-rc.left, y = ev.clientY-rc.top;
+    d.x = x; d.y = y;
+    if(pince && doigts.size === 2){
+      const [a, b] = [...doigts.values()];
+      zoomer(pince.Z * (Math.hypot(a.x-b.x, a.y-b.y) || 1)/pince.d, (a.x+b.x)/2, (a.y+b.y)/2, W, H);
+      return;
+    }
     if(!prise) return;
-    const rc = cv.getBoundingClientRect(), x = ev.clientX-rc.left, f = hemiGeom(rc.width, rc.height).f;
-    if(prise.frise){ regler(((x-24)/(rc.width-48))*Math.PI - Math.PI/2); deplace = true; return; }
-    const dx = x - prise.x; if(Math.abs(dx) > 0) deplace = deplace || Math.abs(x-prise.x) > 0;
+    if(prise.frise){ regler(((x-24)/(W-48))*Math.PI - Math.PI/2); return; }
+    const f = hemiGeom(W, H).f * hemiZoom, dx = x - prise.x, dy = y - prise.y;
     const dt = Math.max(1, performance.now()-dernier); dernier = performance.now();
-    hemiVit = -dx/f/dt*16; prise.x = x; prise.bouge = (prise.bouge||0) + Math.abs(dx);
+    hemiVit = -dx/f/dt*16; prise.x = x; prise.y = y; prise.bouge += Math.abs(dx) + Math.abs(dy);
+    if(hemiZoom > 1) hemiPan += dy;                               // zoomé : on se déplace aussi de haut en bas
     regler(hemiYaw - dx/f);
   });
   const lacher = ev=>{
+    const {rc, W, H} = dim(), x = ev.clientX-rc.left, y = ev.clientY-rc.top;
+    doigts.delete(ev.pointerId);
+    if(pince){
+      if(doigts.size < 2){                                        // un doigt reste : il continue à glisser, sans déclencher de tap
+        pince = null; hemiVit = 0;
+        const [r] = [...doigts.values()]; prise = r ? {x:r.x, y:r.y, frise:false, bouge:99} : null;
+      }
+      return;
+    }
     if(!prise) return;
-    const rc = cv.getBoundingClientRect(), x = ev.clientX-rc.left, y = ev.clientY-rc.top, tap = !prise.frise && (prise.bouge||0) < 6;
+    const tap = !prise.frise && prise.bouge < 6 && y < H - hemiGeom(1, H).bas - 6;
     prise = null;
     if(tap){
+      const g = hemiGeom(W, H), cy = g.haut + g.zone*0.5, Z = hemiZoom;
+      const ux = W/2 + (x-W/2)/Z, uy = cy + (y-cy-hemiPan)/Z;      // le tap, ramené dans la scène hors zoom
       let best = null, bd = 1e9;
-      hemiProjeter(rc.width, rc.height).forEach(st=>{ const d = Math.hypot(st.x-x, st.y-y); if(d<bd){ bd = d; best = st; } });
-      if(best && bd < Math.max(12, best.rad*2)) select(best.i, false); else select(null);
+      hemiProjeter(W, H).forEach(st=>{ const d = Math.hypot(st.x-ux, st.y-uy); if(d<bd){ bd = d; best = st; } });
+      if(best && bd < Math.max(12/Z, best.rad*2)) select(best.i, false); else select(null);
     } else if(Math.abs(hemiVit) > 0.0004){
       const tick = ()=>{ hemiVit *= 0.93; if(prise || Math.abs(hemiVit) < 0.0003) return; regler(hemiYaw + hemiVit); requestAnimationFrame(tick); };
       requestAnimationFrame(tick);
     }
   };
-  cv.addEventListener("pointerup", lacher); cv.addEventListener("pointercancel", ()=>{ prise = null; });
+  cv.addEventListener("pointerup", lacher); cv.addEventListener("pointercancel", lacher);
+  // Ordinateur : molette ou pincement du pavé tactile (ctrl + molette)
+  cv.addEventListener("wheel", ev=>{
+    ev.preventDefault();
+    const {rc, W, H} = dim();
+    zoomer(hemiZoom * Math.exp(-ev.deltaY * (ev.ctrlKey ? 0.01 : 0.0018)), ev.clientX-rc.left, ev.clientY-rc.top, W, H);
+  }, {passive:false});
 }
+// Bascule Hémicycle / Carte
+function basculerVue(h, init){
+  HEMI = h; document.body.classList.toggle("hemi", h);
+  document.querySelectorAll("#vueToggle .modeOpt").forEach(b=>b.classList.toggle("on", (b.dataset.vue==="hemi")===h));
+  if(init) return;
+  try{ localStorage.setItem(VUE_CLE, h ? "hemi" : "carte"); }catch(e){}
+  if(h) dessinerHemicycle();
+  else setTimeout(()=>{ map.invalidateSize(); refreshAvatars(); }, 30);   // la carte reprend sa taille et ses visages
+}
+document.querySelectorAll("#vueToggle .modeOpt").forEach(b=>{ b.onclick = ()=>basculerVue(b.dataset.vue==="hemi"); });
+basculerVue(HEMI, true);
 function restyle(){
   dessinerHemicycle();
   layers.forEach(p=>{ if(p) p.setStyle(styleOf(p._i)); });
@@ -1875,8 +1944,8 @@ function placeCarteTitre(){
     t.innerHTML = "";
   }
   $("#recherche").style.top = t.innerHTML
-    ? `calc(${40 + t.offsetHeight + 10}px + env(safe-area-inset-top,0px))`
-    : `calc(40px + env(safe-area-inset-top,0px))`;
+    ? `calc(${52 + t.offsetHeight + 10}px + env(safe-area-inset-top,0px))`
+    : `calc(52px + env(safe-area-inset-top,0px))`;
 }
 function renderLegend(){
   renderMiniLegende();
@@ -5907,7 +5976,7 @@ initNotificationsPush();
    versions déjà installées avant ce bandeau ne l'ont pas : il servira pour
    les prochaines mises à jour. ?data=local&plateforme=ios&build=4 permet
    de le voir en test. */
-const APP_BUILD = 10;
+const APP_BUILD = 11;
 async function verifierMiseAJour(){
   const q = new URLSearchParams(location.search);
   const essai = q.get("data") === "local";
