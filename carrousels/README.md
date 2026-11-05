@@ -27,6 +27,10 @@ caméra qui glisse). Durée d'un rendu : environ 1 minute sur un Mac, quelques m
 - Mode brouillon par défaut : sans `--publier`, le carrousel est généré dans `assets_social/carrousels/<date>-<type>/` et rien n'est publié.
 - Si le rendu échoue, le script s'arrête en erreur (workflow rouge) : **jamais de demi-carrousel**, et plus d'ancien visuel de repli.
 
+## Texte voté (`loi`, automatique) et vignette d'ouverture
+- **`loi`** : carrousel d'un vote solennel sur un texte (ensemble d'un projet / d'une proposition de loi, première partie du budget), adopté OU rejeté : le texte + tampon, « de quoi parle ce texte » (nature du texte, Constitution art. 39 ; budget : LOLF art. 34 et 42), les chiffres (votants, pour, contre, abstentions, absents), l'hémicycle, Populous. Choisi par `publier_reseaux.py --type loi` (10h et 16h par le planificateur, filet de sécurité par cron GitHub) ; un seul texte par exécution, jamais deux fois le même (`data/state_publication.json`, clé `lois_publiees`) ; rien si aucun nouveau texte dans les 3 derniers jours. Le sort est lu dans le libellé officiel, pas dans le booléen `adopte`. Aucun résumé de texte écrit par nous : seulement la nature du texte, le sort et les chiffres.
+- **Vignette d'ouverture (slide 1, tous les types)** : l'image 0 de `slide_1.mp4` est la slide terminée (c'est elle qu'Instagram prend pour la miniature de la grille), puis un fondu de 0,2 s et l'animation d'entrée se joue. Instagram reçoit donc 5 vidéos (plus d'image fixe pour la slide 1).
+
 ## Données (rien n'est inventé)
 | type | source |
 |---|---|
@@ -35,6 +39,7 @@ caméra qui glisse). Durée d'un rendu : environ 1 minute sur un Mac, quelques m
 | avenir | `data/agenda.json` (dès aujourd'hui) |
 | boussole | `data/historique.json` (10 scrutins réels). L'écran « Ton résultat 80 % » est une **illustration**, marquée « EXEMPLE » à l'image |
 | vote | `data/scrutins/<n>.json` + titre synthétique relu par un humain (`--titre`) |
+| loi | `data/scrutins/<n>.json` (vote solennel sur un texte ; sort lu dans `sort`) ; explication : règles sourcées, voir `publier_reseaux.py` (`explication_loi`) |
 | presidentiel | `data/sondages.json` (dernier sondage ; aucune photo distante, couleurs de parti) |
 
 ## Tester en local

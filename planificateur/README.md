@@ -10,6 +10,7 @@ créneaux (heures de Paris, changement d'heure géré automatiquement).
 | 7h00               | Publication « fait du jour »              |
 | 8h00               | Notification « Découvre le fait du jour » |
 | Lundi 9h00         | Publication « à venir » + notification « cette semaine à l'Assemblée » |
+| 10h00 et 16h00    | Publication « texte voté » : carrousel d'un vote solennel sur un texte (adopté ou rejeté), seulement s'il y en a un de nouveau (16h = rattrapage) |
 | 12h00              | Collecte des sondages (sondages.yml), pour que la publication de 12h30 voie les nouveautés |
 | 12h30              | Publication « actu présidentielle »       |
 | 18h30              | Notification « vote solennel demain »     |

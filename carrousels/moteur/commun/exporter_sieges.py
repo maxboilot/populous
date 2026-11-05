@@ -29,7 +29,7 @@ def exporter(numero, sortie):
         "NOM": [e["n"] for e in elus], "G": [code(e) for e in elus], "POS": [pos[e["n"]] for e in elus],
         "AGE": [e.get("age", 50) for e in elus], "PRIVE": [1 if e.get("par", "") == "Privé" else 0 for e in elus],
         "GROUPES": [{"s": g["s"], "n": g["n"], "c": hexc(g["c"])} for g in GROUPES],
-        "scrutin": {"numero": scr["numero"], "date": scr["date"], "titre": scr["titre"], "adopte": scr["adopte"], "tally": scr["tally"]},
+        "scrutin": {"numero": scr["numero"], "date": scr["date"], "titre": scr["titre"], "adopte": (("pas adopt" not in (scr.get("sort") or "").lower()) if "adopt" in (scr.get("sort") or "").lower() else scr["adopte"]), "tally": scr["tally"], "solennel": bool(scr.get("solennel")), "type": scr.get("type", "")},
     }
     Path(sortie).write_text(json.dumps(out, ensure_ascii=False), encoding="utf-8")
     return out

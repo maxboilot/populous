@@ -205,8 +205,25 @@
       /* le fond continu reste en place jusqu'à la fin (état final lisible en image fixe) */
       tl.to({}, { duration: %%DUR%% }, 0);                                     // fixe la durée
       window.__timelines = window.__timelines || {};
-      window.__timelines["main"] = tl;
-      tl.seek(0);
+      /* Vignette d'ouverture (slide 1, vidéo) : l'image 0 EST la slide terminée (miniature de la grille Instagram), puis un fondu rapide
+         et l'animation d'entrée se joue. Même logique que commun/carrousel.js. */
+      const POSTER = MODE === "slide" && IDX === 0 ? { hold: 0.14, fade: 0.2, final: 6.2 } : null;
+      if (!POSTER) { window.__timelines["main"] = tl; tl.seek(0); }
+      else {
+        const cam = document.getElementById("cam"), fg = document.createElement("div");
+        fg.id = "fg"; fg.style.cssText = "position:absolute;left:0;top:0;width:5400px;height:1350px";
+        Array.from(cam.children).filter(e => !e.classList.contains("abs")).forEach(e => fg.appendChild(e));
+        cam.appendChild(fg);
+        const P = POSTER.hold + POSTER.fade, master = gsap.timeline({ paused: true }), px = { t: 0 };
+        const rendre = () => {
+          const t = px.t, a = t < POSTER.hold ? 1 : t < P ? 1 - (t - POSTER.hold) / POSTER.fade : 1;
+          gsap.set("#fg", { opacity: a, filter: t >= POSTER.hold && t < P ? "blur(" + (8 * (1 - a)).toFixed(2) + "px)" : "none" });
+          tl.time(t < P ? POSTER.final : t - P, false);
+        };
+        master.to(px, { t: %%DUR%%, duration: %%DUR%%, ease: "none", onUpdate: rendre }, 0);
+        window.__timelines["main"] = master;
+        master.seek(0); rendre();
+      }
     </script>
   </body>
 </html>

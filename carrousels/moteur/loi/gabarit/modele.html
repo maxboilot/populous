@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=%%RW%%, height=1350" />
+    <script src="assets/gsap.min.js"></script>
+    <style>
+      /*%%CSS_COMMUN%%*/
+      /*%%CSS_CARROUSEL%%*/
+      #tt1 { position:absolute; left:90px; top:200px; width:900px; font-size:60px; line-height:72px; letter-spacing:-.01em; color:#fff; }
+      #stamp { position:absolute; left:220px; top:640px; width:640px; height:230px; border:16px solid; border-radius:38px; background:#0E1434; text-align:center; font-size:120px; line-height:198px; }
+      #vbar { position:absolute; left:100px; top:1290px; width:%%BARW%%px; height:26px; border-radius:13px; overflow:hidden; transform-origin:0 50%; }
+      #vbar div { position:absolute; top:0; height:26px; }
+      .vl { position:absolute; top:1246px; font-size:28px; line-height:1; white-space:nowrap; }
+      .cnt { position:absolute; width:240px; text-align:center; top:1030px; font-size:92px; line-height:1; color:#fff; letter-spacing:-.03em; }
+      .lab { position:absolute; width:240px; text-align:center; top:1140px; font-size:26px; line-height:1; letter-spacing:.06em; color:#BECAFF; }
+      .row { position:absolute; left:175px; height:44px; transform-origin:0 50%; border-radius:8px; background:rgb(34,62,190); }
+      .row .seg { position:absolute; top:0; height:44px; border-radius:6px; }
+      .ex { position:absolute; left:70px; width:940px; height:252px; border-radius:44px; background:rgba(255,255,255,.085); border:2px solid rgba(160,180,255,.22); transform-origin:50% 50%; }
+      .exe { position:absolute; left:46px; top:30px; font-size:26px; letter-spacing:.09em; text-transform:uppercase; color:#8FA6FF; line-height:1; }
+      .ext { position:absolute; left:46px; top:76px; width:850px; font-size:35px; line-height:46px; font-weight:700; color:#fff; letter-spacing:-.005em; }
+          </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="%%DUR%%" data-width="%%RW%%" data-height="1350">
+      <div id="cam">
+        <div class="abs" style="left:0;top:0;width:5400px;height:1350px;background:linear-gradient(to right,#0B1238 0px,#0B1238 3750px,#1C34C6 4150px,#1C34C6 4250px,#F3F3F2 4720px,#F3F3F2 5400px)"></div>
+        <div class="abs" style="left:0;top:0;width:3240px;height:1350px;background:radial-gradient(ellipse 14% 50% at 16.6% 40%,rgba(70,104,255,.30),rgba(70,104,255,0) 100%),radial-gradient(ellipse 14% 50% at 50% 40%,rgba(70,104,255,.30),rgba(70,104,255,0) 100%),radial-gradient(ellipse 14% 50% at 83.3% 40%,rgba(70,104,255,.30),rgba(70,104,255,0) 100%)"></div>
+        <div class="abs" style="left:3240px;top:0;width:1080px;height:1350px;background:radial-gradient(ellipse 45% 50% at 50% 38%,rgba(120,150,255,.40),rgba(120,150,255,0) 100%)"></div>
+        <div class="abs" style="left:4320px;top:0;width:1080px;height:1350px;background:radial-gradient(ellipse 45% 50% at 50% 42%,rgba(255,255,255,.55),rgba(255,255,255,0) 100%)"></div>
+
+        <!-- pont : la barre des 577 voix traverse toutes les slides -->
+        <div id="vbar">%%BARRE%%</div>
+        %%ETIQ_BARRE%%
+
+        <!-- ===== SLIDE 1 : l'accroche ===== -->
+        <div class="sl" style="left:0">
+          %%PROGRES1%%
+          <div id="s1e" class="eb" style="left:90px;top:118px;color:#96ACFF">%%EYEBROW%%</div>
+          <div id="s1d" class="t" style="left:490px;width:500px;text-align:right;top:118px;font-size:32px;letter-spacing:.04em;color:#A0B0F0">%%DATE%%</div>
+          <div id="tt1">%%TITRE%%</div>
+          <div id="stamp" style="color:%%STAMPCOL%%;border-color:%%STAMPCOL%%">%%STAMP%%</div>
+          <div id="s1c" class="chip dark" style="left:90px;top:1100px">Glisse pour voir le détail <i id="s1a">→</i></div>
+        </div>
+
+        <!-- ===== SLIDE 2 : de quoi parle ce texte ===== -->
+        <div class="sl" style="left:1080px">
+          %%PROGRES2%%
+          <div id="s2a" class="gh" style="top:128px;font-size:84px;color:#fff">De quoi parle ce texte ?</div>
+          <div id="s2b" class="gh" style="top:246px;font-size:40px;font-weight:500;color:#A0B0F0">%%SOUS_EXPL%%</div>
+          %%CARTES%%
+          <div id="s2s" class="gh" style="top:1138px;font-size:23px;font-weight:500;color:#8E9CD8">%%SRC_EXPL%%</div>
+        </div>
+
+        <!-- ===== SLIDE 3 : les chiffres ===== -->
+        <div class="sl" style="left:2160px">
+          %%PROGRES3%%
+          <canvas id="cvR" width="1080" height="1350" class="abs" style="left:0;top:0"></canvas>
+          <div id="s3n" class="gh" style="top:130px;font-size:100px;color:#fff">%%VOTANTS%% votants.</div>
+          <div id="s3m" class="gh" style="top:262px;font-size:66px;color:#A0B0F0">sur 577 députés.</div>
+          %%COMPTEURS%%
+        </div>
+
+        <!-- ===== SLIDE 4 : l'hémicycle ===== -->
+        <div class="sl" style="left:3240px">
+          %%PROGRES4%%
+          <canvas id="cvH" width="1080" height="1350" class="abs" style="left:0;top:0"></canvas>
+          <div id="s3a" class="gh" style="top:130px;font-size:96px;color:#fff">Siège par siège.</div>
+          <div id="s3b" class="gh" style="top:256px;font-size:42px;font-weight:500;color:#A0B0F0">Un point = un député</div>
+        </div>
+
+        <!-- ===== SLIDE 5 : à toi de jouer ===== -->
+        <div class="sl" style="left:4320px">
+          %%PROGRES5%%
+          <div id="s5c" class="card" style="left:70px;top:170px;width:940px;height:800px"></div>
+          <div id="s5q1" class="q" style="left:5px;top:-25px">“</div>
+          <div id="s5q2" class="q" style="left:775px;top:775px">”</div>
+          <div id="s5e" class="eb" style="left:130px;top:250px">%%EYEBROW%%</div>
+          <div id="s5a" class="t" style="left:130px;top:310px;font-size:62px;color:var(--ink)">Qui a voté quoi,</div>
+          <div id="s5b" class="t" style="left:130px;top:392px;font-size:62px;color:var(--accent)">siège par siège.</div>
+          <div id="s5p" class="gh" style="top:580px;font-size:150px;letter-spacing:-.02em;color:var(--ink)">%%LETTRES%%</div>
+          <div id="s5t" class="gh" style="top:780px;font-size:42px;font-weight:700;color:var(--corps)">Chaque scrutin, sur Populous.</div>
+          <div id="s5b1" class="bdg" style="left:70px;top:1030px"><small>Télécharger dans</small><b>l’App Store</b></div>
+          <div id="s5b2" class="bdg" style="left:560px;top:1030px"><small>DISPONIBLE SUR</small><b>Google Play</b></div>
+          <div id="s5s" class="gh" style="top:1205px;font-size:24px;font-weight:500;color:var(--gris)">%%SOURCE_PIED%%</div>
+        </div>
+            </div>
+    </div>
+
+    <script>
+      /*%%LIB_JS%%*/
+      /*%%JS_CARROUSEL%%*/
+      const SE = %%SIEGES_JSON%%, NS = SE.A.length;
+      const V = { pour: [69, 150, 109], contre: [177, 89, 53], abstention: [128, 139, 195], absent: [62, 74, 134] };
+      const VOTE = SE.POS.map(p => V[p]), AN = SE.A.map(a => (a + Math.PI / 2) / Math.PI);
+      const BINS = %%BINS_JSON%%;
+
+      /* ---------- slide 1 ---------- */
+      if (on(0)) {
+        const t0 = st(0);
+        tl.fromTo(["#s1e", "#s1d"], { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out", stagger: 0.08 }, t0);
+        words("#tt1 .w", t0 + 0.2, 0.05);
+        tl.fromTo("#stamp", { scale: 2.6, opacity: 0, rotation: -5.7 }, { scale: 1, opacity: 1, rotation: -5.7, duration: 0.18, ease: "power3.out", transformOrigin: "50% 50%" }, t0 + 1.5);
+        tl.fromTo("#stamp", { x: 0 }, { x: 0, keyframes: [{ x: 14, duration: 0.05 }, { x: -10, duration: 0.05 }, { x: 5, duration: 0.05 }, { x: 0, duration: 0.05 }], immediateRender: false }, t0 + 1.68);
+        tl.fromTo("#vbar", { scaleX: 0 }, { scaleX: 1, duration: 1.4, ease: "power3.inOut" }, t0 + 0.4);
+        tl.fromTo(".vl", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out", stagger: 0.12 }, t0 + 1.6);
+        rise("#s1c", t0 + 2.3, 30, 0.5); chipArrow("#s1a", t0 + 2.8);
+      }
+      /* ---------- slide 2 : la pluie de votes ---------- */
+      const COLN = 12, DOT = 6.6, PIT = 16, BASE = 1000;
+      const DOTS = []; BINS.forEach((b, bi) => { for (let s = 0; s < b.n; s++) DOTS.push([bi, s]); });
+      const rr = rng(4), ordre = DOTS.map((_, i) => i);
+      for (let i = ordre.length - 1; i > 0; i--) { const j = Math.floor(rr() * (i + 1)); [ordre[i], ordre[j]] = [ordre[j], ordre[i]]; }
+      const LAND = new Array(DOTS.length); ordre.forEach((idx, rank) => { LAND[idx] = 0.3 + 1.7 * Math.pow(rank / DOTS.length, 0.85); });
+      const cvR = document.getElementById("cvR").getContext("2d"), cntEls = BINS.map((b, i) => document.getElementById("cnt" + i));
+      function drawR(lt) {
+        cvR.clearRect(0, 0, 1080, 1350);
+        cvR.strokeStyle = "rgb(80,96,170)"; cvR.lineWidth = 3;
+        BINS.forEach(b => { cvR.beginPath(); cvR.moveTo(b.x - 100, BASE + 12); cvR.lineTo(b.x + 100, BASE + 12); cvR.stroke(); });
+        const landed = BINS.map(() => 0);
+        DOTS.forEach(([bi, s], i) => {
+          const b = BINS[bi]; if (lt < LAND[i] - 0.42) return;
+          const row = Math.floor(s / COLN), col = s % COLN, xt = b.x - (COLN - 1) * PIT / 2 + col * PIT + (row % 2) * 3, yt = BASE - row * PIT; let y;
+          if (lt < LAND[i]) { const qq = (lt - (LAND[i] - 0.42)) / 0.42; y = -30 + (yt + 30) * qq * qq; } else { const e = lt - LAND[i]; y = yt - 5 * Math.exp(-e * 14) * Math.abs(Math.sin(e * 24)); landed[bi]++; }
+          dot(cvR, xt, y, DOT, V[b.k]);
+        });
+        cntEls.forEach((el, i) => { el.textContent = landed[i]; });
+      }
+      if (on(2)) { const t0 = st(2); blurIn("#s3n", t0, 0, 0.5); rise("#s3m", t0 + 0.2, 20, 0.4); }
+      /* ---------- slide 3 : hémicycle en perspective ---------- */
+      const cvH = document.getElementById("cvH").getContext("2d");
+      function drawH(lt) {
+        cvH.clearRect(0, 0, 1080, 1350);
+        if (lt < 0) return;
+        const qq = inOut(clamp(lt / 4.5)), wave = lerp(-0.3, 1.3, inOut(prog(lt, 0.3, 1.2))), cols = [], scal = [], ringa = [];
+        for (let k = 0; k < NS; k++) {
+          let m = clamp((wave - AN[k]) / 0.2); m = m * m * (3 - 2 * m); cols.push(mixc(SE.GRP[k], VOTE[k], m));
+          const p = (lt > 0.3 && wave < 1.25) ? Math.exp(-Math.abs(wave - AN[k]) * 12) : 0; scal.push(1 + 0.5 * p); ringa.push(p);
+        }
+        hemiPersp(cvH, SE, lerp(0.34, -0.26, qq), lerp(600, 700, qq), lerp(2.2, 1.4, qq), lerp(2.0, 1.5, qq), 540, lerp(520, 470, qq), cols, 0.05, scal, ringa);
+      }
+      if (on(3)) { const t0 = st(3); blurIn("#s3a", t0, 0, 0.5); rise("#s3b", t0 + 0.25, 20, 0.4); }
+      /* ---------- slide 2 : de quoi parle ce texte ---------- */
+      if (on(1)) {
+        const t0 = st(1);
+        blurIn("#s2a", t0, 0, 0.55); rise("#s2b", t0 + 0.25, 18, 0.4);
+        q(".ex").forEach((c, i) => {
+          tl.fromTo(c, { y: 70, opacity: 0, scale: 0.96, transformOrigin: "50% 50%" }, { y: 0, opacity: 1, scale: 1, duration: 0.6, ease: "expo.out" }, t0 + 0.65 + i * 0.5);
+          tl.fromTo(c.querySelector(".ext"), { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, t0 + 0.85 + i * 0.5);
+        });
+        tl.fromTo("#s2s", { opacity: 0 }, { opacity: 0.9, duration: 0.4 }, t0 + 2.5);
+      }
+      /* ---------- slide 5 ---------- */
+      if (on(4)) {
+        const t0 = st(4);
+        tl.fromTo("#s5c", { y: 90, scale: 0.92, opacity: 0, transformOrigin: "50% 50%" }, { y: 0, scale: 1, opacity: 1, duration: 0.8, ease: "expo.out" }, t0);
+        pop(["#s5q1", "#s5q2"], t0 + 0.15, 0.7); rise("#s5e", t0 + 0.4, 10, 0.4); blurIn(["#s5a", "#s5b"], t0 + 0.5, 60, 0.5, 0.15);
+        tl.fromTo("#s5p .l", { y: 110, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "back.out(2.4)", stagger: 0.04 }, t0 + 1.0);
+        rise("#s5t", t0 + 1.6, 20, 0.45);
+        tl.fromTo(["#s5b1", "#s5b2"], { scale: 1.6, opacity: 0, transformOrigin: "50% 50%" }, { scale: 1, opacity: 1, duration: 0.45, ease: "power3.out", stagger: 0.2 }, t0 + 2.0);
+        tl.fromTo("#s5s", { opacity: 0 }, { opacity: 0.9, duration: 0.4 }, t0 + 2.7);
+      }
+      fin(() => {
+        if (on(2)) drawR(S.t - st(2));
+        if (on(3)) drawH(S.t - st(3));
+      });
+    </script>
+  </body>
+</html>

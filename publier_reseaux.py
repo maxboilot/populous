@@ -58,6 +58,7 @@ import datetime
 import json
 import os
 import random
+import re
 import sys
 import time
 from pathlib import Path
@@ -272,12 +273,97 @@ def contenu_boussole():
     }
 
 
+
+# ---------------------------------------------------------------- « loi votee » (automatique)
+# Un vote solennel sur un TEXTE (ensemble d'un projet / d'une proposition de loi, ou premiere partie du budget) donne un
+# carrousel : le texte et le tampon, de quoi il parle, les chiffres, l'hemicycle, Populous. Tout est deduit des donnees
+# officielles (data/scrutins) et de regles sourcees ; rien n'est invente. Pas de resume de texte ecrit par nous (cf. CLAUDE.md) :
+# l'explication ne contient que la nature du texte (Constitution, art. 39 ; LOLF, art. 1/34/42), le sort et les chiffres.
+TEXTE_LOI_RE = re.compile(r"^(?:l'ensemble (?:de la|du|des) |la première partie du projet de loi de finances|la proposition de loi|le projet de loi)", re.I)
+FENETRE_LOI_JOURS = 3          # on ne publie pas un vote plus vieux que ca (« vote d'hier » doit rester vrai)
+
+
+def _sort_adopte(vote):
+    s = (vote.get('sort') or '').lower()
+    return False if 'pas adopt' in s else (True if 'adopt' in s else None)
+
+
+def _scrutins_solennels_de_texte(aujourdhui):
+    """Scrutins solennels sur un texte, des FENETRE_LOI_JOURS derniers jours, du plus ancien au plus recent."""
+    today = json.loads((DOSSIER / 'data' / 'today.json').read_text(encoding='utf-8'))
+    ref = max(n for n in (today.get('featured_numero'), today.get('last_featured_numero')) if n)
+    limite = (aujourdhui - datetime.timedelta(days=FENETRE_LOI_JOURS)).isoformat()
+    trouves = []
+    for n in range(ref, ref - 400, -1):
+        f = DOSSIER / 'data' / 'scrutins' / f'{n}.json'
+        if not f.exists():
+            continue
+        v = json.loads(f.read_text(encoding='utf-8'))
+        if v['date'] < limite:
+            break                                      # les numeros sont chronologiques
+        if v['date'] <= aujourdhui.isoformat() and v.get('solennel') and TEXTE_LOI_RE.match(v.get('objet') or v['titre']):
+            trouves.append(v)
+    return sorted(trouves, key=lambda v: (v['date'], v['numero']))
+
+
+def titre_loi(objet):
+    """Intitule officiel, mis en forme sans le reformuler : « l'ensemble de la proposition de loi visant a… » -> « Proposition de loi visant a… »."""
+    t = re.sub(r"^(?:l'ensemble (?:de la|du|des) |la |le |l')", '', objet.strip().rstrip('.').strip(), flags=re.I)
+    return _titre_court(t[:1].upper() + t[1:], 150)
+
+
+def explication_loi(vote):
+    """([[titre, texte], ...], source). 2 ou 3 blocs, tous deduits de la nature du texte, du sort et des chiffres officiels."""
+    objet = vote.get('objet') or vote['titre']; t = vote['tally']
+    lecture = re.search(r"\(([^)]*lecture[^)]*)\)", objet)
+    adopte = _sort_adopte(vote)
+    sort = {True: 'adopté', False: 'rejeté'}[adopte]
+    chiffres = f"{t['pour']} pour, {t['contre']} contre, {t['abstention']} abstention{'s' if t['abstention'] > 1 else ''}"
+    annee = re.search(r"projet de loi de finances pour (\d{4})", objet, re.I)
+    if annee and re.match(r"la première partie", objet, re.I):          # LOLF art. 34 (contenu) et art. 42 (ordre d'examen)
+        return ([["Ce que c’est", f"La première partie du budget {annee.group(1)} : elle autorise l’État à percevoir les recettes et fixe l’équilibre général des finances publiques."],
+                 ["Pourquoi ça compte", "Passage obligé : la seconde partie, qui fixe les crédits (les dépenses), ne peut pas être discutée avant que celle-ci soit adoptée."],
+                 ["Ce vote", f"Vote solennel sur l’ensemble de la première partie{', en ' + lecture.group(1) if lecture else ''} : {chiffres}."]],
+                "Sources : loi organique relative aux lois de finances (art. 34 et 42) · assemblee-nationale.fr")
+    m = re.search(r"(proposition|projet) de loi( organique)?", objet, re.I)
+    if not m:
+        raise RuntimeError(f"Nature du texte introuvable dans : {objet}")
+    kind = m.group(1).lower(); org = ' organique' if m.group(2) else ''
+    qui = 'des parlementaires' if kind == 'proposition' else 'le Gouvernement'
+    ce_que = f"{'Une' if kind == 'proposition' else 'Un'} {kind} de loi{org} : un texte déposé par {qui}."
+    if lecture:
+        ce_que += f" Ici : {lecture.group(1)} à l’Assemblée nationale."
+    vote_txt = f"Vote solennel sur {'l’ensemble du texte' if 'ensemble' in objet.lower() else 'le texte'}. Résultat : {sort} ({chiffres})."
+    return ([["Ce que c’est", ce_que], ["Ce vote", vote_txt]],
+            "Sources : Constitution (art. 39) · assemblee-nationale.fr")
+
+
+def contenu_loi():
+    """Le prochain texte vote (vote solennel) a publier, ou None. Un seul par execution ; les autres partent aux executions suivantes."""
+    aujourdhui = datetime.date.today()
+    deja = set(lire_etat_publication().get('lois_publiees', []))
+    for vote in _scrutins_solennels_de_texte(aujourdhui):
+        if vote['numero'] in deja:
+            continue
+        if _sort_adopte(vote) is None:
+            print(f"Scrutin {vote['numero']} : sort officiel illisible, ignore ({vote.get('sort')!r}).")
+            continue
+        titre = titre_loi(vote.get('objet') or vote['titre'])
+        blocs, source = explication_loi(vote)
+        contours = generer_post_vote.charger_contours((DOSSIER / 'index.html').read_text(encoding='utf-8'))
+        legende = generer_post_vote.legende(vote, titre, contours)
+        return {'legende': legende, 'cle_etat': 'lois_publiees', 'valeur_etat': sorted(deja | {vote['numero']}),
+                'numero_scrutin': vote['numero'], 'titre_loi': titre, 'explication': blocs, 'source_explication': source}
+    return None
+
+
 CHOIX = {
     'fait': contenu_fait_du_jour,
     'presidentiel': contenu_presidentielle,
     'depute': contenu_depute,
     'avenir': contenu_avenir,
     'boussole': contenu_boussole,
+    'loi': contenu_loi,
 }
 
 
@@ -370,6 +456,8 @@ def parametres_carrousel(type_, contenu):
         return {'mmjj': datetime.date.today().strftime('%m-%d')}
     if type_ == 'depute':
         return {'depute': contenu['nom_depute'], 'scrutin': contenu.get('numero_scrutin')}
+    if type_ == 'loi':
+        return {'scrutin': contenu['numero_scrutin'], 'titre_vote': contenu['titre_loi'], 'explication': json.dumps(contenu['explication'], ensure_ascii=False), 'source_explication': contenu['source_explication']}
     return {}
 
 
@@ -539,13 +627,8 @@ def main():
         parent = None
         if not args.sans_video_instagram:
             try:
-                # Slide 1 en image fixe (etat final) : Instagram ignore thumb_offset sur les enfants d'un carrousel et prendrait le 1er cadre flou (« 0000 ») pour la grille.
-                if ids_photos is None:      # Facebook non publie : images envoyees non publiees (reutilisees par le repli)
-                    ids_photos = televerser_photos_facebook_non_publiees(page_id, page_token, carrousel['slides_png'])
-                couverture = url_publique_photo(ids_photos[0], page_token)
-                elements = [('IMAGE', couverture)] + [('VIDEO', c) for c in carrousel['slides_mp4'][1:]]
-                parent = preparer_carrousel_instagram(ig_user_id, page_token, elements, contenu['legende'])
-                print("Instagram : carrousel image de couverture + 4 videos pret.")
+                parent = preparer_carrousel_instagram(ig_user_id, page_token, [('VIDEO', c) for c in carrousel['slides_mp4']], contenu['legende'])
+                print("Instagram : carrousel de 5 videos pret.")
             except Exception as e:      # rien n'est public a ce stade : repli sur les images, sans risque de doublon
                 print(f"::warning::Voie video Instagram impossible ({e}) : repli sur le carrousel d'images.")
         if parent is None:

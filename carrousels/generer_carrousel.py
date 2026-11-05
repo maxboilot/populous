@@ -11,7 +11,7 @@ Contenu RÉEL uniquement : tout vient de data/, elus.json et index.html du dép�
 aucun appel réseau pendant le rendu (GSAP et polices sont dans le dépôt).
 
 Prérequis : Node >= 22 (npx), FFmpeg, Chrome/Chromium, Python 3 + Pillow. HyperFrames est lancé via `npx hyperframes@0.8.222`.
-Usage : python3 carrousels/generer_carrousel.py --type fait|depute|avenir|boussole|vote|presidentiel --sortie DOSSIER [options]
+Usage : python3 carrousels/generer_carrousel.py --type fait|depute|avenir|boussole|vote|loi|presidentiel --sortie DOSSIER [options]
 """
 import argparse
 import datetime
@@ -26,7 +26,7 @@ ICI = Path(__file__).resolve().parent
 REPO = ICI.parent
 MOTEUR = ICI / 'moteur'
 HYPERFRAMES = 'hyperframes@0.8.222'          # version figée : un rendu reste identique avec le temps
-TYPES = ('fait', 'depute', 'avenir', 'boussole', 'vote', 'presidentiel')
+TYPES = ('fait', 'depute', 'avenir', 'boussole', 'vote', 'loi', 'presidentiel')
 IMAGE_FINALE_S = 6.2                         # les slides durent 6,5 s ; on prend l'état final de l'animation
 
 
@@ -37,7 +37,7 @@ def _lancer(cmd, cwd, env, quoi):
     return r.stdout
 
 
-def generer(type_, sortie, *, mmjj=None, depute=None, scrutin=None, titre_vote=None, garder_travail=False):
+def generer(type_, sortie, *, mmjj=None, depute=None, scrutin=None, titre_vote=None, explication=None, source_explication=None, garder_travail=False):
     """Rend le carrousel du type demandé dans le dossier `sortie`. Renvoie
     {'slides_mp4': [...], 'slides_png': [...], 'apercu': Path}. Lève RuntimeError au moindre échec (jamais de demi-carrousel)."""
     if type_ not in TYPES:
@@ -62,7 +62,7 @@ def generer(type_, sortie, *, mmjj=None, depute=None, scrutin=None, titre_vote=N
             extra = [mmjj or datetime.date.today().strftime('%m-%d')]
         if type_ == 'depute':
             extra = [depute] if depute else []
-        if type_ in ('depute', 'vote', 'boussole'):
+        if type_ in ('depute', 'vote', 'loi', 'boussole'):
             if scrutin is None and type_ != 'boussole':
                 raise RuntimeError(f"--type {type_} exige un numéro de scrutin.")
             if scrutin is not None:
@@ -79,6 +79,9 @@ def generer(type_, sortie, *, mmjj=None, depute=None, scrutin=None, titre_vote=N
             env['SIEGES_JSON'] = str(travail / 'sieges.json')
         if titre_vote:
             env['TITRE_VOTE'] = titre_vote
+        if explication:
+            env['EXPLICATION_LOI'] = explication            # JSON : [[titre, texte], ...] relu par un humain
+            env['SOURCE_EXPLICATION'] = source_explication or ''
 
         def rendre(nom_sortie):
             _lancer(['npx', '--yes', HYPERFRAMES, 'render', '-w', '2', '-q', 'looks', '-o', f'sortie/{nom_sortie}.mp4'], projet, env, f'rendu de {nom_sortie}')
@@ -115,7 +118,9 @@ if __name__ == '__main__':
     p.add_argument('--mmjj', help="(fait) jour au format MM-JJ, défaut : aujourd'hui")
     p.add_argument('--depute', help="(depute) nom complet")
     p.add_argument('--scrutin', type=int, help="(depute, vote) numéro du scrutin")
-    p.add_argument('--titre-vote', help="(vote) titre synthétique relu par un humain")
+    p.add_argument('--titre-vote', help="(vote, loi) titre synthétique relu par un humain")
+    p.add_argument('--explication', help="(loi) JSON [[titre, texte], ...] : 2 ou 3 blocs « de quoi parle ce texte », relus par un humain")
+    p.add_argument('--source-explication', help="(loi) source citée sous l'explication")
     a = p.parse_args()
-    r = generer(a.type, a.sortie, mmjj=a.mmjj, depute=a.depute, scrutin=a.scrutin, titre_vote=a.titre_vote)
+    r = generer(a.type, a.sortie, mmjj=a.mmjj, depute=a.depute, scrutin=a.scrutin, titre_vote=a.titre_vote, explication=a.explication, source_explication=a.source_explication)
     print('OK', *[str(x) for x in r['slides_png']], r['apercu'], sep='\n')

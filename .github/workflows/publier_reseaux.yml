@@ -1,13 +1,18 @@
 name: Publication réseaux sociaux
 
 on:
-  # Plus de `schedule:` ici : GitHub retardait ses crons de 1 à 9 h. Le
-  # déclenchement se fait désormais à l'heure exacte par le Worker
-  # Cloudflare (planificateur/), via workflow_dispatch.
+  # Le déclenchement se fait à l'heure exacte par le Worker Cloudflare
+  # (planificateur/), via workflow_dispatch : les crons de GitHub ont 1 à 9 h de retard.
+  # Seul le type « loi » garde un cron GitHub, comme filet de sécurité si le Worker est
+  # indisponible : sans danger, il n'y a jamais de doublon (état lois_publiees, voir
+  # publier_reseaux.py) et il ne fait rien quand il n'y a pas de nouveau texte voté.
+  schedule:
+    - cron: '37 9 * * *'
+    - cron: '37 15 * * *'
   workflow_dispatch:
     inputs:
       type:
-        description: "Type de contenu (fait, presidentiel, depute, avenir, boussole, vote)"
+        description: "Type de contenu (fait, presidentiel, depute, avenir, boussole, loi, vote)"
         required: true
         default: fait
       # Uniquement pour type=vote (lance a la main, jamais par le planificateur) :
@@ -69,6 +74,7 @@ jobs:
             '22 12 * * *')  echo "type=depute" >> "$GITHUB_OUTPUT" ;;
             '38 17 * * 1')  echo "type=avenir" >> "$GITHUB_OUTPUT" ;;
             '51 19 15 * *') echo "type=boussole" >> "$GITHUB_OUTPUT" ;;
+            '37 9 * * *'|'37 15 * * *') echo "type=loi" >> "$GITHUB_OUTPUT" ;;
             *) echo "type=${{ github.event.inputs.type }}" >> "$GITHUB_OUTPUT" ;;
           esac
       - name: Publier

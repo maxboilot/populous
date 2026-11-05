@@ -20,7 +20,11 @@ const CRENEAUX = [
   { h: 8,  m: 0,  workflow: "notifier_planifie.yml", type: "fait" },
   { h: 9,  m: 0,  jourSemaine: 1, workflow: "publier_reseaux.yml",   type: "avenir" },
   { h: 9,  m: 0,  jourSemaine: 1, workflow: "notifier_planifie.yml", type: "semaine" },
+  // Texte voté la veille (vote solennel sur un texte) : 10h, puis 16h en rattrapage si les données de la veille sont arrivées tard.
+  // Sans effet quand il n'y a rien à publier ; jamais de doublon (data/state_publication.json, clé lois_publiees).
+  { h: 10, m: 0,  workflow: "publier_reseaux.yml",   type: "loi" },
   { h: 12, m: 30, workflow: "publier_reseaux.yml",   type: "presidentiel" },
+  { h: 16, m: 0,  workflow: "publier_reseaux.yml",   type: "loi" },
   { h: 18, m: 30, workflow: "notifier_planifie.yml", type: "solennel" },
   { h: 20, m: 0,  jourMois: 15, workflow: "publier_reseaux.yml", type: "boussole" },
   { h: 21, m: 0,  workflow: "publier_reseaux.yml",   type: "depute" },
