@@ -1,38 +1,5 @@
 [
   {
-    "date": "2026-11-05",
-    "heure": "15:00",
-    "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (première partie)",
-    "themes": [
-      "economie"
-    ],
-    "dossier": "DLR5L17N54629",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-11-06",
-    "heure": "09:00",
-    "ordre_du_jour": "Suite de la discussion du projet de loi de finances pour 2027 (première partie)",
-    "themes": [
-      "economie"
-    ],
-    "dossier": "DLR5L17N54629",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-11-09",
-    "heure": "09:00",
-    "ordre_du_jour": "Suite de la discussion de la seconde partie du projet de loi de finances pour 2027",
-    "themes": [
-      "economie"
-    ],
-    "dossier": "DLR5L17N54629",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
     "date": "2026-11-09",
     "heure": "16:00",
     "ordre_du_jour": "Examen du texte — Améliorer le dispositif du temps partiel thérapeutique pour les fonctionnaires (séance éventuelle)",
@@ -76,6 +43,28 @@
     "lecture": "1ʳᵉ lecture"
   },
   {
+    "date": "2026-11-09",
+    "heure": "21:30",
+    "ordre_du_jour": "Suite de la discussion du projet de loi, adopté par le Sénat après engagement de la procédure accélérée, relatif à la résilience des infrastructures critiques et au renforcement de la cybersécurité",
+    "themes": [
+      "numerique"
+    ],
+    "dossier": "DLR5L17N50731",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-10",
+    "heure": "15:00",
+    "ordre_du_jour": "Suite de la discussion du projet de loi, adopté par le Sénat après engagement de la procédure accélérée, relatif à la résilience des infrastructures critiques et au renforcement de la cybersécurité",
+    "themes": [
+      "numerique"
+    ],
+    "dossier": "DLR5L17N50731",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
     "date": "2026-11-10",
     "heure": "16:30",
     "ordre_du_jour": "Examen du texte — Baisser les prix du carburant à la pompe par l'encadrement des marges des raffineurs (séance éventuelle)",
@@ -87,7 +76,7 @@
   {
     "date": "2026-11-10",
     "heure": "16:30",
-    "ordre_du_jour": "Examen du texte — Exercer l’accès à l’emploi, pérenniser et étendre progressivement l’expérimentation Territoires zéro chômeur longue durée comme solution de retour à l’emploi pour les personnes privées durablement d’emploi (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Exercer l’accès à l’emploi, pérenniser et étendre progressivement l’expérimentation Territoires zéro chômeur longue durée comme solution de retour à l’emploi pour les personnes privées durablement d’emploi",
     "themes": [],
     "dossier": "DLR5L17N51962",
     "scrutin_annonce": false,
@@ -96,22 +85,11 @@
   {
     "date": "2026-11-10",
     "heure": "16:30",
-    "ordre_du_jour": "Examen du texte — Mieux reconnaître et à valoriser les aidants actifs (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Mieux reconnaître et à valoriser les aidants actifs",
     "themes": [
       "social"
     ],
     "dossier": "DLR5L17N54994",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-11-10",
-    "heure": "21:30",
-    "ordre_du_jour": "Suite de la discussion de la seconde partie du projet de loi de finances pour 2027",
-    "themes": [
-      "economie"
-    ],
-    "dossier": "DLR5L17N54629",
     "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
   },
@@ -130,51 +108,41 @@
   {
     "date": "2026-11-12",
     "heure": "21:30",
-    "ordre_du_jour": "Suite de la discussion de la seconde partie du projet de loi de finances pour 2027",
+    "ordre_du_jour": "Suite de la discussion du projet de loi, adopté par le Sénat après engagement de la procédure accélérée, relatif à la résilience des infrastructures critiques et au renforcement de la cybersécurité",
     "themes": [
-      "economie"
+      "numerique"
     ],
-    "dossier": "DLR5L17N54629",
+    "dossier": "DLR5L17N50731",
     "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
   },
   {
     "date": "2026-11-13",
     "heure": "21:30",
-    "ordre_du_jour": "Suite de la discussion de la seconde partie du projet de loi de finances pour 2027",
+    "ordre_du_jour": "Suite de la discussion du projet de loi, adopté par le Sénat après engagement de la procédure accélérée, relatif à la résilience des infrastructures critiques et au renforcement de la cybersécurité",
     "themes": [
-      "economie"
+      "numerique"
     ],
-    "dossier": "DLR5L17N54629",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-11-14",
-    "heure": "21:30",
-    "ordre_du_jour": "Suite de la discussion de la seconde partie du projet de loi de finances pour 2027",
-    "themes": [
-      "economie"
-    ],
-    "dossier": "DLR5L17N54629",
+    "dossier": "DLR5L17N50731",
     "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
   },
   {
     "date": "2026-11-16",
-    "heure": "09:00",
-    "ordre_du_jour": "Suite de la discussion de la seconde partie du projet de loi de finances pour 2027",
+    "heure": "16:00",
+    "ordre_du_jour": "Discussion de la proposition de loi, adoptée par le Sénat après engagement de la procédure accélérée, visant au renforcement de l'attractivité de l'épargne salariale et à la mise en œuvre d'une procédure de déblocage exceptionnelle",
     "themes": [
-      "economie"
+      "justice",
+      "travail"
     ],
-    "dossier": "DLR5L17N54629",
+    "dossier": "DLR5L17N53699",
     "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
+    "lecture": "1ʳᵉ lecture (Sénat)"
   },
   {
-    "date": "2026-11-17",
-    "heure": "15:00",
-    "ordre_du_jour": "Discussion du projet de loi, adopté par le Sénat, visant la relance et la décentralisation du logement",
+    "date": "2026-11-16",
+    "heure": "21:30",
+    "ordre_du_jour": "Suite de la discussion du projet de loi, adopté par le Sénat, visant la relance et la décentralisation du logement",
     "themes": [
       "logement",
       "institutions"
@@ -186,12 +154,37 @@
   {
     "date": "2026-11-17",
     "heure": "15:00",
-    "ordre_du_jour": "Vote solennel sur le projet de loi de finances pour 2027",
+    "ordre_du_jour": "Suite de la discussion du projet de loi, adopté par le Sénat, visant la relance et la décentralisation du logement",
     "themes": [
-      "economie"
+      "logement",
+      "institutions"
     ],
-    "dossier": "DLR5L17N54629",
-    "scrutin_annonce": true,
+    "dossier": "DLR5L17N54608",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-18",
+    "heure": "09:30",
+    "ordre_du_jour": "Examen du texte — Limiter à deux ans le versement du revenu de solidarité active pour les personnes aptes à travailler (séance éventuelle)",
+    "themes": [
+      "social"
+    ],
+    "dossier": "DLR5L17N53339",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-18",
+    "heure": "09:30",
+    "ordre_du_jour": "Examen du texte — Maintenir les pharmacies existantes dans les communes rurales (séance éventuelle)",
+    "themes": [
+      "sante",
+      "agriculture",
+      "institutions"
+    ],
+    "dossier": "DLR5L17N55074",
+    "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
   },
   {
