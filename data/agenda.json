@@ -11,7 +11,7 @@
   {
     "date": "2026-11-09",
     "heure": "16:00",
-    "ordre_du_jour": "Examen du texte — Proposition de loi visant à lutter contre la vie chère en renforçant le droit de la concurrence et de la régulation économique outre-mer (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Proposition de loi visant à lutter contre la vie chère en renforçant le droit de la concurrence et de la régulation économique outre-mer",
     "themes": [
       "economie",
       "institutions"
@@ -34,7 +34,7 @@
   {
     "date": "2026-11-09",
     "heure": "21:30",
-    "ordre_du_jour": "Examen du texte — L’interdiction de relations commerciales contribuant, par aide ou assistance, à la politique de colonisation dans le Territoire palestinien occupé et dans le Territoire syrien occupé des hauteurs du Golan (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — L’interdiction de relations commerciales contribuant, par aide ou assistance, à la politique de colonisation dans le Territoire palestinien occupé et dans le Territoire syrien occupé des hauteurs du Golan",
     "themes": [
       "economie"
     ],
@@ -67,7 +67,7 @@
   {
     "date": "2026-11-10",
     "heure": "16:30",
-    "ordre_du_jour": "Examen du texte — Baisser les prix du carburant à la pompe par l'encadrement des marges des raffineurs (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Baisser les prix du carburant à la pompe par l'encadrement des marges des raffineurs",
     "themes": [],
     "dossier": "DLR5L17N55014",
     "scrutin_annonce": false,
@@ -184,17 +184,6 @@
       "institutions"
     ],
     "dossier": "DLR5L17N55074",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-11-18",
-    "heure": "11:00",
-    "ordre_du_jour": "Examen de texte — Projet de loi autorisant l'approbation de l'accord multilatéral entre autorités compétentes concernant l'échange automatique de renseignements relatifs au cadre de déclaration applicable aux crypto-actifs, et l'approbation de  l'addendum à  l'accord multilatéral entre autorités compétentes concernant l'échange automatique de renseignements relatifs aux comptes financiers (séance éventuelle)",
-    "themes": [
-      "economie"
-    ],
-    "dossier": "DLR5L17N54762",
     "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
   },
@@ -330,6 +319,17 @@
   {
     "date": "2026-11-25",
     "heure": "11:00",
+    "ordre_du_jour": "Examen du texte — Projet de loi autorisant l'approbation de l'accord multilatéral entre autorités compétentes concernant l'échange automatique de renseignements relatifs au cadre de déclaration applicable aux crypto-actifs, et l'approbation de  l'addendum à  l'accord multilatéral entre autorités compétentes concernant l'échange automatique de renseignements relatifs aux comptes financiers (séance éventuelle)",
+    "themes": [
+      "economie"
+    ],
+    "dossier": "DLR5L17N54762",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-25",
+    "heure": "11:00",
     "ordre_du_jour": "Examen du texte — Projet de loi autorisant l’approbation de l’avenant à la convention entre le Gouvernement de la République Française et le Gouvernement de la République de l’Inde du 29 septembre 1992 en vue d’éviter les doubles impositions et de prévenir l’évasion fiscale en matière d’impôts sur le revenu et sur la fortune (séance éventuelle)",
     "themes": [
       "economie",
@@ -338,18 +338,6 @@
     "dossier": "DLR5L17N54923",
     "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-11-25",
-    "heure": "14:00",
-    "ordre_du_jour": "Discussion de la proposition de résolution européenne en faveur d’un traité juridiquement contraignant prévoyant des interdictions et des réglementations aux systèmes d'armes autonomes et de l’élaboration d’une position commune européenne sur ce sujet",
-    "themes": [
-      "defense",
-      "institutions"
-    ],
-    "dossier": "DLR5L17N54277",
-    "scrutin_annonce": false,
-    "lecture": "Lecture unique"
   },
   {
     "date": "2026-11-25",
@@ -369,6 +357,18 @@
     "ordre_du_jour": "Discussion de la proposition de résolution européenne visant à réviser la définition de l’œuvre européenne",
     "themes": [],
     "dossier": "DLR5L17N54288",
+    "scrutin_annonce": false,
+    "lecture": "Lecture unique"
+  },
+  {
+    "date": "2026-11-25",
+    "heure": "15:00",
+    "ordre_du_jour": "Examen du texte — Un traité juridiquement contraignant prévoyant des interdictions et des réglementations aux systèmes d'armes autonomes et l’élaboration d’une position commune européenne sur ce sujet (séance éventuelle)",
+    "themes": [
+      "defense",
+      "institutions"
+    ],
+    "dossier": "DLR5L17N54277",
     "scrutin_annonce": false,
     "lecture": "Lecture unique"
   },
@@ -489,5 +489,29 @@
     "dossier": "DLR5L17N55033",
     "scrutin_annonce": false,
     "lecture": "Lecture unique"
+  },
+  {
+    "date": "2026-12-02",
+    "heure": "09:00",
+    "ordre_du_jour": "Examen du texte — Projet de loi autorisant la ratification de l'accord de protection des investissements entre l'Union européenne et ses États membres, d'une part, et la République socialiste du Vietnam, d'autre part (séance éventuelle)",
+    "themes": [
+      "defense"
+    ],
+    "dossier": "DLR5L17N54767",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture (Sénat)"
+  },
+  {
+    "date": "2026-12-02",
+    "heure": "09:00",
+    "ordre_du_jour": "Examen du texte — Projet de loi autorisant la ratification de l’accord de passation conjointe de marché en vue de l’acquisition d’une plateforme centrale commune pour le mécanisme d’ajustement carbone aux frontières (séance éventuelle)",
+    "themes": [
+      "environnement",
+      "institutions",
+      "immigration"
+    ],
+    "dossier": "DLR5L17N54567",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
   }
 ]
