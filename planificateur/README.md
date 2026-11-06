@@ -13,6 +13,7 @@ créneaux (heures de Paris, changement d'heure géré automatiquement).
 | 10h00 et 16h00    | Publication « texte voté » : carrousel d'un vote solennel sur un texte (adopté ou rejeté), seulement s'il y en a un de nouveau (16h = rattrapage) |
 | 12h00              | Collecte des sondages (sondages.yml), pour que la publication de 12h30 voie les nouveautés |
 | 12h30              | Publication « actu présidentielle »       |
+| 18h00              | Publication « Reel du jour » : le texte voté de la veille s'il y en a un, sinon le prochain Reel pédagogique |
 | 18h30              | Notification « vote solennel demain »     |
 | 20h00, le 15       | Publication « boussole »                  |
 | 21h00              | Publication « député du jour »            |

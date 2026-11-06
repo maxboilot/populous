@@ -31,6 +31,9 @@ def generer(scenario, sortie, *, scrutin=None, garder_travail=False):
         for police in ('ExtraBold', 'Bold', 'Medium'):
             shutil.copy(REPO / 'assets_social' / 'fonts' / f'PlusJakartaSans-{police}.ttf', projet / 'assets' / 'fonts')
         shutil.copy(MOTEUR / 'commun' / 'gsap.min.js', projet / 'assets' / 'gsap.min.js')
+        sys.path.insert(0, str(MOTEUR / 'reel'))
+        import musique                                      # piano doux sur la 1re scene puis l'instru ; sinon bande son synthetisee
+        musique.preparer(projet, float(scenario['scenes'][0].get('duree', 4)))
         (travail / 'scenario.json').write_text(json.dumps(scenario, ensure_ascii=False), encoding='utf-8')
         env = {**os.environ, 'POPULOUS_REPO': str(REPO), 'REEL_SCENARIO': str(travail / 'scenario.json')}
         if scrutin is not None:

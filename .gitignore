@@ -23,3 +23,6 @@ assets_social/reels_bruts/*
 
 # Carrousels generes a chaque run de publier_reseaux.py (videos + images) : ephemeres.
 assets_social/carrousels/
+
+# Instru des Reels : seule la version chiffree (.enc) est versionnee ; la cle est dans .env (INSTRU_CLE) et dans le secret GitHub du meme nom.
+carrousels/moteur/reel/assets/audio/instru_max.mp3

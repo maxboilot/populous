@@ -25,6 +25,8 @@ const CRENEAUX = [
   { h: 10, m: 0,  workflow: "publier_reseaux.yml",   type: "loi" },
   { h: 12, m: 30, workflow: "publier_reseaux.yml",   type: "presidentiel" },
   { h: 16, m: 0,  workflow: "publier_reseaux.yml",   type: "loi" },
+  // Reel du jour (texte voté de la veille s'il y en a un, sinon prochain Reel pédagogique ; jamais de doublon, voir publier_reseaux.py --type reel).
+  { h: 18, m: 0,  workflow: "publier_reseaux.yml",   type: "reel" },
   { h: 18, m: 30, workflow: "notifier_planifie.yml", type: "solennel" },
   { h: 20, m: 0,  jourMois: 15, workflow: "publier_reseaux.yml", type: "boussole" },
   { h: 21, m: 0,  workflow: "publier_reseaux.yml",   type: "depute" },
