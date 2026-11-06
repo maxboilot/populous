@@ -2,7 +2,7 @@
   {
     "date": "2026-11-09",
     "heure": "16:00",
-    "ordre_du_jour": "Examen du texte — Améliorer le dispositif du temps partiel thérapeutique pour les fonctionnaires (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Améliorer le dispositif du temps partiel thérapeutique pour les fonctionnaires",
     "themes": [],
     "dossier": "DLR5L17N54989",
     "scrutin_annonce": false,
@@ -23,7 +23,7 @@
   {
     "date": "2026-11-09",
     "heure": "16:00",
-    "ordre_du_jour": "Examen du texte — Régulariser les travailleurs sans-papiers (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Régulariser les travailleurs sans-papiers",
     "themes": [
       "travail"
     ],
@@ -193,6 +193,39 @@
       "institutions"
     ],
     "dossier": "DLR5L17N54608",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-18",
+    "heure": "09:00",
+    "ordre_du_jour": "Examen du texte — Garantir l’exécution effective d’une peine minimale dès la première condamnation pour violences volontaires (séance éventuelle)",
+    "themes": [
+      "justice",
+      "securite"
+    ],
+    "dossier": "DLR5L17N55100",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-18",
+    "heure": "09:00",
+    "ordre_du_jour": "Examen du texte — Instaurer la responsabilité pénale des mineurs à 16 ans  et renforcer la responsabilité pénale des parents (séance éventuelle)",
+    "themes": [
+      "justice",
+      "social"
+    ],
+    "dossier": "DLR5L17N53870",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-18",
+    "heure": "09:00",
+    "ordre_du_jour": "Examen du texte — Suspendre les prestations sociales pour les fraudeurs multirécidivistes (séance éventuelle)",
+    "themes": [],
+    "dossier": "DLR5L17N55099",
     "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
   },
