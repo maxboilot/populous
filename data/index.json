@@ -1,19 +1,6 @@
 [
   {
     "numero": null,
-    "dossier": "DLR5L17N52699",
-    "date": "2025-11-05",
-    "titre": "Proposition de loi pour la sécurisation juridique des structures économiques face aux risques de blanchiment",
-    "adopte": true,
-    "statut": "adopte",
-    "themes": [
-      "economie"
-    ],
-    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N52699",
-    "type": "main_levee"
-  },
-  {
-    "numero": null,
     "dossier": "DLR5L17N52725",
     "date": "2025-11-06",
     "titre": "Proposition de loi visant à créer un répertoire national des personnes inéligibles",
