@@ -55,6 +55,17 @@
   },
   {
     "date": "2026-11-10",
+    "heure": "14:30",
+    "ordre_du_jour": "Examen du texte — Protéger nos forêts en encadrant les coupes rases",
+    "themes": [
+      "environnement"
+    ],
+    "dossier": "DLR5L17N55141",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-10",
     "heure": "15:00",
     "ordre_du_jour": "Suite de la discussion du projet de loi, adopté par le Sénat après engagement de la procédure accélérée, relatif à la résilience des infrastructures critiques et au renforcement de la cybersécurité",
     "themes": [
@@ -166,6 +177,15 @@
   {
     "date": "2026-11-18",
     "heure": "09:30",
+    "ordre_du_jour": "Examen du texte — Lever les contraintes pesant sur le foncier (séance éventuelle)",
+    "themes": [],
+    "dossier": "DLR5L17N55097",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-18",
+    "heure": "09:30",
     "ordre_du_jour": "Examen du texte — Limiter à deux ans le versement du revenu de solidarité active pour les personnes aptes à travailler (séance éventuelle)",
     "themes": [
       "social"
@@ -189,6 +209,15 @@
   },
   {
     "date": "2026-11-18",
+    "heure": "11:00",
+    "ordre_du_jour": "Examen du texte — Moderniser les communications d’urgence (séance éventuelle)",
+    "themes": [],
+    "dossier": "DLR5L17N55084",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-18",
     "heure": "14:00",
     "ordre_du_jour": "Suite de la discussion du projet de loi, adopté par le Sénat, visant la relance et la décentralisation du logement",
     "themes": [
@@ -201,8 +230,40 @@
   },
   {
     "date": "2026-11-18",
-    "heure": "21:30",
-    "ordre_du_jour": "Discussion, en 2e lecture, de la proposition de loi, modifiée par le Sénat, pour retrouver la confiance et l'équilibre dans les rapports locatifs",
+    "heure": "14:45",
+    "ordre_du_jour": "Examen du texte — Baisser les prix du carburant à la pompe par l'encadrement des marges des raffineurs (séance éventuelle)",
+    "themes": [],
+    "dossier": "DLR5L17N55014",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-18",
+    "heure": "14:45",
+    "ordre_du_jour": "Examen du texte — L’interdiction de relations commerciales contribuant, par aide ou assistance, à la politique de colonisation dans le Territoire palestinien occupé et dans le Territoire syrien occupé des hauteurs du Golan (séance éventuelle)",
+    "themes": [
+      "economie"
+    ],
+    "dossier": "DLR5L17N54718",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-18",
+    "heure": "14:45",
+    "ordre_du_jour": "Examen du texte — Proposition de loi visant à lutter contre la vie chère en renforçant le droit de la concurrence et de la régulation économique outre-mer (séance éventuelle)",
+    "themes": [
+      "economie",
+      "institutions"
+    ],
+    "dossier": "DLR5L17N51095",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-18",
+    "heure": "14:45",
+    "ordre_du_jour": "Examen du texte — Retrouver la confiance et l’équilibre dans les rapports locatifs (séance éventuelle)",
     "themes": [
       "logement"
     ],
@@ -313,6 +374,41 @@
       "institutions"
     ],
     "dossier": "DLR5L17N54608",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-25",
+    "heure": "09:30",
+    "ordre_du_jour": "Examen du texte — Créer un grand parc social d'un million d'automobiles électriques à loyer modéré (séance éventuelle)",
+    "themes": [
+      "logement",
+      "transports"
+    ],
+    "dossier": "DLR5L17N55144",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-25",
+    "heure": "09:30",
+    "ordre_du_jour": "Examen du texte — Protéger nos forêts en encadrant les coupes rases (séance éventuelle)",
+    "themes": [
+      "environnement"
+    ],
+    "dossier": "DLR5L17N55141",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-25",
+    "heure": "11:00",
+    "ordre_du_jour": "Examen du texte — Garantir l’accès à un panier diversifié de denrées alimentaires favorables à la santé et vendues à prix coûtant (séance éventuelle)",
+    "themes": [
+      "sante",
+      "agriculture"
+    ],
+    "dossier": "DLR5L17N55142",
     "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
   },
