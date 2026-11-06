@@ -4049,5 +4049,83 @@
     ],
     "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N54767",
     "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N54372",
+    "date": "2026-11-03",
+    "titre": "Projet de loi relatif à la protection des enfants",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [
+      "social"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/projet_de_loi_relatif_a_la_protection_des_enfants",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53917",
+    "date": "2026-11-03",
+    "titre": "Proposition de loi visant à résoudre le fléau des désordres fonciers outre-mer",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "institutions"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53917",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N52558",
+    "date": "2026-11-03",
+    "titre": "Proposition de loi visant à améliorer la gestion des biens des sections de commune",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "institutions"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N52558",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N54461",
+    "date": "2026-11-04",
+    "titre": "Proposition de loi relative au droit des victimes à l'information et à la compréhension des procédures et décisions de justice",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "justice"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N54461",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N54628",
+    "date": "2026-11-05",
+    "titre": "Proposition de loi visant à protéger les demandeurs de logement contre les sollicitations sexuelles abusives",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "logement"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N54628",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N51518",
+    "date": "2026-11-05",
+    "titre": "Valoriser la réserve communale de sécurité civile",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [
+      "securite"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/valoriser_reserve_communale_securite_civile2",
+    "type": "main_levee"
   }
 ]
