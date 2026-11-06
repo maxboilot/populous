@@ -71,6 +71,7 @@ import generer_post_vote
 DOSSIER = Path(__file__).parent
 sys.path.insert(0, str(DOSSIER / 'carrousels'))
 import generer_carrousel
+import generer_reel
 GRAPH = 'https://graph.facebook.com/v21.0'
 
 MOIS_FR = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin',
@@ -576,6 +577,111 @@ def preparer_carrousel_instagram(ig_user_id, page_token, elements, legende):
     return parent
 
 
+# ---------------------------------------------------------------- Reels (au moins un par jour)
+# Le texte vote la veille quand il y en a un (meme choix et memes textes que le carrousel « loi »), sinon le prochain Reel
+# pedagogique de data/reels_pedagogiques.json (faits verifies sur sources officielles, cites dans la legende). Une file epuisee repart du debut.
+def scenario_loi_reel(vote, titre, blocs, source):
+    """Scenario de Reel (voir carrousels/moteur/reel/construire.py) d'un vote solennel sur un texte : le texte + tampon, les chiffres, de quoi il parle, l'hemicycle."""
+    adopte = _sort_adopte(vote)
+    d = datetime.date.fromisoformat(vote['date'])
+    return {'scenes': [
+        {'type': 'titre', 'eyebrow': f"Vote solennel · {d.day} {MOIS_FR[d.month - 1]} {d.year}", 'titre': titre,
+         'tampon': 'ADOPTÉ' if adopte else 'REJETÉ', 'couleur': 'vert' if adopte else 'orange', 'duree': 4.4},
+        {'type': 'chiffres', 'duree': 5.0},
+        {'type': 'cartes', 'titre': 'De quoi parle ce texte ?', 'sous': {2: 'Deux choses à savoir.', 3: 'Trois choses à savoir.'}[len(blocs)],
+         'cartes': blocs, 'duree': 2.6 + 1.6 * len(blocs)},
+        {'type': 'hemicycle', 'duree': 4.2}],
+        'fin': {'duree': 3.8}, 'source': source}
+
+
+def contenu_reel():
+    """Le Reel du jour, ou None. Renvoie un dict : scenario, scrutin (ou None), legende, cle_etat, valeur_etat."""
+    aujourdhui = datetime.date.today()
+    etat = lire_etat_publication()
+    deja = set(etat.get('lois_reel_publiees', []))
+    for vote in _scrutins_solennels_de_texte(aujourdhui):
+        if vote['numero'] in deja or _sort_adopte(vote) is None:
+            continue
+        titre = titre_loi(vote.get('objet') or vote['titre'])
+        blocs, source = explication_loi(vote)
+        contours = generer_post_vote.charger_contours((DOSSIER / 'index.html').read_text(encoding='utf-8'))
+        return {'type_reel': 'loi', 'scenario': scenario_loi_reel(vote, titre, blocs, source), 'scrutin': vote['numero'],
+                'legende': generer_post_vote.legende(vote, titre, contours), 'cle_etat': 'lois_reel_publiees', 'valeur_etat': sorted(deja | {vote['numero']})}
+    file_ = json.loads((DOSSIER / 'data' / 'reels_pedagogiques.json').read_text(encoding='utf-8'))['reels']
+    publies = [i for i in etat.get('reels_pedagogiques_publies', []) if any(r['id'] == i for r in file_)]
+    if len(publies) >= len(file_):
+        publies = []                                           # tous publies : on repart du debut
+    for r in file_:
+        if r['id'] not in publies:
+            return {'type_reel': 'pedagogique', 'scenario': {'scenes': r['scenes'], 'fin': {'duree': 3.8}, 'source': r['source']}, 'scrutin': None,
+                    'legende': r['legende'], 'cle_etat': 'reels_pedagogiques_publies', 'valeur_etat': publies + [r['id']], 'id': r['id']}
+    return None
+
+
+def publier_reel_instagram(ig_user_id, page_token, chemin, legende, thumb_offset=2600):
+    """Reel Instagram par envoi direct (resumable upload), publie aussi dans le fil. Renvoie la reponse de la publication."""
+    r = _poster_avec_reessais(f'{GRAPH}/{ig_user_id}/media', data={'media_type': 'REELS', 'upload_type': 'resumable', 'caption': legende,
+                              'share_to_feed': 'true', 'thumb_offset': str(thumb_offset), 'access_token': page_token}, timeout=60)
+    _lever_avec_detail(r)
+    infos = r.json()
+    octets = Path(chemin).read_bytes()
+    r = _poster_avec_reessais(infos['uri'], headers={'Authorization': f'OAuth {page_token}', 'offset': '0', 'file_size': str(len(octets))}, data=octets, timeout=300)
+    _lever_avec_detail(r)
+    _attendre_conteneur_instagram(infos['id'], page_token, essais=60, pause=5)
+    return publier_conteneur_instagram(ig_user_id, page_token, infos['id'])
+
+
+def publier_reel_facebook(page_id, page_token, chemin, description):
+    """Reel sur la Page Facebook (3 phases : start, envoi des octets, finish). Renvoie l'id de la video."""
+    r = _poster_avec_reessais(f'{GRAPH}/{page_id}/video_reels', data={'upload_phase': 'start', 'access_token': page_token}, timeout=60)
+    _lever_avec_detail(r)
+    infos = r.json(); video_id = infos['video_id']
+    octets = Path(chemin).read_bytes()
+    r = _poster_avec_reessais(infos['upload_url'], headers={'Authorization': f'OAuth {page_token}', 'offset': '0', 'file_size': str(len(octets))}, data=octets, timeout=300)
+    _lever_avec_detail(r)
+    r = _poster_avec_reessais(f'{GRAPH}/{page_id}/video_reels', data={'upload_phase': 'finish', 'video_id': video_id, 'video_state': 'PUBLISHED',
+                              'description': description, 'access_token': page_token}, timeout=60)
+    _lever_avec_detail(r)
+    for _ in range(30):                                        # attend que Facebook ait fini de traiter la video (sans bloquer indefiniment)
+        r = requests.get(f'{GRAPH}/{video_id}', params={'fields': 'status', 'access_token': page_token}, timeout=20)
+        if r.status_code == 200 and (r.json().get('status') or {}).get('video_status') in ('ready', 'published'):
+            break
+        time.sleep(6)
+    return video_id
+
+
+def main_reel(args):
+    contenu = contenu_reel()
+    if contenu is None:
+        print("Rien a publier pour --type reel aujourd'hui.")
+        return
+    dossier_sortie = DOSSIER / 'assets_social' / 'reels' / f"{datetime.date.today().isoformat()}-{contenu['type_reel']}"
+    print(f"Generation du reel « {contenu['type_reel']} » (HyperFrames) -> {dossier_sortie}")
+    reel = generer_reel.generer(contenu['scenario'], dossier_sortie, scrutin=contenu['scrutin'])
+    print(f"Reel : {reel['duree']:.1f} s, {reel['reel']}\nLegende :\n{contenu['legende']}\n")
+    if not args.publier:
+        print("Mode brouillon (--publier non passe) : rien n'a ete publie.")
+        return
+    env = lire_env()
+    plateformes = {x.strip() for x in args.plateformes.split(',') if x.strip()}
+    if plateformes - {'facebook', 'instagram'} or not plateformes:
+        sys.exit(f"--plateformes : valeurs possibles « facebook », « instagram » (recu : {args.plateformes}).")
+    reussies, echecs = [], []
+    for nom, f in (('instagram', lambda: publier_reel_instagram(env['IG_USER_ID'], env['FB_PAGE_TOKEN'], reel['reel'], contenu['legende'])),
+                   ('facebook', lambda: publier_reel_facebook(env['FB_PAGE_ID'], env['FB_PAGE_TOKEN'], reel['reel'], contenu['legende']))):
+        if nom not in plateformes:
+            continue
+        try:
+            print(f"{nom.capitalize()} publie : {f()}"); reussies.append(nom)
+        except Exception as e:                                 # une plateforme en panne ne doit pas empecher l'autre
+            print(f"::error::{nom} : {e}"); echecs.append(nom)
+    if reussies:                                               # etat mis a jour des qu'une plateforme a publie : jamais de doublon au creneau suivant
+        etat = lire_etat_publication(); etat[contenu['cle_etat']] = contenu['valeur_etat']; ecrire_etat_publication(etat)
+        print(f"Etat mis a jour : {contenu['cle_etat']} = {contenu['valeur_etat']}")
+    if echecs:
+        sys.exit(f"Reel non publie sur : {', '.join(echecs)}.")
+
+
 def publier_conteneur_instagram(ig_user_id, page_token, creation_id, essais=6, pause=10):
     """Seule etape publique cote Instagram. Instagram annonce parfois FINISHED trop tot : media_publish repond alors
     400 « Media ID is not available » (code 9007, sous-code 2207027 : « patientez un peu ») — constate le 31 oct. 2026
@@ -593,7 +699,7 @@ def publier_conteneur_instagram(ig_user_id, page_token, creation_id, essais=6, p
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--type', choices=[*CHOIX.keys(), 'vote'], required=True)
+    parser.add_argument('--type', choices=[*CHOIX.keys(), 'vote', 'reel'], required=True)
     parser.add_argument('--publier', action='store_true', help="Publie reellement (sinon : brouillon local seulement).")
     parser.add_argument('--numero', type=int, help="(vote) numero du scrutin.")
     parser.add_argument('--titre', help="(vote) titre synthetique, relu par un humain.")
@@ -604,6 +710,8 @@ def main():
     parser.add_argument('--sans-video-instagram', action='store_true', help="Instagram : carrousel d'images au lieu de videos.")
     args = parser.parse_args()
 
+    if args.type == 'reel':
+        return main_reel(args)
     if args.type == 'vote':
         params, contenu = preparer_vote(args)
     else:

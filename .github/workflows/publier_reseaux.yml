@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
     inputs:
       type:
-        description: "Type de contenu (fait, presidentiel, depute, avenir, boussole, loi, vote)"
+        description: "Type de contenu (fait, presidentiel, depute, avenir, boussole, loi, reel, vote)"
         required: true
         default: fait
       # Uniquement pour type=vote (lance a la main, jamais par le planificateur) :
@@ -105,7 +105,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: carrousel-${{ steps.type.outputs.type }}
-          path: assets_social/carrousels/**
+          path: |
+            assets_social/carrousels/**
+            assets_social/reels/**
           retention-days: 7
           if-no-files-found: ignore
       - name: Committer l'etat de publication mis a jour

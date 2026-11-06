@@ -1,0 +1,464 @@
+{
+ "reels": [
+  {
+   "id": "budget-deux-parties",
+   "titre": "Comment est voté le budget de l'État ?",
+   "scenes": [
+    {
+     "type": "titre",
+     "eyebrow": "Populous · Les institutions",
+     "titre": "Comment est voté le budget de l'État ?",
+     "duree": 3.4
+    },
+    {
+     "type": "texte",
+     "kicker": "Le point de départ",
+     "texte": "Le Gouvernement dépose un **projet de loi de finances** pour l'année.",
+     "duree": 4.2
+    },
+    {
+     "type": "texte",
+     "kicker": "1re partie",
+     "texte": "Elle autorise l'État à percevoir **les recettes** et fixe l'équilibre général des finances publiques.",
+     "duree": 5.0
+    },
+    {
+     "type": "texte",
+     "kicker": "2nde partie",
+     "texte": "Elle fixe **les crédits**, c'est-à-dire les dépenses.",
+     "duree": 4.0
+    },
+    {
+     "type": "texte",
+     "kicker": "Un ordre obligé",
+     "texte": "La seconde partie **ne peut pas être discutée** avant l'adoption de la première.",
+     "duree": 4.8
+    }
+   ],
+   "source": "Sources : loi organique relative aux lois de finances (art. 34 et 42)",
+   "resume": "Le budget de l'État est voté en deux temps : d'abord les recettes et l'équilibre (1re partie), ensuite les crédits, c'est-à-dire les dépenses (2nde partie). La seconde partie ne peut pas être discutée avant l'adoption de la première.",
+   "urls": [
+    "https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000026788886",
+    "https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006321066"
+   ],
+   "legende": "Comment est voté le budget de l'État ?\n\nLe budget de l'État est voté en deux temps : d'abord les recettes et l'équilibre (1re partie), ensuite les crédits, c'est-à-dire les dépenses (2nde partie). La seconde partie ne peut pas être discutée avant l'adoption de la première.\n\nQuelle question sur le fonctionnement du Parlement veux-tu qu'on explique ensuite ? Dis-le en commentaire 👇\n\n📚 Sources : https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000026788886 · https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006321066\n\n📲 Les votes de l'Assemblée, siège par siège : app Populous (lien en bio).\n\n#Populous #AssembléeNationale #Institutions #Politique #Démocratie"
+  },
+  {
+   "id": "naissance-loi",
+   "titre": "Comment naît et évolue une loi ?",
+   "scenes": [
+    {
+     "type": "titre",
+     "eyebrow": "Populous · Les institutions",
+     "titre": "Comment naît et évolue une loi ?",
+     "duree": 3.4
+    },
+    {
+     "type": "liste",
+     "titre": "Le parcours d'une loi",
+     "items": [
+      "Un texte est **déposé** : projet (Gouvernement) ou proposition (parlementaires)",
+      "Examen **en commission** : rapport et amendements",
+      "**Séance publique** : article par article, puis vote",
+      "**Navette** : l'autre assemblée examine à son tour, **CMP** si désaccord",
+      "**Promulgation** par le Président, publication au Journal officiel"
+     ],
+     "duree": 12.0,
+     "numerote": true
+    }
+   ],
+   "source": "Sources : Sénat, « La procédure législative » · Assemblée nationale",
+   "resume": "Dépôt du texte, examen en commission, séance publique article par article, navette entre l'Assemblée et le Sénat (commission mixte paritaire en cas de désaccord), puis promulgation et publication au Journal officiel.",
+   "urls": [
+    "https://www.senat.fr/connaitre-le-senat/role-et-fonctionnement/la-procedure-legislative.html",
+    "https://www.assemblee-nationale.fr/dyn/synthese/l_elaboration_de_la_loi"
+   ],
+   "legende": "Comment naît et évolue une loi ?\n\nDépôt du texte, examen en commission, séance publique article par article, navette entre l'Assemblée et le Sénat (commission mixte paritaire en cas de désaccord), puis promulgation et publication au Journal officiel.\n\nQuelle question sur le fonctionnement du Parlement veux-tu qu'on explique ensuite ? Dis-le en commentaire 👇\n\n📚 Sources : https://www.senat.fr/connaitre-le-senat/role-et-fonctionnement/la-procedure-legislative.html · https://www.assemblee-nationale.fr/dyn/synthese/l_elaboration_de_la_loi\n\n📲 Les votes de l'Assemblée, siège par siège : app Populous (lien en bio).\n\n#Populous #AssembléeNationale #Institutions #Politique #Démocratie"
+  },
+  {
+   "id": "assemblee-nationale",
+   "titre": "C'est quoi l'Assemblée nationale ?",
+   "scenes": [
+    {
+     "type": "titre",
+     "eyebrow": "Populous · Les institutions",
+     "titre": "C'est quoi l'Assemblée nationale ?",
+     "duree": 3.4
+    },
+    {
+     "type": "texte",
+     "kicker": "Qui y siège ?",
+     "texte": "**577 députés**, élus pour 5 ans au suffrage universel direct.",
+     "duree": 4.4
+    },
+    {
+     "type": "liste",
+     "titre": "À quoi ça sert ?",
+     "items": [
+      "Elle **vote la loi**",
+      "Elle **contrôle le Gouvernement**",
+      "Elle **évalue** les politiques publiques"
+     ],
+     "duree": 5.6,
+     "numerote": false
+    },
+    {
+     "type": "texte",
+     "kicker": "Un pouvoir de contrôle",
+     "texte": "Elle peut censurer le Gouvernement, à la majorité de ses membres : **289 voix sur 577**.",
+     "duree": 5.0
+    }
+   ],
+   "source": "Source : assemblee-nationale.fr",
+   "resume": "577 députés, élus pour 5 ans au suffrage universel direct. L'Assemblée vote la loi, contrôle le Gouvernement et évalue les politiques publiques. Une motion de censure doit réunir la majorité de ses membres (289 sur 577).",
+   "urls": [
+    "https://www2.assemblee-nationale.fr/decouvrir-l-assemblee/role-et-pouvoirs-de-l-assemblee-nationale/"
+   ],
+   "legende": "C'est quoi l'Assemblée nationale ?\n\n577 députés, élus pour 5 ans au suffrage universel direct. L'Assemblée vote la loi, contrôle le Gouvernement et évalue les politiques publiques. Une motion de censure doit réunir la majorité de ses membres (289 sur 577).\n\nQuelle question sur le fonctionnement du Parlement veux-tu qu'on explique ensuite ? Dis-le en commentaire 👇\n\n📚 Sources : https://www2.assemblee-nationale.fr/decouvrir-l-assemblee/role-et-pouvoirs-de-l-assemblee-nationale/\n\n📲 Les votes de l'Assemblée, siège par siège : app Populous (lien en bio).\n\n#Populous #AssembléeNationale #Institutions #Politique #Démocratie"
+  },
+  {
+   "id": "senat",
+   "titre": "C'est quoi le Sénat ?",
+   "scenes": [
+    {
+     "type": "titre",
+     "eyebrow": "Populous · Les institutions",
+     "titre": "C'est quoi le Sénat ?",
+     "duree": 3.4
+    },
+    {
+     "type": "texte",
+     "kicker": "Qui y siège ?",
+     "texte": "**348 sénateurs**, élus pour 6 ans.",
+     "duree": 3.8
+    },
+    {
+     "type": "texte",
+     "kicker": "Comment sont-ils élus ?",
+     "texte": "Au suffrage universel **indirect** : par des élus locaux, les « grands électeurs ».",
+     "duree": 5.0
+    },
+    {
+     "type": "texte",
+     "kicker": "Un renouvellement partiel",
+     "texte": "Le Sénat est **renouvelé par moitié** tous les 3 ans.",
+     "duree": 4.2
+    },
+    {
+     "type": "texte",
+     "kicker": "Son rôle",
+     "texte": "Il assure la représentation **des collectivités territoriales** de la République.",
+     "duree": 4.8
+    }
+   ],
+   "source": "Sources : senat.fr · Constitution, art. 24",
+   "resume": "348 sénateurs, élus pour 6 ans au suffrage universel indirect par des élus locaux. Le Sénat est renouvelé par moitié tous les 3 ans et assure la représentation des collectivités territoriales.",
+   "urls": [
+    "https://www.senat.fr/connaitre-le-senat/role-et-fonctionnement.html"
+   ],
+   "legende": "C'est quoi le Sénat ?\n\n348 sénateurs, élus pour 6 ans au suffrage universel indirect par des élus locaux. Le Sénat est renouvelé par moitié tous les 3 ans et assure la représentation des collectivités territoriales.\n\nQuelle question sur le fonctionnement du Parlement veux-tu qu'on explique ensuite ? Dis-le en commentaire 👇\n\n📚 Sources : https://www.senat.fr/connaitre-le-senat/role-et-fonctionnement.html\n\n📲 Les votes de l'Assemblée, siège par siège : app Populous (lien en bio).\n\n#Populous #AssembléeNationale #Institutions #Politique #Démocratie"
+  },
+  {
+   "id": "lire-un-vote",
+   "titre": "Comment lire un vote sur Populous ?",
+   "scenes": [
+    {
+     "type": "titre",
+     "eyebrow": "Populous · Les institutions",
+     "titre": "Comment lire un vote sur Populous ?",
+     "duree": 3.4
+    },
+    {
+     "type": "texte",
+     "kicker": "Un point = un député",
+     "texte": "L'hémicycle compte **577 sièges**, un point par siège.",
+     "duree": 4.2
+    },
+    {
+     "type": "liste",
+     "titre": "Les couleurs",
+     "items": [
+      [
+       "**Vert** : pour",
+       "rgb(69,150,109)"
+      ],
+      [
+       "**Orange** : contre",
+       "rgb(235,120,60)"
+      ],
+      [
+       "**Bleu clair** : abstention",
+       "rgb(128,139,195)"
+      ],
+      [
+       "**Bleu foncé** : absent",
+       "rgb(34,62,190)"
+      ]
+     ],
+     "duree": 6.0,
+     "numerote": false
+    },
+    {
+     "type": "texte",
+     "kicker": "Touche un siège",
+     "texte": "Tu vois **le député**, son groupe et sa circonscription.",
+     "duree": 4.4
+    },
+    {
+     "type": "texte",
+     "kicker": "Rien sans source",
+     "texte": "Chaque vote cite **sa source officielle**.",
+     "duree": 3.8
+    }
+   ],
+   "source": "Données : Assemblée nationale (data.assemblee-nationale.fr)",
+   "resume": "Chaque point est un député : vert pour, orange contre, bleu clair abstention, bleu foncé absent. Dans l'app, on touche un siège pour voir le député, son groupe et sa circonscription, et chaque vote cite sa source officielle.",
+   "urls": [
+    "https://data.assemblee-nationale.fr"
+   ],
+   "legende": "Comment lire un vote sur Populous ?\n\nChaque point est un député : vert pour, orange contre, bleu clair abstention, bleu foncé absent. Dans l'app, on touche un siège pour voir le député, son groupe et sa circonscription, et chaque vote cite sa source officielle.\n\nQuelle question sur le fonctionnement du Parlement veux-tu qu'on explique ensuite ? Dis-le en commentaire 👇\n\n📚 Sources : https://data.assemblee-nationale.fr\n\n📲 Les votes de l'Assemblée, siège par siège : app Populous (lien en bio).\n\n#Populous #AssembléeNationale #Institutions #Politique #Démocratie"
+  },
+  {
+   "id": "vote-solennel",
+   "titre": "C'est quoi un vote solennel ?",
+   "scenes": [
+    {
+     "type": "titre",
+     "eyebrow": "Populous · Les institutions",
+     "titre": "C'est quoi un vote solennel ?",
+     "duree": 3.4
+    },
+    {
+     "type": "texte",
+     "kicker": "La définition",
+     "texte": "Un **scrutin public** sur l'ensemble d'un texte important.",
+     "duree": 4.2
+    },
+    {
+     "type": "texte",
+     "kicker": "Quand ?",
+     "texte": "Il est fixé à l'avance, en général **le mardi après-midi**, après les questions au Gouvernement.",
+     "duree": 5.4
+    },
+    {
+     "type": "texte",
+     "kicker": "Les absents",
+     "texte": "Un député absent peut **déléguer son vote** à un collègue, qui vote dans le même sens.",
+     "duree": 5.2
+    },
+    {
+     "type": "texte",
+     "kicker": "Une limite",
+     "texte": "Un député ne peut recevoir **qu'une seule délégation**.",
+     "duree": 4.0
+    }
+   ],
+   "source": "Source : assemblee-nationale.fr, « Les votes à l'Assemblée nationale »",
+   "resume": "Un vote solennel est un scrutin public sur l'ensemble d'un texte important, fixé à l'avance, en général le mardi après-midi. Un député absent peut déléguer son vote ; il ne peut recevoir qu'une seule délégation.",
+   "urls": [
+    "https://www.assemblee-nationale.fr/dyn/synthese/fonctionnement-assemblee-nationale/travail-legislatif/les-votes-a-l-assemblee-nationale"
+   ],
+   "legende": "C'est quoi un vote solennel ?\n\nUn vote solennel est un scrutin public sur l'ensemble d'un texte important, fixé à l'avance, en général le mardi après-midi. Un député absent peut déléguer son vote ; il ne peut recevoir qu'une seule délégation.\n\nQuelle question sur le fonctionnement du Parlement veux-tu qu'on explique ensuite ? Dis-le en commentaire 👇\n\n📚 Sources : https://www.assemblee-nationale.fr/dyn/synthese/fonctionnement-assemblee-nationale/travail-legislatif/les-votes-a-l-assemblee-nationale\n\n📲 Les votes de l'Assemblée, siège par siège : app Populous (lien en bio).\n\n#Populous #AssembléeNationale #Institutions #Politique #Démocratie"
+  },
+  {
+   "id": "article-49-3",
+   "titre": "C'est quoi le 49.3 ?",
+   "scenes": [
+    {
+     "type": "titre",
+     "eyebrow": "Populous · Les institutions",
+     "titre": "C'est quoi le 49.3 ?",
+     "duree": 3.4
+    },
+    {
+     "type": "texte",
+     "kicker": "Le principe",
+     "texte": "Le Premier ministre **engage la responsabilité du Gouvernement** sur un texte.",
+     "duree": 4.8
+    },
+    {
+     "type": "texte",
+     "kicker": "Le résultat",
+     "texte": "Le texte est **considéré comme adopté**, sauf si une motion de censure est votée.",
+     "duree": 5.0
+    },
+    {
+     "type": "texte",
+     "kicker": "Le délai",
+     "texte": "La motion doit être déposée **dans les 24 heures**.",
+     "duree": 4.0
+    },
+    {
+     "type": "texte",
+     "kicker": "Pour renverser le Gouvernement",
+     "texte": "Il faut **289 voix** sur 577 : la majorité des membres. Seuls les votes pour comptent.",
+     "duree": 5.6
+    },
+    {
+     "type": "texte",
+     "kicker": "Un exemple",
+     "texte": "En décembre 2024, une motion a été adoptée : **le Gouvernement a démissionné**.",
+     "duree": 5.0
+    }
+   ],
+   "source": "Sources : Constitution, art. 49 · assemblee-nationale.fr",
+   "resume": "Avec le 49.3, le Premier ministre engage la responsabilité du Gouvernement sur un texte, considéré comme adopté sauf motion de censure déposée dans les 24 heures. Pour renverser le Gouvernement, la motion doit réunir la majorité des membres de l'Assemblée.",
+   "urls": [
+    "https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006527529/1999-07-09",
+    "https://www.assemblee-nationale.fr/dyn/actualites-accueil-hub/adoption-d-une-motion-de-censure-le-plfss-2025-est-rejete-en-lecture-cmp-art.-49.3-et-le-premier-ministre-a-presente-la-demission-du-gouvernement-art.-50"
+   ],
+   "legende": "C'est quoi le 49.3 ?\n\nAvec le 49.3, le Premier ministre engage la responsabilité du Gouvernement sur un texte, considéré comme adopté sauf motion de censure déposée dans les 24 heures. Pour renverser le Gouvernement, la motion doit réunir la majorité des membres de l'Assemblée.\n\nQuelle question sur le fonctionnement du Parlement veux-tu qu'on explique ensuite ? Dis-le en commentaire 👇\n\n📚 Sources : https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006527529/1999-07-09 · https://www.assemblee-nationale.fr/dyn/actualites-accueil-hub/adoption-d-une-motion-de-censure-le-plfss-2025-est-rejete-en-lecture-cmp-art.-49.3-et-le-premier-ministre-a-presente-la-demission-du-gouvernement-art.-50\n\n📲 Les votes de l'Assemblée, siège par siège : app Populous (lien en bio).\n\n#Populous #AssembléeNationale #Institutions #Politique #Démocratie"
+  },
+  {
+   "id": "projet-ou-proposition",
+   "titre": "Projet de loi ou proposition de loi ?",
+   "scenes": [
+    {
+     "type": "titre",
+     "eyebrow": "Populous · Les institutions",
+     "titre": "Projet de loi ou proposition de loi ?",
+     "duree": 3.4
+    },
+    {
+     "type": "texte",
+     "kicker": "Projet de loi",
+     "texte": "Le texte vient **du Gouvernement**.",
+     "duree": 3.8
+    },
+    {
+     "type": "texte",
+     "kicker": "Proposition de loi",
+     "texte": "Le texte vient **de parlementaires** : députés ou sénateurs.",
+     "duree": 4.4
+    },
+    {
+     "type": "texte",
+     "kicker": "Ensuite ?",
+     "texte": "Dans les deux cas : examen **en commission**, puis en séance publique.",
+     "duree": 4.6
+    }
+   ],
+   "source": "Sources : Constitution, art. 39 · senat.fr",
+   "resume": "Un projet de loi vient du Gouvernement, une proposition de loi vient de parlementaires. Dans les deux cas, le texte est examiné en commission puis en séance publique.",
+   "urls": [
+    "https://www.senat.fr/connaitre-le-senat/role-et-fonctionnement/la-procedure-legislative.html"
+   ],
+   "legende": "Projet de loi ou proposition de loi ?\n\nUn projet de loi vient du Gouvernement, une proposition de loi vient de parlementaires. Dans les deux cas, le texte est examiné en commission puis en séance publique.\n\nQuelle question sur le fonctionnement du Parlement veux-tu qu'on explique ensuite ? Dis-le en commentaire 👇\n\n📚 Sources : https://www.senat.fr/connaitre-le-senat/role-et-fonctionnement/la-procedure-legislative.html\n\n📲 Les votes de l'Assemblée, siège par siège : app Populous (lien en bio).\n\n#Populous #AssembléeNationale #Institutions #Politique #Démocratie"
+  },
+  {
+   "id": "amendement",
+   "titre": "C'est quoi un amendement ?",
+   "scenes": [
+    {
+     "type": "titre",
+     "eyebrow": "Populous · Les institutions",
+     "titre": "C'est quoi un amendement ?",
+     "duree": 3.4
+    },
+    {
+     "type": "texte",
+     "kicker": "La définition",
+     "texte": "Une **modification proposée** à un texte de loi.",
+     "duree": 3.8
+    },
+    {
+     "type": "texte",
+     "kicker": "Qui peut en déposer ?",
+     "texte": "Les députés, **et le Gouvernement aussi**.",
+     "duree": 4.0
+    },
+    {
+     "type": "texte",
+     "kicker": "Où sont-ils examinés ?",
+     "texte": "**En commission**, puis en séance publique, avant le vote sur l'ensemble du texte.",
+     "duree": 5.0
+    },
+    {
+     "type": "texte",
+     "kicker": "Sur Populous",
+     "texte": "Chaque vote est consultable **siège par siège**.",
+     "duree": 3.8
+    }
+   ],
+   "source": "Sources : assemblee-nationale.fr · senat.fr",
+   "resume": "Un amendement est une modification proposée à un texte de loi. Les députés peuvent en déposer, le Gouvernement aussi. Ils sont examinés en commission puis en séance publique, avant le vote sur l'ensemble du texte.",
+   "urls": [
+    "https://www.senat.fr/connaitre-le-senat/role-et-fonctionnement/la-procedure-legislative.html",
+    "https://www2.assemblee-nationale.fr/decouvrir-l-assemblee/role-et-pouvoirs-de-l-assemblee-nationale/"
+   ],
+   "legende": "C'est quoi un amendement ?\n\nUn amendement est une modification proposée à un texte de loi. Les députés peuvent en déposer, le Gouvernement aussi. Ils sont examinés en commission puis en séance publique, avant le vote sur l'ensemble du texte.\n\nQuelle question sur le fonctionnement du Parlement veux-tu qu'on explique ensuite ? Dis-le en commentaire 👇\n\n📚 Sources : https://www.senat.fr/connaitre-le-senat/role-et-fonctionnement/la-procedure-legislative.html · https://www2.assemblee-nationale.fr/decouvrir-l-assemblee/role-et-pouvoirs-de-l-assemblee-nationale/\n\n📲 Les votes de l'Assemblée, siège par siège : app Populous (lien en bio).\n\n#Populous #AssembléeNationale #Institutions #Politique #Démocratie"
+  },
+  {
+   "id": "cmp",
+   "titre": "C'est quoi une commission mixte paritaire ?",
+   "scenes": [
+    {
+     "type": "titre",
+     "eyebrow": "Populous · Les institutions",
+     "titre": "C'est quoi une commission mixte paritaire ?",
+     "duree": 3.8
+    },
+    {
+     "type": "texte",
+     "kicker": "Le problème",
+     "texte": "Députés et sénateurs ne sont **pas d'accord** sur un texte.",
+     "duree": 4.2
+    },
+    {
+     "type": "texte",
+     "kicker": "La solution",
+     "texte": "Le Gouvernement peut réunir **7 députés et 7 sénateurs** pour trouver un compromis.",
+     "duree": 5.0
+    },
+    {
+     "type": "texte",
+     "kicker": "Si ça marche",
+     "texte": "Si les deux assemblées l'adoptent, le texte est **définitif**.",
+     "duree": 4.4
+    },
+    {
+     "type": "texte",
+     "kicker": "Sinon",
+     "texte": "Le Gouvernement peut demander à l'Assemblée nationale de statuer **en dernier ressort**.",
+     "duree": 5.2
+    }
+   ],
+   "source": "Source : senat.fr, « La commission mixte paritaire »",
+   "resume": "Quand députés et sénateurs ne s'accordent pas, le Gouvernement peut réunir une commission mixte paritaire : 7 députés et 7 sénateurs. Si le compromis est adopté par les deux assemblées, le texte est définitif.",
+   "urls": [
+    "https://www.senat.fr/connaitre-le-senat/role-et-fonctionnement/la-commission-mixte-paritaire.html"
+   ],
+   "legende": "C'est quoi une commission mixte paritaire ?\n\nQuand députés et sénateurs ne s'accordent pas, le Gouvernement peut réunir une commission mixte paritaire : 7 députés et 7 sénateurs. Si le compromis est adopté par les deux assemblées, le texte est définitif.\n\nQuelle question sur le fonctionnement du Parlement veux-tu qu'on explique ensuite ? Dis-le en commentaire 👇\n\n📚 Sources : https://www.senat.fr/connaitre-le-senat/role-et-fonctionnement/la-commission-mixte-paritaire.html\n\n📲 Les votes de l'Assemblée, siège par siège : app Populous (lien en bio).\n\n#Populous #AssembléeNationale #Institutions #Politique #Démocratie"
+  },
+  {
+   "id": "niche-parlementaire",
+   "titre": "C'est quoi une niche parlementaire ?",
+   "scenes": [
+    {
+     "type": "titre",
+     "eyebrow": "Populous · Les institutions",
+     "titre": "C'est quoi une niche parlementaire ?",
+     "duree": 3.4
+    },
+    {
+     "type": "texte",
+     "kicker": "Le principe",
+     "texte": "Chaque mois, **un jour de séance** est réservé à un ordre du jour fixé à l'initiative des groupes d'opposition et minoritaires.",
+     "duree": 7.0
+    },
+    {
+     "type": "texte",
+     "kicker": "Pourquoi ?",
+     "texte": "Ces groupes choisissent **les textes** qu'ils veulent faire examiner.",
+     "duree": 4.4
+    }
+   ],
+   "source": "Source : Constitution, art. 48",
+   "resume": "Chaque mois, un jour de séance est réservé à un ordre du jour fixé à l'initiative des groupes d'opposition et des groupes minoritaires : c'est ce qu'on appelle une niche parlementaire.",
+   "urls": [
+    "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000019241057/"
+   ],
+   "legende": "C'est quoi une niche parlementaire ?\n\nChaque mois, un jour de séance est réservé à un ordre du jour fixé à l'initiative des groupes d'opposition et des groupes minoritaires : c'est ce qu'on appelle une niche parlementaire.\n\nQuelle question sur le fonctionnement du Parlement veux-tu qu'on explique ensuite ? Dis-le en commentaire 👇\n\n📚 Sources : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000019241057/\n\n📲 Les votes de l'Assemblée, siège par siège : app Populous (lien en bio).\n\n#Populous #AssembléeNationale #Institutions #Politique #Démocratie"
+  }
+ ]
+}

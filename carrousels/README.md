@@ -31,6 +31,11 @@ caméra qui glisse). Durée d'un rendu : environ 1 minute sur un Mac, quelques m
 - **`loi`** : carrousel d'un vote solennel sur un texte (ensemble d'un projet / d'une proposition de loi, première partie du budget), adopté OU rejeté : le texte + tampon, « de quoi parle ce texte » (nature du texte, Constitution art. 39 ; budget : LOLF art. 34 et 42), les chiffres (votants, pour, contre, abstentions, absents), l'hémicycle, Populous. Choisi par `publier_reseaux.py --type loi` (10h et 16h par le planificateur, filet de sécurité par cron GitHub) ; un seul texte par exécution, jamais deux fois le même (`data/state_publication.json`, clé `lois_publiees`) ; rien si aucun nouveau texte dans les 3 derniers jours. Le sort est lu dans le libellé officiel, pas dans le booléen `adopte`. Aucun résumé de texte écrit par nous : seulement la nature du texte, le sort et les chiffres.
 - **Vignette d'ouverture (slide 1, tous les types)** : l'image 0 de `slide_1.mp4` est la slide terminée (c'est elle qu'Instagram prend pour la miniature de la grille), puis un fondu de 0,2 s et l'animation d'entrée se joue. Instagram reçoit donc 5 vidéos (plus d'image fixe pour la slide 1).
 
+## Reels (au moins un par jour : `publier_reseaux.py --type reel`)
+- **Gabarit** `moteur/reel/` : vidéo verticale 1080x1920 avec bande son synthétisée (`fabriquer_son.py`), pilotée par un **scénario JSON** (scènes `titre` avec tampon, `chiffres`, `cartes`, `hemicycle`, `texte`, `liste`, puis la carte Populous). Rendu : `python3 carrousels/generer_reel.py --scenario s.json --sortie DOSSIER [--scrutin N]`.
+- **Choix du jour** (`contenu_reel`) : le texte voté de la veille quand il y en a un (clé d'état `lois_reel_publiees`, mêmes textes que le carrousel `loi`), sinon le prochain Reel pédagogique de `data/reels_pedagogiques.json` (clé `reels_pedagogiques_publies`, la file repart du début quand elle est épuisée). Faits vérifiés sur sources officielles, citées dans la légende : ajouter un Reel = ajouter une entrée (id, titre, scènes, source, résumé, urls).
+- **Publication** : Reel Instagram (envoi direct, aussi dans le fil) puis Reel Facebook ; une plateforme en panne n'empêche pas l'autre ; l'état est mis à jour dès qu'une plateforme a publié (jamais de doublon).
+
 ## Données (rien n'est inventé)
 | type | source |
 |---|---|

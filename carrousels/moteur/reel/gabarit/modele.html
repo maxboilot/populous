@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/gsap.min.js"></script>
+    <style>
+      /*%%CSS_COMMUN%%*/
+      .v { opacity:0; }
+      .in { position:absolute; left:0; top:150px; width:1080px; height:1770px; }   /* contenu centre : l'interface d'Instagram masque le haut (~220 px) et le bas (~340 px) */
+      .k { color:#8FA6FF; }
+      .kick { position:absolute; left:90px; font-size:34px; line-height:1; letter-spacing:.09em; text-transform:uppercase; color:#96ACFF; white-space:nowrap; }
+      .ttl { position:absolute; left:90px; width:900px; color:#fff; letter-spacing:-.01em; }
+      .big { position:absolute; left:90px; width:900px; color:#fff; letter-spacing:-.01em; font-weight:800; }
+      .stamp { position:absolute; left:190px; top:1010px; width:700px; height:250px; border:18px solid; border-radius:42px; background:#0E1434; text-align:center; font-size:130px; line-height:214px; }
+      .cnt { position:absolute; width:240px; text-align:center; top:1240px; font-size:92px; line-height:1; color:#fff; letter-spacing:-.03em; }
+      .lab { position:absolute; width:240px; text-align:center; top:1350px; font-size:26px; line-height:1; letter-spacing:.06em; color:#BECAFF; }
+      .ex { position:absolute; left:70px; width:940px; border-radius:44px; background:rgba(255,255,255,.085); border:2px solid rgba(160,180,255,.22); }
+      .exe { position:absolute; left:46px; top:30px; font-size:26px; letter-spacing:.09em; text-transform:uppercase; color:#8FA6FF; line-height:1; }
+      .ext { position:absolute; left:46px; top:76px; width:850px; font-size:38px; line-height:50px; font-weight:700; color:#fff; letter-spacing:-.005em; }
+      .row { position:absolute; left:70px; width:940px; height:150px; border-radius:38px; background:rgba(255,255,255,.09); border:2px solid rgba(160,180,255,.22); }
+      .num { position:absolute; left:28px; top:35px; width:80px; height:80px; border-radius:50%; background:#1B3BDB; color:#fff; text-align:center; font-size:42px; line-height:80px; }
+      .rt { position:absolute; left:140px; top:0; width:780px; height:150px; display:flex; align-items:center; font-size:40px; line-height:50px; font-weight:700; color:#fff; }
+      .srcp { position:absolute; left:0; width:1080px; text-align:center; font-size:24px; font-weight:500; color:#8E9CD8; line-height:1; white-space:nowrap; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="%%DUREE%%" data-width="1080" data-height="1920">
+      <div class="fill" style="background:linear-gradient(160deg,#0B1238 0%,#0B1238 45%,#1C34C6 130%)"></div>
+      <div class="fill" style="background:radial-gradient(ellipse 55% 40% at 50% 42%,rgba(70,104,255,.30),rgba(70,104,255,0) 100%)"></div>
+      %%SCENES%%
+      %%FINALE_HTML%%
+      <audio id="son" src="assets/audio/bande_son.wav" data-start="0" data-duration="%%DUREE%%" data-track-index="9" data-volume="1"></audio>
+    </div>
+    <script>
+      /*%%LIB_JS%%*/
+      const tl = gsap.timeline({ paused: true });
+      const S = { t: 0 }, DUR = %%DUREE%%;
+      const q = s => gsap.utils.toArray(s);
+      const words = (sel, t0, stg = 0.05) => tl.fromTo(sel, { y: 40, opacity: 0, filter: "blur(8px)" }, { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out", stagger: stg }, t0);
+      const rise = (sel, t0, y = 30, d = 0.5, stg = 0.1) => tl.fromTo(sel, { y, opacity: 0 }, { y: 0, opacity: 1, duration: d, ease: "power3.out", stagger: stg }, t0);
+      const scene = (id, t0, d) => { tl.fromTo(id, { opacity: 0 }, { opacity: 1, duration: 0.3 }, t0); tl.to(id, { opacity: 0, duration: 0.3 }, t0 + d - 0.3); };
+      const SE = %%SIEGES_JSON%%;
+      const V = { pour: [69, 150, 109], contre: [177, 89, 53], abstention: [128, 139, 195], absent: [62, 74, 134] };
+      const DRAW = [];
+      %%SCENES_JS%%
+      %%FINALE_JS%%
+      tl.to(S, { t: DUR, duration: DUR, ease: "none", onUpdate: () => DRAW.forEach(f => f(S.t)) }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
