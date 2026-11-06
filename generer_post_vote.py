@@ -297,8 +297,10 @@ def legende(vote, titre, contours, aujourdhui=None):
         f"{_pl(t['abstention'], 'abstention')}.",
         f"{_pl(n_abs, 'circonscription')} n'{'a' if n_abs == 1 else 'ont'} enregistré aucun vote exprimé : "
         f"le député n'a pas pris part au vote.",
-        "Et le vote de ton député ? Retrouve-le sur la carte dans l'app Populous.",
-        '#Populous #AssembléeNationale #Vote',
+        "Et toi, qu'est-ce que tu retiens de ce texte ? Dis-le en commentaire 👇",
+        f"🗳 Scrutin public n°{vote['numero']} · source : {vote.get('source') or 'https://www.assemblee-nationale.fr'}",
+        "📲 Le vote de ton député, siège par siège, est dans l'app Populous (lien en bio).",
+        '#Populous #AssembléeNationale #Vote #Politique #Loi',
     ]
     return '\n\n'.join(lignes)
 

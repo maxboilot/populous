@@ -134,6 +134,13 @@ def _titre_court(texte, limite=80):
     return coupe.rstrip('.,;: ') + '…'
 
 
+# Fin de légende commune : une question NEUTRE qui appelle un commentaire, la source, 5 hashtags (les commentaires nourrissent la portée).
+def _fin_fait(ref):
+    src = f"📚 Source : {ref['source']}\n\n" if ref.get('source') else ''
+    return ("Tu connaissais ce moment de l'histoire politique ? Dis-le en commentaire 👇\n\n" + src
+            + "#Populous #HistoirePolitique #AssembléeNationale #Histoire #Politique")
+
+
 def contenu_fait_du_jour():
     d = json.loads((DOSSIER / 'data' / 'refs_jour.json').read_text(encoding='utf-8'))
     cle = datetime.date.today().strftime('%m-%d')
@@ -147,7 +154,7 @@ def contenu_fait_du_jour():
     if ref.get('titre'):
         titre = f"{ref['annee']} : {ref['titre']}"
         texte = ref['texte']
-        legende = f"{titre}\n\n{texte}\n\n#Populous #HistoirePolitique #AssembleeNationale"
+        legende = f"{titre}\n\n{texte}\n\n{_fin_fait(ref)}"
     else:
         # Faits sans titre distinct (notamment ceux venus de Wikipedia via
         # construire_refs_jour_wikipedia.py, largement majoritaires dans
@@ -156,7 +163,7 @@ def contenu_fait_du_jour():
         # comme dans la legende — on ne l'affiche donc qu'une fois.
         titre = f"{ref['annee']} : {_titre_court(ref['texte'])}"
         texte = None
-        legende = f"{ref['texte']}\n\n#Populous #HistoirePolitique #AssembleeNationale"
+        legende = f"{ref['texte']}\n\n{_fin_fait(ref)}"
 
     return {
         'eyebrow': 'Fait du jour',
@@ -191,7 +198,8 @@ def contenu_presidentielle():
         'texte': f"Sondage {dernier['institut']} du {date_fr} ({dernier['echantillon']} personnes) : {detail}.",
         'legende': (
             f"Présidentielle 2027 — sondage {dernier['institut']} du {date_fr}\n\n{detail}\n\n"
-            f"Source : {dernier['source']}\n\n#Populous #Presidentielle2027 #Sondage"
+            f"Qu'est-ce qui te frappe dans ce sondage ? Dis-le en commentaire 👇\n\n"
+            f"📊 Source : {dernier['source']}\n\n#Populous #Présidentielle2027 #Sondage #Politique #France"
         ),
         'cle_etat': 'dernier_sondage_publie',
         'valeur_etat': identifiant,
@@ -227,7 +235,9 @@ def contenu_depute():
         },
         'legende': (
             f"{elu['n']} ({elu['g']})\n\n{elu['gn']}\n{circonscription}\nProfession : {profession}\n{vote_txt}\n"
-            f"Retrouve son activité complète à l'Assemblée sur Populous.\n\n#Populous #AssembleeNationale #{elu['g']}"
+            f"Tu sais comment ton député vote ? Dis-nous son nom en commentaire 👇\n"
+            f"📲 Son activité complète à l'Assemblée est dans l'app Populous (lien en bio).\n\n"
+            f"#Populous #AssembléeNationale #{elu['g']} #Député #Politique"
         ),
         'a_index': elu['a'],
         'nom_depute': elu['n'],
@@ -256,7 +266,8 @@ def contenu_avenir():
         'titre': "Cette semaine à l'Assemblée",
         'texte': '  •  '.join(lignes),
         'legende': "Cette semaine à l'Assemblée nationale :\n\n" + '\n'.join(f"- {l}" for l in lignes)
-        + "\n\nSuis chaque vote en direct sur Populous.\n\n#Populous #AssembleeNationale",
+        + "\n\nQuel texte vas-tu suivre cette semaine ? Dis-le en commentaire 👇\n"
+        "📲 Chaque vote, en direct, dans l'app Populous (lien en bio).\n\n#Populous #AssembléeNationale #Agenda #Politique #Loi",
     }
 
 
@@ -268,7 +279,8 @@ def contenu_boussole():
         'pile_resultats': pile_boussole_exemple(),
         'legende': (
             "Ta boussole politique : compare tes opinions aux votes réels de tes élus, "
-            "sans jugement ni étiquette imposée.\n\nTeste la boussole sur Populous.\n\n#Populous #BoussolePolitique"
+            "sans jugement ni étiquette imposée.\n\nQuel groupe a le plus voté comme toi ? Dis-le en commentaire 👇\n"
+            "📲 Teste la boussole dans l'app Populous (lien en bio).\n\n#Populous #BoussolePolitique #Politique #Vote #Démocratie"
         ),
     }
 
