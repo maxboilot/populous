@@ -59,7 +59,7 @@ jobs:
           node-version: '22'
       - name: Installer les dependances
         run: |
-          pip install requests Pillow
+          pip install requests Pillow numpy
           sudo apt-get update -qq
           sudo apt-get install -y -qq ffmpeg
       - name: Verifier l'environnement de rendu (HyperFrames)
@@ -78,15 +78,15 @@ jobs:
             *) echo "type=${{ github.event.inputs.type }}" >> "$GITHUB_OUTPUT" ;;
           esac
       - name: Dechiffrer l'instru des Reels
-        # Le depot est public : seule la version chiffree de l'instru (instru_max.mp3.enc) y est versionnee.
+        # Le depot est public : seule la version chiffree de l'instru (instru2.mp3.enc) y est versionnee.
         # La cle est le secret INSTRU_CLE. Sans cle ou en cas d'echec, les Reels gardent la bande son synthetisee.
         env:
           INSTRU_CLE: ${{ secrets.INSTRU_CLE }}
         run: |
           D=carrousels/moteur/reel/assets/audio
           if [ -z "$INSTRU_CLE" ]; then echo "Pas de cle INSTRU_CLE : bande son synthetisee."; exit 0; fi
-          openssl enc -d -aes-256-cbc -pbkdf2 -iter 200000 -in "$D/instru_max.mp3.enc" -out "$D/instru_max.mp3" -pass env:INSTRU_CLE \
-            && echo "Instru dechiffre." || { echo "Dechiffrement impossible : bande son synthetisee."; rm -f "$D/instru_max.mp3"; }
+          openssl enc -d -aes-256-cbc -pbkdf2 -iter 200000 -in "$D/instru2.mp3.enc" -out "$D/instru2.mp3" -pass env:INSTRU_CLE \
+            && echo "Instru dechiffre." || { echo "Dechiffrement impossible : bande son synthetisee."; rm -f "$D/instru2.mp3"; }
       - name: Publier
         env:
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}

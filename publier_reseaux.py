@@ -613,7 +613,7 @@ def contenu_reel():
         publies = []                                           # tous publies : on repart du debut
     for r in file_:
         if r['id'] not in publies:
-            return {'type_reel': 'pedagogique', 'scenario': {'scenes': r['scenes'], 'fin': {'duree': 3.8}, 'source': r['source']}, 'scrutin': None,
+            return {'type_reel': 'pedagogique', 'scenario': {'scenes': r['scenes'], 'fin': {'duree': 3.8}, 'source': r['source']}, 'scrutin': r.get('scrutin'),
                     'legende': r['legende'], 'cle_etat': 'reels_pedagogiques_publies', 'valeur_etat': publies + [r['id']], 'id': r['id']}
     return None
 

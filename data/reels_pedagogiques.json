@@ -17,16 +17,21 @@
      "duree": 4.2
     },
     {
-     "type": "texte",
-     "kicker": "1re partie",
-     "texte": "Elle autorise l'État à percevoir **les recettes** et fixe l'équilibre général des finances publiques.",
-     "duree": 5.0
-    },
-    {
-     "type": "texte",
-     "kicker": "2nde partie",
-     "texte": "Elle fixe **les crédits**, c'est-à-dire les dépenses.",
-     "duree": 4.0
+     "type": "etapes",
+     "titre": "Deux parties, dans l'ordre",
+     "verrou": true,
+     "etapes": [
+      {
+       "kicker": "1re partie",
+       "titre": "Les **recettes**",
+       "sous": "Elle autorise l'État à les percevoir et fixe l'équilibre général des finances publiques"
+      },
+      {
+       "kicker": "2nde partie",
+       "titre": "Les **crédits**",
+       "sous": "C'est-à-dire les dépenses"
+      }
+     ]
     },
     {
      "type": "texte",
@@ -64,7 +69,8 @@
       "**Promulgation** par le Président, publication au Journal officiel"
      ],
      "duree": 12.0,
-     "numerote": true
+     "numerote": true,
+     "parcours": true
     }
    ],
    "source": "Sources : Sénat, « La procédure législative » · Assemblée nationale",
@@ -86,10 +92,20 @@
      "duree": 3.4
     },
     {
-     "type": "texte",
+     "type": "points",
      "kicker": "Qui y siège ?",
-     "texte": "**577 députés**, élus pour 5 ans au suffrage universel direct.",
-     "duree": 4.4
+     "titre": "**577 députés**",
+     "groupes": [
+      {
+       "n": 577,
+       "couleur": [
+        143,
+        166,
+        255
+       ],
+       "label": "élus pour **5 ans**, au suffrage universel direct"
+      }
+     ]
     },
     {
      "type": "liste",
@@ -103,10 +119,29 @@
      "numerote": false
     },
     {
-     "type": "texte",
+     "type": "points",
      "kicker": "Un pouvoir de contrôle",
-     "texte": "Elle peut censurer le Gouvernement, à la majorité de ses membres : **289 voix sur 577**.",
-     "duree": 5.0
+     "titre": "Censurer le Gouvernement",
+     "groupes": [
+      {
+       "n": 289,
+       "couleur": [
+        69,
+        150,
+        109
+       ],
+       "label": "**289 voix** sur 577 : la majorité de ses membres"
+      },
+      {
+       "n": 288,
+       "couleur": [
+        62,
+        74,
+        134
+       ],
+       "label": ""
+      }
+     ]
     }
    ],
    "source": "Source : assemblee-nationale.fr",
@@ -127,10 +162,20 @@
      "duree": 3.4
     },
     {
-     "type": "texte",
+     "type": "points",
      "kicker": "Qui y siège ?",
-     "texte": "**348 sénateurs**, élus pour 6 ans.",
-     "duree": 3.8
+     "titre": "**348 sénateurs**",
+     "groupes": [
+      {
+       "n": 348,
+       "couleur": [
+        143,
+        166,
+        255
+       ],
+       "label": "élus pour **6 ans**"
+      }
+     ]
     },
     {
      "type": "texte",
@@ -139,10 +184,29 @@
      "duree": 5.0
     },
     {
-     "type": "texte",
+     "type": "points",
      "kicker": "Un renouvellement partiel",
-     "texte": "Le Sénat est **renouvelé par moitié** tous les 3 ans.",
-     "duree": 4.2
+     "titre": "Renouvelé **par moitié**",
+     "groupes": [
+      {
+       "n": 174,
+       "couleur": [
+        70,
+        104,
+        255
+       ],
+       "label": "La moitié, tous les **3 ans**"
+      },
+      {
+       "n": 174,
+       "couleur": [
+        62,
+        74,
+        134
+       ],
+       "label": ""
+      }
+     ]
     },
     {
      "type": "texte",
@@ -169,10 +233,9 @@
      "duree": 3.4
     },
     {
-     "type": "texte",
-     "kicker": "Un point = un député",
-     "texte": "L'hémicycle compte **577 sièges**, un point par siège.",
-     "duree": 4.2
+     "type": "hemicycle",
+     "titre": "Un point = un député",
+     "sous": "577 sièges · exemple : budget 2027, 1re partie"
     },
     {
      "type": "liste",
@@ -216,7 +279,8 @@
    "urls": [
     "https://data.assemblee-nationale.fr"
    ],
-   "legende": "Comment lire un vote sur Populous ?\n\nChaque point est un député : vert pour, orange contre, bleu clair abstention, bleu foncé absent. Dans l'app, on touche un siège pour voir le député, son groupe et sa circonscription, et chaque vote cite sa source officielle.\n\nQuelle question sur le fonctionnement du Parlement veux-tu qu'on explique ensuite ? Dis-le en commentaire 👇\n\n📚 Sources : https://data.assemblee-nationale.fr\n\n📲 Les votes de l'Assemblée, siège par siège : app Populous (lien en bio).\n\n#Populous #AssembléeNationale #Institutions #Politique #Démocratie"
+   "legende": "Comment lire un vote sur Populous ?\n\nChaque point est un député : vert pour, orange contre, bleu clair abstention, bleu foncé absent. Dans l'app, on touche un siège pour voir le député, son groupe et sa circonscription, et chaque vote cite sa source officielle.\n\nQuelle question sur le fonctionnement du Parlement veux-tu qu'on explique ensuite ? Dis-le en commentaire 👇\n\n📚 Sources : https://data.assemblee-nationale.fr\n\n📲 Les votes de l'Assemblée, siège par siège : app Populous (lien en bio).\n\n#Populous #AssembléeNationale #Institutions #Politique #Démocratie",
+   "scrutin": 9759
   },
   {
    "id": "vote-solennel",
@@ -241,16 +305,27 @@
      "duree": 5.4
     },
     {
-     "type": "texte",
-     "kicker": "Les absents",
-     "texte": "Un député absent peut **déléguer son vote** à un collègue, qui vote dans le même sens.",
-     "duree": 5.2
+     "type": "etapes",
+     "titre": "Voter malgré l'absence",
+     "etapes": [
+      {
+       "kicker": "Un député absent",
+       "titre": "**Délègue son vote**",
+       "sous": "à un collègue"
+      },
+      {
+       "kicker": "Le collègue",
+       "titre": "Vote **dans le même sens**",
+       "sous": "que le député absent"
+      }
+     ]
     },
     {
-     "type": "texte",
+     "type": "chiffre",
      "kicker": "Une limite",
-     "texte": "Un député ne peut recevoir **qu'une seule délégation**.",
-     "duree": 4.0
+     "nombre": 1,
+     "unite": "délégation reçue au maximum",
+     "sous": "par député"
     }
    ],
    "source": "Source : assemblee-nationale.fr, « Les votes à l'Assemblée nationale »",
@@ -271,28 +346,54 @@
      "duree": 3.4
     },
     {
-     "type": "texte",
-     "kicker": "Le principe",
-     "texte": "Le Premier ministre **engage la responsabilité du Gouvernement** sur un texte.",
-     "duree": 4.8
+     "type": "etapes",
+     "titre": "Le 49.3, pas à pas",
+     "etapes": [
+      {
+       "kicker": "Le Premier ministre",
+       "titre": "**Engage la responsabilité** du Gouvernement",
+       "sous": "sur un texte"
+      },
+      {
+       "kicker": "Le résultat",
+       "titre": "Texte **considéré comme adopté**",
+       "sous": "sauf si une motion de censure est votée"
+      }
+     ]
     },
     {
-     "type": "texte",
-     "kicker": "Le résultat",
-     "texte": "Le texte est **considéré comme adopté**, sauf si une motion de censure est votée.",
-     "duree": 5.0
-    },
-    {
-     "type": "texte",
+     "type": "chiffre",
      "kicker": "Le délai",
-     "texte": "La motion doit être déposée **dans les 24 heures**.",
-     "duree": 4.0
+     "nombre": 24,
+     "unite": "heures",
+     "sous": "pour déposer la motion de censure",
+     "anneau": true
     },
     {
-     "type": "texte",
+     "type": "points",
      "kicker": "Pour renverser le Gouvernement",
-     "texte": "Il faut **289 voix** sur 577 : la majorité des membres. Seuls les votes pour comptent.",
-     "duree": 5.6
+     "titre": "289 voix sur 577",
+     "groupes": [
+      {
+       "n": 289,
+       "couleur": [
+        69,
+        150,
+        109
+       ],
+       "label": "**289 voix** : la majorité des membres"
+      },
+      {
+       "n": 288,
+       "couleur": [
+        62,
+        74,
+        134
+       ],
+       "label": ""
+      }
+     ],
+     "sous": "Seuls les votes **pour** comptent"
     },
     {
      "type": "texte",
@@ -320,22 +421,21 @@
      "duree": 3.4
     },
     {
-     "type": "texte",
-     "kicker": "Projet de loi",
-     "texte": "Le texte vient **du Gouvernement**.",
-     "duree": 3.8
-    },
-    {
-     "type": "texte",
-     "kicker": "Proposition de loi",
-     "texte": "Le texte vient **de parlementaires** : députés ou sénateurs.",
-     "duree": 4.4
-    },
-    {
-     "type": "texte",
-     "kicker": "Ensuite ?",
-     "texte": "Dans les deux cas : examen **en commission**, puis en séance publique.",
-     "duree": 4.6
+     "type": "compare",
+     "titre": "D'où vient le texte ?",
+     "gauche": {
+      "kicker": "Projet de loi",
+      "titre": "Du **Gouvernement**"
+     },
+     "droite": {
+      "kicker": "Proposition de loi",
+      "titre": "De **parlementaires**",
+      "sous": "Députés ou sénateurs"
+     },
+     "bas": {
+      "titre": "Dans les deux cas",
+      "sous": "Examen **en commission**, puis en séance publique"
+     }
     }
    ],
    "source": "Sources : Constitution, art. 39 · senat.fr",
@@ -368,10 +468,22 @@
      "duree": 4.0
     },
     {
-     "type": "texte",
-     "kicker": "Où sont-ils examinés ?",
-     "texte": "**En commission**, puis en séance publique, avant le vote sur l'ensemble du texte.",
-     "duree": 5.0
+     "type": "etapes",
+     "titre": "Où sont-ils examinés ?",
+     "etapes": [
+      {
+       "kicker": "D'abord",
+       "titre": "**En commission**"
+      },
+      {
+       "kicker": "Ensuite",
+       "titre": "**En séance publique**"
+      },
+      {
+       "kicker": "Enfin",
+       "titre": "Vote **sur l'ensemble** du texte"
+      }
+     ]
     },
     {
      "type": "texte",
@@ -405,22 +517,43 @@
      "duree": 4.2
     },
     {
-     "type": "texte",
+     "type": "points",
      "kicker": "La solution",
-     "texte": "Le Gouvernement peut réunir **7 députés et 7 sénateurs** pour trouver un compromis.",
-     "duree": 5.0
+     "titre": "Un compromis à **14**",
+     "groupes": [
+      {
+       "n": 7,
+       "couleur": [
+        143,
+        166,
+        255
+       ],
+       "label": "**7 députés**"
+      },
+      {
+       "n": 7,
+       "couleur": [
+        255,
+        140,
+        80
+       ],
+       "label": "**7 sénateurs**"
+      }
+     ]
     },
     {
-     "type": "texte",
-     "kicker": "Si ça marche",
-     "texte": "Si les deux assemblées l'adoptent, le texte est **définitif**.",
-     "duree": 4.4
-    },
-    {
-     "type": "texte",
-     "kicker": "Sinon",
-     "texte": "Le Gouvernement peut demander à l'Assemblée nationale de statuer **en dernier ressort**.",
-     "duree": 5.2
+     "type": "compare",
+     "titre": "Et ensuite ?",
+     "gauche": {
+      "kicker": "Si ça marche",
+      "titre": "Texte **définitif**",
+      "sous": "si les deux assemblées l'adoptent"
+     },
+     "droite": {
+      "kicker": "Sinon",
+      "titre": "**Dernier mot** à l'Assemblée",
+      "sous": "si le Gouvernement lui demande de statuer"
+     }
     }
    ],
    "source": "Source : senat.fr, « La commission mixte paritaire »",
@@ -441,10 +574,10 @@
      "duree": 3.4
     },
     {
-     "type": "texte",
+     "type": "mois",
      "kicker": "Le principe",
-     "texte": "Chaque mois, **un jour de séance** est réservé à un ordre du jour fixé à l'initiative des groupes d'opposition et minoritaires.",
-     "duree": 7.0
+     "titre": "Un **jour de séance** par mois",
+     "sous": "réservé aux groupes d'opposition et minoritaires"
     },
     {
      "type": "texte",

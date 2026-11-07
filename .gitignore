@@ -25,4 +25,4 @@ assets_social/reels_bruts/*
 assets_social/carrousels/
 
 # Instru des Reels : seule la version chiffree (.enc) est versionnee ; la cle est dans .env (INSTRU_CLE) et dans le secret GitHub du meme nom.
-carrousels/moteur/reel/assets/audio/instru_max.mp3
+carrousels/moteur/reel/assets/audio/instru2.mp3

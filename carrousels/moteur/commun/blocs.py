@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 COMMUN = Path(__file__).parent
 
-def finale(t0, eyebrow, lignes, cartes, mot, tags, badges_y, src, extra='', push=True):
+def finale(t0, eyebrow, lignes, cartes, mot, tags, badges_y, src, extra='', push=True, zoom=False):
     """Image finale commune. t0 : début absolu (s). Renvoie (html, js).
     cartes=(haut, bas) de la carte ; lignes=[(texte, taille, y, couleur_css)] alignées à gauche (x=130) ;
     mot=(taille, y, t_rel_début) ; tags=[(texte, taille, graisse, couleur_css, y, t_rel)] centrés ; src=(texte, y, t_rel)."""
@@ -23,9 +23,12 @@ def finale(t0, eyebrow, lignes, cartes, mot, tags, badges_y, src, extra='', push
     h.append(f'<div id="bGP" class="badge" style="left:560px;top:{by}px"><small>DISPONIBLE SUR</small><b>Google Play</b></div>')
     h.append(f'<div id="srcF" class="c" style="top:{src[1] - 13}px;font-size:28px;font-weight:500;color:var(--gris)">{src[0]}</div>')
     h.append(extra)
+    if zoom: h.append('<div id="flashF" style="position:absolute;left:0;top:0;width:1080px;height:1920px;background:#fff;opacity:0;pointer-events:none"></div>')
     h.append('</div>')
     js = [f'const F0 = {t0};',
-          ('tl.fromTo("#scF", { y: 1920 }, { y: 0, duration: 0.36, ease: "power3.inOut" }, F0);' if push else ''),
+          ('tl.fromTo("#scF", { scale: 1.5, opacity: 0, filter: "blur(16px)", transformOrigin: "540px 960px" }, { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.6, ease: "expo.out" }, F0);'
+           'tl.fromTo("#flashF", { opacity: 0.55 }, { opacity: 0, duration: 0.4, ease: "power2.out" }, F0);' if zoom else
+           'tl.fromTo("#scF", { y: 1920 }, { y: 0, duration: 0.36, ease: "power3.inOut" }, F0);' if push else ''),
           'tl.fromTo(["#cardF", "#qF1", "#qF2"], { scale: 0.88, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(1.3)", transformOrigin: "540px 770px" }, F0 + 0.1);',
           'tl.fromTo("#ebF", { opacity: 0 }, { opacity: 1, duration: 0.3 }, F0 + 0.3);']
     for i, (tx, sz, y, col) in enumerate(lignes):

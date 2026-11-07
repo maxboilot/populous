@@ -27,7 +27,8 @@
   <body>
     <div id="root" data-composition-id="main" data-start="0" data-duration="%%DUREE%%" data-width="1080" data-height="1920">
       <div class="fill" style="background:linear-gradient(160deg,#0B1238 0%,#0B1238 45%,#1C34C6 130%)"></div>
-      <div class="fill" style="background:radial-gradient(ellipse 55% 40% at 50% 42%,rgba(70,104,255,.30),rgba(70,104,255,0) 100%)"></div>
+      <div id="glow" class="fill" style="background:radial-gradient(ellipse 55% 40% at 50% 42%,rgba(70,104,255,.30),rgba(70,104,255,0) 100%)"></div>
+      <div id="flood" class="fill bg-cob" style="opacity:0"></div>
       %%SCENES%%
       %%FINALE_HTML%%
       <audio id="son" src="assets/audio/bande_son.wav" data-start="0" data-duration="%%DUREE%%" data-track-index="9" data-volume="1"></audio>

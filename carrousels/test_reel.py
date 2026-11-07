@@ -3,8 +3,9 @@ import json, sys, tempfile, unittest
 from pathlib import Path
 from unittest import mock
 RACINE = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(RACINE)); sys.path.insert(0, str(RACINE / 'carrousels'))
+sys.path.insert(0, str(RACINE)); sys.path.insert(0, str(RACINE / 'carrousels')); sys.path.insert(0, str(RACINE / 'carrousels' / 'moteur' / 'reel'))
 import publier_reseaux as pr
+import lecture, musique
 from test_loi import vote
 
 
@@ -23,9 +24,45 @@ class TestReel(unittest.TestCase):
             self.assertTrue(r['urls'] and r['source'] and r['scenes'], r['id'])
             self.assertIn('📚 Sources', r['legende']); self.assertLessEqual(r['legende'].count('#'), 5, r['id'])
             for s in r['scenes']:
-                self.assertIn(s['type'], ('titre', 'texte', 'liste'), r['id'])
+                self.assertIn(s['type'], ('titre', 'texte', 'liste', 'etapes', 'compare', 'points', 'chiffre', 'mois', 'hemicycle'), r['id'])
+                if s['type'] == 'hemicycle':                                                     # hemicycle d'un vrai scrutin (exemple) : le scrutin doit exister
+                    self.assertTrue((RACINE / 'data' / 'scrutins' / f"{r['scrutin']}.json").exists(), r['id'])
+                if s['type'] == 'points': self.assertLessEqual(sum(g['n'] for g in s['groupes']), 600, r['id'])
                 if s['type'] == 'texte': self.assertLessEqual(len(s['texte']), 130, r['id'])      # lisible a l'ecran
                 if s['type'] == 'liste': self.assertLessEqual(len(s['items']), 5, r['id'])
+
+    def test_chaque_bandeau_apparait_une_fois_le_precedent_lu(self):
+        for r in self.file_():
+            for s in r['scenes']:
+                if s['type'] not in ('cartes', 'liste', 'etapes', 'compare'): continue
+                dl, fin = lecture.delais_items(s)
+                self.assertEqual(dl, sorted(dl), r['id']); self.assertTrue(all(b - a >= 1.0 for a, b in zip(dl, dl[1:])), (r['id'], dl))
+                self.assertGreaterEqual(lecture.duree_min(s), dl[-1] + 1.0, r['id'])             # le dernier a le temps d'etre lu
+
+    def test_calage_sur_la_musique_pour_tous_les_reels(self):
+        scenarios = [r['scenes'] for r in self.file_()]
+        for sc in scenarios:
+            sc2, n2, ne = musique.caler({'scenes': json.loads(json.dumps(sc))})
+            cum = 0
+            for x, x0 in zip(sc2['scenes'], sc):
+                self.assertAlmostEqual(x['duree'] / musique.B, round(x['duree'] / musique.B), delta=0.01)      # chaque scene dure un nombre entier de temps
+                self.assertGreaterEqual(x['duree'], lecture.duree_min(x) - 1e-6)                              # jamais moins que le temps de lecture
+                cum += x['duree']
+            self.assertAlmostEqual(cum, ne * musique.B, delta=0.01); self.assertTrue(4 <= n2 <= musique.MAX_N2)
+            self.assertEqual((sc2['effet_fin'], sc2['pause_fin']), ('zoom', musique.PAUSE))
+
+    def test_calage_du_reel_texte_vote(self):
+        a = vote("l'ensemble de la proposition de loi a", numero=10)
+        with mock.patch.object(pr, '_scrutins_solennels_de_texte', lambda d: [a]), mock.patch.object(pr.generer_post_vote, 'charger_contours', lambda s: []), \
+             mock.patch.object(pr, 'lire_etat_publication', lambda: {}):
+            c = pr.contenu_reel()
+        sc2, n2, ne = musique.caler(c['scenario'])
+        self.assertEqual(sc2['effet_fin'], 'zoom'); self.assertGreater(ne, n2)
+
+    def test_reel_hors_limites_de_l_extrait_garde_la_bande_son_synthetisee(self):
+        long_ = {'scenes': [{'type': 'titre', 'titre': 'x', 'duree': 3.4}, {'type': 'texte', 'texte': 'mot ' * 300, 'kicker': '', 'duree': 4}]}
+        with self.assertRaises(ValueError): musique.caler(long_)                                   # groove plus long que l'extrait
+        with self.assertRaises(ValueError): musique.caler({'scenes': [{'type': 'titre', 'titre': 'x', 'duree': 12}, {'type': 'texte', 'texte': 'a b', 'kicker': '', 'duree': 4}]})   # 1er visuel trop long
 
     def test_texte_vote_prioritaire(self):
         a = vote("l'ensemble de la proposition de loi a", numero=10)
