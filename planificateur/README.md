@@ -14,6 +14,7 @@ créneaux (heures de Paris, changement d'heure géré automatiquement).
 | 12h00              | Collecte des sondages (sondages.yml), pour que la publication de 12h30 voie les nouveautés |
 | 12h30              | Publication « actu présidentielle »       |
 | 18h00              | Publication « Reel du jour » : le texte voté de la veille s'il y en a un, sinon le prochain Reel pédagogique |
+| 19h00              | Story du Reel du jour (une heure après) : refait le même Reel et le publie en Story Instagram + Facebook |
 | 18h30              | Notification « vote solennel demain »     |
 | 20h00, le 15       | Publication « boussole »                  |
 | 21h00              | Publication « député du jour »            |

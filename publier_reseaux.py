@@ -676,10 +676,80 @@ def main_reel(args):
         except Exception as e:                                 # une plateforme en panne ne doit pas empecher l'autre
             print(f"::error::{nom} : {e}"); echecs.append(nom)
     if reussies:                                               # etat mis a jour des qu'une plateforme a publie : jamais de doublon au creneau suivant
-        etat = lire_etat_publication(); etat[contenu['cle_etat']] = contenu['valeur_etat']; ecrire_etat_publication(etat)
+        etat = lire_etat_publication(); etat[contenu['cle_etat']] = contenu['valeur_etat']
+        etat['dernier_reel'] = {'date': datetime.date.today().isoformat(), 'type_reel': contenu['type_reel'], 'scenario': contenu['scenario'], 'scrutin': contenu['scrutin']}   # sert a la Story d'une heure apres
+        ecrire_etat_publication(etat)
         print(f"Etat mis a jour : {contenu['cle_etat']} = {contenu['valeur_etat']}")
     if echecs:
         sys.exit(f"Reel non publie sur : {', '.join(echecs)}.")
+
+
+def publier_story_instagram(ig_user_id, page_token, chemin):
+    """Story Instagram (video <= 60 s) par envoi direct, comme les Reels. Renvoie la reponse de la publication."""
+    r = _poster_avec_reessais(f'{GRAPH}/{ig_user_id}/media', data={'media_type': 'STORIES', 'upload_type': 'resumable', 'access_token': page_token}, timeout=60)
+    _lever_avec_detail(r)
+    infos = r.json()
+    octets = Path(chemin).read_bytes()
+    r = _poster_avec_reessais(infos['uri'], headers={'Authorization': f'OAuth {page_token}', 'offset': '0', 'file_size': str(len(octets))}, data=octets, timeout=300)
+    _lever_avec_detail(r)
+    _attendre_conteneur_instagram(infos['id'], page_token, essais=60, pause=5)
+    return publier_conteneur_instagram(ig_user_id, page_token, infos['id'])
+
+
+def publier_story_facebook(page_id, page_token, chemin):
+    """Story de la Page Facebook (3 phases : start, envoi des octets, finish). Renvoie la reponse de la fin d'envoi."""
+    r = _poster_avec_reessais(f'{GRAPH}/{page_id}/video_stories', data={'upload_phase': 'start', 'access_token': page_token}, timeout=60)
+    _lever_avec_detail(r)
+    infos = r.json(); video_id = infos['video_id']
+    octets = Path(chemin).read_bytes()
+    r = _poster_avec_reessais(infos['upload_url'], headers={'Authorization': f'OAuth {page_token}', 'offset': '0', 'file_size': str(len(octets))}, data=octets, timeout=300)
+    _lever_avec_detail(r)
+    r = _poster_avec_reessais(f'{GRAPH}/{page_id}/video_stories', data={'upload_phase': 'finish', 'video_id': video_id, 'access_token': page_token}, timeout=60)
+    _lever_avec_detail(r)
+    return {'video_id': video_id, **r.json()}
+
+
+DUREE_MAX_STORY = 59.0                                         # secondes : limite des Stories Instagram (60 s)
+
+
+def main_story(args):
+    """Story du Reel publie aujourd'hui (creneau d'une heure apres). Refait le meme Reel a partir du scenario memorise, puis le publie en Story.
+    Ne fait rien s'il n'y a pas eu de Reel aujourd'hui, si la Story est deja partie (sauf --forcer), ou si la video depasse 59 s."""
+    aujourdhui = datetime.date.today().isoformat(); etat = lire_etat_publication(); dr = etat.get('dernier_reel')
+    if not dr or dr.get('date') != aujourdhui:
+        print("Pas de Reel publie aujourd'hui : pas de Story.")
+        return
+    if etat.get('story_du') == aujourdhui and not args.forcer:
+        print("La Story du jour est deja publiee (--forcer pour republier).")
+        return
+    dossier_sortie = DOSSIER / 'assets_social' / 'reels' / f"{aujourdhui}-story"
+    print(f"Generation de la Story (meme Reel « {dr['type_reel']} ») -> {dossier_sortie}")
+    reel = generer_reel.generer(dr['scenario'], dossier_sortie, scrutin=dr.get('scrutin'))
+    print(f"Video : {reel['duree']:.1f} s, {reel['reel']}")
+    if reel['duree'] > DUREE_MAX_STORY:
+        print(f"Video de {reel['duree']:.0f} s : plus longue qu'une Story ({DUREE_MAX_STORY:.0f} s max), pas de Story aujourd'hui.")
+        return
+    if not args.publier:
+        print("Mode brouillon (--publier non passe) : rien n'a ete publie.")
+        return
+    env = lire_env()
+    plateformes = {x.strip() for x in args.plateformes.split(',') if x.strip()}
+    if plateformes - {'facebook', 'instagram'} or not plateformes:
+        sys.exit(f"--plateformes : valeurs possibles « facebook », « instagram » (recu : {args.plateformes}).")
+    reussies, echecs = [], []
+    for nom, f in (('instagram', lambda: publier_story_instagram(env['IG_USER_ID'], env['FB_PAGE_TOKEN'], reel['reel'])),
+                   ('facebook', lambda: publier_story_facebook(env['FB_PAGE_ID'], env['FB_PAGE_TOKEN'], reel['reel']))):
+        if nom not in plateformes:
+            continue
+        try:
+            print(f"Story {nom} publiee : {f()}"); reussies.append(nom)
+        except Exception as e:                                 # une plateforme en panne ne doit pas empecher l'autre
+            print(f"::error::story {nom} : {e}"); echecs.append(nom)
+    if reussies:
+        etat = lire_etat_publication(); etat['story_du'] = aujourdhui; ecrire_etat_publication(etat)
+        print(f"Etat mis a jour : story_du = {aujourdhui}")
+    if echecs:
+        sys.exit(f"Story non publiee sur : {', '.join(echecs)}.")
 
 
 def publier_conteneur_instagram(ig_user_id, page_token, creation_id, essais=6, pause=10):
@@ -699,11 +769,11 @@ def publier_conteneur_instagram(ig_user_id, page_token, creation_id, essais=6, p
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--type', choices=[*CHOIX.keys(), 'vote', 'reel'], required=True)
+    parser.add_argument('--type', choices=[*CHOIX.keys(), 'vote', 'reel', 'story'], required=True)
     parser.add_argument('--publier', action='store_true', help="Publie reellement (sinon : brouillon local seulement).")
     parser.add_argument('--numero', type=int, help="(vote) numero du scrutin.")
     parser.add_argument('--titre', help="(vote) titre synthetique, relu par un humain.")
-    parser.add_argument('--forcer', action='store_true', help="(vote) republie meme si deja publie.")
+    parser.add_argument('--forcer', action='store_true', help="(vote, story) republie meme si deja publie.")
     parser.add_argument('--resume', help="(vote) extrait de l'expose des motifs, relu par un humain : ajoute un paragraphe a la legende.")
     parser.add_argument('--source-resume', dest='source_resume', help="(vote) source du resume, ex. « exposé des motifs de la proposition de loi n°3106 ».")
     parser.add_argument('--plateformes', default='facebook,instagram', help="Ou publier : « facebook,instagram » (defaut), « instagram » ou « facebook » (rattrapage sans doublon).")
@@ -712,6 +782,8 @@ def main():
 
     if args.type == 'reel':
         return main_reel(args)
+    if args.type == 'story':
+        return main_story(args)
     if args.type == 'vote':
         params, contenu = preparer_vote(args)
     else:

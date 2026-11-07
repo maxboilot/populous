@@ -110,5 +110,67 @@ class TestReel(unittest.TestCase):
         self.assertTrue(any(u.endswith('/IG/media_publish') for u, d in appels))
 
 
+    def test_publication_story_instagram_et_facebook(self):
+        appels = []
+        def post(url, data=None, headers=None, timeout=None, files=None):
+            appels.append((url, dict(data) if isinstance(data, dict) else {'octets': len(data or b'')}))
+            if url.endswith('/IG/media'): return rep({'id': 'C1', 'uri': 'https://rupload.facebook.com/x'})
+            if 'rupload' in url or 'upload.example' in url: return rep({'success': True})
+            if url.endswith('/media_publish'): return rep({'id': 'S1'})
+            if url.endswith('/PAGE/video_stories') and (data or {}).get('upload_phase') == 'start': return rep({'video_id': 'V1', 'upload_url': 'https://upload.example/v1'})
+            return rep({'success': True, 'post_id': 'P1'})
+        def get(url, params=None, timeout=None): return rep({'status_code': 'FINISHED'})
+        with tempfile.NamedTemporaryFile(suffix='.mp4') as f, mock.patch.object(pr.requests, 'post', post), mock.patch.object(pr.requests, 'get', get), \
+             mock.patch.object(pr, 'time', mock.Mock(sleep=lambda s: None)):
+            f.write(b'0' * 100); f.flush()
+            pr.publier_story_instagram('IG', 'TOK', f.name); r = pr.publier_story_facebook('PAGE', 'TOK', f.name)
+        media = [d for u, d in appels if u.endswith('/IG/media')][0]
+        self.assertEqual((media['media_type'], media['upload_type']), ('STORIES', 'resumable')); self.assertNotIn('caption', media)
+        self.assertTrue(any(u.endswith('/IG/media_publish') for u, d in appels))
+        self.assertTrue(any(u.endswith('/PAGE/video_stories') and d.get('upload_phase') == 'finish' and d.get('video_id') == 'V1' for u, d in appels))
+        self.assertEqual(r['video_id'], 'V1')
+
+    def _story(self, etat, duree=30.0, plateformes='facebook,instagram', forcer=False):
+        """Lance main_story avec un etat en memoire, le rendu et l'API simules. Renvoie (etat final, liste des plateformes publiees, nb de rendus)."""
+        import argparse, datetime as dt
+        pubs, rendus, mem = [], [], dict(etat)
+        gen = lambda sc, dossier, scrutin=None: (rendus.append((sc, scrutin)) or {'reel': 'r.mp4', 'couverture': 'c.png', 'duree': duree})
+        with mock.patch.object(pr, 'lire_etat_publication', lambda: dict(mem)), mock.patch.object(pr, 'ecrire_etat_publication', lambda e: mem.update(e)), \
+             mock.patch.object(pr.generer_reel, 'generer', gen), mock.patch.object(pr, 'lire_env', lambda: {'IG_USER_ID': 'IG', 'FB_PAGE_TOKEN': 'T', 'FB_PAGE_ID': 'P'}), \
+             mock.patch.object(pr, 'publier_story_instagram', lambda *a: pubs.append('instagram') or {'id': '1'}), mock.patch.object(pr, 'publier_story_facebook', lambda *a: pubs.append('facebook') or {'video_id': '2'}):
+            pr.main_story(argparse.Namespace(publier=True, plateformes=plateformes, forcer=forcer))
+        return mem, pubs, rendus
+
+    def test_story_du_reel_du_jour(self):
+        import datetime as dt
+        auj = dt.date.today().isoformat(); dr = {'date': auj, 'type_reel': 'loi', 'scenario': {'scenes': []}, 'scrutin': 9759}
+        mem, pubs, rendus = self._story({'dernier_reel': dr})
+        self.assertEqual(sorted(pubs), ['facebook', 'instagram']); self.assertEqual(mem['story_du'], auj); self.assertEqual(rendus[0][1], 9759)      # meme Reel, meme scrutin
+
+    def test_story_rien_a_faire(self):
+        import datetime as dt
+        auj = dt.date.today().isoformat(); hier = (dt.date.today() - dt.timedelta(days=1)).isoformat(); dr = {'date': auj, 'type_reel': 'pedagogique', 'scenario': {'scenes': []}, 'scrutin': None}
+        for etat in ({}, {'dernier_reel': dict(dr, date=hier)}, {'dernier_reel': dr, 'story_du': auj}):       # pas de Reel, Reel d'hier, Story deja publiee
+            mem, pubs, rendus = self._story(etat); self.assertEqual((pubs, rendus), ([], []))
+        mem, pubs, rendus = self._story({'dernier_reel': dr, 'story_du': auj}, forcer=True); self.assertEqual(len(pubs), 2)          # --forcer republie
+
+    def test_story_trop_longue_ou_une_seule_plateforme(self):
+        import datetime as dt
+        dr = {'date': dt.date.today().isoformat(), 'type_reel': 'loi', 'scenario': {'scenes': []}, 'scrutin': None}
+        mem, pubs, rendus = self._story({'dernier_reel': dr}, duree=75.0); self.assertEqual(pubs, []); self.assertNotIn('story_du', mem)         # plus de 59 s : pas de Story
+        mem, pubs, rendus = self._story({'dernier_reel': dr}, plateformes='instagram'); self.assertEqual(pubs, ['instagram'])
+
+    def test_le_reel_memorise_pour_la_story(self):
+        import argparse, datetime as dt
+        sc = {'scenes': [{'type': 'titre', 'titre': 'x'}], 'fin': {'duree': 3.8}, 'source': 's'}
+        c = {'type_reel': 'pedagogique', 'scenario': sc, 'scrutin': None, 'legende': 'L', 'cle_etat': 'reels_pedagogiques_publies', 'valeur_etat': ['a'], 'id': 'a'}
+        mem = {}
+        with mock.patch.object(pr, 'contenu_reel', lambda: c), mock.patch.object(pr, 'lire_etat_publication', lambda: dict(mem)), mock.patch.object(pr, 'ecrire_etat_publication', lambda e: mem.update(e)), \
+             mock.patch.object(pr.generer_reel, 'generer', lambda *a, **k: {'reel': 'r.mp4', 'couverture': 'c.png', 'duree': 20.0}), mock.patch.object(pr, 'lire_env', lambda: {'IG_USER_ID': 'IG', 'FB_PAGE_TOKEN': 'T', 'FB_PAGE_ID': 'P'}), \
+             mock.patch.object(pr, 'publier_reel_instagram', lambda *a, **k: {'id': '1'}), mock.patch.object(pr, 'publier_reel_facebook', lambda *a, **k: '2'):
+            pr.main_reel(argparse.Namespace(publier=True, plateformes='facebook,instagram'))
+        self.assertEqual(mem['dernier_reel'], {'date': dt.date.today().isoformat(), 'type_reel': 'pedagogique', 'scenario': sc, 'scrutin': None})
+
+
 if __name__ == '__main__':
     unittest.main()

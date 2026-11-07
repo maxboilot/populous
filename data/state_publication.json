@@ -1,4 +1,53 @@
 {
+  "dernier_reel": {
+    "date": "2026-11-07",
+    "scenario": {
+      "fin": {
+        "duree": 3.8
+      },
+      "scenes": [
+        {
+          "couleur": "orange",
+          "duree": 4.4,
+          "eyebrow": "Vote solennel · 4 novembre 2026",
+          "tampon": "REJETÉ",
+          "titre": "Première partie du projet de loi de finances pour 2027 (première lecture)",
+          "type": "titre"
+        },
+        {
+          "duree": 5.0,
+          "type": "chiffres"
+        },
+        {
+          "cartes": [
+            [
+              "Ce que c’est",
+              "La première partie du budget 2027 : elle autorise l’État à percevoir les recettes et fixe l’équilibre général des finances publiques."
+            ],
+            [
+              "Pourquoi ça compte",
+              "Passage obligé : la seconde partie, qui fixe les crédits (les dépenses), ne peut pas être discutée avant que celle-ci soit adoptée."
+            ],
+            [
+              "Ce vote",
+              "Vote solennel sur l’ensemble de la première partie, en première lecture : 0 pour, 458 contre, 2 abstentions."
+            ]
+          ],
+          "duree": 7.4,
+          "sous": "Trois choses à savoir.",
+          "titre": "De quoi parle ce texte ?",
+          "type": "cartes"
+        },
+        {
+          "duree": 4.2,
+          "type": "hemicycle"
+        }
+      ],
+      "source": "Sources : loi organique relative aux lois de finances (art. 34 et 42) · assemblee-nationale.fr"
+    },
+    "scrutin": 9759,
+    "type_reel": "loi"
+  },
   "dernier_sondage_publie": "2026-10-29|Ifop",
   "lois_publiees": [
     9759

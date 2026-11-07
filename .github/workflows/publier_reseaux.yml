@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
     inputs:
       type:
-        description: "Type de contenu (fait, presidentiel, depute, avenir, boussole, loi, reel, vote)"
+        description: "Type de contenu (fait, presidentiel, depute, avenir, boussole, loi, reel, story, vote)"
         required: true
         default: fait
       # Uniquement pour type=vote (lance a la main, jamais par le planificateur) :
