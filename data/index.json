@@ -1,40 +1,5 @@
 [
   {
-    "numero": null,
-    "dossier": "DLR5L17N52725",
-    "date": "2025-11-06",
-    "titre": "Proposition de loi visant à créer un répertoire national des personnes inéligibles",
-    "adopte": true,
-    "statut": "adopte",
-    "themes": [],
-    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N52725",
-    "type": "main_levee"
-  },
-  {
-    "numero": null,
-    "dossier": "DLR5L17N52833",
-    "date": "2025-11-06",
-    "titre": "Proposition de loi visant à libérer l'accès aux soins dentaires",
-    "adopte": true,
-    "statut": "adopte",
-    "themes": [
-      "sante"
-    ],
-    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N52833",
-    "type": "main_levee"
-  },
-  {
-    "numero": null,
-    "dossier": "DLR5L17N52037",
-    "date": "2025-11-06",
-    "titre": "Élever Alfred Dreyfus au grade de général de brigade",
-    "adopte": true,
-    "statut": "adopte_modifie",
-    "themes": [],
-    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/dreyfus_general_bridage_17e",
-    "type": "main_levee"
-  },
-  {
     "numero": 3936,
     "date": "2025-11-18",
     "titre": "De finances de fin de gestion pour 2025",
