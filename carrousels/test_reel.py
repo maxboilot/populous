@@ -64,6 +64,36 @@ class TestReel(unittest.TestCase):
         with self.assertRaises(ValueError): musique.caler(long_)                                   # groove plus long que l'extrait
         with self.assertRaises(ValueError): musique.caler({'scenes': [{'type': 'titre', 'titre': 'x', 'duree': 12}, {'type': 'texte', 'texte': 'a b', 'kicker': '', 'duree': 4}]})   # 1er visuel trop long
 
+    def test_plusieurs_textes_votes_un_seul_reel(self):
+        votes = [vote(f"l'ensemble de la proposition de loi {x}", numero=n) for n, x in ((10, 'a'), (11, 'b'), (12, 'c'), (13, 'd'))]
+        votes[1]['adopte'] = False; votes[1]['sort'] = "L'Assemblée nationale n'a pas adopté"
+        def contenu(etat, tient=lambda sc: True):
+            with mock.patch.object(pr, '_scrutins_solennels_de_texte', lambda d: votes), mock.patch.object(pr.generer_post_vote, 'charger_contours', lambda s: []), \
+                 mock.patch.object(pr, 'lire_etat_publication', lambda: etat), mock.patch.object(pr, '_tient_dans_la_musique', tient):
+                return pr.contenu_reel()
+        c = contenu({})
+        self.assertEqual(c['type_reel'], 'lois'); self.assertEqual(c['valeur_etat'], [10, 11, 12]); self.assertIsNone(c['scrutin'])     # 3 textes max, les autres le lendemain
+        types = [s['type'] for s in c['scenario']['scenes']]; self.assertEqual(types, ['titre', 'loi_resume', 'loi_resume', 'loi_resume'])
+        self.assertEqual([s['tampon'] for s in c['scenario']['scenes'][1:]], ['ADOPTÉ', 'REJETÉ', 'ADOPTÉ']); self.assertIn('3 textes votés', c['scenario']['scenes'][0]['titre'])
+        self.assertTrue(all(s['suite'] for s in c['scenario']['scenes'][1:])); self.assertIn('mêmes termes', c['scenario']['scenes'][1]['suite'])
+        for n in (10, 11, 12): self.assertIn(f"Scrutin public n°{n}", c['legende'])
+        self.assertNotIn("n°13", c['legende']); self.assertLessEqual(c['legende'].count('#'), 5)
+        c2 = contenu({'lois_reel_publiees': [10, 11, 12]})                          # le lendemain : le texte restant (un seul -> Reel complet)
+        self.assertEqual((c2['type_reel'], c2['scrutin'], c2['valeur_etat']), ('loi', 13, [10, 11, 12, 13]))
+        c3 = contenu({}, tient=lambda sc: len(sc['scenes']) <= 2)                     # la musique ne suffit plus pour plus d'un texte : on s'arrete avant
+        self.assertEqual(c3['type_reel'], 'loi'); self.assertEqual(c3['scrutin'], 10)
+        c4 = contenu({}, tient=lambda sc: len(sc['scenes']) <= 3)
+        self.assertEqual((c4['type_reel'], c4['valeur_etat']), ('lois', [10, 11]))
+
+    def test_scene_loi_resume_temps_de_lecture_et_source_fusionnee(self):
+        s = {'type': 'loi_resume', 'titre': 'Proposition de loi visant à protéger les mineurs en ligne', 'suite': 'Pour devenir une loi, le texte doit être adopté dans les mêmes termes par l’Assemblée nationale et par le Sénat.'}
+        ts, tc, tu, fin = lecture.delais_loi_resume(s); self.assertTrue(0 < ts < tc < tu < fin)
+        self.assertGreaterEqual(lecture.duree_min(s), fin); self.assertLess(lecture.delais_loi_resume({**s, 'suite': ''})[3], fin)
+        vs = [vote("l'ensemble de la proposition de loi a (première lecture)", numero=1), vote("l'ensemble de la proposition de loi organique b (nouvelle lecture)", numero=2)]
+        sc = pr.scenario_multi_reel([pr._info_vote(v) for v in vs])
+        self.assertEqual(sc['source'].count('Constitution'), 1); self.assertIn('(art. 39, 45, 46 et 61)', sc['source'])    # une seule mention, articles fusionnes
+        sc2, n2, ne = musique.caler(sc); self.assertEqual(sc2['effet_fin'], 'zoom')
+
     def test_texte_vote_prioritaire(self):
         a = vote("l'ensemble de la proposition de loi a", numero=10)
         with mock.patch.object(pr, '_scrutins_solennels_de_texte', lambda d: [a]), mock.patch.object(pr.generer_post_vote, 'charger_contours', lambda s: []), \

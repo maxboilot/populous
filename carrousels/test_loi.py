@@ -31,18 +31,54 @@ class TestLoi(unittest.TestCase):
 
     def test_budget_trois_blocs_sources(self):
         blocs, src = pr.explication_loi(vote("la première partie du projet de loi de finances pour 2027 (première lecture).", "L'Assemblée nationale n'a pas adopté", 0, 458, 2, adopte=False))
-        self.assertEqual(len(blocs), 3); self.assertIn("art. 34 et 42", src)
-        self.assertIn("0 pour, 458 contre, 2 abstentions", blocs[2][1]); self.assertIn("première lecture", blocs[2][1])
+        self.assertEqual([b[0] for b in blocs], ["Ce que c’est", "Ce vote", "La suite"]); self.assertIn("LOLF (art. 34 et 42)", src)
+        self.assertIn("0 pour, 458 contre, 2 abstentions", blocs[1][1]); self.assertIn("première lecture", blocs[1][1])
+        self.assertIn("ne peut pas être discutée tant que la première partie n’est pas adoptée", blocs[2][1])
 
-    def test_texte_ordinaire_deux_blocs_nature_et_sort(self):
+    def test_texte_ordinaire_trois_blocs_nature_sort_suite(self):
         blocs, src = pr.explication_loi(vote("l'ensemble de la proposition de loi visant à x (première lecture)"))
-        self.assertEqual(len(blocs), 2); self.assertIn("déposé par des parlementaires", blocs[0][1]); self.assertIn("Constitution (art. 39)", src)
+        self.assertEqual(len(blocs), 3); self.assertIn("déposé par des parlementaires", blocs[0][1]); self.assertIn("Constitution (art. 39", src)
+        self.assertEqual(blocs[2][0], "La suite"); self.assertIn("mêmes termes par l’Assemblée nationale et par le Sénat", blocs[2][1])
         blocs, _ = pr.explication_loi(vote("l'ensemble du projet de loi y"))
         self.assertIn("déposé par le Gouvernement", blocs[0][1])
 
+    def test_la_suite_phrases_validees_par_cas(self):
+        def suite(objet, adopte=True):
+            return pr.suite_loi(vote(objet, "l'Assemblée nationale a adopté" if adopte else "L'Assemblée nationale n'a pas adopté", adopte=adopte))
+        self.assertIn("mêmes termes", suite("l'ensemble du projet de loi y (première lecture)")[0])
+        self.assertIn("commission mixte paritaire (7 députés et 7 sénateurs)", suite("l'ensemble de la proposition de loi x (deuxième lecture)")[0])
+        self.assertIn("nouvelle lecture", suite("l'ensemble de la proposition de loi x (nouvelle lecture)")[0])
+        self.assertIn("a statué définitivement", suite("l'ensemble de la proposition de loi x (lecture définitive)")[0])
+        self.assertIn("quinze jours", suite("l'ensemble de la proposition de loi x (lecture définitive)")[0])
+        self.assertIn("approuvé par les deux assemblées", suite("l'ensemble du projet de loi x (texte de la commission mixte paritaire)")[0])
+        self.assertIn("peut maintenant être mise en discussion", suite("la première partie du projet de loi de finances pour 2027 (première lecture).")[0])
+        self.assertIn("demander à l’Assemblée nationale de statuer définitivement", suite("l'ensemble du projet de loi x (texte de la commission mixte paritaire)", False)[0])
+        self.assertIn("ne peut pas être discutée", suite("la première partie du projet de loi de finances pour 2027 (première lecture).", False)[0])
+        for objet in ("l'ensemble du projet de loi y (première lecture)", "l'ensemble de la proposition de loi x (nouvelle lecture)", "l'ensemble de la proposition de loi x (lecture définitive)"):
+            self.assertNotIn("passer au Sénat", suite(objet, False)[0]); self.assertIn("mêmes termes", suite(objet, False)[0])      # rejet : seulement la regle generale, rien d'invente
+        phrase, source = suite("l'ensemble de la proposition de loi organique x (première lecture)")
+        self.assertIn("contrôle du Conseil constitutionnel", phrase); self.assertIn("art. 46 et 61", source)                     # loi organique
+        self.assertNotIn("contrôle du Conseil constitutionnel", suite("l'ensemble de la proposition de loi x (première lecture)")[0])
+        self.assertIsNone(pr.suite_loi(vote("l'ensemble de la proposition de loi x", "Renvoyé en commission")))
+
+    def test_fusion_des_sources(self):
+        self.assertEqual(pr._fusionner_sources(["Constitution (art. 39)", "Constitution (art. 45) · assemblee-nationale.fr (fiche n°46)", "Sources : Constitution (art. 10, 45 et 61) · assemblee-nationale.fr"]),
+                         "Sources : Constitution (art. 10, 39, 45 et 61) · assemblee-nationale.fr (fiche n°46)")
+        self.assertEqual(pr._fusionner_sources(["LOLF (art. 42)", "Constitution (art. 39)"]), "Sources : LOLF (art. 42) · Constitution (art. 39)")
+
+    def test_selection_scrutins_ordinaires_inclus_amendements_exclus(self):
+        import json, tempfile
+        d = Path(tempfile.mkdtemp()); (d / 'data' / 'scrutins').mkdir(parents=True)
+        auj = datetime.date.today().isoformat(); (d / 'data' / 'today.json').write_text(json.dumps({'featured_numero': 4}))
+        for n, objet, sol in ((1, "l'ensemble de la proposition de loi a (première lecture)", False), (2, "l'amendement n° 12 à l'article 3 de la proposition de loi a", False),
+                              (3, "l'ensemble du projet de loi b", True), (4, "la motion de censure", True)):
+            v = vote(objet, numero=n); v['date'] = auj; v['solennel'] = sol; (d / 'data' / 'scrutins' / f'{n}.json').write_text(json.dumps(v))
+        with mock.patch.object(pr, 'DOSSIER', d):
+            self.assertEqual([v['numero'] for v in pr._scrutins_solennels_de_texte(datetime.date.today())], [1, 3])        # ordinaire + solennel ; ni amendement ni motion
+
     def test_le_sort_est_lu_dans_le_libelle_pas_dans_le_booleen(self):
         blocs, _ = pr.explication_loi(vote("l'ensemble de la proposition de loi x", "L'Assemblée nationale n'a pas adopté", adopte=True))   # booleen faux, libelle fait foi
-        self.assertIn("Résultat : rejeté", blocs[-1][1])
+        self.assertIn("Résultat : rejeté", blocs[1][1])
 
     def test_selection_un_seul_texte_pas_de_doublon(self):
         a, b = vote("l'ensemble de la proposition de loi a", numero=10), vote("l'ensemble du projet de loi b", numero=11)

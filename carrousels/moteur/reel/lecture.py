@@ -14,10 +14,18 @@ def delais_items(s):
     out = []
     for b in blocs: out.append(round(t, 2)); t += lire(*b)
     return out, t
+def delais_loi_resume(s):
+    """(tampon, chiffres, carte « la suite », fin de lecture) en secondes depuis le debut d'une scene « loi_resume » : le titre est lu avant le tampon, puis les chiffres, puis la suite."""
+    nt = n_mots(s["titre"]); ts = min(0.9 + 0.11 * nt, 3.4); tc = ts + 0.5; tu = tc + 1.2
+    fin = (tu + 0.5 + MOT * n_mots(s["suite"]) + 0.8) if s.get("suite") else tc + 1.8 + 0.8
+    return round(ts, 2), round(tc, 2), round(tu, 2), round(fin, 2)
+
+
 def duree_min(s):
     ty = s["type"]
     if ty in ("cartes", "liste", "etapes", "compare"): return round(delais_items(s)[1] + 0.6, 2)
     if ty == "points": return round(max(5.4, 3.6 + MOT * sum(n_mots(g.get("label", "")) for g in s["groupes"]) + 0.6), 2)
+    if ty == "loi_resume": return delais_loi_resume(s)[3]
     if ty == "chiffre": return round(max(4.6, 3.0 + MOT * n_mots(s.get("sous", "")) + 0.8), 2)
     if ty == "mois": return 5.6
     if ty == "texte": return round(0.4 + MOT * n_mots(s["texte"]) + 0.7, 2)

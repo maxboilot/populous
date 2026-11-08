@@ -155,8 +155,28 @@ for i, s in enumerate(SC["scenes"]):
                   f'tl.fromTo("#{sid}d{m}", {{ scale: 0.4, opacity: 0, transformOrigin: "50% 50%" }}, {{ scale: 1, opacity: 1, duration: 0.35, ease: "back.out(3)" }}, {t + 0.85 + m * 0.17:.2f});']
         h += [f'<div class="c" id="{sid}n" style="top:1245px;font-size:60px;color:#fff;letter-spacing:-.01em">{md(s.get("titre", ""))}</div>', f'<div class="c" id="{sid}m" style="top:1335px;font-size:40px;font-weight:500;color:#A0B0F0">{md(s.get("sous", ""))}</div>']
         j += [f'rise("#{sid}e", {t + 0.15:.2f}, -16, 0.4);', f'blurIn_("#{sid}n", {t + 3.0:.2f});', f'rise("#{sid}m", {t + 3.4:.2f}, 18, 0.45);']
+    elif ty == "loi_resume":
+        col = {"vert": "rgb(69,150,109)", "orange": "rgb(255,140,80)"}.get(s.get("couleur", "orange"), "rgb(255,140,80)")
+        tt = s["titre"]; nn = len(tt); sz, lh = (62, 74) if nn <= 70 else (54, 66) if nn <= 110 else (48, 58)
+        ts, tc, tu, _fin = lecture.delais_loi_resume(s); cf = s["chiffres"]
+        h += [f'<div class="kick" id="{sid}e" style="top:290px">{esc(s.get("eyebrow", ""))}</div>',
+              f'<div class="ttl" id="{sid}t" style="top:345px;font-size:{sz}px;line-height:{lh}px">{mots(tt)}</div>',
+              f'<div class="stamp" id="{sid}s" style="color:{col};border-color:{col};top:650px">{esc(s["tampon"])}</div>']
+        for k, (cle, lab, couleur) in enumerate((("pour", "POUR", "rgb(120,200,150)"), ("contre", "CONTRE", "rgb(255,150,100)"), ("abstention", "ABSTENTION", "#BECAFF"))):
+            lx = 120 + k * 300
+            h += [f'<div class="cnt" id="{sid}k{k}" style="left:{lx}px;top:880px;font-size:76px">0</div>', f'<div class="lab" style="left:{lx}px;top:975px;color:{couleur}">{lab}</div>']
+            j.append(f'(function(){{ const el = document.getElementById("{sid}k{k}"); DRAW.push(T => {{ el.textContent = Math.round({int(cf[cle])} * outExpo(clamp((T - {t + tc:.2f}) / 1.0))); }}); }})();')
+        j += [f'rise("#{sid}e", {t + 0.15:.2f}, -16, 0.4);', f'words("#{sid}t .w", {t + 0.3:.2f}, 0.05);',
+              f'tl.fromTo("#{sid}s", {{ scale: 1.6, opacity: 0, rotation: -5.7, transformOrigin: "50% 50%" }}, {{ scale: 0.5, opacity: 1, rotation: -5.7, duration: 0.2, ease: "power3.out" }}, {t + ts:.2f});']
+        for k in range(3):
+            j.append(f'tl.fromTo("#{sid}k{k}", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.3 }}, {t + tc:.2f});')
+        if s.get("suite"):
+            hc = max(190, min(320, 110 + 50 * -(-len(s["suite"]) // 38)))
+            h.append(f'<div class="ex" id="{sid}x" style="top:1060px;height:{hc}px"><div class="exe">La suite</div><div class="ext">{esc(s["suite"])}</div></div>')
+            j.append(f'tl.fromTo("#{sid}x", {{ y: 70, opacity: 0, scale: 0.96, transformOrigin: "50% 50%" }}, {{ y: 0, opacity: 1, scale: 1, duration: 0.6, ease: "expo.out" }}, {t + tu:.2f});')
     if SC.get("source") and i == len(SC["scenes"]) - 1:
-        h.append(f'<div class="srcp" style="top:1360px">{esc(SC["source"])}</div>')
+        long_ = len(SC["source"]) > 70                       # source longue : sur deux lignes, plus petite (sinon elle deborde de l'ecran)
+        h.append(f'<div class="srcp" style="top:{1395 if s["type"] == "loi_resume" else 1360}px{";white-space:normal;padding:0 70px;box-sizing:border-box;font-size:22px;line-height:28px" if long_ else ""}">{esc(SC["source"])}</div>')
     h.append("</div></div>"); html_s += h; js_s += j; t += d
 F = SC.get("fin", {})
 ZOOM = SC.get("effet_fin") == "zoom"      # option : silence de « pause_fin » s apres la derniere scene (le halo du fond gonfle), puis la carte Populous arrive en zoom arriere sur la reprise

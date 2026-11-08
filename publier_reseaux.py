@@ -302,7 +302,7 @@ def _sort_adopte(vote):
 
 
 def _scrutins_solennels_de_texte(aujourdhui):
-    """Scrutins solennels sur un texte, des FENETRE_LOI_JOURS derniers jours, du plus ancien au plus recent."""
+    """Scrutins publics (solennels ou ordinaires) sur l'ensemble d'un texte, des FENETRE_LOI_JOURS derniers jours, du plus ancien au plus recent."""
     today = json.loads((DOSSIER / 'data' / 'today.json').read_text(encoding='utf-8'))
     ref = max(n for n in (today.get('featured_numero'), today.get('last_featured_numero')) if n)
     limite = (aujourdhui - datetime.timedelta(days=FENETRE_LOI_JOURS)).isoformat()
@@ -314,7 +314,7 @@ def _scrutins_solennels_de_texte(aujourdhui):
         v = json.loads(f.read_text(encoding='utf-8'))
         if v['date'] < limite:
             break                                      # les numeros sont chronologiques
-        if v['date'] <= aujourdhui.isoformat() and v.get('solennel') and TEXTE_LOI_RE.match(v.get('objet') or v['titre']):
+        if v['date'] <= aujourdhui.isoformat() and TEXTE_LOI_RE.match(v.get('objet') or v['titre']):      # scrutin solennel OU ordinaire (decision de Max, 8 nov. 2026)
             trouves.append(v)
     return sorted(trouves, key=lambda v: (v['date'], v['numero']))
 
@@ -325,30 +325,71 @@ def titre_loi(objet):
     return _titre_court(t[:1].upper() + t[1:], 150)
 
 
+SUITES = {   # code -> (phrase affichee, source). Phrases et sources validees par Max (8 nov. 2026) : rien d'autre n'est affirme.
+    'adopte_1': ("Pour devenir une loi, le texte doit être adopté dans les mêmes termes par l’Assemblée nationale et par le Sénat.", "Constitution (art. 45) · assemblee-nationale.fr (fiche n°46)"),
+    'adopte_2': ("La navette continue jusqu’à un texte identique dans les deux assemblées. En cas de désaccord, une commission mixte paritaire (7 députés et 7 sénateurs) peut être réunie.", "Constitution (art. 45) · assemblee-nationale.fr (fiche n°46) · senat.fr"),
+    'adopte_nouvelle': ("Le Sénat l’examine à son tour en nouvelle lecture. S’il l’adopte sans modification, le texte est définitif ; sinon, l’Assemblée a le dernier mot en lecture définitive.", "Constitution (art. 45) · assemblee-nationale.fr (fiche n°46)"),
+    'adopte_definitive': ("L’Assemblée a statué définitivement. Le Président de la République promulgue la loi sous quinze jours, sauf saisine du Conseil constitutionnel, qui suspend ce délai.", "Constitution (art. 10, 45 et 61) · assemblee-nationale.fr (fiche n°46)"),
+    'adopte_cmp': ("Le compromis doit être approuvé par les deux assemblées. S’il l’est, le texte est définitif et part pour promulgation.", "Constitution (art. 45) · senat.fr · assemblee-nationale.fr (fiche n°46)"),
+    'adopte_plf': ("La seconde partie, qui fixe les crédits (les dépenses), peut maintenant être mise en discussion.", "LOLF (art. 42)"),
+    'rejete_plf': ("La seconde partie, qui fixe les crédits, ne peut pas être discutée tant que la première partie n’est pas adoptée.", "LOLF (art. 42)"),
+    'rejete_cmp': ("Le Gouvernement peut, après une nouvelle lecture dans chaque assemblée, demander à l’Assemblée nationale de statuer définitivement.", "Constitution (art. 45)"),
+    'rejete': ("Pour devenir une loi, un texte doit être adopté dans les mêmes termes par l’Assemblée nationale et par le Sénat.", "Constitution (art. 45)"),
+}
+SUITE_ORGANIQUE = ("Une loi organique ne peut être promulguée qu’après contrôle du Conseil constitutionnel.", "Constitution (art. 46 et 61)")
+
+
+def suite_loi(vote):
+    """(phrase, source) de « La suite » d'un vote sur l'ensemble d'un texte, ou None si le sort est illisible. Deduite de la nature du texte, de la lecture
+    et du sort (objet officiel du scrutin) ; ne dit rien de plus que les textes officiels (cf. SUITES). Le stade exact (1re ou 2e assemblee saisie) n'est
+    pas dans nos donnees : les phrases restent volontairement generales la ou il l'est necessaire."""
+    objet = (vote.get('objet') or vote['titre']).lower(); adopte = _sort_adopte(vote)
+    if adopte is None:
+        return None
+    plf = bool(re.match(r"la première partie du projet de loi de finances", objet))
+    cmp_ = 'commission mixte paritaire' in objet
+    lecture = re.search(r"\(([^)]*lecture[^)]*)\)", objet); lecture = lecture.group(1) if lecture else ''
+    if plf: code = 'adopte_plf' if adopte else 'rejete_plf'
+    elif cmp_: code = 'adopte_cmp' if adopte else 'rejete_cmp'
+    elif not adopte: code = 'rejete'
+    elif 'définitive' in lecture: code = 'adopte_definitive'
+    elif 'nouvelle' in lecture: code = 'adopte_nouvelle'
+    elif 'deuxième' in lecture: code = 'adopte_2'
+    else: code = 'adopte_1'
+    phrase, source = SUITES[code]
+    if adopte and 'organique' in objet and code in ('adopte_1', 'adopte_2', 'adopte_nouvelle'):
+        phrase += ' ' + SUITE_ORGANIQUE[0]; source += ' · ' + SUITE_ORGANIQUE[1]
+    return phrase, source
+
+
 def explication_loi(vote):
-    """([[titre, texte], ...], source). 2 ou 3 blocs, tous deduits de la nature du texte, du sort et des chiffres officiels."""
+    """([[titre, texte], ...], source). 2 ou 3 blocs (Ce que c'est / Ce vote / La suite), tous deduits de la nature du texte, du sort et des chiffres officiels."""
     objet = vote.get('objet') or vote['titre']; t = vote['tally']
     lecture = re.search(r"\(([^)]*lecture[^)]*)\)", objet)
     adopte = _sort_adopte(vote)
     sort = {True: 'adopté', False: 'rejeté'}[adopte]
     chiffres = f"{t['pour']} pour, {t['contre']} contre, {t['abstention']} abstention{'s' if t['abstention'] > 1 else ''}"
     annee = re.search(r"projet de loi de finances pour (\d{4})", objet, re.I)
+    suite = suite_loi(vote)
     if annee and re.match(r"la première partie", objet, re.I):          # LOLF art. 34 (contenu) et art. 42 (ordre d'examen)
-        return ([["Ce que c’est", f"La première partie du budget {annee.group(1)} : elle autorise l’État à percevoir les recettes et fixe l’équilibre général des finances publiques."],
-                 ["Pourquoi ça compte", "Passage obligé : la seconde partie, qui fixe les crédits (les dépenses), ne peut pas être discutée avant que celle-ci soit adoptée."],
-                 ["Ce vote", f"Vote solennel sur l’ensemble de la première partie{', en ' + lecture.group(1) if lecture else ''} : {chiffres}."]],
-                "Sources : loi organique relative aux lois de finances (art. 34 et 42) · assemblee-nationale.fr")
-    m = re.search(r"(proposition|projet) de loi( organique)?", objet, re.I)
-    if not m:
-        raise RuntimeError(f"Nature du texte introuvable dans : {objet}")
-    kind = m.group(1).lower(); org = ' organique' if m.group(2) else ''
-    qui = 'des parlementaires' if kind == 'proposition' else 'le Gouvernement'
-    ce_que = f"{'Une' if kind == 'proposition' else 'Un'} {kind} de loi{org} : un texte déposé par {qui}."
-    if lecture:
-        ce_que += f" Ici : {lecture.group(1)} à l’Assemblée nationale."
-    vote_txt = f"Vote solennel sur {'l’ensemble du texte' if 'ensemble' in objet.lower() else 'le texte'}. Résultat : {sort} ({chiffres})."
-    return ([["Ce que c’est", ce_que], ["Ce vote", vote_txt]],
-            "Sources : Constitution (art. 39) · assemblee-nationale.fr")
+        blocs = [["Ce que c’est", f"La première partie du budget {annee.group(1)} : elle autorise l’État à percevoir les recettes et fixe l’équilibre général des finances publiques."],
+                 ["Ce vote", f"Vote sur l’ensemble de la première partie{', en ' + lecture.group(1) if lecture else ''} : {chiffres}."]]
+        source = "LOLF (art. 34 et 42) · assemblee-nationale.fr"
+    else:
+        m = re.search(r"(proposition|projet) de loi( organique)?", objet, re.I)
+        if not m:
+            raise RuntimeError(f"Nature du texte introuvable dans : {objet}")
+        kind = m.group(1).lower(); org = ' organique' if m.group(2) else ''
+        qui = 'des parlementaires' if kind == 'proposition' else 'le Gouvernement'
+        ce_que = f"{'Une' if kind == 'proposition' else 'Un'} {kind} de loi{org} : un texte déposé par {qui}."
+        if lecture:
+            ce_que += f" Ici : {lecture.group(1)} à l’Assemblée nationale."
+        vote_txt = f"Vote sur {'l’ensemble du texte' if 'ensemble' in objet.lower() else 'le texte'}. Résultat : {sort} ({chiffres})."
+        blocs = [["Ce que c’est", ce_que], ["Ce vote", vote_txt]]
+        source = "Constitution (art. 39)"
+    if suite:
+        blocs.append(["La suite", suite[0]]); source += ' · ' + suite[1]
+    return blocs, _fusionner_sources([source])
 
 
 def contenu_loi():
@@ -594,14 +635,96 @@ def scenario_loi_reel(vote, titre, blocs, source):
         'fin': {'duree': 3.8}, 'source': source}
 
 
+MAX_TEXTES_PAR_REEL = 3        # un Reel regroupe tous les textes votes ; au-dela (ou si la musique ne suffit plus), les suivants partent le jour d'apres
+
+
+def _fusionner_sources(sources):
+    """« Constitution (art. 39) » + « Constitution (art. 45) » -> « Constitution (art. 39 et 45) » ; sans doublon, ordre conserve."""
+    arts, autres, ordre = {}, [], []
+    for src in sources:
+        for tok in (t.strip() for t in re.sub(r"^Sources : ", '', src).split(' · ')):
+            m = re.match(r"^(Constitution|LOLF) \(art\. ([^)]*)\)$", tok)
+            if m:
+                if m.group(1) not in arts: arts[m.group(1)] = set(); ordre.append(m.group(1))
+                arts[m.group(1)] |= set(re.findall(r"\d+", m.group(2)))
+            elif tok not in autres:
+                autres.append(tok)
+    if 'assemblee-nationale.fr (fiche n°46)' in autres and 'assemblee-nationale.fr' in autres:
+        autres.remove('assemblee-nationale.fr')
+    out = []
+    for nom in ordre:
+        nums = sorted(arts[nom], key=int); txt = ', '.join(nums[:-1]) + ' et ' + nums[-1] if len(nums) > 1 else nums[0]
+        out.append(f"{nom} (art. {txt})")
+    return "Sources : " + ' · '.join(out + autres)
+
+
+def _info_vote(vote):
+    """Ce qu'il faut savoir d'un vote pour le presenter : titre officiel, sort, chiffres, phrase « La suite » et sa source."""
+    t = vote['tally']; objet = vote.get('objet') or vote['titre']
+    return {'vote': vote, 'titre': titre_loi(objet), 'adopte': _sort_adopte(vote), 'chiffres': {'pour': t['pour'], 'contre': t['contre'], 'abstention': t['abstention']},
+            'suite': suite_loi(vote)}
+
+
+def scenario_multi_reel(infos):
+    """Reel qui regroupe plusieurs textes votes : une scene d'introduction, puis une scene compacte par texte (tampon, chiffres, la suite)."""
+    dates = sorted({i['vote']['date'] for i in infos}); d0 = datetime.date.fromisoformat(dates[0]); d1 = datetime.date.fromisoformat(dates[-1])
+    quand = f"{d0.day} {MOIS_FR[d0.month - 1]}" if d0 == d1 else f"{d0.day} {MOIS_FR[d0.month - 1]} au {d1.day} {MOIS_FR[d1.month - 1]}"
+    scenes = [{'type': 'titre', 'eyebrow': f"Votes du {quand}", 'titre': f"{len(infos)} textes votés à l’Assemblée nationale", 'duree': 3.8}]
+    for i in infos:
+        d = datetime.date.fromisoformat(i['vote']['date'])
+        scenes.append({'type': 'loi_resume', 'eyebrow': f"Vote du {d.day} {MOIS_FR[d.month - 1]} {d.year}", 'titre': i['titre'], 'tampon': 'ADOPTÉ' if i['adopte'] else 'REJETÉ',
+                       'couleur': 'vert' if i['adopte'] else 'orange', 'chiffres': i['chiffres'], 'suite': i['suite'][0] if i['suite'] else ''})
+    return {'scenes': scenes, 'fin': {'duree': 3.8}, 'source': _fusionner_sources(["Constitution (art. 39)"] + [i['suite'][1] for i in infos if i['suite']])}
+
+
+def legende_multi(infos):
+    """Legende d'un Reel de plusieurs textes : deduite des chiffres officiels, aucun commentaire politique."""
+    lignes = [f"Textes votés à l'Assemblée nationale :"]
+    for i in infos:
+        v = i['vote']; c = i['chiffres']; sort = 'adopté' if i['adopte'] else 'rejeté'
+        lignes.append(f"▪ {i['titre']} : {sort} ({c['pour']} pour, {c['contre']} contre, {_pl(c['abstention'], 'abstention')}).\n🗳 Scrutin public n°{v['numero']} · source : {v.get('source') or 'https://www.assemblee-nationale.fr'}")
+    lignes += ["Et toi, qu'est-ce que tu retiens de ces textes ? Dis-le en commentaire 👇",
+               "📲 Le vote de ton député, siège par siège, est dans l'app Populous (lien en bio).",
+               '#Populous #AssembléeNationale #Vote #Politique #Loi']
+    return '\n\n'.join(lignes)
+
+
+def _pl(n, mot):
+    return f"{n} {mot}{'s' if n > 1 else ''}"
+
+
+def _tient_dans_la_musique(scenario):
+    """Vrai si le Reel tient dans la musique (ou si elle n'est pas disponible : on retombe alors sur la bande son synthetisee, sans limite)."""
+    m = getattr(generer_reel, 'musique', None)
+    if m is None or not m.disponible():
+        return True
+    try:
+        m.caler(scenario); return True
+    except ValueError:
+        return False
+
+
 def contenu_reel():
-    """Le Reel du jour, ou None. Renvoie un dict : scenario, scrutin (ou None), legende, cle_etat, valeur_etat."""
+    """Le Reel du jour, ou None. Renvoie un dict : scenario, scrutin (ou None), legende, cle_etat, valeur_etat.
+    S'il y a des textes votes (scrutin solennel ou ordinaire) pas encore presentes en Reel, le Reel les presente TOUS (jusqu'a MAX_TEXTES_PAR_REEL et
+    dans la limite de la musique) : le tampon adopte / rejete, les chiffres et la suite ; un seul texte -> Reel complet (explication + hemicycle)."""
     aujourdhui = datetime.date.today()
     etat = lire_etat_publication()
     deja = set(etat.get('lois_reel_publiees', []))
-    for vote in _scrutins_solennels_de_texte(aujourdhui):
-        if vote['numero'] in deja or _sort_adopte(vote) is None:
-            continue
+    votes = [v for v in _scrutins_solennels_de_texte(aujourdhui) if v['numero'] not in deja and _sort_adopte(v) is not None]
+    if votes:
+        if len(votes) > 1:
+            infos = []
+            for v in votes[:MAX_TEXTES_PAR_REEL]:
+                essai = infos + [_info_vote(v)]
+                if infos and not _tient_dans_la_musique(scenario_multi_reel(essai)):
+                    break
+                infos = essai
+            if len(infos) > 1:
+                numeros = [i['vote']['numero'] for i in infos]
+                return {'type_reel': 'lois', 'scenario': scenario_multi_reel(infos), 'scrutin': None, 'legende': legende_multi(infos),
+                        'cle_etat': 'lois_reel_publiees', 'valeur_etat': sorted(deja | set(numeros))}
+        vote = votes[0]
         titre = titre_loi(vote.get('objet') or vote['titre'])
         blocs, source = explication_loi(vote)
         contours = generer_post_vote.charger_contours((DOSSIER / 'index.html').read_text(encoding='utf-8'))
