@@ -106,6 +106,17 @@
   },
   {
     "date": "2026-11-12",
+    "heure": "09:00",
+    "ordre_du_jour": "Discussion, sur le rapport de la commission mixte paritaire, de la proposition de loi visant à renforcer l'effectivité des droits voisins des éditeurs et des agences de presse",
+    "themes": [
+      "culture"
+    ],
+    "dossier": "DLR5L17N51330",
+    "scrutin_annonce": false,
+    "lecture": "Commission mixte paritaire"
+  },
+  {
+    "date": "2026-11-12",
     "heure": "16:00",
     "ordre_du_jour": "Examen du texte — Protéger la santé mentale des agricultrices et des agriculteurs",
     "themes": [
