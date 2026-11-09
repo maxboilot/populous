@@ -51,6 +51,11 @@ jobs:
         run: python construire_agenda.py
       - name: Construire le texte reel du scrutin en vedette
         run: python construire_texte_loi.py
+      - name: Construire les decisions sur les textes de loi (adoptes ou rejetes, avec ou sans scrutin public)
+        # Source : archive « Dossiers legislatifs » de l'Assemblee. Alimente le Reel/la Story du jour pour les textes sans scrutin public.
+        # Ne bloque jamais le reste de l'ingestion.
+        continue-on-error: true
+        run: python construire_decisions_texte.py
       - name: Construire les resumes officiels pour la Boussole
         run: python construire_expose_motifs.py
       - name: Construire le detail des scrutins du jour (fenetre Detail de l'app)

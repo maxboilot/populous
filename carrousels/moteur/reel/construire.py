@@ -162,17 +162,17 @@ for i, s in enumerate(SC["scenes"]):
         h += [f'<div class="kick" id="{sid}e" style="top:290px">{esc(s.get("eyebrow", ""))}</div>',
               f'<div class="ttl" id="{sid}t" style="top:345px;font-size:{sz}px;line-height:{lh}px">{mots(tt)}</div>',
               f'<div class="stamp" id="{sid}s" style="color:{col};border-color:{col};top:650px">{esc(s["tampon"])}</div>']
-        for k, (cle, lab, couleur) in enumerate((("pour", "POUR", "rgb(120,200,150)"), ("contre", "CONTRE", "rgb(255,150,100)"), ("abstention", "ABSTENTION", "#BECAFF"))):
+        for k, (cle, lab, couleur) in enumerate((("pour", "POUR", "rgb(120,200,150)"), ("contre", "CONTRE", "rgb(255,150,100)"), ("abstention", "ABSTENTION", "#BECAFF")) if cf else ()):      # cf None : texte sans scrutin public, pas de chiffres
             lx = 120 + k * 300
             h += [f'<div class="cnt" id="{sid}k{k}" style="left:{lx}px;top:880px;font-size:76px">0</div>', f'<div class="lab" style="left:{lx}px;top:975px;color:{couleur}">{lab}</div>']
             j.append(f'(function(){{ const el = document.getElementById("{sid}k{k}"); DRAW.push(T => {{ el.textContent = Math.round({int(cf[cle])} * outExpo(clamp((T - {t + tc:.2f}) / 1.0))); }}); }})();')
         j += [f'rise("#{sid}e", {t + 0.15:.2f}, -16, 0.4);', f'words("#{sid}t .w", {t + 0.3:.2f}, 0.05);',
               f'tl.fromTo("#{sid}s", {{ scale: 1.6, opacity: 0, rotation: -5.7, transformOrigin: "50% 50%" }}, {{ scale: 0.5, opacity: 1, rotation: -5.7, duration: 0.2, ease: "power3.out" }}, {t + ts:.2f});']
-        for k in range(3):
+        for k in range(3 if cf else 0):
             j.append(f'tl.fromTo("#{sid}k{k}", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.3 }}, {t + tc:.2f});')
         if s.get("suite"):
             hc = max(190, min(320, 110 + 50 * -(-len(s["suite"]) // 38)))
-            h.append(f'<div class="ex" id="{sid}x" style="top:1060px;height:{hc}px"><div class="exe">La suite</div><div class="ext">{esc(s["suite"])}</div></div>')
+            h.append(f'<div class="ex" id="{sid}x" style="top:{1060 if cf else 900}px;height:{hc}px"><div class="exe">La suite</div><div class="ext">{esc(s["suite"])}</div></div>')
             j.append(f'tl.fromTo("#{sid}x", {{ y: 70, opacity: 0, scale: 0.96, transformOrigin: "50% 50%" }}, {{ y: 0, opacity: 1, scale: 1, duration: 0.6, ease: "expo.out" }}, {t + tu:.2f});')
     if SC.get("source") and i == len(SC["scenes"]) - 1:
         long_ = len(SC["source"]) > 70                       # source longue : sur deux lignes, plus petite (sinon elle deborde de l'ecran)

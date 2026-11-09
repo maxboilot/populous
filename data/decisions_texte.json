@@ -1,0 +1,52 @@
+{
+ "decisions": [
+  {
+   "id": "L17-VD234627DEC",
+   "dossier": "DLR5L17N54898",
+   "titre": "Créer un parcours de soins intégralement pris en charge par la sécurité sociale pour toutes les victimes de violences sexuelles",
+   "nature": "proposition",
+   "organique": false,
+   "ratification": false,
+   "date": "2026-10-29",
+   "lecture": "premiere",
+   "statut": "adoptée",
+   "adopte": true,
+   "sans_modification": false,
+   "premiere_assemblee": true,
+   "vote_ref": 9241,
+   "url": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N54898"
+  },
+  {
+   "id": "L17-VD234618DEC",
+   "dossier": "DLR5L17N54901",
+   "titre": "Créer un corps de fonctionnaires de catégorie B pour les accompagnants d’élèves en situation de handicap",
+   "nature": "proposition",
+   "organique": false,
+   "ratification": false,
+   "date": "2026-10-29",
+   "lecture": "premiere",
+   "statut": "adoptée",
+   "adopte": true,
+   "sans_modification": false,
+   "premiere_assemblee": true,
+   "vote_ref": 9203,
+   "url": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N54901"
+  },
+  {
+   "id": "L17-VD234610DEC",
+   "dossier": "DLR5L17N53331",
+   "titre": "Rétablir le droit commun de la prescription acquisitive dans les collectivités régies par l’article 73 de la Constitution ainsi qu’à Saint-Martin et Saint-Barthélemy",
+   "nature": "proposition",
+   "organique": false,
+   "ratification": false,
+   "date": "2026-10-29",
+   "lecture": "premiere",
+   "statut": "adoptée",
+   "adopte": true,
+   "sans_modification": false,
+   "premiere_assemblee": true,
+   "vote_ref": null,
+   "url": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53331"
+  }
+ ]
+}

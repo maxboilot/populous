@@ -337,6 +337,12 @@ SUITES = {   # code -> (phrase affichee, source). Phrases et sources validees pa
     'rejete': ("Pour devenir une loi, un texte doit être adopté dans les mêmes termes par l’Assemblée nationale et par le Sénat.", "Constitution (art. 45)"),
 }
 SUITE_ORGANIQUE = ("Une loi organique ne peut être promulguée qu’après contrôle du Conseil constitutionnel.", "Constitution (art. 46 et 61)")
+SUITES.update({   # phrases PRECISES (texte issu d'un dossier legislatif, stade connu) : a valider par Max avant mise en ligne ; sources : fiche n°46 de l'Assemblee, Constitution
+    'adopte_1_ps': ("Le texte est transmis au Sénat, qui l’examine à son tour en première lecture.", "assemblee-nationale.fr (fiche n°46)"),
+    'adopte_conforme': ("L’Assemblée a adopté sans modification le texte du Sénat : le texte est définitivement adopté. Le Président de la République dispose de quinze jours pour le promulguer.", "Constitution (art. 10) · assemblee-nationale.fr (fiche n°46)"),
+    'adopte_navette': ("Le texte a été modifié : la navette continue jusqu’à un texte identique dans les deux assemblées.", "Constitution (art. 45) · assemblee-nationale.fr (fiche n°46)"),
+})
+CODES_ORGANIQUE = ('adopte_1', 'adopte_2', 'adopte_nouvelle', 'adopte_1_ps', 'adopte_conforme', 'adopte_navette')   # une loi organique passe toujours par le Conseil constitutionnel
 
 
 def suite_loi(vote):
@@ -357,7 +363,7 @@ def suite_loi(vote):
     elif 'deuxième' in lecture: code = 'adopte_2'
     else: code = 'adopte_1'
     phrase, source = SUITES[code]
-    if adopte and 'organique' in objet and code in ('adopte_1', 'adopte_2', 'adopte_nouvelle'):
+    if adopte and 'organique' in objet and code in CODES_ORGANIQUE:
         phrase += ' ' + SUITE_ORGANIQUE[0]; source += ' · ' + SUITE_ORGANIQUE[1]
     return phrase, source
 
@@ -635,6 +641,120 @@ def scenario_loi_reel(vote, titre, blocs, source):
         'fin': {'duree': 3.8}, 'source': source}
 
 
+INCLURE_RATIFICATIONS = True   # projets de loi d'approbation d'accords internationaux (souvent adoptes sans scrutin public) : « toute loi votee » (Max, 9 nov. 2026) ; False pour les ecarter
+FICHIER_DECISIONS = 'decisions_texte.json'          # data/ : voir construire_decisions_texte.py
+SEUIL_MEME_TEXTE = 0.34                              # part des mots du titre du dossier retrouvee dans l'objet d'un scrutin (mesure du 9 nov. : 85 % des cas connus)
+MOTS_VIDES = set("de la le les des du d l un une et en au aux a pour par sur dans ou qui que quant vue visant projet proposition loi organique ensemble texte relatif relative portant approbation autorisant".split())
+LECTURE_TXT = {'premiere': 'première lecture', 'deuxieme': 'deuxième lecture', 'nouvelle': 'nouvelle lecture', 'definitive': 'lecture définitive', 'cmp': 'texte de la commission mixte paritaire'}
+
+
+def _mots_titre(texte):
+    import unicodedata
+    t = unicodedata.normalize('NFKD', (texte or '').lower()); t = ''.join(c for c in t if not unicodedata.combining(c))
+    return {w for w in re.findall(r'[a-z0-9]+', t) if w not in MOTS_VIDES and len(w) > 2}
+
+
+def _decision_a_un_scrutin(d, scrutins):
+    """Vrai si un scrutin sur l'ensemble d'un texte (a un jour pres) porte sur le meme texte : voteRefs est souvent vide meme quand un scrutin existe."""
+    mots = _mots_titre(d['titre']); jour = datetime.date.fromisoformat(d['date'])
+    if not mots:
+        return False
+    for v in scrutins:
+        if abs((datetime.date.fromisoformat(v['date']) - jour).days) <= 1 and len(mots & _mots_titre(v.get('objet') or v['titre'])) / len(mots) >= SEUIL_MEME_TEXTE:
+            return True
+    return False
+
+
+def _decisions_sans_scrutin(aujourdhui):
+    """Textes de loi adoptes ou rejetes par l'Assemblee, des FENETRE_LOI_JOURS derniers jours, SANS scrutin public retrouve (data/decisions_texte.json, du plus ancien au plus recent)."""
+    f = DOSSIER / 'data' / FICHIER_DECISIONS
+    if not f.exists():
+        return []
+    limite = (aujourdhui - datetime.timedelta(days=FENETRE_LOI_JOURS)).isoformat()
+    scrutins = _scrutins_solennels_de_texte(aujourdhui) + _scrutins_solennels_de_texte(aujourdhui - datetime.timedelta(days=1))
+    sortie = []
+    for d in json.loads(f.read_text(encoding='utf-8')).get('decisions', []):
+        if not (limite <= d['date'] <= aujourdhui.isoformat()) or d.get('adopte') is None:
+            continue
+        if d.get('ratification') and not INCLURE_RATIFICATIONS:
+            continue
+        if d.get('vote_ref') or _decision_a_un_scrutin(d, scrutins):
+            continue                                                  # il y a eu un scrutin public : le texte passe par data/scrutins (avec ses chiffres)
+        sortie.append(d)
+    return sorted(sortie, key=lambda d: (d['date'], d['id']))
+
+
+def titre_decision(d):
+    """Titre officiel du dossier, precede de la nature du texte quand il ne la dit pas deja (« Proposition de loi : Creer un corps… »). Jamais reformule."""
+    t = d['titre'].strip().rstrip('.')
+    nature = ('Projet de loi' if d['nature'] == 'projet' else 'Proposition de loi') + (' organique' if d.get('organique') else '')
+    if not re.match(r"^(projet|proposition) de loi", t, re.I):
+        t = f"{nature} : {t[:1].upper() + t[1:]}"
+    return _titre_court(t, 150)
+
+
+def sort_decision(d):
+    s = (d.get('statut') or '').lower()
+    if not d['adopte']:
+        return 'texte rejeté'
+    return 'texte adopté sans modification' if d.get('sans_modification') else ('texte adopté avec modifications' if s.startswith('modifi') else 'texte adopté')
+
+
+def suite_decision(d):
+    """(phrase, source) de « La suite » d'une decision issue d'un dossier legislatif (stade connu). Rien d'autre que SUITES : pas de suite inventee."""
+    if not d['adopte']:
+        code = 'rejete_cmp' if d['lecture'] == 'cmp' else 'rejete'
+    elif d['lecture'] == 'cmp': code = 'adopte_cmp'
+    elif d['lecture'] == 'definitive': code = 'adopte_definitive'
+    elif d['lecture'] == 'nouvelle': code = 'adopte_nouvelle'
+    elif d['lecture'] == 'deuxieme': code = 'adopte_2'
+    elif d.get('premiere_assemblee'): code = 'adopte_1_ps'
+    else: code = 'adopte_conforme' if d.get('sans_modification') else 'adopte_navette'
+    phrase, source = SUITES[code]
+    if d['adopte'] and d.get('organique') and code in CODES_ORGANIQUE:
+        phrase += ' ' + SUITE_ORGANIQUE[0]; source += ' · ' + SUITE_ORGANIQUE[1]
+    return phrase, source
+
+
+def _date_fr(iso):
+    d = datetime.date.fromisoformat(iso)
+    return f"{d.day}{'er' if d.day == 1 else ''} {MOIS_FR[d.month - 1]} {d.year}"
+
+
+def explication_decision(d):
+    """([[titre, texte], ...], source) : Ce que c'est / Ce vote / La suite, deduits du dossier legislatif (nature, lecture, sort), sans chiffres."""
+    proposition = d['nature'] == 'proposition'
+    ce_que = f"{'Une proposition' if proposition else 'Un projet'} de loi{' organique' if d.get('organique') else ''} : un texte déposé par {'des parlementaires' if proposition else 'le Gouvernement'}."
+    ce_que += f" Ici : {LECTURE_TXT[d['lecture']]}{'' if d['lecture'] == 'cmp' else ' à l’Assemblée nationale'}."
+    suite = suite_decision(d)
+    blocs = [["Ce que c’est", ce_que], ["Ce vote", f"Décision de l’Assemblée nationale le {_date_fr(d['date'])} : {sort_decision(d)}."], ["La suite", suite[0]]]
+    return blocs, _fusionner_sources(["Constitution (art. 39)", suite[1], "assemblee-nationale.fr (dossier législatif)"])
+
+
+def _info_decision(d):
+    """Pendant de _info_vote pour un texte sans scrutin public : pas de chiffres."""
+    return {'vote': {'numero': None, 'date': d['date'], 'source': d['url'], 'decision': True}, 'titre': titre_decision(d), 'adopte': d['adopte'], 'chiffres': None,
+            'suite': suite_decision(d), 'decision': d}
+
+
+def scenario_decision_reel(info):
+    """Reel d'un seul texte sans scrutin public : le texte + tampon, puis de quoi il parle / ce vote / la suite (ni chiffres ni hemicycle : il n'y en a pas)."""
+    d = info['decision']; blocs, source = explication_decision(d)
+    return {'scenes': [{'type': 'titre', 'eyebrow': f"Assemblée nationale · {_date_fr(d['date'])}", 'titre': info['titre'], 'tampon': 'ADOPTÉ' if d['adopte'] else 'REJETÉ',
+                        'couleur': 'vert' if d['adopte'] else 'orange', 'duree': 4.4},
+                       {'type': 'cartes', 'titre': 'De quoi parle ce texte ?', 'sous': 'Trois choses à savoir.', 'cartes': blocs, 'duree': 7.4}],
+            'fin': {'duree': 3.8}, 'source': source}
+
+
+def legende_decision(info):
+    d = info['decision']; sort = 'adopté' if d['adopte'] else 'rejeté'
+    return '\n\n'.join([f"Décision du {_date_fr(d['date'])} à l'Assemblée nationale — {info['titre']}.", f"Le texte a été {sort}.",
+                        "Et toi, qu'est-ce que tu retiens de ce texte ? Dis-le en commentaire 👇",
+                        f"📄 Dossier législatif : {d['url']}",
+                        "📲 Les votes de l'Assemblée, siège par siège : app Populous (lien en bio).",
+                        '#Populous #AssembléeNationale #Vote #Politique #Loi'])
+
+
 MAX_TEXTES_PAR_REEL = 3        # un Reel regroupe tous les textes votes ; au-dela (ou si la musique ne suffit plus), les suivants partent le jour d'apres
 
 
@@ -673,8 +793,8 @@ def scenario_multi_reel(infos):
     for i in infos:
         d = datetime.date.fromisoformat(i['vote']['date'])
         scenes.append({'type': 'loi_resume', 'eyebrow': f"Vote du {d.day} {MOIS_FR[d.month - 1]} {d.year}", 'titre': i['titre'], 'tampon': 'ADOPTÉ' if i['adopte'] else 'REJETÉ',
-                       'couleur': 'vert' if i['adopte'] else 'orange', 'chiffres': i['chiffres'], 'suite': i['suite'][0] if i['suite'] else ''})
-    return {'scenes': scenes, 'fin': {'duree': 3.8}, 'source': _fusionner_sources(["Constitution (art. 39)"] + [i['suite'][1] for i in infos if i['suite']])}
+                       'couleur': 'vert' if i['adopte'] else 'orange', 'chiffres': i['chiffres'], 'suite': i['suite'][0] if i['suite'] else ''})      # chiffres None : texte sans scrutin public
+    return {'scenes': scenes, 'fin': {'duree': 3.8}, 'source': _fusionner_sources(["Constitution (art. 39)"] + [i['suite'][1] for i in infos if i['suite']] + (["assemblee-nationale.fr (dossier législatif)"] if any(i['chiffres'] is None for i in infos) else []))}
 
 
 def legende_multi(infos):
@@ -682,6 +802,9 @@ def legende_multi(infos):
     lignes = [f"Textes votés à l'Assemblée nationale :"]
     for i in infos:
         v = i['vote']; c = i['chiffres']; sort = 'adopté' if i['adopte'] else 'rejeté'
+        if c is None:                                                                   # texte sans scrutin public : pas de chiffres, on cite le dossier legislatif
+            lignes.append(f"▪ {i['titre']} : {sort}.\n📄 Dossier législatif : {v['source']}")
+            continue
         lignes.append(f"▪ {i['titre']} : {sort} ({c['pour']} pour, {c['contre']} contre, {_pl(c['abstention'], 'abstention')}).\n🗳 Scrutin public n°{v['numero']} · source : {v.get('source') or 'https://www.assemblee-nationale.fr'}")
     lignes += ["Et toi, qu'est-ce que tu retiens de ces textes ? Dis-le en commentaire 👇",
                "📲 Le vote de ton député, siège par siège, est dans l'app Populous (lien en bio).",
@@ -704,32 +827,44 @@ def _tient_dans_la_musique(scenario):
         return False
 
 
+def _candidats_texte(aujourdhui, etat):
+    """Textes votes a presenter, du plus ancien au plus recent : scrutins publics (sur l'ensemble d'un texte) ET decisions sans scrutin public. Triplets (genre, cle, objet)."""
+    deja_s = set(etat.get('lois_reel_publiees', [])); deja_d = set(etat.get('decisions_reel_publiees', []))
+    c = [(v['date'], 0, v['numero'], 'scrutin', v) for v in _scrutins_solennels_de_texte(aujourdhui) if v['numero'] not in deja_s and _sort_adopte(v) is not None]
+    c += [(d['date'], 1, 0, 'decision', d) for d in _decisions_sans_scrutin(aujourdhui) if d['id'] not in deja_d]
+    return [(g, (o['numero'] if g == 'scrutin' else o['id']), o) for _, _, _, g, o in sorted(c, key=lambda x: x[:3] + (str(x[4].get('id', '')),))]
+
+
 def contenu_reel():
-    """Le Reel du jour, ou None. Renvoie un dict : scenario, scrutin (ou None), legende, cle_etat, valeur_etat.
-    S'il y a des textes votes (scrutin solennel ou ordinaire) pas encore presentes en Reel, le Reel les presente TOUS (jusqu'a MAX_TEXTES_PAR_REEL et
-    dans la limite de la musique) : le tampon adopte / rejete, les chiffres et la suite ; un seul texte -> Reel complet (explication + hemicycle)."""
+    """Le Reel du jour, ou None. Renvoie un dict : scenario, scrutin (ou None), legende, cle_etat, valeur_etat (+ etat_plus : autres cles d'etat a mettre a jour).
+    S'il y a des textes votes (scrutin public sur l'ensemble d'un texte, solennel ou ordinaire, OU texte adopte / rejete sans scrutin public) pas encore presentes en
+    Reel, le Reel les presente TOUS (jusqu'a MAX_TEXTES_PAR_REEL et dans la limite de la musique) : tampon adopte / rejete, chiffres s'il y a un scrutin, et la suite.
+    Un seul texte -> Reel complet (avec scrutin : explication + hemicycle ; sans scrutin : explication seule)."""
     aujourdhui = datetime.date.today()
     etat = lire_etat_publication()
-    deja = set(etat.get('lois_reel_publiees', []))
-    votes = [v for v in _scrutins_solennels_de_texte(aujourdhui) if v['numero'] not in deja and _sort_adopte(v) is not None]
-    if votes:
-        if len(votes) > 1:
-            infos = []
-            for v in votes[:MAX_TEXTES_PAR_REEL]:
-                essai = infos + [_info_vote(v)]
-                if infos and not _tient_dans_la_musique(scenario_multi_reel(essai)):
-                    break
-                infos = essai
-            if len(infos) > 1:
-                numeros = [i['vote']['numero'] for i in infos]
-                return {'type_reel': 'lois', 'scenario': scenario_multi_reel(infos), 'scrutin': None, 'legende': legende_multi(infos),
-                        'cle_etat': 'lois_reel_publiees', 'valeur_etat': sorted(deja | set(numeros))}
-        vote = votes[0]
+    deja = set(etat.get('lois_reel_publiees', [])); deja_d = set(etat.get('decisions_reel_publiees', []))
+    candidats = _candidats_texte(aujourdhui, etat)
+    if candidats:
+        infos, retenus = [], []
+        for genre, cle, obj in candidats[:MAX_TEXTES_PAR_REEL]:
+            essai = infos + [_info_vote(obj) if genre == 'scrutin' else _info_decision(obj)]
+            if infos and not _tient_dans_la_musique(scenario_multi_reel(essai)):
+                break
+            infos = essai; retenus.append((genre, cle))
+        numeros = sorted(deja | {c for g, c in retenus if g == 'scrutin'}); ids = sorted(deja_d | {c for g, c in retenus if g == 'decision'})
+        etat_plus = {'decisions_reel_publiees': ids} if any(g == 'decision' for g, _ in retenus) else {}
+        base = {'cle_etat': 'lois_reel_publiees', 'valeur_etat': numeros, 'etat_plus': etat_plus}
+        if len(infos) > 1:
+            return {'type_reel': 'lois', 'scenario': scenario_multi_reel(infos), 'scrutin': None, 'legende': legende_multi(infos), **base}
+        genre, cle = retenus[0]
+        if genre == 'decision':
+            return {'type_reel': 'loi_sans_scrutin', 'scenario': scenario_decision_reel(infos[0]), 'scrutin': None, 'legende': legende_decision(infos[0]), **base}
+        vote = candidats[0][2]
         titre = titre_loi(vote.get('objet') or vote['titre'])
         blocs, source = explication_loi(vote)
         contours = generer_post_vote.charger_contours((DOSSIER / 'index.html').read_text(encoding='utf-8'))
         return {'type_reel': 'loi', 'scenario': scenario_loi_reel(vote, titre, blocs, source), 'scrutin': vote['numero'],
-                'legende': generer_post_vote.legende(vote, titre, contours), 'cle_etat': 'lois_reel_publiees', 'valeur_etat': sorted(deja | {vote['numero']})}
+                'legende': generer_post_vote.legende(vote, titre, contours), **base}
     file_ = json.loads((DOSSIER / 'data' / 'reels_pedagogiques.json').read_text(encoding='utf-8'))['reels']
     publies = [i for i in etat.get('reels_pedagogiques_publies', []) if any(r['id'] == i for r in file_)]
     if len(publies) >= len(file_):
@@ -800,6 +935,7 @@ def main_reel(args):
             print(f"::error::{nom} : {e}"); echecs.append(nom)
     if reussies:                                               # etat mis a jour des qu'une plateforme a publie : jamais de doublon au creneau suivant
         etat = lire_etat_publication(); etat[contenu['cle_etat']] = contenu['valeur_etat']
+        etat.update(contenu.get('etat_plus') or {})
         etat['dernier_reel'] = {'date': datetime.date.today().isoformat(), 'type_reel': contenu['type_reel'], 'scenario': contenu['scenario'], 'scrutin': contenu['scrutin']}   # sert a la Story d'une heure apres
         ecrire_etat_publication(etat)
         print(f"Etat mis a jour : {contenu['cle_etat']} = {contenu['valeur_etat']}")
