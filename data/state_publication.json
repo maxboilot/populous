@@ -1,6 +1,6 @@
 {
   "dernier_reel": {
-    "date": "2026-11-08",
+    "date": "2026-11-09",
     "scenario": {
       "fin": {
         "duree": 3.8
@@ -9,40 +9,25 @@
         {
           "duree": 3.4,
           "eyebrow": "Populous · Les institutions",
-          "titre": "Comment est voté le budget de l'État ?",
+          "titre": "Comment naît et évolue une loi ?",
           "type": "titre"
         },
         {
-          "duree": 4.2,
-          "kicker": "Le point de départ",
-          "texte": "Le Gouvernement dépose un **projet de loi de finances** pour l'année.",
-          "type": "texte"
-        },
-        {
-          "etapes": [
-            {
-              "kicker": "1re partie",
-              "sous": "Elle autorise l'État à les percevoir et fixe l'équilibre général des finances publiques",
-              "titre": "Les **recettes**"
-            },
-            {
-              "kicker": "2nde partie",
-              "sous": "C'est-à-dire les dépenses",
-              "titre": "Les **crédits**"
-            }
+          "duree": 12.0,
+          "items": [
+            "Un texte est **déposé** : projet (Gouvernement) ou proposition (parlementaires)",
+            "Examen **en commission** : rapport et amendements",
+            "**Séance publique** : article par article, puis vote",
+            "**Navette** : l'autre assemblée examine à son tour, **CMP** si désaccord",
+            "**Promulgation** par le Président, publication au Journal officiel"
           ],
-          "titre": "Deux parties, dans l'ordre",
-          "type": "etapes",
-          "verrou": true
-        },
-        {
-          "duree": 4.8,
-          "kicker": "Un ordre obligé",
-          "texte": "La seconde partie **ne peut pas être discutée** avant l'adoption de la première.",
-          "type": "texte"
+          "numerote": true,
+          "parcours": true,
+          "titre": "Le parcours d'une loi",
+          "type": "liste"
         }
       ],
-      "source": "Sources : loi organique relative aux lois de finances (art. 34 et 42)"
+      "source": "Sources : Sénat, « La procédure législative » · Assemblée nationale"
     },
     "scrutin": null,
     "type_reel": "pedagogique"
@@ -55,7 +40,8 @@
     9759
   ],
   "reels_pedagogiques_publies": [
-    "budget-deux-parties"
+    "budget-deux-parties",
+    "naissance-loi"
   ],
   "story_du": "2026-11-08"
 }
