@@ -1,54 +1,6 @@
 [
   {
     "date": "2026-11-10",
-    "heure": "12:00",
-    "ordre_du_jour": "Examen du texte — Assurer une meilleure équité en matière de pension alimentaire pour les familles monoparentales en cas de non-respect du droit de visite et d'hébergement",
-    "themes": [
-      "travail",
-      "social",
-      "agriculture",
-      "logement"
-    ],
-    "dossier": "DLR5L17N54904",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-11-10",
-    "heure": "12:00",
-    "ordre_du_jour": "Examen du texte — Consacrer l’exclusivité de la révision constitutionnelle par la procédure prévue à l’article 89 de la Constitution",
-    "themes": [
-      "justice",
-      "institutions"
-    ],
-    "dossier": "DLR5L17N53375",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-11-10",
-    "heure": "12:00",
-    "ordre_du_jour": "Examen du texte — Favoriser le travail en continu et en journée via la commande publique afin d'améliorer les conditions relatives au domaine social et à l'emploi",
-    "themes": [
-      "travail"
-    ],
-    "dossier": "DLR5L17N54724",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-11-10",
-    "heure": "12:00",
-    "ordre_du_jour": "Examen du texte — Renforcer les interdictions de détenir un animal par la création d’un fichier national",
-    "themes": [
-      "environnement"
-    ],
-    "dossier": "DLR5L17N55071",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-11-10",
     "heure": "14:30",
     "ordre_du_jour": "Examen du texte — Protéger nos forêts en encadrant les coupes rases",
     "themes": [
@@ -95,6 +47,29 @@
       "social"
     ],
     "dossier": "DLR5L17N54994",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-10",
+    "heure": "16:30",
+    "ordre_du_jour": "Examen du texte — Proposition de loi visant au renforcement de l'attractivité de l'épargne salariale et à la mise en oeuvre d'une procédure de déblocage exceptionnelle",
+    "themes": [
+      "justice",
+      "travail"
+    ],
+    "dossier": "DLR5L17N53699",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture (Sénat)"
+  },
+  {
+    "date": "2026-11-10",
+    "heure": "16:30",
+    "ordre_du_jour": "Examen du texte — Renforcer le droit de retrait en période de canicule et instaurer un congé climatique",
+    "themes": [
+      "environnement"
+    ],
+    "dossier": "DLR5L17N54858",
     "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
   },
@@ -428,6 +403,28 @@
   {
     "date": "2026-11-20",
     "heure": "09:00",
+    "ordre_du_jour": "Discussion du projet de loi, adopté par le Sénat, autorisant l’approbation de l’accord entre le Gouvernement de la République française et le Gouvernement de la République unie de Tanzanie relatif aux services aériens",
+    "themes": [
+      "transports"
+    ],
+    "dossier": "DLR5L17N54168",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-20",
+    "heure": "09:00",
+    "ordre_du_jour": "Discussion du projet de loi, adopté par le Sénat, autorisant l’approbation de l’accord entre le Gouvernement de la République française et le Gouvernement d’Antigua-et-Barbuda relatif aux services aériens",
+    "themes": [
+      "transports"
+    ],
+    "dossier": "DLR5L17N54169",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-20",
+    "heure": "09:00",
     "ordre_du_jour": "Suite de la discussion du projet de loi, adopté par le Sénat, visant la relance et la décentralisation du logement",
     "themes": [
       "logement",
@@ -440,7 +437,7 @@
   {
     "date": "2026-11-23",
     "heure": "15:00",
-    "ordre_du_jour": "Examen du texte — Assurer une meilleure équité en matière de pension alimentaire pour les familles monoparentales en cas de non-respect du droit de visite et d'hébergement",
+    "ordre_du_jour": "Examen du texte — Assurer une meilleure équité en matière de pension alimentaire pour les familles monoparentales en cas de non-respect du droit de visite et d'hébergement (séance éventuelle)",
     "themes": [
       "travail",
       "social",
@@ -454,7 +451,7 @@
   {
     "date": "2026-11-23",
     "heure": "15:00",
-    "ordre_du_jour": "Examen du texte — Favoriser le travail en continu et en journée via la commande publique afin d'améliorer les conditions relatives au domaine social et à l'emploi",
+    "ordre_du_jour": "Examen du texte — Favoriser le travail en continu et en journée via la commande publique afin d'améliorer les conditions relatives au domaine social et à l'emploi (séance éventuelle)",
     "themes": [
       "travail"
     ],
@@ -465,7 +462,7 @@
   {
     "date": "2026-11-23",
     "heure": "15:00",
-    "ordre_du_jour": "Examen du texte — Renforcer les interdictions de détenir un animal par la création d’un fichier national",
+    "ordre_du_jour": "Examen du texte — Renforcer les interdictions de détenir un animal par la création d’un fichier national (séance éventuelle)",
     "themes": [
       "environnement"
     ],
@@ -476,7 +473,7 @@
   {
     "date": "2026-11-25",
     "heure": "09:00",
-    "ordre_du_jour": "Examen du texte — Consacrer l’exclusivité de la révision constitutionnelle par la procédure prévue à l’article 89 de la Constitution",
+    "ordre_du_jour": "Examen du texte — Consacrer l’exclusivité de la révision constitutionnelle par la procédure prévue à l’article 89 de la Constitution (séance éventuelle)",
     "themes": [
       "justice",
       "institutions"
@@ -488,7 +485,7 @@
   {
     "date": "2026-11-25",
     "heure": "09:00",
-    "ordre_du_jour": "Examen du texte — La réparation des préjudices résultant de la traite et de l'esclavage",
+    "ordre_du_jour": "Examen du texte — La réparation des préjudices résultant de la traite et de l'esclavage (séance éventuelle)",
     "themes": [
       "defense"
     ],
@@ -706,6 +703,113 @@
     "lecture": "Lecture unique"
   },
   {
+    "date": "2026-11-30",
+    "heure": "21:30",
+    "ordre_du_jour": "Suite de la discussion d'une proposition de loi visant à assurer une meilleure équité en matière de pension alimentaire pour les familles monoparentales en cas de non-respect du droit de visite et d’hébergement",
+    "themes": [
+      "travail",
+      "social",
+      "agriculture",
+      "logement"
+    ],
+    "dossier": "DLR5L17N54904",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-30",
+    "heure": "21:30",
+    "ordre_du_jour": "Suite de la discussion d'une proposition de loi visant à favoriser le travail en continu et en journée via la commande publique afin d’améliorer les conditions relatives au domaine social et à l’emploi",
+    "themes": [
+      "travail"
+    ],
+    "dossier": "DLR5L17N54724",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-30",
+    "heure": "21:30",
+    "ordre_du_jour": "Suite de la discussion d'une proposition de loi visant à moderniser les communications d’urgence",
+    "themes": [],
+    "dossier": "DLR5L17N55084",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-30",
+    "heure": "21:30",
+    "ordre_du_jour": "Suite de la discussion d'une proposition de loi visant à renforcer les interdictions de détenir un animal par la création d’un fichier national",
+    "themes": [
+      "environnement"
+    ],
+    "dossier": "DLR5L17N55071",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-01",
+    "heure": "21:00",
+    "ordre_du_jour": "Suite de la discussion de la proposition de loi visant à autoriser le diagnostic préimplantatoire des aneuploïdies au bénéfice des couples, et des femmes engagées dans une démarche d’assistance médicale à la procréation",
+    "themes": [
+      "sante",
+      "social"
+    ],
+    "dossier": "DLR5L17N55079",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-01",
+    "heure": "21:00",
+    "ordre_du_jour": "Suite de la discussion de la proposition de loi visant à interdire la vente de chiens et de chats dans les foires et salons",
+    "themes": [],
+    "dossier": "DLR5L17N50645",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-01",
+    "heure": "21:00",
+    "ordre_du_jour": "Suite de la discussion de la proposition de loi visant à la création d’un ordre national des audioprothésistes",
+    "themes": [],
+    "dossier": "DLR5L17N51549",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-01",
+    "heure": "21:00",
+    "ordre_du_jour": "Suite de la discussion de la proposition de loi visant à réformer la loi sur les fraudes en matière artistique",
+    "themes": [],
+    "dossier": "DLR5L16N46821",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-01",
+    "heure": "21:00",
+    "ordre_du_jour": "Suite de la discussion de la proposition de loi, modifiée par le Sénat, visant à reconnaître les victimes de l’exposition aux essais nucléaires français et à améliorer leur indemnisation",
+    "themes": [
+      "justice",
+      "environnement"
+    ],
+    "dossier": "DLR5L17N53276",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture (Sénat)"
+  },
+  {
+    "date": "2026-12-01",
+    "heure": "21:00",
+    "ordre_du_jour": "Suite de la discussion, en deuxième lecture, de la proposition de loi, adoptée par le Sénat, visant à reconnaître une politique nationale d’adaptation au changement climatique et adapter les mécanismes d’assurance",
+    "themes": [
+      "environnement"
+    ],
+    "dossier": "DLR5L17N53067",
+    "scrutin_annonce": false,
+    "lecture": "2ᵉ lecture"
+  },
+  {
     "date": "2026-12-02",
     "heure": "09:00",
     "ordre_du_jour": "Examen du texte — Projet de loi autorisant la ratification de l'accord de protection des investissements entre l'Union européenne et ses États membres, d'une part, et la République socialiste du Vietnam, d'autre part (séance éventuelle)",
@@ -728,5 +832,179 @@
     "dossier": "DLR5L17N54567",
     "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-02",
+    "heure": "14:00",
+    "ordre_du_jour": "Suite de la discussion de la proposition de loi visant à autoriser le diagnostic préimplantatoire des aneuploïdies au bénéfice des couples, et des femmes engagées dans une démarche d’assistance médicale à la procréation",
+    "themes": [
+      "sante",
+      "social"
+    ],
+    "dossier": "DLR5L17N55079",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-02",
+    "heure": "14:00",
+    "ordre_du_jour": "Suite de la discussion de la proposition de loi visant à interdire la vente de chiens et de chats dans les foires et salons",
+    "themes": [],
+    "dossier": "DLR5L17N50645",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-02",
+    "heure": "14:00",
+    "ordre_du_jour": "Suite de la discussion de la proposition de loi visant à la création d’un ordre national des audioprothésistes",
+    "themes": [],
+    "dossier": "DLR5L17N51549",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-02",
+    "heure": "14:00",
+    "ordre_du_jour": "Suite de la discussion de la proposition de loi visant à réformer la loi sur les fraudes en matière artistique",
+    "themes": [],
+    "dossier": "DLR5L16N46821",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-02",
+    "heure": "14:00",
+    "ordre_du_jour": "Suite de la discussion de la proposition de loi, modifiée par le Sénat, visant à reconnaître les victimes de l’exposition aux essais nucléaires français et à améliorer leur indemnisation",
+    "themes": [
+      "justice",
+      "environnement"
+    ],
+    "dossier": "DLR5L17N53276",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture (Sénat)"
+  },
+  {
+    "date": "2026-12-02",
+    "heure": "14:00",
+    "ordre_du_jour": "Suite de la discussion, en deuxième lecture, de la proposition de loi, adoptée par le Sénat, visant à reconnaître une politique nationale d’adaptation au changement climatique et adapter les mécanismes d’assurance",
+    "themes": [
+      "environnement"
+    ],
+    "dossier": "DLR5L17N53067",
+    "scrutin_annonce": false,
+    "lecture": "2ᵉ lecture"
+  },
+  {
+    "date": "2026-12-03",
+    "heure": "15:00",
+    "ordre_du_jour": "Suite de la discussion de la proposition de loi constitutionnelle visant à consacrer l’exclusivité de la révision constitutionnelle par la procédure prévue à l’article 89 de la Constitution",
+    "themes": [
+      "justice",
+      "institutions"
+    ],
+    "dossier": "DLR5L17N53375",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-03",
+    "heure": "15:00",
+    "ordre_du_jour": "Suite de la discussion de la proposition de loi visant à créer un parc social d’un million d’automobiles électriques à loyer modéré",
+    "themes": [
+      "logement",
+      "transports"
+    ],
+    "dossier": "DLR5L17N55144",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-03",
+    "heure": "15:00",
+    "ordre_du_jour": "Suite de la discussion de la proposition de loi visant à faire contribuer davantage les héritiers les plus fortunés",
+    "themes": [],
+    "dossier": "DLR5L17N55143",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-03",
+    "heure": "15:00",
+    "ordre_du_jour": "Suite de la discussion de la proposition de loi visant à garantir l’accès à un panier diversifié de denrées alimentaires favorables à la santé et vendues à prix coûtant",
+    "themes": [
+      "sante",
+      "agriculture"
+    ],
+    "dossier": "DLR5L17N55142",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-03",
+    "heure": "15:00",
+    "ordre_du_jour": "Suite de la discussion de la proposition de loi visant à instaurer un plan décennal de rénovation du bâti scolaire",
+    "themes": [
+      "education"
+    ],
+    "dossier": "DLR5L17N55127",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-03",
+    "heure": "15:00",
+    "ordre_du_jour": "Suite de la discussion de la proposition de loi visant à la réparation des préjudices résultant de la traite et de l’esclavage",
+    "themes": [
+      "defense"
+    ],
+    "dossier": "DLR5L17N54448",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-03",
+    "heure": "15:00",
+    "ordre_du_jour": "Suite de la discussion de la proposition de loi visant à protéger nos forêts en encadrant les coupes rases",
+    "themes": [
+      "environnement"
+    ],
+    "dossier": "DLR5L17N55141",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-03",
+    "heure": "15:00",
+    "ordre_du_jour": "Suite de la discussion de la proposition de loi visant à renforcer le droit de retrait en période de canicule et à instaurer un congé climatique",
+    "themes": [
+      "environnement"
+    ],
+    "dossier": "DLR5L17N54858",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-03",
+    "heure": "15:00",
+    "ordre_du_jour": "Suite de la discussion de la proposition de résolution, déposée en application de l’article 34-1 de la Constitution, visant à faire reconnaître l’origine professionnelle du cancer du sein",
+    "themes": [
+      "sante",
+      "travail"
+    ],
+    "dossier": "DLR5L17N55118",
+    "scrutin_annonce": false,
+    "lecture": "Lecture unique"
+  },
+  {
+    "date": "2026-12-03",
+    "heure": "15:00",
+    "ordre_du_jour": "Suite de la discussion, en deuxième lecture, de la proposition de loi visant à mieux indemniser les dégâts sur les biens immobiliers causés par le retrait-gonflement de l’argile",
+    "themes": [
+      "logement"
+    ],
+    "dossier": "DLR5L16N47217",
+    "scrutin_annonce": false,
+    "lecture": "2ᵉ lecture"
   }
 ]
