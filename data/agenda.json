@@ -1,54 +1,6 @@
 [
   {
     "date": "2026-11-10",
-    "heure": "12:00",
-    "ordre_du_jour": "Examen du texte — Assurer une meilleure équité en matière de pension alimentaire pour les familles monoparentales en cas de non-respect du droit de visite et d'hébergement",
-    "themes": [
-      "travail",
-      "social",
-      "agriculture",
-      "logement"
-    ],
-    "dossier": "DLR5L17N54904",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-11-10",
-    "heure": "12:00",
-    "ordre_du_jour": "Examen du texte — Consacrer l’exclusivité de la révision constitutionnelle par la procédure prévue à l’article 89 de la Constitution",
-    "themes": [
-      "justice",
-      "institutions"
-    ],
-    "dossier": "DLR5L17N53375",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-11-10",
-    "heure": "12:00",
-    "ordre_du_jour": "Examen du texte — Favoriser le travail en continu et en journée via la commande publique afin d'améliorer les conditions relatives au domaine social et à l'emploi",
-    "themes": [
-      "travail"
-    ],
-    "dossier": "DLR5L17N54724",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-11-10",
-    "heure": "12:00",
-    "ordre_du_jour": "Examen du texte — Renforcer les interdictions de détenir un animal par la création d’un fichier national",
-    "themes": [
-      "environnement"
-    ],
-    "dossier": "DLR5L17N55071",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-11-10",
     "heure": "14:30",
     "ordre_du_jour": "Examen du texte — Protéger nos forêts en encadrant les coupes rases",
     "themes": [
@@ -434,65 +386,6 @@
       "institutions"
     ],
     "dossier": "DLR5L17N54608",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-11-23",
-    "heure": "15:00",
-    "ordre_du_jour": "Examen du texte — Assurer une meilleure équité en matière de pension alimentaire pour les familles monoparentales en cas de non-respect du droit de visite et d'hébergement",
-    "themes": [
-      "travail",
-      "social",
-      "agriculture",
-      "logement"
-    ],
-    "dossier": "DLR5L17N54904",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-11-23",
-    "heure": "15:00",
-    "ordre_du_jour": "Examen du texte — Favoriser le travail en continu et en journée via la commande publique afin d'améliorer les conditions relatives au domaine social et à l'emploi",
-    "themes": [
-      "travail"
-    ],
-    "dossier": "DLR5L17N54724",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-11-23",
-    "heure": "15:00",
-    "ordre_du_jour": "Examen du texte — Renforcer les interdictions de détenir un animal par la création d’un fichier national",
-    "themes": [
-      "environnement"
-    ],
-    "dossier": "DLR5L17N55071",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-11-25",
-    "heure": "09:00",
-    "ordre_du_jour": "Examen du texte — Consacrer l’exclusivité de la révision constitutionnelle par la procédure prévue à l’article 89 de la Constitution",
-    "themes": [
-      "justice",
-      "institutions"
-    ],
-    "dossier": "DLR5L17N53375",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-11-25",
-    "heure": "09:00",
-    "ordre_du_jour": "Examen du texte — La réparation des préjudices résultant de la traite et de l'esclavage",
-    "themes": [
-      "defense"
-    ],
-    "dossier": "DLR5L17N54448",
     "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
   },
