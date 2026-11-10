@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Génère le carrousel d'un post Populous avec HyperFrames (HTML + GSAP rendu en vidéo).
 
-Un carrousel = 5 slides 1080x1350 (4:5) qui forment UNE bande continue : le fond change de couleur sans couture
+Un carrousel = 5 slides 1080x1350 (4:5) (3 pour le type « decision ») qui forment UNE bande continue : le fond change de couleur sans couture
 et un élément traverse chaque frontière entre deux slides. Pour chaque type de post on produit :
   - slide_1.mp4 … slide_5.mp4   chaque slide animée (Instagram : carrousel de vidéos, chaque slide démarre quand on arrive dessus)
   - slide_1.png … slide_5.png   l'image finale de chaque slide (Facebook : diaporama ; repli d'Instagram)
@@ -11,10 +11,11 @@ Contenu RÉEL uniquement : tout vient de data/, elus.json et index.html du dép�
 aucun appel réseau pendant le rendu (GSAP et polices sont dans le dépôt).
 
 Prérequis : Node >= 22 (npx), FFmpeg, Chrome/Chromium, Python 3 + Pillow. HyperFrames est lancé via `npx hyperframes@0.8.222`.
-Usage : python3 carrousels/generer_carrousel.py --type fait|depute|avenir|boussole|vote|loi|presidentiel --sortie DOSSIER [options]
+Usage : python3 carrousels/generer_carrousel.py --type fait|depute|avenir|boussole|vote|loi|presidentiel|decision --sortie DOSSIER [options]
 """
 import argparse
 import datetime
+import json
 import os
 import shutil
 import subprocess
@@ -26,7 +27,8 @@ ICI = Path(__file__).resolve().parent
 REPO = ICI.parent
 MOTEUR = ICI / 'moteur'
 HYPERFRAMES = 'hyperframes@0.8.222'          # version figée : un rendu reste identique avec le temps
-TYPES = ('fait', 'depute', 'avenir', 'boussole', 'vote', 'loi', 'presidentiel')
+TYPES = ('fait', 'depute', 'avenir', 'boussole', 'vote', 'loi', 'presidentiel', 'decision')
+NB_SLIDES = {'decision': 3}                  # 5 slides par defaut ; « decision » (texte vote sans scrutin public : ni chiffres ni hemicycle) en a 3
 IMAGE_FINALE_S = 6.2                         # les slides durent 6,5 s ; on prend l'état final de l'animation
 
 
@@ -37,11 +39,14 @@ def _lancer(cmd, cwd, env, quoi):
     return r.stdout
 
 
-def generer(type_, sortie, *, mmjj=None, depute=None, scrutin=None, titre_vote=None, explication=None, source_explication=None, garder_travail=False):
+def generer(type_, sortie, *, mmjj=None, depute=None, scrutin=None, titre_vote=None, explication=None, source_explication=None, decision=None, garder_travail=False):
     """Rend le carrousel du type demandé dans le dossier `sortie`. Renvoie
     {'slides_mp4': [...], 'slides_png': [...], 'apercu': Path}. Lève RuntimeError au moindre échec (jamais de demi-carrousel)."""
     if type_ not in TYPES:
         raise ValueError(f"type inconnu : {type_}")
+    nb = NB_SLIDES.get(type_, 5)
+    if type_ == 'decision' and not decision:
+        raise RuntimeError("--type decision exige --decision (JSON : titre, date_fr, adopte, explication, source, source_pied).")
     sortie = Path(sortie); sortie.mkdir(parents=True, exist_ok=True)
     travail = Path(tempfile.mkdtemp(prefix=f'carrousel-{type_}-'))
     try:
@@ -56,7 +61,9 @@ def generer(type_, sortie, *, mmjj=None, depute=None, scrutin=None, titre_vote=N
         if type_ == 'depute':
             shutil.copy(REPO / 'assets_social' / 'atlas_portraits.webp', assets / 'atlas_portraits.webp')
 
-        env = {**os.environ, 'POPULOUS_REPO': str(REPO)}
+        env = {**os.environ, 'POPULOUS_REPO': str(REPO), 'NB_SLIDES': str(nb)}
+        if decision:
+            env['DECISION_JSON'] = json.dumps(decision, ensure_ascii=False)
         extra = []
         if type_ == 'fait':
             extra = [mmjj or datetime.date.today().strftime('%m-%d')]
@@ -88,7 +95,7 @@ def generer(type_, sortie, *, mmjj=None, depute=None, scrutin=None, titre_vote=N
 
         (projet / 'sortie').mkdir()
         slides_mp4, slides_png = [], []
-        for i in range(5):
+        for i in range(nb):
             _lancer([sys.executable, 'construire.py', 'slide', str(i), *extra], projet, env, f'construction de la slide {i + 1}')
             rendre(f'slide_{i + 1}')
             mp4, png = projet / 'sortie' / f'slide_{i + 1}.mp4', projet / 'sortie' / f'slide_{i + 1}.png'
@@ -121,6 +128,7 @@ if __name__ == '__main__':
     p.add_argument('--titre-vote', help="(vote, loi) titre synthétique relu par un humain")
     p.add_argument('--explication', help="(loi) JSON [[titre, texte], ...] : 2 ou 3 blocs « de quoi parle ce texte », relus par un humain")
     p.add_argument('--source-explication', help="(loi) source citée sous l'explication")
+    p.add_argument('--decision', help="(decision) JSON : titre, date_fr, adopte, explication [[titre, texte] x3], source, source_pied")
     a = p.parse_args()
-    r = generer(a.type, a.sortie, mmjj=a.mmjj, depute=a.depute, scrutin=a.scrutin, titre_vote=a.titre_vote, explication=a.explication, source_explication=a.source_explication)
+    r = generer(a.type, a.sortie, mmjj=a.mmjj, depute=a.depute, scrutin=a.scrutin, titre_vote=a.titre_vote, explication=a.explication, source_explication=a.source_explication, decision=json.loads(a.decision) if a.decision else None)
     print('OK', *[str(x) for x in r['slides_png']], r['apercu'], sep='\n')

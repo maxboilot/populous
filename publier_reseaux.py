@@ -414,6 +414,20 @@ def contenu_loi():
         legende = generer_post_vote.legende(vote, titre, contours)
         return {'legende': legende, 'cle_etat': 'lois_publiees', 'valeur_etat': sorted(deja | {vote['numero']}),
                 'numero_scrutin': vote['numero'], 'titre_loi': titre, 'explication': blocs, 'source_explication': source}
+    return _contenu_loi_sans_scrutin(aujourdhui)
+
+
+def _contenu_loi_sans_scrutin(aujourdhui):
+    """Carrousel (3 slides, type de rendu « decision ») du prochain texte adopte / rejete SANS scrutin public non encore publie en carrousel, ou None.
+    Les scrutins publics passent avant (ils ont leurs chiffres) ; l'etat est separe de celui des Reels (decisions_carrousel_publiees)."""
+    deja = set(lire_etat_publication().get('decisions_carrousel_publiees', []))
+    for d in _decisions_sans_scrutin(aujourdhui):
+        if d['id'] in deja:
+            continue
+        info = _info_decision(d); blocs, source = explication_decision(d)
+        return {'legende': legende_decision(info), 'cle_etat': 'decisions_carrousel_publiees', 'valeur_etat': sorted(deja | {d['id']}), 'type_rendu': 'decision',
+                'decision': {'titre': info['titre'], 'date_fr': _date_fr(d['date']), 'adopte': bool(d['adopte']), 'explication': blocs, 'source': source,
+                             'source_pied': f"Source : Assemblée nationale · décision du {_date_fr(d['date'])}"}}
     return None
 
 
@@ -516,6 +530,8 @@ def parametres_carrousel(type_, contenu):
         return {'mmjj': datetime.date.today().strftime('%m-%d')}
     if type_ == 'depute':
         return {'depute': contenu['nom_depute'], 'scrutin': contenu.get('numero_scrutin')}
+    if type_ == 'loi' and contenu.get('type_rendu') == 'decision':
+        return {'decision': contenu['decision']}
     if type_ == 'loi':
         return {'scrutin': contenu['numero_scrutin'], 'titre_vote': contenu['titre_loi'], 'explication': json.dumps(contenu['explication'], ensure_ascii=False), 'source_explication': contenu['source_explication']}
     return {}
@@ -1054,7 +1070,7 @@ def main():
 
     dossier_sortie = DOSSIER / 'assets_social' / 'carrousels' / f'{datetime.date.today().isoformat()}-{args.type}'
     print(f"Generation du carrousel « {args.type} » (HyperFrames) -> {dossier_sortie}")
-    carrousel = generer_carrousel.generer(args.type, dossier_sortie, **params)    # leve RuntimeError au moindre echec : jamais de demi-carrousel publie
+    carrousel = generer_carrousel.generer(contenu.get('type_rendu') or args.type, dossier_sortie, **params)    # leve RuntimeError au moindre echec : jamais de demi-carrousel publie
     print(f"Carrousel : {len(carrousel['slides_png'])} slides, apercu {carrousel['apercu']}")
     print(f"Legende :\n{contenu['legende']}\n")
 
@@ -1079,7 +1095,7 @@ def main():
         if not args.sans_video_instagram:
             try:
                 parent = preparer_carrousel_instagram(ig_user_id, page_token, [('VIDEO', c) for c in carrousel['slides_mp4']], contenu['legende'])
-                print("Instagram : carrousel de 5 videos pret.")
+                print(f"Instagram : carrousel de {len(carrousel['slides_mp4'])} videos pret.")
             except Exception as e:      # rien n'est public a ce stade : repli sur les images, sans risque de doublon
                 print(f"::warning::Voie video Instagram impossible ({e}) : repli sur le carrousel d'images.")
         if parent is None:
@@ -1087,7 +1103,7 @@ def main():
                 ids_photos = televerser_photos_facebook_non_publiees(page_id, page_token, carrousel['slides_png'])
             urls_images = [url_publique_photo(pid, page_token) for pid in ids_photos]
             parent = preparer_carrousel_instagram(ig_user_id, page_token, [('IMAGE', u) for u in urls_images], contenu['legende'])
-            print("Instagram : carrousel de 5 images pret.")
+            print(f"Instagram : carrousel de {len(carrousel['slides_png'])} images pret.")
         reponse_ig = publier_conteneur_instagram(ig_user_id, page_token, parent)
         print(f"Instagram publie : {reponse_ig}")
 

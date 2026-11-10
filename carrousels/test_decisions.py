@@ -144,5 +144,56 @@ class TestReel(unittest.TestCase):
         self.assertEqual(mem['decisions_reel_publiees'], ['U1']); self.assertEqual(mem['dernier_reel']['type_reel'], 'loi_sans_scrutin')
 
 
+class TestCarrousel(unittest.TestCase):
+    def contenu(self, scrutins, decisions, etat=None):
+        with mock.patch.object(pr, '_scrutins_solennels_de_texte', lambda d: list(scrutins)), mock.patch.object(pr, '_decisions_sans_scrutin', lambda d: list(decisions)), \
+             mock.patch.object(pr.generer_post_vote, 'charger_contours', lambda s: []), mock.patch.object(pr, 'lire_etat_publication', lambda: dict(etat or {})):
+            return pr.contenu_loi()
+
+    def test_texte_sans_scrutin_donne_un_carrousel_a_3_slides(self):
+        c = self.contenu([], [dec(date='2026-10-29')])
+        self.assertEqual((c['type_rendu'], c['cle_etat'], c['valeur_etat']), ('decision', 'decisions_carrousel_publiees', ['U1']))
+        d = c['decision']; self.assertEqual((d['adopte'], d['date_fr']), (True, '29 octobre 2026')); self.assertEqual([b[0] for b in d['explication']], ['Ce que c’est', 'Ce vote', 'La suite'])
+        self.assertIn('Dossier législatif', c['legende']); self.assertEqual(pr.parametres_carrousel('loi', c), {'decision': d})
+
+    def test_les_scrutins_passent_avant_et_l_etat_est_separe_de_celui_des_reels(self):
+        a = vote("l'ensemble du projet de loi b", numero=11); a['date'] = datetime.date.today().isoformat()
+        self.assertEqual(self.contenu([a], [dec()])['numero_scrutin'], 11)
+        self.assertEqual(self.contenu([], [dec()], {'decisions_reel_publiees': ['U1']})['type_rendu'], 'decision')        # deja en Reel : le carrousel reste a faire
+        self.assertIsNone(self.contenu([], [dec()], {'decisions_carrousel_publiees': ['U1']}))
+        self.assertEqual(self.contenu([], [dec(), dec(id='U2')], {'decisions_carrousel_publiees': ['U1']})['valeur_etat'], ['U1', 'U2'])
+
+    def test_main_publie_3_slides_et_memorise(self):
+        mem = {}; c = self.contenu([], [dec()]); rendu = {}
+        def generer(type_, sortie, **kw):
+            rendu.update(type_=type_, **kw); return {'slides_mp4': ['1.mp4', '2.mp4', '3.mp4'], 'slides_png': ['1.png', '2.png', '3.png'], 'apercu': 'a.mp4'}
+        envoyes = {}
+        with mock.patch.object(pr, 'CHOIX', {'loi': lambda: c}), mock.patch.object(pr.generer_carrousel, 'generer', generer), mock.patch.object(pr, 'lire_etat_publication', lambda: dict(mem)), \
+             mock.patch.object(pr, 'ecrire_etat_publication', lambda e: mem.update(e)), mock.patch.object(pr, 'lire_env', lambda: {'IG_USER_ID': 'IG', 'FB_PAGE_TOKEN': 'T', 'FB_PAGE_ID': 'P'}), \
+             mock.patch.object(pr, 'publier_diaporama_facebook', lambda p, t, imgs, leg: ({'id': 'f'}, ['a', 'b', 'c'])), \
+             mock.patch.object(pr, 'preparer_carrousel_instagram', lambda u, t, el, leg: envoyes.update(n=len(el)) or 'parent'), mock.patch.object(pr, 'publier_conteneur_instagram', lambda *a: {'id': 'ig'}), \
+             mock.patch.object(sys, 'argv', ['publier_reseaux.py', '--type', 'loi', '--publier']):
+            pr.main()
+        self.assertEqual(rendu['type_'], 'decision'); self.assertEqual(rendu['decision']['titre'], c['decision']['titre']); self.assertEqual(envoyes['n'], 3)
+        self.assertEqual(mem['decisions_carrousel_publiees'], ['U1'])
+
+
+class TestMoteur(unittest.TestCase):
+    def test_cartes_auto_tiennent_dans_la_zone(self):
+        sys.path.insert(0, str(RACINE / 'carrousels' / 'moteur' / 'commun'))
+        import carrousel
+        court = [['Ce que c’est', 'a ' * 20], ['Ce vote', 'b ' * 20], ['La suite', 'c ' * 20]]
+        long_ = [['Ce que c’est', 'a' * 90], ['Ce vote', 'b' * 80], ['La suite', 'c' * 260]]
+        for expl in (court, long_, long_[:2]):
+            html, fin = carrousel.cartes_auto(expl, y0=330)
+            self.assertLessEqual(fin, 330 + 790); self.assertEqual(html.count('class="ex"'), len(expl))
+        self.assertIn('font-size:35px', carrousel.cartes_auto(court)[0]); self.assertNotIn('font-size:35px', carrousel.cartes_auto(long_)[0])
+
+    def test_nombre_de_slides_par_defaut_inchange(self):
+        sys.path.insert(0, str(RACINE / 'carrousels' / 'moteur' / 'commun'))
+        import carrousel
+        self.assertEqual(carrousel.NB, 5); self.assertEqual(carrousel.progres(0).count('class="pg"'), 5); self.assertIn('left:187px', carrousel.progres(0))
+
+
 if __name__ == '__main__':
     unittest.main()

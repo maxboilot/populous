@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=%%RW%%, height=1350" />
+    <script src="assets/gsap.min.js"></script>
+    <style>
+      /*%%CSS_COMMUN%%*/
+      /*%%CSS_CARROUSEL%%*/
+      #cam { width:3240px; }
+      #tt1 { position:absolute; left:90px; top:200px; width:900px; font-size:60px; line-height:72px; letter-spacing:-.01em; color:#fff; }
+      #stamp { position:absolute; left:220px; top:700px; width:640px; height:230px; border:16px solid; border-radius:38px; background:#0E1434; text-align:center; font-size:120px; line-height:198px; }
+      #vbar { position:absolute; left:100px; top:1290px; width:2040px; height:26px; border-radius:13px; transform-origin:0 50%; background:%%STAMPCOL%%; }
+      .ex { position:absolute; left:70px; width:940px; border-radius:44px; background:rgba(255,255,255,.085); border:2px solid rgba(160,180,255,.22); transform-origin:50% 50%; }
+      .exe { position:absolute; left:46px; top:30px; font-size:26px; letter-spacing:.09em; text-transform:uppercase; color:#8FA6FF; line-height:1; }
+      .ext { position:absolute; left:46px; top:76px; width:850px; font-size:35px; line-height:46px; font-weight:700; color:#fff; letter-spacing:-.005em; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="%%DUR%%" data-width="%%RW%%" data-height="1350">
+      <div id="cam">
+        <div class="abs" style="left:0;top:0;width:3240px;height:1350px;background:linear-gradient(to right,#0B1238 0px,#0B1238 1590px,#1C34C6 1990px,#1C34C6 2090px,#F3F3F2 2560px,#F3F3F2 3240px)"></div>
+        <div class="abs" style="left:0;top:0;width:2160px;height:1350px;background:radial-gradient(ellipse 21% 50% at 25% 40%,rgba(70,104,255,.30),rgba(70,104,255,0) 100%),radial-gradient(ellipse 21% 50% at 75% 40%,rgba(70,104,255,.30),rgba(70,104,255,0) 100%)"></div>
+        <div class="abs" style="left:2160px;top:0;width:1080px;height:1350px;background:radial-gradient(ellipse 45% 50% at 50% 42%,rgba(255,255,255,.55),rgba(255,255,255,0) 100%)"></div>
+
+        <!-- pont : un trait de la couleur du tampon traverse les deux premieres slides -->
+        <div id="vbar"></div>
+
+        <!-- ===== SLIDE 1 : l'accroche ===== -->
+        <div class="sl" style="left:0">
+          %%PROGRES1%%
+          <div id="s1e" class="eb" style="left:90px;top:118px;color:#96ACFF">%%EYEBROW%%</div>
+          <div id="s1d" class="t" style="left:490px;width:500px;text-align:right;top:118px;font-size:32px;letter-spacing:.04em;color:#A0B0F0">%%DATE%%</div>
+          <div id="tt1">%%TITRE%%</div>
+          <div id="stamp" style="color:%%STAMPCOL%%;border-color:%%STAMPCOL%%">%%STAMP%%</div>
+          <div id="s1c" class="chip dark" style="left:90px;top:1100px">Glisse pour voir le détail <i id="s1a">→</i></div>
+        </div>
+
+        <!-- ===== SLIDE 2 : de quoi parle ce texte ===== -->
+        <div class="sl" style="left:1080px">
+          %%PROGRES2%%
+          <div id="s2a" class="gh" style="top:128px;font-size:84px;color:#fff">De quoi parle ce texte ?</div>
+          <div id="s2b" class="gh" style="top:246px;font-size:40px;font-weight:500;color:#A0B0F0">Trois choses à savoir.</div>
+          %%CARTES%%
+          <div id="s2s" class="gh" style="top:%%SRC_TOP%%px;left:70px;width:940px;white-space:normal;font-size:23px;line-height:30px;font-weight:500;color:#8E9CD8">%%SRC_EXPL%%</div>
+        </div>
+
+        <!-- ===== SLIDE 3 : à toi de jouer ===== -->
+        <div class="sl" style="left:2160px">
+          %%PROGRES3%%
+          <div id="s5c" class="card" style="left:70px;top:170px;width:940px;height:800px"></div>
+          <div id="s5q1" class="q" style="left:5px;top:-25px">“</div>
+          <div id="s5q2" class="q" style="left:775px;top:775px">”</div>
+          <div id="s5e" class="eb" style="left:130px;top:250px">%%EYEBROW%%</div>
+          <div id="s5a" class="t" style="left:130px;top:310px;font-size:62px;color:var(--ink)">Qui a voté quoi,</div>
+          <div id="s5b" class="t" style="left:130px;top:392px;font-size:62px;color:var(--accent)">siège par siège.</div>
+          <div id="s5p" class="gh" style="top:580px;font-size:150px;letter-spacing:-.02em;color:var(--ink)">%%LETTRES%%</div>
+          <div id="s5t" class="gh" style="top:780px;font-size:42px;font-weight:700;color:var(--corps)">Chaque scrutin, sur Populous.</div>
+          <div id="s5b1" class="bdg" style="left:70px;top:1030px"><small>Télécharger dans</small><b>l’App Store</b></div>
+          <div id="s5b2" class="bdg" style="left:560px;top:1030px"><small>DISPONIBLE SUR</small><b>Google Play</b></div>
+          <div id="s5s" class="gh" style="top:1205px;font-size:24px;font-weight:500;color:var(--gris)">%%SOURCE_PIED%%</div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      /*%%LIB_JS%%*/
+      /*%%JS_CARROUSEL%%*/
+      /* ---------- slide 1 ---------- */
+      if (on(0)) {
+        const t0 = st(0);
+        tl.fromTo(["#s1e", "#s1d"], { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out", stagger: 0.08 }, t0);
+        words("#tt1 .w", t0 + 0.2, 0.05);
+        tl.fromTo("#stamp", { scale: 2.6, opacity: 0, rotation: -5.7 }, { scale: 1, opacity: 1, rotation: -5.7, duration: 0.18, ease: "power3.out", transformOrigin: "50% 50%" }, t0 + 1.5);
+        tl.fromTo("#stamp", { x: 0 }, { x: 0, keyframes: [{ x: 14, duration: 0.05 }, { x: -10, duration: 0.05 }, { x: 5, duration: 0.05 }, { x: 0, duration: 0.05 }], immediateRender: false }, t0 + 1.68);
+        tl.fromTo("#vbar", { scaleX: 0 }, { scaleX: 1, duration: 1.4, ease: "power3.inOut" }, t0 + 0.4);
+        rise("#s1c", t0 + 2.3, 30, 0.5); chipArrow("#s1a", t0 + 2.8);
+      }
+      /* ---------- slide 2 : de quoi parle ce texte ---------- */
+      if (on(1)) {
+        const t0 = st(1);
+        blurIn("#s2a", t0, 0, 0.55); rise("#s2b", t0 + 0.25, 18, 0.4);
+        q(".ex").forEach((c, i) => {
+          tl.fromTo(c, { y: 70, opacity: 0, scale: 0.96, transformOrigin: "50% 50%" }, { y: 0, opacity: 1, scale: 1, duration: 0.6, ease: "expo.out" }, t0 + 0.65 + i * 0.5);
+          tl.fromTo(c.querySelector(".ext"), { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, t0 + 0.85 + i * 0.5);
+        });
+        tl.fromTo("#s2s", { opacity: 0 }, { opacity: 0.9, duration: 0.4 }, t0 + 2.5);
+      }
+      /* ---------- slide 3 ---------- */
+      if (on(2)) {
+        const t0 = st(2);
+        tl.fromTo("#s5c", { y: 90, scale: 0.92, opacity: 0, transformOrigin: "50% 50%" }, { y: 0, scale: 1, opacity: 1, duration: 0.8, ease: "expo.out" }, t0);
+        pop(["#s5q1", "#s5q2"], t0 + 0.15, 0.7); rise("#s5e", t0 + 0.4, 10, 0.4); blurIn(["#s5a", "#s5b"], t0 + 0.5, 60, 0.5, 0.15);
+        tl.fromTo("#s5p .l", { y: 110, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "back.out(2.4)", stagger: 0.04 }, t0 + 1.0);
+        rise("#s5t", t0 + 1.6, 20, 0.45);
+        tl.fromTo(["#s5b1", "#s5b2"], { scale: 1.6, opacity: 0, transformOrigin: "50% 50%" }, { scale: 1, opacity: 1, duration: 0.45, ease: "power3.out", stagger: 0.2 }, t0 + 2.0);
+        tl.fromTo("#s5s", { opacity: 0 }, { opacity: 0.9, duration: 0.4 }, t0 + 2.7);
+      }
+      fin();
+    </script>
+  </body>
+</html>

@@ -37,13 +37,10 @@ for k in ("pour", "contre", "abstention", "absent"):
 BINS = [{"k": "pour", "n": TY["pour"], "x": 170}, {"k": "contre", "n": TY["contre"], "x": 410}, {"k": "abstention", "n": TY["abstention"], "x": 650}, {"k": "absent", "n": TY["absent"], "x": 890}]
 LAB = {"pour": "POUR", "contre": "CONTRE", "abstention": "ABSTENTION", "absent": "ABSENTS"}
 compt = "".join(f'<div id="cnt{i}" class="cnt" style="left:{b["x"] - 120}px">0</div><div class="lab" style="left:{b["x"] - 120}px">{LAB[b["k"]]}</div>' for i, b in enumerate(BINS))
-cartes = ""
-for i, (tt, tx) in enumerate(EXPL):
-    y = 312 + (3 - len(EXPL)) * 135 + i * 270
-    cartes += f'<div class="ex" id="ex{i}" style="top:{y}px"><div class="exe">{tt}</div><div class="ext">{tx}</div></div>'
+cartes, fin_cartes = carrousel.cartes_auto(EXPL, y0=312)
 compact = {k: SE[k] for k in ("A", "R", "ROW", "GRP", "POS")}
 carrousel.assembler(HERE, "modele.html", {"%%BARRE%%": barre, "%%ETIQ_BARRE%%": etiq, "%%BARW%%": str(BARW), "%%DATE%%": DATE_FR.upper(), "%%TITRE%%": " ".join(f'<span class="w">{w}</span>' for w in TT.split()),
-    "%%STAMP%%": STAMP, "%%STAMPCOL%%": STAMPCOL, "%%COMPTEURS%%": compt, "%%CARTES%%": cartes, "%%SOUS_EXPL%%": {2: "Deux choses à savoir.", 3: "Trois choses à savoir."}[len(EXPL)], "%%EYEBROW%%": EYEBROW, "%%VOTANTS%%": str(VOTANTS), "%%SRC_EXPL%%": SRC_EXPL, "%%SIEGES_JSON%%": json.dumps(compact), "%%BINS_JSON%%": json.dumps(BINS),
+    "%%STAMP%%": STAMP, "%%STAMPCOL%%": STAMPCOL, "%%COMPTEURS%%": compt, "%%CARTES%%": cartes, "%%SOUS_EXPL%%": {2: "Deux choses à savoir.", 3: "Trois choses à savoir."}[len(EXPL)], "%%EYEBROW%%": EYEBROW, "%%VOTANTS%%": str(VOTANTS), "%%SRC_EXPL%%": SRC_EXPL, "%%SRC_TOP%%": str(max(fin_cartes + 30, 1138)), "%%SIEGES_JSON%%": json.dumps(compact), "%%BINS_JSON%%": json.dumps(BINS),
     "%%LETTRES%%": "".join(f'<span class="l" style="display:inline-block">{c}</span>' for c in "Populous"),
     "%%SOURCE_PIED%%": f"Source : Assemblée nationale · scrutin n°{SCR['numero']} du {DATE_FR}"}, MODE, IDX, DUR, RW, sombres=(0, 1, 2, 3))
 print("index.html :", MODE, IDX if MODE == "slide" else "", "| scrutin", SCR["numero"], STAMP)
