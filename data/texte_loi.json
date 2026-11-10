@@ -1,394 +1,90 @@
 {
-  "numero": 9769,
+  "numero": 9793,
   "statut": "publie",
   "portee": "article",
-  "article_ref": "premier",
+  "article_ref": "17",
   "source_texte": "commission",
   "source": "https://www.assemblee-nationale.fr/dyn/opendata/PRJLANR5L17BTC1779.html",
   "articles": [
     {
-      "article": "Article 1er",
-      "texte": "Le chapitre II du titre III du livre III de la première partie du code de la défense est ainsi rédigé :"
+      "article": "Article 17",
+      "texte": "I. – Les personnes mentionnées à l’article 14 notifient sans retard injustifié à l’autorité nationale de sécurité des systèmes d’information tout incident ayant un impact important sur la fourniture de leurs services."
     },
     {
-      "article": "Article 1er",
-      "texte": "« Résilience des activités d’importance vitale"
+      "article": "Article 17",
+      "texte": "Un incident est considéré comme important s’il :"
     },
     {
-      "article": "Article 1er",
-      "texte": "« Dispositions générales relatives aux activités d’importance vitale"
+      "article": "Article 17",
+      "texte": "1° A causé ou est susceptible de causer une perturbation opérationnelle grave des services ou des pertes financières significatives pour la personne concernée ;"
     },
     {
-      "article": "Article 1er",
-      "texte": "« Art. L. 1332‑1. – Pour l’application du présent chapitre, on entend par :"
+      "article": "Article 17",
+      "texte": "2° A affecté ou est susceptible d’affecter d’autres personnes physiques ou morales en causant des dommages matériels, corporels ou moraux considérables."
     },
     {
-      "article": "Article 1er",
-      "texte": "« 1° Activités d’importance vitale : les activités indispensables au fonctionnement de l’économie ou de la société ainsi qu’à la défense ou à la sécurité de la Nation ;"
+      "article": "Article 17",
+      "texte": "II. – Les personnes mentionnées à l’article 14 soumettent à l’autorité nationale de sécurité des systèmes d’information :"
     },
     {
-      "article": "Article 1er",
-      "texte": "« 2° Infrastructure critique : tout ou partie d’un bien, d’une installation, d’un équipement, d’un réseau ou d’un système nécessaire à l’exercice d’une activité d’importance vitale ou dont une perturbation pourrait mettre gravement en cause la santé de la population ou l’environnement ;"
+      "article": "Article 17",
+      "texte": "a) Sans retard injustifié et au plus tard vingt‑quatre heures après avoir eu connaissance de l’incident important, une notification initiale qui, le cas échéant, indique si l’incident important est susceptible d’avoir été causé par des actes illicites ou malveillants ou s’il pourrait avoir un impact en dehors du territoire national ;"
     },
     {
-      "article": "Article 1er",
-      "texte": "« Parmi les infrastructures critiques, sont distingués :"
+      "article": "Article 17",
+      "texte": "b) Sans retard injustifié et au plus tard soixante‑douze heures après avoir eu connaissance de l’incident important, une notification intermédiaire qui met à jour les informations mentionnées au a du présent II et fournit une évaluation initiale de l’incident important, y compris de sa gravité et de son impact, ainsi que des indicateurs de compromission lorsqu’ils sont disponibles. Par dérogation, les entités mentionnées au 4° de l’article 8 et au 3° de l’article 9 procèdent à cette notification sans retard injustifié et au plus tard vingt‑quatre heures après avoir eu connaissance de l’incident important ayant un impact sur la fourniture de leurs services de confiance ;"
     },
     {
-      "article": "Article 1er",
-      "texte": "« a) Les points d’importance vitale, c’est‑à‑dire les installations les plus sensibles, notamment celles qui sont difficilement substituables ;"
+      "article": "Article 17",
+      "texte": "c) À la demande de l’autorité nationale de sécurité des systèmes d’information, un rapport sur les mises à jour pertinentes de la situation ;"
     },
     {
-      "article": "Article 1er",
-      "texte": "« b) Les systèmes d’information d’importance vitale, c’est‑à‑dire les systèmes d’information nécessaires à l’exercice d’une activité d’importance vitale ou à la gestion, à l’utilisation ou à la protection d’une ou de plusieurs infrastructures critiques ;"
+      "article": "Article 17",
+      "texte": "d) Au plus tard un mois après la notification intermédiaire mentionnée au b du présent II, un rapport final, sous réserve que l’incident soit traité ;"
     },
     {
-      "article": "Article 1er",
-      "texte": "« 3° Incident : un événement qui perturbe ou est susceptible de perturber de manière importante l’exercice d’une activité d’importance vitale ;"
+      "article": "Article 17",
+      "texte": "e) Dans le cas contraire, un rapport d’avancement, au plus tard un mois après la notification intermédiaire mentionnée au même b, devant être complété par un rapport final dans un délai d’un mois à compter du traitement de l’incident."
     },
     {
-      "article": "Article 1er",
-      "texte": "« 4° Résilience : la capacité d’un opérateur à prévenir tout type d’incident, à s’en protéger et à y résister, afin d’assurer la continuité de la ou des activités d’importance vitale qu’il exerce."
+      "article": "Article 17",
+      "texte": "L’autorité nationale de sécurité des systèmes d’information fournit, sans retard injustifié et si possible dans les vingt‑quatre heures suivant la réception de la première notification reçue, une réponse à la personne émettrice de la notification."
     },
     {
-      "article": "Article 1er",
-      "texte": "« Art. L. 1332‑2. – (Non modifié) I. – Sont désignés opérateurs d’importance vitale par l’autorité administrative :"
+      "article": "Article 17",
+      "texte": "Pour prévenir un incident concernant une entité essentielle ou une entité importante ou pour faire face à un incident en cours ou lorsque la divulgation de l’incident est dans l’intérêt public, l’autorité nationale de sécurité des systèmes d’information peut, après avoir consulté l’entité essentielle ou importante concernée, exiger de celle‑ci qu’elle informe le public de l’incident ou le faire elle‑même."
     },
     {
-      "article": "Article 1er",
-      "texte": "« 1° Les opérateurs publics ou privés exerçant, au moyen d’une ou de plusieurs infrastructures critiques situées sur le territoire national, une activité d’importance vitale."
+      "article": "Article 17",
+      "texte": "III. – Le cas échéant, les entités essentielles et importantes notifient sans retard injustifié aux destinataires de leurs services :"
     },
     {
-      "article": "Article 1er",
-      "texte": "« L’autorité administrative précise, le cas échéant, dans l’acte de désignation de l’opérateur d’importance vitale, l’activité ou la liste des activités d’importance vitale exercées par l’opérateur qui constituent des services essentiels au fonctionnement du marché intérieur de l’Union européenne définis par le règlement délégué (UE) 2023/2450 de la Commission du 25 juillet 2023 complétant la directive (UE) 2022/2557 du Parlement européen et du Conseil en établissant une liste de services essentiels et qui, à ce titre, justifient que cet opérateur soit regardé comme une entité critique au sens de cette directive ;"
+      "article": "Article 17",
+      "texte": "1° Les incidents importants ayant un impact direct sur les destinataires de leurs services, notamment lorsqu’ils ont causé ou sont susceptibles de causer l’extraction de données sensibles de ces derniers ou de causer la mort ou des dommages considérables à la santé d’une personne physique destinataire ou lorsqu’ils consistent en un accès non autorisé effectif au réseau et aux systèmes d’information de l’entité, susceptible d’être malveillant et de causer une perturbation opérationnelle grave pour le destinataire ;"
     },
     {
-      "article": "Article 1er",
-      "texte": "« 2° Les opérateurs publics ou privés, les gestionnaires, les propriétaires ou les exploitants d’établissements mentionnés à l’article L. 511‑1 du code de l’environnement ou comprenant une installation nucléaire de base mentionnée à l’article L. 593‑2 du même code, lorsque la destruction ou l’avarie d’une ou de plusieurs installations de ces établissements peut présenter un danger d’une particulière gravité pour la population ou l’environnement."
+      "article": "Article 17",
+      "texte": "2° Toutes les mesures ou corrections que ces destinataires peuvent appliquer en réponse à une vulnérabilité critique qui les affecterait potentiellement. Le cas échéant, les entités informent également ces destinataires de la vulnérabilité critique elle-même."
     },
     {
-      "article": "Article 1er",
-      "texte": "« II. – Ces opérateurs mettent en œuvre, à leurs frais, les obligations leur incombant prévues au présent chapitre."
+      "article": "Article 17",
+      "texte": "L’obligation de notification prévue au présent III ne s’étend pas aux informations dont la divulgation porterait atteinte aux intérêts de la défense et de la sécurité nationale."
     },
     {
-      "article": "Article 1er",
-      "texte": "« Lorsqu’un opérateur d’importance vitale exerce une activité d’importance vitale ou gère une infrastructure critique pour le compte d’une personne publique, cette dernière en est informée par l’autorité administrative."
+      "article": "Article 17",
+      "texte": "IV. – En cas d’incident important ou de vulnérabilité critique, les personnes mentionnées au premier alinéa du I peuvent communiquer à l’autorité nationale de sécurité des systèmes d’information la liste des destinataires de leurs services. Cette autorité tient compte, dans l’usage qu’elle fait de ces informations, des intérêts économiques de ces personnes et veille à ne pas révéler d’informations susceptibles de porter atteinte à leur sécurité et au secret en matière commerciale et industrielle."
     },
     {
-      "article": "Article 1er",
-      "texte": "« Dispositions applicables aux opérateurs d’importance vitale"
+      "article": "Article 17",
+      "texte": "V. – L’autorité nationale de sécurité des systèmes d’information informe la Commission nationale de l’informatique et des libertés de tout incident mentionné au premier alinéa du I susceptible d’entraîner une violation de données à caractère personnel."
     },
     {
-      "article": "Article 1er",
-      "texte": "« Art. L. 1332‑3. – (Non modifié) Les opérateurs d’importance vitale réalisent une analyse des risques de toute nature, y compris à caractère terroriste, qui pourraient perturber l’exercice de leurs activités d’importance vitale ou la sécurité de leurs infrastructures critiques, notamment des points d’importance vitale désignés par l’autorité administrative."
+      "article": "Article 17",
+      "texte": "VI. – Un décret en Conseil d’État détermine les modalités d’application du présent article. Il précise notamment la procédure applicable et les critères d’appréciation du caractère important et critique des incidents et des vulnérabilités."
     },
     {
-      "article": "Article 1er",
-      "texte": "« Cette analyse est réalisée dans un délai de neuf mois à compter de la désignation prévue au I de l’article L. 1332‑2 et est réévaluée au moins tous les quatre ans."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Sur le fondement de cette analyse, les opérateurs d’importance vitale adoptent des mesures proportionnées de résilience, techniques, opérationnelles et organisationnelles, afin d’assurer la continuité des activités d’importance vitale qu’ils exercent et de sauvegarder leurs infrastructures critiques."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« L’analyse des risques ainsi que les mesures de résilience sont détaillées dans un document dénommé “plan de résilience opérateur” élaboré par l’opérateur, dans un délai de dix mois à compter de la désignation prévue au même I, et approuvé par l’autorité administrative."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Lorsque, en application d’accords internationaux régulièrement ratifiés ou approuvés, de lois ou de règlements, l’opérateur a déjà décrit dans un document particulier tout ou partie des mesures prévues au troisième alinéa du présent article, l’autorité administrative peut décider que ce document tient lieu, pour tout ou partie, du “plan de résilience opérateur”."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« En cas de refus de l’opérateur d’élaborer ce plan, de le modifier afin de le rendre conforme aux exigences prévues au présent article ou de le mettre en œuvre, l’autorité administrative met en demeure l’opérateur de le réaliser, de le modifier ou de le mettre en œuvre dans un délai qu’elle fixe et qui ne peut être inférieur à un mois."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« L’autorité administrative peut assortir cette mise en demeure d’une astreinte d’un montant maximal de 5 000 euros par jour de retard à compter de l’expiration du délai imparti par la mise en demeure."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« L’astreinte peut également être prononcée à tout moment, après l’expiration du délai imparti par la mise en demeure, s’il n’y a pas été satisfait, après que l’intéressé a été invité à présenter ses observations."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Les opérateurs mentionnés au 2° du I de l’article L. 1332‑2 mettent en œuvre ces mesures de résilience sous réserve des dispositions du titre Ier et du chapitre III du titre IX du livre V du code de l’environnement."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Un décret en Conseil d’État précise la nature des mesures de résilience pour chaque catégorie d’opérateur d’importance vitale mentionnée au I de l’article L. 1332‑2 du présent code."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Art. L. 1332‑4. – Les opérateurs d’importance vitale réalisent, dans un délai de neuf mois à compter de la désignation prévue au I de l’article L. 1332‑2, une analyse de leurs dépendances à l’égard de tiers, y compris ceux situés en dehors du territoire national, pour l’exercice de leurs activités d’importance vitale. Celle‑ci comprend notamment une analyse des éventuelles vulnérabilités de leurs chaînes d’approvisionnement et de leurs sous-traitants. L’analyse des dépendances à l’égard des sous-traitants est réalisée dans un délai fixé par voie réglementaire. Les mesures de résilience adoptées par les opérateurs d’importance vitale tiennent compte de cette analyse. Cette analyse évalue spécifiquement les risques liés à la dépendance envers des fournisseurs de solutions logicielles et matérielles propriétaires, notamment en termes de continuité de service, de coût à long terme et de capacité d’audit indépendant."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Les opérateurs d’importance vitale prennent les mesures nécessaires pour garantir l’application du présent chapitre."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Art. L. 1332‑5. – Chaque opérateur pour lequel un ou plusieurs points d’importance vitale sont désignés en application du présent chapitre réalise pour chacun d’eux un document dénommé “plan particulier de résilience” détaillant les mesures de protection et de résilience le concernant."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Ces mesures comportent notamment des dispositifs et des dispositions efficaces de surveillance, d’alarme, de protection matérielle et de conditions d’accès. Le plan est approuvé par l’autorité administrative."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Lorsque, en application d’accords internationaux régulièrement ratifiés ou approuvés, de lois ou de règlements, un point d’importance vitale fait déjà l’objet de mesures de protection suffisantes décrites dans un document particulier, l’autorité administrative peut décider que ce document tient lieu de “plan particulier de résilience”."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« En cas de refus de l’opérateur d’élaborer ce plan, de le modifier afin de le rendre conforme aux exigences prévues aux trois premiers alinéas ou de le mettre en œuvre, l’autorité administrative met en demeure l’opérateur de le réaliser, de le modifier ou de le mettre en œuvre dans un délai qu’elle fixe et qui ne peut être inférieur à un mois."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« L’autorité administrative peut assortir cette mise en demeure d’une astreinte d’un montant maximal de 5 000 euros par jour de retard à compter de l’expiration du délai imparti par la mise en demeure."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« L’astreinte peut également être prononcée à tout moment, après l’expiration du délai imparti par la mise en demeure, s’il n’y a pas été satisfait, après que l’opérateur concerné a été invité à présenter ses observations."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Art. L. 1332‑6. – Avant d’accorder une autorisation d’accès physique ou à distance à ses infrastructures critiques, lorsqu’il estime nécessaire de s’assurer que le comportement de la personne devant faire l’objet de l’autorisation d’accès n’est pas de nature à porter atteinte à l’exercice d’une activité d’importance vitale ou à la sécurité d’une infrastructure critique, l’opérateur d’importance vitale peut demander l’avis de l’autorité administrative compétente à la suite d’une enquête administrative conduite dans les conditions prévues à l’article L. 114‑1 du code de la sécurité intérieure, selon des modalités fixées par un décret en Conseil d’État pris après avis de la Commission nationale de l’informatique et des libertés."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Il peut également solliciter cet avis avant le recrutement ou l’affectation d’une personne à un poste pour l’exercice duquel il est nécessaire d’avoir accès aux infrastructures critiques ou qui implique l’occupation de fonctions sensibles."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Les fonctions sensibles sont celles qui sont indispensables à la réalisation d’une activité d’importance vitale ou dont l’occupation expose l’opérateur à des vulnérabilités. Elles sont énumérées par l’opérateur dans le plan de résilience prévu au quatrième alinéa de l’article L. 1332‑3 du présent code en tenant compte, le cas échéant, de critères déterminés par l’autorité administrative en fonction du secteur d’activité de l’opérateur."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Les cas dans lesquels les accès physiques ou à distance peuvent justifier la demande d’avis sont précisés par l’opérateur dans le plan de résilience prévu au même quatrième alinéa et, le cas échéant, dans le plan particulier de résilience prévu à l’article L. 1332‑5 en tenant compte des vulnérabilités à des actes de malveillance."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« La personne concernée est informée de l’enquête administrative dont elle fait l’objet."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« En cas d’avis défavorable de l’autorité administrative, l’opérateur d’importance vitale est tenu de refuser l’autorisation s’il est une personne morale de droit privé. Un avis défavorable ne peut être émis que s’il ressort de l’enquête administrative que le comportement de la personne ayant fait l’objet de l’enquête est de nature à porter atteinte à l’exercice d’une activité d’importance vitale ou à la sécurité d’une infrastructure critique."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Art. L. 1332‑7. – (Non modifié) Les opérateurs d’importance vitale désignés au titre du 1° du I de l’article L. 1332‑2 notifient à l’autorité administrative, au plus tard vingt‑quatre heures après en avoir pris connaissance, tout incident susceptible de compromettre la continuité de leurs activités d’importance vitale, dans des conditions fixées par décret en Conseil d’État."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« L’autorité administrative informe le public de cet incident lorsqu’elle estime qu’il est dans l’intérêt général de le faire."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Dispositions applicables aux entités critiques d’importance européenne particulière"
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Art. L. 1332‑8. – Les opérateurs d’importance vitale qui fournissent les services essentiels ou des services essentiels similaires à ou dans au moins six États membres en informent l’autorité administrative au plus tard en même temps que la présentation pour approbation du plan de résilience prévu au quatrième alinéa de l’article L. 1332‑3."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Ces opérateurs sont identifiés comme entités critiques d’importance européenne particulière dans les conditions prévues à l’article 17 de la directive (UE) 2022/2557 du Parlement européen et du Conseil du 14 décembre 2022 sur la résilience des entités critiques, et abrogeant la directive 2008/114/CE du Conseil."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Les opérateurs qui exercent des activités dans les domaines de la sécurité nationale, de la sécurité publique, de la défense, du nucléaire ou de la répression pénale ou qui fournissent des services exclusivement destinés aux entités de l’administration publique exerçant dans ces domaines peuvent être dispensés par l’autorité administrative de tout ou partie des obligations mentionnées à la présente sous‑section, dans des conditions prévues par décret en Conseil d’État."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Art. L. 1332‑9. – (Non modifié) Lorsque l’opérateur a été désigné par la Commission européenne comme entité critique d’importance européenne particulière, il peut, sur demande motivée de la Commission européenne ou d’un ou de plusieurs des États membres auxquels ou dans lesquels le service essentiel est fourni et avec l’accord de l’autorité administrative compétente, faire l’objet d’une mission de conseil au titre de laquelle il doit garantir l’accès aux informations, aux systèmes et aux installations relatifs à la fourniture de ses services essentiels qui sont nécessaires à l’exécution de cette mission de conseil, dans le respect des secrets protégés par la loi."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Sur le fondement des conclusions de la mission de conseil, l’opérateur se voit communiquer par la Commission européenne un avis sur le respect de ses obligations et, le cas échéant, sur les mesures qui peuvent être prises pour améliorer sa résilience."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Dispositifs techniques concourant à la protection des installations d’importance vitale"
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Art. L. 1332‑10. – (Non modifié) À des fins de protection des établissements, des installations et des ouvrages d’importance vitale mentionnés au I de l’article L. 1332‑2, les services de l’État concourant à la défense nationale, à la sûreté de l’État et à la sécurité intérieure peuvent procéder, au moyen de caméras installées sur des aéronefs, à la captation, à l’enregistrement et à la transmission d’images dans les conditions définies aux articles L. 2364‑2 à L. 2364‑4."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Dispositions applicables aux systèmes d’information"
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Art. L. 1332‑11. – I. – Pour gérer les risques qui menacent la sécurité des réseaux et des systèmes d’information qu’ils utilisent dans le cadre de leurs activités ou de la fourniture de leurs services, les opérateurs d’importance vitale mettent en œuvre les obligations prévues aux articles 14 à 16 et 17 de la loi n° du relative à la résilience des infrastructures critiques et au renforcement de la cybersécurité."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Les opérateurs d’importance vitale ne sont pas tenus de mettre en œuvre les obligations prévues aux articles 14 et 15 de la même loi lorsqu’ils sont soumis, en application d’un acte juridique de l’Union européenne, à des exigences sectorielles de sécurité des réseaux et des systèmes d’information qu’ils utilisent dans le cadre de leurs activités ou de la fourniture de leurs services ayant un effet au moins équivalent."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« II. – Pour répondre aux crises majeures menaçant ou affectant la sécurité des systèmes d’information, le Premier ministre peut décider des mesures que les opérateurs mentionnés au I de l’article L. 1332‑2 du présent code doivent mettre en œuvre."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Contrôles et sanctions administratives"
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Habilitation et contrôles"
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Art. L. 1332‑12. – (Non modifié) Sont habilités à rechercher et à constater les manquements aux prescriptions du présent chapitre, à l’exception de l’article L. 1332‑11, ainsi qu’aux dispositions réglementaires prises pour son application, en vue de la saisine de la commission prévue à l’article L. 1332‑15, les agents de l’État spécialement désignés et assermentés à cette fin dans des conditions précisées par décret en Conseil d’État."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Art. L. 1332‑13. – (Non modifié) Les agents mentionnés à l’article L. 1332‑12 ont accès, pour l’exercice de leurs missions, aux locaux des opérateurs d’importance vitale. Ils peuvent pénétrer dans les lieux à usage professionnel ou dans les lieux d’exécution d’une prestation de services."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Ils peuvent accéder à tout document nécessaire à l’accomplissement de leur mission auprès des administrations publiques, des établissements et des organismes placés sous le contrôle de l’État et des collectivités territoriales ainsi que dans les entreprises ou les services concédés par l’État, les régions, les départements et les communes."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Ils peuvent recueillir, sur place ou sur convocation, tout renseignement, toute justification ou tout document nécessaire aux contrôles. À ce titre, ils peuvent exiger la communication de documents de toute nature propres à faciliter l’accomplissement de leur mission. Ils peuvent les obtenir ou en prendre copie, par tout moyen et sur tout support, ou procéder à la saisie de ces documents en quelques mains qu’ils se trouvent."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Ils peuvent procéder, sur convocation ou sur place, aux auditions de toute personne susceptible d’apporter des éléments utiles à leurs constatations. Ils en dressent procès‑verbal. Les personnes entendues procèdent elles‑mêmes à sa lecture, peuvent y faire consigner leurs observations et y apposent leur signature. En cas de refus de signer le procès‑verbal, mention en est faite sur celui‑ci."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Ils sont astreints au secret professionnel pour les faits, les actes ou les renseignements dont ils ont pu avoir connaissance en raison de leurs fonctions, dans les conditions prévues à l’article 226‑13 du code pénal. Le secret professionnel ne peut leur être opposé."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Les manquements sont constatés par des procès‑verbaux, qui font foi jusqu’à preuve contraire. Il est dressé procès‑verbal des vérifications et des visites menées en application du présent article."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Art. L. 1332‑14. – (Non modifié) Il est interdit de faire obstacle à l’exercice des fonctions des agents habilités. L’opérateur contrôlé est tenu de coopérer avec l’autorité administrative. Les agents mentionnés à l’article L. 1332‑12 peuvent constater toute action de l’opérateur d’importance vitale de nature à faire obstacle au contrôle."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Le fait pour quiconque de faire obstacle aux demandes de l’autorité compétente nécessaires à la recherche des manquements et à la mise en œuvre de ses pouvoirs de contrôle prévus à la présente sous‑section, notamment en fournissant des renseignements incomplets ou inexacts ou en communiquant des pièces incomplètes ou dénaturées, est puni d’une amende administrative prononcée par la commission des sanctions mentionnée à l’article L. 1332‑15 dont le montant, proportionné à la gravité du manquement, ne peut excéder dix millions d’euros ou, lorsqu’il s’agit d’une entreprise, 2 % du chiffre d’affaires annuel mondial hors taxes de l’exercice précédent, le montant le plus élevé étant retenu."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Le présent article ne s’applique pas à l’État et à ses établissements publics administratifs qui font l’objet d’un contrôle."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Art. L. 1332‑15. – (Non modifié) Tout manquement au présent chapitre peut donner lieu aux sanctions prévues à l’article L. 1332‑17, prononcées par une commission des sanctions instituée à cet effet auprès du Premier ministre."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Cette commission est saisie par l’autorité administrative des manquements constatés lors des contrôles effectués en application de l’article L. 1332‑13. Cette autorité notifie à l’opérateur concerné les griefs susceptibles d’être retenus à son encontre."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« La commission des sanctions reçoit les rapports et les procès‑verbaux des contrôles."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Art. L. 1332‑16. – La commission des sanctions mentionnée à l’article L. 1332‑15 est composée :"
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« 1° D’un membre du Conseil d’État, président, désigné par le vice‑président du Conseil d’État, d’un membre de la Cour de cassation désigné par le premier président de la Cour de cassation, d’un membre de la Cour des comptes désigné par le premier président de la Cour des comptes ;"
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« 2° Et de trois personnalités qualifiées nommées par le Premier ministre en raison de leurs compétences dans le domaine de la sécurité des activités d’importance vitale."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Un suppléant est désigné dans les mêmes conditions pour les membres mentionnés au 1° du présent article."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Les membres de la commission des sanctions exercent leurs fonctions en toute impartialité. Dans l’exercice de leurs attributions, ils ne reçoivent ni ne sollicitent d’instruction d’aucune autorité."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Le président de la commission désigne un rapporteur parmi ses membres. Celui‑ci ne peut recevoir aucune instruction."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« La procédure devant la commission des sanctions est contradictoire. Celle-ci statue par décision motivée. Aucune sanction ne peut être prononcée sans que l’opérateur concerné ou son représentant ait été entendu ou, à défaut, dûment convoqué. La commission peut auditionner toute personne qu’elle juge utile."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« La commission statue à la majorité des membres présents. En cas de partage égal des voix, celle du président est prépondérante."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Le président et les membres de la commission mentionnés au 1° ainsi que leurs suppléants respectifs sont nommés par décret."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Le mandat du président, des membres de la commission mentionnés au même 1° ainsi que de leurs suppléants respectifs est de cinq ans non renouvelable. Les membres sont tenus au secret professionnel."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Art. L. 1332‑17. – (Non modifié) I. – En cas de manquement aux obligations découlant de l’application du présent chapitre, la commission des sanctions peut prononcer à l’encontre des opérateurs d’importance vitale, à l’exception des administrations de l’État et de ses établissements publics administratifs, des collectivités territoriales, de leurs groupements et de leurs établissements publics administratifs, une amende administrative dont le montant, proportionné à la gravité du manquement, ne peut excéder dix millions d’euros ou, lorsqu’il s’agit d’une entreprise, 2 % du chiffre d’affaires annuel mondial hors taxes de l’exercice précédent, le montant le plus élevé étant retenu."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Lorsque la commission des sanctions envisage également de prononcer la sanction prévue au deuxième alinéa de l’article L. 1332‑14, le montant cumulé ne peut excéder le montant maximal prévu au premier alinéa du présent I."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« II. – En cas de manquement constaté aux obligations mentionnées à l’article 26 de la loi n° du relative à la résilience des infrastructures critiques et au renforcement de la cybersécurité, la commission des sanctions, dans la composition prévue à l’article 36 de la même loi, peut prononcer les sanctions prévues aux articles 28 et 37 de ladite loi."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Art. L. 1332‑18. – La commission des sanctions peut ordonner la publication, la diffusion ou l’affichage de la sanction pécuniaire ou d’un extrait de celle‑ci, selon les modalités qu’elle précise. Les frais sont supportés par la personne sanctionnée."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Le produit des sanctions pécuniaires est versé au Trésor public et recouvré comme les créances de l’État étrangères à l’impôt et au domaine."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Les recours formés contre les décisions de la commission des sanctions sont des recours de pleine juridiction."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Art. L. 1332‑19. – (Non modifié) Les conditions d’application de la présente sous‑section, notamment les règles de fonctionnement de la commission et les modalités de récusation de ses membres, sont définies par décret en Conseil d’État."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Marchés publics et contrats de concession relatifs à la sécurité des activités d’importance vitale"
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Art. L. 1332‑20. – (Non modifié) Les marchés publics des opérateurs d’importance vitale mentionnés au I de l’article L. 1332‑2 sont soumis aux règles définies au titre II du livre V de la deuxième partie du code de la commande publique lorsque :"
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« 1° Ces marchés publics concernent la conception, la qualification, la fabrication, la modification, la maintenance ou le retrait des structures, des équipements, des systèmes, du matériel, des composants ou des logiciels qui sont nécessaires à la protection des infrastructures critiques de l’opérateur ou dont le détournement de l’usage porterait atteinte aux intérêts essentiels de l’État ;"
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« 2° Et que cette protection ou la prévention de ce détournement d’usage ne peuvent être garanties par d’autres moyens."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Art. L. 1332‑21. – (Non modifié) Les contrats de concession conclus par les opérateurs d’importance vitale mentionnés au I de l’article L. 1332‑2 sont soumis aux règles définies au titre II du livre II de la troisième partie du code de la commande publique lorsque :"
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« 1° Ces contrats de concession concernent la conception, la qualification, la fabrication, la modification, la maintenance ou le retrait des structures, des équipements, des systèmes, du matériel, des composants ou des logiciels qui sont nécessaires à la protection des infrastructures critiques de l’opérateur ou dont le détournement de l’usage porterait atteinte aux intérêts essentiels de l’État ;"
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« 2° Et cette protection ou la prévention de ce détournement d’usage ne peuvent être garanties par d’autres moyens."
-    },
-    {
-      "article": "Article 1er",
-      "texte": "« Art. L. 1332‑22. – (Non modifié) Les opérateurs d’importance vitale qui passent un marché ou un contrat de concession en application des articles L. 1332‑20 et L. 1332‑21 en informent l’autorité administrative dans des conditions et des délais précisés par décret. »"
+      "article": "Article 17",
+      "texte": "Enregistrement des noms de domaine"
     }
   ]
 }

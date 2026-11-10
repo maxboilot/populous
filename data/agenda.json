@@ -1,59 +1,5 @@
 [
   {
-    "date": "2026-11-09",
-    "heure": "16:00",
-    "ordre_du_jour": "Examen du texte — Améliorer le dispositif du temps partiel thérapeutique pour les fonctionnaires",
-    "themes": [],
-    "dossier": "DLR5L17N54989",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-11-09",
-    "heure": "16:00",
-    "ordre_du_jour": "Examen du texte — Proposition de loi visant à lutter contre la vie chère en renforçant le droit de la concurrence et de la régulation économique outre-mer",
-    "themes": [
-      "economie",
-      "institutions"
-    ],
-    "dossier": "DLR5L17N51095",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-11-09",
-    "heure": "16:00",
-    "ordre_du_jour": "Examen du texte — Régulariser les travailleurs sans-papiers",
-    "themes": [
-      "travail"
-    ],
-    "dossier": "DLR5L17N54998",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-11-09",
-    "heure": "21:30",
-    "ordre_du_jour": "Examen du texte — L’interdiction de relations commerciales contribuant, par aide ou assistance, à la politique de colonisation dans le Territoire palestinien occupé et dans le Territoire syrien occupé des hauteurs du Golan",
-    "themes": [
-      "economie"
-    ],
-    "dossier": "DLR5L17N54718",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-11-09",
-    "heure": "21:30",
-    "ordre_du_jour": "Suite de la discussion du projet de loi, adopté par le Sénat après engagement de la procédure accélérée, relatif à la résilience des infrastructures critiques et au renforcement de la cybersécurité",
-    "themes": [
-      "numerique"
-    ],
-    "dossier": "DLR5L17N50731",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
     "date": "2026-11-10",
     "heure": "14:30",
     "ordre_du_jour": "Examen du texte — Protéger nos forêts en encadrant les coupes rases",
