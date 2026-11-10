@@ -1,6 +1,6 @@
 {
   "dernier_reel": {
-    "date": "2026-11-09",
+    "date": "2026-11-10",
     "scenario": {
       "fin": {
         "duree": 3.8
@@ -9,25 +9,63 @@
         {
           "duree": 3.4,
           "eyebrow": "Populous · Les institutions",
-          "titre": "Comment naît et évolue une loi ?",
+          "titre": "C'est quoi l'Assemblée nationale ?",
           "type": "titre"
         },
         {
-          "duree": 12.0,
-          "items": [
-            "Un texte est **déposé** : projet (Gouvernement) ou proposition (parlementaires)",
-            "Examen **en commission** : rapport et amendements",
-            "**Séance publique** : article par article, puis vote",
-            "**Navette** : l'autre assemblée examine à son tour, **CMP** si désaccord",
-            "**Promulgation** par le Président, publication au Journal officiel"
+          "groupes": [
+            {
+              "couleur": [
+                143,
+                166,
+                255
+              ],
+              "label": "élus pour **5 ans**, au suffrage universel direct",
+              "n": 577
+            }
           ],
-          "numerote": true,
-          "parcours": true,
-          "titre": "Le parcours d'une loi",
+          "kicker": "Qui y siège ?",
+          "titre": "**577 députés**",
+          "type": "points"
+        },
+        {
+          "duree": 5.6,
+          "items": [
+            "Elle **vote la loi**",
+            "Elle **contrôle le Gouvernement**",
+            "Elle **évalue** les politiques publiques"
+          ],
+          "numerote": false,
+          "titre": "À quoi ça sert ?",
           "type": "liste"
+        },
+        {
+          "groupes": [
+            {
+              "couleur": [
+                69,
+                150,
+                109
+              ],
+              "label": "**289 voix** sur 577 : la majorité de ses membres",
+              "n": 289
+            },
+            {
+              "couleur": [
+                62,
+                74,
+                134
+              ],
+              "label": "",
+              "n": 288
+            }
+          ],
+          "kicker": "Un pouvoir de contrôle",
+          "titre": "Censurer le Gouvernement",
+          "type": "points"
         }
       ],
-      "source": "Sources : Sénat, « La procédure législative » · Assemblée nationale"
+      "source": "Source : assemblee-nationale.fr"
     },
     "scrutin": null,
     "type_reel": "pedagogique"
@@ -41,7 +79,8 @@
   ],
   "reels_pedagogiques_publies": [
     "budget-deux-parties",
-    "naissance-loi"
+    "naissance-loi",
+    "assemblee-nationale"
   ],
   "story_du": "2026-11-09"
 }
