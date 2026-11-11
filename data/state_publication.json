@@ -1,71 +1,78 @@
 {
   "dernier_reel": {
-    "date": "2026-11-10",
+    "date": "2026-11-11",
     "scenario": {
+      "couverture_s": 4.4,
       "fin": {
-        "duree": 3.8
+        "accroche": "Le fait du jour, sur Populous.",
+        "duree": 3.8,
+        "eyebrow": "Populous",
+        "ligne1": "Chaque jour,",
+        "ligne2": "un repère d'histoire."
       },
+      "musique": "marseillaise",
       "scenes": [
         {
-          "duree": 3.4,
-          "eyebrow": "Populous · Les institutions",
-          "titre": "C'est quoi l'Assemblée nationale ?",
-          "type": "titre"
+          "duree": 5.76,
+          "eyebrow": "11 novembre · Mémoire",
+          "titre": "Pourquoi un bleuet ?",
+          "type": "bleuet"
         },
         {
-          "groupes": [
-            {
-              "couleur": [
-                143,
-                166,
-                255
-              ],
-              "label": "élus pour **5 ans**, au suffrage universel direct",
-              "n": 577
-            }
+          "cartes": [
+            [
+              "Qui ?",
+              "**Charlotte Malleterre** et **Suzanne Leenhardt**, infirmières à l'Institution nationale des Invalides."
+            ],
+            [
+              "L'idée",
+              "Des bleuets en tissu, **confectionnés par les blessés** et vendus sur la voie publique."
+            ],
+            [
+              "Pourquoi",
+              "Occuper les anciens combattants, les **soutenir** et **collecter des fonds**."
+            ]
           ],
-          "kicker": "Qui y siège ?",
-          "titre": "**577 députés**",
-          "type": "points"
+          "duree": 11.52,
+          "sous": "Trois choses à savoir.",
+          "titre": "Une idée née aux Invalides",
+          "type": "cartes"
         },
         {
-          "duree": 5.6,
-          "items": [
-            "Elle **vote la loi**",
-            "Elle **contrôle le Gouvernement**",
-            "Elle **évalue** les politiques publiques"
-          ],
-          "numerote": false,
-          "titre": "À quoi ça sert ?",
-          "type": "liste"
+          "duree": 8.64,
+          "kicker": "Pourquoi le bleuet ?",
+          "texte": "Les soldats voyaient les bleuets **repousser** sur les champs de bataille dévastés : un symbole de **résilience**, de **ténacité** et d'**espoir**.",
+          "type": "bleuet"
         },
         {
-          "groupes": [
+          "duree": 8.64,
+          "etapes": [
             {
-              "couleur": [
-                69,
-                150,
-                109
-              ],
-              "label": "**289 voix** sur 577 : la majorité de ses membres",
-              "n": 289
+              "kicker": "1918",
+              "sous": "de la mémoire des soldats tombés au combat",
+              "titre": "**Symbole officiel**"
             },
             {
-              "couleur": [
-                62,
-                74,
-                134
-              ],
-              "label": "",
-              "n": 288
+              "kicker": "1934",
+              "sous": "à Paris : plus de 128 000 fleurs vendues",
+              "titre": "Première **collecte** le 11 novembre"
             }
           ],
-          "kicker": "Un pouvoir de contrôle",
-          "titre": "Censurer le Gouvernement",
-          "type": "points"
+          "titre": "Une fleur devenue symbole",
+          "type": "etapes"
+        },
+        {
+          "duree": 8.64,
+          "items": [
+            "Collecte chaque **8 mai** et **11 novembre**",
+            "**Bourses d'études** pour les pupilles de la Nation",
+            "**Aide** aux anciens combattants et aux militaires blessés"
+          ],
+          "titre": "Aujourd'hui",
+          "type": "liste"
         }
       ],
-      "source": "Source : assemblee-nationale.fr"
+      "source": "Source : defense.gouv.fr (ministère des Armées), 5 mai 2025"
     },
     "scrutin": null,
     "type_reel": "pedagogique"
@@ -80,7 +87,8 @@
   "reels_pedagogiques_publies": [
     "budget-deux-parties",
     "naissance-loi",
-    "assemblee-nationale"
+    "assemblee-nationale",
+    "bleuet-11-novembre"
   ],
   "story_du": "2026-11-10"
 }
