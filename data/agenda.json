@@ -34,17 +34,6 @@
     "lecture": "1ʳᵉ lecture"
   },
   {
-    "date": "2026-11-12",
-    "heure": "21:30",
-    "ordre_du_jour": "Suite de la discussion du projet de loi, adopté par le Sénat après engagement de la procédure accélérée, relatif à la résilience des infrastructures critiques et au renforcement de la cybersécurité",
-    "themes": [
-      "numerique"
-    ],
-    "dossier": "DLR5L17N50731",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
     "date": "2026-11-13",
     "heure": "21:30",
     "ordre_du_jour": "Suite de la discussion du projet de loi de finances de fin de gestion pour 2026",
@@ -52,17 +41,6 @@
       "economie"
     ],
     "dossier": "DLR5L17N55223",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-11-13",
-    "heure": "21:30",
-    "ordre_du_jour": "Suite de la discussion du projet de loi, adopté par le Sénat après engagement de la procédure accélérée, relatif à la résilience des infrastructures critiques et au renforcement de la cybersécurité",
-    "themes": [
-      "numerique"
-    ],
-    "dossier": "DLR5L17N50731",
     "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
   },
