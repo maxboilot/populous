@@ -59,6 +59,7 @@ import json
 import os
 import random
 import re
+import subprocess
 import sys
 import time
 from pathlib import Path
@@ -896,17 +897,51 @@ def contenu_reel():
     return None
 
 
+def _copie_conforme_instagram(chemin):
+    """Copie du fichier reencodee aux normes strictes de Meta (H.264 High yuv420p 30 i/s, AAC stereo 44,1 kHz, moov en tete), ou None si ffmpeg
+    est absent ou echoue. Sert de 2e chance quand Instagram refuse la video d'origine (ProcessingFailedError du 11 nov. 2026)."""
+    sortie = Path(chemin).with_name(Path(chemin).stem + '_ig.mp4')
+    try:
+        subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', str(chemin), '-c:v', 'libx264', '-profile:v', 'high', '-level', '4.0', '-pix_fmt', 'yuv420p',
+                        '-r', '30', '-preset', 'medium', '-crf', '21', '-maxrate', '6M', '-bufsize', '12M', '-c:a', 'aac', '-ar', '44100', '-ac', '2', '-b:a', '128k',
+                        '-movflags', '+faststart', str(sortie)], check=True, capture_output=True, text=True, timeout=300)
+    except (OSError, subprocess.SubprocessError) as e:
+        print(f"  copie conforme impossible ({e}) : on garde la video d'origine")
+        return None
+    return sortie if sortie.exists() and sortie.stat().st_size > 2000 else None
+
+
+def deposer_video_instagram(ig_user_id, page_token, chemin, champs, tentatives=3, pause=20):
+    """Cree un container VIDEO (Reel ou Story) par envoi direct, l'envoie et attend qu'Instagram l'ait traite ; renvoie l'id du container, pret a publier.
+    Un refus de la video (400 « ProcessingFailedError » a l'envoi, ou container en ERROR) est parfois ponctuel, parfois un probleme de format :
+    on retente avec un NOUVEAU container, la 2e et la 3e fois avec une copie reencodee aux normes de Meta. Rien n'est public avant publier_conteneur_instagram."""
+    derniere = None
+    for essai in range(1, tentatives + 1):
+        fichier = chemin
+        if essai > 1:
+            time.sleep(pause)
+            fichier = _copie_conforme_instagram(chemin) or chemin
+            print(f"  Instagram a refuse la video ({derniere}) : essai {essai}/{tentatives} avec {'une copie reencodee' if fichier != chemin else 'le meme fichier'}")
+        try:
+            r = _poster_avec_reessais(f'{GRAPH}/{ig_user_id}/media', data={**champs, 'upload_type': 'resumable', 'access_token': page_token}, timeout=60)
+            _lever_avec_detail(r)
+            infos = r.json()
+            octets = Path(fichier).read_bytes()
+            r = _poster_avec_reessais(infos['uri'], headers={'Authorization': f'OAuth {page_token}', 'offset': '0', 'file_size': str(len(octets))}, data=octets, timeout=300)
+            _lever_avec_detail(r)
+            _attendre_conteneur_instagram(infos['id'], page_token, essais=60, pause=5)
+            return infos['id']
+        except (requests.exceptions.HTTPError, RuntimeError) as e:
+            derniere = str(e)[:300]
+            if essai == tentatives:
+                raise
+    raise RuntimeError(derniere)                                # inatteignable : garde-fou
+
+
 def publier_reel_instagram(ig_user_id, page_token, chemin, legende, thumb_offset=2600):
     """Reel Instagram par envoi direct (resumable upload), publie aussi dans le fil. Renvoie la reponse de la publication."""
-    r = _poster_avec_reessais(f'{GRAPH}/{ig_user_id}/media', data={'media_type': 'REELS', 'upload_type': 'resumable', 'caption': legende,
-                              'share_to_feed': 'true', 'thumb_offset': str(thumb_offset), 'access_token': page_token}, timeout=60)
-    _lever_avec_detail(r)
-    infos = r.json()
-    octets = Path(chemin).read_bytes()
-    r = _poster_avec_reessais(infos['uri'], headers={'Authorization': f'OAuth {page_token}', 'offset': '0', 'file_size': str(len(octets))}, data=octets, timeout=300)
-    _lever_avec_detail(r)
-    _attendre_conteneur_instagram(infos['id'], page_token, essais=60, pause=5)
-    return publier_conteneur_instagram(ig_user_id, page_token, infos['id'])
+    cid = deposer_video_instagram(ig_user_id, page_token, chemin, {'media_type': 'REELS', 'caption': legende, 'share_to_feed': 'true', 'thumb_offset': str(thumb_offset)})
+    return publier_conteneur_instagram(ig_user_id, page_token, cid)
 
 
 def publier_reel_facebook(page_id, page_token, chemin, description):
@@ -965,14 +1000,8 @@ def main_reel(args):
 
 def publier_story_instagram(ig_user_id, page_token, chemin):
     """Story Instagram (video <= 60 s) par envoi direct, comme les Reels. Renvoie la reponse de la publication."""
-    r = _poster_avec_reessais(f'{GRAPH}/{ig_user_id}/media', data={'media_type': 'STORIES', 'upload_type': 'resumable', 'access_token': page_token}, timeout=60)
-    _lever_avec_detail(r)
-    infos = r.json()
-    octets = Path(chemin).read_bytes()
-    r = _poster_avec_reessais(infos['uri'], headers={'Authorization': f'OAuth {page_token}', 'offset': '0', 'file_size': str(len(octets))}, data=octets, timeout=300)
-    _lever_avec_detail(r)
-    _attendre_conteneur_instagram(infos['id'], page_token, essais=60, pause=5)
-    return publier_conteneur_instagram(ig_user_id, page_token, infos['id'])
+    cid = deposer_video_instagram(ig_user_id, page_token, chemin, {'media_type': 'STORIES'})
+    return publier_conteneur_instagram(ig_user_id, page_token, cid)
 
 
 def publier_story_facebook(page_id, page_token, chemin):

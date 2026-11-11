@@ -95,8 +95,12 @@ def generer(scenario, sortie, *, scrutin=None, garder_travail=False):
             except Exception as e:                                  # jamais de Reel perdu pour un probleme de musique
                 print(f'[musique] instru ignore, bande son synthetisee conservee : {e}', file=sys.stderr)
         if not monte:
-            _lancer(['ffmpeg', '-v', 'error', '-y', '-i', str(brut), '-c:v', 'copy', '-af', f'afade=t=out:st={max(duree - 0.8, 0):.2f}:d=0.8', '-c:a', 'aac', '-b:a', '160k', '-movflags', '+faststart', str(reel)], projet, env, 'fondu sonore')
+            _lancer(['ffmpeg', '-v', 'error', '-y', '-i', str(brut), '-c:v', 'copy', '-af', f'afade=t=out:st={max(duree - 0.8, 0):.2f}:d=0.8', '-c:a', 'aac', '-ar', '44100', '-ac', '2', '-b:a', '160k', '-movflags', '+faststart', str(reel)], projet, env, 'fondu sonore')
         _lancer(['ffmpeg', '-v', 'error', '-y', '-ss', str(scenario.get('couverture_s', 2.6)), '-i', str(brut), '-frames:v', '1', str(couverture)], projet, env, 'couverture')
+        pb = problemes_de_conformite(reel)
+        if pb:                                                      # filet de securite : un Reel hors normes est reencode ici plutot que refuse par Instagram a 18 h
+            print(f'[conformite] {"; ".join(pb)} -> reencodage', file=sys.stderr)
+            rendre_conforme(reel, travail)
         for p in (reel, couverture):
             if not p.exists() or p.stat().st_size < 2000:
                 raise RuntimeError(f'fichier de reel manquant ou vide : {p}')
@@ -104,6 +108,40 @@ def generer(scenario, sortie, *, scrutin=None, garder_travail=False):
     finally:
         if not garder_travail:
             shutil.rmtree(travail, ignore_errors=True)
+
+
+def problemes_de_conformite(chemin):
+    """Ecarts entre la video et ce que Meta accepte sans broncher (H.264 yuv420p, AAC stereo 44,1/48 kHz, <= 60 i/s, <= 90 s). Liste vide = conforme.
+    Ne leve jamais : si ffprobe est absent ou illisible, renvoie []. Ne remplace pas un essai reel, mais evite les causes connues de refus."""
+    try:
+        sortie = subprocess.run(['ffprobe', '-v', 'error', '-show_streams', '-show_format', '-of', 'json', str(chemin)], capture_output=True, text=True, check=True, timeout=60).stdout
+        infos = json.loads(sortie)
+    except (OSError, subprocess.SubprocessError, ValueError):
+        return []
+    video = next((x for x in infos.get('streams', []) if x.get('codec_type') == 'video'), None)
+    audio = next((x for x in infos.get('streams', []) if x.get('codec_type') == 'audio'), None)
+    pb = []
+    if not video or video.get('codec_name') != 'h264' or video.get('pix_fmt') != 'yuv420p':
+        pb.append('video : H.264 yuv420p attendu')
+    else:
+        num, _, den = (video.get('r_frame_rate') or '0/1').partition('/')
+        if float(num or 0) / float(den or 1) > 60:
+            pb.append('video : plus de 60 images/s')
+    if not audio:
+        pb.append('pas de piste son')
+    elif audio.get('codec_name') != 'aac' or int(audio.get('sample_rate') or 0) not in (44100, 48000) or int(audio.get('channels') or 0) not in (1, 2):
+        pb.append(f"son : AAC 44,1/48 kHz mono/stereo attendu (lu : {audio.get('codec_name')} {audio.get('sample_rate')} Hz, {audio.get('channels')} canaux)")
+    if float((infos.get('format') or {}).get('duration') or 0) > 90:
+        pb.append('duree : plus de 90 s')
+    return pb
+
+
+def rendre_conforme(chemin, tmp):
+    """Reencode `chemin` (en place) aux normes de Meta : video recodee en H.264 yuv420p 30 i/s, son AAC stereo 44,1 kHz."""
+    cible = Path(tmp) / 'conforme.mp4'
+    subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', str(chemin), '-c:v', 'libx264', '-profile:v', 'high', '-pix_fmt', 'yuv420p', '-r', '30', '-crf', '21',
+                    '-c:a', 'aac', '-ar', '44100', '-ac', '2', '-b:a', '160k', '-movflags', '+faststart', str(cible)], check=True, capture_output=True, text=True)
+    shutil.move(str(cible), str(chemin))
 
 
 if __name__ == '__main__':

@@ -121,6 +121,10 @@ jobs:
           retention-days: 7
           if-no-files-found: ignore
       - name: Committer l'etat de publication mis a jour
+        # always() : si UNE plateforme a publie et l'autre echoue, le script ecrit l'etat puis sort en erreur ; sans always(), cette
+        # etape etait sautee et l'etat perdu (11 nov. 2026 : Reel publie sur Facebook, refuse par Instagram -> pas de Story a 19 h, et
+        # un nouveau lancement aurait republie sur Facebook). Sans danger : s'il n'y a rien de nouveau, l'etape sort sans rien faire.
+        if: always()
         # Necessaire depuis que contenu_presidentielle() se souvient du
         # dernier sondage poste (data/state_publication.json) pour ne pas
         # reposter le meme sondage chaque jour : sans ce commit, l'etat

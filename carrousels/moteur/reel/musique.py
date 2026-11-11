@@ -84,7 +84,7 @@ def monter(brut, sortie, duree, fin_d=3.8, n2=0, ne=0, tmp=None):
     with wave.open(str(wav), 'wb') as w:
         w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR); w.writeframes((np.clip(y, -1, 1) * 32767).astype(np.int16).tobytes())
     try:
-        subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', str(brut), '-i', str(wav), '-map', '0:v', '-map', '1:a', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '256k',
+        subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', str(brut), '-i', str(wav), '-map', '0:v', '-map', '1:a', '-c:v', 'copy', '-c:a', 'aac', '-ar', '44100', '-ac', '2', '-b:a', '256k',
                         '-af', f'acompressor=threshold=0.16:ratio=2:attack=25:release=300,loudnorm=I=-17:TP=-2.5:LRA=14,afade=t=out:st={duree - 0.8:.2f}:d=0.8,atrim=0:{duree:.2f},alimiter=limit=0.66:level=disabled',
                         '-t', f'{duree:.2f}', '-movflags', '+faststart', str(sortie)], check=True, capture_output=True, text=True)
     finally:

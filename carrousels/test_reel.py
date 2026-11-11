@@ -206,5 +206,71 @@ class TestReel(unittest.TestCase):
         self.assertEqual(mem['dernier_reel'], {'date': dt.date.today().isoformat(), 'type_reel': 'pedagogique', 'scenario': sc, 'scrutin': None})
 
 
+class TestRobustesseVideo(unittest.TestCase):
+    """Incident du 11 nov. 2026 : Instagram a refuse la video d'un Reel (400 ProcessingFailedError) -> Reel perdu cote Instagram, etat non enregistre."""
+
+    def _faux_reseau(self, refus):
+        """`refus` = nombre d'envois (rupload) refuses avant que ca passe. Renvoie (post, get, liste des fichiers envoyes)."""
+        envois = []
+        def post(url, data=None, headers=None, timeout=None, files=None):
+            if url.endswith('/IG/media'): return rep({'id': f'C{len(envois) + 1}', 'uri': 'https://rupload.facebook.com/x'})
+            if 'rupload' in url:
+                envois.append(len(data))
+                if len(envois) <= refus:
+                    r = rep({'debug_info': {'type': 'ProcessingFailedError'}}, 400); r.raise_for_status.side_effect = pr.requests.exceptions.HTTPError('400 Client Error'); return r
+                return rep({'success': True})
+            return rep({'id': 'M1'})
+        return post, (lambda url, params=None, timeout=None: rep({'status_code': 'FINISHED'})), envois
+
+    def _lancer(self, refus):
+        post, get, envois = self._faux_reseau(refus)
+        with tempfile.TemporaryDirectory() as d:
+            f = Path(d) / 'reel.mp4'; f.write_bytes(b'0' * 100)
+            with mock.patch.object(pr.requests, 'post', post), mock.patch.object(pr.requests, 'get', get), mock.patch.object(pr, 'time', mock.Mock(sleep=lambda s: None)), \
+                 mock.patch.object(pr, '_copie_conforme_instagram', lambda c: None):
+                return pr.publier_reel_instagram('IG', 'TOK', str(f), 'legende'), envois
+
+    def test_un_refus_ponctuel_d_instagram_est_retente(self):
+        r, envois = self._lancer(refus=1)
+        self.assertEqual(r, {'id': 'M1'}); self.assertEqual(len(envois), 2)
+
+    def test_un_refus_persistant_finit_par_lever_l_erreur_apres_3_essais(self):
+        with self.assertRaises(pr.requests.exceptions.HTTPError):
+            self._lancer(refus=9)
+
+    def test_la_2e_tentative_utilise_la_copie_reencodee(self):
+        post, get, envois = self._faux_reseau(refus=1)
+        with tempfile.TemporaryDirectory() as d:
+            f = Path(d) / 'reel.mp4'; f.write_bytes(b'0' * 100); copie = Path(d) / 'copie.mp4'; copie.write_bytes(b'1' * 250)
+            with mock.patch.object(pr.requests, 'post', post), mock.patch.object(pr.requests, 'get', get), mock.patch.object(pr, 'time', mock.Mock(sleep=lambda s: None)), \
+                 mock.patch.object(pr, '_copie_conforme_instagram', lambda c: copie):
+                pr.publier_reel_instagram('IG', 'TOK', str(f), 'legende')
+        self.assertEqual(envois, [100, 250])
+
+    def test_l_etat_est_commite_meme_si_une_plateforme_echoue(self):
+        wf = (RACINE / '.github' / 'workflows' / 'publier_reseaux.yml').read_text(encoding='utf-8')
+        bloc = wf[wf.index("name: Committer l'etat de publication"):]
+        self.assertIn('if: always()', bloc.split('run:')[0])
+
+    @unittest.skipUnless(__import__('shutil').which('ffmpeg') and __import__('shutil').which('ffprobe'), 'ffmpeg absent')
+    def test_un_son_hors_normes_est_detecte_puis_corrige(self):
+        import generer_reel, subprocess
+        with tempfile.TemporaryDirectory() as d:
+            v = Path(d) / 'v.mp4'
+            subprocess.run(['ffmpeg', '-v', 'error', '-y', '-f', 'lavfi', '-i', 'color=c=blue:s=180x320:r=30:d=2', '-f', 'lavfi', '-i', 'sine=frequency=440:sample_rate=96000:duration=2',
+                            '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-shortest', str(v)], check=True)
+            self.assertTrue(any('son' in x for x in generer_reel.problemes_de_conformite(v)))
+            generer_reel.rendre_conforme(v, d)
+            self.assertEqual(generer_reel.problemes_de_conformite(v), [])
+
+    @unittest.skipUnless(__import__('shutil').which('ffmpeg'), 'ffmpeg absent')
+    def test_la_chaine_loudnorm_sort_en_44100_hz(self):
+        """loudnorm remonte l'echantillonnage a 192 kHz en interne : sans -ar explicite, le Reel sortait en AAC 96 kHz."""
+        import subprocess
+        for f in ('moteur/reel/marseillaise.py', 'moteur/reel/musique.py', 'generer_reel.py'):
+            texte = (RACINE / 'carrousels' / f).read_text(encoding='utf-8')
+            self.assertIn("'-ar', '44100'", texte, f)
+
+
 if __name__ == '__main__':
     unittest.main()
