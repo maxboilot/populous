@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-11T02:52:21.225714Z",
+  "generated_at": "2026-11-11T09:33:43.012867Z",
   "date": "2026-11-10",
   "numero_vedette": 9794,
   "lois": [
@@ -185,6 +185,126 @@
               "solennel": false,
               "objet": "l'amendement n° 167 de M. Latombe à l'article 36 du projet de loi relatif à la résilience des infrastructures critiques et au renforcement de la cybersécurité (première lecture).",
               "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9801",
+              "vedette": false,
+              "sous_amendements": []
+            }
+          ]
+        },
+        {
+          "ref": "37",
+          "article": null,
+          "modifications": [
+            {
+              "numero": 9802,
+              "nature": "amendement",
+              "article": "37",
+              "n_amendement": 82,
+              "parent": null,
+              "auteur": "M. Saint-Pasteur",
+              "issue": "adopte",
+              "pour": 25,
+              "contre": 12,
+              "abstentions": 0,
+              "votants": 37,
+              "solennel": false,
+              "objet": "l'amendement n° 82 de M. Saint-Pasteur à l'article 37 du projet de loi relatif à la résilience des infrastructures critiques et au renforcement de la cybersécurité (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9802",
+              "vedette": false,
+              "sous_amendements": []
+            }
+          ]
+        },
+        {
+          "ref": "37 bis",
+          "article": null,
+          "modifications": [
+            {
+              "numero": 9803,
+              "nature": "amendement",
+              "article": "37 bis",
+              "n_amendement": 169,
+              "parent": null,
+              "auteur": "M. Latombe",
+              "issue": "adopte",
+              "pour": 23,
+              "contre": 11,
+              "abstentions": 1,
+              "votants": 35,
+              "solennel": false,
+              "objet": "l'amendement n° 169 de M. Latombe et l'amendement identique suivant après l'article 37 bis du projet de loi relatif à la résilience des infrastructures critiques et au renforcement de la cybersécurité (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9803",
+              "vedette": false,
+              "sous_amendements": []
+            }
+          ]
+        },
+        {
+          "ref": "45 bis",
+          "article": null,
+          "modifications": [
+            {
+              "numero": 9804,
+              "nature": "amendement",
+              "article": "45 bis",
+              "n_amendement": 295,
+              "parent": null,
+              "auteur": "du Gouvernement",
+              "issue": "adopte",
+              "pour": 17,
+              "contre": 14,
+              "abstentions": 0,
+              "votants": 31,
+              "solennel": false,
+              "objet": "l'amendement n° 295 du Gouvernement et l'amendement identique suivant à l'article 45 bis du projet de loi relatif à la résilience des infrastructures critiques et au renforcement de la cybersécurité (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9804",
+              "vedette": false,
+              "sous_amendements": []
+            }
+          ]
+        },
+        {
+          "ref": "62 A",
+          "article": null,
+          "modifications": [
+            {
+              "numero": 9805,
+              "nature": "amendement",
+              "article": "62 A",
+              "n_amendement": 112,
+              "parent": null,
+              "auteur": "M. Mickaël Bouloux",
+              "issue": "rejete",
+              "pour": 11,
+              "contre": 13,
+              "abstentions": 13,
+              "votants": 37,
+              "solennel": false,
+              "objet": "l'amendement n° 112 de M. Mickaël Bouloux après l'article 62 A du projet de loi relatif à la résilience des infrastructures critiques et au renforcement de la cybersécurité (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9805",
+              "vedette": false,
+              "sous_amendements": []
+            }
+          ]
+        },
+        {
+          "ref": "64",
+          "article": null,
+          "modifications": [
+            {
+              "numero": 9806,
+              "nature": "amendement",
+              "article": "64",
+              "n_amendement": 16,
+              "parent": null,
+              "auteur": "M. Saint-Martin",
+              "issue": "rejete",
+              "pour": 9,
+              "contre": 28,
+              "abstentions": 1,
+              "votants": 38,
+              "solennel": false,
+              "objet": "l'amendement n° 16 de M. Saint-Martin après l'article 64 du projet de loi relatif à la résilience des infrastructures critiques et au renforcement de la cybersécurité (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9806",
               "vedette": false,
               "sous_amendements": []
             }
