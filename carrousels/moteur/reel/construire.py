@@ -22,6 +22,40 @@ def mots(texte, cl="w"):
         out.append(f'<span class="{cl}{" k" if k else ""}" style="display:inline-block">{esc(w.replace("**", ""))}</span>')
         if ferme and k: k = False
     return " ".join(out)
+
+def bleuet_svg(sid, w, h):
+    """Bleuet dessine en SVG (coordonnees absolues, viewBox 600x800) : tige, feuilles, deux couronnes de fleurons dentes, coeur violet. Renvoie (svg, js)."""
+    import math
+    def fleuron(cx, cy, ang, L, W, dec=0.0):
+        pts = [(-W * .16, -L * .22), (W * .16, -L * .22), (W * .55, -L * .72), (W * .72, -L * .92), (W * .46, -L * .97), (W * .34, -L * .84), (W * .16, -L * 1.04), (0, -L * .88),
+               (-W * .16, -L * 1.04), (-W * .34, -L * .84), (-W * .46, -L * .97), (-W * .72, -L * .92), (-W * .55, -L * .72)]
+        a = math.radians(ang); ca, sa = math.cos(a), math.sin(a)
+        return "M" + " L".join(f"{cx + x * ca - (y + dec) * sa:.1f} {cy + x * sa + (y + dec) * ca:.1f}" for x, y in pts) + "Z"
+    CX, CY = 300, 290; out = [f'<svg id="{sid}f" class="abs" viewBox="0 0 600 800" width="{w}" height="{h}" style="overflow:visible"><defs>'
+        '<linearGradient id="gb1" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#1B2FB0"/><stop offset="1" stop-color="#5E7DFF"/></linearGradient>'
+        '<linearGradient id="gb2" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#2E48D8"/><stop offset="1" stop-color="#8FA9FF"/></linearGradient></defs>'
+        f'<g id="{sid}g">',
+        f'<path id="{sid}st" d="M300 350 C 296 480, 318 620, 292 790" fill="none" stroke="#3F9A63" stroke-width="15" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>',
+        f'<path class="{sid}lf" d="M304 560 C 360 520, 430 520, 468 470 C 440 560, 372 590, 304 580 Z" fill="#4FB27A" transform-origin="304 570"/>',
+        f'<path class="{sid}lf" d="M300 660 C 240 630, 170 640, 132 590 C 160 680, 230 710, 298 690 Z" fill="#46A36E"/>']
+    n1, n2 = 13, 13
+    for k in range(n1): out.append(f'<path class="{sid}p1" d="{fleuron(CX, CY, k * 360 / n1, 200, 62)}" fill="url(#gb1)" stroke="#1B2FB0" stroke-width="1.5" stroke-linejoin="round"/>')
+    for k in range(n2): out.append(f'<path class="{sid}p2" d="{fleuron(CX, CY, (k + .5) * 360 / n2, 150, 52)}" fill="url(#gb2)" stroke="#2E48D8" stroke-width="1.2" stroke-linejoin="round"/>')
+    out.append(f'<circle class="{sid}cr" cx="{CX}" cy="{CY}" r="46" fill="#2B1F7A"/>')
+    for k in range(18):
+        r = 8 + 30 * ((k * 7) % 10) / 10; a = k * 2.399; x, y = CX + r * math.cos(a), CY + r * math.sin(a)
+        out.append(f'<circle class="{sid}cc" cx="{x:.1f}" cy="{y:.1f}" r="{5 + (k % 3)}" fill="{"#D2549F" if k % 3 == 0 else "#7A52D6"}"/>')
+    out.append('</g></svg>')
+    js = [f'(function(){{ const T0 = %T0%; const P1 = gsap.utils.toArray("#{sid}f .{sid}p1"), P2 = gsap.utils.toArray("#{sid}f .{sid}p2"), CC = gsap.utils.toArray("#{sid}f .{sid}cc");',
+          f'  tl.to("#{sid}st", {{ strokeDashoffset: 0, duration: 1.0, ease: "power2.inOut" }}, T0 + 0.1);',
+          f'  tl.fromTo("#{sid}f .{sid}lf", {{ scale: 0, opacity: 0, svgOrigin: "300 600" }}, {{ scale: 1, opacity: 1, duration: 0.7, ease: "back.out(1.6)", stagger: 0.18, svgOrigin: "300 600" }}, T0 + 0.7);',
+          f'  tl.fromTo("#{sid}f .{sid}cr", {{ scale: 0, opacity: 0, svgOrigin: "300 290" }}, {{ scale: 1, opacity: 1, duration: 0.5, ease: "back.out(2)", svgOrigin: "300 290" }}, T0 + 0.9);',
+          f'  P1.forEach((e, k) => tl.fromTo(e, {{ scale: 0, opacity: 0, svgOrigin: "300 290" }}, {{ scale: 1, opacity: 1, duration: 0.75, ease: "back.out(1.5)", svgOrigin: "300 290" }}, T0 + 1.0 + k * 0.06));',
+          f'  P2.forEach((e, k) => tl.fromTo(e, {{ scale: 0, opacity: 0, svgOrigin: "300 290" }}, {{ scale: 1, opacity: 1, duration: 0.7, ease: "back.out(1.7)", svgOrigin: "300 290" }}, T0 + 1.5 + k * 0.05));',
+          f'  CC.forEach((e, k) => tl.fromTo(e, {{ scale: 0, opacity: 0, svgOrigin: "300 290" }}, {{ scale: 1, opacity: 1, duration: 0.35, ease: "back.out(3)", svgOrigin: "300 290" }}, T0 + 2.0 + k * 0.03));',
+          f'  tl.fromTo("#{sid}g", {{ rotation: -2.2, svgOrigin: "300 790" }}, {{ rotation: 2.2, svgOrigin: "300 790", duration: 3.2, ease: "sine.inOut", yoyo: true, repeat: 3 }}, T0 + 2.4); }})();']
+    return "".join(out), "\n".join(js)
+
 html_s, js_s, t = [], [], 0.0
 FIN_D = float(SC.get("fin", {}).get("duree", 3.8))
 taille = lambda n: (80, 98) if n <= 70 else (70, 86) if n <= 110 else (60, 76) if n <= 160 else (52, 66)
@@ -155,6 +189,20 @@ for i, s in enumerate(SC["scenes"]):
                   f'tl.fromTo("#{sid}d{m}", {{ scale: 0.4, opacity: 0, transformOrigin: "50% 50%" }}, {{ scale: 1, opacity: 1, duration: 0.35, ease: "back.out(3)" }}, {t + 0.85 + m * 0.17:.2f});']
         h += [f'<div class="c" id="{sid}n" style="top:1245px;font-size:60px;color:#fff;letter-spacing:-.01em">{md(s.get("titre", ""))}</div>', f'<div class="c" id="{sid}m" style="top:1335px;font-size:40px;font-weight:500;color:#A0B0F0">{md(s.get("sous", ""))}</div>']
         j += [f'rise("#{sid}e", {t + 0.15:.2f}, -16, 0.4);', f'blurIn_("#{sid}n", {t + 3.0:.2f});', f'rise("#{sid}m", {t + 3.4:.2f}, 18, 0.45);']
+    elif ty == "bleuet":
+        tr_ = ""
+        if s.get("texte"):          # variante texte : petit bleuet en haut, kicker + texte dessous
+            svg, jf = bleuet_svg(sid, 420, 560); sz, lh = taille(len(s["texte"]))
+            h += [f'<div class="abs" style="left:330px;top:90px;width:420px;height:560px">{svg}</div>', f'<div class="kick" id="{sid}e" style="top:730px">{esc(s.get("kicker", ""))}</div>',
+                  f'<div class="big" id="{sid}t" style="top:812px;font-size:{sz - 8}px;line-height:{lh - 8}px">{mots(s["texte"])}</div>']
+            j += [jf.replace("%T0%", f"{t:.2f}"), f'rise("#{sid}e", {t + 0.3:.2f}, -16, 0.4);', f'words("#{sid}t .w", {t + 0.6:.2f}, 0.07);']
+        else:                       # variante titre : grand bleuet, bande tricolore, kicker, titre
+            svg, jf = bleuet_svg(sid, 600, 800)
+            h += [f'<div class="abs" style="left:240px;top:100px;width:600px;height:800px">{svg}</div>',
+                  f'<div id="{sid}tri" class="abs" style="left:90px;top:972px;width:300px;height:10px;display:flex;transform-origin:0 50%"><i style="flex:1;background:#2E48D8"></i><i style="flex:1;background:#fff"></i><i style="flex:1;background:#E1000F"></i></div>',
+                  f'<div class="kick" id="{sid}e" style="top:1020px">{esc(s.get("eyebrow", ""))}</div>', f'<div class="ttl" id="{sid}t" style="top:1100px;font-size:92px;line-height:108px">{mots(s["titre"])}</div>']
+            j += [jf.replace("%T0%", f"{t:.2f}"), f'tl.fromTo("#{sid}tri", {{ scaleX: 0 }}, {{ scaleX: 1, duration: 0.7, ease: "power3.inOut" }}, {t + 2.0:.2f});',
+                  f'rise("#{sid}e", {t + 2.2:.2f}, -16, 0.4);', f'words("#{sid}t .w", {t + 2.5:.2f}, 0.07);']
     elif ty == "loi_resume":
         col = {"vert": "rgb(69,150,109)", "orange": "rgb(255,140,80)"}.get(s.get("couleur", "orange"), "rgb(255,140,80)")
         tt = s["titre"]; nn = len(tt); sz, lh = (62, 74) if nn <= 70 else (54, 66) if nn <= 110 else (48, 58)

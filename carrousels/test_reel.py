@@ -1,5 +1,5 @@
 """Test des Reels (selection du jour + publication avec API Meta SIMULEE : rien n'est envoye). Lancer : python3 -m unittest carrousels.test_reel -v"""
-import json, sys, tempfile, unittest
+import datetime, json, sys, tempfile, unittest
 from pathlib import Path
 from unittest import mock
 RACINE = Path(__file__).resolve().parent.parent
@@ -22,9 +22,9 @@ class TestReel(unittest.TestCase):
         self.assertEqual(len(ids), len(set(ids)))
         for r in self.file_():
             self.assertTrue(r['urls'] and r['source'] and r['scenes'], r['id'])
-            self.assertIn('📚 Sources', r['legende']); self.assertLessEqual(r['legende'].count('#'), 5, r['id'])
+            self.assertIn('📚 Source', r['legende']); self.assertLessEqual(r['legende'].count('#'), 5, r['id'])
             for s in r['scenes']:
-                self.assertIn(s['type'], ('titre', 'texte', 'liste', 'etapes', 'compare', 'points', 'chiffre', 'mois', 'hemicycle'), r['id'])
+                self.assertIn(s['type'], ('titre', 'texte', 'liste', 'etapes', 'compare', 'points', 'chiffre', 'mois', 'hemicycle', 'cartes', 'bleuet'), r['id'])
                 if s['type'] == 'hemicycle':                                                     # hemicycle d'un vrai scrutin (exemple) : le scrutin doit exister
                     self.assertTrue((RACINE / 'data' / 'scrutins' / f"{r['scrutin']}.json").exists(), r['id'])
                 if s['type'] == 'points': self.assertLessEqual(sum(g['n'] for g in s['groupes']), 600, r['id'])
@@ -35,12 +35,13 @@ class TestReel(unittest.TestCase):
         for r in self.file_():
             for s in r['scenes']:
                 if s['type'] not in ('cartes', 'liste', 'etapes', 'compare'): continue
+                if s['type'] not in ('cartes', 'liste', 'etapes', 'compare'): continue
                 dl, fin = lecture.delais_items(s)
                 self.assertEqual(dl, sorted(dl), r['id']); self.assertTrue(all(b - a >= 1.0 for a, b in zip(dl, dl[1:])), (r['id'], dl))
                 self.assertGreaterEqual(lecture.duree_min(s), dl[-1] + 1.0, r['id'])             # le dernier a le temps d'etre lu
 
     def test_calage_sur_la_musique_pour_tous_les_reels(self):
-        scenarios = [r['scenes'] for r in self.file_()]
+        scenarios = [r['scenes'] for r in self.file_() if not r.get('musique')]          # les Reels avec leur propre musique (« musique ») ne passent pas par instru 2
         for sc in scenarios:
             sc2, n2, ne = musique.caler({'scenes': json.loads(json.dumps(sc))})
             cum = 0
@@ -103,8 +104,11 @@ class TestReel(unittest.TestCase):
         self.assertEqual([s['type'] for s in c['scenario']['scenes']], ['titre', 'chiffres', 'cartes', 'hemicycle']); self.assertEqual(c['scenario']['scenes'][0]['tampon'], 'ADOPTÉ')
 
     def test_sinon_pedagogique_dans_l_ordre_puis_repart_du_debut(self):
-        ids = [r['id'] for r in self.file_()]
-        with mock.patch.object(pr, '_scrutins_solennels_de_texte', lambda d: []):
+        ids = [r['id'] for r in self.file_() if not r.get('jour')]                                  # les Reels de circonstance (« jour ») ne font pas partie de la file ordinaire
+        class D(datetime.date):
+            @classmethod
+            def today(cls): return cls.fromisoformat('2026-11-12')
+        with mock.patch.object(pr, '_scrutins_solennels_de_texte', lambda d: []), mock.patch.object(pr.datetime, 'date', D):
             with mock.patch.object(pr, 'lire_etat_publication', lambda: {}):
                 c = pr.contenu_reel()
             self.assertEqual((c['type_reel'], c['id'], c['valeur_etat']), ('pedagogique', ids[0], [ids[0]]))

@@ -28,6 +28,7 @@ def duree_min(s):
     if ty == "loi_resume": return delais_loi_resume(s)[3]
     if ty == "chiffre": return round(max(4.6, 3.0 + MOT * n_mots(s.get("sous", "")) + 0.8), 2)
     if ty == "mois": return 5.6
+    if ty == "bleuet": return round(max(4.6, 0.4 + MOT * n_mots(s.get("texte") or s.get("titre", "")) + 0.7), 2) if s.get("texte") else 5.2     # le bleuet a besoin de ~4,5 s pour eclore
     if ty == "texte": return round(0.4 + MOT * n_mots(s["texte"]) + 0.7, 2)
     if ty == "titre": return round(max(0.4 + MOT * n_mots(s["titre"]) + 0.6, 3.0 if s.get("tampon") else 0), 2) if not s.get("tampon") else round(max(0.4 + MOT * n_mots(s["titre"]) + 0.6, 3.0), 2)
     return 5.8 if ty == "chiffres" else 5.4                       # hemicycle

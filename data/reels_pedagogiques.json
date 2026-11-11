@@ -592,6 +592,87 @@
     "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000019241057/"
    ],
    "legende": "C'est quoi une niche parlementaire ?\n\nChaque mois, un jour de séance est réservé à un ordre du jour fixé à l'initiative des groupes d'opposition et des groupes minoritaires : c'est ce qu'on appelle une niche parlementaire.\n\nQuelle question sur le fonctionnement du Parlement veux-tu qu'on explique ensuite ? Dis-le en commentaire 👇\n\n📚 Sources : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000019241057/\n\n📲 Les votes de l'Assemblée, siège par siège : app Populous (lien en bio).\n\n#Populous #AssembléeNationale #Institutions #Politique #Démocratie"
+  },
+  {
+   "id": "bleuet-11-novembre",
+   "jour": "11-11",
+   "titre": "Pourquoi un bleuet le 11 novembre ?",
+   "scenes": [
+    {
+     "type": "bleuet",
+     "eyebrow": "11 novembre · Mémoire",
+     "titre": "Pourquoi un bleuet ?",
+     "duree": 5.76
+    },
+    {
+     "type": "cartes",
+     "titre": "Une idée née aux Invalides",
+     "sous": "Trois choses à savoir.",
+     "duree": 11.52,
+     "cartes": [
+      [
+       "Qui ?",
+       "**Charlotte Malleterre** et **Suzanne Leenhardt**, infirmières à l'Institution nationale des Invalides."
+      ],
+      [
+       "L'idée",
+       "Des bleuets en tissu, **confectionnés par les blessés** et vendus sur la voie publique."
+      ],
+      [
+       "Pourquoi",
+       "Occuper les anciens combattants, les **soutenir** et **collecter des fonds**."
+      ]
+     ]
+    },
+    {
+     "type": "bleuet",
+     "kicker": "Pourquoi le bleuet ?",
+     "texte": "Les soldats voyaient les bleuets **repousser** sur les champs de bataille dévastés : un symbole de **résilience**, de **ténacité** et d'**espoir**.",
+     "duree": 8.64
+    },
+    {
+     "type": "etapes",
+     "titre": "Une fleur devenue symbole",
+     "duree": 8.64,
+     "etapes": [
+      {
+       "kicker": "1918",
+       "titre": "**Symbole officiel**",
+       "sous": "de la mémoire des soldats tombés au combat"
+      },
+      {
+       "kicker": "1934",
+       "titre": "Première **collecte** le 11 novembre",
+       "sous": "à Paris : plus de 128 000 fleurs vendues"
+      }
+     ]
+    },
+    {
+     "type": "liste",
+     "titre": "Aujourd'hui",
+     "duree": 8.64,
+     "items": [
+      "Collecte chaque **8 mai** et **11 novembre**",
+      "**Bourses d'études** pour les pupilles de la Nation",
+      "**Aide** aux anciens combattants et aux militaires blessés"
+     ]
+    }
+   ],
+   "fin": {
+    "duree": 3.8,
+    "eyebrow": "Populous",
+    "ligne1": "Chaque jour,",
+    "ligne2": "un repère d'histoire.",
+    "accroche": "Le fait du jour, sur Populous."
+   },
+   "source": "Source : defense.gouv.fr (ministère des Armées), 5 mai 2025",
+   "musique": "marseillaise",
+   "couverture_s": 4.4,
+   "resume": "Le Bleuet de France est né d'une idée de deux infirmières de l'Institution nationale des Invalides : faire confectionner des bleuets en tissu par les blessés pour les vendre sur la voie publique. Symbole officiel de la mémoire des soldats tombés au combat dès 1918, collecté chaque 8 mai et 11 novembre.",
+   "urls": [
+    "https://www.defense.gouv.fr/sga/actualites/bleuet-france-symbole-memoire-solidarite"
+   ],
+   "legende": "11 novembre : pourquoi le bleuet ?\n\nLe Bleuet de France est né d'une idée de deux infirmières de l'Institution nationale des Invalides, Charlotte Malleterre et Suzanne Leenhardt : faire confectionner des bleuets en tissu par les blessés, pour les vendre sur la voie publique. Les soldats voyaient cette fleur repousser sur les champs de bataille dévastés : un symbole de résilience, de ténacité et d'espoir. Aujourd'hui, la collecte a lieu chaque 8 mai et 11 novembre.\n\nUn bleuet à la boutonnière aujourd'hui ? Dis-le en commentaire 👇\n\n📚 Source : ministère des Armées (SGA), « Le Bleuet de France : symbole de mémoire et de solidarité », 5 mai 2025 : https://www.defense.gouv.fr/sga/actualites/bleuet-france-symbole-memoire-solidarite\n\n🎻 Musique : La Marseillaise (Rouget de Lisle, 1792, domaine public), arrangement pour cordes réalisé pour Populous.\n\n📲 Les votes de l'Assemblée, siège par siège : app Populous (lien en bio).\n\n#Populous #BleuetDeFrance #11Novembre #Mémoire #Histoire"
   }
  ]
 }

@@ -25,6 +25,25 @@ except Exception as e:                                          # numpy absent, 
     musique = None; print(f'[musique] module indisponible, bande son synthetisee : {e}', file=sys.stderr)
 
 
+try:
+    import marseillaise
+except Exception as e:                                          # numpy absent, etc. : bande son synthetisee
+    marseillaise = None; print(f'[marseillaise] module indisponible, bande son synthetisee : {e}', file=sys.stderr)
+
+
+def _marseillaise_possible(scenario):
+    """Reel commemoratif (« musique »: « marseillaise ») : la musique impose ses mesures (2,88 s) ; les scenes doivent durer chacune un nombre entier de mesures
+    et au moins leur temps de lecture, sinon la bande son synthetisee est conservee."""
+    if scenario.get('musique') != 'marseillaise' or marseillaise is None or not marseillaise.disponible():
+        return False
+    sys.path.insert(0, str(MOTEUR / 'reel')); import lecture
+    for x in scenario['scenes']:
+        d = float(x.get('duree', 0)); k = d / marseillaise.MESURE
+        if abs(k - round(k)) > 0.01 or d + 0.01 < lecture.duree_min(x):
+            print(f'[marseillaise] scene « {x["type"]} » de {d:.2f} s hors mesure ou trop courte pour etre lue : bande son synthetisee conservee', file=sys.stderr); return False
+    return True
+
+
 def _caler_sur_la_musique(scenario):
     """Si l'instru est disponible : durees alignees sur ses temps, pause et zoom avant la carte Populous. Renvoie (scenario, instru_utilise, n2, ne)."""
     if musique is not None and musique.disponible():
@@ -48,7 +67,8 @@ def generer(scenario, sortie, *, scrutin=None, garder_travail=False):
         for police in ('ExtraBold', 'Bold', 'Medium'):
             shutil.copy(REPO / 'assets_social' / 'fonts' / f'PlusJakartaSans-{police}.ttf', projet / 'assets' / 'fonts')
         shutil.copy(MOTEUR / 'commun' / 'gsap.min.js', projet / 'assets' / 'gsap.min.js')
-        scenario, instru, n2, ne = _caler_sur_la_musique(scenario)
+        marseillaise_ok = _marseillaise_possible(scenario)
+        scenario, instru, n2, ne = (scenario, False, 0, 0) if marseillaise_ok else _caler_sur_la_musique(scenario)
         (travail / 'scenario.json').write_text(json.dumps(scenario, ensure_ascii=False), encoding='utf-8')
         env = {**os.environ, 'POPULOUS_REPO': str(REPO), 'REEL_SCENARIO': str(travail / 'scenario.json')}
         if scrutin is not None:
@@ -64,14 +84,19 @@ def generer(scenario, sortie, *, scrutin=None, garder_travail=False):
         duree = float(_lancer(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', str(brut)], projet, env, 'duree').strip())
         reel, couverture = sortie / 'reel.mp4', sortie / 'couverture.png'
         monte = False
-        if instru:
+        if marseillaise_ok:
+            try:
+                marseillaise.monter(brut, reel, duree, tmp=travail); monte = True
+            except Exception as e:
+                print(f'[marseillaise] musique ignoree, bande son synthetisee conservee : {e}', file=sys.stderr)
+        elif instru:
             try:
                 musique.monter(brut, reel, duree, float(scenario.get('fin', {}).get('duree', 3.8)), n2, ne, tmp=travail); monte = True
             except Exception as e:                                  # jamais de Reel perdu pour un probleme de musique
                 print(f'[musique] instru ignore, bande son synthetisee conservee : {e}', file=sys.stderr)
         if not monte:
             _lancer(['ffmpeg', '-v', 'error', '-y', '-i', str(brut), '-c:v', 'copy', '-af', f'afade=t=out:st={max(duree - 0.8, 0):.2f}:d=0.8', '-c:a', 'aac', '-b:a', '160k', '-movflags', '+faststart', str(reel)], projet, env, 'fondu sonore')
-        _lancer(['ffmpeg', '-v', 'error', '-y', '-ss', '2.6', '-i', str(brut), '-frames:v', '1', str(couverture)], projet, env, 'couverture')
+        _lancer(['ffmpeg', '-v', 'error', '-y', '-ss', str(scenario.get('couverture_s', 2.6)), '-i', str(brut), '-frames:v', '1', str(couverture)], projet, env, 'couverture')
         for p in (reel, couverture):
             if not p.exists() or p.stat().st_size < 2000:
                 raise RuntimeError(f'fichier de reel manquant ou vide : {p}')

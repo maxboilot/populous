@@ -178,6 +178,32 @@ class TestCarrousel(unittest.TestCase):
         self.assertEqual(mem['decisions_carrousel_publiees'], ['U1'])
 
 
+class TestReelDeCirconstance(unittest.TestCase):
+    """Reel avec « jour » (MM-JJ) dans data/reels_pedagogiques.json : publie ce jour-la seulement, une fois, avec sa musique et sa carte finale."""
+    def choisir(self, jour, publies=()):
+        class D(datetime.date):
+            @classmethod
+            def today(cls): return cls.fromisoformat(jour)
+        with mock.patch.object(pr.datetime, 'date', D), mock.patch.object(pr, '_candidats_texte', lambda a, e: []), mock.patch.object(pr, 'lire_etat_publication', lambda: {'reels_pedagogiques_publies': list(publies)}):
+            return pr.contenu_reel()
+
+    def test_publie_le_jour_dit_avec_musique_et_carte_finale(self):
+        c = self.choisir('2026-11-11'); self.assertEqual(c['id'], 'bleuet-11-novembre')
+        self.assertEqual(c['scenario']['musique'], 'marseillaise'); self.assertEqual(c['scenario']['fin']['ligne2'], "un repère d'histoire.")
+        self.assertLessEqual(c['legende'].count('#'), 5); self.assertIn('defense.gouv.fr', c['legende'])
+
+    def test_pas_les_autres_jours_ni_deux_fois(self):
+        self.assertNotEqual(self.choisir('2026-11-12')['id'], 'bleuet-11-novembre')
+        self.assertNotEqual(self.choisir('2026-11-11', ['bleuet-11-novembre'])['id'], 'bleuet-11-novembre')
+
+    def test_scenes_calees_sur_les_mesures_de_la_musique(self):
+        sys.path.insert(0, str(RACINE / 'carrousels' / 'moteur' / 'reel')); import lecture, marseillaise
+        sc = self.choisir('2026-11-11')['scenario']
+        for x in sc['scenes']:
+            k = x['duree'] / marseillaise.MESURE; self.assertAlmostEqual(k, round(k), delta=0.01); self.assertGreaterEqual(x['duree'] + 0.01, lecture.duree_min(x))
+        self.assertAlmostEqual(sum(x['duree'] for x in sc['scenes'][:3]), marseillaise.INTRO + 32 * marseillaise.B, delta=0.01)      # le refrain (« Aux armes, citoyens ») commence a la fin de la 3e scene
+
+
 class TestMoteur(unittest.TestCase):
     def test_cartes_auto_tiennent_dans_la_zone(self):
         sys.path.insert(0, str(RACINE / 'carrousels' / 'moteur' / 'commun'))

@@ -882,12 +882,16 @@ def contenu_reel():
         return {'type_reel': 'loi', 'scenario': scenario_loi_reel(vote, titre, blocs, source), 'scrutin': vote['numero'],
                 'legende': generer_post_vote.legende(vote, titre, contours), **base}
     file_ = json.loads((DOSSIER / 'data' / 'reels_pedagogiques.json').read_text(encoding='utf-8'))['reels']
-    publies = [i for i in etat.get('reels_pedagogiques_publies', []) if any(r['id'] == i for r in file_)]
-    if len(publies) >= len(file_):
-        publies = []                                           # tous publies : on repart du debut
-    for r in file_:
+    jour = aujourdhui.strftime('%m-%d'); ids = {r['id'] for r in file_}
+    ordinaires = [r for r in file_ if not r.get('jour')]                     # « jour » (MM-JJ) : Reel de circonstance, publie ce jour-la seulement (et une seule fois)
+    publies = [i for i in etat.get('reels_pedagogiques_publies', []) if i in ids]
+    if all(r['id'] in publies for r in ordinaires):
+        publies = [i for i in publies if i not in {r['id'] for r in ordinaires}]       # tous les Reels ordinaires publies : on repart du debut
+    ordre = [r for r in file_ if r.get('jour') == jour] + ordinaires
+    for r in ordre:
         if r['id'] not in publies:
-            return {'type_reel': 'pedagogique', 'scenario': {'scenes': r['scenes'], 'fin': {'duree': 3.8}, 'source': r['source']}, 'scrutin': r.get('scrutin'),
+            sc = {'scenes': r['scenes'], 'fin': r.get('fin', {'duree': 3.8}), 'source': r['source'], **{k: r[k] for k in ('musique', 'couverture_s') if k in r}}
+            return {'type_reel': 'pedagogique', 'scenario': sc, 'scrutin': r.get('scrutin'),
                     'legende': r['legende'], 'cle_etat': 'reels_pedagogiques_publies', 'valeur_etat': publies + [r['id']], 'id': r['id']}
     return None
 
@@ -941,7 +945,7 @@ def main_reel(args):
     if plateformes - {'facebook', 'instagram'} or not plateformes:
         sys.exit(f"--plateformes : valeurs possibles « facebook », « instagram » (recu : {args.plateformes}).")
     reussies, echecs = [], []
-    for nom, f in (('instagram', lambda: publier_reel_instagram(env['IG_USER_ID'], env['FB_PAGE_TOKEN'], reel['reel'], contenu['legende'])),
+    for nom, f in (('instagram', lambda: publier_reel_instagram(env['IG_USER_ID'], env['FB_PAGE_TOKEN'], reel['reel'], contenu['legende'], thumb_offset=int(1000 * contenu['scenario'].get('couverture_s', 2.6)))),
                    ('facebook', lambda: publier_reel_facebook(env['FB_PAGE_ID'], env['FB_PAGE_TOKEN'], reel['reel'], contenu['legende']))):
         if nom not in plateformes:
             continue
