@@ -19,7 +19,7 @@ def _court(t, n=80): return t if len(t) <= n else t[:n].rsplit(" ", 1)[0].rstrip
 TITRE = F["titre"] or _court(F["texte"])        # faits sans titre (Wikipédia) : le texte EST le titre, raccourci en slide 1, complet en slide 2
 TEXTE = re.sub(r"\b([IVX]+) e\b", r"\1e", F["texte"])
 DATE = f"{int(MMJJ[3:])} {MOIS[int(MMJJ[:2]) - 1]} {ANNEE}".upper()
-host = (urlparse(F["source"]).hostname or "").removeprefix("www.")
+host = (urlparse(F.get("source") or "").hostname or "").removeprefix("www.")      # faits cures a la main : pas de source -> rien n'est affirme sur la source
 OFFICIEL = "assemblee-nationale.fr" in host
 SURLIGNAGES = {"10-27": ["faible majorité", "primauté du pouvoir législatif"]}.get(MMJJ, [])
 LEGENDE = {"10-27": "La IVe République"}.get(MMJJ, "")
@@ -42,9 +42,9 @@ _n = len(TEXTE)
 CORPS_PX = 70 if _n <= 110 else (58 if _n <= 190 else (50 if _n <= 260 else 44))      # un fait court se lit en grand, un long en plus petit
 subs = {"%%CORPS_PX%%": str(CORPS_PX), "%%CORPS_LH%%": str(round(CORPS_PX * 1.45)), "%%RW%%": str(RW), "%%DUR%%": str(DUR), "%%MODE%%": MODE, "%%IDX%%": str(IDX), "%%TICKS%%": TICKS, "%%DATE%%": DATE, "%%COLONNES%%": COLONNES,
         "%%TITRE%%": mots(TITRE), "%%CORPS%%": mots(TEXTE, SURLIGNAGES), "%%ANNEE%%": str(ANNEE), "%%LEGENDE%%": LEGENDE, "%%AGE%%": str(AUJ - ANNEE), "%%AUJ%%": str(AUJ),
-        "%%PICTO%%": PICTO, "%%LIGNE_SOURCE%%": "Une source officielle." if OFFICIEL else "Une source citée.", "%%HOTE%%": host,
+        "%%PICTO%%": PICTO, "%%LIGNE_SOURCE%%": "Une source officielle." if OFFICIEL else ("Une source citée." if host else "Un repère à retenir."), "%%HOTE%%": host,
         "%%LETTRES%%": "".join(f'<span class="l" style="display:inline-block">{c}</span>' for c in "Populous"),
-        "%%SOURCE_PIED%%": "Source : Assemblée nationale" if OFFICIEL else "Source : " + host}
+        "%%SOURCE_PIED%%": "Source : Assemblée nationale" if OFFICIEL else ("Source : " + host if host else "Populous · Fait du jour")}
 subs.update({f"%%PROGRES{k + 1}%%": progres(k) for k in range(5)})
 blocs.assembler(HERE, "modele.html", subs)
 print("index.html :", MODE, IDX if MODE == "slide" else "", MMJJ, "|", host)
