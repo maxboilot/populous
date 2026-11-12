@@ -1,14 +1,9 @@
 {
-  "generated_at": "2026-11-12T13:52:19.770241Z",
-  "featured_numero": 9807,
+  "generated_at": "2026-11-12T16:52:05.223059Z",
+  "featured_numero": null,
   "featured_is_solennel": false,
-  "autres_scrutins_du_jour": [
-    9808,
-    9809,
-    9810,
-    9811
-  ],
-  "aucun_vote_aujourdhui": false,
+  "autres_scrutins_du_jour": [],
+  "aucun_vote_aujourdhui": true,
   "last_featured_numero": 9807,
   "last_featured_date": "2026-11-12"
 }
