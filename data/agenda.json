@@ -457,6 +457,18 @@
   },
   {
     "date": "2026-11-25",
+    "heure": "11:00",
+    "ordre_du_jour": "Examen du texte — Reconnaître les victimes de l'exposition aux essais nucléaires français et améliorer leur indemnisation (séance éventuelle)",
+    "themes": [
+      "justice",
+      "environnement"
+    ],
+    "dossier": "DLR5L17N53276",
+    "scrutin_annonce": false,
+    "lecture": "2ᵉ lecture"
+  },
+  {
+    "date": "2026-11-25",
     "heure": "14:00",
     "ordre_du_jour": "Discussion de la proposition de résolution européenne relative à la révision de la directive « Services de médias audiovisuels » et à la défense de l’exception culturelle européenne",
     "themes": [
