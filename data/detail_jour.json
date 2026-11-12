@@ -1,310 +1,118 @@
 {
-  "generated_at": "2026-11-12T09:56:19.795667Z",
-  "date": "2026-11-10",
-  "numero_vedette": 9794,
+  "generated_at": "2026-11-12T13:52:30.152670Z",
+  "date": "2026-11-12",
+  "numero_vedette": 9807,
   "lois": [
     {
+      "nature_texte": "proposition de loi",
+      "intitule": "visant à renforcer l'effectivité des droits voisins des éditeurs et des agences de presse",
+      "lecture": "(texte de la commission mixte paritaire)",
+      "ensemble": {
+        "numero": 9807,
+        "nature": "ensemble",
+        "article": null,
+        "n_amendement": null,
+        "parent": null,
+        "auteur": null,
+        "issue": "adopte",
+        "pour": 59,
+        "contre": 0,
+        "abstentions": 0,
+        "votants": 59,
+        "solennel": false,
+        "objet": "l'ensemble de la proposition de loi visant à renforcer l'effectivité des droits voisins des éditeurs et des agences de presse (texte de la commission mixte paritaire).",
+        "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9807",
+        "vedette": true
+      },
+      "motions": [],
+      "articles": []
+    },
+    {
       "nature_texte": "projet de loi",
-      "intitule": "relatif à la résilience des infrastructures critiques et au renforcement de la cybersécurité",
+      "intitule": "de finances de fin de gestion pour 2026",
       "lecture": "(première lecture)",
       "ensemble": null,
       "motions": [],
       "articles": [
         {
-          "ref": "16 bis",
+          "ref": "liminaire",
           "article": null,
           "modifications": [
             {
-              "numero": 9794,
+              "numero": 9808,
               "nature": "amendement",
-              "article": "16 bis",
-              "n_amendement": 358,
+              "article": "liminaire",
+              "n_amendement": 3,
               "parent": null,
-              "auteur": "du Gouvernement",
+              "auteur": "M. Jean-Philippe Tanguy",
               "issue": "adopte",
-              "pour": 69,
-              "contre": 37,
+              "pour": 50,
+              "contre": 25,
               "abstentions": 1,
-              "votants": 107,
+              "votants": 76,
               "solennel": false,
-              "objet": "l'amendement n° 358 du Gouvernement et les amendements identiques suivants de suppression de l'article 16 bis du projet de loi relatif à la résilience des infrastructures critiques et au renforcement de la cybersécurité (première lecture).",
-              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9794",
-              "vedette": true,
+              "objet": "l'amendement n° 3 de M. Jean-Philippe Tanguy et les amendements identiques suivants de suppression de l'article liminaire du projet de loi de finances de fin de gestion pour 2026 (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9808",
+              "vedette": false,
               "sous_amendements": []
             }
           ]
         },
         {
-          "ref": "19",
+          "ref": "1",
           "article": null,
           "modifications": [
             {
-              "numero": 9795,
+              "numero": 9809,
               "nature": "amendement",
-              "article": "19",
-              "n_amendement": 44,
+              "article": "1",
+              "n_amendement": 1,
               "parent": null,
-              "auteur": "M. Pilato",
-              "issue": "rejete",
-              "pour": 21,
-              "contre": 28,
+              "auteur": "M. Masséglia",
+              "issue": "adopte",
+              "pour": 69,
+              "contre": 1,
               "abstentions": 1,
-              "votants": 50,
+              "votants": 71,
               "solennel": false,
-              "objet": "l'amendement n° 44 (rect.) de M. Pilato à l'article 19 du projet de loi relatif à la résilience des infrastructures critiques et au renforcement de la cybersécurité (première lecture).",
-              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9795",
+              "objet": "l'amendement n° 1 de M. Masséglia et les amendements identiques suivants à l'article 1 du projet de loi de finances de fin de gestion pour 2026 (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9809",
               "vedette": false,
               "sous_amendements": []
             },
             {
-              "numero": 9796,
+              "numero": 9810,
               "nature": "amendement",
-              "article": "19",
-              "n_amendement": 6,
+              "article": "1",
+              "n_amendement": 2,
               "parent": null,
               "auteur": "Mme Duby-Muller",
               "issue": "rejete",
-              "pour": 23,
-              "contre": 26,
-              "abstentions": 0,
-              "votants": 49,
-              "solennel": false,
-              "objet": "l'amendement n° 6 (rect.) de Mme Duby-Muller à l'article 19 du projet de loi relatif à la résilience des infrastructures critiques et au renforcement de la cybersécurité (première lecture).",
-              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9796",
-              "vedette": false,
-              "sous_amendements": []
-            }
-          ]
-        },
-        {
-          "ref": "20",
-          "article": null,
-          "modifications": [
-            {
-              "numero": 9797,
-              "nature": "amendement",
-              "article": "20",
-              "n_amendement": 45,
-              "parent": null,
-              "auteur": "M. Pilato",
-              "issue": "rejete",
-              "pour": 12,
-              "contre": 33,
-              "abstentions": 4,
-              "votants": 49,
-              "solennel": false,
-              "objet": "l'amendement n° 45 de M. Pilato à l'article 20 du projet de loi relatif à la résilience des infrastructures critiques et au renforcement de la cybersécurité (première lecture).",
-              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9797",
-              "vedette": false,
-              "sous_amendements": []
-            }
-          ]
-        },
-        {
-          "ref": "24",
-          "article": null,
-          "modifications": [
-            {
-              "numero": 9798,
-              "nature": "amendement",
-              "article": "24",
-              "n_amendement": 107,
-              "parent": null,
-              "auteur": "M. Saint-Pasteur",
-              "issue": "rejete",
-              "pour": 14,
-              "contre": 28,
+              "pour": 25,
+              "contre": 32,
               "abstentions": 3,
-              "votants": 45,
+              "votants": 60,
               "solennel": false,
-              "objet": "l'amendement n° 107 de M. Saint-Pasteur à l'article 24 du projet de loi relatif à la résilience des infrastructures critiques et au renforcement de la cybersécurité (première lecture).",
-              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9798",
+              "objet": "l'amendement n° 2 de Mme Duby-Muller et les amendements identiques suivants à l'article 1 du projet de loi de finances de fin de gestion pour 2026 (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9810",
               "vedette": false,
               "sous_amendements": []
             },
             {
-              "numero": 9799,
+              "numero": 9811,
               "nature": "amendement",
-              "article": "24",
-              "n_amendement": 85,
+              "article": "1",
+              "n_amendement": 5,
               "parent": null,
-              "auteur": "M. Le Gac",
+              "auteur": "M. Jean-Philippe Tanguy",
               "issue": "rejete",
-              "pour": 12,
-              "contre": 16,
-              "abstentions": 8,
-              "votants": 36,
-              "solennel": false,
-              "objet": "l'amendement n° 85 de M. Le Gac à l'article 24 du projet de loi relatif à la résilience des infrastructures critiques et au renforcement de la cybersécurité (première lecture).",
-              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9799",
-              "vedette": false,
-              "sous_amendements": []
-            }
-          ]
-        },
-        {
-          "ref": "31",
-          "article": null,
-          "modifications": [
-            {
-              "numero": 9800,
-              "nature": "amendement",
-              "article": "31",
-              "n_amendement": 383,
-              "parent": null,
-              "auteur": "M. Bénard",
-              "issue": "rejete",
-              "pour": 15,
-              "contre": 15,
-              "abstentions": 15,
-              "votants": 45,
-              "solennel": false,
-              "objet": "l'amendement n° 383 de M. Bénard à l'article 31 du projet de loi relatif à la résilience des infrastructures critiques et au renforcement de la cybersécurité (première lecture).",
-              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9800",
-              "vedette": false,
-              "sous_amendements": []
-            }
-          ]
-        },
-        {
-          "ref": "36",
-          "article": null,
-          "modifications": [
-            {
-              "numero": 9801,
-              "nature": "amendement",
-              "article": "36",
-              "n_amendement": 167,
-              "parent": null,
-              "auteur": "M. Latombe",
-              "issue": "adopte",
-              "pour": 23,
-              "contre": 15,
-              "abstentions": 0,
-              "votants": 38,
-              "solennel": false,
-              "objet": "l'amendement n° 167 de M. Latombe à l'article 36 du projet de loi relatif à la résilience des infrastructures critiques et au renforcement de la cybersécurité (première lecture).",
-              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9801",
-              "vedette": false,
-              "sous_amendements": []
-            }
-          ]
-        },
-        {
-          "ref": "37",
-          "article": null,
-          "modifications": [
-            {
-              "numero": 9802,
-              "nature": "amendement",
-              "article": "37",
-              "n_amendement": 82,
-              "parent": null,
-              "auteur": "M. Saint-Pasteur",
-              "issue": "adopte",
-              "pour": 25,
-              "contre": 12,
-              "abstentions": 0,
-              "votants": 37,
-              "solennel": false,
-              "objet": "l'amendement n° 82 de M. Saint-Pasteur à l'article 37 du projet de loi relatif à la résilience des infrastructures critiques et au renforcement de la cybersécurité (première lecture).",
-              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9802",
-              "vedette": false,
-              "sous_amendements": []
-            }
-          ]
-        },
-        {
-          "ref": "37 bis",
-          "article": null,
-          "modifications": [
-            {
-              "numero": 9803,
-              "nature": "amendement",
-              "article": "37 bis",
-              "n_amendement": 169,
-              "parent": null,
-              "auteur": "M. Latombe",
-              "issue": "adopte",
-              "pour": 23,
-              "contre": 11,
+              "pour": 26,
+              "contre": 41,
               "abstentions": 1,
-              "votants": 35,
+              "votants": 68,
               "solennel": false,
-              "objet": "l'amendement n° 169 de M. Latombe et l'amendement identique suivant après l'article 37 bis du projet de loi relatif à la résilience des infrastructures critiques et au renforcement de la cybersécurité (première lecture).",
-              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9803",
-              "vedette": false,
-              "sous_amendements": []
-            }
-          ]
-        },
-        {
-          "ref": "45 bis",
-          "article": null,
-          "modifications": [
-            {
-              "numero": 9804,
-              "nature": "amendement",
-              "article": "45 bis",
-              "n_amendement": 295,
-              "parent": null,
-              "auteur": "du Gouvernement",
-              "issue": "adopte",
-              "pour": 17,
-              "contre": 14,
-              "abstentions": 0,
-              "votants": 31,
-              "solennel": false,
-              "objet": "l'amendement n° 295 du Gouvernement et l'amendement identique suivant à l'article 45 bis du projet de loi relatif à la résilience des infrastructures critiques et au renforcement de la cybersécurité (première lecture).",
-              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9804",
-              "vedette": false,
-              "sous_amendements": []
-            }
-          ]
-        },
-        {
-          "ref": "62 A",
-          "article": null,
-          "modifications": [
-            {
-              "numero": 9805,
-              "nature": "amendement",
-              "article": "62 A",
-              "n_amendement": 112,
-              "parent": null,
-              "auteur": "M. Mickaël Bouloux",
-              "issue": "rejete",
-              "pour": 11,
-              "contre": 13,
-              "abstentions": 13,
-              "votants": 37,
-              "solennel": false,
-              "objet": "l'amendement n° 112 de M. Mickaël Bouloux après l'article 62 A du projet de loi relatif à la résilience des infrastructures critiques et au renforcement de la cybersécurité (première lecture).",
-              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9805",
-              "vedette": false,
-              "sous_amendements": []
-            }
-          ]
-        },
-        {
-          "ref": "64",
-          "article": null,
-          "modifications": [
-            {
-              "numero": 9806,
-              "nature": "amendement",
-              "article": "64",
-              "n_amendement": 16,
-              "parent": null,
-              "auteur": "M. Saint-Martin",
-              "issue": "rejete",
-              "pour": 9,
-              "contre": 28,
-              "abstentions": 1,
-              "votants": 38,
-              "solennel": false,
-              "objet": "l'amendement n° 16 de M. Saint-Martin après l'article 64 du projet de loi relatif à la résilience des infrastructures critiques et au renforcement de la cybersécurité (première lecture).",
-              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9806",
+              "objet": "l'amendement n° 5 de M. Jean-Philippe Tanguy à l'article 1 du projet de loi de finances de fin de gestion pour 2026 (première lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9811",
               "vedette": false,
               "sous_amendements": []
             }

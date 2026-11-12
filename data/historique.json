@@ -1,8 +1,31 @@
 {
-  "generated_at": "2026-11-12T09:56:15.628081Z",
+  "generated_at": "2026-11-12T13:52:22.814843Z",
   "depuis": "2025-11-12",
-  "nombre": 113,
+  "nombre": 114,
   "lois": [
+    {
+      "numero": 9807,
+      "date": "2026-11-12",
+      "titre": "Renforcer l'effectivité des droits voisins des éditeurs et des agences de presse",
+      "titre_officiel": "l'ensemble de la proposition de loi visant à renforcer l'effectivité des droits voisins des éditeurs et des agences de presse (texte de la commission mixte paritaire).",
+      "nature": "proposition de loi",
+      "lecture": "texte de la commission mixte paritaire",
+      "solennel": false,
+      "adopte": true,
+      "statut": "adopte",
+      "themes": [
+        "culture"
+      ],
+      "sort": "l'Assemblée nationale a adopté",
+      "tally": {
+        "pour": 59,
+        "contre": 0,
+        "abstention": 0,
+        "absent": 519
+      },
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9807",
+      "type": "scrutin"
+    },
     {
       "numero": 9241,
       "date": "2026-10-29",
