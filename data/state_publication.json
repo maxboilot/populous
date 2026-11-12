@@ -1,81 +1,52 @@
 {
   "dernier_reel": {
-    "date": "2026-11-11",
+    "date": "2026-11-12",
     "scenario": {
-      "couverture_s": 4.4,
       "fin": {
-        "accroche": "Le fait du jour, sur Populous.",
-        "duree": 3.8,
-        "eyebrow": "Populous",
-        "ligne1": "Chaque jour,",
-        "ligne2": "un repère d'histoire."
+        "duree": 3.8
       },
-      "musique": "marseillaise",
       "scenes": [
         {
-          "duree": 5.76,
-          "eyebrow": "11 novembre · Mémoire",
-          "titre": "Pourquoi un bleuet ?",
-          "type": "bleuet"
+          "couleur": "vert",
+          "duree": 4.4,
+          "eyebrow": "Vote solennel · 12 novembre 2026",
+          "tampon": "ADOPTÉ",
+          "titre": "Proposition de loi visant à renforcer l'effectivité des droits voisins des éditeurs et des agences de presse (texte de la commission mixte paritaire)",
+          "type": "titre"
+        },
+        {
+          "duree": 5.0,
+          "type": "chiffres"
         },
         {
           "cartes": [
             [
-              "Qui ?",
-              "**Charlotte Malleterre** et **Suzanne Leenhardt**, infirmières à l'Institution nationale des Invalides."
+              "Ce que c’est",
+              "Une proposition de loi : un texte déposé par des parlementaires."
             ],
             [
-              "L'idée",
-              "Des bleuets en tissu, **confectionnés par les blessés** et vendus sur la voie publique."
+              "Ce vote",
+              "Vote sur l’ensemble du texte. Résultat : adopté (59 pour, 0 contre, 0 abstention)."
             ],
             [
-              "Pourquoi",
-              "Occuper les anciens combattants, les **soutenir** et **collecter des fonds**."
+              "La suite",
+              "Le compromis doit être approuvé par les deux assemblées. S’il l’est, le texte est définitif et part pour promulgation."
             ]
           ],
-          "duree": 11.52,
+          "duree": 7.4,
           "sous": "Trois choses à savoir.",
-          "titre": "Une idée née aux Invalides",
+          "titre": "De quoi parle ce texte ?",
           "type": "cartes"
         },
         {
-          "duree": 8.64,
-          "kicker": "Pourquoi le bleuet ?",
-          "texte": "Les soldats voyaient les bleuets **repousser** sur les champs de bataille dévastés : un symbole de **résilience**, de **ténacité** et d'**espoir**.",
-          "type": "bleuet"
-        },
-        {
-          "duree": 8.64,
-          "etapes": [
-            {
-              "kicker": "1918",
-              "sous": "de la mémoire des soldats tombés au combat",
-              "titre": "**Symbole officiel**"
-            },
-            {
-              "kicker": "1934",
-              "sous": "à Paris : plus de 128 000 fleurs vendues",
-              "titre": "Première **collecte** le 11 novembre"
-            }
-          ],
-          "titre": "Une fleur devenue symbole",
-          "type": "etapes"
-        },
-        {
-          "duree": 8.64,
-          "items": [
-            "Collecte chaque **8 mai** et **11 novembre**",
-            "**Bourses d'études** pour les pupilles de la Nation",
-            "**Aide** aux anciens combattants et aux militaires blessés"
-          ],
-          "titre": "Aujourd'hui",
-          "type": "liste"
+          "duree": 4.2,
+          "type": "hemicycle"
         }
       ],
-      "source": "Source : defense.gouv.fr (ministère des Armées), 5 mai 2025"
+      "source": "Sources : Constitution (art. 39 et 45) · senat.fr · assemblee-nationale.fr (fiche n°46)"
     },
-    "scrutin": null,
-    "type_reel": "pedagogique"
+    "scrutin": 9807,
+    "type_reel": "loi"
   },
   "dernier_sondage_publie": "2026-11-10|Cluster17",
   "lois_publiees": [
@@ -83,7 +54,8 @@
     9807
   ],
   "lois_reel_publiees": [
-    9759
+    9759,
+    9807
   ],
   "reels_pedagogiques_publies": [
     "budget-deux-parties",
