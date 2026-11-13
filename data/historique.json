@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-13T13:15:36.505727Z",
+  "generated_at": "2026-11-13T16:31:48.527906Z",
   "depuis": "2025-11-13",
   "nombre": 115,
   "lois": [
@@ -46,7 +46,7 @@
         "abstention": 0,
         "absent": 519
       },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9807",
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0363_texte-adopte-seance.pdf",
       "type": "scrutin"
     },
     {
