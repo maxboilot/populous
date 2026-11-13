@@ -4094,6 +4094,18 @@
     "type": "main_levee"
   },
   {
+    "numero": 9895,
+    "date": "2026-11-12",
+    "titre": "De finances de fin de gestion pour 2026",
+    "adopte": false,
+    "statut": "rejete",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0364_texte-adopte-seance.pdf",
+    "themes": [
+      "economie"
+    ],
+    "type": "scrutin"
+  },
+  {
     "numero": 9807,
     "date": "2026-11-12",
     "titre": "Renforcer l'effectivité des droits voisins des éditeurs et des agences de presse",

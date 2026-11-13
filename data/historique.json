@@ -1,8 +1,31 @@
 {
-  "generated_at": "2026-11-12T22:47:28.618450Z",
-  "depuis": "2025-11-12",
-  "nombre": 114,
+  "generated_at": "2026-11-13T01:11:35.695243Z",
+  "depuis": "2025-11-13",
+  "nombre": 115,
   "lois": [
+    {
+      "numero": 9895,
+      "date": "2026-11-12",
+      "titre": "De finances de fin de gestion pour 2026",
+      "titre_officiel": "l'ensemble du projet de loi de finances de fin de gestion pour 2026 (première lecture).",
+      "nature": "projet de loi",
+      "lecture": "première lecture",
+      "solennel": true,
+      "adopte": false,
+      "statut": "rejete",
+      "themes": [
+        "economie"
+      ],
+      "sort": "L'Assemblée nationale n'a pas adopté",
+      "tally": {
+        "pour": 49,
+        "contre": 63,
+        "abstention": 76,
+        "absent": 391
+      },
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0364_texte-adopte-seance.pdf",
+      "type": "scrutin"
+    },
     {
       "numero": 9807,
       "date": "2026-11-12",
