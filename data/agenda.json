@@ -1,16 +1,5 @@
 [
   {
-    "date": "2026-11-13",
-    "heure": "21:30",
-    "ordre_du_jour": "Suite de la discussion du projet de loi de finances de fin de gestion pour 2026",
-    "themes": [
-      "economie"
-    ],
-    "dossier": "DLR5L17N55223",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
     "date": "2026-11-16",
     "heure": "16:00",
     "ordre_du_jour": "Discussion de la proposition de loi, adoptée par le Sénat après engagement de la procédure accélérée, visant au renforcement de l'attractivité de l'épargne salariale et à la mise en œuvre d'une procédure de déblocage exceptionnelle",
@@ -49,7 +38,7 @@
   {
     "date": "2026-11-18",
     "heure": "09:00",
-    "ordre_du_jour": "Examen du texte — Garantir l’exécution effective d’une peine minimale dès la première condamnation pour violences volontaires (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Garantir l’exécution effective d’une peine minimale dès la première condamnation pour violences volontaires",
     "themes": [
       "justice",
       "securite"
@@ -61,7 +50,7 @@
   {
     "date": "2026-11-18",
     "heure": "09:00",
-    "ordre_du_jour": "Examen du texte — Instaurer la responsabilité pénale des mineurs à 16 ans  et renforcer la responsabilité pénale des parents (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Instaurer la responsabilité pénale des mineurs à 16 ans  et renforcer la responsabilité pénale des parents",
     "themes": [
       "justice",
       "social"
@@ -73,7 +62,7 @@
   {
     "date": "2026-11-18",
     "heure": "09:00",
-    "ordre_du_jour": "Examen du texte — Suspendre les prestations sociales pour les fraudeurs multirécidivistes (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Suspendre les prestations sociales pour les fraudeurs multirécidivistes",
     "themes": [],
     "dossier": "DLR5L17N55099",
     "scrutin_annonce": false,
@@ -82,7 +71,7 @@
   {
     "date": "2026-11-18",
     "heure": "09:30",
-    "ordre_du_jour": "Examen du texte — Lever les contraintes pesant sur le foncier (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Lever les contraintes pesant sur le foncier",
     "themes": [],
     "dossier": "DLR5L17N55097",
     "scrutin_annonce": false,
@@ -342,12 +331,41 @@
   },
   {
     "date": "2026-11-24",
+    "heure": "16:30",
+    "ordre_du_jour": "Examen du texte — Proposition de loi portant réforme de la loi du 9 février 1895 sur les fraudes en matière artistique (séance éventuelle)",
+    "themes": [],
+    "dossier": "DLR5L16N46821",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-24",
     "heure": "18:30",
     "ordre_du_jour": "Examen du texte — Interdire la vente de chiens et de chats dans les foires et salons (séance éventuelle)",
     "themes": [],
     "dossier": "DLR5L17N50645",
     "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-24",
+    "heure": "21:30",
+    "ordre_du_jour": "Examen du texte — Instances représentatives des Français établis hors de France (séance éventuelle)",
+    "themes": [],
+    "dossier": "DLR5L15N37121",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-24",
+    "heure": "21:30",
+    "ordre_du_jour": "Examen du texte — Reconnaître une politique nationale d’adaptation au changement climatique et à adapter les mécanismes d’assurance (séance éventuelle)",
+    "themes": [
+      "environnement"
+    ],
+    "dossier": "DLR5L17N53067",
+    "scrutin_annonce": false,
+    "lecture": "2ᵉ lecture"
   },
   {
     "date": "2026-11-25",
@@ -387,6 +405,29 @@
   {
     "date": "2026-11-25",
     "heure": "09:30",
+    "ordre_du_jour": "Examen du texte — Instaurer un plan décennal de rénovation du bâti scolaire (séance éventuelle)",
+    "themes": [
+      "education"
+    ],
+    "dossier": "DLR5L17N55127",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-25",
+    "heure": "09:30",
+    "ordre_du_jour": "Examen du texte — La révision de la directive « Services de médias audiovisuels » et la défense de l’exception culturelle européenne (séance éventuelle)",
+    "themes": [
+      "defense",
+      "culture"
+    ],
+    "dossier": "DLR5L17N54254",
+    "scrutin_annonce": false,
+    "lecture": "Lecture unique"
+  },
+  {
+    "date": "2026-11-25",
+    "heure": "09:30",
     "ordre_du_jour": "Examen du texte — Protéger nos forêts en encadrant les coupes rases (séance éventuelle)",
     "themes": [
       "environnement"
@@ -394,6 +435,15 @@
     "dossier": "DLR5L17N55141",
     "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-25",
+    "heure": "09:30",
+    "ordre_du_jour": "Examen du texte — Réviser la définition de l’œuvre européenne (séance éventuelle)",
+    "themes": [],
+    "dossier": "DLR5L17N54288",
+    "scrutin_annonce": false,
+    "lecture": "Lecture unique"
   },
   {
     "date": "2026-11-25",
@@ -444,27 +494,6 @@
   },
   {
     "date": "2026-11-25",
-    "heure": "14:00",
-    "ordre_du_jour": "Discussion de la proposition de résolution européenne relative à la révision de la directive « Services de médias audiovisuels » et à la défense de l’exception culturelle européenne",
-    "themes": [
-      "defense",
-      "culture"
-    ],
-    "dossier": "DLR5L17N54254",
-    "scrutin_annonce": false,
-    "lecture": "Lecture unique"
-  },
-  {
-    "date": "2026-11-25",
-    "heure": "14:00",
-    "ordre_du_jour": "Discussion de la proposition de résolution européenne visant à réviser la définition de l’œuvre européenne",
-    "themes": [],
-    "dossier": "DLR5L17N54288",
-    "scrutin_annonce": false,
-    "lecture": "Lecture unique"
-  },
-  {
-    "date": "2026-11-25",
     "heure": "15:00",
     "ordre_du_jour": "Examen du texte — Un traité juridiquement contraignant prévoyant des interdictions et des réglementations aux systèmes d'armes autonomes et l’élaboration d’une position commune européenne sur ce sujet (séance éventuelle)",
     "themes": [
@@ -499,6 +528,15 @@
     "dossier": "DLR5L17N55023",
     "scrutin_annonce": false,
     "lecture": "Lecture unique"
+  },
+  {
+    "date": "2026-11-25",
+    "heure": "18:15",
+    "ordre_du_jour": "Examen du texte — Instances représentatives des Français établis hors de France (séance éventuelle)",
+    "themes": [],
+    "dossier": "DLR5L15N37121",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
   },
   {
     "date": "2026-11-26",

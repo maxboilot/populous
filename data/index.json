@@ -4116,18 +4116,5 @@
       "culture"
     ],
     "type": "scrutin"
-  },
-  {
-    "numero": null,
-    "dossier": "DLR5L17N51330",
-    "date": "2026-11-12",
-    "titre": "Renforcer l’effectivité des droits voisins de la presse",
-    "adopte": true,
-    "statut": "adopte",
-    "themes": [
-      "culture"
-    ],
-    "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0363_texte-adopte-seance.pdf",
-    "type": "main_levee"
   }
 ]
