@@ -91,7 +91,7 @@
   {
     "date": "2026-11-18",
     "heure": "09:30",
-    "ordre_du_jour": "Examen du texte — Limiter à deux ans le versement du revenu de solidarité active pour les personnes aptes à travailler (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Limiter à deux ans le versement du revenu de solidarité active pour les personnes aptes à travailler",
     "themes": [
       "social"
     ],
@@ -102,7 +102,7 @@
   {
     "date": "2026-11-18",
     "heure": "09:30",
-    "ordre_du_jour": "Examen du texte — Maintenir les pharmacies existantes dans les communes rurales (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Maintenir les pharmacies existantes dans les communes rurales",
     "themes": [
       "sante",
       "agriculture",
@@ -115,7 +115,7 @@
   {
     "date": "2026-11-18",
     "heure": "11:00",
-    "ordre_du_jour": "Examen du texte — Moderniser les communications d’urgence (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Moderniser les communications d’urgence",
     "themes": [],
     "dossier": "DLR5L17N55084",
     "scrutin_annonce": false,
@@ -136,7 +136,7 @@
   {
     "date": "2026-11-18",
     "heure": "14:45",
-    "ordre_du_jour": "Examen du texte — Baisser les prix du carburant à la pompe par l'encadrement des marges des raffineurs (séance éventuelle)",
+    "ordre_du_jour": "Examen des amendements (art. 88) — Baisser les prix du carburant à la pompe par l'encadrement des marges des raffineurs",
     "themes": [],
     "dossier": "DLR5L17N55014",
     "scrutin_annonce": false,
@@ -145,7 +145,7 @@
   {
     "date": "2026-11-18",
     "heure": "14:45",
-    "ordre_du_jour": "Examen du texte — L’interdiction de relations commerciales contribuant, par aide ou assistance, à la politique de colonisation dans le Territoire palestinien occupé et dans le Territoire syrien occupé des hauteurs du Golan (séance éventuelle)",
+    "ordre_du_jour": "Examen des amendements (art. 88) — L’interdiction de relations commerciales contribuant, par aide ou assistance, à la politique de colonisation dans le Territoire palestinien occupé et dans le Territoire syrien occupé des hauteurs du Golan",
     "themes": [
       "economie"
     ],
@@ -156,7 +156,7 @@
   {
     "date": "2026-11-18",
     "heure": "14:45",
-    "ordre_du_jour": "Examen du texte — Proposition de loi visant à lutter contre la vie chère en renforçant le droit de la concurrence et de la régulation économique outre-mer (séance éventuelle)",
+    "ordre_du_jour": "Examen des amendements (art. 88) — Proposition de loi visant à lutter contre la vie chère en renforçant le droit de la concurrence et de la régulation économique outre-mer",
     "themes": [
       "economie",
       "institutions"
@@ -168,7 +168,7 @@
   {
     "date": "2026-11-18",
     "heure": "14:45",
-    "ordre_du_jour": "Examen du texte — Retrouver la confiance et l’équilibre dans les rapports locatifs (séance éventuelle)",
+    "ordre_du_jour": "Examen des amendements (art. 88) — Retrouver la confiance et l’équilibre dans les rapports locatifs",
     "themes": [
       "logement"
     ],
@@ -337,6 +337,15 @@
       "environnement"
     ],
     "dossier": "DLR5L17N55071",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-24",
+    "heure": "18:30",
+    "ordre_du_jour": "Examen du texte — Interdire la vente de chiens et de chats dans les foires et salons (séance éventuelle)",
+    "themes": [],
+    "dossier": "DLR5L17N50645",
     "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
   },
@@ -776,6 +785,18 @@
     "dossier": "DLR5L17N53067",
     "scrutin_annonce": false,
     "lecture": "2ᵉ lecture"
+  },
+  {
+    "date": "2026-12-02",
+    "heure": "15:45",
+    "ordre_du_jour": "Examen des amendements (art. 88) — Garantir l’accès à un panier diversifié de denrées alimentaires favorables à la santé et vendues à prix coûtant (séance éventuelle)",
+    "themes": [
+      "sante",
+      "agriculture"
+    ],
+    "dossier": "DLR5L17N55142",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
   },
   {
     "date": "2026-12-03",
