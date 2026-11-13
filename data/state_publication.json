@@ -1,17 +1,17 @@
 {
   "dernier_reel": {
-    "date": "2026-11-12",
+    "date": "2026-11-13",
     "scenario": {
       "fin": {
         "duree": 3.8
       },
       "scenes": [
         {
-          "couleur": "vert",
+          "couleur": "orange",
           "duree": 4.4,
           "eyebrow": "Vote solennel · 12 novembre 2026",
-          "tampon": "ADOPTÉ",
-          "titre": "Proposition de loi visant à renforcer l'effectivité des droits voisins des éditeurs et des agences de presse (texte de la commission mixte paritaire)",
+          "tampon": "REJETÉ",
+          "titre": "Projet de loi de finances de fin de gestion pour 2026 (première lecture)",
           "type": "titre"
         },
         {
@@ -22,15 +22,15 @@
           "cartes": [
             [
               "Ce que c’est",
-              "Une proposition de loi : un texte déposé par des parlementaires."
+              "Un projet de loi : un texte déposé par le Gouvernement. Ici : première lecture à l’Assemblée nationale."
             ],
             [
               "Ce vote",
-              "Vote sur l’ensemble du texte. Résultat : adopté (59 pour, 0 contre, 0 abstention)."
+              "Vote sur l’ensemble du texte. Résultat : rejeté (49 pour, 63 contre, 76 abstentions)."
             ],
             [
               "La suite",
-              "Le compromis doit être approuvé par les deux assemblées. S’il l’est, le texte est définitif et part pour promulgation."
+              "Pour devenir une loi, un texte doit être adopté dans les mêmes termes par l’Assemblée nationale et par le Sénat."
             ]
           ],
           "duree": 7.4,
@@ -43,9 +43,9 @@
           "type": "hemicycle"
         }
       ],
-      "source": "Sources : Constitution (art. 39 et 45) · senat.fr · assemblee-nationale.fr (fiche n°46)"
+      "source": "Sources : Constitution (art. 39 et 45)"
     },
-    "scrutin": 9807,
+    "scrutin": 9895,
     "type_reel": "loi"
   },
   "dernier_sondage_publie": "2026-11-10|Opinionway",
@@ -56,7 +56,8 @@
   ],
   "lois_reel_publiees": [
     9759,
-    9807
+    9807,
+    9895
   ],
   "reels_pedagogiques_publies": [
     "budget-deux-parties",
