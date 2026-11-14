@@ -1,52 +1,75 @@
 {
   "dernier_reel": {
-    "date": "2026-11-13",
+    "date": "2026-11-14",
     "scenario": {
       "fin": {
         "duree": 3.8
       },
       "scenes": [
         {
-          "couleur": "orange",
-          "duree": 4.4,
-          "eyebrow": "Vote solennel · 12 novembre 2026",
-          "tampon": "REJETÉ",
-          "titre": "Projet de loi de finances de fin de gestion pour 2026 (première lecture)",
+          "duree": 3.4,
+          "eyebrow": "Populous · Les institutions",
+          "titre": "C'est quoi le Sénat ?",
           "type": "titre"
         },
         {
-          "duree": 5.0,
-          "type": "chiffres"
-        },
-        {
-          "cartes": [
-            [
-              "Ce que c’est",
-              "Un projet de loi : un texte déposé par le Gouvernement. Ici : première lecture à l’Assemblée nationale."
-            ],
-            [
-              "Ce vote",
-              "Vote sur l’ensemble du texte. Résultat : rejeté (49 pour, 63 contre, 76 abstentions)."
-            ],
-            [
-              "La suite",
-              "Pour devenir une loi, un texte doit être adopté dans les mêmes termes par l’Assemblée nationale et par le Sénat."
-            ]
+          "groupes": [
+            {
+              "couleur": [
+                143,
+                166,
+                255
+              ],
+              "label": "élus pour **6 ans**",
+              "n": 348
+            }
           ],
-          "duree": 7.4,
-          "sous": "Trois choses à savoir.",
-          "titre": "De quoi parle ce texte ?",
-          "type": "cartes"
+          "kicker": "Qui y siège ?",
+          "titre": "**348 sénateurs**",
+          "type": "points"
         },
         {
-          "duree": 4.2,
-          "type": "hemicycle"
+          "duree": 5.0,
+          "kicker": "Comment sont-ils élus ?",
+          "texte": "Au suffrage universel **indirect** : par des élus locaux, les « grands électeurs ».",
+          "type": "texte"
+        },
+        {
+          "groupes": [
+            {
+              "couleur": [
+                70,
+                104,
+                255
+              ],
+              "label": "La moitié, tous les **3 ans**",
+              "n": 174
+            },
+            {
+              "couleur": [
+                62,
+                74,
+                134
+              ],
+              "label": "",
+              "n": 174
+            }
+          ],
+          "kicker": "Un renouvellement partiel",
+          "titre": "Renouvelé **par moitié**",
+          "type": "points"
+        },
+        {
+          "duree": 4.8,
+          "kicker": "Son rôle",
+          "texte": "Il assure la représentation **des collectivités territoriales** de la République.",
+          "type": "texte"
         }
       ],
-      "source": "Sources : Constitution (art. 39 et 45)"
+      "source": "Sources : senat.fr · Constitution, art. 24"
     },
-    "scrutin": 9895,
-    "type_reel": "loi"
+    "scrutin": null,
+    "type_reel": "pedagogique"
   },
   "dernier_sondage_publie": "2026-11-12|OpinionWay",
   "lois_publiees": [
@@ -63,7 +86,8 @@
     "budget-deux-parties",
     "naissance-loi",
     "assemblee-nationale",
-    "bleuet-11-novembre"
+    "bleuet-11-novembre",
+    "senat"
   ],
   "story_du": "2026-11-13"
 }
