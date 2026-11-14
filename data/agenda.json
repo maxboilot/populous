@@ -460,6 +460,17 @@
   {
     "date": "2026-11-25",
     "heure": "11:00",
+    "ordre_du_jour": "Examen du texte — Mieux indemniser les dégâts sur les biens immobiliers causés par le retrait-gonflement de l’argile (séance éventuelle)",
+    "themes": [
+      "logement"
+    ],
+    "dossier": "DLR5L16N47217",
+    "scrutin_annonce": false,
+    "lecture": "2ᵉ lecture"
+  },
+  {
+    "date": "2026-11-25",
+    "heure": "11:00",
     "ordre_du_jour": "Examen du texte — Projet de loi autorisant l'approbation de l'accord multilatéral entre autorités compétentes concernant l'échange automatique de renseignements relatifs au cadre de déclaration applicable aux crypto-actifs, et l'approbation de  l'addendum à  l'accord multilatéral entre autorités compétentes concernant l'échange automatique de renseignements relatifs aux comptes financiers (séance éventuelle)",
     "themes": [
       "economie"
@@ -491,6 +502,15 @@
     "dossier": "DLR5L17N53276",
     "scrutin_annonce": false,
     "lecture": "2ᵉ lecture"
+  },
+  {
+    "date": "2026-11-25",
+    "heure": "15:00",
+    "ordre_du_jour": "Examen du texte — Faire contribuer davantage les héritiers les plus fortunés (séance éventuelle)",
+    "themes": [],
+    "dossier": "DLR5L17N55143",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
   },
   {
     "date": "2026-11-25",
