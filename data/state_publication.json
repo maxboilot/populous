@@ -1,6 +1,6 @@
 {
   "dernier_reel": {
-    "date": "2026-11-14",
+    "date": "2026-11-15",
     "scenario": {
       "fin": {
         "duree": 3.8
@@ -9,66 +9,54 @@
         {
           "duree": 3.4,
           "eyebrow": "Populous · Les institutions",
-          "titre": "C'est quoi le Sénat ?",
+          "titre": "Comment lire un vote sur Populous ?",
           "type": "titre"
         },
         {
-          "groupes": [
-            {
-              "couleur": [
-                143,
-                166,
-                255
-              ],
-              "label": "élus pour **6 ans**",
-              "n": 348
-            }
-          ],
-          "kicker": "Qui y siège ?",
-          "titre": "**348 sénateurs**",
-          "type": "points"
+          "sous": "577 sièges · exemple : budget 2027, 1re partie",
+          "titre": "Un point = un député",
+          "type": "hemicycle"
         },
         {
-          "duree": 5.0,
-          "kicker": "Comment sont-ils élus ?",
-          "texte": "Au suffrage universel **indirect** : par des élus locaux, les « grands électeurs ».",
+          "duree": 6.0,
+          "items": [
+            [
+              "**Vert** : pour",
+              "rgb(69,150,109)"
+            ],
+            [
+              "**Orange** : contre",
+              "rgb(235,120,60)"
+            ],
+            [
+              "**Bleu clair** : abstention",
+              "rgb(128,139,195)"
+            ],
+            [
+              "**Bleu foncé** : absent",
+              "rgb(34,62,190)"
+            ]
+          ],
+          "numerote": false,
+          "titre": "Les couleurs",
+          "type": "liste"
+        },
+        {
+          "duree": 4.4,
+          "kicker": "Touche un siège",
+          "texte": "Tu vois **le député**, son groupe et sa circonscription.",
           "type": "texte"
         },
         {
-          "groupes": [
-            {
-              "couleur": [
-                70,
-                104,
-                255
-              ],
-              "label": "La moitié, tous les **3 ans**",
-              "n": 174
-            },
-            {
-              "couleur": [
-                62,
-                74,
-                134
-              ],
-              "label": "",
-              "n": 174
-            }
-          ],
-          "kicker": "Un renouvellement partiel",
-          "titre": "Renouvelé **par moitié**",
-          "type": "points"
-        },
-        {
-          "duree": 4.8,
-          "kicker": "Son rôle",
-          "texte": "Il assure la représentation **des collectivités territoriales** de la République.",
+          "duree": 3.8,
+          "kicker": "Rien sans source",
+          "texte": "Chaque vote cite **sa source officielle**.",
           "type": "texte"
         }
       ],
-      "source": "Sources : senat.fr · Constitution, art. 24"
+      "source": "Données : Assemblée nationale (data.assemblee-nationale.fr)"
     },
-    "scrutin": null,
+    "scrutin": 9759,
     "type_reel": "pedagogique"
   },
   "dernier_sondage_publie": "2026-11-13|Elabe",
@@ -87,7 +75,8 @@
     "naissance-loi",
     "assemblee-nationale",
     "bleuet-11-novembre",
-    "senat"
+    "senat",
+    "lire-un-vote"
   ],
   "story_du": "2026-11-14"
 }
