@@ -1,6 +1,22 @@
 {
  "decisions": [
   {
+   "id": "L17-VD234927DEC",
+   "dossier": "DLR5L17N53699",
+   "titre": "Proposition de loi visant au renforcement de l'attractivité de l'épargne salariale et à la mise en oeuvre d'une procédure de déblocage exceptionnelle",
+   "nature": "proposition",
+   "organique": false,
+   "ratification": false,
+   "date": "2026-11-16",
+   "lecture": "premiere",
+   "statut": "modifiée",
+   "adopte": true,
+   "sans_modification": false,
+   "premiere_assemblee": false,
+   "vote_ref": 9905,
+   "url": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53699"
+  },
+  {
    "id": "L17-VD234627DEC",
    "dossier": "DLR5L17N54898",
    "titre": "Créer un parcours de soins intégralement pris en charge par la sécurité sociale pour toutes les victimes de violences sexuelles",
