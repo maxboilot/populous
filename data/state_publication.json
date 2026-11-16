@@ -1,6 +1,6 @@
 {
   "dernier_reel": {
-    "date": "2026-11-15",
+    "date": "2026-11-16",
     "scenario": {
       "fin": {
         "duree": 3.8
@@ -9,54 +9,48 @@
         {
           "duree": 3.4,
           "eyebrow": "Populous · Les institutions",
-          "titre": "Comment lire un vote sur Populous ?",
+          "titre": "C'est quoi un vote solennel ?",
           "type": "titre"
         },
         {
-          "sous": "577 sièges · exemple : budget 2027, 1re partie",
-          "titre": "Un point = un député",
-          "type": "hemicycle"
+          "duree": 4.2,
+          "kicker": "La définition",
+          "texte": "Un **scrutin public** sur l'ensemble d'un texte important.",
+          "type": "texte"
         },
         {
-          "duree": 6.0,
-          "items": [
-            [
-              "**Vert** : pour",
-              "rgb(69,150,109)"
-            ],
-            [
-              "**Orange** : contre",
-              "rgb(235,120,60)"
-            ],
-            [
-              "**Bleu clair** : abstention",
-              "rgb(128,139,195)"
-            ],
-            [
-              "**Bleu foncé** : absent",
-              "rgb(34,62,190)"
-            ]
+          "duree": 5.4,
+          "kicker": "Quand ?",
+          "texte": "Il est fixé à l'avance, en général **le mardi après-midi**, après les questions au Gouvernement.",
+          "type": "texte"
+        },
+        {
+          "etapes": [
+            {
+              "kicker": "Un député absent",
+              "sous": "à un collègue",
+              "titre": "**Délègue son vote**"
+            },
+            {
+              "kicker": "Le collègue",
+              "sous": "que le député absent",
+              "titre": "Vote **dans le même sens**"
+            }
           ],
-          "numerote": false,
-          "titre": "Les couleurs",
-          "type": "liste"
+          "titre": "Voter malgré l'absence",
+          "type": "etapes"
         },
         {
-          "duree": 4.4,
-          "kicker": "Touche un siège",
-          "texte": "Tu vois **le député**, son groupe et sa circonscription.",
-          "type": "texte"
-        },
-        {
-          "duree": 3.8,
-          "kicker": "Rien sans source",
-          "texte": "Chaque vote cite **sa source officielle**.",
-          "type": "texte"
+          "kicker": "Une limite",
+          "nombre": 1,
+          "sous": "par député",
+          "type": "chiffre",
+          "unite": "délégation reçue au maximum"
         }
       ],
-      "source": "Données : Assemblée nationale (data.assemblee-nationale.fr)"
+      "source": "Source : assemblee-nationale.fr, « Les votes à l'Assemblée nationale »"
     },
-    "scrutin": 9759,
+    "scrutin": null,
     "type_reel": "pedagogique"
   },
   "dernier_sondage_publie": "2026-11-13|Elabe",
@@ -76,7 +70,8 @@
     "assemblee-nationale",
     "bleuet-11-novembre",
     "senat",
-    "lire-un-vote"
+    "lire-un-vote",
+    "vote-solennel"
   ],
   "story_du": "2026-11-15"
 }
