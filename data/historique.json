@@ -1,8 +1,31 @@
 {
-  "generated_at": "2026-11-17T22:26:51.323268Z",
+  "generated_at": "2026-11-17T23:53:40.483765Z",
   "depuis": "2025-11-17",
-  "nombre": 116,
+  "nombre": 117,
   "lois": [
+    {
+      "numero": 9916,
+      "date": "2026-11-17",
+      "titre": "La résilience des infrastructures critiques et au renforcement de la cybersécurité",
+      "titre_officiel": "l'ensemble du projet de loi relatif à la résilience des infrastructures critiques et au renforcement de la cybersécurité (première lecture).",
+      "nature": "projet de loi",
+      "lecture": "première lecture",
+      "solennel": true,
+      "adopte": true,
+      "statut": "adopte",
+      "themes": [
+        "numerique"
+      ],
+      "sort": "l'Assemblée nationale a adopté",
+      "tally": {
+        "pour": 464,
+        "contre": 64,
+        "abstention": 16,
+        "absent": 43
+      },
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9916",
+      "type": "scrutin"
+    },
     {
       "numero": 9905,
       "date": "2026-11-16",

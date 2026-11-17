@@ -4131,6 +4131,18 @@
     "type": "scrutin"
   },
   {
+    "numero": 9916,
+    "date": "2026-11-17",
+    "titre": "La résilience des infrastructures critiques et au renforcement de la cybersécurité",
+    "adopte": true,
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/9916",
+    "themes": [
+      "numerique"
+    ],
+    "type": "scrutin"
+  },
+  {
     "numero": null,
     "dossier": "DLR5L17N50731",
     "date": "2026-11-17",
