@@ -4116,5 +4116,18 @@
       "culture"
     ],
     "type": "scrutin"
+  },
+  {
+    "numero": 9905,
+    "date": "2026-11-16",
+    "titre": "Visant au renforcement de l'attractivité de l'épargne salariale et à la mise en œuvre d'une procédure de déblocage exceptionnelle",
+    "adopte": true,
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0365_texte-adopte-seance.pdf",
+    "themes": [
+      "justice",
+      "travail"
+    ],
+    "type": "scrutin"
   }
 ]

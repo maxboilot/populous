@@ -1,8 +1,32 @@
 {
-  "generated_at": "2026-11-17T00:53:35.395200Z",
+  "generated_at": "2026-11-17T02:58:38.591762Z",
   "depuis": "2025-11-17",
-  "nombre": 115,
+  "nombre": 116,
   "lois": [
+    {
+      "numero": 9905,
+      "date": "2026-11-16",
+      "titre": "Visant au renforcement de l'attractivité de l'épargne salariale et à la mise en œuvre d'une procédure de déblocage exceptionnelle",
+      "titre_officiel": "l'ensemble de la proposition de loi visant au renforcement de l'attractivité de l'épargne salariale et à la mise en œuvre d'une procédure de déblocage exceptionnelle (première lecture).",
+      "nature": "proposition de loi",
+      "lecture": "première lecture",
+      "solennel": false,
+      "adopte": true,
+      "statut": "adopte",
+      "themes": [
+        "justice",
+        "travail"
+      ],
+      "sort": "l'Assemblée nationale a adopté",
+      "tally": {
+        "pour": 95,
+        "contre": 34,
+        "abstention": 1,
+        "absent": 451
+      },
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0365_texte-adopte-seance.pdf",
+      "type": "scrutin"
+    },
     {
       "numero": 9895,
       "date": "2026-11-12",
