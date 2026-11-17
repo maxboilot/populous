@@ -153,6 +153,15 @@
     "lecture": "2ᵉ lecture"
   },
   {
+    "date": "2026-11-18",
+    "heure": "17:30",
+    "ordre_du_jour": "Examen du texte — Instances représentatives des Français établis hors de France",
+    "themes": [],
+    "dossier": "DLR5L15N37121",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
     "date": "2026-11-19",
     "heure": "09:00",
     "ordre_du_jour": "Discussion de la proposition de loi visant à améliorer le dispositif du temps partiel thérapeutique pour les fonctionnaires",
@@ -331,6 +340,15 @@
     "ordre_du_jour": "Examen du texte — Interdire la vente de chiens et de chats dans les foires et salons (séance éventuelle)",
     "themes": [],
     "dossier": "DLR5L17N50645",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-24",
+    "heure": "21:30",
+    "ordre_du_jour": "Examen du texte — Création d’un ordre national des audioprothésistes (séance éventuelle)",
+    "themes": [],
+    "dossier": "DLR5L17N51549",
     "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
   },
@@ -685,7 +703,25 @@
   },
   {
     "date": "2026-12-01",
-    "heure": "21:00",
+    "heure": "16:30",
+    "ordre_du_jour": "Examen du texte — Améliorer l’efficacité de l’État au niveau local (séance éventuelle)",
+    "themes": [],
+    "dossier": "DLR5L17N55186",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-01",
+    "heure": "16:30",
+    "ordre_du_jour": "Examen du texte — Instaurer une motion de censure constructive (séance éventuelle)",
+    "themes": [],
+    "dossier": "DLR5L17N55151",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-01",
+    "heure": "21:30",
     "ordre_du_jour": "Suite de la discussion de la proposition de loi visant à autoriser le diagnostic préimplantatoire des aneuploïdies au bénéfice des couples, et des femmes engagées dans une démarche d’assistance médicale à la procréation",
     "themes": [
       "sante",
@@ -697,7 +733,7 @@
   },
   {
     "date": "2026-12-01",
-    "heure": "21:00",
+    "heure": "21:30",
     "ordre_du_jour": "Suite de la discussion de la proposition de loi visant à interdire la vente de chiens et de chats dans les foires et salons",
     "themes": [],
     "dossier": "DLR5L17N50645",
@@ -706,7 +742,7 @@
   },
   {
     "date": "2026-12-01",
-    "heure": "21:00",
+    "heure": "21:30",
     "ordre_du_jour": "Suite de la discussion de la proposition de loi visant à la création d’un ordre national des audioprothésistes",
     "themes": [],
     "dossier": "DLR5L17N51549",
@@ -715,7 +751,7 @@
   },
   {
     "date": "2026-12-01",
-    "heure": "21:00",
+    "heure": "21:30",
     "ordre_du_jour": "Suite de la discussion de la proposition de loi visant à réformer la loi sur les fraudes en matière artistique",
     "themes": [],
     "dossier": "DLR5L16N46821",
@@ -724,7 +760,7 @@
   },
   {
     "date": "2026-12-01",
-    "heure": "21:00",
+    "heure": "21:30",
     "ordre_du_jour": "Suite de la discussion de la proposition de loi, modifiée par le Sénat, visant à reconnaître les victimes de l’exposition aux essais nucléaires français et à améliorer leur indemnisation",
     "themes": [
       "justice",
@@ -736,7 +772,7 @@
   },
   {
     "date": "2026-12-01",
-    "heure": "21:00",
+    "heure": "21:30",
     "ordre_du_jour": "Suite de la discussion, en deuxième lecture, de la proposition de loi, adoptée par le Sénat, visant à reconnaître une politique nationale d’adaptation au changement climatique et adapter les mécanismes d’assurance",
     "themes": [
       "environnement"
@@ -766,6 +802,37 @@
       "immigration"
     ],
     "dossier": "DLR5L17N54567",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-02",
+    "heure": "09:00",
+    "ordre_du_jour": "Examen du texte — Projet de loi relatif à la lutte contre les ingérences étrangères dans la vie démocratique (séance éventuelle)",
+    "themes": [],
+    "dossier": "DLR5L17N54703",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-02",
+    "heure": "09:30",
+    "ordre_du_jour": "Examen du texte — Instaurer une négociation obligatoire sur la situation des parents isolés (séance éventuelle)",
+    "themes": [
+      "social"
+    ],
+    "dossier": "DLR5L17N55145",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-02",
+    "heure": "09:30",
+    "ordre_du_jour": "Examen du texte — Renforcer la protection et l’accompagnement des dirigeants d’entreprise confrontés à la maladie (séance éventuelle)",
+    "themes": [
+      "sante"
+    ],
+    "dossier": "DLR5L17N54988",
     "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
   },
@@ -954,5 +1021,197 @@
     "dossier": "DLR5L16N47217",
     "scrutin_annonce": false,
     "lecture": "2ᵉ lecture"
+  },
+  {
+    "date": "2026-12-07",
+    "heure": "16:00",
+    "ordre_du_jour": "Discussion de la proposition de loi, adoptée par le Sénat, visant à faciliter la création et le fonctionnement des communes nouvelles",
+    "themes": [
+      "institutions"
+    ],
+    "dossier": "DLR5L17N53456",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-07",
+    "heure": "16:00",
+    "ordre_du_jour": "Discussion du projet de loi, adopté par le Sénat, autorisant l’approbation de l’accord multilatéral entre autorités compétentes concernant l’échange automatique de renseignements relatifs au cadre de déclaration applicable aux crypto-actifs, et l’approbation de l’addendum à l’accord multilatéral entre autorités compétentes concernant l’échange automatique de renseignements relatifs aux comptes financiers",
+    "themes": [
+      "economie"
+    ],
+    "dossier": "DLR5L17N54762",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-07",
+    "heure": "16:00",
+    "ordre_du_jour": "Discussion du projet de loi, adopté par le Sénat, autorisant l’approbation de l’avenant à la convention entre le Gouvernement de la République Française et le Gouvernement de la République de l’Inde du 29 septembre 1992 en vue d’éviter les doubles impositions et de prévenir l’évasion fiscale en matière d’impôts sur le revenu et sur la fortune",
+    "themes": [
+      "economie",
+      "defense"
+    ],
+    "dossier": "DLR5L17N54923",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-08",
+    "heure": "21:30",
+    "ordre_du_jour": "Suite de la discussion de la proposition de loi, adoptée par le Sénat, visant à faciliter la création et le fonctionnement des communes nouvelles",
+    "themes": [
+      "institutions"
+    ],
+    "dossier": "DLR5L17N53456",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-08",
+    "heure": "21:30",
+    "ordre_du_jour": "Suite de la discussion du projet de loi, adopté par le Sénat, relatif à la lutte contre les ingérences étrangères dans la vie démocratique",
+    "themes": [],
+    "dossier": "DLR5L17N54703",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-09",
+    "heure": "14:00",
+    "ordre_du_jour": "Discussion du projet de loi, adopté par le Sénat, autorisant la ratification de l'accord de passation conjointe de marché en vue de l'acquisition d'une plateforme centrale commune pour le mécanisme d'ajustement carbone aux frontières",
+    "themes": [
+      "environnement",
+      "institutions",
+      "immigration"
+    ],
+    "dossier": "DLR5L17N54567",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-09",
+    "heure": "14:00",
+    "ordre_du_jour": "Discussion du projet de loi, adopté par le Sénat, autorisant la ratification de l'accord de protection des investissements entre l'Union européenne et ses États membres, d'une part, et la République socialiste du Vietnam, d'autre part",
+    "themes": [
+      "defense"
+    ],
+    "dossier": "DLR5L17N54767",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-09",
+    "heure": "21:30",
+    "ordre_du_jour": "Suite de la discussion du projet de loi, adopté par le Sénat, relatif à la lutte contre les ingérences étrangères dans la vie démocratique",
+    "themes": [],
+    "dossier": "DLR5L17N54703",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-10",
+    "heure": "09:00",
+    "ordre_du_jour": "Discussion de la proposition de loi constitutionnelle visant à instaurer une motion de censure constructive",
+    "themes": [],
+    "dossier": "DLR5L17N55151",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-10",
+    "heure": "09:00",
+    "ordre_du_jour": "Discussion de la proposition de loi visant à améliorer l’efficacité de l’État au niveau local",
+    "themes": [],
+    "dossier": "DLR5L17N55186",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-10",
+    "heure": "09:00",
+    "ordre_du_jour": "Discussion de la proposition de loi visant à faciliter le financement de la rénovation énergétique par les économies d’énergie",
+    "themes": [
+      "economie",
+      "environnement"
+    ],
+    "dossier": "DLR5L17N55184",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-10",
+    "heure": "09:00",
+    "ordre_du_jour": "Discussion de la proposition de loi visant à instaurer une négociation obligatoire sur la situation des parents isolés",
+    "themes": [
+      "social"
+    ],
+    "dossier": "DLR5L17N55145",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-10",
+    "heure": "09:00",
+    "ordre_du_jour": "Discussion de la proposition de loi visant à mieux protéger, mieux gérer et mieux valoriser la forêt et ses produits pour répondre aux enjeux de lutte contre le changement climatique, d’adaptation à ses effets et de stockage du carbone dans les matériaux en bois",
+    "themes": [
+      "environnement"
+    ],
+    "dossier": "DLR5L17N55191",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-10",
+    "heure": "09:00",
+    "ordre_du_jour": "Discussion de la proposition de loi visant à renforcer la protection et l’accompagnement des dirigeants d’entreprise confrontés à la maladie",
+    "themes": [
+      "sante"
+    ],
+    "dossier": "DLR5L17N54988",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-10",
+    "heure": "09:00",
+    "ordre_du_jour": "Discussion de la proposition de loi, adoptée par le Sénat, relative aux modalités de recouvrement de la contribution aux frais de garderie et de la contribution additionnelle versées à l’Office national des forêts (ONF) par les collectivités territoriales et personnes morales propriétaires de bois et forêts relevant du régime forestier et à la composition du conseil d’administration de l’ONF",
+    "themes": [
+      "environnement",
+      "institutions"
+    ],
+    "dossier": "DLR5L17N54778",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-10",
+    "heure": "09:00",
+    "ordre_du_jour": "Discussion de la proposition de loi, adoptée par le Sénat, relative à la sécurisation des marchés publics numériques",
+    "themes": [
+      "economie",
+      "numerique"
+    ],
+    "dossier": "DLR5L17N52900",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-10",
+    "heure": "09:00",
+    "ordre_du_jour": "Discussion de la proposition de loi, adoptée par le Sénat, visant à conforter la filière cinématographique en France",
+    "themes": [],
+    "dossier": "DLR5L16N48687",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-11",
+    "heure": "21:30",
+    "ordre_du_jour": "Suite de la discussion du projet de loi, adopté par le Sénat, relatif à la lutte contre les ingérences étrangères dans la vie démocratique",
+    "themes": [],
+    "dossier": "DLR5L17N54703",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
   }
 ]

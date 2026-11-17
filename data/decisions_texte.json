@@ -1,6 +1,22 @@
 {
  "decisions": [
   {
+   "id": "L17-VD234948DEC",
+   "dossier": "DLR5L17N50731",
+   "titre": "Projet de loi relatif à la résilience des infrastructures critiques et au renforcement de la cybersécurité",
+   "nature": "projet",
+   "organique": false,
+   "ratification": false,
+   "date": "2026-11-17",
+   "lecture": "premiere",
+   "statut": "modifié",
+   "adopte": true,
+   "sans_modification": false,
+   "premiere_assemblee": false,
+   "vote_ref": null,
+   "url": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N50731"
+  },
+  {
    "id": "L17-VD234927DEC",
    "dossier": "DLR5L17N53699",
    "titre": "Proposition de loi visant au renforcement de l'attractivité de l'épargne salariale et à la mise en oeuvre d'une procédure de déblocage exceptionnelle",
