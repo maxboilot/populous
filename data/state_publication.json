@@ -1,57 +1,52 @@
 {
   "dernier_reel": {
-    "date": "2026-11-16",
+    "date": "2026-11-17",
     "scenario": {
       "fin": {
         "duree": 3.8
       },
       "scenes": [
         {
-          "duree": 3.4,
-          "eyebrow": "Populous · Les institutions",
-          "titre": "C'est quoi un vote solennel ?",
+          "couleur": "vert",
+          "duree": 4.4,
+          "eyebrow": "Vote solennel · 16 novembre 2026",
+          "tampon": "ADOPTÉ",
+          "titre": "Proposition de loi visant au renforcement de l'attractivité de l'épargne salariale et à la mise en œuvre d'une procédure de déblocage exceptionnelle…",
           "type": "titre"
         },
         {
-          "duree": 4.2,
-          "kicker": "La définition",
-          "texte": "Un **scrutin public** sur l'ensemble d'un texte important.",
-          "type": "texte"
+          "duree": 5.0,
+          "type": "chiffres"
         },
         {
-          "duree": 5.4,
-          "kicker": "Quand ?",
-          "texte": "Il est fixé à l'avance, en général **le mardi après-midi**, après les questions au Gouvernement.",
-          "type": "texte"
-        },
-        {
-          "etapes": [
-            {
-              "kicker": "Un député absent",
-              "sous": "à un collègue",
-              "titre": "**Délègue son vote**"
-            },
-            {
-              "kicker": "Le collègue",
-              "sous": "que le député absent",
-              "titre": "Vote **dans le même sens**"
-            }
+          "cartes": [
+            [
+              "Ce que c’est",
+              "Une proposition de loi : un texte déposé par des parlementaires. Ici : première lecture à l’Assemblée nationale."
+            ],
+            [
+              "Ce vote",
+              "Vote sur l’ensemble du texte. Résultat : adopté (95 pour, 34 contre, 1 abstention)."
+            ],
+            [
+              "La suite",
+              "Pour devenir une loi, le texte doit être adopté dans les mêmes termes par l’Assemblée nationale et par le Sénat."
+            ]
           ],
-          "titre": "Voter malgré l'absence",
-          "type": "etapes"
+          "duree": 7.4,
+          "sous": "Trois choses à savoir.",
+          "titre": "De quoi parle ce texte ?",
+          "type": "cartes"
         },
         {
-          "kicker": "Une limite",
-          "nombre": 1,
-          "sous": "par député",
-          "type": "chiffre",
-          "unite": "délégation reçue au maximum"
+          "duree": 4.2,
+          "type": "hemicycle"
         }
       ],
-      "source": "Source : assemblee-nationale.fr, « Les votes à l'Assemblée nationale »"
+      "source": "Sources : Constitution (art. 39 et 45) · assemblee-nationale.fr (fiche n°46)"
     },
-    "scrutin": null,
-    "type_reel": "pedagogique"
+    "scrutin": 9905,
+    "type_reel": "loi"
   },
   "dernier_sondage_publie": "2026-11-13|Elabe",
   "lois_publiees": [
@@ -63,7 +58,8 @@
   "lois_reel_publiees": [
     9759,
     9807,
-    9895
+    9895,
+    9905
   ],
   "reels_pedagogiques_publies": [
     "budget-deux-parties",
