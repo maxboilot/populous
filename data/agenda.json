@@ -2,6 +2,17 @@
   {
     "date": "2026-11-17",
     "heure": "15:00",
+    "ordre_du_jour": "Explications de vote et vote par scrutin public sur le projet de loi, adopté par le Sénat, relatif à la résilience des infrastructures critiques et au renforcement de la cybersécurité",
+    "themes": [
+      "numerique"
+    ],
+    "dossier": "DLR5L17N50731",
+    "scrutin_annonce": true,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-17",
+    "heure": "15:00",
     "ordre_du_jour": "Suite de la discussion du projet de loi, adopté par le Sénat, visant la relance et la décentralisation du logement",
     "themes": [
       "logement",
