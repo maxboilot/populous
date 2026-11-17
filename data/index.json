@@ -4129,5 +4129,18 @@
       "travail"
     ],
     "type": "scrutin"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N50731",
+    "date": "2026-11-17",
+    "titre": "Projet de loi relatif à la résilience des infrastructures critiques et au renforcement de la cybersécurité",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [
+      "numerique"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0366_texte-adopte-seance.pdf",
+    "type": "main_levee"
   }
 ]
