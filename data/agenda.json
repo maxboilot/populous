@@ -34,6 +34,37 @@
   },
   {
     "date": "2026-11-18",
+    "heure": "09:00",
+    "ordre_du_jour": "Examen, en application de l’article 88 du Règlement : des amendements à la proposition de loi visant à améliorer le dispositif du temps partiel thérapeutique pour les fonctionnaires (n° 3244) (M. Valérie Rossi, rapporteure)",
+    "themes": [],
+    "dossier": "DLR5L17N54989",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-18",
+    "heure": "09:00",
+    "ordre_du_jour": "Examen, en application de l’article 88 du Règlement : des amendements à la proposition de loi visant à régulariser les travailleurs sans-papiers (n° 3253) (M. Paul Christophle, rapporteur)",
+    "themes": [
+      "travail"
+    ],
+    "dossier": "DLR5L17N54998",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-18",
+    "heure": "09:30",
+    "ordre_du_jour": "Examen du texte — Instaurer une négociation obligatoire sur la situation des parents isolés",
+    "themes": [
+      "social"
+    ],
+    "dossier": "DLR5L17N55145",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-18",
     "heure": "09:30",
     "ordre_du_jour": "Examen du texte — Lever les contraintes pesant sur le foncier",
     "themes": [],
@@ -62,6 +93,17 @@
       "institutions"
     ],
     "dossier": "DLR5L17N55074",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-18",
+    "heure": "09:30",
+    "ordre_du_jour": "Examen du texte — Renforcer la protection et l’accompagnement des dirigeants d’entreprise confrontés à la maladie",
+    "themes": [
+      "sante"
+    ],
+    "dossier": "DLR5L17N54988",
     "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
   },
