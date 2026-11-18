@@ -130,7 +130,7 @@
   },
   {
     "date": "2026-11-18",
-    "heure": "14:45",
+    "heure": "14:50",
     "ordre_du_jour": "Examen des amendements (art. 88) — Baisser les prix du carburant à la pompe par l'encadrement des marges des raffineurs",
     "themes": [],
     "dossier": "DLR5L17N55014",
@@ -139,7 +139,7 @@
   },
   {
     "date": "2026-11-18",
-    "heure": "14:45",
+    "heure": "14:50",
     "ordre_du_jour": "Examen des amendements (art. 88) — L’interdiction de relations commerciales contribuant, par aide ou assistance, à la politique de colonisation dans le Territoire palestinien occupé et dans le Territoire syrien occupé des hauteurs du Golan",
     "themes": [
       "economie"
@@ -150,7 +150,7 @@
   },
   {
     "date": "2026-11-18",
-    "heure": "14:45",
+    "heure": "14:50",
     "ordre_du_jour": "Examen des amendements (art. 88) — Proposition de loi visant à lutter contre la vie chère en renforçant le droit de la concurrence et de la régulation économique outre-mer",
     "themes": [
       "economie",
@@ -162,7 +162,7 @@
   },
   {
     "date": "2026-11-18",
-    "heure": "14:45",
+    "heure": "14:50",
     "ordre_du_jour": "Examen des amendements (art. 88) — Retrouver la confiance et l’équilibre dans les rapports locatifs",
     "themes": [
       "logement"
@@ -530,27 +530,6 @@
   {
     "date": "2026-11-25",
     "heure": "15:00",
-    "ordre_du_jour": "Examen du texte — Faire contribuer davantage les héritiers les plus fortunés (séance éventuelle)",
-    "themes": [],
-    "dossier": "DLR5L17N55143",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-11-25",
-    "heure": "15:00",
-    "ordre_du_jour": "Examen du texte — Un traité juridiquement contraignant prévoyant des interdictions et des réglementations aux systèmes d'armes autonomes et l’élaboration d’une position commune européenne sur ce sujet (séance éventuelle)",
-    "themes": [
-      "defense",
-      "institutions"
-    ],
-    "dossier": "DLR5L17N54277",
-    "scrutin_annonce": false,
-    "lecture": "Lecture unique"
-  },
-  {
-    "date": "2026-11-25",
-    "heure": "16:00",
     "ordre_du_jour": "Examen du texte — Condamner l’instrumentalisation politique des mobilisations lycéennes et la légitimation des violences aux abords des établissements scolaires (séance éventuelle)",
     "themes": [
       "education",
@@ -563,13 +542,34 @@
   },
   {
     "date": "2026-11-25",
-    "heure": "16:00",
+    "heure": "15:00",
+    "ordre_du_jour": "Examen du texte — Faire contribuer davantage les héritiers les plus fortunés (séance éventuelle)",
+    "themes": [],
+    "dossier": "DLR5L17N55143",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-25",
+    "heure": "15:00",
     "ordre_du_jour": "Examen du texte — Faire de l’Union européenne le cadre d’une interdiction effective des mécanismes addictifs conçus et promus par les réseaux sociaux et plateformes numériques à l’égard des enfants et jeunes mineurs (séance éventuelle)",
     "themes": [
       "social",
       "numerique"
     ],
     "dossier": "DLR5L17N55023",
+    "scrutin_annonce": false,
+    "lecture": "Lecture unique"
+  },
+  {
+    "date": "2026-11-25",
+    "heure": "15:00",
+    "ordre_du_jour": "Examen du texte — Un traité juridiquement contraignant prévoyant des interdictions et des réglementations aux systèmes d'armes autonomes et l’élaboration d’une position commune européenne sur ce sujet (séance éventuelle)",
+    "themes": [
+      "defense",
+      "institutions"
+    ],
+    "dossier": "DLR5L17N54277",
     "scrutin_annonce": false,
     "lecture": "Lecture unique"
   },
@@ -1232,5 +1232,17 @@
     "dossier": "DLR5L17N54703",
     "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-16",
+    "heure": "15:00",
+    "ordre_du_jour": "Examen du texte — Affirmer la nécessité pour l’Union européenne de se donner les moyens financiers, industriels et politiques de déployer une infrastructure satellitaire d’origine et à vocation pleinement européennes, au service de son autonomie stratégique, de sa sécurité, de sa recherche et des citoyens européens (séance éventuelle)",
+    "themes": [
+      "securite",
+      "economie"
+    ],
+    "dossier": "DLR5L17N54910",
+    "scrutin_annonce": false,
+    "lecture": "Lecture unique"
   }
 ]
