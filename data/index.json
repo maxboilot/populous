@@ -4154,5 +4154,19 @@
     ],
     "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0366_texte-adopte-seance.pdf",
     "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N54951",
+    "date": "2026-11-18",
+    "titre": "Projet de loi de financement de la sécurité sociale pour 2027",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [
+      "securite",
+      "economie"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/PLFSS_2027",
+    "type": "main_levee"
   }
 ]
