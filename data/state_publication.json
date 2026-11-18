@@ -3,7 +3,7 @@
     "L17-VD234948DEC"
   ],
   "dernier_reel": {
-    "date": "2026-11-17",
+    "date": "2026-11-18",
     "scenario": {
       "fin": {
         "duree": 3.8
@@ -12,9 +12,9 @@
         {
           "couleur": "vert",
           "duree": 4.4,
-          "eyebrow": "Vote solennel · 16 novembre 2026",
+          "eyebrow": "Vote solennel · 17 novembre 2026",
           "tampon": "ADOPTÉ",
-          "titre": "Proposition de loi visant au renforcement de l'attractivité de l'épargne salariale et à la mise en œuvre d'une procédure de déblocage exceptionnelle…",
+          "titre": "Projet de loi relatif à la résilience des infrastructures critiques et au renforcement de la cybersécurité (première lecture)",
           "type": "titre"
         },
         {
@@ -25,11 +25,11 @@
           "cartes": [
             [
               "Ce que c’est",
-              "Une proposition de loi : un texte déposé par des parlementaires. Ici : première lecture à l’Assemblée nationale."
+              "Un projet de loi : un texte déposé par le Gouvernement. Ici : première lecture à l’Assemblée nationale."
             ],
             [
               "Ce vote",
-              "Vote sur l’ensemble du texte. Résultat : adopté (95 pour, 34 contre, 1 abstention)."
+              "Vote sur l’ensemble du texte. Résultat : adopté (464 pour, 64 contre, 16 abstentions)."
             ],
             [
               "La suite",
@@ -48,7 +48,7 @@
       ],
       "source": "Sources : Constitution (art. 39 et 45) · assemblee-nationale.fr (fiche n°46)"
     },
-    "scrutin": 9905,
+    "scrutin": 9916,
     "type_reel": "loi"
   },
   "dernier_sondage_publie": "2026-11-13|Elabe",
@@ -63,7 +63,8 @@
     9759,
     9807,
     9895,
-    9905
+    9905,
+    9916
   ],
   "reels_pedagogiques_publies": [
     "budget-deux-parties",
