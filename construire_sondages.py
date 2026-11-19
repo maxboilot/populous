@@ -125,30 +125,42 @@ def parse_rows(table_wikitext):
     return rows
 
 
-def parse_candidats(rows):
-    """Lignes 0 (photos) et 1 (nom+parti) de l'en-tête -> liste de candidats,
-    dans l'ordre des colonnes (hors 'Autre', ajoutée à part)."""
-    img_row, nom_row = rows[0], rows[1]
-    # Les 3 premières cellules de img_row sont Sondeur/Date/Échantillon.
-    img_cells = img_row[3:]
-    candidats = []
-    for img_line, nom_line in zip(img_cells, nom_row):
-        img_content = cell_content(img_line)
-        m = re.search(r'Fichier:\s*([^|\]]+)', img_content)
-        # MediaWiki traite espace et underscore comme équivalents dans un nom
-        # de fichier ; l'API renvoie toujours la forme avec espaces, donc on
-        # normalise ici pour que la clé corresponde plus tard.
-        fichier = m.group(1).strip().replace('_', ' ') if m else None
+def _candidat(img_line, nom_line):
+    """Une paire de cellules (photo, nom+parti) -> candidat, ou None si la cellule ne nomme personne (ex. « Autres »).
+    Les deux cellules peuvent être la même (en-tête sur une seule ligne)."""
+    img_content = cell_content(img_line)
+    m = re.search(r'(?:Fichier|File):\s*([^|\]]+)', img_content)
+    # MediaWiki traite espace et underscore comme équivalents dans un nom
+    # de fichier ; l'API renvoie toujours la forme avec espaces, donc on
+    # normalise ici pour que la clé corresponde plus tard.
+    fichier = m.group(1).strip().replace('_', ' ') if m else None
 
-        nom_content = strip_refs(cell_content(nom_line))
-        parts = nom_content.split('<br>')
-        nom = first_wikilink_label(parts[0])
-        parti = first_wikilink_label(parts[1]) if len(parts) > 1 else None
-        if not nom:
-            continue
-        cle = sans_accents(nom).replace(' ', '_').replace("'", '')
-        candidats.append({'cle': cle, 'nom': nom, 'parti': parti, 'fichier': fichier})
-    return candidats
+    nom_content = strip_refs(cell_content(nom_line))
+    # Le lien de la photo ne doit pas être pris pour le nom du candidat.
+    nom_content = re.sub(r'\[\[(?:Fichier|File):[^\]]*\]\]', '', nom_content)
+    parts = [p for p in nom_content.split('<br>') if p.strip()]
+    nom = first_wikilink_label(parts[0]) if parts else None
+    parti = first_wikilink_label(parts[1]) if len(parts) > 1 else None
+    if not nom:
+        return None
+    cle = sans_accents(nom).replace(' ', '_').replace("'", '')
+    return {'cle': cle, 'nom': nom, 'parti': parti, 'fichier': fichier}
+
+
+def parse_candidats(rows):
+    """En-tête du tableau -> liste de candidats, dans l'ordre des colonnes (hors 'Autre', ajoutée à part).
+
+    Deux mises en page ont existé sur Wikipédia, les deux sont lues :
+    - actuelle (constatée le 18 nov. 2026) : UNE seule ligne d'en-tête, avec photo, nom et parti dans la même cellule ;
+    - ancienne : ligne 0 = photos, ligne 1 = noms + partis.
+    Les 3 premières cellules de la ligne 0 sont Sondeur/Date/Échantillon."""
+    entete = rows[0][3:]
+    candidats = [c for c in (_candidat(cell, cell) for cell in entete) if c]
+    if candidats:
+        return candidats
+    if len(rows) < 2:
+        return []
+    return [c for c in (_candidat(img, nom) for img, nom in zip(entete, rows[1])) if c]
 
 
 DATE_RE = re.compile(
@@ -339,6 +351,12 @@ def main():
         'candidats': candidats,
         'sondages': sondages,
     }
+    # Garde-fou (18 nov. 2026) : Wikipedia a change la mise en page de l'en-tete, le script ne lisait plus aucun candidat et a ECRASE
+    # le fichier avec des listes vides, ce qui a fait disparaitre tous les instituts de l'app. Un resultat vide n'est jamais ecrit :
+    # on garde le fichier precedent et on echoue pour que la panne se voie (mail d'echec GitHub + surveiller_donnees).
+    if not candidats or not sondages:
+        raise SystemExit(f'ECHEC : {len(candidats)} candidat(s) et {len(sondages)} sondage(s) lus -- la page Wikipedia a probablement change de structure. '
+                         f'{SORTIE} n\'est PAS modifie (le precedent reste en place).')
     SORTIE.parent.mkdir(exist_ok=True)
     SORTIE.write_text(json.dumps(sortie, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
     print(f'sondages.json : {len(sondages)} sondages, {len(candidats)} candidats, '
