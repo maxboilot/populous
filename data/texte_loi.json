@@ -1,98 +1,82 @@
 {
-  "numero": 10001,
+  "numero": 10019,
   "statut": "publie",
   "portee": "article",
-  "article_ref": "4",
+  "article_ref": "6 bis",
   "source_texte": "commission",
   "source": "https://www.assemblee-nationale.fr/dyn/opendata/PRJLANR5L17BTC3188.html",
   "articles": [
     {
-      "article": "Article 4",
-      "texte": "I. – Le 1° du I de l’article 31 du code général des impôts est ainsi modifié :"
+      "article": "Article 6 bis",
+      "texte": "I. – La loi n° 65‑557 du 10 juillet 1965 fixant le statut de la copropriété des immeubles bâtis est ainsi modifiée :"
     },
     {
-      "article": "Article 4",
-      "texte": "1° À la dernière phrase du troisième alinéa du g, après la référence : « j », sont insérés les mots : « , dans sa rédaction antérieure à la loi n° 2023‑1322 du 29 décembre 2023 de finances pour 2024, » ;"
+      "article": "Article 6 bis",
+      "texte": "1° Le 1° du I de l’article 14‑2 est complété par les mots : « ainsi qu’à l’amélioration du confort thermique » ;"
     },
     {
-      "article": "Article 4",
-      "texte": "1° bis Le i est ainsi modifié :"
+      "article": "Article 6 bis",
+      "texte": "1° bis A (nouveau) Après le e du II de l’article 24, il est inséré un e bis ainsi rédigé :"
     },
     {
-      "article": "Article 4",
-      "texte": "aa) (nouveau) Au premier alinéa, après le mot : « achèvement », sont insérés les mots : « ou les logements qui font ou ont fait l’objet de travaux concourant à la production ou à la livraison d’un immeuble neuf, au sens du 2° du 2 du I de l’article 257 du présent code, » ;"
+      "article": "Article 6 bis",
+      "texte": "« e bis) Les travaux d’intérêt collectif consistant en l’installation de protections solaires extérieures sur les baies vitrées donnant sur l’extérieur ou de moustiquaires, y compris lorsque ces travaux affectent des parties privatives ; »"
     },
     {
-      "article": "Article 4",
-      "texte": "2° Le j est ainsi modifié :"
+      "article": "Article 6 bis",
+      "texte": "3° Au premier alinéa du III de l’article 26‑4, la référence : « e » est remplacée par la référence : « e bis »."
     },
     {
-      "article": "Article 4",
-      "texte": "a) Le premier alinéa est remplacé par trois alinéas ainsi rédigés :"
+      "article": "Article 6 bis",
+      "texte": "II. – Le code de la construction et de l’habitation est ainsi modifié :"
     },
     {
-      "article": "Article 4",
-      "texte": "« j) Pour les logements situés en France que le contribuable acquiert, qui font ou ont fait l’objet de travaux d’amélioration, définis en application du décret mentionné au 5° du B du I de l’article 199 novovicies du présent code, représentant au moins 20 % du prix d’acquisition du bien et permettant au logement d’améliorer sa performance énergétique d’au moins deux classes lorsque sa classe initiale est F ou G ou d’au moins une classe lorsque sa classe initiale est E, au sens de l’article L. 173‑1‑1 du code de la construction et de l’habitation, ou, lorsqu’il est situé en Guadeloupe, en Guyane, à la Martinique, à Mayotte ou à La Réunion, de répondre aux critères de performance énergétique et environnementale mentionnés au 4 du I de l’article 244 quater X du présent code, à la demande du contribuable, une déduction au titre de l’amortissement du prix d’acquisition du logement net de frais, majoré, le cas échéant, du montant des travaux."
+      "article": "Article 6 bis",
+      "texte": "1° L’article L. 111‑1 est ainsi modifié :"
     },
     {
-      "article": "Article 4",
-      "texte": "« La déduction prévue au premier alinéa du présent j est applicable aux locaux situés en France que le contribuable acquiert et qui font ou ont fait l’objet de travaux de transformation en logement, lorsque ces locaux étaient, avant les travaux, affectés à un usage autre que l’habitation et que lesdits travaux de transformation représentent au moins 20 % du prix d’acquisition du bien et permettent au logement d’améliorer sa performance énergétique d’au moins deux classes lorsque sa classe initiale est F ou G, ou d’au moins une classe lorsque sa classe initiale est E, au sens de l’article L. 173‑1‑1 du code de la construction et de l’habitation, ou, lorsqu’il est situé en Guadeloupe, en Guyane, à la Martinique, à Mayotte ou à La Réunion, de répondre aux critères de performance énergétique et environnementale mentionnés au 4 du I de l’article 244 quater X du présent code. Ont le caractère de travaux de transformation, au sens du présent alinéa, les travaux permettant l’aménagement de locaux d’habitation dans des locaux affectés auparavant à un autre usage ainsi que les travaux d’amélioration réalisés à l’occasion de cet aménagement, définis en application du 5° du B du I de l’article 199 novovicies."
+      "article": "Article 6 bis",
+      "texte": "a) Le 17 bis est ainsi modifié :"
     },
     {
-      "article": "Article 4",
-      "texte": "« Lorsque les travaux d’amélioration ou de transformation ont été effectués avant l’acquisition du logement ou du local ou lorsqu’ils doivent être réalisés par le vendeur dans le cadre d’un contrat de vente d’immeuble à rénover défini aux articles L. 262‑1 à L. 262‑11 du code de la construction et de l’habitation, le prix d’acquisition servant de base au calcul du seuil de 20 % prévu aux deux premiers alinéas du présent j est minoré du montant de ces travaux. » ;"
+      "article": "Article 6 bis",
+      "texte": "– au b, le mot : « six » est remplacé par le mot : « sept » et, après le mot : « ventilation », sont insérés les mots : « , les travaux d’amélioration du confort thermique » ;"
     },
     {
-      "article": "Article 4",
-      "texte": "b) À la première phrase du deuxième alinéa, les mots : « de le louer » sont remplacés par les mots : « de louer le logement nu à titre de résidence principale » ;"
+      "article": "Article 6 bis",
+      "texte": "– aux cinquième, sixième et avant-dernier alinéas, le mot : « six » est remplacé par le mot : « sept » ;"
     },
     {
-      "article": "Article 4",
-      "texte": "c) Au sixième alinéa, le mot : « troisième » est remplacé par le mot : « sixième » ;"
+      "article": "Article 6 bis",
+      "texte": "b) (nouveau) Après le même 17° bis, il est inséré un 17° ter ainsi rédigé :"
     },
     {
-      "article": "Article 4",
-      "texte": "d) À la première phrase du neuvième alinéa le mot : « deuxième » est remplacé par le mot : « cinquième » ;"
+      "article": "Article 6 bis",
+      "texte": "« 17° ter Travaux d’amélioration du confort thermique : travaux ayant pour objet d’améliorer la capacité d’un bâtiment à permettre, par temps froid comme par temps chaud, des conditions intérieures adaptées à son occupation en limitant les besoins de chauffage ou de refroidissement, en améliorant la performance des systèmes de chauffage ou de refroidissement ou en favorisant le renouvellement ou le brassage de l’air ; »"
     },
     {
-      "article": "Article 4",
-      "texte": "d bis) Après le onzième alinéa, sont insérés trois alinéas ainsi rédigés :"
+      "article": "Article 6 bis",
+      "texte": "2° (nouveau) La deuxième phrase du premier alinéa de l’article L. 126‑26 est complétée par les mots : « ainsi qu’une évaluation de la performance du bâtiment ou de la partie de bâtiment en matière de confort thermique » ;"
     },
     {
-      "article": "Article 4",
-      "texte": "« Lorsque la société mentionnée au douzième alinéa du présent j est une société civile de placement immobilier, au sens de l’article L. 214‑114 du code monétaire et financier, l’amortissement est déterminé au niveau de la société, immeuble par immeuble, pour les seuls immeubles qui remplissent les conditions prévues au présent j. La quote‑part d’amortissement ainsi déterminée est répartie entre les associés à proportion des droits qu’ils détiennent dans la société, sans qu’il y ait lieu d’établir un lien entre les sommes versées par chaque associé lors de la souscription de ses parts et les immeubles détenus ou acquis par la société."
+      "article": "Article 6 bis",
+      "texte": "3° (nouveau) Au dernier alinéa de l’article L. 731‑1, la première occurrence du signe : « , » est remplacée par les mots : « ainsi qu’ » et les mots : « et à la réalisation d’économies d’énergie » sont remplacés par les mots : « , des travaux d’amélioration de la performance énergétique et des travaux d’amélioration du confort thermique au sens du 17° ter de l’article L. 111‑1 »."
     },
     {
-      "article": "Article 4",
-      "texte": "« Pour l’application du présent j aux sociétés civiles de placement immobilier mentionnées à l’article L. 214‑114 du code monétaire et financier, le bénéfice de cette quote‑part d’amortissement est subordonné à l’engagement de l’associé de conserver les parts ouvrant droit à la déduction pendant une durée de neuf ans à compter de leur souscription. Cet engagement est apprécié individuellement au niveau de chaque associé. En cas de rupture de cet engagement, la remise en cause de l’avantage fiscal est limitée au seul associé concerné."
+      "article": "Article 6 bis",
+      "texte": "III. – Le code du patrimoine est ainsi modifié :"
     },
     {
-      "article": "Article 4",
-      "texte": "« Par dérogation au douzième alinéa du présent j, la circonstance qu’un logement détenu par une société civile de placement immobilier mentionnée à l’article L. 214‑114 du code monétaire et financier soit loué à un associé ou à un membre de son foyer fiscal n’a pas pour effet de remettre en cause le bénéfice de la déduction au titre de l’amortissement pour l’associé qui n’est pas un membre fondateur de ladite société et qui détient directement ou indirectement, avec les membres de son foyer fiscal, moins de 5 % de son capital. » ;"
+      "article": "Article 6 bis",
+      "texte": "1° L’avant-dernière phrase du premier alinéa du I de l’article L. 632‑2 est ainsi rédigée : « Il concilie cet intérêt public avec l’objectif de développement des énergies renouvelables et l’objectif d’amélioration de la performance énergétique et du confort thermique des bâtiments. » ;"
     },
     {
-      "article": "Article 4",
-      "texte": "e) Au dernier alinéa, après les mots : « s’applique », sont insérés les mots : « , dans sa rédaction en vigueur à la date d’acquisition, » ;"
+      "article": "Article 6 bis",
+      "texte": "2° Après le 3° de l’article L. 632‑2‑1, il est inséré un 4° ainsi rédigé :"
     },
     {
-      "article": "Article 4",
-      "texte": "3° Au dernier alinéa du l, les mots : « aux j et » sont remplacés par les mots : « au j, dans sa rédaction antérieure à la loi n° 2023‑1322 du 29 décembre 2023 précitée, et au » ;"
-    },
-    {
-      "article": "Article 4",
-      "texte": "4° La deuxième phrase du cinquième alinéa du m est complétée par les mots : « , dans sa rédaction antérieure à la loi n° 2023‑1322 du 29 décembre 2023 de finances pour 2024 »."
-    },
-    {
-      "article": "Article 4",
-      "texte": "II. – (Non modifié) Le I du présent article s’applique à compter du lendemain de la publication de la présente loi."
-    },
-    {
-      "article": "Article 4",
-      "texte": "V (nouveau). – La perte de recettes pour l’État résultant du aa du 1° du I est compensée, à due concurrence, par la création d’une taxe additionnelle à l’accise sur les tabacs prévue au chapitre IV du titre Ier du livre III du code des impositions sur les biens et services."
-    },
-    {
-      "article": "Article 4",
-      "texte": "VI (nouveau). – La perte de recettes pour l’État résultant du renvoi à un décret pour définir les travaux d’amélioration ouvrant droit au bénéfice du j du 1° du I de l’article 31 du code général des impôts est compensée, à due concurrence, par la création d’une taxe additionnelle à l’accise sur les tabacs prévue au chapitre IV du titre Ier du livre III du code des impositions sur les biens et services."
+      "article": "Article 6 bis",
+      "texte": "« 4° Des travaux d’installation de protections solaires extérieures sur les baies vitrées donnant sur l’extérieur. »"
     }
   ]
 }
