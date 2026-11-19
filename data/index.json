@@ -4130,5 +4130,30 @@
     ],
     "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/PLFSS_2027",
     "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N55223",
+    "date": "2026-11-18",
+    "titre": "Projet de loi de finances de fin de gestion pour 2026",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [
+      "economie"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/PLFFG_2026",
+    "type": "main_levee"
+  },
+  {
+    "numero": 10033,
+    "date": "2026-11-19",
+    "titre": "Exercer l'accès à l'emploi, à pérenniser et à étendre progressivement l'expérimentation « territoires zéro chômeur de longue durée » comme solution de retour à l'emploi pour les personnes privées durablement d'emploi",
+    "adopte": true,
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/10033",
+    "themes": [
+      "travail"
+    ],
+    "type": "scrutin"
   }
 ]

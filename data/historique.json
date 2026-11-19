@@ -1,8 +1,31 @@
 {
-  "generated_at": "2026-11-19T10:28:37.807315Z",
+  "generated_at": "2026-11-19T14:32:19.214420Z",
   "depuis": "2025-11-19",
-  "nombre": 116,
+  "nombre": 117,
   "lois": [
+    {
+      "numero": 10033,
+      "date": "2026-11-19",
+      "titre": "Exercer l'accès à l'emploi, à pérenniser et à étendre progressivement l'expérimentation « territoires zéro chômeur de longue durée » comme solution de retour à l'emploi pour les personnes privées durablement d'emploi",
+      "titre_officiel": "l'ensemble de la proposition de loi visant à exercer l'accès à l'emploi, à pérenniser et à étendre progressivement l'expérimentation « territoires zéro chômeur de longue durée » comme solution de retour à l'emploi pour les personnes privées durablement d'emploi (deuxième lecture).",
+      "nature": "proposition de loi",
+      "lecture": "deuxième lecture",
+      "solennel": false,
+      "adopte": true,
+      "statut": "adopte",
+      "themes": [
+        "travail"
+      ],
+      "sort": "l'Assemblée nationale a adopté",
+      "tally": {
+        "pour": 258,
+        "contre": 3,
+        "abstention": 0,
+        "absent": 321
+      },
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/10033",
+      "type": "scrutin"
+    },
     {
       "numero": 9916,
       "date": "2026-11-17",
