@@ -1,6 +1,22 @@
 {
  "decisions": [
   {
+   "id": "L17-VD235055DEC",
+   "dossier": "DLR5L17N53069",
+   "titre": "Retrouver la confiance et l’équilibre dans les rapports locatifs",
+   "nature": "proposition",
+   "organique": false,
+   "ratification": false,
+   "date": "2026-11-19",
+   "lecture": "deuxieme",
+   "statut": "adoptée sans modification",
+   "adopte": true,
+   "sans_modification": true,
+   "premiere_assemblee": true,
+   "vote_ref": null,
+   "url": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53069"
+  },
+  {
    "id": "L17-VD234990DEC",
    "dossier": "DLR5L17N51962",
    "titre": "Exercer l’accès à l’emploi, pérenniser et étendre progressivement l’expérimentation Territoires zéro chômeur longue durée comme solution de retour à l’emploi pour les personnes privées durablement d’emploi",
