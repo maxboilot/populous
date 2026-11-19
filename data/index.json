@@ -4171,6 +4171,17 @@
   },
   {
     "numero": null,
+    "dossier": "DLR5L17N54445",
+    "date": "2026-11-19",
+    "titre": "Moderniser et rééquilibrer le fonctionnement du titre-restaurant",
+    "adopte": true,
+    "statut": "adopte_modifie",
+    "themes": [],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/moderniser_fonctionnement_titre_restaurant_17e",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
     "dossier": "DLR5L17N51330",
     "date": "2026-11-19",
     "titre": "Renforcer l’effectivité des droits voisins de la presse",
@@ -4180,6 +4191,19 @@
       "culture"
     ],
     "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/effectivite_droits_voisins_presse",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N53069",
+    "date": "2026-11-19",
+    "titre": "Retrouver la confiance et l’équilibre dans les rapports locatifs",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "logement"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0368_texte-adopte-seance.pdf",
     "type": "main_levee"
   },
   {
