@@ -4155,5 +4155,16 @@
       "travail"
     ],
     "type": "scrutin"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N51962",
+    "date": "2026-11-19",
+    "titre": "Exercer l’accès à l’emploi, pérenniser et étendre progressivement l’expérimentation Territoires zéro chômeur longue durée comme solution de retour à l’emploi pour les personnes privées durablement d’emploi",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0367_texte-adopte-seance.pdf",
+    "type": "main_levee"
   }
 ]
