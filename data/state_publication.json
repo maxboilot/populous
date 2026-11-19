@@ -3,7 +3,7 @@
     "L17-VD234948DEC"
   ],
   "dernier_reel": {
-    "date": "2026-11-18",
+    "date": "2026-11-19",
     "scenario": {
       "fin": {
         "duree": 3.8
@@ -12,9 +12,9 @@
         {
           "couleur": "vert",
           "duree": 4.4,
-          "eyebrow": "Vote solennel · 17 novembre 2026",
+          "eyebrow": "Vote solennel · 19 novembre 2026",
           "tampon": "ADOPTÉ",
-          "titre": "Projet de loi relatif à la résilience des infrastructures critiques et au renforcement de la cybersécurité (première lecture)",
+          "titre": "Proposition de loi visant à exercer l'accès à l'emploi, à pérenniser et à étendre progressivement l'expérimentation « territoires zéro chômeur de…",
           "type": "titre"
         },
         {
@@ -25,15 +25,15 @@
           "cartes": [
             [
               "Ce que c’est",
-              "Un projet de loi : un texte déposé par le Gouvernement. Ici : première lecture à l’Assemblée nationale."
+              "Une proposition de loi : un texte déposé par des parlementaires. Ici : deuxième lecture à l’Assemblée nationale."
             ],
             [
               "Ce vote",
-              "Vote sur l’ensemble du texte. Résultat : adopté (464 pour, 64 contre, 16 abstentions)."
+              "Vote sur l’ensemble du texte. Résultat : adopté (258 pour, 3 contre, 0 abstention)."
             ],
             [
               "La suite",
-              "Pour devenir une loi, le texte doit être adopté dans les mêmes termes par l’Assemblée nationale et par le Sénat."
+              "La navette continue jusqu’à un texte identique dans les deux assemblées. En cas de désaccord, une commission mixte paritaire (7 députés et 7 sénateurs) peut être réunie."
             ]
           ],
           "duree": 7.4,
@@ -46,9 +46,9 @@
           "type": "hemicycle"
         }
       ],
-      "source": "Sources : Constitution (art. 39 et 45) · assemblee-nationale.fr (fiche n°46)"
+      "source": "Sources : Constitution (art. 39 et 45) · assemblee-nationale.fr (fiche n°46) · senat.fr"
     },
-    "scrutin": 9916,
+    "scrutin": 10033,
     "type_reel": "loi"
   },
   "dernier_sondage_publie": "2026-11-13|Elabe",
@@ -65,7 +65,8 @@
     9807,
     9895,
     9905,
-    9916
+    9916,
+    10033
   ],
   "reels_pedagogiques_publies": [
     "budget-deux-parties",
