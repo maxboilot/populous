@@ -41,6 +41,12 @@ class TestLectureEntete(unittest.TestCase):
         self.assertEqual((sondages[0]['institut'], sondages[0]['date'], sondages[0]['echantillon']), ('Ifop', '2026-11-17', 952))
 
 
+class TestNomsInstituts(unittest.TestCase):
+    def test_orthographes_regroupees(self):
+        self.assertEqual({cs.nom_institut(n) for n in ('OpinionWay', 'Opinionway', 'opinionway ', 'Opinion Way')}, {'OpinionWay'})
+        self.assertEqual(cs.nom_institut('Institut inconnu'), 'Institut inconnu')
+
+
 class TestPasDEcrasement(unittest.TestCase):
     def lancer(self, wikitext, sortie):
         page = {'query': {'pages': {'1': {'revisions': [{'slots': {'main': {'*': '==== Second semestre 2026 ====\n' + wikitext + '\n== Fin =='}}}]}}}}

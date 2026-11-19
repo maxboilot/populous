@@ -56,6 +56,17 @@ COULEURS_PARTI = {
 }
 
 
+# Orthographe officielle des instituts : Wikipedia ecrit parfois « Opinionway » et parfois « OpinionWay » (nov. 2026), ce qui les affichait comme
+# deux instituts differents. Cle = nom sans accents ni casse.
+NOMS_INSTITUTS = {'opinionway': 'OpinionWay', 'yougov': 'YouGov', 'cluster17': 'Cluster17', 'ifop': 'Ifop', 'ipsos': 'Ipsos', 'elabe': 'Elabe',
+                  'odoxa': 'Odoxa', 'harris': 'Harris', 'verian': 'Verian'}
+
+
+def nom_institut(nom):
+    nom = (nom or '').strip()
+    return NOMS_INSTITUTS.get(sans_accents(nom).replace(' ', ''), nom)
+
+
 def requete(url):
     req = urllib.request.Request(url, headers={'User-Agent': UA})
     with urllib.request.urlopen(req, timeout=30) as r:
@@ -223,7 +234,7 @@ def parse_sondages(rows, annee, n_cols):
             echantillon = int(re.sub(r'\D', '', m.group(0))) if m else None
 
             sondages.append({
-                'institut': (institut or '').strip(),
+                'institut': nom_institut(institut),
                 'source': url,
                 'date': date_iso,
                 'echantillon': echantillon,
