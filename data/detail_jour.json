@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-19T17:26:49.450420Z",
+  "generated_at": "2026-11-19T19:31:17.586221Z",
   "date": "2026-11-19",
   "numero_vedette": 10033,
   "lois": [
@@ -163,6 +163,43 @@
               "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/10040",
               "vedette": false,
               "sous_amendements": []
+            },
+            {
+              "numero": 10042,
+              "nature": "amendement",
+              "article": "premier",
+              "n_amendement": 36,
+              "parent": null,
+              "auteur": "M. Alfandari",
+              "issue": "rejete",
+              "pour": 106,
+              "contre": 143,
+              "abstentions": 3,
+              "votants": 252,
+              "solennel": false,
+              "objet": "l'amendement n° 36 de M. Alfandari et l'amendement identique suivant à l'article premier de la proposition de loi pour retrouver la confiance et l'équilibre dans les rapports locatifs (deuxième lecture).",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/10042",
+              "vedette": false,
+              "sous_amendements": [
+                {
+                  "numero": 10041,
+                  "nature": "sous-amendement",
+                  "article": "premier",
+                  "n_amendement": 88,
+                  "parent": 36,
+                  "auteur": "M. Falcon",
+                  "issue": "adopte",
+                  "pour": 91,
+                  "contre": 25,
+                  "abstentions": 17,
+                  "votants": 133,
+                  "solennel": false,
+                  "objet": "le sous-amendement n° 88 de M. Falcon à l'amendement n° 36 de M. Alfandari et l'amendement identique suivant à l'article premier de la proposition de loi pour retrouver la confiance et l'équilibre dans les rapports locatifs (deuxième lecture).",
+                  "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/10041",
+                  "vedette": false,
+                  "sous_amendements": []
+                }
+              ]
             }
           ]
         }

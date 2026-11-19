@@ -4158,6 +4158,32 @@
   },
   {
     "numero": null,
+    "dossier": "DLR5L17N53159",
+    "date": "2026-11-19",
+    "titre": "Proposition de loi visant à améliorer les moyens d'action de l'Agence de gestion et de recouvrement des avoirs saisis et confisqués et à faciliter l'exercice des missions d'expert judiciaire",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "justice"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N53159",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N51330",
+    "date": "2026-11-19",
+    "titre": "Renforcer l’effectivité des droits voisins de la presse",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "culture"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/effectivite_droits_voisins_presse",
+    "type": "main_levee"
+  },
+  {
+    "numero": null,
     "dossier": "DLR5L17N51962",
     "date": "2026-11-19",
     "titre": "Exercer l’accès à l’emploi, pérenniser et étendre progressivement l’expérimentation Territoires zéro chômeur longue durée comme solution de retour à l’emploi pour les personnes privées durablement d’emploi",
