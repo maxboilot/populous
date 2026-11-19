@@ -1,43 +1,5 @@
 [
   {
-    "numero": 3936,
-    "date": "2025-11-18",
-    "titre": "De finances de fin de gestion pour 2025",
-    "adopte": false,
-    "statut": "rejete",
-    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/3936",
-    "themes": [
-      "economie"
-    ],
-    "type": "scrutin"
-  },
-  {
-    "numero": null,
-    "dossier": "DLR5L17N52985",
-    "date": "2025-11-18",
-    "titre": "Projet de loi relatif à la lutte contre les fraudes sociales et fiscales",
-    "adopte": true,
-    "statut": "adopte",
-    "themes": [
-      "economie"
-    ],
-    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N52985",
-    "type": "main_levee"
-  },
-  {
-    "numero": null,
-    "dossier": "DLR5L17N53135",
-    "date": "2025-11-18",
-    "titre": "Projet de loi de finances de fin de gestion pour 2025",
-    "adopte": false,
-    "statut": "rejete",
-    "themes": [
-      "economie"
-    ],
-    "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0179_texte-adopte-seance.pdf",
-    "type": "main_levee"
-  },
-  {
     "numero": null,
     "dossier": "DLR5L17N53135",
     "date": "2025-11-25",

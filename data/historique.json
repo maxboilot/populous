@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-11-18T23:26:49.846551Z",
-  "depuis": "2025-11-18",
-  "nombre": 117,
+  "generated_at": "2026-11-19T01:55:00.733866Z",
+  "depuis": "2025-11-19",
+  "nombre": 116,
   "lois": [
     {
       "numero": 9916,
@@ -2713,29 +2713,6 @@
         "absent": 1
       },
       "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0183_texte-adopte-seance.pdf",
-      "type": "scrutin"
-    },
-    {
-      "numero": 3936,
-      "date": "2025-11-18",
-      "titre": "De finances de fin de gestion pour 2025",
-      "titre_officiel": "l'ensemble du projet de loi de finances de fin de gestion pour 2025 (première lecture).",
-      "nature": "projet de loi",
-      "lecture": "première lecture",
-      "solennel": false,
-      "adopte": false,
-      "statut": "rejete",
-      "themes": [
-        "economie"
-      ],
-      "sort": "L'Assemblée nationale n'a pas adopté",
-      "tally": {
-        "pour": 107,
-        "contre": 145,
-        "abstention": 82,
-        "absent": 1
-      },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/3936",
       "type": "scrutin"
     }
   ]
