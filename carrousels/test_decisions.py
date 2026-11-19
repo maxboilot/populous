@@ -10,6 +10,7 @@ try:
 except ImportError:
     sys.modules['requests'] = types.ModuleType('requests')
 import publier_reseaux as pr
+pr.DOSSIER_REELS_PRETS = Path('/inexistant/reels_prets')   # un vrai Reel pret du jour (data/reels_prets) ne doit pas perturber ces tests qui lisent les vraies donnees
 import construire_decisions_texte as cd
 from test_loi import vote
 

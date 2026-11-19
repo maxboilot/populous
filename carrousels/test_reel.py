@@ -5,6 +5,7 @@ from unittest import mock
 RACINE = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(RACINE)); sys.path.insert(0, str(RACINE / 'carrousels')); sys.path.insert(0, str(RACINE / 'carrousels' / 'moteur' / 'reel'))
 import publier_reseaux as pr
+pr.DOSSIER_REELS_PRETS = Path('/inexistant/reels_prets')   # un vrai Reel pret du jour (data/reels_prets) ne doit pas perturber ces tests qui lisent les vraies donnees
 import lecture, musique
 from test_loi import vote
 

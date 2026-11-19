@@ -852,6 +852,29 @@ def _candidats_texte(aujourdhui, etat):
     return [(g, (o['numero'] if g == 'scrutin' else o['id']), o) for _, _, _, g, o in sorted(c, key=lambda x: x[:3] + (str(x[4].get('id', '')),))]
 
 
+DOSSIER_REELS_PRETS = DOSSIER / 'data' / 'reels_prets'
+
+
+def reel_pret_du_jour(aujourdhui, etat):
+    """Reel DEJA REALISE (vu et valide par Max) a publier tel quel : dossier data/reels_prets/<id>/ avec video.mp4, legende.txt et meta.json
+    {"id", "publier_le": "AAAA-MM-JJ", "duree": secondes, "couverture_s": instant de la miniature}. Ne part QUE le jour dit (jamais en retard par erreur)
+    et une seule fois (cle d'etat reels_prets_publies). Renvoie un dict comme contenu_reel(), ou None."""
+    deja = list(etat.get('reels_prets_publies', []))
+    if not DOSSIER_REELS_PRETS.is_dir():
+        return None
+    for d in sorted(DOSSIER_REELS_PRETS.iterdir()):
+        try:
+            meta = json.loads((d / 'meta.json').read_text(encoding='utf-8'))
+            video, legende = d / 'video.mp4', (d / 'legende.txt').read_text(encoding='utf-8').strip()
+        except (OSError, ValueError):
+            continue
+        if meta.get('publier_le') != aujourdhui.isoformat() or meta['id'] in deja or not video.exists() or not legende:
+            continue
+        return {'type_reel': 'pret', 'video': video, 'duree': float(meta.get('duree', 0)), 'couverture_s': float(meta.get('couverture_s', 2.6)), 'scenario': None,
+                'scrutin': None, 'legende': legende, 'cle_etat': 'reels_prets_publies', 'valeur_etat': deja + [meta['id']], 'id': meta['id']}
+    return None
+
+
 def contenu_reel():
     """Le Reel du jour, ou None. Renvoie un dict : scenario, scrutin (ou None), legende, cle_etat, valeur_etat (+ etat_plus : autres cles d'etat a mettre a jour).
     S'il y a des textes votes (scrutin public sur l'ensemble d'un texte, solennel ou ordinaire, OU texte adopte / rejete sans scrutin public) pas encore presentes en
@@ -859,6 +882,9 @@ def contenu_reel():
     Un seul texte -> Reel complet (avec scrutin : explication + hemicycle ; sans scrutin : explication seule)."""
     aujourdhui = datetime.date.today()
     etat = lire_etat_publication()
+    pret = reel_pret_du_jour(aujourdhui, etat)
+    if pret:
+        return pret
     deja = set(etat.get('lois_reel_publiees', [])); deja_d = set(etat.get('decisions_reel_publiees', []))
     candidats = _candidats_texte(aujourdhui, etat)
     if candidats:
@@ -968,9 +994,13 @@ def main_reel(args):
     if contenu is None:
         print("Rien a publier pour --type reel aujourd'hui.")
         return
-    dossier_sortie = DOSSIER / 'assets_social' / 'reels' / f"{datetime.date.today().isoformat()}-{contenu['type_reel']}"
-    print(f"Generation du reel « {contenu['type_reel']} » (HyperFrames) -> {dossier_sortie}")
-    reel = generer_reel.generer(contenu['scenario'], dossier_sortie, scrutin=contenu['scrutin'])
+    if contenu.get('video'):                                   # Reel deja realise et valide : publie tel quel, rien a generer
+        reel = {'reel': contenu['video'], 'duree': contenu['duree']}
+        print(f"Reel pret « {contenu['id']} » : {contenu['video']}")
+    else:
+        dossier_sortie = DOSSIER / 'assets_social' / 'reels' / f"{datetime.date.today().isoformat()}-{contenu['type_reel']}"
+        print(f"Generation du reel « {contenu['type_reel']} » (HyperFrames) -> {dossier_sortie}")
+        reel = generer_reel.generer(contenu['scenario'], dossier_sortie, scrutin=contenu['scrutin'])
     print(f"Reel : {reel['duree']:.1f} s, {reel['reel']}\nLegende :\n{contenu['legende']}\n")
     if not args.publier:
         print("Mode brouillon (--publier non passe) : rien n'a ete publie.")
@@ -980,7 +1010,7 @@ def main_reel(args):
     if plateformes - {'facebook', 'instagram'} or not plateformes:
         sys.exit(f"--plateformes : valeurs possibles « facebook », « instagram » (recu : {args.plateformes}).")
     reussies, echecs = [], []
-    for nom, f in (('instagram', lambda: publier_reel_instagram(env['IG_USER_ID'], env['FB_PAGE_TOKEN'], reel['reel'], contenu['legende'], thumb_offset=int(1000 * contenu['scenario'].get('couverture_s', 2.6)))),
+    for nom, f in (('instagram', lambda: publier_reel_instagram(env['IG_USER_ID'], env['FB_PAGE_TOKEN'], reel['reel'], contenu['legende'], thumb_offset=int(1000 * (contenu['scenario'].get('couverture_s', 2.6) if contenu['scenario'] else contenu['couverture_s'])))),
                    ('facebook', lambda: publier_reel_facebook(env['FB_PAGE_ID'], env['FB_PAGE_TOKEN'], reel['reel'], contenu['legende']))):
         if nom not in plateformes:
             continue
@@ -991,7 +1021,8 @@ def main_reel(args):
     if reussies:                                               # etat mis a jour des qu'une plateforme a publie : jamais de doublon au creneau suivant
         etat = lire_etat_publication(); etat[contenu['cle_etat']] = contenu['valeur_etat']
         etat.update(contenu.get('etat_plus') or {})
-        etat['dernier_reel'] = {'date': datetime.date.today().isoformat(), 'type_reel': contenu['type_reel'], 'scenario': contenu['scenario'], 'scrutin': contenu['scrutin']}   # sert a la Story d'une heure apres
+        if contenu['scenario']:                                # un Reel pret n'a pas de scenario : il ne remplace pas le Reel du jour pour la Story
+            etat['dernier_reel'] = {'date': datetime.date.today().isoformat(), 'type_reel': contenu['type_reel'], 'scenario': contenu['scenario'], 'scrutin': contenu['scrutin']}   # sert a la Story d'une heure apres
         ecrire_etat_publication(etat)
         print(f"Etat mis a jour : {contenu['cle_etat']} = {contenu['valeur_etat']}")
     if echecs:

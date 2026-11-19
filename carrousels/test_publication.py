@@ -139,5 +139,42 @@ class TestPublication(unittest.TestCase):
         self.assertFalse(any('rupload' in a[1] for a in api.appels)); self.assertEqual(len(publics), 1)
 
 
+class TestReelPret(unittest.TestCase):
+    """Reel deja realise et valide (data/reels_prets/<id>/) : part le jour dit seulement, une seule fois, tel quel, sans toucher au Reel du jour pour la Story."""
+    def setUp(self):
+        import datetime, json
+        self.tmp = tempfile.TemporaryDirectory(); self.addCleanup(self.tmp.cleanup)
+        self.dossier = Path(self.tmp.name); d = self.dossier / 'mon-reel'; d.mkdir()
+        (d / 'video.mp4').write_bytes(b'x' * 3000); (d / 'legende.txt').write_text('Ma légende\n', encoding='utf-8')
+        (d / 'meta.json').write_text(json.dumps({'id': 'mon-reel', 'publier_le': '2026-11-19', 'duree': 19.4, 'couverture_s': 1.3}), encoding='utf-8')
+        self.jour = datetime.date(2026, 11, 19)
+        p = mock.patch.object(pr, 'DOSSIER_REELS_PRETS', self.dossier); p.start(); self.addCleanup(p.stop)
+
+    def test_part_le_jour_dit(self):
+        c = pr.reel_pret_du_jour(self.jour, {})
+        self.assertEqual((c['id'], c['legende'], c['couverture_s'], c['scenario'], c['valeur_etat']), ('mon-reel', 'Ma légende', 1.3, None, ['mon-reel']))
+
+    def test_pas_un_autre_jour_ni_deux_fois(self):
+        import datetime
+        self.assertIsNone(pr.reel_pret_du_jour(datetime.date(2026, 11, 20), {}))
+        self.assertIsNone(pr.reel_pret_du_jour(self.jour, {'reels_prets_publies': ['mon-reel']}))
+
+    def test_publication_ecrit_l_etat_sans_remplacer_le_reel_du_jour(self):
+        etat = {'dernier_reel': {'date': '2026-11-19', 'type_reel': 'loi', 'scenario': {'x': 1}, 'scrutin': 1}}
+        ecrits, appels = [], []
+        args = mock.Mock(publier=True, plateformes='facebook,instagram')
+        with mock.patch.object(pr, 'lire_etat_publication', side_effect=lambda: dict(etat)), mock.patch.object(pr, 'ecrire_etat_publication', side_effect=ecrits.append), \
+                mock.patch.object(pr, 'lire_env', return_value={'IG_USER_ID': 'i', 'FB_PAGE_TOKEN': 't', 'FB_PAGE_ID': 'p'}), \
+                mock.patch.object(pr, 'publier_reel_instagram', side_effect=lambda *a, **k: appels.append(('ig', a[2].name, k)) or 'ok'), \
+                mock.patch.object(pr, 'publier_reel_facebook', side_effect=lambda *a, **k: appels.append(('fb', a[2].name)) or 'ok'), \
+                mock.patch.object(pr.datetime, 'date', wraps=pr.datetime.date) as d:
+            d.today.return_value = self.jour
+            pr.main_reel(args)
+        self.assertEqual([a[:2] for a in appels], [('ig', 'video.mp4'), ('fb', 'video.mp4')])
+        self.assertEqual(appels[0][2], {'thumb_offset': 1300})
+        self.assertEqual(ecrits[0]['reels_prets_publies'], ['mon-reel'])
+        self.assertEqual(ecrits[0]['dernier_reel']['type_reel'], 'loi')          # le Reel du jour (et sa Story) restent ceux d'avant
+
+
 if __name__ == '__main__':
     unittest.main()
