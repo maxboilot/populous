@@ -176,5 +176,33 @@ class TestReelPret(unittest.TestCase):
         self.assertEqual(ecrits[0]['dernier_reel']['type_reel'], 'loi')          # le Reel du jour (et sa Story) restent ceux d'avant
 
 
+class TestStoryPrete(TestReelPret):
+    """Story de la video d'un Reel pret : meta.story_le, une seule fois, sans toucher a story_du (Story du Reel du jour)."""
+    def setUp(self):
+        import json
+        super().setUp()
+        m = self.dossier / 'mon-reel' / 'meta.json'; d = json.loads(m.read_text(encoding='utf-8')); d['story_le'] = '2026-11-19'; m.write_text(json.dumps(d), encoding='utf-8')
+
+    def test_selection(self):
+        import datetime
+        self.assertEqual(pr.story_pret_du_jour(self.jour, {})['valeur_etat'], ['mon-reel'])
+        self.assertIsNone(pr.story_pret_du_jour(datetime.date(2026, 11, 20), {}))
+        self.assertIsNone(pr.story_pret_du_jour(self.jour, {'stories_pretes_publiees': ['mon-reel']}))
+
+    def test_story_publiee_sans_toucher_story_du(self):
+        etat = {'story_du': '2026-11-19', 'dernier_reel': {'date': '2026-11-19', 'type_reel': 'loi', 'scenario': {'x': 1}, 'scrutin': 1}}
+        ecrits, appels = [], []
+        args = mock.Mock(publier=True, plateformes='instagram', forcer=False)
+        with mock.patch.object(pr, 'lire_etat_publication', side_effect=lambda: dict(etat)), mock.patch.object(pr, 'ecrire_etat_publication', side_effect=ecrits.append), \
+                mock.patch.object(pr, 'lire_env', return_value={'IG_USER_ID': 'i', 'FB_PAGE_TOKEN': 't', 'FB_PAGE_ID': 'p'}), \
+                mock.patch.object(pr, 'publier_story_instagram', side_effect=lambda *a, **k: appels.append(a[2].name) or 'ok'), \
+                mock.patch.object(pr, 'publier_story_facebook', side_effect=lambda *a, **k: appels.append('fb') or 'ok'), \
+                mock.patch.object(pr.generer_reel, 'generer', side_effect=AssertionError('rien a generer')), mock.patch.object(pr.datetime, 'date', wraps=pr.datetime.date) as d:
+            d.today.return_value = self.jour
+            pr.main_story(args)
+        self.assertEqual(appels, ['video.mp4'])
+        self.assertEqual((ecrits[0]['stories_pretes_publiees'], ecrits[0]['story_du']), (['mon-reel'], '2026-11-19'))
+
+
 if __name__ == '__main__':
     unittest.main()

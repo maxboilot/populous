@@ -875,6 +875,22 @@ def reel_pret_du_jour(aujourdhui, etat):
     return None
 
 
+def story_pret_du_jour(aujourdhui, etat):
+    """Story faite avec la video d'un Reel pret (data/reels_prets/<id>/) : meta.json {"story_le": "AAAA-MM-JJ"}. Une seule fois (stories_pretes_publiees).
+    Renvoie {'id', 'video', 'duree', 'valeur_etat'} ou None. N'a aucun effet sur la Story du Reel du jour (story_du)."""
+    deja = list(etat.get('stories_pretes_publiees', []))
+    if not DOSSIER_REELS_PRETS.is_dir():
+        return None
+    for d in sorted(DOSSIER_REELS_PRETS.iterdir()):
+        try:
+            meta = json.loads((d / 'meta.json').read_text(encoding='utf-8'))
+        except (OSError, ValueError):
+            continue
+        if meta.get('story_le') == aujourdhui.isoformat() and meta['id'] not in deja and (d / 'video.mp4').exists():
+            return {'id': meta['id'], 'video': d / 'video.mp4', 'duree': float(meta.get('duree', 0)), 'valeur_etat': deja + [meta['id']]}
+    return None
+
+
 def contenu_reel():
     """Le Reel du jour, ou None. Renvoie un dict : scenario, scrutin (ou None), legende, cle_etat, valeur_etat (+ etat_plus : autres cles d'etat a mettre a jour).
     S'il y a des textes votes (scrutin public sur l'ensemble d'un texte, solennel ou ordinaire, OU texte adopte / rejete sans scrutin public) pas encore presentes en
@@ -1055,16 +1071,21 @@ def main_story(args):
     """Story du Reel publie aujourd'hui (creneau d'une heure apres). Refait le meme Reel a partir du scenario memorise, puis le publie en Story.
     Ne fait rien s'il n'y a pas eu de Reel aujourd'hui, si la Story est deja partie (sauf --forcer), ou si la video depasse 59 s."""
     aujourdhui = datetime.date.today().isoformat(); etat = lire_etat_publication(); dr = etat.get('dernier_reel')
-    if not dr or dr.get('date') != aujourdhui:
-        print("Pas de Reel publie aujourd'hui : pas de Story.")
-        return
-    if etat.get('story_du') == aujourdhui and not args.forcer:
-        print("La Story du jour est deja publiee (--forcer pour republier).")
-        return
-    dossier_sortie = DOSSIER / 'assets_social' / 'reels' / f"{aujourdhui}-story"
-    print(f"Generation de la Story (meme Reel « {dr['type_reel']} ») -> {dossier_sortie}")
-    reel = generer_reel.generer(dr['scenario'], dossier_sortie, scrutin=dr.get('scrutin'))
-    print(f"Video : {reel['duree']:.1f} s, {reel['reel']}")
+    pret = story_pret_du_jour(datetime.date.today(), etat)
+    if pret:                                                   # Story d'un Reel pret : meme video, rien a generer
+        reel = {'reel': pret['video'], 'duree': pret['duree']}
+        print(f"Story prete « {pret['id']} » : {pret['video']}")
+    else:
+        if not dr or dr.get('date') != aujourdhui:
+            print("Pas de Reel publie aujourd'hui : pas de Story.")
+            return
+        if etat.get('story_du') == aujourdhui and not args.forcer:
+            print("La Story du jour est deja publiee (--forcer pour republier).")
+            return
+        dossier_sortie = DOSSIER / 'assets_social' / 'reels' / f"{aujourdhui}-story"
+        print(f"Generation de la Story (meme Reel « {dr['type_reel']} ») -> {dossier_sortie}")
+        reel = generer_reel.generer(dr['scenario'], dossier_sortie, scrutin=dr.get('scrutin'))
+        print(f"Video : {reel['duree']:.1f} s, {reel['reel']}")
     if reel['duree'] > DUREE_MAX_STORY:
         print(f"Video de {reel['duree']:.0f} s : plus longue qu'une Story ({DUREE_MAX_STORY:.0f} s max), pas de Story aujourd'hui.")
         return
@@ -1085,8 +1106,13 @@ def main_story(args):
         except Exception as e:                                 # une plateforme en panne ne doit pas empecher l'autre
             print(f"::error::story {nom} : {e}"); echecs.append(nom)
     if reussies:
-        etat = lire_etat_publication(); etat['story_du'] = aujourdhui; ecrire_etat_publication(etat)
-        print(f"Etat mis a jour : story_du = {aujourdhui}")
+        etat = lire_etat_publication()
+        if pret:
+            etat['stories_pretes_publiees'] = pret['valeur_etat']; ecrire_etat_publication(etat)
+            print(f"Etat mis a jour : stories_pretes_publiees = {pret['valeur_etat']}")
+        else:
+            etat['story_du'] = aujourdhui; ecrire_etat_publication(etat)
+            print(f"Etat mis a jour : story_du = {aujourdhui}")
     if echecs:
         sys.exit(f"Story non publiee sur : {', '.join(echecs)}.")
 
