@@ -474,18 +474,6 @@
   },
   {
     "date": "2026-12-01",
-    "heure": "16:30",
-    "ordre_du_jour": "Examen du texte — Proposition de loi relative aux modalités de recouvrement de la contribution aux frais de garderie et de la contribution additionnelle versées à l’Office national des forêts (ONF) par les collectivités territoriales et personnes morales propriétaires de bois et forêts relevant du régime forestier et à la composition du conseil d’administration de l’ONF (séance éventuelle)",
-    "themes": [
-      "environnement",
-      "institutions"
-    ],
-    "dossier": "DLR5L17N54778",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-12-01",
     "heure": "21:30",
     "ordre_du_jour": "Suite de la discussion de la proposition de loi visant à autoriser le diagnostic préimplantatoire des aneuploïdies au bénéfice des couples, et des femmes engagées dans une démarche d’assistance médicale à la procréation",
     "themes": [
@@ -587,17 +575,6 @@
       "social"
     ],
     "dossier": "DLR5L17N55145",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-12-02",
-    "heure": "09:30",
-    "ordre_du_jour": "Examen du texte — Mieux protéger, mieux gérer et mieux valoriser la forêt et ses produits pour répondre aux enjeux de lutte contre le changement climatique, d’adaptation à ses effets et de stockage du carbone dans les matériaux en bois (séance éventuelle)",
-    "themes": [
-      "environnement"
-    ],
-    "dossier": "DLR5L17N55191",
     "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
   },
