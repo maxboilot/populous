@@ -1,6 +1,22 @@
 {
  "decisions": [
   {
+   "id": "L17-VD235058DEC",
+   "dossier": "DLR5L17N51095",
+   "titre": "Proposition de loi visant à lutter contre la vie chère en renforçant le droit de la concurrence et de la régulation économique outre-mer",
+   "nature": "proposition",
+   "organique": false,
+   "ratification": false,
+   "date": "2026-11-19",
+   "lecture": "premiere",
+   "statut": "adoptée sans modification",
+   "adopte": true,
+   "sans_modification": true,
+   "premiere_assemblee": false,
+   "vote_ref": null,
+   "url": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N51095"
+  },
+  {
    "id": "L17-VD235055DEC",
    "dossier": "DLR5L17N53069",
    "titre": "Retrouver la confiance et l’équilibre dans les rapports locatifs",
