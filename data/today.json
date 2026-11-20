@@ -1,9 +1,27 @@
 {
-  "generated_at": "2026-11-20T14:10:34.073385Z",
-  "featured_numero": null,
+  "generated_at": "2026-11-20T17:01:25.067055Z",
+  "featured_numero": 10091,
   "featured_is_solennel": false,
-  "autres_scrutins_du_jour": [],
-  "aucun_vote_aujourdhui": true,
-  "last_featured_numero": 10080,
-  "last_featured_date": "2026-11-19"
+  "autres_scrutins_du_jour": [
+    10081,
+    10082,
+    10083,
+    10084,
+    10085,
+    10086,
+    10087,
+    10088,
+    10089,
+    10090,
+    10092,
+    10093,
+    10094,
+    10095,
+    10096,
+    10097,
+    10098
+  ],
+  "aucun_vote_aujourdhui": false,
+  "last_featured_numero": 10091,
+  "last_featured_date": "2026-11-20"
 }

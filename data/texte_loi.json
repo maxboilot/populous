@@ -1,4 +1,154 @@
 {
-  "numero": 10080,
-  "statut": "non_publie"
+  "numero": 10091,
+  "statut": "publie",
+  "portee": "article",
+  "article_ref": "9",
+  "source_texte": "commission",
+  "source": "https://www.assemblee-nationale.fr/dyn/opendata/PRJLANR5L17BTC3188.html",
+  "articles": [
+    {
+      "article": "Article 9",
+      "texte": "I. – Le code de la construction et de l’habitation est ainsi modifié :"
+    },
+    {
+      "article": "Article 9",
+      "texte": "2° Les trois derniers alinéas de l’article L. 441‑2‑1 sont remplacés par un alinéa ainsi rédigé :"
+    },
+    {
+      "article": "Article 9",
+      "texte": "« Le groupement d’intérêt public mentionné à l’avant‑dernier alinéa du présent article met en place un échange d’informations avec l’administration fiscale, dont les modalités sont précisées par décret en Conseil d’État, aux fins de recueillir et d’enregistrer dans le système national d’enregistrement les informations nécessaires pour instruire les demandes de logement social ainsi que pour suivre et contrôler la situation des locataires des organismes mentionnés aux deuxième à quatrième alinéas de l’article L. 411‑2 et des sociétés d’économie mixte agréées en application de l’article L. 481‑1. » ;"
+    },
+    {
+      "article": "Article 9",
+      "texte": "3° L’article L. 441‑2‑9 est ainsi modifié :"
+    },
+    {
+      "article": "Article 9",
+      "texte": "a) Le 3° est complété par les mots : « ainsi que par les agents des administrations de l’État, des organismes ou des établissements publics ou des personnes chargées d’une mission de service public, soumis à une obligation de secret professionnel et chargés d’évaluer les politiques d’attribution de logements sociaux, d’analyser la situation des demandeurs et d’identifier des personnes devant faire l’objet d’une priorité en application des articles L. 441‑1 et L. 441‑2‑3 ou de l’article 4 de la loi n° 90‑449 du 31 mai 1990 visant à la mise en œuvre du droit au logement, et par les agents de l’Agence nationale de contrôle du logement social chargés des études et des contrôles » ;"
+    },
+    {
+      "article": "Article 9",
+      "texte": "b) Après le même 3°, il est inséré un 3° bis ainsi rédigé :"
+    },
+    {
+      "article": "Article 9",
+      "texte": "« 3° bis Les conditions d’accès aux données anonymisées du système national d’enregistrement ainsi que les services et les personnes morales pouvant y accéder ; »"
+    },
+    {
+      "article": "Article 9",
+      "texte": "b bis) Au 4°, après la référence : « L. 441‑2‑6 », sont insérés les mots : « du présent code » ;"
+    },
+    {
+      "article": "Article 9",
+      "texte": "4° L’article L. 442‑5 est ainsi modifié :"
+    },
+    {
+      "article": "Article 9",
+      "texte": "a) Le troisième alinéa est ainsi modifié :"
+    },
+    {
+      "article": "Article 9",
+      "texte": "– après le mot : « modéré », sont insérés les mots : « et du groupement d’intérêt public mentionné à l’article L. 441‑2‑1 » et, après le mot : « missions », sont insérés les mots : « de contrôle et » ;"
+    },
+    {
+      "article": "Article 9",
+      "texte": "– est ajoutée une phrase ainsi rédigée : « Les personnes publiques ou les personnes morales œuvrant dans les domaines de l’habitat social ou de la politique de la ville et inscrites sur une liste déterminée par arrêté du ministre chargé du logement peuvent obtenir auprès du groupement d’intérêt public mentionné à l’article L. 441‑2‑1 la communication de données rendues anonymes issues de l’enquête mentionnée au premier alinéa du présent article, à des fins d’exploitation statistique ou d’étude directement liées à l’exercice de leurs compétences. » ;"
+    },
+    {
+      "article": "Article 9",
+      "texte": "b) L’avant‑dernier alinéa est complété par deux phrases ainsi rédigées : « Il précise également les modalités de communication de ces données, après établissement d’une convention, à des fins de recherche scientifique ou historique. Il précise, enfin, les conditions dans lesquelles les agents de l’État chargés des politiques sociales du logement et les agents de l’Union sociale pour l’habitat, de l’Agence nationale de contrôle du logement social et du service d’inspection générale placé auprès du ministre chargé du logement peuvent accéder aux données recueillies par les organismes d’habitations à loyer modéré à l’occasion de l’enquête mentionnée au premier alinéa du présent article et effectuer, à des fins d’exploitation statistique ou d’étude, des appariements avec d’autres bases de données, notamment celles issues du répertoire prévu à l’article L. 411‑10 et du système national d’enregistrement mentionné à l’article L. 441‑2‑1. »"
+    },
+    {
+      "article": "Article 9",
+      "texte": "I bis. – A. – À titre expérimental, pour une durée de cinq ans à compter de la promulgation de la présente loi, l’État confie, par convention et sans dissociation, les compétences mentionnées aux 1° à 4° du B du présent I bis aux établissements publics et collectivités territoriales volontaires suivants :"
+    },
+    {
+      "article": "Article 9",
+      "texte": "1° Les communes membres d’établissements publics de coopération intercommunale compétents en matière de logement et d’habitat ou d’établissements publics territoriaux de la métropole du Grand Paris qui, si elles font l’objet de l’arrêté mentionné à l’article L. 302‑9‑1 du code de la construction et de l’habitation, ont conclu un contrat de mixité sociale en application de l’article L. 302‑8‑1 du même code, dont elles respectent les engagements ;"
+    },
+    {
+      "article": "Article 9",
+      "texte": "2° Les établissements publics de coopération intercommunale compétents en matière de logement et d’habitat ;"
+    },
+    {
+      "article": "Article 9",
+      "texte": "3° Les établissements publics territoriaux de la métropole du Grand Paris ;"
+    },
+    {
+      "article": "Article 9",
+      "texte": "B. – La délégation porte sur les compétences suivantes :"
+    },
+    {
+      "article": "Article 9",
+      "texte": "1° L’exercice des compétences relatives au droit au logement opposable mentionnées à l’article L. 441‑2‑3 dudit code ;"
+    },
+    {
+      "article": "Article 9",
+      "texte": "2° La mise en œuvre de la politique publique de relogement des personnes mentionnées à l’article L. 441‑1 du même code ;"
+    },
+    {
+      "article": "Article 9",
+      "texte": "3° L’exercice des droits de réservation de logements dont le représentant de l’État dans le département bénéficie en application du même article L. 441‑1, à l’exception de l’exercice des droits détenus sur des logements réservés au bénéfice des agents civils et militaires de l’État ;"
+    },
+    {
+      "article": "Article 9",
+      "texte": "4° Les compétences nécessaires à la mise en œuvre de l’article L. 313‑26‑2 dudit code."
+    },
+    {
+      "article": "Article 9",
+      "texte": "La délégation des compétences mentionnées aux 1° à 4° du présent B entraîne la pleine et entière responsabilité de ces établissements et collectivités territoriales pour l’exercice de ces compétences."
+    },
+    {
+      "article": "Article 9",
+      "texte": "En particulier, le conseil municipal, le conseil de Paris, l’organe délibérant des établissements ou, sur délégation de ces derniers, le maire ou le président intentent, au nom de la commune, de la Ville de Paris ou de l’établissement, les actions en justice et les défendent dans les actions intentées contre eux, lorsqu’elles résultent de l’exercice de la délégation des compétences mentionnées aux mêmes 1° à 4°. Le conseil municipal, le conseil de Paris ou l’organe délibérant des établissements ou, le cas échéant, le maire ou le président sont chargés de l’exécution des décisions de justice résultant de l’exercice de la délégation des compétences mentionnées auxdits 1° à 4°. Les condamnations pécuniaires dont sont éventuellement assorties ces décisions de justice sont supportées par la commune, la Ville de Paris ou l’établissement."
+    },
+    {
+      "article": "Article 9",
+      "texte": "La convention mentionnée au premier alinéa du A du présent I bis peut être dénoncée par le représentant de l’État dans le département en cas de manquement du délégataire à ses obligations ou si ce dernier est une commune qui ne respecte pas les engagements du contrat de mixité sociale."
+    },
+    {
+      "article": "Article 9",
+      "texte": "C. – Les établissements et collectivités territoriales volontaires disposent d’un délai de deux ans à compter de la promulgation de la présente loi pour demander à participer à l’expérimentation prévue au présent I bis."
+    },
+    {
+      "article": "Article 9",
+      "texte": "Un arrêté du représentant de l’État dans le département, auquel est annexée la convention mentionnée au premier alinéa du A du présent I bis, autorise les établissements et les collectivités territoriales concernés à participer à l’expérimentation. Le représentant de l’État dans le département en informe le ministre chargé du logement."
+    },
+    {
+      "article": "Article 9",
+      "texte": "L’expérimentation est suivie et évaluée par le représentant de l’État dans le département. Au plus tard six mois avant le terme de l’expérimentation, le Gouvernement remet au Parlement un rapport d’évaluation de cette expérimentation."
+    },
+    {
+      "article": "Article 9",
+      "texte": "II bis (nouveau). – Le code de la construction et de l’habitation est ainsi modifié :"
+    },
+    {
+      "article": "Article 9",
+      "texte": "1° À l’avant-dernier alinéa de l’article L. 301‑5‑1‑1, les mots : « , du II ou du III de l’article L. 5218-2 ou du VI de l’article L. 5219‑1 » sont remplacés par les mots : « ou des II ou III de l’article L. 5218-2 »;"
+    },
+    {
+      "article": "Article 9",
+      "texte": "2° Au III de l’article L. 302‑4‑2, les mots : « des VI et VII de l’article L. 5219‑1, » sont supprimés ;"
+    },
+    {
+      "article": "Article 9",
+      "texte": "3° Au septième alinéa de l’article L. 302‑7, les mots : « , au VI de l’article L. 5219‑1 » sont supprimés."
+    },
+    {
+      "article": "Article 9",
+      "texte": "III. – L’article L. 5219‑1 du code général des collectivités territoriales est ainsi modifié :"
+    },
+    {
+      "article": "Article 9",
+      "texte": "1° Les a, b et d du 2° du II, le VI et le VII sont abrogés ;"
+    },
+    {
+      "article": "Article 9",
+      "texte": "2° À la troisième phrase du septième alinéa du V, les mots : « tient lieu de programme local de l’habitat et » et les mots : « , à ce titre, » sont supprimés."
+    },
+    {
+      "article": "Article 9",
+      "texte": "III bis (nouveau). – À la deuxième phrase du deuxième alinéa de l’article L. 210‑1 du code de l’urbanisme, les mots : « , au II de l’article L. 5218-2 ou au VI de l’article L. 5219‑1 » sont remplacés par les mots : « ou au II de l’article L .5218-2 »."
+    }
+  ]
 }

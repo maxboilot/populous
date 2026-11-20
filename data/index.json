@@ -4207,20 +4207,6 @@
   },
   {
     "numero": null,
-    "dossier": "DLR5L17N51095",
-    "date": "2026-11-19",
-    "titre": "Proposition de loi visant à lutter contre la vie chère en renforçant le droit de la concurrence et de la régulation économique outre-mer",
-    "adopte": true,
-    "statut": "adopte",
-    "themes": [
-      "economie",
-      "institutions"
-    ],
-    "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0369_texte-adopte-seance.pdf",
-    "type": "main_levee"
-  },
-  {
-    "numero": null,
     "dossier": "DLR5L17N51330",
     "date": "2026-11-19",
     "titre": "Renforcer l’effectivité des droits voisins de la presse",
@@ -4234,26 +4220,28 @@
   },
   {
     "numero": null,
-    "dossier": "DLR5L17N53069",
-    "date": "2026-11-19",
-    "titre": "Retrouver la confiance et l’équilibre dans les rapports locatifs",
+    "dossier": "DLR5L17N54168",
+    "date": "2026-11-20",
+    "titre": "Projet de loi autorisant l’approbation de l’accord entre le Gouvernement de la République française et le Gouvernement de la République unie de Tanzanie relatif aux services aériens",
     "adopte": true,
     "statut": "adopte",
     "themes": [
-      "logement"
+      "transports"
     ],
-    "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0368_texte-adopte-seance.pdf",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0370_texte-adopte-seance.pdf",
     "type": "main_levee"
   },
   {
     "numero": null,
-    "dossier": "DLR5L17N51962",
-    "date": "2026-11-19",
-    "titre": "Exercer l’accès à l’emploi, pérenniser et étendre progressivement l’expérimentation Territoires zéro chômeur longue durée comme solution de retour à l’emploi pour les personnes privées durablement d’emploi",
+    "dossier": "DLR5L17N54169",
+    "date": "2026-11-20",
+    "titre": "Projet de loi autorisant l’approbation de l’accord entre le Gouvernement de la République française et le Gouvernement d’Antigua-et-Barbuda relatif aux services aériens",
     "adopte": true,
     "statut": "adopte",
-    "themes": [],
-    "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0367_texte-adopte-seance.pdf",
+    "themes": [
+      "transports"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0371_texte-adopte-seance.pdf",
     "type": "main_levee"
   }
 ]
