@@ -4,53 +4,49 @@
     "L17-VD235055DEC"
   ],
   "dernier_reel": {
-    "date": "2026-11-19",
+    "date": "2026-11-20",
     "scenario": {
       "fin": {
         "duree": 3.8
       },
       "scenes": [
         {
-          "couleur": "vert",
-          "duree": 4.4,
-          "eyebrow": "Vote solennel · 19 novembre 2026",
-          "tampon": "ADOPTÉ",
-          "titre": "Proposition de loi visant à exercer l'accès à l'emploi, à pérenniser et à étendre progressivement l'expérimentation « territoires zéro chômeur de…",
+          "duree": 3.8,
+          "eyebrow": "Votes du 19 novembre",
+          "titre": "2 textes votés à l’Assemblée nationale",
           "type": "titre"
         },
         {
-          "duree": 5.0,
-          "type": "chiffres"
+          "chiffres": {
+            "abstention": 4,
+            "contre": 95,
+            "pour": 148
+          },
+          "couleur": "vert",
+          "eyebrow": "Vote du 19 novembre 2026",
+          "suite": "La navette continue jusqu’à un texte identique dans les deux assemblées. En cas de désaccord, une commission mixte paritaire (7 députés et 7 sénateurs) peut être réunie.",
+          "tampon": "ADOPTÉ",
+          "titre": "Proposition de loi pour retrouver la confiance et l'équilibre dans les rapports locatifs (deuxième lecture)",
+          "type": "loi_resume"
         },
         {
-          "cartes": [
-            [
-              "Ce que c’est",
-              "Une proposition de loi : un texte déposé par des parlementaires. Ici : deuxième lecture à l’Assemblée nationale."
-            ],
-            [
-              "Ce vote",
-              "Vote sur l’ensemble du texte. Résultat : adopté (258 pour, 3 contre, 0 abstention)."
-            ],
-            [
-              "La suite",
-              "La navette continue jusqu’à un texte identique dans les deux assemblées. En cas de désaccord, une commission mixte paritaire (7 députés et 7 sénateurs) peut être réunie."
-            ]
-          ],
-          "duree": 7.4,
-          "sous": "Trois choses à savoir.",
-          "titre": "De quoi parle ce texte ?",
-          "type": "cartes"
-        },
-        {
-          "duree": 4.2,
-          "type": "hemicycle"
+          "chiffres": {
+            "abstention": 2,
+            "contre": 0,
+            "pour": 193
+          },
+          "couleur": "vert",
+          "eyebrow": "Vote du 19 novembre 2026",
+          "suite": "Pour devenir une loi, le texte doit être adopté dans les mêmes termes par l’Assemblée nationale et par le Sénat.",
+          "tampon": "ADOPTÉ",
+          "titre": "Proposition de loi visant à lutter contre la vie chère en renforçant le droit de la concurrence et de la régulation économique outre-mer (première…",
+          "type": "loi_resume"
         }
       ],
       "source": "Sources : Constitution (art. 39 et 45) · assemblee-nationale.fr (fiche n°46) · senat.fr"
     },
-    "scrutin": 10033,
-    "type_reel": "loi"
+    "scrutin": null,
+    "type_reel": "lois"
   },
   "dernier_sondage_publie": "2026-11-17|YouGov",
   "lois_publiees": [
@@ -69,7 +65,9 @@
     9895,
     9905,
     9916,
-    10033
+    10033,
+    10062,
+    10080
   ],
   "reels_pedagogiques_publies": [
     "budget-deux-parties",
