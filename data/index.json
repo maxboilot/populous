@@ -4145,6 +4145,31 @@
     "type": "main_levee"
   },
   {
+    "numero": 10080,
+    "date": "2026-11-19",
+    "titre": "Lutter contre la vie chère en renforçant le droit de la concurrence et de la régulation économique outre-mer",
+    "adopte": true,
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/10080",
+    "themes": [
+      "economie",
+      "institutions"
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": 10062,
+    "date": "2026-11-19",
+    "titre": "Retrouver la confiance et l'équilibre dans les rapports locatifs",
+    "adopte": true,
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/10062",
+    "themes": [
+      "logement"
+    ],
+    "type": "scrutin"
+  },
+  {
     "numero": 10033,
     "date": "2026-11-19",
     "titre": "Exercer l'accès à l'emploi, à pérenniser et à étendre progressivement l'expérimentation « territoires zéro chômeur de longue durée » comme solution de retour à l'emploi pour les personnes privées durablement d'emploi",

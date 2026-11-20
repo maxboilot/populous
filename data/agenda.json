@@ -35,8 +35,17 @@
   },
   {
     "date": "2026-11-23",
+    "heure": "11:00",
+    "ordre_du_jour": "Examen du texte — Instances représentatives des Français établis hors de France",
+    "themes": [],
+    "dossier": "DLR5L15N37121",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-23",
     "heure": "15:00",
-    "ordre_du_jour": "Examen du texte — Assurer une meilleure équité en matière de pension alimentaire pour les familles monoparentales en cas de non-respect du droit de visite et d'hébergement (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Assurer une meilleure équité en matière de pension alimentaire pour les familles monoparentales en cas de non-respect du droit de visite et d'hébergement",
     "themes": [
       "travail",
       "social",
@@ -50,7 +59,7 @@
   {
     "date": "2026-11-23",
     "heure": "15:00",
-    "ordre_du_jour": "Examen du texte — Favoriser le travail en continu et en journée via la commande publique afin d'améliorer les conditions relatives au domaine social et à l'emploi (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Favoriser le travail en continu et en journée via la commande publique afin d'améliorer les conditions relatives au domaine social et à l'emploi",
     "themes": [
       "travail"
     ],
@@ -61,7 +70,7 @@
   {
     "date": "2026-11-23",
     "heure": "15:00",
-    "ordre_du_jour": "Examen du texte — Renforcer les interdictions de détenir un animal par la création d’un fichier national (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Renforcer les interdictions de détenir un animal par la création d’un fichier national",
     "themes": [
       "environnement"
     ],
@@ -72,7 +81,16 @@
   {
     "date": "2026-11-24",
     "heure": "16:30",
-    "ordre_du_jour": "Examen du texte — Proposition de loi portant réforme de la loi du 9 février 1895 sur les fraudes en matière artistique (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Création d’un ordre national des audioprothésistes",
+    "themes": [],
+    "dossier": "DLR5L17N51549",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-24",
+    "heure": "16:30",
+    "ordre_du_jour": "Examen du texte — Proposition de loi portant réforme de la loi du 9 février 1895 sur les fraudes en matière artistique",
     "themes": [],
     "dossier": "DLR5L16N46821",
     "scrutin_annonce": false,
@@ -89,17 +107,8 @@
   },
   {
     "date": "2026-11-24",
-    "heure": "21:30",
-    "ordre_du_jour": "Examen du texte — Création d’un ordre national des audioprothésistes (séance éventuelle)",
-    "themes": [],
-    "dossier": "DLR5L17N51549",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-11-24",
-    "heure": "21:30",
-    "ordre_du_jour": "Examen du texte — Instances représentatives des Français établis hors de France (séance éventuelle)",
+    "heure": "21:00",
+    "ordre_du_jour": "Examen du texte — Instances représentatives des Français établis hors de France",
     "themes": [],
     "dossier": "DLR5L15N37121",
     "scrutin_annonce": false,
@@ -119,7 +128,7 @@
   {
     "date": "2026-11-25",
     "heure": "09:00",
-    "ordre_du_jour": "Examen du texte — Consacrer l’exclusivité de la révision constitutionnelle par la procédure prévue à l’article 89 de la Constitution (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Consacrer l’exclusivité de la révision constitutionnelle par la procédure prévue à l’article 89 de la Constitution",
     "themes": [
       "justice",
       "institutions"
@@ -131,7 +140,7 @@
   {
     "date": "2026-11-25",
     "heure": "09:00",
-    "ordre_du_jour": "Examen du texte — La réparation des préjudices résultant de la traite et de l'esclavage (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — La réparation des préjudices résultant de la traite et de l'esclavage",
     "themes": [
       "defense"
     ],
@@ -154,7 +163,7 @@
   {
     "date": "2026-11-25",
     "heure": "09:30",
-    "ordre_du_jour": "Examen du texte — Instaurer un plan décennal de rénovation du bâti scolaire (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Instaurer un plan décennal de rénovation du bâti scolaire",
     "themes": [
       "education"
     ],
@@ -165,7 +174,7 @@
   {
     "date": "2026-11-25",
     "heure": "09:30",
-    "ordre_du_jour": "Examen du texte — La révision de la directive « Services de médias audiovisuels » et la défense de l’exception culturelle européenne (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — La révision de la directive « Services de médias audiovisuels » et la défense de l’exception culturelle européenne",
     "themes": [
       "defense",
       "culture"
@@ -188,7 +197,7 @@
   {
     "date": "2026-11-25",
     "heure": "09:30",
-    "ordre_du_jour": "Examen du texte — Réviser la définition de l’œuvre européenne (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Réviser la définition de l’œuvre européenne",
     "themes": [],
     "dossier": "DLR5L17N54288",
     "scrutin_annonce": false,
@@ -243,7 +252,7 @@
   {
     "date": "2026-11-25",
     "heure": "11:00",
-    "ordre_du_jour": "Examen du texte — Reconnaître les victimes de l'exposition aux essais nucléaires français et améliorer leur indemnisation (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Reconnaître les victimes de l'exposition aux essais nucléaires français et améliorer leur indemnisation",
     "themes": [
       "justice",
       "environnement"
@@ -301,7 +310,7 @@
   {
     "date": "2026-11-25",
     "heure": "18:15",
-    "ordre_du_jour": "Examen du texte — Instances représentatives des Français établis hors de France (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Instances représentatives des Français établis hors de France",
     "themes": [],
     "dossier": "DLR5L15N37121",
     "scrutin_annonce": false,

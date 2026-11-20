@@ -1,8 +1,55 @@
 {
-  "generated_at": "2026-11-20T01:47:37.946879Z",
+  "generated_at": "2026-11-20T04:04:28.417075Z",
   "depuis": "2025-11-20",
-  "nombre": 117,
+  "nombre": 119,
   "lois": [
+    {
+      "numero": 10080,
+      "date": "2026-11-19",
+      "titre": "Lutter contre la vie chère en renforçant le droit de la concurrence et de la régulation économique outre-mer",
+      "titre_officiel": "l'ensemble de la proposition de loi visant à lutter contre la vie chère en renforçant le droit de la concurrence et de la régulation économique outre-mer (première lecture).",
+      "nature": "proposition de loi",
+      "lecture": "première lecture",
+      "solennel": false,
+      "adopte": true,
+      "statut": "adopte",
+      "themes": [
+        "economie",
+        "institutions"
+      ],
+      "sort": "l'Assemblée nationale a adopté",
+      "tally": {
+        "pour": 193,
+        "contre": 0,
+        "abstention": 2,
+        "absent": 386
+      },
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/10080",
+      "type": "scrutin"
+    },
+    {
+      "numero": 10062,
+      "date": "2026-11-19",
+      "titre": "Retrouver la confiance et l'équilibre dans les rapports locatifs",
+      "titre_officiel": "l'ensemble de la proposition de loi pour retrouver la confiance et l'équilibre dans les rapports locatifs (deuxième lecture).",
+      "nature": "proposition de loi",
+      "lecture": "deuxième lecture",
+      "solennel": false,
+      "adopte": true,
+      "statut": "adopte",
+      "themes": [
+        "logement"
+      ],
+      "sort": "l'Assemblée nationale a adopté",
+      "tally": {
+        "pour": 148,
+        "contre": 95,
+        "abstention": 4,
+        "absent": 334
+      },
+      "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/10062",
+      "type": "scrutin"
+    },
     {
       "numero": 10033,
       "date": "2026-11-19",
