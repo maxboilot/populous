@@ -5,8 +5,12 @@
     "L17-VD235059DEC",
     "L17-VD235060DEC"
   ],
+  "decisions_reel_publiees": [
+    "L17-VD235059DEC",
+    "L17-VD235060DEC"
+  ],
   "dernier_reel": {
-    "date": "2026-11-20",
+    "date": "2026-11-21",
     "scenario": {
       "fin": {
         "duree": 3.8
@@ -14,38 +18,30 @@
       "scenes": [
         {
           "duree": 3.8,
-          "eyebrow": "Votes du 19 novembre",
+          "eyebrow": "Votes du 20 novembre",
           "titre": "2 textes votés à l’Assemblée nationale",
           "type": "titre"
         },
         {
-          "chiffres": {
-            "abstention": 4,
-            "contre": 95,
-            "pour": 148
-          },
+          "chiffres": null,
           "couleur": "vert",
-          "eyebrow": "Vote du 19 novembre 2026",
-          "suite": "La navette continue jusqu’à un texte identique dans les deux assemblées. En cas de désaccord, une commission mixte paritaire (7 députés et 7 sénateurs) peut être réunie.",
+          "eyebrow": "Vote du 20 novembre 2026",
+          "suite": "L’Assemblée a adopté sans modification le texte du Sénat : le texte est définitivement adopté. Le Président de la République dispose de quinze jours pour le promulguer.",
           "tampon": "ADOPTÉ",
-          "titre": "Proposition de loi pour retrouver la confiance et l'équilibre dans les rapports locatifs (deuxième lecture)",
+          "titre": "Projet de loi autorisant l’approbation de l’accord entre le Gouvernement de la République française et le Gouvernement de la République unie de…",
           "type": "loi_resume"
         },
         {
-          "chiffres": {
-            "abstention": 2,
-            "contre": 0,
-            "pour": 193
-          },
+          "chiffres": null,
           "couleur": "vert",
-          "eyebrow": "Vote du 19 novembre 2026",
-          "suite": "Pour devenir une loi, le texte doit être adopté dans les mêmes termes par l’Assemblée nationale et par le Sénat.",
+          "eyebrow": "Vote du 20 novembre 2026",
+          "suite": "L’Assemblée a adopté sans modification le texte du Sénat : le texte est définitivement adopté. Le Président de la République dispose de quinze jours pour le promulguer.",
           "tampon": "ADOPTÉ",
-          "titre": "Proposition de loi visant à lutter contre la vie chère en renforçant le droit de la concurrence et de la régulation économique outre-mer (première…",
+          "titre": "Projet de loi autorisant l’approbation de l’accord entre le Gouvernement de la République française et le Gouvernement d’Antigua-et-Barbuda relatif…",
           "type": "loi_resume"
         }
       ],
-      "source": "Sources : Constitution (art. 39 et 45) · assemblee-nationale.fr (fiche n°46) · senat.fr"
+      "source": "Sources : Constitution (art. 10 et 39) · assemblee-nationale.fr (fiche n°46) · assemblee-nationale.fr (dossier législatif)"
     },
     "scrutin": null,
     "type_reel": "lois"
