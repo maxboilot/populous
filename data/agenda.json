@@ -117,6 +117,15 @@
   {
     "date": "2026-11-25",
     "heure": "09:30",
+    "ordre_du_jour": "Examen des amendements (art. 88) — Lever les contraintes pesant sur le foncier",
+    "themes": [],
+    "dossier": "DLR5L17N55097",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-25",
+    "heure": "09:30",
     "ordre_du_jour": "Examen du texte — Créer un grand parc social d'un million d'automobiles électriques à loyer modéré",
     "themes": [
       "logement",
@@ -440,7 +449,7 @@
   },
   {
     "date": "2026-12-01",
-    "heure": "16:30",
+    "heure": "21:30",
     "ordre_du_jour": "Examen du texte — Proposition de loi relative aux modalités de recouvrement de la contribution aux frais de garderie et de la contribution additionnelle versées à l’Office national des forêts (ONF) par les collectivités territoriales et personnes morales propriétaires de bois et forêts relevant du régime forestier et à la composition du conseil d’administration de l’ONF (séance éventuelle)",
     "themes": [
       "environnement",
