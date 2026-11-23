@@ -10,7 +10,7 @@
     "L17-VD235060DEC"
   ],
   "dernier_reel": {
-    "date": "2026-11-22",
+    "date": "2026-11-23",
     "scenario": {
       "fin": {
         "duree": 3.8
@@ -19,67 +19,28 @@
         {
           "duree": 3.4,
           "eyebrow": "Populous · Les institutions",
-          "titre": "C'est quoi le 49.3 ?",
+          "titre": "Projet de loi ou proposition de loi ?",
           "type": "titre"
         },
         {
-          "etapes": [
-            {
-              "kicker": "Le Premier ministre",
-              "sous": "sur un texte",
-              "titre": "**Engage la responsabilité** du Gouvernement"
-            },
-            {
-              "kicker": "Le résultat",
-              "sous": "sauf si une motion de censure est votée",
-              "titre": "Texte **considéré comme adopté**"
-            }
-          ],
-          "titre": "Le 49.3, pas à pas",
-          "type": "etapes"
-        },
-        {
-          "anneau": true,
-          "kicker": "Le délai",
-          "nombre": 24,
-          "sous": "pour déposer la motion de censure",
-          "type": "chiffre",
-          "unite": "heures"
-        },
-        {
-          "groupes": [
-            {
-              "couleur": [
-                69,
-                150,
-                109
-              ],
-              "label": "**289 voix** : la majorité des membres",
-              "n": 289
-            },
-            {
-              "couleur": [
-                62,
-                74,
-                134
-              ],
-              "label": "",
-              "n": 288
-            }
-          ],
-          "kicker": "Pour renverser le Gouvernement",
-          "sous": "Seuls les votes **pour** comptent",
-          "titre": "289 voix sur 577",
-          "type": "points"
-        },
-        {
-          "duree": 5.0,
-          "kicker": "Un exemple",
-          "texte": "En décembre 2024, une motion a été adoptée : **le Gouvernement a démissionné**.",
-          "type": "texte"
+          "bas": {
+            "sous": "Examen **en commission**, puis en séance publique",
+            "titre": "Dans les deux cas"
+          },
+          "droite": {
+            "kicker": "Proposition de loi",
+            "sous": "Députés ou sénateurs",
+            "titre": "De **parlementaires**"
+          },
+          "gauche": {
+            "kicker": "Projet de loi",
+            "titre": "Du **Gouvernement**"
+          },
+          "titre": "D'où vient le texte ?",
+          "type": "compare"
         }
       ],
-      "source": "Sources : Constitution, art. 49 · assemblee-nationale.fr"
+      "source": "Sources : Constitution, art. 39 · senat.fr"
     },
     "scrutin": null,
     "type_reel": "pedagogique"
@@ -113,7 +74,8 @@
     "senat",
     "lire-un-vote",
     "vote-solennel",
-    "article-49-3"
+    "article-49-3",
+    "projet-ou-proposition"
   ],
   "reels_prets_publies": [
     "lisnard-yougov-2026-11-19"
