@@ -4256,5 +4256,31 @@
     ],
     "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0371_texte-adopte-seance.pdf",
     "type": "main_levee"
+  },
+  {
+    "numero": 10102,
+    "date": "2026-11-24",
+    "titre": "Visant la relance et la décentralisation du logement",
+    "adopte": true,
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0372_texte-adopte-seance.pdf",
+    "themes": [
+      "logement",
+      "institutions"
+    ],
+    "type": "scrutin"
+  },
+  {
+    "numero": null,
+    "dossier": "DLR5L17N55223",
+    "date": "2026-11-24",
+    "titre": "Projet de loi de finances de fin de gestion pour 2026",
+    "adopte": true,
+    "statut": "adopte",
+    "themes": [
+      "economie"
+    ],
+    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/PLFFG_2026",
+    "type": "main_levee"
   }
 ]

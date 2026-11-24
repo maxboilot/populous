@@ -1,8 +1,32 @@
 {
-  "generated_at": "2026-11-24T21:22:26.993626Z",
+  "generated_at": "2026-11-24T23:29:54.631259Z",
   "depuis": "2025-11-24",
-  "nombre": 119,
+  "nombre": 120,
   "lois": [
+    {
+      "numero": 10102,
+      "date": "2026-11-24",
+      "titre": "Visant la relance et la décentralisation du logement",
+      "titre_officiel": "l'ensemble du projet de loi visant la relance et la décentralisation du logement (première lecture).",
+      "nature": "projet de loi",
+      "lecture": "première lecture",
+      "solennel": true,
+      "adopte": true,
+      "statut": "adopte",
+      "themes": [
+        "logement",
+        "institutions"
+      ],
+      "sort": "l'Assemblée nationale a adopté",
+      "tally": {
+        "pour": 362,
+        "contre": 118,
+        "abstention": 50,
+        "absent": 57
+      },
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0372_texte-adopte-seance.pdf",
+      "type": "scrutin"
+    },
     {
       "numero": 10080,
       "date": "2026-11-19",
