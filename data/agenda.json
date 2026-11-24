@@ -19,7 +19,7 @@
   },
   {
     "date": "2026-11-24",
-    "heure": "18:30",
+    "heure": "18:00",
     "ordre_du_jour": "Examen du texte — Interdire la vente de chiens et de chats dans les foires et salons",
     "themes": [],
     "dossier": "DLR5L17N50645",
@@ -230,15 +230,6 @@
       "social"
     ],
     "dossier": "DLR5L17N53870",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-11-26",
-    "heure": "09:00",
-    "ordre_du_jour": "Discussion de la proposition de loi portant déblocage exceptionnel de la participation et de l’intéressement en 2026",
-    "themes": [],
-    "dossier": "DLR5L17N53330",
     "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
   },
