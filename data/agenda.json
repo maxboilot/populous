@@ -1,6 +1,18 @@
 [
   {
     "date": "2026-11-24",
+    "heure": "15:00",
+    "ordre_du_jour": "Explications de vote et vote par scrutin public sur le projet de loi, adopté par le Sénat, visant la relance et la décentralisation du logement",
+    "themes": [
+      "logement",
+      "institutions"
+    ],
+    "dossier": "DLR5L17N54608",
+    "scrutin_annonce": true,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-24",
     "heure": "16:30",
     "ordre_du_jour": "Examen du texte — Création d’un ordre national des audioprothésistes",
     "themes": [],
@@ -45,6 +57,17 @@
     "dossier": "DLR5L17N53067",
     "scrutin_annonce": false,
     "lecture": "2ᵉ lecture"
+  },
+  {
+    "date": "2026-11-24",
+    "heure": "21:30",
+    "ordre_du_jour": "Suite de la discussion, sur le rapport de la commission mixte paritaire, du projet de loi de finances de fin de gestion pour 2026",
+    "themes": [
+      "economie"
+    ],
+    "dossier": "DLR5L17N55223",
+    "scrutin_annonce": false,
+    "lecture": "Commission mixte paritaire"
   },
   {
     "date": "2026-11-25",
