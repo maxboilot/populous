@@ -1,50 +1,5 @@
 [
   {
-    "date": "2026-11-23",
-    "heure": "11:00",
-    "ordre_du_jour": "Examen du texte — Instances représentatives des Français établis hors de France",
-    "themes": [],
-    "dossier": "DLR5L15N37121",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-11-23",
-    "heure": "15:00",
-    "ordre_du_jour": "Examen du texte — Assurer une meilleure équité en matière de pension alimentaire pour les familles monoparentales en cas de non-respect du droit de visite et d'hébergement",
-    "themes": [
-      "travail",
-      "social",
-      "agriculture",
-      "logement"
-    ],
-    "dossier": "DLR5L17N54904",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-11-23",
-    "heure": "15:00",
-    "ordre_du_jour": "Examen du texte — Favoriser le travail en continu et en journée via la commande publique afin d'améliorer les conditions relatives au domaine social et à l'emploi",
-    "themes": [
-      "travail"
-    ],
-    "dossier": "DLR5L17N54724",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
-    "date": "2026-11-23",
-    "heure": "15:00",
-    "ordre_du_jour": "Examen du texte — Renforcer les interdictions de détenir un animal par la création d’un fichier national",
-    "themes": [
-      "environnement"
-    ],
-    "dossier": "DLR5L17N55071",
-    "scrutin_annonce": false,
-    "lecture": "1ʳᵉ lecture"
-  },
-  {
     "date": "2026-11-24",
     "heure": "16:30",
     "ordre_du_jour": "Examen du texte — Création d’un ordre national des audioprothésistes",
