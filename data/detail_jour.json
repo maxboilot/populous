@@ -1,114 +1,35 @@
 {
-  "generated_at": "2026-11-25T20:31:34.298456Z",
-  "date": "2026-11-24",
-  "numero_vedette": 10102,
+  "generated_at": "2026-11-25T23:08:03.719155Z",
+  "date": "2026-11-25",
+  "numero_vedette": 10107,
   "lois": [
     {
-      "nature_texte": "projet de loi",
-      "intitule": "visant la relance et la décentralisation du logement",
-      "lecture": "(première lecture)",
-      "ensemble": {
-        "numero": 10102,
-        "nature": "ensemble",
-        "article": null,
-        "n_amendement": null,
-        "parent": null,
-        "auteur": null,
-        "issue": "adopte",
-        "pour": 362,
-        "contre": 118,
-        "abstentions": 50,
-        "votants": 530,
-        "solennel": true,
-        "objet": "l'ensemble du projet de loi visant la relance et la décentralisation du logement (première lecture).",
-        "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/10102",
-        "vedette": true
-      },
+      "nature_texte": "proposition de résolution",
+      "intitule": "européenne relative à la révision de la directive « Services de médias audiovisuels » et à la défense de l'exception culturelle europénne",
+      "lecture": null,
+      "ensemble": null,
       "motions": [],
-      "articles": []
-    },
-    {
-      "nature_texte": "projet de loi",
-      "intitule": "de finances de fin de gestion pour 2026",
-      "lecture": "(texte de la commission mixte paritaire)",
-      "ensemble": {
-        "numero": 10106,
-        "nature": "ensemble",
-        "article": null,
-        "n_amendement": null,
-        "parent": null,
-        "auteur": null,
-        "issue": "adopte",
-        "pour": 135,
-        "contre": 64,
-        "abstentions": 89,
-        "votants": 288,
-        "solennel": false,
-        "objet": "l'ensemble du projet de loi de finances de fin de gestion pour 2026 (texte de la commission mixte paritaire).",
-        "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/10106",
-        "vedette": false
-      },
-      "motions": [
-        {
-          "numero": 10103,
-          "nature": "motion",
-          "article": null,
-          "n_amendement": null,
-          "parent": null,
-          "auteur": null,
-          "issue": "rejete",
-          "pour": 60,
-          "contre": 135,
-          "abstentions": 75,
-          "votants": 270,
-          "solennel": false,
-          "objet": "la motion de rejet préalable, déposée par Mme Mathilde Panot, du projet de loi de finances de fin de gestion pour 2026 (texte de la commission mixte paritaire).",
-          "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/10103",
-          "vedette": false
-        }
-      ],
       "articles": [
         {
-          "ref": "?",
-          "article": null,
-          "modifications": [
-            {
-              "numero": 10104,
-              "nature": "amendement",
-              "article": null,
-              "n_amendement": 4,
-              "parent": null,
-              "auteur": "du Gouvernement au projet de loi de finances de fin de gestion pour 2026 (texte de la commission mixte paritaire).",
-              "issue": "adopte",
-              "pour": 133,
-              "contre": 58,
-              "abstentions": 87,
-              "votants": 278,
-              "solennel": false,
-              "objet": "l'amendement n° 4 du Gouvernement au projet de loi de finances de fin de gestion pour 2026 (texte de la commission mixte paritaire).",
-              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/10104",
-              "vedette": false,
-              "sous_amendements": []
-            },
-            {
-              "numero": 10105,
-              "nature": "amendement",
-              "article": null,
-              "n_amendement": 2,
-              "parent": null,
-              "auteur": "du Gouvernement au projet de loi de finances de fin de gestion pour 2026 (texte de la commission mixte paritaire).",
-              "issue": "adopte",
-              "pour": 208,
-              "contre": 1,
-              "abstentions": 73,
-              "votants": 282,
-              "solennel": false,
-              "objet": "l'amendement n° 2 du Gouvernement au projet de loi de finances de fin de gestion pour 2026 (texte de la commission mixte paritaire).",
-              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/10105",
-              "vedette": false,
-              "sous_amendements": []
-            }
-          ]
+          "ref": "unique",
+          "article": {
+            "numero": 10107,
+            "nature": "article",
+            "article": "unique",
+            "n_amendement": null,
+            "parent": null,
+            "auteur": null,
+            "issue": "adopte",
+            "pour": 43,
+            "contre": 0,
+            "abstentions": 11,
+            "votants": 54,
+            "solennel": false,
+            "objet": "l'article unique de la proposition de résolution européenne relative à la révision de la directive « Services de médias audiovisuels » et à la défense de l'exception culturelle europénne.",
+            "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/10107",
+            "vedette": true
+          },
+          "modifications": []
         }
       ]
     }
