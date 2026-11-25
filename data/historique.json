@@ -1,8 +1,31 @@
 {
-  "generated_at": "2026-11-24T23:29:54.631259Z",
-  "depuis": "2025-11-24",
-  "nombre": 120,
+  "generated_at": "2026-11-25T01:29:01.856179Z",
+  "depuis": "2025-11-25",
+  "nombre": 121,
   "lois": [
+    {
+      "numero": 10106,
+      "date": "2026-11-24",
+      "titre": "De finances de fin de gestion pour 2026",
+      "titre_officiel": "l'ensemble du projet de loi de finances de fin de gestion pour 2026 (texte de la commission mixte paritaire).",
+      "nature": "projet de loi",
+      "lecture": "texte de la commission mixte paritaire",
+      "solennel": false,
+      "adopte": true,
+      "statut": "adopte",
+      "themes": [
+        "economie"
+      ],
+      "sort": "l'Assemblée nationale a adopté",
+      "tally": {
+        "pour": 135,
+        "contre": 64,
+        "abstention": 89,
+        "absent": 296
+      },
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0373_texte-adopte-seance.pdf",
+      "type": "scrutin"
+    },
     {
       "numero": 10102,
       "date": "2026-11-24",

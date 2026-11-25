@@ -4258,6 +4258,18 @@
     "type": "main_levee"
   },
   {
+    "numero": 10106,
+    "date": "2026-11-24",
+    "titre": "De finances de fin de gestion pour 2026",
+    "adopte": true,
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0373_texte-adopte-seance.pdf",
+    "themes": [
+      "economie"
+    ],
+    "type": "scrutin"
+  },
+  {
     "numero": 10102,
     "date": "2026-11-24",
     "titre": "Visant la relance et la décentralisation du logement",
