@@ -69,6 +69,21 @@
   {
     "date": "2026-11-25",
     "heure": "09:30",
+    "ordre_du_jour": "Examen du texte — Projet de loi portant diverses dispositions d'adaptation au droit de l’Union européenne en matière économique, financière, environnementale, énergétique, d’information, de transport, de santé, d’agriculture et de pêche",
+    "themes": [
+      "sante",
+      "economie",
+      "environnement",
+      "agriculture",
+      "transports"
+    ],
+    "dossier": "DLR5L17N53140",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-11-25",
+    "heure": "09:30",
     "ordre_du_jour": "Examen du texte — Protéger nos forêts en encadrant les coupes rases",
     "themes": [
       "environnement"
