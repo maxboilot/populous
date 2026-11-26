@@ -1,9 +1,18 @@
 {
-  "generated_at": "2026-11-26T02:54:00.684548Z",
-  "featured_numero": null,
+  "generated_at": "2026-11-26T05:13:24.771507Z",
+  "featured_numero": 10116,
   "featured_is_solennel": false,
-  "autres_scrutins_du_jour": [],
-  "aucun_vote_aujourdhui": true,
-  "last_featured_numero": 10107,
+  "autres_scrutins_du_jour": [
+    10108,
+    10109,
+    10110,
+    10111,
+    10112,
+    10113,
+    10114,
+    10115
+  ],
+  "aucun_vote_aujourdhui": false,
+  "last_featured_numero": 10116,
   "last_featured_date": "2026-11-25"
 }

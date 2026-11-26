@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-11-26T02:54:07.440922Z",
+  "generated_at": "2026-11-26T05:13:42.885512Z",
   "date": "2026-11-25",
-  "numero_vedette": 10107,
+  "numero_vedette": 10116,
   "lois": [
     {
       "nature_texte": "proposition de résolution",
@@ -27,9 +27,197 @@
             "solennel": false,
             "objet": "l'article unique de la proposition de résolution européenne relative à la révision de la directive « Services de médias audiovisuels » et à la défense de l'exception culturelle europénne.",
             "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/10107",
-            "vedette": true
+            "vedette": false
           },
           "modifications": []
+        }
+      ]
+    },
+    {
+      "nature_texte": "proposition de résolution",
+      "intitule": "européenne visant à réviser la définition de l'œuvre européenne",
+      "lecture": null,
+      "ensemble": null,
+      "motions": [],
+      "articles": [
+        {
+          "ref": "unique",
+          "article": {
+            "numero": 10109,
+            "nature": "article",
+            "article": "unique",
+            "n_amendement": null,
+            "parent": null,
+            "auteur": null,
+            "issue": "adopte",
+            "pour": 40,
+            "contre": 0,
+            "abstentions": 17,
+            "votants": 57,
+            "solennel": false,
+            "objet": "l'article unique de la proposition de résolution européenne visant à réviser la définition de l'œuvre européenne.",
+            "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/10109",
+            "vedette": false
+          },
+          "modifications": [
+            {
+              "numero": 10108,
+              "nature": "amendement",
+              "article": "unique",
+              "n_amendement": 1,
+              "parent": null,
+              "auteur": "Mme Legrain",
+              "issue": "rejete",
+              "pour": 21,
+              "contre": 28,
+              "abstentions": 2,
+              "votants": 51,
+              "solennel": false,
+              "objet": "l'amendement n° 1 de Mme Legrain à l'article unique de la proposition de résolution européenne visant à réviser la définition de l'œuvre européenne.",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/10108",
+              "vedette": false,
+              "sous_amendements": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nature_texte": "proposition de résolution",
+      "intitule": "européenne en faveur d'un traité juridiquement contraignant prévoyant des interdictions et des réglementations aux systèmes d'armes autonomes et de l'élaboration d'une position commune européenne sur ce sujet",
+      "lecture": null,
+      "ensemble": null,
+      "motions": [],
+      "articles": [
+        {
+          "ref": "unique",
+          "article": {
+            "numero": 10116,
+            "nature": "article",
+            "article": "unique",
+            "n_amendement": null,
+            "parent": null,
+            "auteur": null,
+            "issue": "adopte",
+            "pour": 25,
+            "contre": 0,
+            "abstentions": 14,
+            "votants": 39,
+            "solennel": false,
+            "objet": "l'article unique de la proposition de résolution européenne en faveur d'un traité juridiquement contraignant prévoyant des interdictions et des réglementations aux systèmes d'armes autonomes et de l'élaboration d'une position commune européenne sur ce sujet.",
+            "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/10116",
+            "vedette": true
+          },
+          "modifications": [
+            {
+              "numero": 10110,
+              "nature": "amendement",
+              "article": "unique",
+              "n_amendement": 1,
+              "parent": null,
+              "auteur": "M. Saintoul",
+              "issue": "adopte",
+              "pour": 10,
+              "contre": 1,
+              "abstentions": 24,
+              "votants": 35,
+              "solennel": false,
+              "objet": "l'amendement n° 1 de M. Saintoul à l'article unique de la proposition de résolution européenne en faveur d'un traité juridiquement contraignant prévoyant des interdictions et des réglementations aux systèmes d'armes autonomes et de l'élaboration d'une position commune européenne sur ce sujet.",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/10110",
+              "vedette": false,
+              "sous_amendements": []
+            },
+            {
+              "numero": 10111,
+              "nature": "amendement",
+              "article": "unique",
+              "n_amendement": 2,
+              "parent": null,
+              "auteur": "M. Saintoul",
+              "issue": "adopte",
+              "pour": 15,
+              "contre": 0,
+              "abstentions": 22,
+              "votants": 37,
+              "solennel": false,
+              "objet": "l'amendement n° 2 de M. Saintoul à l'article unique de la proposition de résolution européenne en faveur d'un traité juridiquement contraignant prévoyant des interdictions et des réglementations aux systèmes d'armes autonomes et de l'élaboration d'une position commune européenne sur ce sujet.",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/10111",
+              "vedette": false,
+              "sous_amendements": []
+            },
+            {
+              "numero": 10112,
+              "nature": "amendement",
+              "article": "unique",
+              "n_amendement": 3,
+              "parent": null,
+              "auteur": "M. Saintoul",
+              "issue": "adopte",
+              "pour": 13,
+              "contre": 1,
+              "abstentions": 23,
+              "votants": 37,
+              "solennel": false,
+              "objet": "l'amendement n° 3 de M. Saintoul à l'article unique de la proposition de résolution européenne en faveur d'un traité juridiquement contraignant prévoyant des interdictions et des réglementations aux systèmes d'armes autonomes et de l'élaboration d'une position commune européenne sur ce sujet.",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/10112",
+              "vedette": false,
+              "sous_amendements": []
+            },
+            {
+              "numero": 10113,
+              "nature": "amendement",
+              "article": "unique",
+              "n_amendement": 4,
+              "parent": null,
+              "auteur": "M. Saintoul",
+              "issue": "adopte",
+              "pour": 28,
+              "contre": 3,
+              "abstentions": 6,
+              "votants": 37,
+              "solennel": false,
+              "objet": "l'amendement n° 4 de M. Saintoul à l'article unique de la proposition de résolution européenne en faveur d'un traité juridiquement contraignant prévoyant des interdictions et des réglementations aux systèmes d'armes autonomes et de l'élaboration d'une position commune européenne sur ce sujet.",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/10113",
+              "vedette": false,
+              "sous_amendements": []
+            },
+            {
+              "numero": 10114,
+              "nature": "amendement",
+              "article": "unique",
+              "n_amendement": 7,
+              "parent": null,
+              "auteur": "la commission des affaires étrangères",
+              "issue": "adopte",
+              "pour": 10,
+              "contre": 5,
+              "abstentions": 20,
+              "votants": 35,
+              "solennel": false,
+              "objet": "l'amendement n° 7 de la commission des affaires étrangères à l'article unique de la proposition de résolution européenne en faveur d'un traité juridiquement contraignant prévoyant des interdictions et des réglementations aux systèmes d'armes autonomes et de l'élaboration d'une position commune européenne sur ce sujet.",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/10114",
+              "vedette": false,
+              "sous_amendements": []
+            },
+            {
+              "numero": 10115,
+              "nature": "amendement",
+              "article": "unique",
+              "n_amendement": 8,
+              "parent": null,
+              "auteur": "la commission des affaires étrangères",
+              "issue": "adopte",
+              "pour": 13,
+              "contre": 5,
+              "abstentions": 20,
+              "votants": 38,
+              "solennel": false,
+              "objet": "l'amendement n° 8 de la commission des affaires étrangères à l'article unique de la proposition de résolution européenne en faveur d'un traité juridiquement contraignant prévoyant des interdictions et des réglementations aux systèmes d'armes autonomes et de l'élaboration d'une position commune européenne sur ce sujet.",
+              "source": "https://www.assemblee-nationale.fr/dyn/17/scrutins/10115",
+              "vedette": false,
+              "sous_amendements": []
+            }
+          ]
         }
       ]
     }
