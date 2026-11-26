@@ -10,7 +10,7 @@
     "L17-VD235060DEC"
   ],
   "dernier_reel": {
-    "date": "2026-11-25",
+    "date": "2026-11-26",
     "scenario": {
       "fin": {
         "duree": 3.8
@@ -21,7 +21,7 @@
           "duree": 4.4,
           "eyebrow": "Vote solennel · 24 novembre 2026",
           "tampon": "ADOPTÉ",
-          "titre": "Projet de loi visant la relance et la décentralisation du logement (première lecture)",
+          "titre": "Projet de loi de finances de fin de gestion pour 2026 (texte de la commission mixte paritaire)",
           "type": "titre"
         },
         {
@@ -32,15 +32,15 @@
           "cartes": [
             [
               "Ce que c’est",
-              "Un projet de loi : un texte déposé par le Gouvernement. Ici : première lecture à l’Assemblée nationale."
+              "Un projet de loi : un texte déposé par le Gouvernement."
             ],
             [
               "Ce vote",
-              "Vote sur l’ensemble du texte. Résultat : adopté (362 pour, 118 contre, 50 abstentions)."
+              "Vote sur l’ensemble du texte. Résultat : adopté (135 pour, 64 contre, 89 abstentions)."
             ],
             [
               "La suite",
-              "Pour devenir une loi, le texte doit être adopté dans les mêmes termes par l’Assemblée nationale et par le Sénat."
+              "Le compromis doit être approuvé par les deux assemblées. S’il l’est, le texte est définitif et part pour promulgation."
             ]
           ],
           "duree": 7.4,
@@ -53,9 +53,9 @@
           "type": "hemicycle"
         }
       ],
-      "source": "Sources : Constitution (art. 39 et 45) · assemblee-nationale.fr (fiche n°46)"
+      "source": "Sources : Constitution (art. 39 et 45) · senat.fr · assemblee-nationale.fr (fiche n°46)"
     },
-    "scrutin": 10102,
+    "scrutin": 10106,
     "type_reel": "loi"
   },
   "dernier_sondage_publie": "2026-11-19|Harris",
@@ -80,7 +80,8 @@
     10033,
     10062,
     10080,
-    10102
+    10102,
+    10106
   ],
   "reels_pedagogiques_publies": [
     "budget-deux-parties",
