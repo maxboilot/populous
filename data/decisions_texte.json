@@ -1,6 +1,22 @@
 {
  "decisions": [
   {
+   "id": "L17-VD235198DEC",
+   "dossier": "DLR5L17N55074",
+   "titre": "Maintenir les pharmacies existantes dans les communes rurales",
+   "nature": "proposition",
+   "organique": false,
+   "ratification": false,
+   "date": "2026-11-26",
+   "lecture": "premiere",
+   "statut": "adoptée",
+   "adopte": true,
+   "sans_modification": false,
+   "premiere_assemblee": true,
+   "vote_ref": 10168,
+   "url": "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L17N55074"
+  },
+  {
    "id": "L17-VD235105DEC",
    "dossier": "DLR5L17N54608",
    "titre": "La relance et la décentralisation du logement",

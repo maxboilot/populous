@@ -131,7 +131,7 @@
   {
     "date": "2026-12-01",
     "heure": "16:30",
-    "ordre_du_jour": "Examen du texte — Améliorer l’efficacité de l’État au niveau local (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Améliorer l’efficacité de l’État au niveau local",
     "themes": [],
     "dossier": "DLR5L17N55186",
     "scrutin_annonce": false,
@@ -140,7 +140,7 @@
   {
     "date": "2026-12-01",
     "heure": "16:30",
-    "ordre_du_jour": "Examen du texte — Instaurer une motion de censure constructive (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Instaurer une motion de censure constructive",
     "themes": [],
     "dossier": "DLR5L17N55151",
     "scrutin_annonce": false,
@@ -223,7 +223,7 @@
   {
     "date": "2026-12-02",
     "heure": "09:00",
-    "ordre_du_jour": "Examen du texte — Projet de loi autorisant la ratification de l'accord de protection des investissements entre l'Union européenne et ses États membres, d'une part, et la République socialiste du Vietnam, d'autre part (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Projet de loi autorisant la ratification de l'accord de protection des investissements entre l'Union européenne et ses États membres, d'une part, et la République socialiste du Vietnam, d'autre part",
     "themes": [
       "defense"
     ],
@@ -234,7 +234,7 @@
   {
     "date": "2026-12-02",
     "heure": "09:00",
-    "ordre_du_jour": "Examen du texte — Projet de loi autorisant la ratification de l’accord de passation conjointe de marché en vue de l’acquisition d’une plateforme centrale commune pour le mécanisme d’ajustement carbone aux frontières (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Projet de loi autorisant la ratification de l’accord de passation conjointe de marché en vue de l’acquisition d’une plateforme centrale commune pour le mécanisme d’ajustement carbone aux frontières",
     "themes": [
       "environnement",
       "institutions",
@@ -277,7 +277,18 @@
   {
     "date": "2026-12-02",
     "heure": "09:30",
-    "ordre_du_jour": "Examen du texte — Instaurer une négociation obligatoire sur la situation des parents isolés (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Instaurer un plan décennal de rénovation du bâti scolaire",
+    "themes": [
+      "education"
+    ],
+    "dossier": "DLR5L17N55127",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-02",
+    "heure": "09:30",
+    "ordre_du_jour": "Examen du texte — Instaurer une négociation obligatoire sur la situation des parents isolés",
     "themes": [
       "social"
     ],
@@ -310,7 +321,16 @@
   {
     "date": "2026-12-02",
     "heure": "09:30",
-    "ordre_du_jour": "Examen du texte — Renforcer la protection et l’accompagnement des dirigeants d’entreprise confrontés à la maladie (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Proposition de loi visant à conforter la filière cinématographique en France",
+    "themes": [],
+    "dossier": "DLR5L16N48687",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-02",
+    "heure": "09:30",
+    "ordre_du_jour": "Examen du texte — Renforcer la protection et l’accompagnement des dirigeants d’entreprise confrontés à la maladie",
     "themes": [
       "sante"
     ],
@@ -612,6 +632,28 @@
     "lecture": "Commission mixte paritaire"
   },
   {
+    "date": "2026-12-07",
+    "heure": "16:30",
+    "ordre_du_jour": "Examen du texte — Projet de loi relatif à la régulation de l'enseignement supérieur privé (séance éventuelle)",
+    "themes": [
+      "education"
+    ],
+    "dossier": "DLR5L17N54344",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-08",
+    "heure": "16:30",
+    "ordre_du_jour": "Examen du texte — Projet de loi relatif à la régulation de l'enseignement supérieur privé (séance éventuelle)",
+    "themes": [
+      "education"
+    ],
+    "dossier": "DLR5L17N54344",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
     "date": "2026-12-08",
     "heure": "21:30",
     "ordre_du_jour": "Suite de la discussion de la proposition de loi, adoptée par le Sénat, visant à faciliter la création et le fonctionnement des communes nouvelles",
@@ -628,6 +670,41 @@
     "ordre_du_jour": "Suite de la discussion du projet de loi, adopté par le Sénat, relatif à la lutte contre les ingérences étrangères dans la vie démocratique",
     "themes": [],
     "dossier": "DLR5L17N54703",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-09",
+    "heure": "09:30",
+    "ordre_du_jour": "Examen du texte — Projet de loi portant diverses dispositions d'adaptation au droit de l’Union européenne en matière économique, financière, environnementale, énergétique, d’information, de transport, de santé, d’agriculture et de pêche (séance éventuelle)",
+    "themes": [
+      "sante",
+      "economie",
+      "environnement",
+      "agriculture",
+      "transports"
+    ],
+    "dossier": "DLR5L17N53140",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-09",
+    "heure": "09:30",
+    "ordre_du_jour": "Examen du texte — Projet de loi relatif à la régulation de l'enseignement supérieur privé (séance éventuelle)",
+    "themes": [
+      "education"
+    ],
+    "dossier": "DLR5L17N54344",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-09",
+    "heure": "09:30",
+    "ordre_du_jour": "Examen du texte — Proposition de loi visant à conforter la filière cinématographique en France (séance éventuelle)",
+    "themes": [],
+    "dossier": "DLR5L16N48687",
     "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
   },
@@ -772,7 +849,7 @@
   {
     "date": "2026-12-15",
     "heure": "15:00",
-    "ordre_du_jour": "Discussion du projet de loi, adopté par le Sénat après engagement de la procédure accélérée, relatif à la régulation de l’enseignement supérieur privé",
+    "ordre_du_jour": "Discussion du projet de loi, adopté par le Sénat, relatif à la régulation de l’enseignement supérieur privé",
     "themes": [
       "education"
     ],
