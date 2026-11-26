@@ -4281,5 +4281,17 @@
     ],
     "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/PLFFG_2026",
     "type": "main_levee"
+  },
+  {
+    "numero": 10117,
+    "date": "2026-11-26",
+    "titre": "Faire de l’égalité entre les territoires une priorité de l’ensemble des politiques publiques",
+    "adopte": true,
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0377_texte-adopte-seance.pdf",
+    "themes": [
+      "institutions"
+    ],
+    "type": "scrutin"
   }
 ]

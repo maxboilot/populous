@@ -1,8 +1,31 @@
 {
-  "generated_at": "2026-11-26T15:29:10.453394Z",
+  "generated_at": "2026-11-26T18:29:13.847152Z",
   "depuis": "2025-11-26",
-  "nombre": 121,
+  "nombre": 122,
   "lois": [
+    {
+      "numero": 10117,
+      "date": "2026-11-26",
+      "titre": "Faire de l’égalité entre les territoires une priorité de l’ensemble des politiques publiques",
+      "titre_officiel": "l'ensemble de la proposition de résolution visant à faire de l’égalité entre les territoires une priorité de l’ensemble des politiques publiques (article 34-1 de la Constitution).",
+      "nature": "proposition de resolution",
+      "lecture": "article 34-1 de la Constitution",
+      "solennel": false,
+      "adopte": true,
+      "statut": "adopte",
+      "themes": [
+        "institutions"
+      ],
+      "sort": "l'Assemblée nationale a adopté",
+      "tally": {
+        "pour": 137,
+        "contre": 28,
+        "abstention": 14,
+        "absent": 405
+      },
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0377_texte-adopte-seance.pdf",
+      "type": "scrutin"
+    },
     {
       "numero": 10106,
       "date": "2026-11-24",
