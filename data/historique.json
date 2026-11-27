@@ -1,8 +1,33 @@
 {
-  "generated_at": "2026-11-26T23:02:03.284978Z",
-  "depuis": "2025-11-26",
-  "nombre": 122,
+  "generated_at": "2026-11-27T01:04:05.452199Z",
+  "depuis": "2025-11-27",
+  "nombre": 123,
   "lois": [
+    {
+      "numero": 10168,
+      "date": "2026-11-26",
+      "titre": "Maintenir les pharmacies existantes dans les communes rurales",
+      "titre_officiel": "l'ensemble de la proposition de loi visant à maintenir les pharmacies existantes dans les communes rurales (première lecture).",
+      "nature": "proposition de loi",
+      "lecture": "première lecture",
+      "solennel": false,
+      "adopte": true,
+      "statut": "adopte",
+      "themes": [
+        "sante",
+        "agriculture",
+        "institutions"
+      ],
+      "sort": "l'Assemblée nationale a adopté",
+      "tally": {
+        "pour": 180,
+        "contre": 0,
+        "abstention": 5,
+        "absent": 397
+      },
+      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0378_texte-adopte-seance.pdf",
+      "type": "scrutin"
+    },
     {
       "numero": 10117,
       "date": "2026-11-26",

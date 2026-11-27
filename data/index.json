@@ -1,19 +1,5 @@
 [
   {
-    "numero": null,
-    "dossier": "DLR5L17N52922",
-    "date": "2025-11-26",
-    "titre": "Projet de loi de financement de la sécurité sociale pour 2026",
-    "adopte": true,
-    "statut": "adopte_modifie",
-    "themes": [
-      "securite",
-      "economie"
-    ],
-    "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/PLFSS_2026",
-    "type": "main_levee"
-  },
-  {
     "numero": 4438,
     "date": "2025-11-27",
     "titre": "La nationalisation d'ArcelorMittal France afin de préserver la souveraineté industrielle de la France",
@@ -4281,6 +4267,20 @@
     ],
     "source": "https://www.assemblee-nationale.fr/dyn/17/dossiers/PLFFG_2026",
     "type": "main_levee"
+  },
+  {
+    "numero": 10168,
+    "date": "2026-11-26",
+    "titre": "Maintenir les pharmacies existantes dans les communes rurales",
+    "adopte": true,
+    "statut": "adopte",
+    "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0378_texte-adopte-seance.pdf",
+    "themes": [
+      "sante",
+      "agriculture",
+      "institutions"
+    ],
+    "type": "scrutin"
   },
   {
     "numero": 10117,
