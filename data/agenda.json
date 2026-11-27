@@ -65,7 +65,7 @@
   {
     "date": "2026-12-01",
     "heure": "21:30",
-    "ordre_du_jour": "Examen du texte — Proposition de loi relative aux modalités de recouvrement de la contribution aux frais de garderie et de la contribution additionnelle versées à l’Office national des forêts (ONF) par les collectivités territoriales et personnes morales propriétaires de bois et forêts relevant du régime forestier et à la composition du conseil d’administration de l’ONF (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Proposition de loi relative aux modalités de recouvrement de la contribution aux frais de garderie et de la contribution additionnelle versées à l’Office national des forêts (ONF) par les collectivités territoriales et personnes morales propriétaires de bois et forêts relevant du régime forestier et à la composition du conseil d’administration de l’ONF",
     "themes": [
       "environnement",
       "institutions"
@@ -163,7 +163,7 @@
   {
     "date": "2026-12-02",
     "heure": "09:00",
-    "ordre_du_jour": "Examen du texte — Projet de loi relatif à la lutte contre les ingérences étrangères dans la vie démocratique (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Projet de loi relatif à la lutte contre les ingérences étrangères dans la vie démocratique",
     "themes": [],
     "dossier": "DLR5L17N54703",
     "scrutin_annonce": false,
@@ -226,7 +226,7 @@
   {
     "date": "2026-12-02",
     "heure": "09:30",
-    "ordre_du_jour": "Examen du texte — Mieux protéger, mieux gérer et mieux valoriser la forêt et ses produits pour répondre aux enjeux de lutte contre le changement climatique, d’adaptation à ses effets et de stockage du carbone dans les matériaux en bois (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Mieux protéger, mieux gérer et mieux valoriser la forêt et ses produits pour répondre aux enjeux de lutte contre le changement climatique, d’adaptation à ses effets et de stockage du carbone dans les matériaux en bois",
     "themes": [
       "environnement"
     ],
@@ -319,7 +319,7 @@
   {
     "date": "2026-12-02",
     "heure": "15:45",
-    "ordre_du_jour": "Examen des amendements (art. 88) — Garantir l’accès à un panier diversifié de denrées alimentaires favorables à la santé et vendues à prix coûtant (séance éventuelle)",
+    "ordre_du_jour": "Examen des amendements (art. 88) — Garantir l’accès à un panier diversifié de denrées alimentaires favorables à la santé et vendues à prix coûtant",
     "themes": [
       "sante",
       "agriculture"
@@ -770,6 +770,36 @@
       "education"
     ],
     "dossier": "DLR5L17N54344",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-15",
+    "heure": "18:30",
+    "ordre_du_jour": "Examen du texte — Projet de loi portant diverses dispositions d'adaptation au droit de l’Union européenne en matière économique, financière, environnementale, énergétique, d’information, de transport, de santé, d’agriculture et de pêche (séance éventuelle)",
+    "themes": [
+      "sante",
+      "economie",
+      "environnement",
+      "agriculture",
+      "transports"
+    ],
+    "dossier": "DLR5L17N53140",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-16",
+    "heure": "11:00",
+    "ordre_du_jour": "Examen du texte — Projet de loi portant diverses dispositions d'adaptation au droit de l’Union européenne en matière économique, financière, environnementale, énergétique, d’information, de transport, de santé, d’agriculture et de pêche (séance éventuelle)",
+    "themes": [
+      "sante",
+      "economie",
+      "environnement",
+      "agriculture",
+      "transports"
+    ],
+    "dossier": "DLR5L17N53140",
     "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
   },
