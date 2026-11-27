@@ -172,7 +172,7 @@
   {
     "date": "2026-12-02",
     "heure": "09:30",
-    "ordre_du_jour": "Examen du texte — Faciliter le financement de la rénovation énergétique par les économies d'énergie (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Faciliter le financement de la rénovation énergétique par les économies d'énergie",
     "themes": [
       "economie",
       "environnement"
@@ -184,7 +184,7 @@
   {
     "date": "2026-12-02",
     "heure": "09:30",
-    "ordre_du_jour": "Examen du texte — Faire contribuer davantage les héritiers les plus fortunés (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Faire contribuer davantage les héritiers les plus fortunés",
     "themes": [],
     "dossier": "DLR5L17N55143",
     "scrutin_annonce": false,
@@ -215,7 +215,7 @@
   {
     "date": "2026-12-02",
     "heure": "09:30",
-    "ordre_du_jour": "Examen du texte — Mieux indemniser les dégâts sur les biens immobiliers causés par le retrait-gonflement de l’argile (séance éventuelle)",
+    "ordre_du_jour": "Examen du texte — Mieux indemniser les dégâts sur les biens immobiliers causés par le retrait-gonflement de l’argile",
     "themes": [
       "logement"
     ],
@@ -586,6 +586,18 @@
     "ordre_du_jour": "Suite de la discussion du projet de loi, adopté par le Sénat, relatif à la lutte contre les ingérences étrangères dans la vie démocratique",
     "themes": [],
     "dossier": "DLR5L17N54703",
+    "scrutin_annonce": false,
+    "lecture": "1ʳᵉ lecture"
+  },
+  {
+    "date": "2026-12-09",
+    "heure": "09:30",
+    "ordre_du_jour": "Examen du texte — Faciliter le financement de la rénovation énergétique par les économies d'énergie (séance éventuelle)",
+    "themes": [
+      "economie",
+      "environnement"
+    ],
+    "dossier": "DLR5L17N55184",
     "scrutin_annonce": false,
     "lecture": "1ʳᵉ lecture"
   },
