@@ -10,7 +10,7 @@
     "L17-VD235060DEC"
   ],
   "dernier_reel": {
-    "date": "2026-11-27",
+    "date": "2026-11-28",
     "scenario": {
       "fin": {
         "duree": 3.8
@@ -18,41 +18,60 @@
       "scenes": [
         {
           "duree": 3.8,
-          "eyebrow": "Votes du 26 novembre",
-          "titre": "2 textes votés à l’Assemblée nationale",
+          "eyebrow": "Populous · Les institutions",
+          "titre": "C'est quoi une commission mixte paritaire ?",
           "type": "titre"
         },
         {
-          "chiffres": {
-            "abstention": 14,
-            "contre": 28,
-            "pour": 137
-          },
-          "couleur": "vert",
-          "eyebrow": "Vote du 26 novembre 2026",
-          "suite": "Pour devenir une loi, le texte doit être adopté dans les mêmes termes par l’Assemblée nationale et par le Sénat.",
-          "tampon": "ADOPTÉ",
-          "titre": "Proposition de résolution visant à faire de l’égalité entre les territoires une priorité de l’ensemble des politiques publiques (article 34-1 de la…",
-          "type": "loi_resume"
+          "duree": 4.2,
+          "kicker": "Le problème",
+          "texte": "Députés et sénateurs ne sont **pas d'accord** sur un texte.",
+          "type": "texte"
         },
         {
-          "chiffres": {
-            "abstention": 5,
-            "contre": 0,
-            "pour": 180
+          "groupes": [
+            {
+              "couleur": [
+                143,
+                166,
+                255
+              ],
+              "label": "**7 députés**",
+              "n": 7
+            },
+            {
+              "couleur": [
+                255,
+                140,
+                80
+              ],
+              "label": "**7 sénateurs**",
+              "n": 7
+            }
+          ],
+          "kicker": "La solution",
+          "titre": "Un compromis à **14**",
+          "type": "points"
+        },
+        {
+          "droite": {
+            "kicker": "Sinon",
+            "sous": "si le Gouvernement lui demande de statuer",
+            "titre": "**Dernier mot** à l'Assemblée"
           },
-          "couleur": "vert",
-          "eyebrow": "Vote du 26 novembre 2026",
-          "suite": "Pour devenir une loi, le texte doit être adopté dans les mêmes termes par l’Assemblée nationale et par le Sénat.",
-          "tampon": "ADOPTÉ",
-          "titre": "Proposition de loi visant à maintenir les pharmacies existantes dans les communes rurales (première lecture)",
-          "type": "loi_resume"
+          "gauche": {
+            "kicker": "Si ça marche",
+            "sous": "si les deux assemblées l'adoptent",
+            "titre": "Texte **définitif**"
+          },
+          "titre": "Et ensuite ?",
+          "type": "compare"
         }
       ],
-      "source": "Sources : Constitution (art. 39 et 45) · assemblee-nationale.fr (fiche n°46)"
+      "source": "Source : senat.fr, « La commission mixte paritaire »"
     },
     "scrutin": null,
-    "type_reel": "lois"
+    "type_reel": "pedagogique"
   },
   "dernier_sondage_publie": "2026-11-26|OpinonWay",
   "lois_publiees": [
@@ -91,7 +110,8 @@
     "vote-solennel",
     "article-49-3",
     "projet-ou-proposition",
-    "amendement"
+    "amendement",
+    "cmp"
   ],
   "reels_prets_publies": [
     "lisnard-yougov-2026-11-19",
