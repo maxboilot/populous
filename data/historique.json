@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-11-27T22:44:52.097090Z",
-  "depuis": "2025-11-27",
-  "nombre": 123,
+  "generated_at": "2026-11-28T00:36:15.688663Z",
+  "depuis": "2025-11-28",
+  "nombre": 121,
   "lois": [
     {
       "numero": 10168,
@@ -2832,52 +2832,6 @@
         "absent": 1
       },
       "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0185_texte-adopte-seance.pdf",
-      "type": "scrutin"
-    },
-    {
-      "numero": 4438,
-      "date": "2025-11-27",
-      "titre": "La nationalisation d'ArcelorMittal France afin de préserver la souveraineté industrielle de la France",
-      "titre_officiel": "l'ensemble de la proposition de loi visant à la nationalisation d'ArcelorMittal France afin de préserver la souveraineté industrielle de la France (première lecture).",
-      "nature": "proposition de loi",
-      "lecture": "première lecture",
-      "solennel": false,
-      "adopte": true,
-      "statut": "adopte",
-      "themes": [
-        "economie"
-      ],
-      "sort": "l'Assemblée nationale a adopté",
-      "tally": {
-        "pour": 127,
-        "contre": 41,
-        "abstention": 42,
-        "absent": 2
-      },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0184_texte-adopte-seance.pdf",
-      "type": "scrutin"
-    },
-    {
-      "numero": 4287,
-      "date": "2025-11-27",
-      "titre": "L’établissement de l’égalité d’accès au service public postal en outre-mer",
-      "titre_officiel": "l'ensemble de la proposition de loi relative à l’établissement de l’égalité d’accès au service public postal en outre-mer (première lecture).",
-      "nature": "proposition de loi",
-      "lecture": "première lecture",
-      "solennel": false,
-      "adopte": true,
-      "statut": "adopte",
-      "themes": [
-        "institutions"
-      ],
-      "sort": "l'Assemblée nationale a adopté",
-      "tally": {
-        "pour": 195,
-        "contre": 0,
-        "abstention": 51,
-        "absent": 1
-      },
-      "source": "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0183_texte-adopte-seance.pdf",
       "type": "scrutin"
     }
   ]
