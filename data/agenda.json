@@ -560,6 +560,29 @@
   },
   {
     "date": "2026-12-08",
+    "heure": "15:00",
+    "ordre_du_jour": "Discussion, sur le rapport de la commission mixe paritaire, de la proposition de loi visant à mettre fin au devoir conjugal",
+    "themes": [
+      "social"
+    ],
+    "dossier": "DLR5L17N53279",
+    "scrutin_annonce": false,
+    "lecture": "Commission mixte paritaire"
+  },
+  {
+    "date": "2026-12-08",
+    "heure": "15:00",
+    "ordre_du_jour": "Suite de la discussion, en nouvelle lecture, du projet de loi de financement de la sécurité sociale (PLFSS) pour 2027",
+    "themes": [
+      "securite",
+      "economie"
+    ],
+    "dossier": "DLR5L17N54951",
+    "scrutin_annonce": false,
+    "lecture": "Commission mixte paritaire"
+  },
+  {
+    "date": "2026-12-08",
     "heure": "16:30",
     "ordre_du_jour": "Examen du texte — Projet de loi relatif à la régulation de l'enseignement supérieur privé (séance éventuelle)",
     "themes": [
